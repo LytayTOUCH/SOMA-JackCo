@@ -4,3 +4,21 @@ Started GET "/" for 127.0.0.1 at 2014-11-13 15:35:26 +0700
 Processing by Rails::WelcomeController#index as HTML
   Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.7ms)
 Completed 200 OK in 20ms (Views: 6.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-13 16:24:28 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.6ms)
+Completed 200 OK in 19ms (Views: 6.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-14 08:42:28 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (3.2ms)
+Completed 200 OK in 82ms (Views: 69.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-14 08:44:19 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.7ms)
+Completed 200 OK in 20ms (Views: 8.2ms | ActiveRecord: 0.0ms)
