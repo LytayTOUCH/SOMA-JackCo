@@ -28,3 +28,2350 @@ Started GET "/" for 127.0.0.1 at 2014-11-14 13:19:08 +0700
 Processing by Rails::WelcomeController#index as HTML
   Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (2.1ms)
 Completed 200 OK in 88ms (Views: 73.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-14 15:06:02 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (2.6ms)
+Completed 200 OK in 65ms (Views: 50.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-14 15:08:55 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (0.2ms)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:08:59 +0700
+
+ActionController::RoutingError (No route matches [GET] "/dashboards"):
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/bunlong/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/bunlong/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/bunlong/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (16.3ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (52.6ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:09:29 +0700
+
+NoMethodError (undefined method `routes' for #<ActionDispatch::Routing::Mapper:0xb0f9d48>):
+  config/routes.rb:2:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.1ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:09:38 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.1ms)
+  Rendered application/_sidebar_top.html.haml (2.9ms)
+  Rendered application/_sidebar_left.html.haml (1.0ms)
+Completed 200 OK in 3307ms (Views: 3306.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:09:41 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:09:41 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:09:41 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:09:41 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:09:41 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:09:41 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:23:47 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 59ms (Views: 57.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:23:47 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:23:47 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:23:47 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:23:47 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:23:47 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:23:47 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:23:52 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (7.0ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 61ms (Views: 60.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:23:52 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:23:52 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:23:52 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:23:52 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:23:52 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:23:52 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:24:16 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (3.5ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 59ms (Views: 57.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:24:16 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:24:16 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:24:16 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:24:16 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:24:16 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:24:16 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:24:51 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (3.6ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 61ms (Views: 59.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:24:51 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:24:51 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:24:51 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:24:51 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:24:51 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:24:51 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:25:08 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (3.6ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 58ms (Views: 56.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:25:08 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:25:08 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:08 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:08 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:08 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:08 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 94ms (Views: 93.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 61ms (Views: 60.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:09 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:25:21 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (3.0ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 59ms (Views: 58.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:25:21 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:21 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:21 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:25:21 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:21 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:25:21 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:27:02 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (8.5ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 66.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:27:02 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:02 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:03 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:03 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:03 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:27:03 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:27:16 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (4.9ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 61.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:27:17 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:17 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:17 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:17 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:27:17 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:17 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:27:39 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (6.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 63ms (Views: 61.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:27:39 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:27:39 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:39 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:39 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:39 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:39 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:27:50 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (7.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 63ms (Views: 62.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:27:50 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:50 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:50 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:50 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:27:50 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:27:50 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:29:18 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.7ms)
+  Rendered application/_sidebar_top.html.haml (8.4ms)
+  Rendered application/_sidebar_left.html.haml (1.0ms)
+Completed 200 OK in 157ms (Views: 144.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:29:18 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:29:18 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:29:18 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:29:18 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:29:18 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:29:18 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:29:18 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:30:16 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (6.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 67.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:30:16 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:30:16 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:16 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:16 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:16 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:16 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:16 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:30:24 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (31.7ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 93ms (Views: 92.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:30:25 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:30:25 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:25 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:25 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:25 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:25 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:30:25 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:31:01 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (5.9ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 66ms (Views: 64.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:31:01 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:01 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:01 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:31:02 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:02 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:02 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:02 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:31:47 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (5.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 68.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:31:47 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:31:47 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:47 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:47 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:47 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:47 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:31:47 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:32:01 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (4.8ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 74ms (Views: 73.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:32:01 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:32:02 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:02 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:02 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:02 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:02 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:02 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:32:22 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (4.5ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 71ms (Views: 70.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:32:22 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:32:22 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:22 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:22 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:22 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:22 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:32:22 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:28 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (4.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 76ms (Views: 75.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:28 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:28 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:28 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:28 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:28 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:28 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:28 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:29 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 59ms (Views: 57.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:29 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:29 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:29 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:29 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:29 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:29 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:29 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 62ms (Views: 60.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 67.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:30 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 61ms (Views: 60.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 65.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 60ms (Views: 58.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:31 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:40 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (1.0ms)
+Completed 200 OK in 61ms (Views: 60.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:40 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:40 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:40 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:40 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:40 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:40 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:40 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:56 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 68.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:56 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:56 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:56 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:56 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:56 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:56 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:56 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 63ms (Views: 62.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 66.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 58ms (Views: 56.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:34:57 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:35:17 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 63.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:35:17 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:17 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:35:17 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:17 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:17 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:17 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:17 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:35:35 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 67.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:35:35 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:35:35 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:35 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:35 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:35 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:35 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:35:35 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:37:11 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (5.3ms)
+  Rendered application/_sidebar_left.html.haml (1.6ms)
+Completed 200 OK in 1407ms (Views: 1404.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:13 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:13 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:13 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:13 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:13 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:13 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:13 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:37:28 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 64.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:28 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:28 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:28 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:28 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:28 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:28 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:28 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:37:35 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 63.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:35 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:35 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:35 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:35 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:35 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:35 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:35 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:37:36 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 61ms (Views: 59.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:36 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:36 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:36 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:36 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:36 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:36 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:36 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:37:42 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 76ms (Views: 75.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:42 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:42 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:42 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:42 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:42 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:42 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:42 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:37:45 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 66ms (Views: 65.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:45 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:45 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:45 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:45 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:45 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:45 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:45 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:37:52 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 76ms (Views: 75.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:52 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:52 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:52 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:52 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:52 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:52 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:52 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:37:57 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 66.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:57 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:37:57 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:57 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:57 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:57 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:57 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:37:57 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:38:00 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 66.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:38:01 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:38:01 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:38:01 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:38:01 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:38:01 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:38:01 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:38:01 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:39:57 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (2.7ms)
+Completed 200 OK in 69ms (Views: 67.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:39:57 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:39:57 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:39:57 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:39:57 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:39:57 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:39:57 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:39:57 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:40:07 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 62ms (Views: 59.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:40:07 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:40:07 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:40:07 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:40:07 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:40:07 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:40:07 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:40:07 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:42:50 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (4.4ms)
+Completed 200 OK in 73ms (Views: 72.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:42:50 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:42:50 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:42:50 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:42:50 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:42:50 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:42:50 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:42:50 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:44:09 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (4.6ms)
+Completed 200 OK in 92ms (Views: 89.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:09 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:09 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:09 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:09 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:09 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:09 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:09 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:44:24 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (5.3ms)
+Completed 200 OK in 76ms (Views: 75.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:24 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:24 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:24 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:24 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:24 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:24 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:24 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:44:28 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 68.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:28 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:28 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:28 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:28 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:28 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:28 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:28 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:44:34 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (4.4ms)
+Completed 200 OK in 76ms (Views: 74.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:34 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:34 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:34 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:34 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:34 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:34 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:34 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 76ms (Views: 75.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 67.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:36 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:44:42 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (4.5ms)
+Completed 200 OK in 73ms (Views: 72.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:42 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:44:42 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:42 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:42 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:42 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:42 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:44:42 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 15:55:46 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (4.4ms)
+Completed 200 OK in 105ms (Views: 104.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 15:55:46 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 15:55:46 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 15:55:46 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 15:55:46 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 15:55:46 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 15:55:46 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 15:55:46 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:09:03 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (4.5ms)
+  Rendered application/_sidebar_left.html.haml (4.6ms)
+Completed 200 OK in 74ms (Views: 73.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:09:03 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:03 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:03 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:03 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:09:03 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:03 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:03 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:09:05 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 64.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:09:05 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:09:05 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:05 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:05 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:05 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:05 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:09:05 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:14:37 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (4.2ms)
+Completed 200 OK in 1325ms (Views: 1324.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:14:38 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:14:38 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:38 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:14:38 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:38 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:38 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:38 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:38 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:14:47 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 72.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:14:47 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:14:47 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:47 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:47 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:14:47 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:47 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:47 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:14:47 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:15:08 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1400ms (Views: 1399.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:15:10 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:15:10 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:10 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:15:10 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:10 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:10 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:10 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:10 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:15:15 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1358ms (Views: 1357.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:15:16 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:15:16 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:15:16 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:16 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:16 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:16 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:16 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:15:16 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:30:00 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 94ms (Views: 93.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:30:01 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:30:01 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:30:01 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:30:01 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:30:01 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:30:01 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:30:01 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:30:01 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:31:31 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 1404ms (Views: 1403.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:31:32 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:31:32 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:31:32 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:32 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:32 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:32 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:32 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:32 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:31:49 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (3.9ms)
+Completed 200 OK in 71ms (Views: 70.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:31:49 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:31:49 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:49 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:31:49 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:49 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:49 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:49 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:49 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:31:58 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 72.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:31:58 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:58 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:58 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:31:58 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:31:58 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:58 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:58 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:31:58 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:32:12 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1344ms (Views: 1343.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:32:14 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:32:14 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:14 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:14 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:32:14 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:14 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:14 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:14 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:32:51 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 72ms (Views: 71.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:32:51 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:32:51 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:51 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:32:51 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:51 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:51 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:51 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:32:51 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:33:01 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 70.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:01 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:01 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:01 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:01 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:01 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:01 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:01 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:01 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:33:12 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.3ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 80ms (Views: 79.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:13 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:13 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:13 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:13 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:13 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:13 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:13 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:13 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:33:16 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 72.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:16 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:16 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:16 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:16 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:16 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:16 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:16 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:16 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:33:31 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (4.4ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 72ms (Views: 71.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:31 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:31 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:31 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:31 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:31 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:31 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:31 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:31 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:33:41 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (5.9ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 87ms (Views: 85.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:41 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:41 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:41 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:41 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:41 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:41 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:41 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:41 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:33:49 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (11.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 85ms (Views: 84.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:49 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:49 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:49 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:49 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:33:49 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:49 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:49 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:33:49 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:36:33 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (4.5ms)
+  Rendered application/_sidebar_left.html.haml (4.4ms)
+Completed 200 OK in 79ms (Views: 78.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:36:33 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:36:33 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:36:33 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:36:33 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:36:33 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:36:33 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:36:33 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:36:33 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:39:25 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (4.3ms)
+Completed 200 OK in 75ms (Views: 74.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:39:25 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:39:25 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:39:25 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:39:25 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:39:25 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:39:25 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:39:25 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:39:25 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:40:20 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (3.9ms)
+Completed 200 OK in 79ms (Views: 77.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:40:20 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:40:20 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:40:20 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:40:20 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:40:20 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:40:20 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:40:20 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:40:20 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:42:31 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (3.7ms)
+Completed 200 OK in 75ms (Views: 74.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:42:31 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:42:31 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:42:31 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:42:31 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:42:31 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:42:31 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:42:31 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:42:31 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:43:15 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (3.4ms)
+Completed 200 OK in 71ms (Views: 70.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:43:15 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:43:15 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:43:15 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:15 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:15 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:15 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:15 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:15 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (3.5ms)
+Completed 200 OK in 73ms (Views: 72.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
