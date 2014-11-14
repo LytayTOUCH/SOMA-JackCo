@@ -22,3 +22,9 @@ Started GET "/" for 127.0.0.1 at 2014-11-14 08:44:19 +0700
 Processing by Rails::WelcomeController#index as HTML
   Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.7ms)
 Completed 200 OK in 20ms (Views: 8.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-14 13:19:08 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (2.1ms)
+Completed 200 OK in 88ms (Views: 73.2ms | ActiveRecord: 0.0ms)
