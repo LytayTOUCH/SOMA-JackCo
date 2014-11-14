@@ -2375,3 +2375,2965 @@ Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 1
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 16:43:49 +0700
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-14 17:30:07 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (2.9ms)
+Completed 200 OK in 82ms (Views: 62.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 17:30:15 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.1ms)
+  Rendered application/_sidebar_top.html.haml (7.5ms)
+  Rendered application/_sidebar_left.html.haml (16.0ms)
+Completed 200 OK in 2319ms (Views: 2318.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 17:30:18 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 17:30:18 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 17:30:18 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 17:30:18 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 17:30:18 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 17:30:18 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 17:30:18 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 17:30:18 +0700
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-14 20:05:23 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (15.3ms)
+Completed 200 OK in 83ms (Views: 70.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:05:32 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.6ms)
+  Rendered application/_sidebar_top.html.haml (11.7ms)
+  Rendered application/_sidebar_left.html.haml (3.7ms)
+Completed 200 OK in 567ms (Views: 566.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:05:32 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:05:33 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:05:33 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:05:33 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:05:33 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:05:33 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:05:33 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:05:33 +0700
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-14 20:36:20 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (1.7ms)
+Completed 200 OK in 19ms (Views: 6.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:36:27 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.0ms)
+  Rendered application/_sidebar_top.html.haml (4.2ms)
+  Rendered application/_sidebar_left.html.haml (3.2ms)
+Completed 200 OK in 2082ms (Views: 2081.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:36:29 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:40:14 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.7ms)
+  Rendered application/_sidebar_top.html.haml (4.2ms)
+  Rendered application/_sidebar_left.html.haml (3.2ms)
+Completed 200 OK in 1557ms (Views: 1544.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:15 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:15 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:15 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:40:15 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:15 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:15 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:15 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:15 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:40:18 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 67.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:18 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:18 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:18 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:18 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:18 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:40:18 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:18 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:18 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:40:19 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 80ms (Views: 79.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:19 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:40:19 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:19 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:19 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:19 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:19 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:19 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:40:19 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:43:06 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1349ms (Views: 1348.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:43:08 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:08 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:08 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:08 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:08 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:08 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:08 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:08 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:43:19 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.6ms)
+  Rendered application/_sidebar_top.html.haml (4.4ms)
+  Rendered application/_sidebar_left.html.haml (3.3ms)
+Completed 200 OK in 149ms (Views: 136.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:43:19 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:19 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:19 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:19 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:19 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:19 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:19 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:43:19 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:43:59 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1426ms (Views: 1425.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:44:00 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:44:00 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:44:00 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:44:00 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:44:00 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:44:00 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:44:00 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:44:00 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:44:00 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:44:01 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:44:01 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 132ms (Views: 131.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:04 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 106ms (Views: 104.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:06 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 139ms (Views: 138.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:23 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 103ms (Views: 101.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:27 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:45:31 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 122ms (Views: 120.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:32 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:45:41 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.3ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 108ms (Views: 106.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:42 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 101ms (Views: 100.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:44 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:45:47 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 98ms (Views: 97.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:45:48 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:46:52 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1437ms (Views: 1435.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:54 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 111ms (Views: 109.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:46:56 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:51:54 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 138ms (Views: 132.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:54 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:54 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:54 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:55 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:55 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:55 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:55 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:55 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:55 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:55 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:55 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:55 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:51:56 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 113ms (Views: 112.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:51:57 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 102ms (Views: 101.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:04 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:52:24 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 135ms (Views: 134.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:25 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 129ms (Views: 127.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:52:43 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 153ms (Views: 152.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:15 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 132ms (Views: 130.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:21 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 131ms (Views: 129.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:29 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 115ms (Views: 114.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:31 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.3ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 106ms (Views: 105.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:33 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:53:35 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 104ms (Views: 103.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:36 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 112ms (Views: 110.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:53:37 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 106ms (Views: 105.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:02 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 122ms (Views: 120.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:04 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 106ms (Views: 105.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:54:06 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 111ms (Views: 110.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:14 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 105ms (Views: 104.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:16 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:55:45 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1379ms (Views: 1378.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:46 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:46 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:46 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:46 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:47 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:47 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:47 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:47 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:55:49 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 72.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:49 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:49 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:49 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:49 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:49 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:49 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:49 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:49 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:55:50 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 72.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:50 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:51 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:51 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:51 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:51 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:51 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:51 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:51 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:55:58 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1337ms (Views: 1335.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:59 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:59 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:55:59 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:59 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:59 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:59 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:59 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:55:59 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:56:04 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1396ms (Views: 1395.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:05 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:56:31 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1362ms (Views: 1360.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:32 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:56:39 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1406ms (Views: 1406.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:41 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:56:49 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1362ms (Views: 1361.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:56:51 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:56:58 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1412ms (Views: 1411.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:00 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:57:14 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 1394ms (Views: 1393.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:16 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.6ms)
+  Rendered application/_sidebar_top.html.haml (4.4ms)
+  Rendered application/_sidebar_left.html.haml (4.3ms)
+Completed 200 OK in 173ms (Views: 160.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:34 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:35 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 93ms (Views: 92.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:37 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 90ms (Views: 89.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:57:39 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 101ms (Views: 100.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:06 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 93ms (Views: 92.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:08 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:58:48 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1450ms (Views: 1449.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:50 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:50 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:50 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:50 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:50 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:50 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:50 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:50 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 20:58:54 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1366ms (Views: 1365.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 20:58:55 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 96ms (Views: 95.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:12 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:14 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 87ms (Views: 86.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:14 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:15 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:15 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:15 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:15 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:15 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:15 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:15 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:15 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:15 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 93ms (Views: 92.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:16 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 94ms (Views: 93.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:18 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 88ms (Views: 86.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:19 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 89ms (Views: 88.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:21 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 93ms (Views: 92.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:23 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 90ms (Views: 88.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:27 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:30 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 95ms (Views: 94.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:31 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 91ms (Views: 90.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:33 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 90ms (Views: 89.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:35 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:36 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 106ms (Views: 104.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:37 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 89ms (Views: 88.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:38 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:48 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1490ms (Views: 1489.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:50 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 104ms (Views: 103.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:52 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:53 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 111ms (Views: 110.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:54 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 108ms (Views: 107.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:03:55 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:04:03 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1405ms (Views: 1404.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:05 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:04:06 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 114ms (Views: 113.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/override_bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/dashboards.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:04:07 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:05:04 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1438ms (Views: 1437.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:06 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 87ms (Views: 86.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-14 21:05:08 +0700
