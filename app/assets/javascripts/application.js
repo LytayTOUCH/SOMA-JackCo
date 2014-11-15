@@ -1,10 +1,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap/dropdown
 //= require nprogress
 //= require nprogress-turbolinks
+//= require bootstrap/scrollspy
+//= require bootstrap/modal
 
 $(document).ready(function() {
-  NProgress.start(); 
+  NProgress.start();
 });

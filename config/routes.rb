@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  resources :dashboards
+  resources :dashboards, only: [:index]
+  
+  resources :machineries, except: :all do
+    collection do # no id
+      get 'new_tractor'
+    end
+
+    # member do # have id
+
+    # end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
