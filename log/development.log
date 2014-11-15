@@ -27473,3 +27473,460 @@ Processing by DashboardsController#index as HTML
   Rendered application/_sidebar_top.html.haml (0.1ms)
   Rendered application/_sidebar_left.html.haml (0.3ms)
 Completed 200 OK in 99ms (Views: 98.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-15 21:52:07 +0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/railties-4.1.6/lib/rails/templates/rails/welcome/index.html.erb (4.4ms)
+Completed 200 OK in 96ms (Views: 81.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:52:12 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.5ms)
+  Rendered application/_sidebar_top.html.haml (6.3ms)
+  Rendered application/_sidebar_left.html.haml (7.2ms)
+Completed 200 OK in 508ms (Views: 506.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-15 21:52:13 +0700
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:52:16 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (2.0ms)
+  Rendered application/_sidebar_top.html.haml (5.0ms)
+  Rendered application/_sidebar_left.html.haml (2.2ms)
+Completed 200 OK in 115ms (Views: 113.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries/new_tractor" for 127.0.0.1 at 2014-11-15 21:52:18 +0700
+Processing by MachineriesController#new_tractor as HTML
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:52:18 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.5ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 105ms (Views: 104.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:52:25 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (1.0ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 118ms (Views: 117.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries/new_tractor" for 127.0.0.1 at 2014-11-15 21:52:26 +0700
+Processing by MachineriesController#new_tractor as HTML
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:52:26 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.5ms)
+Completed 200 OK in 131ms (Views: 130.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 95ms (Views: 94.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-15 21:54:40 +0700
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:54:42 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 99ms (Views: 98.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:54:43 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 102ms (Views: 101.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:54:44 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 102ms (Views: 100.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:54:48 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 98ms (Views: 97.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:54:49 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 104ms (Views: 103.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:54:50 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 105ms (Views: 103.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:54:51 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.5ms)
+Completed 200 OK in 102ms (Views: 101.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:54:53 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 101ms (Views: 100.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries/new_tractor" for 127.0.0.1 at 2014-11-15 21:54:54 +0700
+Processing by MachineriesController#new_tractor as HTML
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:54:54 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 105ms (Views: 104.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:55:48 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.5ms)
+Completed 200 OK in 100ms (Views: 99.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:55:50 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (1.2ms)
+Completed 200 OK in 110ms (Views: 109.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:55:51 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 106ms (Views: 104.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:55:52 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 102ms (Views: 101.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:55:53 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 104ms (Views: 103.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries/new_tractor" for 127.0.0.1 at 2014-11-15 21:55:54 +0700
+Processing by MachineriesController#new_tractor as HTML
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:55:54 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.5ms)
+Completed 200 OK in 108ms (Views: 107.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:56:17 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 105ms (Views: 104.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries/new_tractor" for 127.0.0.1 at 2014-11-15 21:56:19 +0700
+Processing by MachineriesController#new_tractor as HTML
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:56:19 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 103ms (Views: 102.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:56:20 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 104ms (Views: 103.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:56:21 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 110ms (Views: 108.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 21:56:22 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.3ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 101ms (Views: 100.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries/new_tractor" for 127.0.0.1 at 2014-11-15 21:56:24 +0700
+Processing by MachineriesController#new_tractor as HTML
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 21:56:24 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 112ms (Views: 110.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 22:00:19 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (2.4ms)
+Completed 200 OK in 102ms (Views: 100.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/nprogress-bootstrap.css?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/nprogress.css?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/nprogress.js?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/nprogress-turbolinks.js?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-15 22:00:20 +0700
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-15 22:00:22 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (2.5ms)
+Completed 200 OK in 113ms (Views: 112.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 22:00:23 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 103ms (Views: 101.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-15 22:00:24 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 103ms (Views: 101.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 22:00:25 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 108ms (Views: 107.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-15 22:00:26 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 105ms (Views: 104.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 22:00:27 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.9ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 105ms (Views: 103.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries/new_tractor" for 127.0.0.1 at 2014-11-15 22:00:28 +0700
+Processing by MachineriesController#new_tractor as HTML
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 22:00:28 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 106ms (Views: 104.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-15 22:03:04 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 105ms (Views: 104.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-15 22:03:06 +0700
+Processing by MachineriesController#index as HTML
+  Rendered machineries/index.html.haml within layouts/application (0.3ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 111ms (Views: 110.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries/new_tractor" for 127.0.0.1 at 2014-11-15 22:03:07 +0700
+Processing by MachineriesController#new_tractor as HTML
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-15 22:03:07 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 105ms (Views: 103.8ms | ActiveRecord: 0.0ms)

@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
+  root 'dashboards#index'
   resources :dashboards, only: [:index]
-  
   resources :machineries, except: :all do
     collection do # no id
       get 'new_tractor'
     end
-
     # member do # have id
-
     # end
   end
 

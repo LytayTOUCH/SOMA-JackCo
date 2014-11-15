@@ -19,6 +19,9 @@ gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'nprogress-rails'
 
+# utils
+gem 'uuidtools'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
