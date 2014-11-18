@@ -1,7 +1,12 @@
-#form-content-machinery
-%h3= "Machinery"
-%hr
-%p
-  Keep a record of your machinery maintenance
-%p
-  = link_to "Add a Tractor", new_tractor_machineries_path, class: "btn btn-primary"
+.row
+  %h2="Machinery"
+.row
+  %hr
+  %h3
+    = "Tractors"
+    .pull-right
+      = link_to "New Tractor", new_tractor_path, class: "btn btn-primary"
+  = render partial: 'list_tractor', locals: {tractors: @tractors}
+.row
+  %hr
+  %h4= "Implements"

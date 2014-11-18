@@ -1,0 +1,9 @@
+.machinery-list
+  - tractors.each do |tractor|
+    .machinery-list-item
+      .col-md-2
+        .thumbnail
+          = link_to tractor_path(tractor) do
+            = image_tag tractor.photo.url(:small, timestamp: false)
+        .caption
+          %strong="#{tractor.name}"
