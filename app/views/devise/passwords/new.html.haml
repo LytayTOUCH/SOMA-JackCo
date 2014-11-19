@@ -1,0 +1,18 @@
+.row
+  .col-sm-7.col-sm-offset-4
+    %h2 Forgot your password?
+.row
+  .col-sm-4.col-sm-offset-4.cs-border
+    .form-group
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = devise_error_messages!
+        .field
+          = f.label :email
+          %br
+          = f.email_field :email, autofocus: true, :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter email"
+          %br
+        .row  
+          .col-sm-10 
+            .actions
+              = f.submit "Send reset password instructions", :class => 'btn btn-success form-control'
+          = link_to "Log in", new_user_session_path

@@ -5,3 +5,10 @@
 
 @import "bootstrap";
 @import "override_bootstrap";
+
+.cs-border{
+  border: 1px #cccccc solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+}

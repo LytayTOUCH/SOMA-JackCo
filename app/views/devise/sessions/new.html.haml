@@ -1,0 +1,31 @@
+- if notice
+  %p.notice= notice
+- if alert
+  %p.alert= alert
+
+.row
+  .col-sm-4.col-sm-offset-4.text-center
+    = image_tag "logo.png"
+.row
+  .col-sm-4.col-sm-offset-4.cs-border
+    .form-group
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field
+          = f.label :email
+          %br
+          = f.email_field :email, autofocus: true, :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter email"
+          %br
+        .field
+          = f.label :password
+          %br
+          = f.password_field :password, autocomplete: "off", :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter password"
+          %br
+        - if devise_mapping.rememberable?
+          .field
+            = f.check_box :remember_me
+            = f.label :remember_me
+        .row  
+          .col-sm-6.col
+            .actions
+              = f.submit "Log in", :class => 'btn btn-success form-control'
+          = link_to "Forgot your password?", new_user_password_path

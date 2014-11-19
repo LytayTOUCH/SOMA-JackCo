@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+
+  devise_scope :user do
+    get '/' => 'devise/sessions#new'
+  end
+
+  resources :accounts, only: [:index]
   resources :dashboards
 
   # The priority is based upon order of creation: first created -> highest priority.
