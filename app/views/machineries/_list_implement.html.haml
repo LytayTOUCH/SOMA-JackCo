@@ -1,0 +1,9 @@
+.machinery-list
+  - implements.each do |implement|
+    .machinery-list-item
+      .col-md-2
+        .thumbnail
+          = link_to implement_path(implement) do
+            = image_tag implement.photo.url(:small, timestamp: false)
+        .caption
+          %strong="#{implement.name}"

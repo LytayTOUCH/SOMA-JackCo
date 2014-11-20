@@ -1,0 +1,55 @@
+= simple_form_for tractor, html: {class: 'form-horizontal', multipart: true} do |f|
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_name'} Name
+    .col-xs-5
+      = f.input :name, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_horse_power'} Horse power
+    .col-xs-5
+      = f.input :horse_power, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :horse_power
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_fuel_capacity'} Fuel capacity
+    .col-xs-5
+      = f.input :fuel_capacity, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :fuel_capacity
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_make'} Make
+    .col-xs-5
+      = f.input :make, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :make
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_model'} Model
+    .col-xs-5
+      = f.input :model, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :model
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_year'} Year
+    .col-xs-5
+      %input.input-sm.form-control{:name => "tractor[year]", value: tractor.year, "data-provide" => "datepicker", class: "form-control"}
+      %span.help-block= f.error :year
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_value'} Value
+    .col-xs-5
+      = f.input :value, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :value
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_own'} Own
+    .col-xs-5
+      = f.input :own, label: false, input_html: {style: "margin-top: 12px;"}
+      %span.help-block= f.error :own
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_note'} Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :note
+  .form-group
+    %label.col-xs-2.control-label{for: 'tractor_photo'} Photo
+    .col-xs-5
+      = f.input :photo, label: false, input_html: {class: "form-control"}
+  .form-group
+    .col-xs-7
+      .pull-right
+        = f.submit class: "btn btn-primary", "data-disable-with" => "Create Tractor..."
+        = link_to "Cancel", :back, class: "btn btn-default", "data-disable-with" => "Cancel..."

@@ -1,4 +1,4 @@
- module UuidHelper
+module UuidHelper
   def self.included(base)
     base.primary_key = 'uuid'
     base.before_create :assign_uuid
