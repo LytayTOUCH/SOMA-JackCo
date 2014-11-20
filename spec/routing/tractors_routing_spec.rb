@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe 'routing to tractors' do
-  it "routes /tractors to tractors#index" do
-    expect(get: "/tractors").to route_to(controller: "tractors", action: "index")
-  end
-
   it "routes /tractors/1 to tractors#show" do
     expect(get: "/tractors/1").to route_to(controller: "tractors", action: "show", id: "1")
   end

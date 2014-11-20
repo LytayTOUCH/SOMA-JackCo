@@ -27,7 +27,7 @@
   .form-group
     %label.col-xs-2.control-label{for: 'tractor_year'} Year
     .col-xs-5
-      %input.input-sm.form-control{:name => "tractor[year]", value: @tractor.year, "data-provide" => "datepicker", class: "form-control"}
+      %input.input-sm.form-control{:name => "tractor[year]", value: tractor.year, "data-provide" => "datepicker", class: "form-control"}
       %span.help-block= f.error :year
   .form-group
     %label.col-xs-2.control-label{for: 'tractor_value'} Value
@@ -46,7 +46,7 @@
       %span.help-block= f.error :note
   .form-group
     %label.col-xs-2.control-label{for: 'tractor_photo'} Photo
-    .col-xs-5  
+    .col-xs-5
       = f.input :photo, label: false, input_html: {class: "form-control"}
   .form-group
     .col-xs-7
