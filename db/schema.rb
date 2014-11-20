@@ -11,7 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119025823) do
+ActiveRecord::Schema.define(version: 20141120043908) do
+
+  create_table "implements", id: false, force: true do |t|
+    t.string   "uuid",                limit: 36,                 null: false
+    t.string   "name",                limit: 50,                 null: false
+    t.date     "year"
+    t.string   "implement_type_uuid", limit: 36,                 null: false
+    t.float    "value",               limit: 24
+    t.boolean  "own",                            default: false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  create_table "tractors", id: false, force: true do |t|
+    t.string   "uuid",               limit: 36,                 null: false
+    t.string   "name",               limit: 50,                 null: false
+    t.float    "horse_power",        limit: 24
+    t.float    "fuel_capacity",      limit: 24
+    t.string   "make"
+    t.string   "model"
+    t.date     "year"
+    t.float    "value",              limit: 24
+    t.boolean  "own",                           default: false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
 
   create_table "users", id: false, force: true do |t|
     t.string   "uuid",                   limit: 36,                null: false
