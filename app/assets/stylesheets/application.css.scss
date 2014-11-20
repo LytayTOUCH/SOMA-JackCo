@@ -12,3 +12,18 @@
   padding-bottom: 10px;
   border-radius: 5px;
 }
+
+.alert, .notice, .error {
+  text-align: center;
+  padding: 0px 0px;
+  margin-top: 1em;
+  color: #ff0000;
+  display: block-inline;
+  /*background: #e7d5d5;*/
+}
+
+.notice {
+  color: #090974;
+}
+
+

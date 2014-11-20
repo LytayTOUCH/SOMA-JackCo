@@ -24,9 +24,5 @@ module Soma
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths << "#{config.root}/lib"
 
-    config.to_prepare do
-      Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "sign_in" }
-    end
-
   end
 end
