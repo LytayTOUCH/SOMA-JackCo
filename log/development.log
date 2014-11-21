@@ -82863,3 +82863,245 @@ Started GET "/" for 127.0.0.1 at 2014-11-20 17:24:12 +0700
 Processing by Devise::SessionsController#new as HTML
   Rendered devise/sessions/new.html.haml within layouts/sign_in (4.5ms)
 Completed 200 OK in 126ms (Views: 123.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-11-20 17:26:33 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (31.7ms)
+Completed 200 OK in 245ms (Views: 201.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 17:26:38 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (4.6ms)
+Completed 200 OK in 128ms (Views: 125.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 17:26:40 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (5.1ms)
+Completed 200 OK in 127ms (Views: 124.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-20 17:26:45 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Q5pzn7v/mh08awVD2b3XtZLWrbRo3idVfjBZHevkGkI=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'bunlong.van@gmail.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2014-11-20 10:26:45', `last_sign_in_at` = '2014-11-20 10:24:08', `sign_in_count` = 8, `updated_at` = '2014-11-20 10:26:45' WHERE `users`.`uuid` = 'F5A49CF4-709B-11E4-8E64-B888E33867FC'
+  [1m[36m (32.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 189ms (ActiveRecord: 33.8ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-20 17:26:45 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.1ms)
+  Rendered application/_sidebar_top.html.haml (4.7ms)
+  Rendered application/_notification.html.haml (2.2ms)
+  Rendered application/_sidebar_left.html.haml (2.2ms)
+Completed 200 OK in 123ms (Views: 122.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/accounts" for 127.0.0.1 at 2014-11-20 17:26:49 +0700
+Processing by AccountsController#index as HTML
+  Rendered accounts/index.html.haml within layouts/application (1.2ms)
+  Rendered application/_sidebar_top.html.haml (7.1ms)
+  Rendered application/_notification.html.haml (1.9ms)
+  Rendered application/_sidebar_left.html.haml (2.3ms)
+Completed 200 OK in 138ms (Views: 136.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/accounts" for 127.0.0.1 at 2014-11-20 17:26:53 +0700
+Processing by AccountsController#index as HTML
+  Rendered accounts/index.html.haml within layouts/application (1.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.7ms)
+Completed 200 OK in 122ms (Views: 121.0ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2014-11-20 17:26:55 +0700
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"4o/jROaV8CjROcKbnI2Wu66s8mi77mSRa3jKR7H/oqI="}
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'F5A49CF4-709B-11E4-8E64-B888E33867FC'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 10ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-20 17:26:55 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (4.6ms)
+Completed 200 OK in 109ms (Views: 107.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-21 08:22:03 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (168.5ms)
+Completed 200 OK in 732ms (Views: 677.7ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-21 08:22:14 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"box6Ge6IbGjzZYd61Qhg83aT8ac/V6AoCUbBhm8KrIM=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'bunlong.van@gmail.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Completed 401 Unauthorized in 269ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"box6Ge6IbGjzZYd61Qhg83aT8ac/V6AoCUbBhm8KrIM=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (3.7ms)
+Completed 200 OK in 247ms (Views: 121.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-21 08:22:20 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"box6Ge6IbGjzZYd61Qhg83aT8ac/V6AoCUbBhm8KrIM=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'bunlong.van@gmail.com'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 130ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"box6Ge6IbGjzZYd61Qhg83aT8ac/V6AoCUbBhm8KrIM=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (4.5ms)
+Completed 200 OK in 237ms (Views: 110.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-21 08:22:27 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"box6Ge6IbGjzZYd61Qhg83aT8ac/V6AoCUbBhm8KrIM=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'bunlong.van@gmail.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (18.1ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2014-11-21 01:22:27', `last_sign_in_at` = '2014-11-20 10:26:45', `sign_in_count` = 9, `updated_at` = '2014-11-21 01:22:27' WHERE `users`.`uuid` = 'F5A49CF4-709B-11E4-8E64-B888E33867FC'
+  [1m[36m (37.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 229ms (ActiveRecord: 55.9ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-21 08:22:27 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (2.6ms)
+  Rendered application/_sidebar_top.html.haml (5.0ms)
+  Rendered application/_notification.html.haml (4.5ms)
+  Rendered application/_sidebar_left.html.haml (2.3ms)
+Completed 200 OK in 186ms (Views: 184.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 08:22:32 +0700
+Processing by MachineriesController#index as HTML
+  [1m[35mTractor Load (0.5ms)[0m  SELECT `tractors`.* FROM `tractors`
+  Rendered machineries/_list_tractor.html.haml (31.5ms)
+  [1m[36mImplement Load (1.4ms)[0m  [1mSELECT `implements`.* FROM `implements`[0m
+  Rendered machineries/_list_implement.html.haml (28.0ms)
+  Rendered machineries/index.html.haml within layouts/application (66.4ms)
+  Rendered application/_sidebar_top.html.haml (5.5ms)
+  Rendered application/_notification.html.haml (2.1ms)
+  Rendered application/_sidebar_left.html.haml (2.2ms)
+Completed 200 OK in 230ms (Views: 197.8ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/implements/48515B20-7071-11E4-9E78-B888E33867FC" for 127.0.0.1 at 2014-11-21 08:22:34 +0700
+Processing by ImplementsController#show as HTML
+  Parameters: {"id"=>"48515B20-7071-11E4-9E78-B888E33867FC"}
+  [1m[35mImplement Load (0.5ms)[0m  SELECT  `implements`.* FROM `implements`  WHERE `implements`.`uuid` = '48515B20-7071-11E4-9E78-B888E33867FC' LIMIT 1
+  Rendered implements/show.html.haml within layouts/application (23.7ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 169ms (Views: 151.9ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2014-11-21 08:22:47 +0700
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"zrmSQ2+b8k5SSUNBEdIc4iZGpLzFAvN1Qkim86cIwHE="}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'F5A49CF4-709B-11E4-8E64-B888E33867FC'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 49ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-21 08:22:47 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (4.5ms)
+Completed 200 OK in 113ms (Views: 111.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-21 08:23:41 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KN4PdwfemSTesPMfFv8cq/qUvoNsBV6Ku6dKlIsoPLU=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'bunlong.van@gmail.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2014-11-21 01:23:41', `last_sign_in_at` = '2014-11-21 01:22:27', `sign_in_count` = 10, `updated_at` = '2014-11-21 01:23:41' WHERE `users`.`uuid` = 'F5A49CF4-709B-11E4-8E64-B888E33867FC'
+  [1m[36m (38.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 174ms (ActiveRecord: 39.0ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-21 08:23:41 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.2ms)
+  Rendered application/_sidebar_top.html.haml (0.5ms)
+  Rendered application/_notification.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 118ms (Views: 115.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 08:23:43 +0700
+Processing by MachineriesController#index as HTML
+  [1m[35mTractor Load (0.2ms)[0m  SELECT `tractors`.* FROM `tractors`
+  Rendered machineries/_list_tractor.html.haml (8.4ms)
+  [1m[36mImplement Load (0.2ms)[0m  [1mSELECT `implements`.* FROM `implements`[0m
+  Rendered machineries/_list_implement.html.haml (8.2ms)
+  Rendered machineries/index.html.haml within layouts/application (19.7ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 148ms (Views: 146.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/implements/48515B20-7071-11E4-9E78-B888E33867FC" for 127.0.0.1 at 2014-11-21 08:23:47 +0700
+Processing by ImplementsController#show as HTML
+  Parameters: {"id"=>"48515B20-7071-11E4-9E78-B888E33867FC"}
+  [1m[35mImplement Load (0.2ms)[0m  SELECT  `implements`.* FROM `implements`  WHERE `implements`.`uuid` = '48515B20-7071-11E4-9E78-B888E33867FC' LIMIT 1
+  Rendered implements/show.html.haml within layouts/application (8.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 140ms (Views: 136.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/implements/48515B20-7071-11E4-9E78-B888E33867FC/edit" for 127.0.0.1 at 2014-11-21 08:23:50 +0700
+Processing by ImplementsController#edit as HTML
+  Parameters: {"id"=>"48515B20-7071-11E4-9E78-B888E33867FC"}
+  [1m[36mImplement Load (0.3ms)[0m  [1mSELECT  `implements`.* FROM `implements`  WHERE `implements`.`uuid` = '48515B20-7071-11E4-9E78-B888E33867FC' LIMIT 1[0m
+  Rendered application/_implements_form.html.haml (174.1ms)
+  Rendered implements/edit.html.haml within layouts/application (185.9ms)
+  Rendered application/_sidebar_top.html.haml (0.9ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 373ms (Views: 370.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/implements/48515B20-7071-11E4-9E78-B888E33867FC" for 127.0.0.1 at 2014-11-21 08:23:53 +0700
+Processing by ImplementsController#show as HTML
+  Parameters: {"id"=>"48515B20-7071-11E4-9E78-B888E33867FC"}
+  [1m[35mImplement Load (0.4ms)[0m  SELECT  `implements`.* FROM `implements`  WHERE `implements`.`uuid` = '48515B20-7071-11E4-9E78-B888E33867FC' LIMIT 1
+  Rendered implements/show.html.haml within layouts/application (11.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.9ms)
+Completed 200 OK in 151ms (Views: 148.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 08:24:27 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.2ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (9.0ms)
+  [1m[35mImplement Load (0.3ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (9.3ms)
+  Rendered machineries/index.html.haml within layouts/application (20.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 156ms (Views: 154.8ms | ActiveRecord: 0.6ms)
