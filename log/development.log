@@ -83591,3 +83591,10 @@ Processing by MachineriesController#index as HTML
   Rendered application/_notification.html.haml (0.1ms)
   Rendered application/_sidebar_left.html.haml (0.3ms)
 Completed 200 OK in 162ms (Views: 152.2ms | ActiveRecord: 1.8ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateLabors (20141121073954)
+  [1m[35m (69.5ms)[0m  CREATE TABLE `labors` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `position_uuid` varchar(36) NOT NULL, `labor_project_uuid` varchar(36), `labor_subordinate` varchar(36), `description` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20141121073954')
+  [1m[36m (37.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
