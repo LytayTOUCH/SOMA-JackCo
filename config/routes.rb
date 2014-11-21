@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
   resources :implements, except: [:index]
+  resources :maintenances, except: [:index]
   
   devise_for :users
   devise_scope :user do

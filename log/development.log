@@ -83155,3 +83155,17 @@ Migrating to CreateMaintenances (20141121031028)
   [1m[35mActiveRecord::SchemaMigration Load (16.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
   [1m[36mImplement Load (0.5ms)[0m  [1mSELECT  `implements`.* FROM `implements`   ORDER BY `implements`.`uuid` ASC LIMIT 1[0m
   [1m[35mMaintenance Load (0.7ms)[0m  SELECT  `maintenances`.* FROM `maintenances`   ORDER BY `maintenances`.`uuid` ASC LIMIT 1
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 11:39:27 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MachineriesController#index as HTML
+  [1m[35mTractor Load (0.2ms)[0m  SELECT `tractors`.* FROM `tractors`
+  Rendered machineries/_list_tractor.html.haml (24.0ms)
+  [1m[36mImplement Load (0.3ms)[0m  [1mSELECT `implements`.* FROM `implements`[0m
+  Rendered machineries/_list_implement.html.haml (24.5ms)
+  Rendered machineries/index.html.haml within layouts/application (59.5ms)
+  Rendered application/_sidebar_top.html.haml (5.4ms)
+  Rendered application/_notification.html.haml (1.9ms)
+  Rendered application/_sidebar_left.html.haml (2.1ms)
+Completed 200 OK in 351ms (Views: 329.0ms | ActiveRecord: 3.3ms)
