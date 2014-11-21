@@ -83169,3 +83169,425 @@ Processing by MachineriesController#index as HTML
   Rendered application/_notification.html.haml (1.9ms)
   Rendered application/_sidebar_left.html.haml (2.1ms)
 Completed 200 OK in 351ms (Views: 329.0ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 11:52:03 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by MachineriesController#index as HTML
+  [1m[35mTractor Load (0.2ms)[0m  SELECT `tractors`.* FROM `tractors`
+  Rendered machineries/_list_tractor.html.haml (31.9ms)
+  [1m[36mImplement Load (0.5ms)[0m  [1mSELECT `implements`.* FROM `implements`[0m
+  Rendered machineries/_list_implement.html.haml (23.9ms)
+  Rendered machineries/index.html.haml within layouts/application (65.8ms)
+  Rendered application/_sidebar_top.html.haml (4.8ms)
+  Rendered application/_notification.html.haml (1.9ms)
+  Rendered application/_sidebar_left.html.haml (2.3ms)
+Completed 200 OK in 278ms (Views: 249.0ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 11:52:37 +0700
+Processing by MachineriesController#index as HTML
+  [1m[35mTractor Load (0.2ms)[0m  SELECT `tractors`.* FROM `tractors`
+  Rendered machineries/_list_tractor.html.haml (6.8ms)
+  [1m[36mImplement Load (0.1ms)[0m  [1mSELECT `implements`.* FROM `implements`[0m
+  Rendered machineries/_list_implement.html.haml (6.1ms)
+  Rendered machineries/index.html.haml within layouts/application (20.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 132ms (Views: 130.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/maintenances/new" for 127.0.0.1 at 2014-11-21 11:52:48 +0700
+Processing by MaintenancesController#new as HTML
+  Rendered application/_maintenances_form.html.haml (1.3ms)
+  Rendered maintenances/new.html.haml within layouts/application (5.7ms)
+  Rendered application/_sidebar_top.html.haml (13.0ms)
+  Rendered application/_notification.html.haml (2.5ms)
+  Rendered application/_sidebar_left.html.haml (2.3ms)
+Completed 200 OK in 144ms (Views: 143.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-21 13:58:27 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (160.0ms)
+Completed 200 OK in 671ms (Views: 615.3ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-21 13:58:33 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VyLSjmkP3gY799n6EB6Cmo/YG7fNwYRsNPGCpPaADOA=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'bunlong.van@gmail.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Completed 401 Unauthorized in 270ms
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VyLSjmkP3gY799n6EB6Cmo/YG7fNwYRsNPGCpPaADOA=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (3.4ms)
+Completed 200 OK in 236ms (Views: 110.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-21 13:58:37 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VyLSjmkP3gY799n6EB6Cmo/YG7fNwYRsNPGCpPaADOA=", "user"=>{"email"=>"bunlong.van@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'bunlong.van@gmail.com'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (15.1ms)[0m  [1mUPDATE `users` SET `current_sign_in_at` = '2014-11-21 06:58:37', `last_sign_in_at` = '2014-11-21 01:23:41', `sign_in_count` = 11, `updated_at` = '2014-11-21 06:58:37' WHERE `users`.`uuid` = 'F5A49CF4-709B-11E4-8E64-B888E33867FC'[0m
+  [1m[35m (36.9ms)[0m  COMMIT
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 223ms (ActiveRecord: 52.5ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-21 13:58:37 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.6ms)
+  Rendered application/_sidebar_top.html.haml (5.0ms)
+  Rendered application/_notification.html.haml (2.1ms)
+  Rendered application/_sidebar_left.html.haml (2.2ms)
+Completed 200 OK in 184ms (Views: 183.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 13:58:40 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.6ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (29.1ms)
+  [1m[35mImplement Load (0.5ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (29.5ms)
+  Rendered machineries/index.html.haml within layouts/application (65.5ms)
+  Rendered application/_sidebar_top.html.haml (5.4ms)
+  Rendered application/_notification.html.haml (1.9ms)
+  Rendered application/_sidebar_left.html.haml (2.3ms)
+Completed 200 OK in 234ms (Views: 203.8ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/maintenances/new" for 127.0.0.1 at 2014-11-21 13:58:44 +0700
+Processing by MaintenancesController#new as HTML
+  Rendered application/_maintenances_form.html.haml (3.3ms)
+  Rendered maintenances/new.html.haml within layouts/application (22.6ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 143ms (Views: 142.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/maintenances/new" for 127.0.0.1 at 2014-11-21 14:03:27 +0700
+Processing by MaintenancesController#new as HTML
+  Rendered application/_maintenances_form.html.haml (1.3ms)
+  Rendered maintenances/new.html.haml within layouts/application (4.4ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 117ms (Views: 116.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:03:29 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.3ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (6.4ms)
+  Rendered machineries/_tractor.html.haml (10.2ms)
+  [1m[35mImplement Load (0.4ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (8.4ms)
+  Rendered machineries/index.html.haml within layouts/application (25.3ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 149ms (Views: 147.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:03:41 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.5ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (12.3ms)
+  Rendered machineries/_tractor.html.haml (15.4ms)
+  [1m[35mImplement Load (0.2ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (9.2ms)
+  Rendered machineries/index.html.haml within layouts/application (30.5ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 156ms (Views: 154.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:09:41 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.3ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (6.7ms)
+  Rendered machineries/_tractor.html.haml (9.3ms)
+  [1m[35mImplement Load (0.3ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (6.2ms)
+  Rendered machineries/_implement.html.haml (8.9ms)
+  Rendered machineries/index.html.haml within layouts/application (22.7ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 133ms (Views: 131.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:11:19 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.2ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (6.5ms)
+  Rendered machineries/_tractor.html.haml (9.3ms)
+  [1m[35mImplement Load (0.4ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (39.9ms)
+  Rendered machineries/_implement.html.haml (42.2ms)
+  Rendered machineries/index.html.haml within layouts/application (57.9ms)
+Completed 500 Internal Server Error in 62ms
+
+ActionView::Template::Error (Missing partial machineries/_mainenance, application/_mainenance with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml, :jbuilder]}. Searched in:
+  * "/home/bunlong/workspace/soma/app/views"
+  * "/home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/devise-3.4.1/app/views"
+):
+    2:   %h2="Machinery"
+    3: = render partial: 'tractor', locals: {tractors: @tractors}
+    4: = render partial: 'implement', locals: {implements: @implements}
+    5: = render partial: 'mainenance', locals: {mainenances: @mainenances}
+  app/views/machineries/index.html.haml:5:in `_app_views_machineries_index_html_haml__28260144_89150330'
+
+
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (15.4ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:12:07 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.2ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (6.9ms)
+  Rendered machineries/_tractor.html.haml (7.9ms)
+  [1m[35mImplement Load (0.2ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (6.4ms)
+  Rendered machineries/_implement.html.haml (7.7ms)
+  Rendered machineries/index.html.haml within layouts/application (21.3ms)
+Completed 500 Internal Server Error in 24ms
+
+ActionView::Template::Error (Missing partial machineries/_maintenances, application/_maintenances with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml, :jbuilder]}. Searched in:
+  * "/home/bunlong/workspace/soma/app/views"
+  * "/home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/devise-3.4.1/app/views"
+):
+    2:   %h2="Machinery"
+    3: = render partial: 'tractor', locals: {tractors: @tractors}
+    4: = render partial: 'implement', locals: {implements: @implements}
+    5: = render partial: 'maintenances', locals: {maintenances: @maintenances}
+  app/views/machineries/index.html.haml:5:in `_app_views_machineries_index_html_haml__28260144_99166320'
+
+
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (14.8ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:12:18 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.2ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (6.7ms)
+  Rendered machineries/_tractor.html.haml (7.8ms)
+  [1m[35mImplement Load (0.2ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (10.3ms)
+  Rendered machineries/_implement.html.haml (11.9ms)
+  Rendered machineries/_maintenance.html.haml (2.5ms)
+  Rendered machineries/index.html.haml within layouts/application (28.5ms)
+  Rendered application/_sidebar_top.html.haml (0.5ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 145ms (Views: 143.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/maintenances/new" for 127.0.0.1 at 2014-11-21 14:12:22 +0700
+Processing by MaintenancesController#new as HTML
+  Rendered application/_maintenances_form.html.haml (0.1ms)
+  Rendered maintenances/new.html.haml within layouts/application (2.4ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 119ms (Views: 118.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:14:26 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.2ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (6.6ms)
+  Rendered machineries/_tractor.html.haml (7.8ms)
+  [1m[35mImplement Load (0.3ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (6.7ms)
+  Rendered machineries/_implement.html.haml (7.6ms)
+  Rendered machineries/_maintenance.html.haml (2.5ms)
+  Rendered machineries/index.html.haml within layouts/application (22.3ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 130ms (Views: 128.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:15:21 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.2ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (8.0ms)
+  Rendered machineries/_tractor.html.haml (10.8ms)
+  [1m[35mImplement Load (0.2ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (9.3ms)
+  Rendered machineries/_implement.html.haml (12.1ms)
+  Rendered machineries/_maintenance.html.haml (3.6ms)
+  Rendered machineries/index.html.haml within layouts/application (30.9ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 153ms (Views: 151.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-21 14:15:22 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.2ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 117ms (Views: 116.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:15:23 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.3ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (8.9ms)
+  Rendered machineries/_tractor.html.haml (11.1ms)
+  [1m[35mImplement Load (0.3ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (6.9ms)
+  Rendered machineries/_implement.html.haml (8.1ms)
+  Rendered machineries/_maintenance.html.haml (0.3ms)
+  Rendered machineries/index.html.haml within layouts/application (22.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 146ms (Views: 144.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:25:43 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.3ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (21.4ms)
+  Rendered machineries/_tractor.html.haml (22.9ms)
+  [1m[35mImplement Load (0.3ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (16.8ms)
+  Rendered machineries/_implement.html.haml (17.7ms)
+  [1m[36mMaintenance Load (0.6ms)[0m  [1mSELECT `maintenances`.* FROM `maintenances`[0m
+  Rendered machineries/_maintenance.html.haml (30.7ms)
+  Rendered machineries/index.html.haml within layouts/application (76.2ms)
+Completed 500 Internal Server Error in 122ms
+
+ActionView::Template::Error (undefined local variable or method `maintenance' for #<#<Class:0xbcbb2e4>:0xbcbaca4>):
+    4:     = "Maintenance"
+    5:     .pull-right
+    6:       = link_to "New Maintenance", new_maintenance_path, class: "btn btn-primary"
+    7:   = render partial: 'list_maintenance', locals: {maintenance: maintenance}
+  app/views/machineries/_maintenance.html.haml:7:in `_app_views_machineries__maintenance_html_haml__302730479_97020610'
+  app/views/machineries/index.html.haml:5:in `_app_views_machineries_index_html_haml__28260144_98946690'
+
+
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (14.6ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:26:24 +0700
+Processing by MachineriesController#index as HTML
+  [1m[35mTractor Load (0.2ms)[0m  SELECT `tractors`.* FROM `tractors`
+  Rendered machineries/_list_tractor.html.haml (9.0ms)
+  Rendered machineries/_tractor.html.haml (10.2ms)
+  [1m[36mImplement Load (0.3ms)[0m  [1mSELECT `implements`.* FROM `implements`[0m
+  Rendered machineries/_list_implement.html.haml (8.2ms)
+  Rendered machineries/_implement.html.haml (9.2ms)
+  [1m[35mMaintenance Load (0.3ms)[0m  SELECT `maintenances`.* FROM `maintenances`
+  Rendered machineries/_maintenance.html.haml (30.8ms)
+  Rendered machineries/index.html.haml within layouts/application (54.9ms)
+Completed 500 Internal Server Error in 58ms
+
+ActionView::Template::Error (undefined local variable or method `maintenance' for #<#<Class:0xbcbb2e4>:0xadb2838>):
+    4:     = "Maintenance"
+    5:     .pull-right
+    6:       = link_to "New Maintenance", new_maintenance_path, class: "btn btn-primary"
+    7:   = render partial: 'list_maintenance', locals: {maintenance: maintenance}
+  app/views/machineries/_maintenance.html.haml:7:in `_app_views_machineries__maintenance_html_haml__302730479_97020610'
+  app/views/machineries/index.html.haml:5:in `_app_views_machineries_index_html_haml__28260144_91062980'
+
+
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (15.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:26:41 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.2ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (9.1ms)
+  Rendered machineries/_tractor.html.haml (10.3ms)
+  [1m[35mImplement Load (0.3ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (6.7ms)
+  Rendered machineries/_implement.html.haml (7.9ms)
+  Rendered machineries/_list_maintenance.html.haml (1.5ms)
+  Rendered machineries/_maintenance.html.haml (4.5ms)
+  Rendered machineries/index.html.haml within layouts/application (25.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 166ms (Views: 164.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:29:07 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.1ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (7.6ms)
+  Rendered machineries/_tractor.html.haml (8.8ms)
+  [1m[35mImplement Load (0.1ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (6.4ms)
+  Rendered machineries/_implement.html.haml (7.4ms)
+  [1m[36mMaintenance Load (0.2ms)[0m  [1mSELECT `maintenances`.* FROM `maintenances`[0m
+  Rendered machineries/_list_maintenance.html.haml (33.7ms)
+  Rendered machineries/_maintenance.html.haml (38.1ms)
+  Rendered machineries/index.html.haml within layouts/application (57.0ms)
+Completed 500 Internal Server Error in 60ms
+
+ActionView::Template::Error (undefined method `will_paginate' for #<#<Class:0xbcbb2e4>:0xb86d2a0>):
+    17:             = link_to admin_listing_category_path(listing_category), method: :delete, data: {confirm: "Are you sure you want to delete?"} do
+    18:               %span{class: "glyphicon glyphicon-trash"}
+    19: .pull-right
+    20:   = will_paginate @listing_categories, renderer: 'ApplicationHelper::LinkRenderer'
+  app/views/machineries/_list_maintenance.html.haml:20:in `_app_views_machineries__list_maintenance_html_haml___701282642_96252670'
+  app/views/machineries/_maintenance.html.haml:7:in `_app_views_machineries__maintenance_html_haml__302730479_96285500'
+  app/views/machineries/index.html.haml:5:in `_app_views_machineries_index_html_haml__28260144_91062980'
+
+
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/bunlong/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (16.2ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:29:14 +0700
+Processing by MachineriesController#index as HTML
+  [1m[35mTractor Load (0.2ms)[0m  SELECT `tractors`.* FROM `tractors`
+  Rendered machineries/_list_tractor.html.haml (8.2ms)
+  Rendered machineries/_tractor.html.haml (9.5ms)
+  [1m[36mImplement Load (0.1ms)[0m  [1mSELECT `implements`.* FROM `implements`[0m
+  Rendered machineries/_list_implement.html.haml (14.8ms)
+  Rendered machineries/_implement.html.haml (15.9ms)
+  Rendered machineries/_list_maintenance.html.haml (2.4ms)
+  Rendered machineries/_maintenance.html.haml (3.3ms)
+  Rendered machineries/index.html.haml within layouts/application (31.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 144ms (Views: 142.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-11-21 14:29:39 +0700
+Processing by MachineriesController#index as HTML
+  [1m[35mTractor Load (0.2ms)[0m  SELECT `tractors`.* FROM `tractors`
+  Rendered machineries/_list_tractor.html.haml (18.0ms)
+  Rendered machineries/_tractor.html.haml (19.3ms)
+  [1m[36mImplement Load (0.1ms)[0m  [1mSELECT `implements`.* FROM `implements`[0m
+  Rendered machineries/_list_implement.html.haml (16.7ms)
+  Rendered machineries/_implement.html.haml (18.3ms)
+  Rendered machineries/_list_maintenance.html.haml (2.2ms)
+  Rendered machineries/_maintenance.html.haml (3.1ms)
+  Rendered machineries/index.html.haml within layouts/application (43.5ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 162ms (Views: 152.2ms | ActiveRecord: 1.8ms)

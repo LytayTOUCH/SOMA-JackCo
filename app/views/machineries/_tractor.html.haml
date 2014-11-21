@@ -1,0 +1,7 @@
+.row
+  %hr
+  %h3
+    = "Tractors"
+    .pull-right
+      = link_to "New Tractor", new_tractor_path, class: "btn btn-primary"
+  = render partial: 'list_tractor', locals: {tractors: tractors}

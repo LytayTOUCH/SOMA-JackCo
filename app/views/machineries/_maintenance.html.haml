@@ -1,0 +1,7 @@
+.row
+  %hr
+  %h3
+    = "Maintenance"
+    .pull-right
+      = link_to "New Maintenance", new_maintenance_path, class: "btn btn-primary"
+  = render partial: 'list_maintenance', locals: {maintenances: maintenances}

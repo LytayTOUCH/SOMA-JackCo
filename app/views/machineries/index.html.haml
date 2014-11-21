@@ -1,16 +1,5 @@
 .row
   %h2="Machinery"
-.row
-  %hr
-  %h3
-    = "Tractors"
-    .pull-right
-      = link_to "New Tractor", new_tractor_path, class: "btn btn-primary"
-  = render partial: 'list_tractor', locals: {tractors: @tractors}
-.row
-  %hr
-  %h3
-    = "Implements"
-    .pull-right
-      = link_to "New Implement", new_implement_path, class: "btn btn-primary"
-  = render partial: 'list_implement', locals: {implements: @implements}
+= render partial: 'tractor', locals: {tractors: @tractors}
+= render partial: 'implement', locals: {implements: @implements}
+= render partial: 'maintenance', locals: {maintenances: @maintenances}
