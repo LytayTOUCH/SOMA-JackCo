@@ -6,4 +6,5 @@ class Maintenance < ActiveRecord::Base
   validates :labor_uuid, numericality: true
   validates :engine_hours, numericality: true
   validates :time_spent, numericality: true
+  validates :maintenance_type, length: { maximum: 50 }, presence: true
 end

@@ -1,7 +1,26 @@
 = simple_form_for maintenance, html: {class: 'form-horizontal', multipart: true} do |f|
-/   .form-group
-/     %label.col-xs-2.control-label{for: 'maintenance_name'} Name
-/     .col-xs-5
-/       = f.input :name, label: false, input_html: {class: "form-control"}
-/       %span.help-block= f.error :name
-/   
+  .form-group
+    %label.col-xs-2.control-label{for: 'maintenance_name'} Person
+    .col-xs-5
+      = f.input :labor_uuid, label: false, collection: @labor, selected: @default_labor.uuid, input_html: {class: "form-control"}
+      %span.help-block= f.error :labor_uuid
+  .form-group
+    %label.col-xs-2.control-label{for: 'maintenance_engine_hours'} Engine Hours
+    .col-xs-5
+      = f.input :engine_hours, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :engine_hours
+  .form-group
+    %label.col-xs-2.control-label{for: 'maintenance_time_spent'} Engine Hours
+    .col-xs-5
+      = f.input :time_spent, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :time_spent
+  .form-group
+    %label.col-xs-2.control-label{for: 'maintenance_note'} Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :note
+  .form-group
+    .col-xs-7
+      .pull-right
+        = f.submit class: "btn btn-primary", "data-disable-with" => "Create Tractor..."
+        = link_to "Cancel", :back, class: "btn btn-default", "data-disable-with" => "Cancel..."

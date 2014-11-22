@@ -7,6 +7,7 @@ class CreateMaintenances < ActiveRecord::Migration
       t.integer :engine_hours
       t.integer :time_spent
       t.text :note
+      t.string :maintenance_type, limit: 50, null: false
 
       t.timestamps
     end
