@@ -8,4 +8,3 @@ class CreateLaborSubordinates < ActiveRecord::Migration
     end
   end
 end
-
