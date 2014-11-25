@@ -20,6 +20,20 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'devise'
 gem 'uuidtools'
 
+group :test, :development do
+  gem 'quiet_assets'
+  gem "rspec-rails", "~> 2.14.1"
+  gem 'factory_girl_rails', '4.2.1'
+  gem 'database_cleaner', '~> 0.9.1'
+  gem 'capybara', '~> 2.2.1'
+  gem 'shoulda-matchers'
+  gem 'pry'
+  # gem 'pry-debugger'
+end
+
+gem 'uuidtools'
+gem 'simple_form'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

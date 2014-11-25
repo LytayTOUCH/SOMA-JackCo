@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119025823) do
+ActiveRecord::Schema.define(version: 20141125085049) do
 
   create_table "users", id: false, force: true do |t|
     t.string   "uuid",                   limit: 36,                null: false
@@ -38,5 +38,27 @@ ActiveRecord::Schema.define(version: 20141119025823) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "warehouse_types", id: false, force: true do |t|
+    t.string   "uuid",        limit: 36,                null: false
+    t.string   "name",        limit: 50,                null: false
+    t.text     "description"
+    t.boolean  "active",                 default: true, null: false
+    t.boolean  "boolean",                default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "warehouses", id: false, force: true do |t|
+    t.string   "uuid",                limit: 36,                null: false
+    t.string   "name",                limit: 50,                null: false
+    t.string   "labor_uuid",          limit: 36
+    t.string   "warehouse_type_uuid", limit: 36
+    t.string   "address"
+    t.text     "description"
+    t.boolean  "active",                         default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

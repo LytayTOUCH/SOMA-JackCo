@@ -1,0 +1,18 @@
+%h1 Warehouse types List
+%div
+  %table.table.listing{:summary => "Warehouse Types list"}
+    %tr.header
+      %th Type
+      %th Description
+      %th Active
+      %th Actions
+    - @warehousetypes.each do |warehousetype|
+      %tr
+        %td= warehousetype.name
+        %td= warehousetype.description
+        %td= check_box_tag "Active", warehousetype.active, warehousetype.active
+        %td
+          / = link_to("Show", {:action => 'show', :id => warehousetype.id}, :class => 'action show')
+          = link_to "Edit", edit_warehouse_type_path(warehousetype.id), class: "btn btn-warning btn-xs"
+
+= link_to "New Warehouse Type", new_warehouse_type_path, class: "btn btn-primary"

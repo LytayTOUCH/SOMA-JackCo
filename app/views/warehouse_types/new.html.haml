@@ -1,0 +1,22 @@
+= link_to 'Back', warehouse_types_path
+%h1 Creating a new Warehouse Type
+= simple_form_for @warehouse_type, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-1.control-label.text-left Name
+    .col-xs-5.col-sm-offset-1
+      = f.input :name, label: false, input_html: { class: "form-control" }
+      %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-1.control-label.text-left Description
+    .col-xs-5.col-sm-offset-1
+      = f.input :description, label: false, input_html: { class: "form-control" }
+      %span.help-block= f.error :description
+  .form-group
+    %label.col-xs-1.control-label.text-left Active
+    .col-xs-5.col-sm-offset-1
+      = f.input :active, label: false
+      %span.help-block= f.error :active
+  .form-group
+    .col-xs-6.col-sm-offset-1
+      .pull-right
+        = f.submit class: "btn btn-primary", "data-disable-with" => "Create Warehouse Type"
