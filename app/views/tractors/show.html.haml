@@ -3,19 +3,6 @@
   %hr
 .row
   .col-lg-9
-    %h4= "Activities"
+    = render partial: 'maintenance', locals: {machinery: @tractor, maintenance_type: 'tractor', maintenances: @maintenances}
   .col-lg-3
-    .thumbnail.col-md-12
-      = link_to edit_tractor_path(@tractor) do
-        = image_tag @tractor.photo.url(:medium, timestamp: false)
-    %dl.dl-horizontal
-      %dt= "Year"
-      %dd= "#{@tractor.year}"
-      %dt= "Make"
-      %dd= "#{@tractor.make}"
-      %dt= "Horsepower"
-      %dd= "#{@tractor.horse_power}"
-      %dt= "Fuel capacity"
-      %dd= "#{@tractor.fuel_capacity}"
-      %dt= "Ownership"
-      %dd= "#{@tractor.owner_ship}"
+    = render partial: 'description_tractor', locals: {tractor: @tractor}

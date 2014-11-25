@@ -12,4 +12,7 @@ class Tractor < ActiveRecord::Base
   validates :horse_power, numericality: true
   validates :fuel_capacity, numericality: true
   validates :value, numericality: true
+
+  has_one :maintenance
 end
+  

@@ -5,6 +5,7 @@ class ImplementsController < ApplicationController
 
   def show
     @implement = ImplementDecorator.new(Implement.find(params[:id]))
+    @maintenances = Maintenance.find_limit_10
   end
 
   def create

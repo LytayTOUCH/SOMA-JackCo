@@ -3,11 +3,6 @@
   %hr
 .row
   .col-lg-9
-    %h4= "Activities"
+    = render partial: 'maintenance', locals: {machinery: @implement, maintenance_type: 'implement', maintenances: @maintenances}
   .col-lg-3
-    .thumbnail.col-md-12
-      = link_to edit_implement_path(@implement) do
-        = image_tag @implement.photo.url(:medium, timestamp: false)
-    %dl.dl-horizontal
-      %dt= "Own"
-      %dd= "#{@implement.owner_ship}"
+    = render partial: 'description_implement', locals: {implement: @implement}

@@ -5,6 +5,7 @@ class TractorsController < ApplicationController
 
   def show
     @tractor = TractorDecorator.new(Tractor.find(params[:id]))
+    @maintenances = Maintenance.find_limit_10
   end
   
   def create

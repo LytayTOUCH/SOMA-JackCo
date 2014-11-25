@@ -1,4 +1,6 @@
 = simple_form_for maintenance, html: {class: 'form-horizontal', multipart: true} do |f|
+  = f.input :machinery_uuid, as: :hidden
+  = f.input :maintenance_type, as: :hidden
   .form-group
     %label.col-xs-2.control-label{for: 'maintenance_name'} Person
     .col-xs-5

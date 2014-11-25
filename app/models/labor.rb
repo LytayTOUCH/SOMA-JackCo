@@ -5,4 +5,6 @@ class Labor < ActiveRecord::Base
   validates :position_uuid, length: { maximum: 36 }, presence: true
   validates :labor_project_uuid, length: { maximum: 36 }
   validates :labor_subordinate, length: { maximum: 36 }
+
+  has_one :maintenance
 end
