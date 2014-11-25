@@ -34219,3 +34219,705 @@ Processing by WarehouseTypesController#index as HTML
   Rendered application/_sidebar_top.html.haml (0.3ms)
   Rendered application/_sidebar_left.html.haml (0.2ms)
 Completed 200 OK in 63ms (Views: 62.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:36:59 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.4ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (6.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 64ms (Views: 61.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:01 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (1.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 63ms (Views: 61.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:01 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.7ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 89ms (Views: 87.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:24 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (4.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 62ms (Views: 60.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:25 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.4ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.8ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 57ms (Views: 55.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:25 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (1.7ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 61ms (Views: 59.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:26 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (2.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 61ms (Views: 59.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:37 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (3.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 65ms (Views: 63.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:38 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.7ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 63ms (Views: 62.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:38 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.4ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (2.1ms)
+  Rendered application/_sidebar_top.html.haml (0.5ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 63ms (Views: 61.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:38 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (2.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 61ms (Views: 60.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:39 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (2.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 61ms (Views: 60.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:39 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.7ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 63.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:39 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (1.5ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 61ms (Views: 59.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:40 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.6ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (2.6ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 92ms (Views: 90.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:40 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (1.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 66ms (Views: 65.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:40 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 65ms (Views: 62.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:42 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (3.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 56ms (Views: 54.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-25 16:37:44 +0700
+
+ActionController::RoutingError (uninitialized constant WarehousesController):
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:238:in `const_get'
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:238:in `block in constantize'
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:236:in `each'
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:236:in `inject'
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:236:in `constantize'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:78:in `controller_reference'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:68:in `controller'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:46:in `call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.6) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (30.5ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-25 16:37:44 +0700
+
+ActionController::RoutingError (uninitialized constant WarehousesController):
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:238:in `const_get'
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:238:in `block in constantize'
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:236:in `each'
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:236:in `inject'
+  activesupport (4.1.6) lib/active_support/inflector/methods.rb:236:in `constantize'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:78:in `controller_reference'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:68:in `controller'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:46:in `call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.6) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.6ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (28.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:46 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.3ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 59ms (Views: 58.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:46 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (1.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 53ms (Views: 52.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:37:46 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 60ms (Views: 59.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:38:12 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (4.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 68ms (Views: 66.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:38:46 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (3.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 66ms (Views: 64.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:38:47 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (1.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 61ms (Views: 59.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:38:47 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.5ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 65ms (Views: 62.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:38:56 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (3.8ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 65ms (Views: 64.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:38:57 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.8ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 63ms (Views: 62.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:40:18 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (3.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 66.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:40:18 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 60ms (Views: 59.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:40:29 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (5.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 117ms (Views: 115.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:40:37 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (4.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 68ms (Views: 66.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:40:55 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (16.3ms)
+Completed 500 Internal Server Error in 19ms
+
+ActionView::Template::Error (undefined local variable or method `warehouse' for #<#<Class:0x00000005db2cc0>:0x000000055570a8>):
+    10:       %tr
+    11:         %td= warehousetype.name
+    12:         %td= warehousetype.description
+    13:         %td= check_box_tag :active, "true", warehouse.active
+    14:         %td
+    15:           / = link_to("Show", {:action => 'show', :id => warehousetype.id}, :class => 'action show')
+    16:           = link_to "Edit", edit_warehouse_type_path(warehousetype.id), class: "btn btn-warning btn-xs"
+  app/views/warehouse_types/index.html.haml:13:in `block in _app_views_warehouse_types_index_html_haml__911742604479187344_44739560'
+  app/views/warehouse_types/index.html.haml:9:in `_app_views_warehouse_types_index_html_haml__911742604479187344_44739560'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (10.1ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:41:12 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (3.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 66.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:41:33 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (3.8ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 65ms (Views: 64.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:41:34 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (1.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 61ms (Views: 60.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:41:34 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.5ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (4.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 66ms (Views: 64.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/767066C6-7482-11E4-AB21-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-25 16:41:36 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"767066C6-7482-11E4-AB21-E0DB55A6E603"}
+  [1m[36mWarehouseType Load (0.4ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '767066C6-7482-11E4-AB21-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/edit.html.haml within layouts/application (5.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 62.8ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/warehouse_types/767066C6-7482-11E4-AB21-E0DB55A6E603" for 127.0.0.1 at 2014-11-25 16:41:40 +0700
+Processing by WarehouseTypesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QdyvBl+hz+4DllU8oNVYFnghsRimf9mLEY99xR8Posw=", "warehouse_type"=>{"name"=>"Raw Material Warehouse", "description"=>"", "active"=>"1"}, "commit"=>"Update Warehouse type", "id"=>"767066C6-7482-11E4-AB21-E0DB55A6E603"}
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '767066C6-7482-11E4-AB21-E0DB55A6E603' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `warehouse_types` SET `active` = 1, `updated_at` = '2014-11-25 09:41:40' WHERE `warehouse_types`.`uuid` = '767066C6-7482-11E4-AB21-E0DB55A6E603'
+  [1m[36m (68.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/warehouse_types
+Completed 302 Found in 75ms (ActiveRecord: 69.9ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:41:40 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (1.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 56ms (Views: 55.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:45:32 +0700
+Processing by WarehouseTypesController#index as HTML
+  Rendered warehouse_types/index.html.haml within layouts/application (15.2ms)
+Completed 500 Internal Server Error in 18ms
+
+SyntaxError (/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:13: syntax error, unexpected '\n', expecting =>
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unknown regexp options - td
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+));}\n      </td>\n    </tr>\n", -2, false);end...
+                  ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unknown regexp options - tabl
+unmatched close parenthesis: /tr>\n", -2, false);end;_hamlout.push_text("  </
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+..._hamlout.push_text("  </table>\n</div>\n#{_hamlout.adjust_ta...
+...                               ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unterminated regexp meets end of file
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected end-of-input, expecting ')'):
+  app/views/warehouse_types/index.html.haml:13: syntax error, unexpected '\n', expecting =>
+  app/views/warehouse_types/index.html.haml:17: unknown regexp options - td
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+  app/views/warehouse_types/index.html.haml:17: unknown regexp options - tabl
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+  app/views/warehouse_types/index.html.haml:17: unterminated regexp meets end of file
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected end-of-input, expecting ')'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.0ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:46:33 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/index.html.haml within layouts/application (3.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 66ms (Views: 65.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 16:53:53 +0700
+Processing by WarehouseTypesController#index as HTML
+  Rendered warehouse_types/index.html.haml within layouts/application (3.6ms)
+Completed 500 Internal Server Error in 7ms
+
+SyntaxError (/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:14: syntax error, unexpected ')'
+));}</td>\n      <td>\n       ...
+ ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unknown regexp options - td
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+));}\n      </td>\n    </tr>\n", -2, false);end...
+                  ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unknown regexp options - tabl
+unmatched close parenthesis: /tr>\n", -2, false);end;_hamlout.push_text("  </
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+..._hamlout.push_text("  </table>\n</div>\n#{_hamlout.adjust_ta...
+...                               ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unterminated regexp meets end of file
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/views/warehouse_types/index.html.haml:14: syntax error, unexpected ')'
+  app/views/warehouse_types/index.html.haml:17: unknown regexp options - td
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+  app/views/warehouse_types/index.html.haml:17: unknown regexp options - tabl
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+  app/views/warehouse_types/index.html.haml:17: unterminated regexp meets end of file
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-25 17:02:38 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (10.8ms)
+Completed 200 OK in 90ms (Views: 73.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-25 17:02:43 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+9oCxEJbWhvTk4KN7kJ7TLQjBeFco7wBErvccCUtRe4=", "user"=>{"email"=>"teopaocheak@yahoo.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'teopaocheak@yahoo.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2014-11-25 10:02:43', `last_sign_in_at` = '2014-11-25 01:20:42', `sign_in_count` = 14, `updated_at` = '2014-11-25 10:02:43' WHERE `users`.`uuid` = '8B5160E2-711F-11E4-919D-E0DB55A6E603'
+  [1m[36m (44.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 138ms (ActiveRecord: 45.3ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-25 17:02:43 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.7ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 65ms (Views: 64.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 17:02:45 +0700
+Processing by WarehouseTypesController#index as HTML
+  Rendered warehouse_types/index.html.haml within layouts/application (6.8ms)
+Completed 500 Internal Server Error in 9ms
+
+SyntaxError (/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:14: syntax error, unexpected ')'
+));}</td>\n      <td>\n       ...
+ ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unknown regexp options - td
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+));}\n      </td>\n    </tr>\n", -2, false);end...
+                  ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unknown regexp options - tabl
+unmatched close parenthesis: /tr>\n", -2, false);end;_hamlout.push_text("  </
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+..._hamlout.push_text("  </table>\n</div>\n#{_hamlout.adjust_ta...
+...                               ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unterminated regexp meets end of file
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/views/warehouse_types/index.html.haml:14: syntax error, unexpected ')'
+  app/views/warehouse_types/index.html.haml:17: unknown regexp options - td
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+  app/views/warehouse_types/index.html.haml:17: unknown regexp options - tabl
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+  app/views/warehouse_types/index.html.haml:17: unterminated regexp meets end of file
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 17:02:45 +0700
+Processing by WarehouseTypesController#index as HTML
+  Rendered warehouse_types/index.html.haml within layouts/application (1.8ms)
+Completed 500 Internal Server Error in 4ms
+
+SyntaxError (/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:14: syntax error, unexpected ')'
+));}</td>\n      <td>\n       ...
+ ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unknown regexp options - td
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+));}\n      </td>\n    </tr>\n", -2, false);end...
+                  ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unknown regexp options - tabl
+unmatched close parenthesis: /tr>\n", -2, false);end;_hamlout.push_text("  </
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+..._hamlout.push_text("  </table>\n</div>\n#{_hamlout.adjust_ta...
+...                               ^
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: unterminated regexp meets end of file
+/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/warehouse_types/index.html.haml:17: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/views/warehouse_types/index.html.haml:14: syntax error, unexpected ')'
+  app/views/warehouse_types/index.html.haml:17: unknown regexp options - td
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+  app/views/warehouse_types/index.html.haml:17: unknown regexp options - tabl
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected $undefined
+  app/views/warehouse_types/index.html.haml:17: unterminated regexp meets end of file
+  app/views/warehouse_types/index.html.haml:17: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-25 17:03:06 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (3.7ms)
+Completed 200 OK in 95ms (Views: 94.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-25 17:03:10 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YWibTz5tT1m5Kw6GjXgZ1XXxnv0L1U9chs/Yh686qQU=", "user"=>{"email"=>"teopaocheak@yahoo.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'teopaocheak@yahoo.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2014-11-25 10:03:10', `last_sign_in_at` = '2014-11-25 10:02:43', `sign_in_count` = 15, `updated_at` = '2014-11-25 10:03:10' WHERE `users`.`uuid` = '8B5160E2-711F-11E4-919D-E0DB55A6E603'
+  [1m[36m (38.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 126ms (ActiveRecord: 38.9ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-25 17:03:10 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  Rendered application/_sidebar_top.html.haml (0.5ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 70ms (Views: 69.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-25 17:03:12 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (3.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 63ms (Views: 61.9ms | ActiveRecord: 0.3ms)

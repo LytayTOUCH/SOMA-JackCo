@@ -1,4 +1,4 @@
-%h1 Warehouse types List
+%h1 Warehouse type List
 %div
   %table.table.listing{:summary => "Warehouse Types list"}
     %tr.header
@@ -10,7 +10,7 @@
       %tr
         %td= warehousetype.name
         %td= warehousetype.description
-        %td= check_box_tag "Active", warehousetype.active, warehousetype.active
+        %td= check_box_tag :active, warehousetype.active, warehousetype.active
         %td
           / = link_to("Show", {:action => 'show', :id => warehousetype.id}, :class => 'action show')
           = link_to "Edit", edit_warehouse_type_path(warehousetype.id), class: "btn btn-warning btn-xs"
