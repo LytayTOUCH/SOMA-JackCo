@@ -5,7 +5,6 @@ describe Warehouse, 'validation' do
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:labor_uuid).is_at_most(36) }
   it { should ensure_length_of(:warehouse_type_uuid).is_at_most(36) }
-
 end
 
 describe Warehouse, 'column-specification' do

@@ -1,0 +1,20 @@
+%h1 Warehouse Type Information
+%div
+  %table.table.listing{:summary => "Warehouse type information"}
+    %tr.header
+      %th Fields
+      %th Information
+
+      %tr
+        %th Name
+        %td= @warehousetype.name
+      %tr
+        %th Description
+        %td= @warehousetype.description
+      %tr
+        %th Active
+        %td
+          - if @warehousetype.active?
+            = "yes" 
+          - else  
+            = "no"

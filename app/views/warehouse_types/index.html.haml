@@ -10,9 +10,14 @@
       %tr
         %td= warehousetype.name
         %td= warehousetype.description
-        %td= check_box_tag :active, warehousetype.active, warehousetype.active
+        / %td= check_box_tag :active, if :checked?, "active", "inactive"
         %td
-          / = link_to("Show", {:action => 'show', :id => warehousetype.id}, :class => 'action show')
+          - if warehousetype.active?
+            = "active" 
+          - else  
+            = "inactive"
+        %td
+          = link_to "Show", warehouse_type_path(warehousetype.id), class: "btn btn-warning btn-xs"
           = link_to "Edit", edit_warehouse_type_path(warehousetype.id), class: "btn btn-warning btn-xs"
 
 = link_to "New Warehouse Type", new_warehouse_type_path, class: "btn btn-primary"

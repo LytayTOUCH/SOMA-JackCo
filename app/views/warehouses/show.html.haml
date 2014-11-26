@@ -1,0 +1,28 @@
+%h1 Warehouse Information
+%div
+  %table.table.listing{:summary => "Warehouse information"}
+    %tr.header
+      %th Fields
+      %th Information
+      %tr
+        %th Name
+        %td= @warehouse.name
+      %tr
+        %th Supervisor
+        %td= @warehouse.labor_uuid
+      %tr
+        %th Warehouse Type
+        %td= @warehouse.warehouse_type.name
+      %tr
+        %th Address
+        %td= @warehouse.address    
+      %tr
+        %th Description
+        %td= @warehouse.description
+      %tr
+        %th Active
+        %td
+          - if @warehouse.active?
+            = "yes" 
+          - else  
+            = "no"
