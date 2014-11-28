@@ -1,30 +1,6 @@
-%h1 Warehouses List
-%div
-  %table.table.listing{:summary => "Warehouse list"}
-    %tr.header
-      %th Name
-      %th Supervisor
-      %th Warehouse Type
-      %th Address
-      %th Description
-      %th Active
-      %th Actions
-    - @warehouses.each do |warehouse|
-      %tr
-        %td= warehouse.name
-        %td= warehouse.labor_uuid
-        / %td= WarehouseType.select(:name).where("uuid=?",warehouse.warehouse_type_uuid)
-        %td= warehouse.warehouse_type.name
-        %td= warehouse.address
-        %td= warehouse.description
-        %td
-          - if warehouse.active?
-            = "active" 
-          - else  
-            = "inactive"
-        / %td= check_box_tag "Active", warehouse.active, warehouse.active, disabled: true
-        %td
-          = link_to "Show", warehouse_path(warehouse.id), class: "btn btn-warning btn-xs"
-          = link_to "Edit", edit_warehouse_path(warehouse.id), class: "btn btn-warning btn-xs"          
-
-= link_to "New Warehouse", new_warehouse_path, class: "btn btn-primary"
+.row
+  %h1= "WarehouseType"
+  %hr
+.row
+  = render partial: 'list_warehouse', locals: { warehouses: @warehouses }
+  = link_to "New Warehouse", new_warehouse_path, class: "btn btn-primary"

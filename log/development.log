@@ -43343,3 +43343,2268 @@ Completed 200 OK in 57ms (Views: 56.2ms | ActiveRecord: 0.0ms)
   [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`id` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = 106 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
   [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`   ORDER BY `users`.`uuid` ASC LIMIT 1 OFFSET 1[0m
   [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`id` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = 0 AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-28 09:42:24 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (2.7ms)
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (26.7ms)
+Completed 200 OK in 169ms (Views: 140.5ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-11-28 09:42:32 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"11AWOiv67tzy9tghhtKeMoxKJfFflj5zii2pip2BnbI=", "user"=>{"email"=>"teopaocheak@yahoo.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'teopaocheak@yahoo.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2014-11-28 02:42:33', `last_sign_in_at` = '2014-11-27 09:58:58', `sign_in_count` = 9, `updated_at` = '2014-11-28 02:42:33' WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'
+  [1m[36m (37.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 141ms (ActiveRecord: 38.4ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-28 09:42:33 +0700
+Processing by DashboardsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered dashboards/index.html.haml within layouts/application (0.7ms)
+  Rendered application/_sidebar_top.html.haml (3.4ms)
+  Rendered application/_sidebar_left.html.haml (8.1ms)
+Completed 200 OK in 85ms (Views: 83.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 09:42:37 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (15.2ms)
+  Rendered application/_sidebar_top.html.haml (2.9ms)
+  Rendered application/_sidebar_left.html.haml (2.7ms)
+Completed 200 OK in 82ms (Views: 74.8ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 09:44:26 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (4.4ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 75ms (Views: 72.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 09:44:45 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (4.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 74ms (Views: 69.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 09:51:40 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (3.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 62.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 09:51:45 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (1.5ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 59ms (Views: 57.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 09:51:48 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.4ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/index.html.haml within layouts/application (2.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 62.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:06:32 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (6.8ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (8.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 92ms (Views: 74.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:06:44 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 72ms (Views: 68.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:07:07 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (2.9ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (4.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 70ms (Views: 68.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:07:08 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.4ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.2ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 60ms (Views: 57.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:07:08 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.3ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 61.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:07:08 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 62ms (Views: 59.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:07:09 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.6ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.4ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 63ms (Views: 60.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:07:09 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.5ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 64ms (Views: 61.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:08:12 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (3.3ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (4.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 66.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:08:15 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (5.5ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (101.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 170ms (Views: 166.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:08:28 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (3.2ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (5.0ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 65.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:08:36 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (3.4ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (5.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 64.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:11:26 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (5.8ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (8.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 75ms (Views: 72.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-28 10:11:29 +0700
+Processing by Devise::SessionsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/dashboards
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-11-28 10:11:29 +0700
+Processing by DashboardsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered dashboards/index.html.haml within layouts/application (0.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 67ms (Views: 65.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:11:31 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.3ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.1ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouses/index.html.haml within layouts/application (16.0ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 101ms (Views: 95.5ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:11:32 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.6ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 73ms (Views: 68.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:11:34 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/_form.html.haml (6.2ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (9.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 70.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:11:37 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.4ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.2ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 61.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:11:41 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered warehouse_types/_form.html.haml (3.3ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (6.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 63ms (Views: 61.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:11:42 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.3ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 64.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/0A7B9800-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:12:15 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (3.6ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (5.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 65.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:12:16 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.6ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 63.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/0A7B9800-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:12:17 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (3.9ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.1ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 70ms (Views: 67.1ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/warehouse_types/0A7B9800-75EF-11E4-A19D-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:12:21 +0700
+Processing by WarehouseTypesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse_type"=>{"name"=>"Product Warehouse", "description"=>"For storing the production", "active"=>"1"}, "commit"=>"Update Warehouse type", "id"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.7ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE `warehouse_types` SET `active` = 1, `updated_at` = '2014-11-28 03:12:21' WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603'
+  [1m[36m (77.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/warehouse_types
+Completed 302 Found in 89ms (ActiveRecord: 80.3ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:12:21 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.3ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.0ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 71ms (Views: 69.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/A3358640-7523-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:12:24 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"A3358640-7523-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/_form.html.haml (4.6ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (7.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 75ms (Views: 72.9ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/warehouse_types/A3358640-7523-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:12:27 +0700
+Processing by WarehouseTypesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse_type"=>{"name"=>"Fertilizer Warehouse", "description"=>"For storing fertilizer only", "active"=>"0"}, "commit"=>"Update Warehouse type", "id"=>"A3358640-7523-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.4ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE `warehouse_types` SET `active` = 0, `updated_at` = '2014-11-28 03:12:27' WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603'[0m
+  [1m[35m (70.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/warehouse_types
+Completed 302 Found in 77ms (ActiveRecord: 71.4ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:12:27 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.5ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 79ms (Views: 75.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/warehouse_types/0A7B9800-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:12:33 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (3.6ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (5.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 69ms (Views: 66.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:12:35 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.5ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.3ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 66ms (Views: 63.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:13:37 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.5ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (3.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 71ms (Views: 68.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:14:05 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (3.8ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 72ms (Views: 69.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:14:36 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (1.2ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (3.2ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (Illegal nesting: nesting within a tag that already has content is illegal.):
+    2:   %label.col-xs-1.control-label Name
+    3:   .col-xs-5.col-sm-offset-1
+    4:   / .col-xs-5
+    5:     = f.input :name, label: false, input_html: { class: "form-control" }
+    6:     %span.help-block= f.error :name
+    7: .form-group
+    8:   %label.col-xs-1.control-label Description
+  app/views/warehouse_types/_form.html.haml:5
+  app/views/warehouse_types/edit.html.haml:3:in `block in _app_views_warehouse_types_edit_html_haml___3299135006378594622_40557420'
+  app/views/warehouse_types/edit.html.haml:2:in `_app_views_warehouse_types_edit_html_haml___3299135006378594622_40557420'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (12.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:14:44 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.4ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (6.5ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (8.5ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 107ms (Views: 103.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:14:59 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (9.7ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (11.7ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 83ms (Views: 80.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:15:18 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (16.6ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (18.5ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 80ms (Views: 76.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:15:27 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/_form.html.haml (7.3ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (9.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 86ms (Views: 82.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:24:54 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/edit.html.haml within layouts/application (2.5ms)
+Completed 500 Internal Server Error in 22ms
+
+ActionView::Template::Error (Missing partial warehouse_types/__warehouse_type_form, application/__warehouse_type_form with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml, :jbuilder]}. Searched in:
+  * "/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views"
+  * "/home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/devise-3.4.1/app/views"
+):
+    1: %h3 Editing WarehouseType
+    2: = render partial: '_warehouse_type_form', locals: { warehouse_type: @warehouse_type }
+    3: / = simple_form_for @warehouse_type, html: { class: "form-horizontal" } do |f|
+    4: /   = render partial: 'form', locals: { :f => f }
+  app/views/warehouse_types/edit.html.haml:2:in `_app_views_warehouse_types_edit_html_haml___3299135006378594622_26605920'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (9.3ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:25:12 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.4ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (21.6ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (27.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 98ms (Views: 92.7ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:25:25 +0700
+Processing by WarehouseTypesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse_type"=>{"name"=>"Machinery Warehouse", "description"=>"For storing only machinerie", "active"=>"1"}, "commit"=>"Update Warehouse type", "id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `warehouse_types` SET `description` = 'For storing only machinerie', `updated_at` = '2014-11-28 03:25:25' WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603'
+  [1m[36m (69.9ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/warehouse_types
+Completed 302 Found in 76ms (ActiveRecord: 71.1ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:25:25 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.6ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (2.9ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (5.4ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 106ms (Views: 100.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:25:28 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (7.3ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (10.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 78ms (Views: 75.3ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:25:32 +0700
+Processing by WarehouseTypesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse_type"=>{"name"=>"Machinery Warehouse", "description"=>"For s", "active"=>"1"}, "commit"=>"Update Warehouse type", "id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.6ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.6ms)[0m  [1mUPDATE `warehouse_types` SET `description` = 'For s', `updated_at` = '2014-11-28 03:25:32' WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603'[0m
+  [1m[35m (76.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/warehouse_types
+Completed 302 Found in 88ms (ActiveRecord: 79.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:25:32 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.3ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 79ms (Views: 76.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:25:35 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (4.8ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.5ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 70ms (Views: 67.2ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:25:40 +0700
+Processing by WarehouseTypesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse_type"=>{"name"=>"Machin", "description"=>"For s", "active"=>"0"}, "commit"=>"Update Warehouse type", "id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.6ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE `warehouse_types` SET `active` = 0, `name` = 'Machin', `updated_at` = '2014-11-28 03:25:40' WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603'
+  [1m[36m (97.9ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/warehouse_types
+Completed 302 Found in 107ms (ActiveRecord: 99.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:25:40 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.3ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 69ms (Views: 67.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:34:01 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (4.4ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (5.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 83ms (Views: 69.0ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:34:04 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (6.1ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (9.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (29.5ms)
+Completed 200 OK in 102ms (Views: 99.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:34:09 +0700
+Processing by WarehouseTypesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse_type"=>{"name"=>"sdhfkdshfkjds", "description"=>"sdkfhkashfsda", "active"=>"1"}, "commit"=>"Create Warehouse type"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `warehouse_types` (`created_at`, `description`, `name`, `updated_at`, `uuid`) VALUES ('2014-11-28 03:34:09', 'sdkfhkashfsda', 'sdhfkdshfkjds', '2014-11-28 03:34:09', '6A1CEC1C-76AF-11E4-88BC-E0DB55A6E603')[0m
+  [1m[35m (98.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/warehouse_types
+Completed 302 Found in 122ms (ActiveRecord: 98.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:34:10 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.5ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 66ms (Views: 62.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:34:40 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.8ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 62ms (Views: 59.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:34:42 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (4.4ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (6.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 63ms (Views: 60.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:34:43 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (3.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 62.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:34:44 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/show.html.haml within layouts/application (2.5ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 72ms (Views: 69.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:34:47 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (4.7ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (7.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 74ms (Views: 71.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:34:49 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/show.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 61.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:34:51 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (5.3ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (7.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 70ms (Views: 68.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:34:54 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/show.html.haml within layouts/application (0.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 64ms (Views: 61.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:34:56 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (4.9ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 70ms (Views: 67.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:34:56 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/show.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 66ms (Views: 63.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:34:57 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (7.7ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (9.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 74ms (Views: 71.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:34:58 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/show.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 73ms (Views: 70.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:35:54 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/show.html.haml within layouts/application (2.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 91ms (Views: 73.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:35:55 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/show.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 96ms (Views: 93.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:36:20 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/show.html.haml within layouts/application (3.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 70.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:36:29 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/show.html.haml within layouts/application (3.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 67ms (Views: 64.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:36:32 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (5.7ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (7.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 69ms (Views: 67.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:36:33 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/show.html.haml within layouts/application (2.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 70ms (Views: 63.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:36:35 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (5.2ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (6.9ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 72ms (Views: 69.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:36:37 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.4ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 63.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:36:38 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.3ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/index.html.haml within layouts/application (8.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 73ms (Views: 67.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:36:40 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.4ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 62.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:36:43 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (4.9ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 66.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:36:44 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 66ms (Views: 63.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/A3358640-7523-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:36:45 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"A3358640-7523-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (5.6ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (7.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 95ms (Views: 92.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:36:46 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.6ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 65.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/0A7B9800-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:36:47 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (5.3ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (7.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 72ms (Views: 69.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:36:48 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (2.0ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (3.0ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 66ms (Views: 64.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/0A7B9800-75EF-11E4-A19D-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:36:49 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/show.html.haml within layouts/application (0.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 61.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:36:49 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.5ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 60ms (Views: 57.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:36:51 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (4.8ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (6.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 67.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:36:52 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 62.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:37:09 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (4.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 74ms (Views: 71.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:37:22 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (4.0ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 72ms (Views: 69.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:37:59 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (5.1ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (7.9ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 74ms (Views: 71.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:38:08 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (6.0ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (8.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 78ms (Views: 74.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:38:26 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (5.6ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (8.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 102ms (Views: 97.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:39:06 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (5.3ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (8.2ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 81ms (Views: 78.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:39:09 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (5.4ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (8.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 70.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:39:11 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (5.1ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (8.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 77ms (Views: 74.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:39:11 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (4.5ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (6.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 68.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:39:11 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (4.3ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 77ms (Views: 72.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:39:12 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (4.5ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (6.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 61.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:39:12 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (4.9ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.7ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 68ms (Views: 65.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:39:12 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (8.8ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (10.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 79ms (Views: 76.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:39:12 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (5.0ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (7.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 75ms (Views: 72.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:39:13 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (4.3ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (5.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 73ms (Views: 69.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:39:13 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.1ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (4.8ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 71ms (Views: 68.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:39:13 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (4.7ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (6.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 67.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:39:14 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (4.7ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 71ms (Views: 67.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:39:15 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (3.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 93ms (Views: 90.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:39:15 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.1ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/index.html.haml within layouts/application (3.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 66.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:39:16 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.4ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.2ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 63ms (Views: 61.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:39:18 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered application/_warehouse_type_form.html.haml (5.3ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (6.9ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 73ms (Views: 70.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:39:19 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.6ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 62.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types/0A7B9800-75EF-11E4-A19D-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:39:21 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouse_types/show.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 60ms (Views: 57.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:39:22 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (2.0ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.9ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 66ms (Views: 63.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:44:08 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (8.1ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (10.5ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 98ms (Views: 81.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:44:08 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 75ms (Views: 72.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/new" for 127.0.0.1 at 2014-11-28 10:44:09 +0700
+Processing by WarehouseTypesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (5.1ms)
+  Rendered warehouse_types/new.html.haml within layouts/application (6.8ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 104ms (Views: 101.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:44:10 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (3.5ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (4.4ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 74ms (Views: 71.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types/A3358640-7523-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:44:11 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"A3358640-7523-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/show.html.haml within layouts/application (2.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 71ms (Views: 67.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:44:12 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 73ms (Views: 68.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/warehouse_types/0A7B9800-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:44:13 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (5.0ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 70ms (Views: 67.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:44:14 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.7ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 61.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:51:10 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (5.0ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (5.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 87ms (Views: 71.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:51:11 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.8ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 70ms (Views: 66.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 10:51:11 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.6ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (2.1ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (3.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 109ms (Views: 103.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:51:12 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.1ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouses/index.html.haml within layouts/application (7.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 59.8ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 10:51:15 +0700
+Processing by WarehousesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouses/_form.html.haml (34.7ms)
+  Rendered warehouses/new.html.haml within layouts/application (38.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 106ms (Views: 104.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:51:20 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/index.html.haml within layouts/application (3.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 66ms (Views: 63.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/warehouses/817A8EF4-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:51:21 +0700
+Processing by WarehousesController#edit as HTML
+  Parameters: {"id"=>"817A8EF4-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.3ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '817A8EF4-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (18.4ms)
+  Rendered warehouses/edit.html.haml within layouts/application (24.6ms)
+  Rendered application/_sidebar_top.html.haml (0.5ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 88ms (Views: 83.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:51:30 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/index.html.haml within layouts/application (3.8ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 68ms (Views: 64.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/warehouses/BC574BC2-7523-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:51:32 +0700
+Processing by WarehousesController#edit as HTML
+  Parameters: {"id"=>"BC574BC2-7523-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = 'BC574BC2-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (7.9ms)
+  Rendered warehouses/edit.html.haml within layouts/application (9.7ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 72ms (Views: 69.2ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/warehouses/BC574BC2-7523-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:51:53 +0700
+Processing by WarehousesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse"=>{"name"=>"FWH-Batti", "labor_uuid"=>"348DRHXYR-JF7SFRJ8-FU8ERER", "warehouse_type_uuid"=>"A3358640-7523-11E4-BACD-E0DB55A6E603", "address"=>"Batti", "description"=>"10 km from the office", "active"=>"1"}, "commit"=>"Update Warehouse", "id"=>"BC574BC2-7523-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.8ms)[0m  [1mSELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = 'BC574BC2-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/warehouses
+Completed 302 Found in 7ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:51:53 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.3ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/index.html.haml within layouts/application (6.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 72ms (Views: 69.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:53:03 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.3ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouses/index.html.haml within layouts/application (4.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 97ms (Views: 94.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 10:53:04 +0700
+Processing by WarehousesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (7.6ms)
+  Rendered warehouses/new.html.haml within layouts/application (10.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 77ms (Views: 74.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 10:53:09 +0700
+Processing by WarehousesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (10.2ms)
+  Rendered warehouses/new.html.haml within layouts/application (12.9ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 74ms (Views: 71.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 10:53:34 +0700
+Processing by WarehousesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (13.9ms)
+  Rendered warehouses/new.html.haml within layouts/application (16.7ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 84ms (Views: 81.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:53:36 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.1ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/index.html.haml within layouts/application (3.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 64ms (Views: 61.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/warehouses/309D6CAC-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:53:38 +0700
+Processing by WarehousesController#edit as HTML
+  Parameters: {"id"=>"309D6CAC-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '309D6CAC-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (11.9ms)
+  Rendered warehouses/edit.html.haml within layouts/application (13.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 80ms (Views: 76.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:53:43 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/index.html.haml within layouts/application (3.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 65ms (Views: 62.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 10:53:46 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (7.9ms)
+  Rendered warehouses/new.html.haml within layouts/application (9.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 74ms (Views: 71.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 10:59:05 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (8.0ms)
+  Rendered warehouses/new.html.haml within layouts/application (9.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 99ms (Views: 97.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:59:06 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouses/_list_warehouse.html.haml (5.8ms)
+  Rendered warehouses/index.html.haml within layouts/application (8.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 68.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 10:59:13 +0700
+Processing by WarehousesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (7.3ms)
+  Rendered warehouses/new.html.haml within layouts/application (9.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 71ms (Views: 68.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:59:16 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/_list_warehouse.html.haml (3.5ms)
+  Rendered warehouses/index.html.haml within layouts/application (4.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 65ms (Views: 62.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/warehouses/309D6CAC-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:59:18 +0700
+Processing by WarehousesController#edit as HTML
+  Parameters: {"id"=>"309D6CAC-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.5ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '309D6CAC-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (7.8ms)
+  Rendered warehouses/edit.html.haml within layouts/application (9.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 75ms (Views: 69.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:59:22 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/_list_warehouse.html.haml (4.0ms)
+  Rendered warehouses/index.html.haml within layouts/application (4.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 80ms (Views: 75.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/warehouses/309D6CAC-75EF-11E4-A19D-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 10:59:24 +0700
+Processing by WarehousesController#show as HTML
+  Parameters: {"id"=>"309D6CAC-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '309D6CAC-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouses/show.html.haml within layouts/application (4.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 70ms (Views: 66.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:59:31 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.4ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.4ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/_list_warehouse.html.haml (6.9ms)
+  Rendered warehouses/index.html.haml within layouts/application (8.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 64.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/warehouses/309D6CAC-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 10:59:35 +0700
+Processing by WarehousesController#edit as HTML
+  Parameters: {"id"=>"309D6CAC-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '309D6CAC-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (7.9ms)
+  Rendered warehouses/edit.html.haml within layouts/application (10.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 65.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 10:59:38 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.5ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.5ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/_list_warehouse.html.haml (7.3ms)
+  Rendered warehouses/index.html.haml within layouts/application (8.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 63.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 10:59:40 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (12.4ms)
+  Rendered warehouses/new.html.haml within layouts/application (14.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 71ms (Views: 68.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 11:03:24 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (7.2ms)
+  Rendered warehouses/new.html.haml within layouts/application (8.8ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 1294ms (Views: 1291.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 11:03:26 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (10.2ms)
+  Rendered warehouses/new.html.haml within layouts/application (12.2ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 74ms (Views: 71.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 11:04:24 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (8.1ms)
+  Rendered warehouses/new.html.haml within layouts/application (9.7ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 863ms (Views: 860.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 11:04:36 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (8.0ms)
+  Rendered warehouses/new.html.haml within layouts/application (9.7ms)
+  Rendered application/_sidebar_top.html.haml (0.5ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 798ms (Views: 795.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 11:05:35 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (8.6ms)
+  Rendered warehouses/new.html.haml within layouts/application (10.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 847ms (Views: 844.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:06:35 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouses/_list_warehouse.html.haml (3.7ms)
+  Rendered warehouses/index.html.haml within layouts/application (4.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 719ms (Views: 716.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/warehouses/309D6CAC-75EF-11E4-A19D-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:06:37 +0700
+Processing by WarehousesController#show as HTML
+  Parameters: {"id"=>"309D6CAC-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '309D6CAC-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/show.html.haml within layouts/application (4.4ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 69ms (Views: 66.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 11:06:40 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.5ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (3.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 59ms (Views: 57.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:06:44 +0700
+Processing by WarehouseTypesController#show as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.4ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouse_types/show.html.haml within layouts/application (0.5ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 64.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:06:49 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouses/_list_warehouse.html.haml (3.6ms)
+  Rendered warehouses/index.html.haml within layouts/application (4.5ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 61ms (Views: 57.6ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/warehouses/817A8EF4-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:06:55 +0700
+Processing by WarehousesController#show as HTML
+  Parameters: {"id"=>"817A8EF4-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '817A8EF4-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/show.html.haml within layouts/application (1.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 59ms (Views: 55.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/warehouses/817A8EF4-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:07:16 +0700
+Processing by WarehousesController#show as HTML
+  Parameters: {"id"=>"817A8EF4-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.3ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '817A8EF4-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouses/show.html.haml within layouts/application (5.0ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 74ms (Views: 70.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:07:18 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/_list_warehouse.html.haml (4.5ms)
+  Rendered warehouses/index.html.haml within layouts/application (5.9ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 69ms (Views: 65.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 11:07:50 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (8.1ms)
+  Rendered warehouses/new.html.haml within layouts/application (10.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 71ms (Views: 68.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 11:07:54 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.5ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (2.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 68ms (Views: 66.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 11:07:57 +0700
+Processing by WarehouseTypesController#edit as HTML
+  Parameters: {"id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  Rendered application/_warehouse_type_form.html.haml (5.0ms)
+  Rendered warehouse_types/edit.html.haml within layouts/application (6.6ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 62ms (Views: 60.0ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/warehouse_types/5F25E01A-7520-11E4-BACD-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:08:14 +0700
+Processing by WarehouseTypesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse_type"=>{"name"=>"Machinery Warehouse", "description"=>"For storing machines only", "active"=>"1"}, "commit"=>"Update Warehouse type", "id"=>"5F25E01A-7520-11E4-BACD-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `warehouse_types` SET `active` = 1, `description` = 'For storing machines only', `name` = 'Machinery Warehouse', `updated_at` = '2014-11-28 04:08:14' WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603'
+  [1m[36m (71.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/warehouse_types
+Completed 302 Found in 78ms (ActiveRecord: 72.6ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-11-28 11:08:14 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (1.8ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (3.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 63ms (Views: 61.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:08:21 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/_list_warehouse.html.haml (3.4ms)
+  Rendered warehouses/index.html.haml within layouts/application (4.2ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 61ms (Views: 58.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/warehouses/new" for 127.0.0.1 at 2014-11-28 11:08:24 +0700
+Processing by WarehousesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (7.7ms)
+  Rendered warehouses/new.html.haml within layouts/application (9.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 67ms (Views: 64.7ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/warehouses" for 127.0.0.1 at 2014-11-28 11:09:22 +0700
+Processing by WarehousesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse"=>{"name"=>"PWH-Takeo", "labor_uuid"=>"348DRHXYR-JF7SFRJ8-FU8ERER65743", "warehouse_type_uuid"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603", "address"=>"Takeo", "description"=>"20 km from Batti office", "active"=>"1"}, "commit"=>"Create Warehouse"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `warehouses` (`address`, `created_at`, `description`, `labor_uuid`, `name`, `updated_at`, `uuid`, `warehouse_type_uuid`) VALUES ('Takeo', '2014-11-28 04:09:22', '20 km from Batti office', '348DRHXYR-JF7SFRJ8-FU8ERER65743', 'PWH-Takeo', '2014-11-28 04:09:22', '55222B06-76B4-11E4-88BC-E0DB55A6E603', '0A7B9800-75EF-11E4-A19D-E0DB55A6E603')[0m
+  [1m[35m (110.9ms)[0m  COMMIT
+Redirected to http://localhost:3000/warehouses
+Completed 302 Found in 117ms (ActiveRecord: 111.7ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:09:22 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.3ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.4ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1  [["uuid", "0A7B9800-75EF-11E4-A19D-E0DB55A6E603"]]
+  Rendered warehouses/_list_warehouse.html.haml (8.7ms)
+  Rendered warehouses/index.html.haml within layouts/application (12.0ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 85ms (Views: 82.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/warehouses/55222B06-76B4-11E4-88BC-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 11:09:47 +0700
+Processing by WarehousesController#edit as HTML
+  Parameters: {"id"=>"55222B06-76B4-11E4-88BC-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.3ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '55222B06-76B4-11E4-88BC-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (7.9ms)
+  Rendered warehouses/edit.html.haml within layouts/application (9.8ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 67ms (Views: 63.8ms | ActiveRecord: 0.9ms)
+
+
+Started PATCH "/warehouses/55222B06-76B4-11E4-88BC-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:09:58 +0700
+Processing by WarehousesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vc7ixNnh/cvEhXIke4httQPMfZooIXHyzi3riJISTjQ=", "warehouse"=>{"name"=>"PWH-Takeo", "labor_uuid"=>"348DRHXYR-JF7SFRJ8-FU8ER64", "warehouse_type_uuid"=>"0A7B9800-75EF-11E4-A19D-E0DB55A6E603", "address"=>"Takeo", "description"=>"20 km from Batti office", "active"=>"1"}, "commit"=>"Update Warehouse", "id"=>"55222B06-76B4-11E4-88BC-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.6ms)[0m  [1mSELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '55222B06-76B4-11E4-88BC-E0DB55A6E603' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE `warehouses` SET `labor_uuid` = '348DRHXYR-JF7SFRJ8-FU8ER64', `updated_at` = '2014-11-28 04:09:58' WHERE `warehouses`.`uuid` = '55222B06-76B4-11E4-88BC-E0DB55A6E603'[0m
+  [1m[35m (85.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/warehouses
+Completed 302 Found in 94ms (ActiveRecord: 87.0ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:09:58 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.4ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.3ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.4ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1  [["uuid", "0A7B9800-75EF-11E4-A19D-E0DB55A6E603"]]
+  Rendered warehouses/_list_warehouse.html.haml (8.6ms)
+  Rendered warehouses/index.html.haml within layouts/application (9.7ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 73ms (Views: 70.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:11:23 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.3ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1  [["uuid", "0A7B9800-75EF-11E4-A19D-E0DB55A6E603"]]
+  Rendered warehouses/_list_warehouse.html.haml (4.7ms)
+  Rendered warehouses/index.html.haml within layouts/application (5.6ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 65ms (Views: 61.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/warehouses/55222B06-76B4-11E4-88BC-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:11:26 +0700
+Processing by WarehousesController#show as HTML
+  Parameters: {"id"=>"55222B06-76B4-11E4-88BC-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '55222B06-76B4-11E4-88BC-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/show.html.haml within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (Illegal nesting: content can't be both given on the same line as %h1 and nested within it.):
+    1: %h1 Warehouse Information
+    2:   %table.table
+    3:     %tr.header
+    4:       %th Fields
+    5:       %th Information
+  app/views/warehouses/show.html.haml:2
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (9.6ms)
+
+
+Started GET "/warehouses/55222B06-76B4-11E4-88BC-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:11:26 +0700
+Processing by WarehousesController#show as HTML
+  Parameters: {"id"=>"55222B06-76B4-11E4-88BC-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '55222B06-76B4-11E4-88BC-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/show.html.haml within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 4ms
+
+ActionView::Template::Error (Illegal nesting: content can't be both given on the same line as %h1 and nested within it.):
+    1: %h1 Warehouse Information
+    2:   %table.table
+    3:     %tr.header
+    4:       %th Fields
+    5:       %th Information
+  app/views/warehouses/show.html.haml:2
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (9.1ms)
+
+
+Started GET "/warehouses/55222B06-76B4-11E4-88BC-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:11:26 +0700
+Processing by WarehousesController#show as HTML
+  Parameters: {"id"=>"55222B06-76B4-11E4-88BC-E0DB55A6E603"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.4ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '55222B06-76B4-11E4-88BC-E0DB55A6E603' LIMIT 1
+  Rendered warehouses/show.html.haml within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (Illegal nesting: content can't be both given on the same line as %h1 and nested within it.):
+    1: %h1 Warehouse Information
+    2:   %table.table
+    3:     %tr.header
+    4:       %th Fields
+    5:       %th Information
+  app/views/warehouses/show.html.haml:2
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (12.4ms)
+
+
+Started GET "/warehouses/55222B06-76B4-11E4-88BC-E0DB55A6E603" for 127.0.0.1 at 2014-11-28 11:11:50 +0700
+Processing by WarehousesController#show as HTML
+  Parameters: {"id"=>"55222B06-76B4-11E4-88BC-E0DB55A6E603"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '55222B06-76B4-11E4-88BC-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  Rendered warehouses/show.html.haml within layouts/application (3.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 81ms (Views: 77.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:11:53 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.3ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m  [["uuid", "0A7B9800-75EF-11E4-A19D-E0DB55A6E603"]]
+  Rendered warehouses/_list_warehouse.html.haml (4.7ms)
+  Rendered warehouses/index.html.haml within layouts/application (5.5ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 62ms (Views: 59.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:13:44 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.3ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m  [["uuid", "0A7B9800-75EF-11E4-A19D-E0DB55A6E603"]]
+  Rendered warehouses/_list_warehouse.html.haml (7.4ms)
+  Rendered warehouses/index.html.haml within layouts/application (8.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 71ms (Views: 67.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:14:17 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m  [["uuid", "0A7B9800-75EF-11E4-A19D-E0DB55A6E603"]]
+  Rendered warehouses/_list_warehouse.html.haml (7.3ms)
+  Rendered warehouses/index.html.haml within layouts/application (8.2ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 76ms (Views: 72.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/warehouses/55222B06-76B4-11E4-88BC-E0DB55A6E603/edit" for 127.0.0.1 at 2014-11-28 11:14:35 +0700
+Processing by WarehousesController#edit as HTML
+  Parameters: {"id"=>"55222B06-76B4-11E4-88BC-E0DB55A6E603"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.3ms)[0m  [1mSELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '55222B06-76B4-11E4-88BC-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (8.5ms)
+  Rendered warehouses/edit.html.haml within layouts/application (10.3ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 70ms (Views: 66.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-11-28 11:14:40 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'D2D91764-75E5-11E4-A19D-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.3ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1  [["uuid", "0A7B9800-75EF-11E4-A19D-E0DB55A6E603"]]
+  Rendered warehouses/_list_warehouse.html.haml (7.1ms)
+  Rendered warehouses/index.html.haml within layouts/application (8.1ms)
+  Rendered application/_sidebar_top.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.1ms)
+Completed 200 OK in 79ms (Views: 74.1ms | ActiveRecord: 1.6ms)

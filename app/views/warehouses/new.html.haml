@@ -1,4 +1,5 @@
-= link_to 'Back', warehouses_path
-%h1 Creating a new Warehouse 
-= simple_form_for @warehouse, html: { class: "form-horizontal" } do |f|
-  = render partial: 'form', locals: { :f => f }
+.row
+  %h3= "Creating Warehouse"
+  %hr
+.row
+  = render partial: 'warehouse_form', locals: { warehouse: @warehouse }

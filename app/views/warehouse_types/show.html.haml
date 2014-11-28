@@ -1,23 +1,22 @@
-%h1 Warehouse Type Information
+%h1 WarehouseType Information
 %div
-  %table.table.listing{:summary => "Warehouse type information"}
+  %table.table
     %tr.header
       %th Fields
       %th Information
-
-      %tr
-        %th Name
-        %td= @warehousetype.name
-      %tr
-        %th Description
-        %td= @warehousetype.description
-      %tr
-        %th Active
-        %td
-          - if @warehousetype.active?
-            = "yes" 
-          - else  
-            = "no"
-
+    %tr
+      %th Name
+      %td= @warehouse_type.name
+    %tr
+      %th Description
+      %td= @warehouse_type.description
+    %tr
+      %th Active
+      %td
+        - if @warehouse_type.active?
+          = "yes" 
+        - else  
+          = "no"
 = link_to "New Warehouse Type", new_warehouse_type_path, class: "btn btn-primary"
 = link_to "Edit Warehouse", edit_warehouse_type_path, class: "btn btn-primary"
+= link_to "Cancel", :back, class: "btn btn-default"
