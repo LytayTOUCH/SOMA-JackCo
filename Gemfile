@@ -33,6 +33,8 @@ end
 
 gem 'uuidtools'
 gem 'simple_form'
+gem 'cancan'
+gem 'rolify'
 
 
 # Use ActiveModel has_secure_password
