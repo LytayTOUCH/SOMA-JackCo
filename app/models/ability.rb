@@ -8,6 +8,8 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     else
+      can :create, WarehouseType if user.has_role?(:supervisor, WarehouseType)
+      can :create, Warehouse if user.has_role?(:supervisor, Warehouse)  
       can :read, :all
     end
     #

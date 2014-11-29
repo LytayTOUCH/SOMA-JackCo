@@ -17,6 +17,8 @@
           = "yes" 
         - else  
           = "no"
-= link_to "New Warehouse Type", new_warehouse_type_path, class: "btn btn-primary"
-= link_to "Edit Warehouse", edit_warehouse_type_path, class: "btn btn-primary"
+- if can? :create, WarehouseType          
+  = link_to "New Warehouse Type", new_warehouse_type_path, class: "btn btn-primary"
+- if can? :update, WarehouseType
+  = link_to "Edit Warehouse", edit_warehouse_type_path, class: "btn btn-primary"
 = link_to "Cancel", :back, class: "btn btn-default"

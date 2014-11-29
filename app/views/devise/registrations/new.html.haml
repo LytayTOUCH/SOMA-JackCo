@@ -1,0 +1,30 @@
+%h2 Sign up for new users
+.row
+  .col-sm-3.col-sm-offset-4.cs-border
+    .form-group
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = devise_error_messages!
+        .field
+          = f.label :email
+          %br
+          = f.email_field :email, autofocus: true, :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter email"
+        .field
+          = f.label :password
+          - if @validatable
+            %em
+              (#{@minimum_password_length} characters minimum)
+          %br
+          = f.password_field :password, autocomplete: "off", :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter email"
+        .field
+          = f.label :password_confirmation
+          %br
+          = f.password_field :password_confirmation, autocomplete: "off", :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter email"
+        .field
+          = f.label :roles
+          - Role.all.each do |role|
+            = check_box_tag "users_roles[role_ids][]", role.id, @user.role_ids.include?(role.id)
+            / = f.radio_button "users_roles[role_ids][]", role.id, @user.role_ids.include?(role.id)
+            = role.name
+        .actions
+          = f.submit "Sign up"
+      = render "devise/shared/links"
