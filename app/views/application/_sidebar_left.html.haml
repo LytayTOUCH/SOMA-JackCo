@@ -18,6 +18,8 @@
         %a{:href => "#"} Zone
       %li STORE MANAGEMENT
       %li
-        = link_to 'Warehouse Type', warehouse_types_path
+        - if can? :manage, WarehouseType
+          = link_to 'Warehouse Type', warehouse_types_path
       %li
-        = link_to 'Warehouse', warehouses_path
+        - if can? :manage, Warehouse
+          = link_to 'Warehouse', warehouses_path

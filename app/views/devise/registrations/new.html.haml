@@ -1,30 +1,34 @@
 %h2 Sign up for new users
 .row
-  .col-sm-3.col-sm-offset-4.cs-border
-    .form-group
-      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        = devise_error_messages!
-        .field
-          = f.label :email
-          %br
-          = f.email_field :email, autofocus: true, :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter email"
-        .field
-          = f.label :password
-          - if @validatable
-            %em
-              (#{@minimum_password_length} characters minimum)
-          %br
-          = f.password_field :password, autocomplete: "off", :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter email"
-        .field
-          = f.label :password_confirmation
-          %br
-          = f.password_field :password_confirmation, autocomplete: "off", :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter email"
-        .field
-          = f.label :roles
-          - Role.all.each do |role|
-            = check_box_tag "users_roles[role_ids][]", role.id, @user.role_ids.include?(role.id)
-            / = f.radio_button "users_roles[role_ids][]", role.id, @user.role_ids.include?(role.id)
-            = role.name
-        .actions
-          = f.submit "Sign up"
-      = render "devise/shared/links"
+  .col-sm-5.col-sm-offset-2
+    = simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-horizontal" } do |f|
+      = devise_error_messages!
+      .form-group
+        %label.col-xs-1.control-label Email
+        .col-xs-5
+        = f.input :email, label: false, input_html: { class: "form-control" } 
+        %span.help-block= f.error :name
+        
+      .form-group
+        %label.col-xs-1.control-label Password
+        .col-xs-5
+        - if @validatable
+          %em
+            (#{@minimum_password_length} characters minimum)
+        = f.input :password, label: false, input_html: { class: "form-control" } 
+      
+      .form-group
+        %label.col-xs-1.control-label Password
+        .col-xs-5
+        = f.input :password_confirmation, label: false, input_html: { class: "form-control" } 
+
+      .form-group
+        %label.col-xs-1.control-label Roles
+        .col-xs-5
+        / = f.input :name, as: :select, label: false, :include_blank => false,collection: UserGroup.all
+        / = collection_select :name, :user_group_uuid, UserGroup.all, :id, label: false
+      .row  
+        .col-sm-6    
+          .actions
+            = f.submit "Sign up", :class => 'btn btn-success form-control'
+        = render "devise/shared/links"

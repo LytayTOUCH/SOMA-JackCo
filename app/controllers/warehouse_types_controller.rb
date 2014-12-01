@@ -1,4 +1,6 @@
 class WarehouseTypesController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @warehouse_types = WarehouseType.all
   end
