@@ -9,6 +9,7 @@ class Maintenance < ActiveRecord::Base
 
   belongs_to :labor, foreign_key: :labor_uuid
   belongs_to :tractor, foreign_key: :machinery_uuid
+  belongs_to :implement, foreign_key: :machinery_uuid
 
   scope :find_limit_10, -> { limit(10) }
 end

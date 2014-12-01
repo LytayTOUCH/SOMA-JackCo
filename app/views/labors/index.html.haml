@@ -1,0 +1,7 @@
+.row
+  %hr
+  %h3
+    = "Labor"
+    .pull-right
+      = link_to "New Labor", new_labor_path, class: "btn btn-primary"
+  = render partial: 'list_labor', locals: {labors: @labors}

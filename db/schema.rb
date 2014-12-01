@@ -11,15 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125070809) do
+ActiveRecord::Schema.define(version: 20141201074134) do
+
+  create_table "implement_types", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36, null: false
+    t.string   "name",       limit: 50, null: false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "implements", id: false, force: true do |t|
-    t.string   "uuid",                limit: 36,                 null: false
-    t.string   "name",                limit: 50,                 null: false
+    t.string   "uuid",                limit: 36, null: false
+    t.string   "name",                limit: 50, null: false
     t.date     "year"
-    t.string   "implement_type_uuid", limit: 36,                 null: false
+    t.string   "implement_type_uuid", limit: 36, null: false
     t.float    "value",               limit: 24
-    t.boolean  "own",                            default: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -44,15 +51,13 @@ ActiveRecord::Schema.define(version: 20141125070809) do
   end
 
   create_table "labors", id: false, force: true do |t|
-    t.string   "uuid",               limit: 36,                null: false
-    t.string   "name",               limit: 50,                null: false
-    t.string   "position_uuid",      limit: 36,                null: false
-    t.string   "labor_project_uuid", limit: 36
-    t.string   "labor_subordinate",  limit: 36
+    t.string   "uuid",          limit: 36,                null: false
+    t.string   "name",          limit: 50,                null: false
+    t.string   "position_uuid", limit: 36,                null: false
     t.text     "description"
+    t.boolean  "active",                   default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",                        default: true
   end
 
   create_table "maintenances", id: false, force: true do |t|
@@ -67,16 +72,22 @@ ActiveRecord::Schema.define(version: 20141125070809) do
     t.datetime "updated_at"
   end
 
+  create_table "projects", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36, null: false
+    t.string   "name",       limit: 50, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tractors", id: false, force: true do |t|
-    t.string   "uuid",               limit: 36,                 null: false
-    t.string   "name",               limit: 50,                 null: false
+    t.string   "uuid",               limit: 36, null: false
+    t.string   "name",               limit: 50, null: false
     t.float    "horse_power",        limit: 24
     t.float    "fuel_capacity",      limit: 24
     t.string   "make"
     t.string   "model"
     t.date     "year"
     t.float    "value",              limit: 24
-    t.boolean  "own",                           default: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,4 +1,4 @@
 class LaborProject < ActiveRecord::Base
-  validates :labor_uuid, length: { maximum: 36 }, presence: true
-  validates :project_uuid, length: { maximum: 36 }, presence: true
+  belongs_to :labor, foreign_key: :labor_uuid
+  belongs_to :project, foreign_key: :project_uuid
 end

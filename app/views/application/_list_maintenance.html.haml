@@ -1,4 +1,4 @@
-- if maintenances.present?
+- if maintenances.present? 
   %table.table
     %thead
       %tr
@@ -10,7 +10,13 @@
     %tbody
       - maintenances.each do |maintenance|
         %td= maintenance.created_at.strftime("%Y-%m-%d")
-        %td= maintenance.tractor.name
-        %td= maintenance.labor.name
+        - if maintenance.tractor.present?
+          %td= maintenance.tractor.name
+        - elsif maintenance.implement.present?
+          %td= maintenance.implement.name
+        - if maintenance.labor.present?
+          %td= maintenance.labor.name
+        - else
+          %td= "None"
         %td= maintenance.time_spent
         %td= maintenance.note

@@ -1,6 +1,7 @@
 class ImplementsController < ApplicationController
   def new
     @implement = Implement.new
+    @implement_types = ImplementType.all
   end
 
   def show
@@ -22,6 +23,7 @@ class ImplementsController < ApplicationController
 
   def edit
     @implement = Implement.find(params[:id])
+    @implement_types = ImplementType.all
   end
 
   def update

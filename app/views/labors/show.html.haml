@@ -1,0 +1,13 @@
+%h3= "Details"
+%table.table
+  %tr
+    %th= "Name"
+    %td= @labor.name
+  %tr
+    %th= "Position"
+    %td= @labor.position_uuid
+  %tr
+    %th= "Acitive"
+    %td= @labor.active
+= link_to "Edit Labor", edit_labor_path(@labor), class: "btn btn-primary", "data-disable-with" => "Edit Labor..."
+= link_to "Cancel", :back, class: "btn btn-default", "data-disable-with" => "Cancel..."

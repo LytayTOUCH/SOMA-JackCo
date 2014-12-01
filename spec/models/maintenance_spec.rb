@@ -19,3 +19,9 @@ describe Maintenance, 'column_specification' do
   it { should have_db_column(:note).of_type(:text) }
   it { should have_db_column(:maintenance_type).of_type(:string).with_options(length: { maximum: 50 }, presence: true) }
 end
+
+describe Maintenance, 'association' do
+  it { should belong_to(:labor).with_foreign_key('labor_uuid') }
+  it { should belong_to(:tractor).with_foreign_key('machinery_uuid') }
+  it { should belong_to(:implement).with_foreign_key('machinery_uuid') }
+end

@@ -17,6 +17,5 @@ describe Tractor, 'column_specification' do
   it { should have_db_column(:model).of_type(:string) }
   it { should have_db_column(:year).of_type(:date) }
   it { should have_db_column(:value).of_type(:float).with_options(numericality: true) }
-  it { should have_db_column(:own).of_type(:boolean).with_options(default: false) }
   it { should have_db_column(:note).of_type(:text) }
 end

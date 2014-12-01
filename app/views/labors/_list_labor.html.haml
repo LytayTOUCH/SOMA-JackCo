@@ -1,0 +1,19 @@
+%table.table
+  %thead
+    %tr
+      %th= "Name"
+      %th= "Position"
+      %th= "Active"
+      %td= "Action"
+  %tbody
+    - labors.each do |labor|
+      %tr
+        %td= labor.name
+        %td= labor.position_uuid
+        - if labor.active
+          %td= "Actived"
+        - else
+          %td= "Inactived"
+        %td
+          = link_to "Edit", edit_labor_path(labor)
+          = link_to "Details", labor_path(labor)

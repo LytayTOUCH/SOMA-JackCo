@@ -4,9 +4,8 @@ class CreateLabors < ActiveRecord::Migration
       t.string :uuid, limit: 36, primary: true, null: false
       t.string :name, limit: 50, null: false
       t.string :position_uuid, limit: 36, null: false
-      t.string :labor_project_uuid, limit: 36
-      t.string :labor_subordinate, limit: 36
       t.text :description
+      t.boolean :active, null: false, default: true
 
       t.timestamps
     end

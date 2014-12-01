@@ -4,7 +4,7 @@
   .form-group
     %label.col-xs-2.control-label{for: 'maintenance_name'} Person
     .col-xs-5
-      = f.input :labor_uuid, label: false, collection: @labor, selected: @default_labor.uuid, input_html: {class: "form-control"}
+      = f.input :labor_uuid, label: false, collection: @labors, selected: @default_labor.uuid, input_html: {class: "form-control"}
       %span.help-block= f.error :labor_uuid
   .form-group
     %label.col-xs-2.control-label{for: 'maintenance_engine_hours'} Engine Hours
@@ -12,7 +12,7 @@
       = f.input :engine_hours, label: false, input_html: {class: "form-control"}
       %span.help-block= f.error :engine_hours
   .form-group
-    %label.col-xs-2.control-label{for: 'maintenance_time_spent'} Engine Hours
+    %label.col-xs-2.control-label{for: 'maintenance_time_spent'} Time Spent
     .col-xs-5
       = f.input :time_spent, label: false, input_html: {class: "form-control"}
       %span.help-block= f.error :time_spent

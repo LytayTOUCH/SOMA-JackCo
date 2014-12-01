@@ -30,15 +30,10 @@
       %input.input-sm.form-control{:name => "tractor[year]", value: tractor.year, "data-provide" => "datepicker", class: "form-control"}
       %span.help-block= f.error :year
   .form-group
-    %label.col-xs-2.control-label{for: 'tractor_value'} Value
+    %label.col-xs-2.control-label{for: 'tractor_value'} Price
     .col-xs-5
       = f.input :value, label: false, input_html: {class: "form-control"}
       %span.help-block= f.error :value
-  .form-group
-    %label.col-xs-2.control-label{for: 'tractor_own'} Own
-    .col-xs-5
-      = f.input :own, label: false, input_html: {style: "margin-top: 12px;"}
-      %span.help-block= f.error :own
   .form-group
     %label.col-xs-2.control-label{for: 'tractor_note'} Note
     .col-xs-5

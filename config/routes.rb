@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   resources :tractors, except: [:index]
   resources :implements, except: [:index]
   resources :maintenances, except: [:index]
+  resources :implement_types, except: [:destroy]
+  resources :labors, except: [:destroy] do
+    collection do 
+      get 'projects'
+    end
+  end
   
   devise_for :users
   devise_scope :user do
