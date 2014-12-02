@@ -40,6 +40,6 @@ class WarehouseTypesController < ApplicationController
 
   private
   def warehouse_type_params
-    params.require(:warehouse_type).permit(:name, :description, :active)
+    params.require(:warehouse_type).permit(:name, :note, :active)
   end
 end

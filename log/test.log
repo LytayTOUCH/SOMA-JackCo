@@ -356,3 +356,84 @@
   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
   [1m[35m (0.0ms)[0m  BEGIN
   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (16.9ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (424.7ms)[0m  CREATE TABLE `resources` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `label` varchar(50), `note` text, `active` tinyint(1) DEFAULT 1 NOT NULL, `boolean` tinyint(1) DEFAULT 1 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (199.4ms)[0m  [1mDROP TABLE `roles`[0m
+  [1m[35m (310.8ms)[0m  CREATE TABLE `roles` (`uuid` varchar(36) NOT NULL, `resource_id` varchar(36), `name` varchar(255), `resource_type` varchar(255), `created_at` datetime, `updated_at` datetime, `note` text) ENGINE=InnoDB
+  [1m[36m (255.4ms)[0m  [1mCREATE  INDEX `index_roles_on_name_and_resource_type_and_resource_id` USING btree ON `roles` (`name`, `resource_type`, `resource_id`) [0m
+  [1m[35m (244.2ms)[0m  CREATE  INDEX `index_roles_on_name` USING btree ON `roles` (`name`) 
+  [1m[36m (121.7ms)[0m  [1mDROP TABLE `user_groups`[0m
+  [1m[35m (266.5ms)[0m  CREATE TABLE `user_groups` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `note` text, `active` tinyint(1) DEFAULT 1 NOT NULL, `boolean` tinyint(1) DEFAULT 1 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (167.2ms)[0m  [1mDROP TABLE `users`[0m
+  [1m[35m (277.4ms)[0m  CREATE TABLE `users` (`uuid` varchar(36) NOT NULL, `name` varchar(50), `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `active` tinyint(1) DEFAULT 1 NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `confirmation_token` varchar(255), `confirmed_at` datetime, `confirmation_sent_at` datetime, `unconfirmed_email` varchar(255), `created_at` datetime, `updated_at` datetime, `note` text) ENGINE=InnoDB
+  [1m[36m (255.1ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_confirmation_token` USING btree ON `users` (`confirmation_token`) [0m
+  [1m[35m (566.9ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (233.3ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (155.0ms)[0m  DROP TABLE `users_roles`
+  [1m[36m (277.8ms)[0m  [1mCREATE TABLE `users_roles` (`user_id` varchar(36) NOT NULL, `role_id` varchar(36) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (267.8ms)[0m  CREATE  INDEX `index_users_roles_on_user_id_and_role_id` USING btree ON `users_roles` (`user_id`, `role_id`) 
+  [1m[36m (155.0ms)[0m  [1mDROP TABLE `warehouse_types`[0m
+  [1m[35m (321.7ms)[0m  CREATE TABLE `warehouse_types` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `note` text, `active` tinyint(1) DEFAULT 1 NOT NULL, `boolean` tinyint(1) DEFAULT 1 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (166.4ms)[0m  [1mDROP TABLE `warehouses`[0m
+  [1m[35m (277.0ms)[0m  CREATE TABLE `warehouses` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `labor_uuid` varchar(36), `warehouse_type_uuid` varchar(36), `address` varchar(255), `note` text, `active` tinyint(1) DEFAULT 1, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (32.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20141202033002')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m

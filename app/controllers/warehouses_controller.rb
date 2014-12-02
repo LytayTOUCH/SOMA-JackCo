@@ -1,4 +1,6 @@
 class WarehousesController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @warehouses = Warehouse.all
   end
@@ -40,6 +42,6 @@ class WarehousesController < ApplicationController
 
   private
   def warehouse_params
-    params.require(:warehouse).permit(:name, :labor_uuid, :warehouse_type_uuid, :address, :description, :active)    
+    params.require(:warehouse).permit(:name, :labor_uuid, :warehouse_type_uuid, :address, :note, :active)    
   end
 end

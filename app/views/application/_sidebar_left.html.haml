@@ -16,6 +16,8 @@
       %li PRE SETUP
       %li
         %a{:href => "#"} Zone
+      %li
+        = link_to 'Module Management', new_role_path
       %li STORE MANAGEMENT
       %li
         - if can? :manage, WarehouseType
@@ -23,3 +25,4 @@
       %li
         - if can? :manage, Warehouse
           = link_to 'Warehouse', warehouses_path
+      

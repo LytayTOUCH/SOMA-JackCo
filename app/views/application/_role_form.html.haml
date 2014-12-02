@@ -1,0 +1,21 @@
+= simple_form_for role, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-1.control-label.text-left Name
+    .col-xs-5
+      = f.input :name, label: false, collection: UserGroup.all, value_method: :name, input_html: {class: "form-control"}, include_blank: true
+      %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-1.control-label Modules
+    .col-xs-5
+      / - @resources.each do |resource|
+      /   = check_box_tag 'resource_ids[]', resource.id
+      /   = resource.name
+    
+      / = f.association :resource, as: :check_boxes, label: false, value_method: :id
+
+      / = f.input :resource_type, collection: Resource.all, as: :check_boxes, value_method: :name, label: false 
+  .form-group
+    .col-xs-6.col-sm-offset-1
+      .pull-right
+        = f.submit class: "btn btn-primary", "data-disable-with" => "Save Module"
+        = link_to 'Cancel', :back, class: "btn btn-default"       

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201081051) do
+ActiveRecord::Schema.define(version: 20141202041509) do
+
+  create_table "resources", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,                null: false
+    t.string   "name",       limit: 50,                null: false
+    t.string   "label",      limit: 50
+    t.text     "note"
+    t.boolean  "active",                default: true, null: false
+    t.boolean  "boolean",               default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", id: false, force: true do |t|
     t.string   "uuid",          limit: 36, null: false
@@ -34,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141201081051) do
     t.boolean  "boolean",               default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "label"
   end
 
   create_table "users", id: false, force: true do |t|
