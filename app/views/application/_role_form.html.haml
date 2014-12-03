@@ -10,8 +10,12 @@
       / - @resources.each do |resource|
       /   = check_box_tag 'resource_ids[]', resource.id
       /   = resource.name
-    
-      / = f.association :resource, as: :check_boxes, label: false, value_method: :id
+            
+      = f.input :resource_type, as: :check_boxes, label: false, collection: Resource.all, value_method: :name
+
+      / = check_box_tag :resource_type, 'rock music'
+
+      / = f.input :resource_type, label: false, collection: Resource.all, value_method: :name, input_html: {class: "form-control"}, include_blank: true
 
       / = f.input :resource_type, collection: Resource.all, as: :check_boxes, value_method: :name, label: false 
   .form-group

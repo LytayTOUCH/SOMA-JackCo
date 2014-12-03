@@ -55437,3 +55437,1511 @@ Processing by RolesController#index as HTML
   Rendered application/_sidebar_top.html.haml (2.3ms)
   Rendered application/_sidebar_left.html.haml (0.4ms)
 Completed 200 OK in 78ms (Views: 74.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-03 08:05:32 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (10.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.8ms)
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (172.2ms)
+Completed 200 OK in 627ms (Views: 574.2ms | ActiveRecord: 20.5ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-12-03 08:05:40 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"fvAwohXucUtZsMghHCxh+rVqYkYNT+ui0rejftzfg80=", "user"=>{"email"=>"teopaocheak@yahoo.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (66.6ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'teopaocheak@yahoo.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2014-12-03 01:05:41', `last_sign_in_at` = '2014-12-02 06:45:38', `sign_in_count` = 41, `updated_at` = '2014-12-03 01:05:41' WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'
+  [1m[36m (75.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 344ms (ActiveRecord: 142.9ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-12-03 08:05:41 +0700
+Processing by DashboardsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered dashboards/index.html.haml within layouts/application (1.1ms)
+  [1m[36m (22.5ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (151.6ms)
+  Rendered application/_sidebar_left.html.haml (40.4ms)
+Completed 200 OK in 301ms (Views: 253.5ms | ActiveRecord: 46.2ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:05:44 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (13.8ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (21.4ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (148.9ms)
+  Rendered roles/new.html.haml within layouts/application (151.5ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (4.8ms)
+  Rendered application/_sidebar_left.html.haml (2.8ms)
+Completed 200 OK in 250ms (Views: 209.2ms | ActiveRecord: 37.3ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 08:07:38 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GjW+535CUKu889T9RrkuPPYK3qvfQTvia02pBxWeSrk=", "role"=>{"name"=>"purchase_manager", "resource_id"=>["Warehouse", ""]}, "commit"=>"Create Role"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Unpermitted parameters: resource_id
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `updated_at`, `uuid`) VALUES ('2014-12-03 01:07:38', 'purchase_manager', '2014-12-03 01:07:38', 'C5DB76D6-7A88-11E4-8B30-E0DB55A6E603')
+  [1m[36m (35.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 51ms (ActiveRecord: 35.8ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 08:07:38 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.5ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (6.3ms)
+  Rendered roles/index.html.haml within layouts/application (18.9ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.8ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 120ms (Views: 117.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 08:08:17 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.2ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (1.4ms)
+  Rendered roles/index.html.haml within layouts/application (2.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 85ms (Views: 82.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:08:19 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  Rendered application/_role_form.html.haml (6.1ms)
+  Rendered roles/new.html.haml within layouts/application (8.2ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionView::Template::Error (Association :resource_type not found):
+    11:       /   = check_box_tag 'resource_ids[]', resource.id
+    12:       /   = resource.name
+    13:             
+    14:       = f.association :resource_type, as: :check_boxes, label: false, value_method: :name
+    15: 
+    16:       / = f.input :resource_type, collection: Resource.all, as: :check_boxes, value_method: :name, label: false 
+    17:   .form-group
+  app/views/application/_role_form.html.haml:14:in `block in _app_views_application__role_form_html_haml___2091253997819010182_43072340'
+  app/views/application/_role_form.html.haml:1:in `_app_views_application__role_form_html_haml___2091253997819010182_43072340'
+  app/views/roles/new.html.haml:5:in `_app_views_roles_new_html_haml__481010227388636966_43293340'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (28.5ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:09:12 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  Rendered application/_role_form.html.haml (6.6ms)
+  Rendered roles/new.html.haml within layouts/application (7.7ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `name' for ["Yes", true]:Array):
+    11:       /   = check_box_tag 'resource_ids[]', resource.id
+    12:       /   = resource.name
+    13:             
+    14:       = f.input :resource_type, as: :check_boxes, label: false, value_method: :name
+    15: 
+    16:       / = f.input :resource_type, collection: Resource.all, as: :check_boxes, value_method: :name, label: false 
+    17:   .form-group
+  app/views/application/_role_form.html.haml:14:in `block in _app_views_application__role_form_html_haml___2091253997819010182_39814200'
+  app/views/application/_role_form.html.haml:1:in `_app_views_application__role_form_html_haml___2091253997819010182_39814200'
+  app/views/roles/new.html.haml:5:in `_app_views_roles_new_html_haml__481010227388636966_43293340'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (9.6ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:13:48 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  Rendered application/_role_form.html.haml (4.7ms)
+  Rendered roles/new.html.haml within layouts/application (5.8ms)
+Completed 500 Internal Server Error in 9ms
+
+ActionView::Template::Error (undefined method `name' for ["Yes", true]:Array):
+    11:       /   = check_box_tag 'resource_ids[]', resource.id
+    12:       /   = resource.name
+    13:             
+    14:       = f.input :resource_type, as: :check_boxes, label: false, value_method: :name
+    15: 
+    16:       / = f.input :resource_type, collection: Resource.all, as: :check_boxes, value_method: :name, label: false 
+    17:   .form-group
+  app/views/application/_role_form.html.haml:14:in `block in _app_views_application__role_form_html_haml___2091253997819010182_39814200'
+  app/views/application/_role_form.html.haml:1:in `_app_views_application__role_form_html_haml___2091253997819010182_39814200'
+  app/views/roles/new.html.haml:5:in `_app_views_roles_new_html_haml__481010227388636966_43293340'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (10.6ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:15:40 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered application/_role_form.html.haml (2.3ms)
+  Rendered roles/new.html.haml within layouts/application (3.7ms)
+Completed 500 Internal Server Error in 14ms
+
+SyntaxError (/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/application/_role_form.html.haml:14: syntax error, unexpected tLABEL, expecting ')'
+...ion: Resource.all value_method: :name
+...                               ^):
+  app/views/application/_role_form.html.haml:14: syntax error, unexpected tLABEL, expecting ')'
+  app/views/roles/new.html.haml:5:in `_app_views_roles_new_html_haml__481010227388636966_26016380'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.6ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:15:40 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered application/_role_form.html.haml (2.0ms)
+  Rendered roles/new.html.haml within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 6ms
+
+SyntaxError (/home/paocheak/Desktop/SOMA Project Cloning/soma/app/views/application/_role_form.html.haml:14: syntax error, unexpected tLABEL, expecting ')'
+...ion: Resource.all value_method: :name
+...                               ^):
+  app/views/application/_role_form.html.haml:14: syntax error, unexpected tLABEL, expecting ')'
+  app/views/roles/new.html.haml:5:in `_app_views_roles_new_html_haml__481010227388636966_43293340'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.4ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:15:52 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.2ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (0.3ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (9.0ms)
+  Rendered roles/new.html.haml within layouts/application (10.2ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 94ms (Views: 91.5ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 08:18:57 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GjW+535CUKu889T9RrkuPPYK3qvfQTvia02pBxWeSrk=", "role"=>{"name"=>"sale_manager", "resource_type"=>["Machinery", ""]}, "commit"=>"Create Role"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Unpermitted parameters: resource_type
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `updated_at`, `uuid`) VALUES ('2014-12-03 01:18:57', 'sale_manager', '2014-12-03 01:18:57', '5AB5F6F4-7A8A-11E4-8B30-E0DB55A6E603')
+  [1m[36m (97.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 104ms (ActiveRecord: 98.0ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 08:18:57 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (1.6ms)
+  Rendered roles/index.html.haml within layouts/application (2.3ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.0ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 85ms (Views: 82.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:22:04 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.2ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (7.5ms)
+  Rendered roles/new.html.haml within layouts/application (8.7ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.0ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 95ms (Views: 91.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:22:30 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.3ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (10.0ms)
+  Rendered roles/new.html.haml within layouts/application (11.2ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 122ms (Views: 119.3ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 08:22:45 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GjW+535CUKu889T9RrkuPPYK3qvfQTvia02pBxWeSrk=", "role"=>{"name"=>"stock_manager", "resource_type"=>"Warehouse"}, "commit"=>"Create Role"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `roles` (`created_at`, `name`, `resource_type`, `updated_at`, `uuid`) VALUES ('2014-12-03 01:22:45', 'stock_manager', 'Warehouse', '2014-12-03 01:22:45', 'E2ECE776-7A8A-11E4-8B30-E0DB55A6E603')[0m
+  [1m[35m (78.7ms)[0m  COMMIT
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 84ms (ActiveRecord: 79.5ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 08:22:46 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.2ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (2.1ms)
+  Rendered roles/index.html.haml within layouts/application (2.9ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.0ms)
+  Rendered application/_sidebar_left.html.haml (0.5ms)
+Completed 200 OK in 89ms (Views: 86.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 08:26:59 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.5ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (0.3ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (12.2ms)
+  Rendered roles/new.html.haml within layouts/application (13.3ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.4ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 100ms (Views: 96.0ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 08:27:22 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GjW+535CUKu889T9RrkuPPYK3qvfQTvia02pBxWeSrk=", "role"=>{"name"=>"account_manager", "resource_type"=>["User", "Warehouse", ""]}, "commit"=>"Create Role"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Unpermitted parameters: resource_type
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `updated_at`, `uuid`) VALUES ('2014-12-03 01:27:22', 'account_manager', '2014-12-03 01:27:22', '87B2A3F4-7A8B-11E4-8B30-E0DB55A6E603')
+  [1m[36m (98.9ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 106ms (ActiveRecord: 99.7ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 08:27:22 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (2.1ms)
+  Rendered roles/index.html.haml within layouts/application (2.8ms)
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (4.5ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 99ms (Views: 97.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 09:06:42 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.2ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (1.7ms)
+  Rendered roles/index.html.haml within layouts/application (2.5ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.0ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 84ms (Views: 81.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 09:06:46 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  Rendered application/_role_form.html.haml (6.1ms)
+  Rendered roles/new.html.haml within layouts/application (7.3ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `collect' for nil:NilClass):
+    13:             
+    14:       / = f.input :resource_type, as: :check_boxes, label: false, collection: Resource.all, value_method: :name
+    15: 
+    16:       = f.association :resource, collection: @role.resource_type.collect{ |p| [p.name, p.id] }, :as => :check_boxes
+    17: 
+    18:       / = f.input :resource_type, collection: Resource.all, as: :check_boxes, value_method: :name, label: false 
+    19:   .form-group
+  app/views/application/_role_form.html.haml:16:in `block in _app_views_application__role_form_html_haml___2091253997819010182_44007500'
+  app/views/application/_role_form.html.haml:1:in `_app_views_application__role_form_html_haml___2091253997819010182_44007500'
+  app/views/roles/new.html.haml:5:in `_app_views_roles_new_html_haml__481010227388636966_43293340'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (10.2ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 09:07:01 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  Rendered application/_role_form.html.haml (7.9ms)
+  Rendered roles/new.html.haml within layouts/application (9.0ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.0ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 93ms (Views: 90.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 09:07:33 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.2ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (10.6ms)
+  Rendered roles/new.html.haml within layouts/application (21.2ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.2ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 108ms (Views: 103.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 09:07:57 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.2ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (9.3ms)
+  Rendered roles/new.html.haml within layouts/application (11.2ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.0ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 98ms (Views: 94.1ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 09:08:05 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GjW+535CUKu889T9RrkuPPYK3qvfQTvia02pBxWeSrk=", "role"=>{"name"=>"request_manager", "resource_id"=>["82833EAE-79DA-11E4-8E8B-E0DB55A6E603", ""]}, "commit"=>"Create Role"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+Unpermitted parameters: resource_id
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `roles` (`created_at`, `name`, `updated_at`, `uuid`) VALUES ('2014-12-03 02:08:05', 'request_manager', '2014-12-03 02:08:05', '37B96454-7A91-11E4-8B30-E0DB55A6E603')[0m
+  [1m[35m (68.7ms)[0m  COMMIT
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 76ms (ActiveRecord: 69.8ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 09:08:05 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.2ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (1.7ms)
+  Rendered roles/index.html.haml within layouts/application (2.3ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.0ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 86ms (Views: 83.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 09:42:33 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (4.8ms)
+  Rendered roles/index.html.haml within layouts/application (5.5ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (9.1ms)
+  Rendered application/_sidebar_left.html.haml (7.2ms)
+Completed 200 OK in 124ms (Views: 107.0ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 09:42:35 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.2ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (18.4ms)
+  Rendered roles/new.html.haml within layouts/application (19.5ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 106ms (Views: 100.6ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 09:42:44 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GjW+535CUKu889T9RrkuPPYK3qvfQTvia02pBxWeSrk=", "role"=>{"name"=>"account_manager", "resource_ids"=>["828AD15A-79DA-11E4-8E8B-E0DB55A6E603", "82919ADA-79DA-11E4-8E8B-E0DB55A6E603", ""]}, "commit"=>"Create Role"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+Unpermitted parameters: resource_ids
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `roles` (`created_at`, `name`, `updated_at`, `uuid`) VALUES ('2014-12-03 02:42:44', 'account_manager', '2014-12-03 02:42:44', '0F2BF5B0-7A96-11E4-8B30-E0DB55A6E603')[0m
+  [1m[35m (30.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 37ms (ActiveRecord: 31.1ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 09:42:44 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.3ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (2.1ms)
+  Rendered roles/index.html.haml within layouts/application (2.8ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.7ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 108ms (Views: 97.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 09:46:21 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (0.4ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (12.9ms)
+  Rendered roles/new.html.haml within layouts/application (14.3ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 99ms (Views: 95.8ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 09:46:32 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GjW+535CUKu889T9RrkuPPYK3qvfQTvia02pBxWeSrk=", "role"=>{"name"=>"request_manager", "resource_ids"=>["", "82919ADA-79DA-11E4-8E8B-E0DB55A6E603"]}, "commit"=>"Create Role"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Unpermitted parameters: resource_ids
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `updated_at`, `uuid`) VALUES ('2014-12-03 02:46:32', 'request_manager', '2014-12-03 02:46:32', '96C3B2D8-7A96-11E4-8B30-E0DB55A6E603')
+  [1m[36m (66.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 73ms (ActiveRecord: 67.3ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 09:46:32 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (2.5ms)
+  Rendered roles/index.html.haml within layouts/application (3.6ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.1ms)
+  Rendered application/_sidebar_left.html.haml (0.5ms)
+Completed 200 OK in 89ms (Views: 86.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:07:39 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.3ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  Rendered application/_role_form.html.haml (18.5ms)
+  Rendered roles/new.html.haml within layouts/application (19.9ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (5.7ms)
+  Rendered application/_sidebar_left.html.haml (7.5ms)
+Completed 200 OK in 140ms (Views: 114.3ms | ActiveRecord: 3.2ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 10:07:47 +0700
+
+Mysql2::Error (Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)):
+  mysql2 (0.3.17) lib/mysql2/client.rb:70:in `connect'
+  mysql2 (0.3.17) lib/mysql2/client.rb:70:in `initialize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `new'
+  activerecord (4.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `mysql2_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:435:in `new_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:445:in `checkout_new_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:416:in `acquire_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:351:in `block in checkout'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:350:in `checkout'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:265:in `block in connection'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:264:in `connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:541:in `retrieve_connection'
+  activerecord (4.1.6) lib/active_record/connection_handling.rb:113:in `retrieve_connection'
+  activerecord (4.1.6) lib/active_record/connection_handling.rb:87:in `connection'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:51:in `restore_query_cache_settings'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:43:in `rescue in call'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:32:in `call'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.6) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.6ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:08:24 +0700
+
+Mysql2::Error (Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)):
+  mysql2 (0.3.17) lib/mysql2/client.rb:70:in `connect'
+  mysql2 (0.3.17) lib/mysql2/client.rb:70:in `initialize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `new'
+  activerecord (4.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `mysql2_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:435:in `new_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:445:in `checkout_new_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:416:in `acquire_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:351:in `block in checkout'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:350:in `checkout'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:265:in `block in connection'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:264:in `connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:541:in `retrieve_connection'
+  activerecord (4.1.6) lib/active_record/connection_handling.rb:113:in `retrieve_connection'
+  activerecord (4.1.6) lib/active_record/connection_handling.rb:87:in `connection'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:51:in `restore_query_cache_settings'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:43:in `rescue in call'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:32:in `call'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.6) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.4ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.9ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:08:34 +0700
+
+Mysql2::Error (Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)):
+  mysql2 (0.3.17) lib/mysql2/client.rb:70:in `connect'
+  mysql2 (0.3.17) lib/mysql2/client.rb:70:in `initialize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `new'
+  activerecord (4.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `mysql2_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:435:in `new_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:445:in `checkout_new_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:416:in `acquire_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:351:in `block in checkout'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:350:in `checkout'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:265:in `block in connection'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:264:in `connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:541:in `retrieve_connection'
+  activerecord (4.1.6) lib/active_record/connection_handling.rb:113:in `retrieve_connection'
+  activerecord (4.1.6) lib/active_record/connection_handling.rb:87:in `connection'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:51:in `restore_query_cache_settings'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:43:in `rescue in call'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:32:in `call'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.6) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.5ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:08:34 +0700
+
+Mysql2::Error (Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)):
+  mysql2 (0.3.17) lib/mysql2/client.rb:70:in `connect'
+  mysql2 (0.3.17) lib/mysql2/client.rb:70:in `initialize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `new'
+  activerecord (4.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `mysql2_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:435:in `new_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:445:in `checkout_new_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:416:in `acquire_connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:351:in `block in checkout'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:350:in `checkout'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:265:in `block in connection'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:264:in `connection'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:541:in `retrieve_connection'
+  activerecord (4.1.6) lib/active_record/connection_handling.rb:113:in `retrieve_connection'
+  activerecord (4.1.6) lib/active_record/connection_handling.rb:87:in `connection'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:51:in `restore_query_cache_settings'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:43:in `rescue in call'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:32:in `call'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.6) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/paocheak/.rvm/rubies/ruby-2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.8ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.1ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2014-12-03 10:09:44 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"GjW+535CUKu889T9RrkuPPYK3qvfQTvia02pBxWeSrk="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 71ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-03 10:09:44 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.8ms)
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (17.6ms)
+Completed 200 OK in 144ms (Views: 138.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-12-03 10:09:58 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xp3I0yJa38kZz/SmQukR+U9raTmRt+ElCTm0AZ5slqI=", "user"=>{"email"=>"teopaocheak@yahoo.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'teopaocheak@yahoo.com'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE `users` SET `current_sign_in_at` = '2014-12-03 03:09:58', `last_sign_in_at` = '2014-12-03 01:05:41', `sign_in_count` = 42, `updated_at` = '2014-12-03 03:09:58' WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'[0m
+  [1m[35m (876.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 971ms (ActiveRecord: 877.3ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-12-03 10:09:59 +0700
+Processing by DashboardsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered dashboards/index.html.haml within layouts/application (0.8ms)
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (27.3ms)
+  Rendered application/_sidebar_left.html.haml (9.9ms)
+Completed 200 OK in 120ms (Views: 115.7ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/warehouse_types" for 127.0.0.1 at 2014-12-03 10:10:01 +0700
+Processing by WarehouseTypesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  [1m[36mWarehouseType Load (17.8ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered warehouse_types/_list_warehouse_type.html.haml (28.9ms)
+  Rendered warehouse_types/index.html.haml within layouts/application (48.7ms)
+  Rendered application/_sidebar_top.html.haml (3.2ms)
+  Rendered application/_sidebar_left.html.haml (3.0ms)
+Completed 200 OK in 155ms (Views: 129.8ms | ActiveRecord: 19.7ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:10:03 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.5ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (0.6ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (47.6ms)
+  Rendered roles/new.html.haml within layouts/application (50.8ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 132ms (Views: 124.5ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:10:22 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  Rendered application/_role_form.html.haml (6.1ms)
+  Rendered roles/new.html.haml within layouts/application (8.2ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.0ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 92ms (Views: 89.2ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 10:10:27 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"03COs9o3oCFezanaLixJnnIcBWvumfsvGx0aet4AKAo=", "role"=>{"name"=>"sale_manager"}, "resource_type"=>"rock music", "commit"=>"Create Role"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `roles` (`created_at`, `name`, `updated_at`, `uuid`) VALUES ('2014-12-03 03:10:27', 'sale_manager', '2014-12-03 03:10:27', 'EE4E3B38-7A99-11E4-B212-E0DB55A6E603')[0m
+  [1m[35m (37.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 57ms (ActiveRecord: 38.5ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 10:10:27 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.3ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (5.0ms)
+  Rendered roles/index.html.haml within layouts/application (8.6ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 103ms (Views: 100.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:11:42 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (0.3ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (7.9ms)
+  Rendered roles/new.html.haml within layouts/application (9.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.0ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 100ms (Views: 96.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 10:11:50 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"03COs9o3oCFezanaLixJnnIcBWvumfsvGx0aet4AKAo=", "role"=>{"name"=>"stock_manager", "resource_type"=>"Material"}, "commit"=>"Create Role"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `resource_type`, `updated_at`, `uuid`) VALUES ('2014-12-03 03:11:50', 'stock_manager', 'Material', '2014-12-03 03:11:50', '1F904B28-7A9A-11E4-B212-E0DB55A6E603')
+  [1m[36m (82.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 89ms (ActiveRecord: 83.5ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 10:11:50 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (2.9ms)
+  Rendered roles/index.html.haml within layouts/application (3.8ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 127ms (Views: 124.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:31:38 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.3ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.3ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (10.9ms)
+  Rendered roles/new.html.haml within layouts/application (12.1ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 103ms (Views: 99.8ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 10:31:57 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"03COs9o3oCFezanaLixJnnIcBWvumfsvGx0aet4AKAo=", "role"=>{"name"=>"purchase_manager", "resource_type"=>["User", ""]}, "commit"=>"Create Role"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+Unpermitted parameters: resource_type
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `roles` (`created_at`, `name`, `updated_at`, `uuid`) VALUES ('2014-12-03 03:31:57', 'purchase_manager', '2014-12-03 03:31:57', 'EF648948-7A9C-11E4-B212-E0DB55A6E603')[0m
+  [1m[35m (34.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 42ms (ActiveRecord: 34.8ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 10:31:57 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.2ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (2.7ms)
+  Rendered roles/index.html.haml within layouts/application (3.4ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.4ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 101ms (Views: 99.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:42:30 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.2ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  Rendered application/_role_form.html.haml (6.8ms)
+  Rendered roles/new.html.haml within layouts/application (8.0ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 93ms (Views: 90.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:46:34 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.2ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.3ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (28.3ms)
+  Rendered roles/new.html.haml within layouts/application (29.5ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (6.1ms)
+  Rendered application/_sidebar_left.html.haml (6.0ms)
+Completed 200 OK in 171ms (Views: 124.9ms | ActiveRecord: 4.2ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 10:46:42 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"03COs9o3oCFezanaLixJnnIcBWvumfsvGx0aet4AKAo=", "role"=>{"name"=>"account_manager", "resource_type"=>["828AD15A-79DA-11E4-8E8B-E0DB55A6E603", ""]}, "commit"=>"Create Role"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+Unpermitted parameters: resource_type
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `roles` (`created_at`, `name`, `resource_type`, `updated_at`, `uuid`) VALUES ('2014-12-03 03:46:42', 'account_manager', '--- []\n', '2014-12-03 03:46:42', 'FE995D88-7A9E-11E4-B212-E0DB55A6E603')[0m
+  [1m[35m (35.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 45ms (ActiveRecord: 36.3ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 10:46:42 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (1.5ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (7.8ms)
+  Rendered roles/index.html.haml within layouts/application (9.3ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (3.0ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 144ms (Views: 140.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:48:42 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (0.2ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (24.0ms)
+  Rendered roles/new.html.haml within layouts/application (25.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (6.0ms)
+  Rendered application/_sidebar_left.html.haml (7.3ms)
+Completed 200 OK in 146ms (Views: 125.0ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:48:43 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (0.2ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (7.7ms)
+  Rendered roles/new.html.haml within layouts/application (8.9ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.2ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 94ms (Views: 90.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 10:48:49 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"03COs9o3oCFezanaLixJnnIcBWvumfsvGx0aet4AKAo=", "role"=>{"name"=>"sale_manager", "resource_type"=>["829F2222-79DA-11E4-8E8B-E0DB55A6E603", ""]}, "commit"=>"Create Role"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Unpermitted parameters: resource_type
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `resource_type`, `updated_at`, `uuid`) VALUES ('2014-12-03 03:48:49', 'sale_manager', NULL, '2014-12-03 03:48:49', '4A685714-7A9F-11E4-B212-E0DB55A6E603')
+  [1m[36m (69.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 77ms (ActiveRecord: 69.9ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 10:48:49 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.4ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (7.9ms)
+  Rendered roles/index.html.haml within layouts/application (9.9ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 100ms (Views: 97.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:50:54 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.3ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (7.9ms)
+  Rendered roles/new.html.haml within layouts/application (9.3ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.4ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 96ms (Views: 91.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 10:52:01 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.2ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (8.0ms)
+  Rendered roles/new.html.haml within layouts/application (9.1ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  Rendered application/_sidebar_top.html.haml (2.5ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 92ms (Views: 89.2ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 10:52:07 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"03COs9o3oCFezanaLixJnnIcBWvumfsvGx0aet4AKAo=", "role"=>{"name"=>"sale_manager", "resource_type"=>["829862B6-79DA-11E4-8E8B-E0DB55A6E603", ""]}, "commit"=>"Create Role"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+Unpermitted parameters: resource_type
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `roles` (`created_at`, `name`, `resource_type`, `updated_at`, `uuid`) VALUES ('2014-12-03 03:52:07', 'sale_manager', NULL, '2014-12-03 03:52:07', 'C0B70366-7A9F-11E4-B212-E0DB55A6E603')[0m
+  [1m[35m (43.0ms)[0m  COMMIT
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 53ms (ActiveRecord: 44.7ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 10:52:08 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.3ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (6.6ms)
+  Rendered roles/index.html.haml within layouts/application (7.4ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '6A02470C-76CA-11E4-9963-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  Rendered application/_sidebar_top.html.haml (2.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 97ms (Views: 95.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 10:53:06 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (3.9ms)
+  Rendered roles/index.html.haml within layouts/application (4.6ms)
+Completed 500 Internal Server Error in 9ms
+
+ActionView::Template::Error (undefined method `join' for nil:NilClass):
+     5:   - roles.each do |role|
+     6:     %tr
+     7:       %td= role.name
+     8:       %td= role.resource_type.join(",")
+     9:       %td
+    10:         = link_to "Show", role_path(role), class: "btn btn-default"
+    11:         = link_to "Edit", edit_role_path(role), class: "btn btn-default"
+  app/views/roles/_list_role.html.haml:8:in `block in _app_views_roles__list_role_html_haml__2422004859035401817_33532560'
+  app/views/roles/_list_role.html.haml:5:in `_app_views_roles__list_role_html_haml__2422004859035401817_33532560'
+  app/views/roles/index.html.haml:5:in `_app_views_roles_index_html_haml___1271772646341668104_32079920'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.3ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (19.5ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 10:53:31 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (4.0ms)
+  Rendered roles/index.html.haml within layouts/application (4.6ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `join' for nil:NilClass):
+     5:   - roles.each do |role|
+     6:     %tr
+     7:       %td= role.name
+     8:       %td= role.resource_type.join(',')
+     9:       %td
+    10:         = link_to "Show", role_path(role), class: "btn btn-default"
+    11:         = link_to "Edit", edit_role_path(role), class: "btn btn-default"
+  app/views/roles/_list_role.html.haml:8:in `block in _app_views_roles__list_role_html_haml__2422004859035401817_48783520'
+  app/views/roles/_list_role.html.haml:5:in `_app_views_roles__list_role_html_haml__2422004859035401817_48783520'
+  app/views/roles/index.html.haml:5:in `_app_views_roles_index_html_haml___1271772646341668104_32079920'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (10.2ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 11:30:01 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (43.2ms)
+  Rendered roles/index.html.haml within layouts/application (43.8ms)
+Completed 500 Internal Server Error in 61ms
+
+ActionView::Template::Error (undefined method `join' for nil:NilClass):
+     5:   - roles.each do |role|
+     6:     %tr
+     7:       %td= role.name
+     8:       %td= role.resource_type.join(',')
+     9:       %td
+    10:         = link_to "Show", role_path(role), class: "btn btn-default"
+    11:         = link_to "Edit", edit_role_path(role), class: "btn btn-default"
+  app/views/roles/_list_role.html.haml:8:in `block in _app_views_roles__list_role_html_haml__2422004859035401817_48783520'
+  app/views/roles/_list_role.html.haml:5:in `_app_views_roles__list_role_html_haml__2422004859035401817_48783520'
+  app/views/roles/index.html.haml:5:in `_app_views_roles_index_html_haml___1271772646341668104_32079920'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (9.7ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2014-12-03 11:30:37 +0700
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"03COs9o3oCFezanaLixJnnIcBWvumfsvGx0aet4AKAo="}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '6A02470C-76CA-11E4-9963-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-03 11:30:37 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.3ms)
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (4.1ms)
+Completed 200 OK in 88ms (Views: 86.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2014-12-03 11:54:19 +0700
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered devise/shared/_links.html.erb (0.4ms)
+  Rendered devise/registrations/new.html.haml within layouts/sign_in (25.9ms)
+Completed 200 OK in 110ms (Views: 106.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-12-03 11:56:36 +0700
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.5ms)
+  Rendered devise/sessions/new.html.haml within layouts/sign_in (4.3ms)
+Completed 200 OK in 75ms (Views: 74.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2014-12-03 11:56:42 +0700
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3zVTwixnx+W/0NxxrlMDwd4BR+VH+qKOjilUyBiELYM=", "user"=>{"email"=>"lytay@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'lytay@gmail.com'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE `users` SET `current_sign_in_at` = '2014-12-03 04:56:42', `last_sign_in_at` = '2014-12-01 10:03:03', `sign_in_count` = 38, `updated_at` = '2014-12-03 04:56:42' WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'
+  [1m[36m (37.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/dashboards
+Completed 302 Found in 126ms (ActiveRecord: 38.3ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-12-03 11:56:42 +0700
+Processing by DashboardsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))[0m
+  Rendered application/_sidebar_top.html.haml (18.3ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 102ms (Views: 98.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-12-03 11:56:45 +0700
+Processing by WarehousesController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))[0m
+  [1m[35mWarehouse Load (12.3ms)[0m  SELECT `warehouses`.* FROM `warehouses`
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1  [["uuid", "0A7B9800-75EF-11E4-A19D-E0DB55A6E603"]]
+  Rendered warehouses/_list_warehouse.html.haml (52.4ms)
+  Rendered warehouses/index.html.haml within layouts/application (67.1ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 163ms (Views: 138.1ms | ActiveRecord: 15.5ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 13:05:19 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.3ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.3ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (17.0ms)
+  Rendered roles/new.html.haml within layouts/application (18.5ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))
+  Rendered application/_sidebar_top.html.haml (4.3ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 102ms (Views: 96.4ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/warehouses" for 127.0.0.1 at 2014-12-03 13:06:40 +0700
+Processing by WarehousesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))
+  [1m[36mWarehouse Load (0.2ms)[0m  [1mSELECT `warehouses`.* FROM `warehouses`[0m
+  [1m[35mWarehouseType Load (0.2ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '5F25E01A-7520-11E4-BACD-E0DB55A6E603' LIMIT 1
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = 'A3358640-7523-11E4-BACD-E0DB55A6E603' LIMIT 1[0m
+  [1m[35mWarehouseType Load (0.1ms)[0m  SELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `warehouse_types`.* FROM `warehouse_types`  WHERE `warehouse_types`.`uuid` = '0A7B9800-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m  [["uuid", "0A7B9800-75EF-11E4-A19D-E0DB55A6E603"]]
+  Rendered warehouses/_list_warehouse.html.haml (4.9ms)
+  Rendered warehouses/index.html.haml within layouts/application (5.9ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 93ms (Views: 84.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/warehouses/309D6CAC-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-12-03 13:06:43 +0700
+Processing by WarehousesController#edit as HTML
+  Parameters: {"id"=>"309D6CAC-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mWarehouse Load (0.3ms)[0m  [1mSELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '309D6CAC-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '309D6CAC-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1[0m  [["uuid", "309D6CAC-75EF-11E4-A19D-E0DB55A6E603"]]
+  [1m[35mWarehouseType Load (0.3ms)[0m  SELECT `warehouse_types`.* FROM `warehouse_types`
+  Rendered application/_warehouse_form.html.haml (12.9ms)
+  Rendered warehouses/edit.html.haml within layouts/application (33.0ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 135ms (Views: 125.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/warehouses/309D6CAC-75EF-11E4-A19D-E0DB55A6E603/edit" for 127.0.0.1 at 2014-12-03 13:10:47 +0700
+Processing by WarehousesController#edit as HTML
+  Parameters: {"id"=>"309D6CAC-75EF-11E4-A19D-E0DB55A6E603"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mWarehouse Load (0.2ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '309D6CAC-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `warehouses`.* FROM `warehouses`  WHERE `warehouses`.`uuid` = '309D6CAC-75EF-11E4-A19D-E0DB55A6E603' LIMIT 1  [["uuid", "309D6CAC-75EF-11E4-A19D-E0DB55A6E603"]]
+  [1m[36mWarehouseType Load (0.2ms)[0m  [1mSELECT `warehouse_types`.* FROM `warehouse_types`[0m
+  Rendered application/_warehouse_form.html.haml (16.9ms)
+  Rendered warehouses/edit.html.haml within layouts/application (20.0ms)
+  Rendered application/_sidebar_top.html.haml (4.4ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 186ms (Views: 113.6ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 13:10:49 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (0.3ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (21.3ms)
+  Rendered roles/new.html.haml within layouts/application (23.5ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))[0m
+  Rendered application/_sidebar_top.html.haml (4.0ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 117ms (Views: 109.8ms | ActiveRecord: 2.7ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 13:10:54 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"n7fBjFIUIoN3Bz4L12e3Y0lyAWlJXGsnZcQUfEv1ECw=", "role"=>{"name"=>"sale_manager", "resource_type"=>["Labor", ""]}, "commit"=>"Create Role"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Unpermitted parameters: resource_type
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `resource_type`, `updated_at`, `uuid`) VALUES ('2014-12-03 06:10:54', 'sale_manager', '--- []\n', '2014-12-03 06:10:54', '23F4D53A-7AB3-11E4-B212-E0DB55A6E603')
+  [1m[36m (34.9ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 42ms (ActiveRecord: 36.2ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 13:10:54 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.2ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (1.8ms)
+  Rendered roles/index.html.haml within layouts/application (2.3ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (undefined method `join' for "Warehouse":String):
+     5:   - roles.each do |role|
+     6:     %tr
+     7:       %td= role.name
+     8:       %td= role.resource_type.join(',')
+     9:       %td
+    10:         = link_to "Show", role_path(role), class: "btn btn-default"
+    11:         = link_to "Edit", edit_role_path(role), class: "btn btn-default"
+  app/views/roles/_list_role.html.haml:8:in `block in _app_views_roles__list_role_html_haml__2422004859035401817_48783520'
+  app/views/roles/_list_role.html.haml:5:in `_app_views_roles__list_role_html_haml__2422004859035401817_48783520'
+  app/views/roles/index.html.haml:5:in `_app_views_roles_index_html_haml___1271772646341668104_32079920'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (10.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-03 13:11:51 +0700
+Processing by Devise::SessionsController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Redirected to http://localhost:3000/dashboards
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-12-03 13:11:51 +0700
+Processing by DashboardsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  Rendered dashboards/index.html.haml within layouts/application (0.1ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))
+  Rendered application/_sidebar_top.html.haml (4.2ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 85ms (Views: 82.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 13:11:53 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.2ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.2ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (7.2ms)
+  Rendered roles/new.html.haml within layouts/application (8.7ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))
+  Rendered application/_sidebar_top.html.haml (3.8ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 121ms (Views: 118.6ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 13:11:59 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"n7fBjFIUIoN3Bz4L12e3Y0lyAWlJXGsnZcQUfEv1ECw=", "role"=>{"name"=>"stock_manager", "resource_type"=>["Warehouse", ""]}, "commit"=>"Create Role"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+Unpermitted parameters: resource_type
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `roles` (`created_at`, `name`, `resource_type`, `updated_at`, `uuid`) VALUES ('2014-12-03 06:11:59', 'stock_manager', '--- []\n', '2014-12-03 06:11:59', '4A71C09C-7AB3-11E4-B212-E0DB55A6E603')[0m
+  [1m[35m (81.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 90ms (ActiveRecord: 82.2ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 13:11:59 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.2ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (3.8ms)
+  Rendered roles/index.html.haml within layouts/application (4.5ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))[0m
+  Rendered application/_sidebar_top.html.haml (4.1ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 92ms (Views: 87.5ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 13:12:08 +0700
+Processing by RolesController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mUserGroup Load (0.3ms)[0m  [1mSELECT `user_groups`.* FROM `user_groups`[0m
+  [1m[35mResource Load (0.2ms)[0m  SELECT `resources`.* FROM `resources`
+  Rendered application/_role_form.html.haml (7.3ms)
+  Rendered roles/new.html.haml within layouts/application (8.7ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))[0m
+  Rendered application/_sidebar_top.html.haml (3.9ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 89ms (Views: 86.3ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 13:12:14 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"n7fBjFIUIoN3Bz4L12e3Y0lyAWlJXGsnZcQUfEv1ECw=", "role"=>{"name"=>"admin", "resource_type"=>["Machinery", ""]}, "commit"=>"Create Role"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Unpermitted parameters: resource_type
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `roles` (`created_at`, `name`, `resource_type`, `updated_at`, `uuid`) VALUES ('2014-12-03 06:12:14', 'admin', '--- []\n', '2014-12-03 06:12:14', '53861A8E-7AB3-11E4-B212-E0DB55A6E603')
+  [1m[36m (40.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 46ms (ActiveRecord: 41.2ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 13:12:14 +0700
+Processing by RolesController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1
+  [1m[36mRole Load (0.3ms)[0m  [1mSELECT `roles`.* FROM `roles`[0m
+  Rendered roles/_list_role.html.haml (2.8ms)
+  Rendered roles/index.html.haml within layouts/application (3.7ms)
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))
+  Rendered application/_sidebar_top.html.haml (5.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 134ms (Views: 130.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/roles/new" for 127.0.0.1 at 2014-12-03 13:15:46 +0700
+Processing by RolesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mUserGroup Load (0.2ms)[0m  SELECT `user_groups`.* FROM `user_groups`
+  [1m[36mResource Load (0.3ms)[0m  [1mSELECT `resources`.* FROM `resources`[0m
+  Rendered application/_role_form.html.haml (30.4ms)
+  Rendered roles/new.html.haml within layouts/application (31.6ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND (((roles.name = 'admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'staff') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'staff') AND (roles.resource_type = 'WarehouseType') AND (roles.resource_id IS NULL))))[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM `roles` INNER JOIN `users_roles` ON `roles`.`uuid` = `users_roles`.`role_id` WHERE `users_roles`.`user_id` = '44353A36-7777-11E4-93DF-E0DB55A6E603' AND ((((roles.name = 'supervisor') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)) OR ((roles.name = 'supervisor') AND (roles.resource_type = 'Warehouse') AND (roles.resource_id IS NULL))))
+  Rendered application/_sidebar_top.html.haml (15.0ms)
+  Rendered application/_sidebar_left.html.haml (0.4ms)
+Completed 200 OK in 174ms (Views: 153.0ms | ActiveRecord: 4.4ms)
+
+
+Started POST "/roles" for 127.0.0.1 at 2014-12-03 13:15:52 +0700
+Processing by RolesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"n7fBjFIUIoN3Bz4L12e3Y0lyAWlJXGsnZcQUfEv1ECw=", "role"=>{"name"=>"sale_manager", "resource_type"=>["User", ""]}, "commit"=>"Create Role"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+Unpermitted parameters: resource_type
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `roles` (`created_at`, `name`, `resource_type`, `updated_at`, `uuid`) VALUES ('2014-12-03 06:15:52', 'sale_manager', '--- {}\n', '2014-12-03 06:15:52', 'D522DECE-7AB3-11E4-B212-E0DB55A6E603')[0m
+  [1m[35m (63.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/roles
+Completed 302 Found in 70ms (ActiveRecord: 63.8ms)
+
+
+Started GET "/roles" for 127.0.0.1 at 2014-12-03 13:15:52 +0700
+Processing by RolesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = '44353A36-7777-11E4-93DF-E0DB55A6E603'  ORDER BY `users`.`uuid` ASC LIMIT 1[0m
+  [1m[35mRole Load (0.2ms)[0m  SELECT `roles`.* FROM `roles`
+  Rendered roles/_list_role.html.haml (3.5ms)
+  Rendered roles/index.html.haml within layouts/application (4.2ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (Attribute was supposed to be a Hash, but was a Array):
+     5:   - roles.each do |role|
+     6:     %tr
+     7:       %td= role.name
+     8:       %td= role.resource_type
+     9:       %td
+    10:         = link_to "Show", role_path(role), class: "btn btn-default"
+    11:         = link_to "Edit", edit_role_path(role), class: "btn btn-default"
+  app/views/roles/_list_role.html.haml:8:in `block in _app_views_roles__list_role_html_haml__2422004859035401817_47787720'
+  app/views/roles/_list_role.html.haml:5:in `_app_views_roles__list_role_html_haml__2422004859035401817_47787720'
+  app/views/roles/index.html.haml:5:in `_app_views_roles_index_html_haml___1271772646341668104_32079920'
+
+
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/paocheak/.rvm/gems/ruby-2.1.3@soma/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (11.9ms)
