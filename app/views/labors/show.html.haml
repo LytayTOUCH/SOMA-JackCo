@@ -7,6 +7,14 @@
     %th= "Position"
     %td= @labor.position_uuid
   %tr
+    %th= "Invoke Project"
+    %td
+      - @labor.projects.each do |project|
+        %span.label.label-default= project.name
+  %tr
+    %th= "Subordinate"
+    %td= @labor.labor.name 
+  %tr
     %th= "Acitive"
     %td= @labor.active
 = link_to "Edit Labor", edit_labor_path(@labor), class: "btn btn-primary", "data-disable-with" => "Edit Labor..."

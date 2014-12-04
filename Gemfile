@@ -22,6 +22,11 @@ gem 'devise'
 gem 'nprogress-rails'
 gem 'simple_form'
 gem 'draper', '~> 1.3'
+gem 'select2-rails'
+
+# heroku environment
+gem 'heroku'
+gem 'thin'
 
 # utils
 gem 'uuidtools'
@@ -51,4 +56,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201074134) do
+ActiveRecord::Schema.define(version: 20141202094315) do
 
   create_table "implement_types", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
@@ -43,21 +43,15 @@ ActiveRecord::Schema.define(version: 20141201074134) do
     t.datetime "updated_at"
   end
 
-  create_table "labor_subordinates", id: false, force: true do |t|
-    t.string   "labor_uuid",       limit: 36, null: false
-    t.string   "subordinate_uuid", limit: 36, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "labors", id: false, force: true do |t|
-    t.string   "uuid",          limit: 36,                null: false
-    t.string   "name",          limit: 50,                null: false
-    t.string   "position_uuid", limit: 36,                null: false
+    t.string   "uuid",             limit: 36,                null: false
+    t.string   "name",             limit: 50,                null: false
+    t.string   "position_uuid",    limit: 36,                null: false
     t.text     "description"
-    t.boolean  "active",                   default: true, null: false
+    t.boolean  "active",                      default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "subordinate_uuid", limit: 36,                null: false
   end
 
   create_table "maintenances", id: false, force: true do |t|
@@ -75,6 +69,18 @@ ActiveRecord::Schema.define(version: 20141201074134) do
   create_table "projects", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
     t.string   "name",       limit: 50, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suppliers", id: false, force: true do |t|
+    t.string   "uuid",           limit: 36,                 null: false
+    t.string   "name",           limit: 50,                 null: false
+    t.string   "contact_person", limit: 100
+    t.string   "phone",          limit: 20
+    t.string   "email",          limit: 100
+    t.text     "address"
+    t.boolean  "active",                     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   resources :implements, except: [:index]
   resources :maintenances, except: [:index]
   resources :implement_types, except: [:destroy]
+  resources :suppliers, except: [:destroy]
   resources :labors, except: [:destroy] do
     collection do 
       get 'projects'
+      get 'labors'
     end
   end
   

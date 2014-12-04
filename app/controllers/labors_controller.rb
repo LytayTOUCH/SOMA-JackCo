@@ -34,7 +34,16 @@ class LaborsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: projects.map(&:attributes) }
+      format.json { render json: projects.map { |project| { id: project.id, text: project.name }}}
+    end
+  end
+
+  def labors
+    labors = Labor.where("name like ?", "%#{params[:q]}%")
+
+    respond_to do |format|
+      format.html
+      format.json { render json: labors.map { |labor| { id: labor.id, text: labor.name }}}
     end
   end
 
@@ -44,6 +53,6 @@ class LaborsController < ApplicationController
 
   private
   def labor_params
-    params.require(:labor).permit(:name, :position_uuid, :description, :active, :project_tokens, :subordinate_tokens)
+    params.require(:labor).permit(:name, :position_uuid, :description, :active, :project_tokens, :subordinate_uuid)
   end
 end
