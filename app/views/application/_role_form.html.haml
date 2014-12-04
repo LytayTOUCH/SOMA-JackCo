@@ -10,8 +10,14 @@
       / - @resources.each do |resource|
       /   = check_box_tag 'resource_ids[]', resource.id
       /   = resource.name
-            
+      
       = f.input :resource_type, as: :check_boxes, label: false, collection: Resource.all, value_method: :name
+
+      / = select_tag :resource_type, options_form_collection_for_select(@resources, :id, :name), id: "resources_uuid"
+
+      / = f.input :resource_tokens, label: false
+
+      / = f.select :resource_type, options_for_select(@resources.map{ |r| [r.name, r.id] }), value_method: :name
 
       / = check_box_tag :resource_type, 'rock music'
 
@@ -22,4 +28,28 @@
     .col-xs-6.col-sm-offset-1
       .pull-right
         = f.submit class: "btn btn-primary", "data-disable-with" => "Save Module"
-        = link_to 'Cancel', :back, class: "btn btn-default"       
+        = link_to 'Cancel', :back, class: "btn btn-default"
+:javascript
+  $("#role_resource_tokens").select2({
+    placeholder: "Select resource",
+    width: 366,
+    multiple: true,
+    ajax: {
+      url: '/roles/resources.json',
+      dataType: 'json',
+      quietMillis: 100,
+      data: function(term) {
+        return {term: term};
+      },
+      results: function(data) {
+        var myResults = [];
+        $.each(data, function(index, item) {
+          myResults.push({
+            'id': item.id,
+            'text': item.text
+          });
+        });
+        return {results: myResults};
+      }
+    }  
+  });

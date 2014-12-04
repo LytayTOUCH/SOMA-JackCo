@@ -1,4 +1,5 @@
 class RolesController < ApplicationController
+  respond_to :html, :json
   # load_and_authorize_resource
 
   def index
@@ -12,6 +13,10 @@ class RolesController < ApplicationController
   end
 
   def create
+    puts "=========================="
+    puts role_params
+    puts "=========================="
+
     @role = Role.new(role_params)
     if @role.save!
       flash[:notice] = "Role saved successfully"
@@ -22,8 +27,18 @@ class RolesController < ApplicationController
     end
   end
 
+  def resources
+    resources = Resource.where("name like? ", "%#{params[:q]}%")
+
+    respond_to do |format|
+      format.html
+      format.json {render json: resources.map {|resource| {id: resource.id, text: resource.name}}}
+    end
+  end
+
   private
   def role_params
-    params.require(:role).permit(:name, :resource_type, :note)    
+    params.require(:role).permit!
   end
 end
+

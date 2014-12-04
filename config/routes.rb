@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   resources :warehouse_types
   resources :warehouses
   resources :user_groups
-  resources :roles
+  resources :roles do
+    collection do
+      get 'resources'
+    end
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

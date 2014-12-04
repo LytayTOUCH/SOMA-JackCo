@@ -35,6 +35,7 @@ gem 'uuidtools'
 gem 'simple_form'
 gem 'cancan'
 gem 'rolify'
+gem "select2-rails"
 
 
 # Use ActiveModel has_secure_password
