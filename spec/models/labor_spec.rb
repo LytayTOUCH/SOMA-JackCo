@@ -18,6 +18,4 @@ end
 describe Labor, 'association' do
   it { should have_many(:labor_projects).with_foreign_key('labor_uuid').dependent(:destroy) }
   it { should have_many(:projects).through(:labor_projects) }
-  it { should have_many(:labor_subordinates).with_foreign_key('labor_uuid').dependent(:destroy) }
-  it { should have_many(:labors).through(:labor_subordinates) }
 end

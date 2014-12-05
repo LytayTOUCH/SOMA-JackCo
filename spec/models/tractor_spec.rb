@@ -6,6 +6,7 @@ describe Tractor, 'validation' do
   it { should validate_numericality_of(:horse_power) }
   it { should validate_numericality_of(:fuel_capacity) }
   it { should validate_numericality_of(:value) }
+  it { should ensure_length_of(:year).is_at_most(10) }
 end
 
 describe Tractor, 'column_specification' do
@@ -15,7 +16,7 @@ describe Tractor, 'column_specification' do
   it { should have_db_column(:fuel_capacity).of_type(:float).with_options(numericality: true) }
   it { should have_db_column(:make).of_type(:string) }
   it { should have_db_column(:model).of_type(:string) }
-  it { should have_db_column(:year).of_type(:date) }
+  it { should have_db_column(:year).of_type(:string).with_options(length: { maximum: 10 }) }
   it { should have_db_column(:value).of_type(:float).with_options(numericality: true) }
   it { should have_db_column(:note).of_type(:text) }
 end

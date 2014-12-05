@@ -6,11 +6,13 @@
       %th= "Qty"
       %th= "Supplier"
       %th= "Warehouse"
+      %th= "Action"
   %tbody
-    - materials.each do |material|
+    - @materials.each do |material|
       %tr
         %td= material.created_at.strftime("%Y-%m-%d")
         %td= material.name
         %td= "#{material.quantity}#{material.unit}"
         %td= material.supplier_uuid
         %td= material.warehouse_uuid
+        %td= link_to "Edit", edit_material_path(material)

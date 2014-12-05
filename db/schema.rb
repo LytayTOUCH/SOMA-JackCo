@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204040915) do
+ActiveRecord::Schema.define(version: 20141205082244) do
 
   create_table "implement_types", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20141204040915) do
   create_table "implements", id: false, force: true do |t|
     t.string   "uuid",                limit: 36, null: false
     t.string   "name",                limit: 50, null: false
-    t.date     "year"
+    t.string   "year",                limit: 10
     t.string   "implement_type_uuid", limit: 36, null: false
     t.float    "value",               limit: 24
     t.text     "note"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20141204040915) do
     t.float    "fuel_capacity",      limit: 24
     t.string   "make"
     t.string   "model"
-    t.date     "year"
+    t.string   "year",               limit: 10
     t.float    "value",              limit: 24
     t.text     "note"
     t.datetime "created_at"
