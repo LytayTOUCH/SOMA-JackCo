@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   # root 'dashboards#index'
-
   resources :dashboards, only: [:index]
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
   resources :maintenances, except: [:index]
   resources :implement_types, except: [:destroy]
   resources :suppliers, except: [:destroy]
+  resources :materials, except: [:destroy]
   resources :labors, except: [:destroy] do
     collection do 
       get 'projects'

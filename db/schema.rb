@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202094315) do
+ActiveRecord::Schema.define(version: 20141204040915) do
 
   create_table "implement_types", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
@@ -62,6 +62,17 @@ ActiveRecord::Schema.define(version: 20141202094315) do
     t.integer  "time_spent"
     t.text     "note"
     t.string   "maintenance_type", limit: 50, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "materials", id: false, force: true do |t|
+    t.string   "uuid",           limit: 36,  null: false
+    t.string   "name",           limit: 50,  null: false
+    t.float    "quantity",       limit: 24
+    t.string   "unit",           limit: 100
+    t.string   "supplier_uuid",  limit: 36
+    t.string   "warehouse_uuid", limit: 36
     t.datetime "created_at"
     t.datetime "updated_at"
   end

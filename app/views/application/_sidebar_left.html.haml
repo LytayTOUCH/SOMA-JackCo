@@ -1,14 +1,17 @@
 #sidebar.sidebar-offcanvas{:role => "navigation"}
   .sidebar-nav
     %ul.nav
-      %li MANAGE
-      %li.active
-        = link_to "Dashboard", dashboards_path
+      %li PRE SETUP
       %li
         = link_to "Implement Type", implement_types_path
       %li
         = link_to "Supplier", suppliers_path
       %li
-        = link_to "Machinery", machineries_path
-      %li
         = link_to "Labor", labors_path
+      %li MANAGE
+      %li.active
+        = link_to "Dashboard", dashboards_path
+      %li
+        = link_to "Material", materials_path
+      %li
+        = link_to "Machinery", machineries_path

@@ -1,0 +1,31 @@
+= simple_form_for material, html: {class: 'form-horizontal'} do |f|
+  .form-group
+    %label.col-xs-2.control-label{for: 'material_name'} Name
+    .col-xs-5
+      = f.input :name, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-2.control-label{for: 'material_quantity'} Quantity
+    .col-xs-5
+      = f.input :quantity, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :quantity
+  .form-group
+    %label.col-xs-2.control-label{for: 'material_unit'} Unit
+    .col-xs-5
+      = f.input :unit, label: false, selected: 2, collection: [["Kg", "Kg"], ["Liter", "Liter"], ["Piece", "Piece"], ["Set", "Set"]], input_html: {class: "form-control"}
+      %span.help-block= f.error :unit
+  .form-group
+    %label.col-xs-2.control-label{for: 'material_supplier'} Supplier
+    .col-xs-5
+      = f.input :supplier_uuid, label: false, collection: @suppliers, input_html: {class: "form-control"}, include_blank: true
+      %span.help-block= f.error :supplier_uuid
+  .form-group
+    %label.col-xs-2.control-label{for: 'material_supplier'} Warehouse
+    .col-xs-5
+      = f.input :warehouse_uuid, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :warehouse_uuid
+  .form-group
+    .col-xs-7
+      .pull-right
+        = f.submit class: "btn btn-primary", "data-disable-with" => "Processing..."
+        = link_to "Cancel", :back, class: "btn btn-default", "data-disable-with" => "Cancel..."

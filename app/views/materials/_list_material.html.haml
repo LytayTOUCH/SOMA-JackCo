@@ -1,0 +1,16 @@
+%table.table
+  %thead
+    %tr
+      %th= "Date"
+      %th= "Name"
+      %th= "Qty"
+      %th= "Supplier"
+      %th= "Warehouse"
+  %tbody
+    - materials.each do |material|
+      %tr
+        %td= material.created_at.strftime("%Y-%m-%d")
+        %td= material.name
+        %td= "#{material.quantity}#{material.unit}"
+        %td= material.supplier_uuid
+        %td= material.warehouse_uuid

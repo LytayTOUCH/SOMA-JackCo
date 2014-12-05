@@ -9487,3 +9487,50 @@
   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
   [1m[35m (0.1ms)[0m  BEGIN
   [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (33.9ms)[0m  DROP TABLE `implement_types`
+  [1m[36m (58.1ms)[0m  [1mCREATE TABLE `implement_types` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `note` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (33.2ms)[0m  DROP TABLE `implements`
+  [1m[36m (75.2ms)[0m  [1mCREATE TABLE `implements` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `year` date, `implement_type_uuid` varchar(36) NOT NULL, `value` float(24), `note` text, `created_at` datetime, `updated_at` datetime, `photo_file_name` varchar(255), `photo_content_type` varchar(255), `photo_file_size` int(11), `photo_updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (34.2ms)[0m  DROP TABLE `labor_projects`
+  [1m[36m (66.8ms)[0m  [1mCREATE TABLE `labor_projects` (`labor_uuid` varchar(36) NOT NULL, `project_uuid` varchar(36) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (32.6ms)[0m  DROP TABLE `labors`
+  [1m[36m (66.9ms)[0m  [1mCREATE TABLE `labors` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `position_uuid` varchar(36) NOT NULL, `description` text, `active` tinyint(1) DEFAULT 1 NOT NULL, `created_at` datetime, `updated_at` datetime, `subordinate_uuid` varchar(36) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (40.4ms)[0m  DROP TABLE `maintenances`
+  [1m[36m (66.7ms)[0m  [1mCREATE TABLE `maintenances` (`uuid` varchar(36) NOT NULL, `machinery_uuid` varchar(36) NOT NULL, `labor_uuid` varchar(36), `engine_hours` int(11), `time_spent` int(11), `note` text, `maintenance_type` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (73.2ms)[0m  CREATE TABLE `materials` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `quantity` float(24), `unit` varchar(100), `supplier_uuid` varchar(36), `warehouse_uuid` varchar(36), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (40.5ms)[0m  [1mDROP TABLE `projects`[0m
+  [1m[35m (85.3ms)[0m  CREATE TABLE `projects` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (46.9ms)[0m  [1mDROP TABLE `suppliers`[0m
+  [1m[35m (75.0ms)[0m  CREATE TABLE `suppliers` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `contact_person` varchar(100), `phone` varchar(20), `email` varchar(100), `address` text, `active` tinyint(1) DEFAULT 1, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (30.8ms)[0m  [1mDROP TABLE `tractors`[0m
+  [1m[35m (68.7ms)[0m  CREATE TABLE `tractors` (`uuid` varchar(36) NOT NULL, `name` varchar(50) NOT NULL, `horse_power` float(24), `fuel_capacity` float(24), `make` varchar(255), `model` varchar(255), `year` date, `value` float(24), `note` text, `created_at` datetime, `updated_at` datetime, `photo_file_name` varchar(255), `photo_content_type` varchar(255), `photo_file_size` int(11), `photo_updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (31.6ms)[0m  [1mDROP TABLE `users`[0m
+  [1m[35m (66.6ms)[0m  CREATE TABLE `users` (`uuid` varchar(36) NOT NULL, `name` varchar(50), `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `active` tinyint(1) DEFAULT 1 NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `confirmation_token` varchar(255), `confirmed_at` datetime, `confirmation_sent_at` datetime, `unconfirmed_email` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (150.6ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_confirmation_token` USING btree ON `users` (`confirmation_token`) [0m
+  [1m[35m (193.7ms)[0m  CREATE UNIQUE INDEX `index_users_on_email` USING btree ON `users` (`email`) 
+  [1m[36m (140.7ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_reset_password_token` USING btree ON `users` (`reset_password_token`) [0m
+  [1m[35m (0.6ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (31.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20141204040915')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m

@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 
 # rails default
 gem 'rails', '4.1.6'
-# gem 'mysql2'
-gem 'pg', '~> 0.14.1'
-gem 'rails_12factor', group: :production
+gem 'mysql2'
+# gem 'pg', '~> 0.14.1'
+# gem 'rails_12factor', group: :production
+
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'

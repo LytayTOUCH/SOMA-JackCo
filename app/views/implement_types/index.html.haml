@@ -1,5 +1,7 @@
 .row
-  %h2= "Implement Type"
-  .pull-right
-    = link_to "New ImplementType", new_implement_type_path, class: "btn btn-primary"
+  %h2
+    = "Implement Type"
+    .pull-right
+      = link_to "New ImplementType", new_implement_type_path, class: "btn btn-primary"
+  %hr
   = render partial: 'list_implement_type', locals: {implement_types: @implement_types}
