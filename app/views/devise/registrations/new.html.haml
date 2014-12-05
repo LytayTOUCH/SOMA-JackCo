@@ -18,13 +18,13 @@
               (#{@minimum_password_length} characters minimum)
           = f.input :password, label: false, input_html: { class: "form-control" } 
       .form-group
-        %label.col-xs-1.control-label Password
+        %label.col-xs-1.control-label Confirm Password
         .col-xs-6
           = f.input :password_confirmation, label: false, input_html: { class: "form-control" } 
       .form-group
         %label.col-xs-1.control-label Roles
         .col-xs-6
-          = f.input :name, label: false, collection: Role.all, input_html: {class: "form-control"}, include_blank: true
+          = f.input :role, label: false, collection: UserGroup.all, input_html: {class: "form-control"}, include_blank: true, value_method: :name
       .row  
         .col-sm-4.col-sm-offset-3    
           .actions

@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   include UuidHelper
-  rolify
+  # rolify
+
+  has_many :resource_users 
+  has_many :resources, through: :resource_users
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

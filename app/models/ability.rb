@@ -5,19 +5,21 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     # user ||= User.new # guest user (not logged in)
-    if user.has_role? :admin
-      can :manage, :all
-    else
-      # can :create, WarehouseType if user.has_role?(:supervisor, WarehouseType)
-      # can :create, Warehouse if user.has_role?(:supervisor, Warehouse)  
-      can :manage, WarehouseType if user.has_role?(:staff, WarehouseType)
-      can :manage, Warehouse if user.has_role?(:supervisor, Warehouse)
-      can :read, :all
+    
+    # if user.has_role? :admin
+    #   can :manage, :all
+    # else
+    #   # can :create, WarehouseType if user.has_role?(:supervisor, WarehouseType)
+    #   # can :create, Warehouse if user.has_role?(:supervisor, Warehouse)  
+    #   can :manage, WarehouseType if user.has_role?(:staff, WarehouseType)
+    #   can :manage, Warehouse if user.has_role?(:supervisor, Warehouse)
+    #   can :read, :all
       # if user.has_role?(:supervisor)
       #   can :create, WarehouseType
       #   can :create, Warehouse
       # end
-    end
+    # end
+    
     #
     # The first argument to `can` is the action you are giving the user 
     # permission to do.

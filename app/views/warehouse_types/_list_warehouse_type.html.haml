@@ -15,5 +15,5 @@
           = "inactive"
       %td
         = link_to "Show", warehouse_type_path(warehouse_type), class: "btn btn-default"
-        - if can? :update, warehouse_type
-          = link_to "Edit", edit_warehouse_type_path(warehouse_type), class: "btn btn-default"
+        / - if can? :update, warehouse_type
+        = link_to "Edit", edit_warehouse_type_path(warehouse_type), class: "btn btn-default"

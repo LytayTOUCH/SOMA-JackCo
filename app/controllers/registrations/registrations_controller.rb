@@ -1,16 +1,31 @@
 class Registrations::RegistrationsController < Devise::RegistrationsController
+  before_save :default_values
+  
+  def default_values
+    self.role ||= 'admin'
+  end
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @user = User.new
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.new(user_params)
+    puts "====================================="
+    puts @user
+    puts "====================================="
+    # if @user.save!
+    #   flash[:notice] = "Warehouse type saved successfully"
+    #   redirect_to users_path
+    # else
+    #   flash[:notice] = "Warehouse type can't save"
+    #   redirect_to :back
+    # end
+  end
 
   # GET /resource/edit
   # def edit
@@ -57,4 +72,10 @@ class Registrations::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :role)
+  end
+
 end

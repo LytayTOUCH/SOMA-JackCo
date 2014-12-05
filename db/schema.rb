@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202041509) do
+ActiveRecord::Schema.define(version: 20141205095057) do
+
+  create_table "resource_users", force: true do |t|
+    t.string   "resource_id"
+    t.string   "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resource_users", ["resource_id", "user_id"], name: "index_resource_users_on_resource_id_and_user_id", using: :btree
 
   create_table "resources", id: false, force: true do |t|
     t.string   "uuid",       limit: 36,                null: false
@@ -69,6 +78,7 @@ ActiveRecord::Schema.define(version: 20141202041509) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "note"
+    t.string   "role"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

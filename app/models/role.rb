@@ -5,10 +5,10 @@ class Role < ActiveRecord::Base
 
   has_and_belongs_to_many :users, join_table: :users_roles
   # belongs_to :resource, polymorphic: true
-  has_many :resources, foreign_key: :resource_id
+  # has_many :resources, foreign_key: :resource_id
   # has_and_belongs_to_many :resources, foreign_key: :resource_id
 
-  serialize :resource_type, Array
+  # serialize :resource_type, Array
   
   scopify
 
