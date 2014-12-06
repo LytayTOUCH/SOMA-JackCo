@@ -1,3 +1,4 @@
+#form-model-content-supplier
 = simple_form_for @material, html: {class: 'form-horizontal'} do |f|
   .form-group
     %label.col-xs-2.control-label{for: 'material_name'} Name
@@ -18,6 +19,8 @@
     %label.col-xs-2.control-label{for: 'material_supplier'} Supplier
     .col-xs-5
       = f.input :supplier_uuid, label: false, collection: @suppliers, input_html: {class: "form-control"}, include_blank: true
+      .pull-right
+        = link_to "New Supplier", new_supplier_materials_path, remote: true
       %span.help-block= f.error :supplier_uuid
   .form-group
     %label.col-xs-2.control-label{for: 'material_supplier'} Warehouse

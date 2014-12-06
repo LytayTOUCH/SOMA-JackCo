@@ -1,0 +1,40 @@
+#form-model-supplier.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog{style: "width: 480px;"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        %h4#modalLabel.modal-title New Supplier
+      = simple_form_for @supplier, html: {class: 'form-horizontal'} do |f|
+        .modal-body
+          .form-group
+            %label.col-xs-4.control-label{for: 'supplier_name'} Name
+            .col-xs-8
+              = f.input :name, label: false, input_html: {class: "form-control"}
+              %span.help-block= f.error :name
+          .form-group
+            %label.col-xs-4.control-label{for: 'supplier_contact_person'} Contact Person
+            .col-xs-8
+              = f.input :contact_person, label: false, input_html: {class: "form-control"}
+              %span.help-block= f.error :contact_person
+          .form-group
+            %label.col-xs-4.control-label{for: 'supplier_phone'} Phone
+            .col-xs-8
+              = f.input :phone, label: false, input_html: {class: "form-control"}
+              %span.help-block= f.error :phone
+          .form-group
+            %label.col-xs-4.control-label{for: 'supplier_email'} Email
+            .col-xs-8
+              = f.input :email, label: false, input_html: {class: "form-control"}
+              %span.help-block= f.error :email
+          .form-group
+            %label.col-xs-4.control-label{for: 'supplier_address'} Address
+            .col-xs-8
+              = f.input :address, label: false, input_html: {class: "form-control"}
+              %span.help-block= f.error :address
+          .form-group
+            %label.col-xs-4.control-label{for: 'labor_active'} Active
+            .col-xs-8
+              = f.input :active, label: false, input_html: {style: "margin-top: 12px;"}
+              %span.help-block= f.error :active
+        .modal-footer
+          = render partial: 'form_button', locals: { f: f }

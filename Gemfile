@@ -26,6 +26,7 @@ gem 'nprogress-rails'
 gem 'simple_form'
 gem 'draper', '~> 1.3'
 gem 'select2-rails'
+gem 'kaminari'
 
 # heroku environment
 gem 'heroku'

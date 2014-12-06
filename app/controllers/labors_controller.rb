@@ -18,7 +18,7 @@ class LaborsController < ApplicationController
 
     if @labor.save!
       flash[:notice] = "Implement saved successfully"
-      redirect_to labors_path
+      redirect_to :back
     else
       flash[:notice] = "Implement can't save"
       redirect_to :back

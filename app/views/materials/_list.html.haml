@@ -1,0 +1,19 @@
+%table.table
+  %thead
+    %tr
+      %th= "Date"
+      %th= "Name"
+      %th= "Qty"
+      %th= "Supplier"
+      %th= "Warehouse"
+      %th= "Action"
+  %tbody
+    - @materials.each do |material|
+      %tr
+        %td= material.created_at.strftime("%Y-%m-%d")
+        %td= material.name
+        %td= "#{material.quantity} #{material.unit}"
+        %td= material.supplier.name
+        %td= material.warehouse_uuid
+        %td= link_to "Edit", edit_material_path(material)
+

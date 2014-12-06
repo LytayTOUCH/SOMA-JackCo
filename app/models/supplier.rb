@@ -5,4 +5,6 @@ class Supplier < ActiveRecord::Base
   validates :contact_person, length: { maximum: 100 }
   validates :phone, length: { maximum: 20 }
   validates :email, length: { maximum: 100 }
+
+  has_one :material
 end

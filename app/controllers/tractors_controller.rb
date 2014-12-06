@@ -14,7 +14,7 @@ class TractorsController < ApplicationController
 
       if @tractor.save!
         flash[:notice] = "Tractor saved successfully"
-        redirect_to machineries_path
+        redirect_to :back
       else
         flash[:notice] = "Tractor can't save"
         redirect_to :back

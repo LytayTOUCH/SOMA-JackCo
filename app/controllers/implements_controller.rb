@@ -14,7 +14,7 @@ class ImplementsController < ApplicationController
 
     if @implement.save!
       flash[:notice] = "Implement saved successfully"
-      redirect_to machineries_path
+      redirect_to :back
     else
       flash[:notice] = "Implement can't save"
       redirect_to :back

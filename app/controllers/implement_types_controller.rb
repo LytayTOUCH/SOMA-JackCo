@@ -12,7 +12,7 @@ class ImplementTypesController < ApplicationController
 
     if @implement_type.save!
       flash[:notice] = "ImplementType saved successfully"
-      redirect_to implement_types_path
+      redirect_to :back
     else
       flash[:notice] = "ImplementType can't save"
       redirect_to :back

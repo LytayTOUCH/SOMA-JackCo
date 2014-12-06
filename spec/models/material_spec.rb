@@ -16,3 +16,7 @@ describe Material, 'column_specification' do
   it { should have_db_column(:supplier_uuid).of_type(:string).with_options(length: { maximum: 36 }) }
   it { should have_db_column(:warehouse_uuid).of_type(:string).with_options(length: { maximum: 36 }) }
 end
+
+describe Material, 'association' do
+  it { should belong_to(:supplier).with_foreign_key('supplier_uuid') }
+end

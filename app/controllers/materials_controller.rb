@@ -13,7 +13,7 @@ class MaterialsController < ApplicationController
 
     if @material.save!
       flash[:notice] = "Material saved successfully"
-      redirect_to materials_path
+      redirect_to :back
     else
       flash[:notice] = "Material can't save"
       redirect_to :back
@@ -34,6 +34,10 @@ class MaterialsController < ApplicationController
       flash[:notice] = "Material category can't update"
       redirect_to :back
     end
+  end
+
+  def new_supplier
+    @supplier = Supplier.new
   end
 
   private

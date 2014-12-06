@@ -12,7 +12,7 @@ class SuppliersController < ApplicationController
 
     if @supplier.save!
       flash[:notice] = "Supplier saved successfully"
-      redirect_to suppliers_path
+      redirect_to :back
     else
       flash[:notice] = "Supplier can't save"
       redirect_to :back
