@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {:registrations => "registrations/registrations"}
   # devise_for :users, controllers: { registrations: "registrations" }
 
   devise_scope :user do
@@ -16,7 +16,8 @@ Rails.application.routes.draw do
     collection do
       get 'resources'
     end
-  end
+  end  
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

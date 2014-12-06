@@ -1,30 +1,36 @@
 class Registrations::RegistrationsController < Devise::RegistrationsController
-  before_save :default_values
   
-  def default_values
-    self.role ||= 'admin'
-  end
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
+# protected
+# def after_sign_up_path_for(resource)
+#   super(resource)
+# end
+
   # GET /resource/sign_up
   def new
+    super
     @user = User.new
   end
 
   # POST /resource
   def create
-    @user = User.new(user_params)
-    puts "====================================="
-    puts @user
-    puts "====================================="
-    # if @user.save!
-    #   flash[:notice] = "Warehouse type saved successfully"
-    #   redirect_to users_path
-    # else
-    #   flash[:notice] = "Warehouse type can't save"
-    #   redirect_to :back
-    # end
+    puts "==============================="
+    puts @user = User.new(user_params)
+    puts @user.resource_ids = params[:user][:resource_ids]
+    puts "==============================="
+    
+    # puts "====================================="
+    # puts @user
+    # puts "====================================="
+    if @user.save!
+      flash[:notice] = "User has been created successfully"
+      redirect_to new_user_session_path
+    else
+      flash[:notice] = "User can't save"
+      redirect_to :back
+    end
   end
 
   # GET /resource/edit
@@ -64,9 +70,7 @@ class Registrations::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

@@ -25,6 +25,13 @@
         %label.col-xs-1.control-label Roles
         .col-xs-6
           = f.input :role, label: false, collection: UserGroup.all, input_html: {class: "form-control"}, include_blank: true, value_method: :name
+      .form-group
+        %label.col-xs-1.control-label Modules
+        .col-xs-6    
+          / = f.input :resource_tokens, as: :check_boxes, label: false, collection: Resource.all, value_method: :name    
+          - for resource in Resource.all
+            = check_box_tag "user[resource_ids][]", resource.id, @user.resources.include?(resource)
+            = h resource.name.camelize
       .row  
         .col-sm-4.col-sm-offset-3    
           .actions
