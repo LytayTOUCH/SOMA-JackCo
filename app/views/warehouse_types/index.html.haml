@@ -3,5 +3,4 @@
   %hr
 .row
   = render partial: 'list_warehouse_type', locals: { warehouse_types: @warehouse_types }
-  - if can? :create, WarehouseType
-    = link_to "New Warehouse Type", new_warehouse_type_path, class: "btn btn-primary"
+  = link_to "New Warehouse Type", new_warehouse_type_path, class: "btn btn-primary"

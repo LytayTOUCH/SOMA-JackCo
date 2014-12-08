@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   def index
     @warehouses = Warehouse.all
@@ -11,7 +11,9 @@ class WarehousesController < ApplicationController
   end
 
   def create
+    puts "=========================================="
     @warehouse = Warehouse.new(warehouse_params)
+    puts "=========================================="
     if @warehouse.save!
       flash[:notice] = "Warehouse saved successfully"
       redirect_to warehouses_path
@@ -42,6 +44,6 @@ class WarehousesController < ApplicationController
 
   private
   def warehouse_params
-    params.require(:warehouse).permit(:name, :labor_uuid, :warehouse_type_uuid, :address, :note, :active)    
+    params.require(:warehouse).permit(:name, :labor_uuid, :warehouse_type_uuid, :address, :note, :active)
   end
 end
