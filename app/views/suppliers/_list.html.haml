@@ -1,10 +1,11 @@
 %table.table
   %thead
     %tr
-      %th= "Name"
-      %th= "Phone"
-      %th= "Email"
-      %th= "Status"
+      %th.col-md-3= "Name"
+      %th.col-md-3= "Phone"
+      %th.col-md-4= "Email"
+      %th.col-md-1= "Status"
+      %th.col-md-1= "Action"
   %tbody
     - @suppliers.each do |supplier|
       %tr
@@ -17,3 +18,5 @@
           - else
             = "Inactived"
         %td= link_to "Edit", edit_supplier_path(supplier)
+.pull-right
+  = paginate @suppliers

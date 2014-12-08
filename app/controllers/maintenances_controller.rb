@@ -6,14 +6,18 @@ class MaintenancesController < ApplicationController
   end
 
   def create
-    @maintenance = Maintenance.new(maintenance_params)
+    begin
+      @maintenance = Maintenance.new(maintenance_params)
 
-    if @maintenance.save!
-      flash[:notice] = "Maintenance saved successfully"
-      redirect_to :back
-    else
-      flash[:notice] = "Maintenance can't save"
-      redirect_to :back
+      if @maintenance.save!
+        flash[:notice] = "Maintenance saved successfully"
+        redirect_to :back
+      else
+        flash[:notice] = "Maintenance can't save"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 

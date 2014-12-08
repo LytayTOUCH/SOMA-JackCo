@@ -1,27 +1,35 @@
 class LaborsController < ApplicationController
   def index
-    @labors = LaborDecorator.new(Labor.all)
+    @labors = LaborDecorator.new(Labor.page(params[:page]).per(5))
   end
 
   def new
-    @labor = Labor.new
+    begin
+      @labor = Labor.new
 
-    @projects = Project.all
-    respond_to do |format|
-      format.html
-      format.json { render json: @projects }
+      @projects = Project.all
+      respond_to do |format|
+        format.html
+        format.json { render json: @projects }
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
   def create
-    @labor = Labor.new(labor_params)
+    begin
+      @labor = Labor.new(labor_params)
 
-    if @labor.save!
-      flash[:notice] = "Implement saved successfully"
-      redirect_to :back
-    else
-      flash[:notice] = "Implement can't save"
-      redirect_to :back
+      if @labor.save!
+        flash[:notice] = "Implement saved successfully"
+        redirect_to :back
+      else
+        flash[:notice] = "Implement can't save"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
@@ -30,25 +38,29 @@ class LaborsController < ApplicationController
   end
 
   def projects
-    projects = Project.where("name like ?", "%#{params[:q]}%")
+    begin
+      projects = Project.where("name like ?", "%#{params[:q]}%")
 
-    respond_to do |format|
-      format.html
-      format.json { render json: projects.map { |project| { id: project.id, text: project.name }}}
+      respond_to do |format|
+        format.html
+        format.json { render json: projects.map { |project| { id: project.id, text: project.name }}}
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
   def labors
-    labors = Labor.where("name like ?", "%#{params[:q]}%")
+    begin
+      labors = Labor.where("name like ?", "%#{params[:q]}%")
 
-    respond_to do |format|
-      format.html
-      format.json { render json: labors.map { |labor| { id: labor.id, text: labor.name }}}
+      respond_to do |format|
+        format.html
+        format.json { render json: labors.map { |labor| { id: labor.id, text: labor.name }}}
+      end
+    rescue Exception => e
+      puts e
     end
-  end
-
-  def show
-    @labor = Labor.find(params[:id])
   end
 
   private

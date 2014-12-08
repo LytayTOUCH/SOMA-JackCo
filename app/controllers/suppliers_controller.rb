@@ -1,6 +1,6 @@
 class SuppliersController < ApplicationController
   def index
-    @suppliers = Supplier.all
+    @suppliers = Supplier.page(params[:page]).per(5)
   end
 
   def new
@@ -8,14 +8,18 @@ class SuppliersController < ApplicationController
   end
 
   def create
-    @supplier = Supplier.new(supplier_params)
+    begin
+      @supplier = Supplier.new(supplier_params)
 
-    if @supplier.save!
-      flash[:notice] = "Supplier saved successfully"
-      redirect_to :back
-    else
-      flash[:notice] = "Supplier can't save"
-      redirect_to :back
+      if @supplier.save!
+        flash[:notice] = "Supplier saved successfully"
+        redirect_to :back
+      else
+        flash[:notice] = "Supplier can't save"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
@@ -24,14 +28,18 @@ class SuppliersController < ApplicationController
   end
 
   def update
-    @supplier = Supplier.find(params[:id])
+    begin
+      @supplier = Supplier.find(params[:id])
 
-    if @supplier.update_attributes!(supplier_params)
-      flash[:notice] = "Supplier updated successfully"
-      redirect_to supplier_path
-    else
-      flash[:notice] = "supplier can't update"
-      redirect_to :back
+      if @supplier.update_attributes!(supplier_params)
+        flash[:notice] = "Supplier updated successfully"
+        redirect_to supplier_path
+      else
+        flash[:notice] = "supplier can't update"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 

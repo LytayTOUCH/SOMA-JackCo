@@ -1,6 +1,6 @@
 class MaterialsController < ApplicationController
   def index
-    @materials = Material.all
+    @materials = Material.page(params[:page]).per(5)
   end
 
   def new
@@ -9,14 +9,18 @@ class MaterialsController < ApplicationController
   end
 
   def create
-    @material = Material.new(material_params)
+    begin
+      @material = Material.new(material_params)
 
-    if @material.save!
-      flash[:notice] = "Material saved successfully"
-      redirect_to :back
-    else
-      flash[:notice] = "Material can't save"
-      redirect_to :back
+      if @material.save!
+        flash[:notice] = "Material saved successfully"
+        redirect_to :back
+      else
+        flash[:notice] = "Material can't save"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
@@ -25,14 +29,18 @@ class MaterialsController < ApplicationController
   end
 
   def update
-    @material = Material.find(params[:id])
+    begin
+      @material = Material.find(params[:id])
 
-    if @material.update_attributes!(material_params)
-      flash[:notice] = "Material updated successfully"
-      redirect_to materials_path
-    else
-      flash[:notice] = "Material category can't update"
-      redirect_to :back
+      if @material.update_attributes!(material_params)
+        flash[:notice] = "Material updated successfully"
+        redirect_to materials_path
+      else
+        flash[:notice] = "Material category can't update"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
