@@ -14,10 +14,10 @@ class Ability
     #   can :manage, WarehouseType if user.has_role?(:staff, WarehouseType)
     #   can :manage, Warehouse if user.has_role?(:supervisor, Warehouse)
     #   can :read, :all
-      # if user.has_role?(:supervisor)
-      #   can :create, WarehouseType
-      #   can :create, Warehouse
-      # end
+    #   if user.has_role?(:supervisor)
+    #     can :create, WarehouseType
+    #     can :create, Warehouse
+    #   end
     # end
     
     #

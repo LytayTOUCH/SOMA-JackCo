@@ -8,4 +8,6 @@ class Resource < ActiveRecord::Base
   has_many :users, through: :resource_users
 
   validates :name, length: { maximum: 50 }, presence: true
+
+  # scope :name
 end

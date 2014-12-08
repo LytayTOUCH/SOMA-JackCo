@@ -18,8 +18,8 @@
             %li
               = link_to 'Account setting', accounts_path
             %li.divider
-            - if can? :manage, UserGroup
-              %li
-                = link_to 'User Group', new_user_group_path
+            / - if can? :manage, UserGroup
+            %li
+              = link_to 'User Group', new_user_group_path
             %li
               = link_to 'Logout', destroy_user_session_path, method: 'delete'
