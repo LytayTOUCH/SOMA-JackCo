@@ -11,49 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206022103) do
-
-  create_table "resource_users", id: false, force: true do |t|
-    t.string   "resource_id"
-    t.string   "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "resources", id: false, force: true do |t|
-    t.string   "uuid",       limit: 36,                null: false
-    t.string   "name",       limit: 50,                null: false
-    t.string   "label",      limit: 50
-    t.text     "note"
-    t.boolean  "active",                default: true, null: false
-    t.boolean  "boolean",               default: true, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "roles", id: false, force: true do |t|
-    t.string   "uuid",          limit: 36, null: false
-    t.string   "resource_id",   limit: 36
-    t.string   "name"
-    t.string   "resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "note"
-  end
-
-  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
-  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
-
-  create_table "user_groups", id: false, force: true do |t|
-    t.string   "uuid",       limit: 36,                null: false
-    t.string   "name",       limit: 50,                null: false
-    t.text     "note"
-    t.boolean  "active",                default: true, null: false
-    t.boolean  "boolean",               default: true, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "label"
-  end
+ActiveRecord::Schema.define(version: 20141119025823) do
 
   create_table "users", id: false, force: true do |t|
     t.string   "uuid",                   limit: 36,                null: false
@@ -111,5 +69,82 @@ ActiveRecord::Schema.define(version: 20141206022103) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "resource_users", id: false, force: true do |t|
+    t.string   "resource_id"
+    t.string   "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resources", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,                null: false
+    t.string   "name",       limit: 50,                null: false
+    t.string   "label",      limit: 50
+    t.text     "note"
+    t.boolean  "active",                default: true, null: false
+    t.boolean  "boolean",               default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", id: false, force: true do |t|
+    t.string   "uuid",          limit: 36, null: false
+    t.string   "resource_id",   limit: 36
+    t.string   "name"
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "note"
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "user_groups", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,                null: false
+    t.string   "name",       limit: 50,                null: false
+    t.text     "note"
+    t.boolean  "active",                default: true, null: false
+    t.boolean  "boolean",               default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "label"
+  end
+
+  create_table "implements", id: false, force: true do |t|
+    t.string   "uuid",                limit: 36,                 null: false
+    t.string   "name",                limit: 50,                 null: false
+    t.date     "year"
+    t.string   "implement_type_uuid", limit: 36,                 null: false
+    t.float    "value",               limit: 24
+    t.boolean  "own",                            default: false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  create_table "tractors", id: false, force: true do |t|
+    t.string   "uuid",               limit: 36,                 null: false
+    t.string   "name",               limit: 50,                 null: false
+    t.float    "horse_power",        limit: 24
+    t.float    "fuel_capacity",      limit: 24
+    t.string   "make"
+    t.string   "model"
+    t.date     "year"
+    t.float    "value",              limit: 24
+    t.boolean  "own",                           default: false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end	
 
 end

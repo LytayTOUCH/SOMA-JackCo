@@ -2,10 +2,13 @@
  *= require_tree .
  *= require_self
  *= require select2
+ *= require nprogress
+ *= require nprogress-bootstrap
  */
 
 @import "bootstrap";
 @import "override_bootstrap";
+@import "machineries";
 
 .cs-border{
   border: 1px #cccccc solid;
@@ -36,7 +39,6 @@
 .table .tr .th{
   text-align: center;
 }
-
 hr {
   height: 5px;
 }

@@ -1,7 +1,41 @@
-.col-lg-2 {
+.col-lg-2, .col-sm-4, .col-lg-9 {
   padding-left: 0px;
+}
+
+.col-md-2 {
+
 }
 
 .sidebar-nav {
   padding-left: 0px;
+}
+
+#notification {
+  bottom: -14px;
+  height: 90px;
+  left: 5px;
+  padding: 10px;
+  position: fixed;
+  right: auto;
+  width: 300px;
+  top: auto;
+}
+
+.col-lg-3 {
+  padding-right: 0;
+}
+
+.dl-horizontal  {
+  dt {
+    float: left;
+    width: 90px;
+    clear: left;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  dd {
+    margin-left: 148px;
+  }
 }

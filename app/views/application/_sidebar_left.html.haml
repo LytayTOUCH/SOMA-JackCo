@@ -2,10 +2,12 @@
   .sidebar-nav
     %ul.nav
       %li OVERVIEW
+	  %li MANAGE
       %li.active
-        %a{:href => "#"} Dashboard
+		= link_to "Dashboard", dashboards_path
       %li
         %a{:href => "#"} Map
+		= link_to "Machinery", machineries_path
       %li
         %a{:href => "#"} Calender
       %li CROPS
