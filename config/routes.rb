@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # devise_for :users, controllers: { registrations: "registrations" }
+  # devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
 
   resources :dashboards, only: [:index]
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
   resources :implements, except: [:index]
   
-  devise_for :users
   devise_scope :user do
     get '/' => 'devise/sessions#new'
   end
