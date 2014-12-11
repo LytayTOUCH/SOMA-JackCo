@@ -1,6 +1,16 @@
 class SuppliersController < ApplicationController
   def index
-    @suppliers = Supplier.page(params[:page]).per(5)
+    begin
+      @supplier = Supplier.new
+
+      if params[:supplier] and params[:supplier][:name] and !params[:supplier][:name].nil?
+        @suppliers = Supplier.find_by_name(params[:supplier][:name]).page(params[:page]).per(5)
+      else
+        @suppliers = Supplier.page(params[:page]).per(5)
+      end
+    rescue Exception => e
+      puts e
+    end
   end
 
   def new
@@ -33,7 +43,7 @@ class SuppliersController < ApplicationController
 
       if @supplier.update_attributes!(supplier_params)
         flash[:notice] = "Supplier updated successfully"
-        redirect_to supplier_path
+        redirect_to suppliers_path
       else
         flash[:notice] = "supplier can't update"
         redirect_to :back

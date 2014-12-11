@@ -1,6 +1,16 @@
 class ImplementTypesController < ApplicationController
   def index
-    @implement_types = ImplementType.page(params[:page]).per(5)
+    begin
+      @implement_type = ImplementType.new
+
+      if params[:implement_type] and params[:implement_type][:name] and !params[:implement_type][:name].nil?
+        @implement_types = ImplementType.find_by_name(params[:implement_type][:name]).page(params[:page]).per(5)
+      else
+        @implement_types = ImplementType.page(params[:page]).per(5)
+      end
+    rescue Exception => e
+      puts e
+    end
   end
 
   def new

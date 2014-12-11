@@ -1,6 +1,16 @@
 class LaborsController < ApplicationController
   def index
-    @labors = LaborDecorator.new(Labor.page(params[:page]).per(5))
+    begin
+      @labor = Labor.new
+      
+      if params[:labor] and params[:labor][:name] and !params[:labor][:name].nil?
+        @labors = LaborDecorator.new(Labor.find_by_name(params[:labor][:name]).page(params[:page]).per(5))
+      else
+        @labors = LaborDecorator.new(Labor.page(params[:page]).per(5))
+      end
+    rescue Exception => e
+      puts e
+    end
   end
 
   def new

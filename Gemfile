@@ -37,6 +37,7 @@ gem 'uuidtools'
 
 # activerecord
 gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'has_scope'
 
 group :test, :development do
   gem 'quiet_assets'

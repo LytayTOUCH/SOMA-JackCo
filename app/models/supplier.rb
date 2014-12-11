@@ -7,4 +7,6 @@ class Supplier < ActiveRecord::Base
   validates :email, length: { maximum: 100 }
 
   has_one :material
+
+  scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
 end

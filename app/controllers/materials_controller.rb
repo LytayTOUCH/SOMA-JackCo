@@ -1,6 +1,16 @@
 class MaterialsController < ApplicationController
   def index
-    @materials = Material.page(params[:page]).per(5)
+    begin
+      @material = Material.new
+
+      if params[:material] and params[:material][:name] and !params[:material][:name].nil?
+        @materials = Material.find_by_name(params[:material][:name]).page(params[:page]).per(5)
+      else
+        @materials = Material.page(params[:page]).per(5)
+      end
+    rescue Exception => e
+      puts e
+    end
   end
 
   def new
@@ -26,6 +36,7 @@ class MaterialsController < ApplicationController
 
   def edit
     @material = Material.find(params[:id])
+    @suppliers = Supplier.all
   end
 
   def update
