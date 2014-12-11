@@ -83105,3 +83105,56 @@ Processing by MachineriesController#index as HTML
   Rendered application/_notification.html.haml (0.1ms)
   Rendered application/_sidebar_left.html.haml (0.2ms)
 Completed 200 OK in 156ms (Views: 154.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-11 13:42:56 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::SessionsController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`uuid` = 'F5A49CF4-709B-11E4-8E64-B888E33867FC'  ORDER BY `users`.`uuid` ASC LIMIT 1
+Redirected to http://localhost:3000/dashboards
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 74ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-12-11 13:42:56 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (3.8ms)
+  Rendered application/_sidebar_top.html.haml (4.8ms)
+  Rendered application/_notification.html.haml (2.6ms)
+  Rendered application/_sidebar_left.html.haml (4.5ms)
+Completed 200 OK in 235ms (Views: 234.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-12-11 13:42:59 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.2ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (26.3ms)
+  [1m[35mImplement Load (0.2ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (22.2ms)
+  Rendered machineries/index.html.haml within layouts/application (55.8ms)
+  Rendered application/_sidebar_top.html.haml (5.4ms)
+  Rendered application/_notification.html.haml (1.9ms)
+  Rendered application/_sidebar_left.html.haml (2.3ms)
+Completed 200 OK in 201ms (Views: 189.3ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/dashboards" for 127.0.0.1 at 2014-12-11 13:43:01 +0700
+Processing by DashboardsController#index as HTML
+  Rendered dashboards/index.html.haml within layouts/application (1.1ms)
+  Rendered application/_sidebar_top.html.haml (0.4ms)
+  Rendered application/_notification.html.haml (0.1ms)
+  Rendered application/_sidebar_left.html.haml (0.2ms)
+Completed 200 OK in 127ms (Views: 126.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/machineries" for 127.0.0.1 at 2014-12-11 13:43:02 +0700
+Processing by MachineriesController#index as HTML
+  [1m[36mTractor Load (0.1ms)[0m  [1mSELECT `tractors`.* FROM `tractors`[0m
+  Rendered machineries/_list_tractor.html.haml (10.1ms)
+  [1m[35mImplement Load (0.2ms)[0m  SELECT `implements`.* FROM `implements`
+  Rendered machineries/_list_implement.html.haml (11.1ms)
+  Rendered machineries/index.html.haml within layouts/application (24.4ms)
+  Rendered application/_sidebar_top.html.haml (0.3ms)
+  Rendered application/_notification.html.haml (0.2ms)
+  Rendered application/_sidebar_left.html.haml (0.3ms)
+Completed 200 OK in 150ms (Views: 148.4ms | ActiveRecord: 0.3ms)
