@@ -1,0 +1,24 @@
+%h1 WarehouseType Information
+%div
+  %table.table
+    %tr.header
+      %th Fields
+      %th Information
+    %tr
+      %th Name
+      %td= @warehouse_type.name
+    %tr
+      %th Note
+      %td= @warehouse_type.note
+    %tr
+      %th Active
+      %td
+        - if @warehouse_type.active?
+          = "yes" 
+        - else  
+          = "no"
+- if can? :create, WarehouseType          
+  = link_to "New Warehouse Type", new_warehouse_type_path, class: "btn btn-primary"
+- if can? :update, WarehouseType
+  = link_to "Edit Warehouse", edit_warehouse_type_path, class: "btn btn-primary"
+= link_to "Cancel", :back, class: "btn btn-default"

@@ -11,15 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120043908) do
+ActiveRecord::Schema.define(version: 20141206022103) do
+
+  create_table "implement_types", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36, null: false
+    t.string   "name",       limit: 50, null: false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "implements", id: false, force: true do |t|
-    t.string   "uuid",                limit: 36,                 null: false
-    t.string   "name",                limit: 50,                 null: false
-    t.date     "year"
-    t.string   "implement_type_uuid", limit: 36,                 null: false
+    t.string   "uuid",                limit: 36, null: false
+    t.string   "name",                limit: 50, null: false
+    t.string   "year",                limit: 10
+    t.string   "implement_type_uuid", limit: 36, null: false
     t.float    "value",               limit: 24
-    t.boolean  "own",                            default: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -29,16 +36,113 @@ ActiveRecord::Schema.define(version: 20141120043908) do
     t.datetime "photo_updated_at"
   end
 
+  create_table "labor_projects", id: false, force: true do |t|
+    t.string   "labor_uuid",   limit: 36, null: false
+    t.string   "project_uuid", limit: 36, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "labors", id: false, force: true do |t|
+    t.string   "uuid",             limit: 36,                null: false
+    t.string   "name",             limit: 50,                null: false
+    t.string   "position_uuid",    limit: 36,                null: false
+    t.text     "description"
+    t.boolean  "active",                      default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "subordinate_uuid", limit: 36,                null: false
+  end
+
+  create_table "maintenances", id: false, force: true do |t|
+    t.string   "uuid",             limit: 36, null: false
+    t.string   "machinery_uuid",   limit: 36, null: false
+    t.string   "labor_uuid",       limit: 36
+    t.integer  "engine_hours"
+    t.integer  "time_spent"
+    t.text     "note"
+    t.string   "maintenance_type", limit: 50, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "materials", id: false, force: true do |t|
+    t.string   "uuid",           limit: 36,  null: false
+    t.string   "name",           limit: 50,  null: false
+    t.float    "quantity",       limit: 24
+    t.string   "unit",           limit: 100
+    t.string   "supplier_uuid",  limit: 36
+    t.string   "warehouse_uuid", limit: 36
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36, null: false
+    t.string   "name",       limit: 50, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resource_users", id: false, force: true do |t|
+    t.string   "resource_id"
+    t.string   "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resources", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,                null: false
+    t.string   "name",       limit: 50,                null: false
+    t.string   "label",      limit: 50
+    t.text     "note"
+    t.boolean  "active",                default: true, null: false
+    t.boolean  "boolean",               default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resources_users", id: false, force: true do |t|
+    t.string "resource_uuid"
+    t.string "user_uuid"
+  end
+
+  add_index "resources_users", ["resource_uuid", "user_uuid"], name: "index_resources_users_on_resource_uuid_and_user_uuid", using: :btree
+
+  create_table "roles", id: false, force: true do |t|
+    t.string   "uuid",          limit: 36, null: false
+    t.string   "name"
+    t.string   "resource_id",   limit: 36
+    t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "note"
+  end
+
+  add_index "roles", ["name", "resource_type", "uuid"], name: "index_roles_on_name_and_resource_type_and_uuid", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "suppliers", id: false, force: true do |t|
+    t.string   "uuid",           limit: 36,                 null: false
+    t.string   "name",           limit: 50,                 null: false
+    t.string   "contact_person", limit: 100
+    t.string   "phone",          limit: 20
+    t.string   "email",          limit: 100
+    t.text     "address"
+    t.boolean  "active",                     default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tractors", id: false, force: true do |t|
-    t.string   "uuid",               limit: 36,                 null: false
-    t.string   "name",               limit: 50,                 null: false
+    t.string   "uuid",               limit: 36, null: false
+    t.string   "name",               limit: 50, null: false
     t.float    "horse_power",        limit: 24
     t.float    "fuel_capacity",      limit: 24
     t.string   "make"
     t.string   "model"
-    t.date     "year"
+    t.string   "year",               limit: 10
     t.float    "value",              limit: 24
-    t.boolean  "own",                           default: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -46,6 +150,17 @@ ActiveRecord::Schema.define(version: 20141120043908) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  create_table "user_groups", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,                null: false
+    t.string   "name",       limit: 50,                null: false
+    t.text     "note"
+    t.boolean  "active",                default: true, null: false
+    t.boolean  "boolean",               default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "label"
   end
 
   create_table "users", id: false, force: true do |t|
@@ -68,10 +183,41 @@ ActiveRecord::Schema.define(version: 20141120043908) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "note"
+    t.string   "role"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_roles", id: false, force: true do |t|
+    t.string "user_id", limit: 36, null: false
+    t.string "role_id", limit: 36, null: false
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "warehouse_types", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,                null: false
+    t.string   "name",       limit: 50,                null: false
+    t.text     "note"
+    t.boolean  "active",                default: true, null: false
+    t.boolean  "boolean",               default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "warehouses", id: false, force: true do |t|
+    t.string   "uuid",                limit: 36,                null: false
+    t.string   "name",                limit: 50,                null: false
+    t.string   "labor_uuid",          limit: 36
+    t.string   "warehouse_type_uuid", limit: 36
+    t.string   "address"
+    t.text     "note"
+    t.boolean  "active",                         default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

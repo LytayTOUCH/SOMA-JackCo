@@ -1,8 +1,28 @@
 #sidebar.sidebar-offcanvas{:role => "navigation"}
   .sidebar-nav
     %ul.nav
+      %li OVERVIEW
       %li MANAGE
       %li.active
         = link_to "Dashboard", dashboards_path
       %li
+        %a{:href => "#"} Map
         = link_to "Machinery", machineries_path
+      %li
+        %a{:href => "#"} Calender
+      %li CROPS
+      %li
+        %a{:href => "#"} Fields
+      %li
+        %a{:href => "#"} Activity
+      %li PRE SETUP
+      %li
+        %a{:href => "#"} Zone
+      %li
+        = link_to 'Resource', resources_path
+      %li STORE MANAGEMENT
+      %li
+        = link_to 'Warehouse Type', warehouse_types_path
+      %li
+        = link_to 'Warehouse', warehouses_path
+      

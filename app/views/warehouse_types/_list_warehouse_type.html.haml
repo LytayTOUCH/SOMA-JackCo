@@ -1,0 +1,19 @@
+%table.table
+  %tr.header
+    %th Type
+    %th Note
+    %th Active
+    %th Actions
+  - warehouse_types.each do |warehouse_type|
+    %tr
+      %td= warehouse_type.name
+      %td= warehouse_type.note
+      %td
+        - if warehouse_type.active?
+          = "active"
+        - else  
+          = "inactive"
+      %td
+        = link_to "Show", warehouse_type_path(warehouse_type), class: "btn btn-default"
+        / - if can? :update, warehouse_type
+        = link_to "Edit", edit_warehouse_type_path(warehouse_type), class: "btn btn-default"

@@ -40,6 +40,10 @@ group :test, :development do
   # gem 'pry-debugger'
 end
 
+gem 'cancan'
+gem 'rolify'
+gem "select2-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,17 +1,30 @@
 Rails.application.routes.draw do
-  # root 'dashboards#index'
+  # devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
 
   resources :dashboards, only: [:index]
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
   resources :implements, except: [:index]
   
-  devise_for :users
   devise_scope :user do
     get '/' => 'devise/sessions#new'
   end
+
   resources :accounts, only: [:index]
-  
+  resources :dashboards
+  resources :warehouse_types
+  resources :warehouses
+  resources :user_groups
+  resources :resources
+  resources :roles do
+    collection do
+      get 'resources'
+    end
+  end  
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
