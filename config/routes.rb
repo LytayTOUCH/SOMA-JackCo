@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :implement_types, except: [:destroy]
   resources :suppliers, except: [:destroy]
   resources :materials, except: [:destroy] do
-    collection do 
+    collection do
       get 'new_supplier'
     end
   end
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     collection do
       get 'resources'
     end
-  end  
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

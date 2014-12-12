@@ -1,5 +1,5 @@
 class WarehouseTypesController < ApplicationController
-  load_and_authorize_resource
+  # load_and_authorize_resource
   
   def index
     @warehouse_types = WarehouseType.all
@@ -18,10 +18,6 @@ class WarehouseTypesController < ApplicationController
       flash[:notice] = "Warehouse type can't save"
       redirect_to :back
     end
-  end
-
-  def show
-    @warehouse_type = WarehouseType.find(params[:id])
   end
 
   def edit
