@@ -1,9 +1,10 @@
 %table.table
-  %tr.header
-    %th Name
-    %th Note
-    %th Active
-    %th Actions
+  %thead
+    %tr
+      %th Name
+      %th Note
+      %th Active
+      %th Actions
   - resources.each do |resource|
     %tr
       %td= resource.name

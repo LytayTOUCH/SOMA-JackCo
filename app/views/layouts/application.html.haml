@@ -6,11 +6,12 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body{style: "margin-top: 60px;"}
+  %body{style: "margin-top: 90px;"}
     = render 'sidebar_top'
-    = render 'notification.html.haml'
+    = render 'notification'
     .container
       .col-lg-2
         = render 'sidebar_left'
       .col-lg-10
         = yield
+    = render 'footer'

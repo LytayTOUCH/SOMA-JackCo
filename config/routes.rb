@@ -1,11 +1,25 @@
 Rails.application.routes.draw do
-  # devise_for :users
   devise_for :users, controllers: { registrations: "registrations" }
 
   resources :dashboards, only: [:index]
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
   resources :implements, except: [:index]
+  resources :maintenances, except: [:index]
+  resources :implement_types, except: [:destroy]
+  resources :suppliers, except: [:destroy]
+  resources :materials, except: [:destroy] do
+    collection do 
+      get 'new_supplier'
+    end
+  end
+
+  resources :labors, except: [:destroy] do
+    collection do 
+      get 'projects'
+      get 'labors'
+    end
+  end
   
   devise_scope :user do
     get '/' => 'devise/sessions#new'
@@ -22,8 +36,6 @@ Rails.application.routes.draw do
       get 'resources'
     end
   end  
-
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

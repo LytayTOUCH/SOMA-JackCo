@@ -1,7 +1,6 @@
 .row
   %h1= "Resource"
   %hr
-.row
-  = render partial: 'list_resource', locals: { resources: @resources }
   / - if can? :create, WarehouseType
+  = render partial: 'list_resource', locals: { resources: @resources }
   = link_to "New Resource", new_resource_path, class: "btn btn-primary"

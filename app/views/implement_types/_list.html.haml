@@ -1,0 +1,12 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-10= "Name"
+      %th.col-md-2= "Action"
+  %tbody
+    - @implement_types.each do |implement_type|
+      %tr
+        %td= implement_type.name
+        %td= link_to "Edit", edit_implement_type_path(implement_type)
+.pull-right
+  = paginate @implement_types

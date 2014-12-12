@@ -1,9 +1,10 @@
 %table.table
-  %tr.header
-    %th Type
-    %th Note
-    %th Active
-    %th Actions
+  %thead
+    %tr
+      %th Type
+      %th Note
+      %th Active
+      %th Actions
   - warehouse_types.each do |warehouse_type|
     %tr
       %td= warehouse_type.name

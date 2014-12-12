@@ -1,26 +1,33 @@
 class ImplementsController < ApplicationController
   def new
     @implement = Implement.new
+    @implement_types = ImplementType.all
   end
 
   def show
     @implement = ImplementDecorator.new(Implement.find(params[:id]))
+    @maintenances = Maintenance.find_limit_10
   end
 
   def create
-    @implement = Implement.new(implement_params)
+    begin
+      @implement = Implement.new(implement_params)
 
-    if @implement.save!
-      flash[:notice] = "Implement saved successfully"
-      redirect_to machineries_path
-    else
-      flash[:notice] = "Implement can't save"
-      redirect_to :back
+      if @implement.save!
+        flash[:notice] = "Implement saved successfully"
+        redirect_to :back
+      else
+        flash[:notice] = "Implement can't save"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
   def edit
     @implement = Implement.find(params[:id])
+    @implement_types = ImplementType.all
   end
 
   def update
@@ -34,8 +41,8 @@ class ImplementsController < ApplicationController
         flash[:notice] = "Implement category can't update"
         redirect_to :back
       end
-    rescue Exception => exp
-      puts exp
+    rescue Exception => e
+      puts e
     end
   end
 

@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+<<<<<<< HEAD
 UserGroup.create(name: 'admin', note: 'Controlling all modules', label: 'Admin')
 UserGroup.create(name: 'stock_manager', note: 'Controlling stocks module', label: 'Stock Manager')
 UserGroup.create(name: 'sale_manager', note: 'Controlling sales module', label: 'Sale Manager')
@@ -21,3 +22,9 @@ Resource.create(name: 'Labor', note: 'Controlling labors')
 Resource.create(name: 'Machinery', note: 'Controlling machineries')
 Resource.create(name: 'Material', note: 'Controlling materials')
 Resource.create(name: 'Zone', note: 'Controlling zones')
+=======
+# run:
+# rake db:seed
+
+Project.create([{ name: 'Jackfruit' }, { name: 'Coconut' }])
+>>>>>>> maintenance

@@ -12,4 +12,8 @@ class Tractor < ActiveRecord::Base
   validates :horse_power, numericality: true
   validates :fuel_capacity, numericality: true
   validates :value, numericality: true
+  validates :year, length: { maximum: 10 }
+
+  has_one :maintenance
 end
+  

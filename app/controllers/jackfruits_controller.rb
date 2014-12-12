@@ -1,0 +1,2 @@
+class JackfruitsController < ApplicationController
+end

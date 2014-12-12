@@ -1,0 +1,22 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-3= "Name"
+      %th.col-md-3= "Phone"
+      %th.col-md-4= "Email"
+      %th.col-md-1= "Status"
+      %th.col-md-1= "Action"
+  %tbody
+    - @suppliers.each do |supplier|
+      %tr
+        %td= supplier.name
+        %td= supplier.phone
+        %td= supplier.email
+        %td
+          - if supplier.active
+            = "Actived"
+          - else
+            = "Inactived"
+        %td= link_to "Edit", edit_supplier_path(supplier)
+.pull-right
+  = paginate @suppliers
