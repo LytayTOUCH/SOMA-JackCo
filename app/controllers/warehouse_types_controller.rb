@@ -2,10 +2,16 @@ class WarehouseTypesController < ApplicationController
   # load_and_authorize_resource
   
   def index
-    if params[:warehouse_type] and params[:warehouse_type][:name] and !params[:warehouse_types][:name].nil?
-      @warehouse_types = WarehouseType.find_by_name(params[:warehouse_type][:name]).page(params[:page]).per(5)
-    else
-      @warehouse_types = WarehouseType.page(params[:page]).per(5)
+    begin
+      @warehouse_type = WarehouseType.new
+
+      if params[:warehouse_type] and params[:warehouse_type][:name] and !params[:warehouse_type][:name].nil?
+        @warehouse_types = WarehouseType.find_by_name(params[:warehouse_type][:name]).page(params[:page]).per(5)
+      else
+        @warehouse_types = WarehouseType.page(params[:page]).per(5)
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
@@ -13,14 +19,19 @@ class WarehouseTypesController < ApplicationController
     @warehouse_type = WarehouseType.new
   end
 
-  def create   
-    @warehouse_type = WarehouseType.new(warehouse_type_params)
-    if @warehouse_type.save!
-      flash[:notice] = "Warehouse type saved successfully"
-      redirect_to warehouse_types_path
-    else
-      flash[:notice] = "Warehouse type can't save"
-      redirect_to :back
+  def create
+    begin
+      @warehouse_type = WarehouseType.new(warehouse_type_params)
+
+      if @warehouse_type.save!
+        flash[:notice] = "Warehouse type saved successfully"
+        redirect_to warehouse_types_path
+      else
+        flash[:notice] = "Warehouse type can't save"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
@@ -29,12 +40,17 @@ class WarehouseTypesController < ApplicationController
   end
 
   def update
-    @warehouse_type = WarehouseType.find(params[:id])
-    if @warehouse_type.update_attributes!(warehouse_type_params)
-      flash[:notice] = "WarehouseType updated"
-      redirect_to warehouse_types_path
-    else
-      redirect_to :back
+    begin
+      @warehouse_type = WarehouseType.find(params[:id])
+
+      if @warehouse_type.update_attributes!(warehouse_type_params)
+        flash[:notice] = "WarehouseType updated"
+        redirect_to warehouse_types_path
+      else
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 

@@ -1,5 +1,5 @@
 = simple_form_for @warehouse_type, url: warehouse_types_path, method: :get, html: {novalidate: true, class: 'form-inline'} do |f|
   .input-group.col-xs-5
-    = f.input :name, as: :string, label: false, input_html: {class: "form-control", placeholder: "Search by type"}
+    = f.input :name, as: :string, label: false, input_html: {class: "form-control", placeholder: "Search by name"}
     .input-group-btn
       = f.submit :Search, class: "btn btn-default"

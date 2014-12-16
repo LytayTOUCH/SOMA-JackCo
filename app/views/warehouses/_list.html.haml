@@ -1,11 +1,11 @@
 %table.table
   %thead
     %tr
-      %th Name
-      %th Supervisor
-      %th Warehouse Type
-      %th Active
-      %th Actions
+      %th.col-md-4 Name
+      %th.col-md-3 Supervisor
+      %th.col-md-3 Warehouse Type
+      %th.col-md-2 Active
+      %th.col-md-1 Actions
   - @warehouses.each do |warehouse|
     %tr
       %td= warehouse.name
@@ -19,3 +19,5 @@
       %td
         / - if can? :update, warehouse
         = link_to "Edit", edit_warehouse_path(warehouse)
+.pull-right
+  = paginate @warehouses

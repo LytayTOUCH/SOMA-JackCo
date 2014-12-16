@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # root 'devise/sessions#new'
+
   devise_for :users, controllers: { registrations: "registrations" }
 
   resources :dashboards, only: [:index]
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
   resources :maintenances, except: [:index]
   resources :implement_types, except: [:destroy]
   resources :suppliers, except: [:destroy]
+
   resources :materials, except: [:destroy] do
     collection do
       get 'new_supplier'
