@@ -2,13 +2,11 @@
   %thead
     %tr
       %th Type
-      %th Note
       %th Active
       %th Actions
   - @warehouse_types.each do |warehouse_type|
     %tr
       %td= warehouse_type.name
-      %td= warehouse_type.note
       %td
         - if warehouse_type.active?
           = "active"
