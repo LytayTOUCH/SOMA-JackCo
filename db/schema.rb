@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20141215025634) do
     t.string   "year",                limit: 10
     t.string   "implement_type_uuid", limit: 36, null: false
     t.float    "value",               limit: 24
+
+  create_table "implements", id: false, force: true do |t|
+    t.string   "uuid",                limit: 36,                 null: false
+    t.string   "name",                limit: 50,                 null: false
+    t.date     "year"
+    t.string   "implement_type_uuid", limit: 36,                 null: false
+    t.float    "value",               limit: 24
+    t.boolean  "own",                            default: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -80,6 +88,11 @@ ActiveRecord::Schema.define(version: 20141215025634) do
   create_table "projects", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
     t.string   "name",       limit: 50, null: false
+
+  create_table "permissions", id: false, force: true do |t|
+    t.string   "subject_id"
+    t.string   "subject_class"
+    t.string   "action"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -130,12 +143,19 @@ ActiveRecord::Schema.define(version: 20141215025634) do
   create_table "tractors", id: false, force: true do |t|
     t.string   "uuid",               limit: 36, null: false
     t.string   "name",               limit: 50, null: false
+
+  create_table "tractors", id: false, force: true do |t|
+    t.string   "uuid",               limit: 36,                 null: false
+    t.string   "name",               limit: 50,                 null: false
     t.float    "horse_power",        limit: 24
     t.float    "fuel_capacity",      limit: 24
     t.string   "make"
     t.string   "model"
     t.string   "year",               limit: 10
     t.float    "value",              limit: 24
+    t.date     "year"
+    t.float    "value",              limit: 24
+    t.boolean  "own",                           default: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,4 +1,7 @@
 class UserGroupsController < ApplicationController
+  # load_and_authorize_resource
+  # before_filter :load_permissions
+
   def index
     @user_groups = UserGroup.all
   end

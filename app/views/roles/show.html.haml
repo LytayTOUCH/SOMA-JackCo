@@ -1,0 +1,27 @@
+%h1 User Role Information
+%div
+  %table.table
+    %tr.header
+      %th Fields
+      %th Information
+    %tr
+      %th Name
+      %td= @role.name
+    %tr
+      %th Label
+      %td= @role.label  
+    %tr
+      %th Note
+      %td= @role.note
+    %tr
+      %th Active
+      %td
+        - if @role.active?
+          = "yes" 
+        - else  
+          = "no"
+- if can? :create, Role          
+  = link_to "New Role", new_role_path, class: "btn btn-primary"
+- if can? :update, Role
+  = link_to "Edit Role", edit_role_path, class: "btn btn-primary"
+= link_to "Cancel", :back, class: "btn btn-default"

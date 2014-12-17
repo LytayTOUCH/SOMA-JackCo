@@ -15,4 +15,5 @@
           = "inactive"
       %td
         / = link_to "Show", user_group_path(user_group), class: "btn btn-default"
-        = link_to "Edit", edit_user_group_path(user_group), class: "btn btn-default"
+        - if can? :update, UserGroup
+          = link_to "Edit", edit_user_group_path(user_group), class: "btn btn-default"

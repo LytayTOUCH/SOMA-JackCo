@@ -2,7 +2,8 @@
   %h3
     = "Materials"
     .pull-right
-      = link_to "New Material", new_material_path, class: "btn btn-primary"
+      - if can? :create, Material
+        = link_to "New Material", new_material_path, class: "btn btn-primary"
   %hr
   = render partial: 'form_search'
   %hr

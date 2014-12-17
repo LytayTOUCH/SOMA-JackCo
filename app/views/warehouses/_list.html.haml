@@ -17,7 +17,7 @@
         - else  
           = "inactive"
       %td
-        / - if can? :update, warehouse
-        = link_to "Edit", edit_warehouse_path(warehouse)
+        - if can? :update, warehouse
+          = link_to "Edit", edit_warehouse_path(warehouse)
 .pull-right
   = paginate @warehouses

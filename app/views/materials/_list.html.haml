@@ -15,6 +15,8 @@
         %td= "#{material.quantity} #{material.unit}"
         %td= material.supplier.name
         %td= material.warehouse_uuid
-        %td= link_to "Edit", edit_material_path(material)
+        %td
+          - if can? :update, Material
+            = link_to "Edit", edit_material_path(material)
 .pull-right
   = paginate @materials

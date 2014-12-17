@@ -1,20 +1,21 @@
 %table.table
   %thead
     %tr
-      %th Name
-      %th Note
-      %th Active
-      %th Actions
-  - resources.each do |resource|
+      %th.col-md-3= "Name"
+      %th.col-md-5= "Note"
+      %th.col-md-3= "Active"
+      %th.col-md-1= "Actions"
+  - @resources.each do |resource|
     %tr
       %td= resource.name
       %td= resource.note
       %td
         - if resource.active?
-          = "active"
-        - else  
-          = "inactive"
+          = "Actived"
+        - else
+          = "Inactived"
       %td
-        = link_to "Show", resource_path(resource), class: "btn btn-default"
-        / - if can? :update, resource
-        = link_to "Edit", edit_resource_path(resource), class: "btn btn-default"
+        - if can? :update, resource
+          = link_to "Edit", edit_resource_path(resource)
+.pull-right
+  = paginate @resources

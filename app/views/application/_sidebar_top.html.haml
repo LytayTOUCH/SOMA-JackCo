@@ -10,14 +10,17 @@
       %ul.nav.navbar-nav
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            Bunlong VAN
+            = current_user.email
             %b.caret
           %ul.dropdown-menu
             %li
-              = link_to 'Account setting', accounts_path
-            %li.divider
-            / - if can? :manage, UserGroup
+              = link_to 'Setting', edit_profile_user_path(current_user.id)
             %li
-              = link_to 'User Group', roles_path
+              - if can? :manage, User
+                = link_to 'All users', users_path
+            %li.divider
+            %li
+              - if can? :manage, Role
+                = link_to 'All roles', roles_path
             %li
               = link_to 'Logout', destroy_user_session_path, method: 'delete'

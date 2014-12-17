@@ -9,5 +9,4 @@ class Resource < ActiveRecord::Base
 
   validates :name, length: { maximum: 50 }, presence: true
 
-  # scope :name
 end

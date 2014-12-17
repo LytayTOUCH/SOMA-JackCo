@@ -1,11 +1,21 @@
 %table.table
-  %tr.header
-    %th Name
-    %th Modules
-  - roles.each do |role|
+  %thead
     %tr
-      %td= role.name
+      %th.col-md-3= "Name"
+      %th.col-md-5= "Note"
+      %th.col-md-2= "Active"
+      %th.col-md-2= "Actions"
+  - @roles.each do |role|
+    %tr
+      %td= role.label
       %td= role.note
       %td
-        = link_to "Show", role_path(role), class: "btn btn-default"
-        = link_to "Edit", edit_role_path(role), class: "btn btn-default"
+        - if role.active?
+          = "Actived"
+        - else
+          = "Inactived"
+      %td
+        - if can? :update, Role
+          = link_to "Edit", edit_role_path(role)
+.pull-right
+  = paginate @roles

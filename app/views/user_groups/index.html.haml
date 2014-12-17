@@ -1,6 +1,7 @@
 .row
-  %h1= "User Group"
+  %h1= "Role"
   %hr
 .row
   = render partial: 'list_user_group', locals: { user_groups: @user_groups }
-  = link_to "New User Group", new_user_group_path, class: "btn btn-primary"
+  - if can? :create, UserGroup
+    = link_to "New User Group", new_user_group_path, class: "btn btn-primary"

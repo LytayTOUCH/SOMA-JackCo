@@ -1,6 +1,9 @@
 .row
-  %h1= "Resource"
+  %h1
+    = "Resource"
+    .pull-right
+      - if can? :create, Resource
+        = link_to "New Resource", new_resource_path, class: "btn btn-primary"
   %hr
-  / - if can? :create, WarehouseType
   = render partial: 'list_resource', locals: { resources: @resources }
-  = link_to "New Resource", new_resource_path, class: "btn btn-primary"
+

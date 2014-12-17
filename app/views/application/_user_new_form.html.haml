@@ -1,0 +1,35 @@
+= simple_form_for user, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-1.control-label.text-left Email
+    .col-xs-5
+      = f.input :email, label: false, input_html: { class: "form-control" } 
+      %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-1.control-label.text-left Password
+    .col-xs-5
+      - if @validatable
+        %em
+          (#{@minimum_password_length} characters minimum)
+      = f.input :password, label: false, input_html: { class: "form-control" } 
+      %span.help-block= f.error :password
+  .form-group
+    %label.col-xs-1.control-label.text-left Confirm Password
+    .col-xs-5
+      = f.input :password_confirmation, label: false, input_html: { class: "form-control" } 
+      %span.help-block= f.error :password_confirmation
+  .form-group
+    %label.col-xs-1.control-label.text-left Role
+    .col-xs-5
+      = f.input :role, label: false, collection: Role.all, include_blank: true, value_method: :name, input_html: { class: "form-control" }, label_method: :label
+      %span.help-block= f.error :role   
+  .form-group
+    %label.col-xs-1.control-label Modules
+    .col-xs-5   
+      - for resource in Resource.all
+        = check_box_tag "user[resource_ids][]", resource.id, @user.resources.include?(resource), class: "checkbox"
+        = h resource.name.camelize
+  .form-group
+    .col-xs-6.col-sm-offset-1
+      .pull-right
+        = f.submit class: "btn btn-primary", "data-disable-with" => "Sign up"
+        = link_to 'Cancel', :back, class: "btn btn-default"

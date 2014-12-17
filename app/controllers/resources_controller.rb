@@ -1,6 +1,19 @@
 class ResourcesController < ApplicationController
+  # load_and_authorize_resource
+  # before_filter :load_permissions
+
   def index
-    @resources = Resource.all
+    begin
+      @resource = Resource.new
+
+      if params[:resource] and params[:resource][:name] and !params[:resource][:name].nil?
+        @resources = Resource.find_by_name(params[:resource][:name]).page(params[:page]).per(5)
+      else
+        @resources = Resource.page(params[:page]).per(5)
+      end
+    rescue Exception => e
+      puts e
+    end
   end
 
   def new

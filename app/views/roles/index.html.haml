@@ -1,5 +1,9 @@
 .row
-  %h1= "User roles"
+  %h1
+    = "User roles"
+    .pull-right
+      - if can? :create, Role
+        = link_to "New Role", new_role_path, class: "btn btn-primary"
   %hr
-.row
-  = render partial: 'list_role', locals: { roles: @roles }
+    = render partial: 'list_role', locals: { roles: @roles }
+  
