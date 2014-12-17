@@ -18,6 +18,6 @@
             %li.divider
             / - if can? :manage, UserGroup
             %li
-              = link_to 'User Group', new_user_group_path
+              = link_to 'User Group', roles_path
             %li
               = link_to 'Logout', destroy_user_session_path, method: 'delete'

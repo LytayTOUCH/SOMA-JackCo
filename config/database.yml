@@ -58,14 +58,14 @@ defaults: &defaults
   # password: Q1p2m3g4
   # adapter: postgresql
   username: root
-  password: Q1p2m3g4
+  password: clroot0987
   adapter: mysql2
   encoding: utf8
   collation: utf8_unicode_ci
 
 
 development:
-  database: soma_development
+  database: soma_database_development
   host: localhost
   <<: *defaults
 
@@ -80,6 +80,6 @@ staging:
   <<: *defaults
 
 production:
-  database: soma_production
+  database: soma_database_production
   host: localhost
   <<: *defaults

@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20141206022103) do
-=======
-ActiveRecord::Schema.define(version: 20141205082244) do
->>>>>>> maintenance
+ActiveRecord::Schema.define(version: 20141215025634) do
 
   create_table "implement_types", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
@@ -88,7 +84,6 @@ ActiveRecord::Schema.define(version: 20141205082244) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
   create_table "resource_users", id: false, force: true do |t|
     t.string   "resource_id"
     t.string   "user_id"
@@ -107,28 +102,19 @@ ActiveRecord::Schema.define(version: 20141205082244) do
     t.datetime "updated_at"
   end
 
-  create_table "resources_users", id: false, force: true do |t|
-    t.string "resource_uuid"
-    t.string "user_uuid"
-  end
-
-  add_index "resources_users", ["resource_uuid", "user_uuid"], name: "index_resources_users_on_resource_uuid_and_user_uuid", using: :btree
-
   create_table "roles", id: false, force: true do |t|
-    t.string   "uuid",          limit: 36, null: false
+    t.string   "uuid",       limit: 36, null: false
     t.string   "name"
-    t.string   "resource_id",   limit: 36
-    t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "note"
+    t.string   "label"
+    t.boolean  "active"
   end
 
-  add_index "roles", ["name", "resource_type", "uuid"], name: "index_roles_on_name_and_resource_type_and_uuid", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+  add_index "roles", ["name"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
 
-=======
->>>>>>> maintenance
   create_table "suppliers", id: false, force: true do |t|
     t.string   "uuid",           limit: 36,                 null: false
     t.string   "name",           limit: 50,                 null: false
@@ -159,17 +145,6 @@ ActiveRecord::Schema.define(version: 20141205082244) do
     t.datetime "photo_updated_at"
   end
 
-  create_table "user_groups", id: false, force: true do |t|
-    t.string   "uuid",       limit: 36,                null: false
-    t.string   "name",       limit: 50,                null: false
-    t.text     "note"
-    t.boolean  "active",                default: true, null: false
-    t.boolean  "boolean",               default: true, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "label"
-  end
-
   create_table "users", id: false, force: true do |t|
     t.string   "uuid",                   limit: 36,                null: false
     t.string   "name",                   limit: 50
@@ -192,6 +167,7 @@ ActiveRecord::Schema.define(version: 20141205082244) do
     t.datetime "updated_at"
     t.text     "note"
     t.string   "role"
+    t.string   "label"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
