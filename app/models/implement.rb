@@ -10,4 +10,7 @@ class Implement < ActiveRecord::Base
 
   validates :name, length: { maximum: 50 }, presence: true
   validates :implement_type_uuid, length: { maximum: 36 }, presence: true
+  validates :year, length: { maximum: 10 }
+
+  has_one :maintenance
 end

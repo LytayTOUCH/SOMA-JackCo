@@ -13,11 +13,8 @@ class RolesController < ApplicationController
   end
 
   def create
-    puts "=========================="
-    puts role_params
-    puts "=========================="
-
     @role = Role.new(role_params)
+    
     if @role.save!
       flash[:notice] = "Role saved successfully"
       redirect_to roles_path
@@ -41,4 +38,3 @@ class RolesController < ApplicationController
     params.require(:role).permit!
   end
 end
-

@@ -4,6 +4,7 @@
  *= require select2
  *= require nprogress
  *= require nprogress-bootstrap
+ *= require select2
  */
 
 @import "bootstrap";
@@ -17,28 +18,73 @@
   border-radius: 5px;
 }
 
-.alert, .notice, .error {
-  text-align: center;
-  padding: 0px 0px;
-  margin-top: 1em;
-  color: #ff0000;
-  display: block-inline;
-  /*background: #e7d5d5;*/
+.navbar-inverse {
+  background-color: #008400;
+  border-color: #008400;
+  color: #FFF;
+  a {
+    color: #FFF;
+  }
 }
 
-.notice {
-  color: #090974;
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #008400;
+  color: white;
 }
 
-.simple_form label {
+.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #fff;
+}
+
+footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 100px;
+  color: #777;
+  border-top: 1px solid #E5E5E5;
+}
+
+.pagination a, .pagination span.current, .pagination span.gap {
   float: left;
-  text-align: right;
-  width: 150px;
+  padding: 0 14px;
+  line-height: 32px;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid #DDD;
+  border-left-width: 0;
 }
-
-.table .tr .th{
-  text-align: center;
-}
-hr {
-  height: 5px;
+ 
+.pagination {
+  border-left: 1px solid #ddd;
+  .first{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .prev {
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .page{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .next{
+    padding : 0;
+    float: none;
+    border: none;
+  }
+  .last{
+    padding : 0;
+    float: none;
+    border: none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+  }
 }

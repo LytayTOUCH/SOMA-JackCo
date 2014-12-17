@@ -1,6 +1,9 @@
 .row
-  %h1= "WarehouseType"
+  %h1
+    = "WarehouseType"
+    .pull-right
+      = link_to "New WarehouseType", new_warehouse_type_path, class: "btn btn-primary"
   %hr
-.row
-  = render partial: 'list_warehouse_type', locals: { warehouse_types: @warehouse_types }
-  = link_to "New Warehouse Type", new_warehouse_type_path, class: "btn btn-primary"
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'

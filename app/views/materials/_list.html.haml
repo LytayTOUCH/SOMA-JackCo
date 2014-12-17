@@ -1,0 +1,20 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-2= "Date"
+      %th.col-md-3= "Name"
+      %th.col-md-2= "Qty"
+      %th.col-md-2= "Supplier"
+      %th.col-md-2= "Warehouse"
+      %th.col-md-1= "Action"
+  %tbody
+    - @materials.each do |material|
+      %tr
+        %td= material.created_at.strftime("%Y-%m-%d")
+        %td= material.name
+        %td= "#{material.quantity} #{material.unit}"
+        %td= material.supplier.name
+        %td= material.warehouse_uuid
+        %td= link_to "Edit", edit_material_path(material)
+.pull-right
+  = paginate @materials

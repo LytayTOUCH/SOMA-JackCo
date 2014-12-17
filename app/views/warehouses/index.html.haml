@@ -1,6 +1,11 @@
 .row
-  %h1= "Warehouse"
+  %h1
+    = "Warehouse"
+    .pull-right
+      = link_to "New Warehouse", new_warehouse_path, class: "btn btn-primary"
   %hr
-.row
-  = render partial: 'list_warehouse', locals: { warehouses: @warehouses }
-  = link_to "New Warehouse", new_warehouse_path, class: "btn btn-primary"
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'
+.pull-right
+  

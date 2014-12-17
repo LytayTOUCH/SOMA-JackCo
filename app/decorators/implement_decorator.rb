@@ -9,7 +9,8 @@ class ImplementDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-  def owner_ship
-    object.own ? 'Owned' : 'Rented'
-  end
+  
+  # def owner_ship
+  #   object.own ? 'Owned' : 'Rented'
+  # end
 end

@@ -10,7 +10,7 @@ class TractorDecorator < Draper::Decorator
   #     end
   #   end
 
-  def owner_ship
-    object.own ? 'Owned' : 'Rented'
-  end
+  # def owner_ship
+  #   object.own ? 'Owned' : 'Rented'
+  # end
 end

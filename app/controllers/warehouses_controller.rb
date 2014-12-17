@@ -2,7 +2,17 @@ class WarehousesController < ApplicationController
   # load_and_authorize_resource
 
   def index
-    @warehouses = Warehouse.all
+    begin
+      @warehouse = Warehouse.new
+
+      if params[:warehouse] and params[:warehouse][:name] and !params[:warehouse][:name].nil?
+        @warehouses = Warehouse.find_by_name(params[:warehouse][:name]).page(params[:page]).per(5)
+      else
+        @warehouses = Warehouse.page(params[:page]).per(5)
+      end
+    rescue Exception => e
+      puts e
+    end
   end
 
   def new
@@ -11,9 +21,8 @@ class WarehousesController < ApplicationController
   end
 
   def create
-    puts "=========================================="
     @warehouse = Warehouse.new(warehouse_params)
-    puts "=========================================="
+
     if @warehouse.save!
       flash[:notice] = "Warehouse saved successfully"
       redirect_to warehouses_path
@@ -22,10 +31,6 @@ class WarehousesController < ApplicationController
       redirect_to :back
     end
   end
-
-  def show
-    @warehouse = Warehouse.find(params[:id])
-  end 
 
   def edit
     @warehouse = Warehouse.find(params[:id])
@@ -39,7 +44,7 @@ class WarehousesController < ApplicationController
       redirect_to warehouses_path
     else
       redirect_to :back
-    end 
+    end
   end
 
   private
