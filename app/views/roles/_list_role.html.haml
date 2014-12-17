@@ -5,7 +5,7 @@
   - roles.each do |role|
     %tr
       %td= role.name
-      %td= role.resource_type
+      %td= role.note
       %td
         = link_to "Show", role_path(role), class: "btn btn-default"
         = link_to "Edit", edit_role_path(role), class: "btn btn-default"
