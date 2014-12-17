@@ -1,12 +1,20 @@
 class ImplementsController < ApplicationController
   def new
-    @implement = Implement.new
-    @implement_types = ImplementType.all
+    begin
+      @implement = Implement.new
+      @implement_types = ImplementType.all
+    rescue Exception => e
+      puts e
+    end
   end
 
   def show
-    @implement = ImplementDecorator.new(Implement.find(params[:id]))
-    @maintenances = Maintenance.find_limit_10
+    begin
+      @implement = ImplementDecorator.new(Implement.find(params[:id]))
+      @maintenances = Maintenance.find_limit_10
+    rescue Exception => e
+      puts e
+    end
   end
 
   def create
@@ -26,8 +34,12 @@ class ImplementsController < ApplicationController
   end
 
   def edit
-    @implement = Implement.find(params[:id])
-    @implement_types = ImplementType.all
+    begin
+      @implement = Implement.find(params[:id])
+      @implement_types = ImplementType.all
+    rescue Exception => e
+      puts e
+    end
   end
 
   def update

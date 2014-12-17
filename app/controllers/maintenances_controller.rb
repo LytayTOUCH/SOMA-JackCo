@@ -1,8 +1,12 @@
 class MaintenancesController < ApplicationController
   def new
-    @maintenance = Maintenance.new(machinery_uuid: params[:machinery_uuid],maintenance_type: params[:maintenance_type])
-    @labors = Labor.all
-    @default_labor = Labor.first
+    begin
+      @maintenance = Maintenance.new(machinery_uuid: params[:machinery_uuid],maintenance_type: params[:maintenance_type])
+      @labors = Labor.all
+      @default_labor = Labor.first
+    rescue Exception => e
+      puts e
+    end
   end
 
   def create

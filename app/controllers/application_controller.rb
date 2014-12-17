@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   include ExceptionHandler
-  # before_action :authenticate_user!
-  # before_filter :configure_permitted_parameters, if: :devise_controller?
+  
+  before_action :authenticate_user!
+  before_filter :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
   private
@@ -13,5 +14,4 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:role, :resource_ids)
   end
-
 end

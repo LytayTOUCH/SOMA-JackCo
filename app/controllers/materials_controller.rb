@@ -14,8 +14,12 @@ class MaterialsController < ApplicationController
   end
 
   def new
-    @material = Material.new
-    @suppliers = Supplier.all
+    begin
+      @material = Material.new
+      @suppliers = Supplier.all
+    rescue Exception => e
+      puts e
+    end
   end
 
   def create
@@ -35,8 +39,12 @@ class MaterialsController < ApplicationController
   end
 
   def edit
-    @material = Material.find(params[:id])
-    @suppliers = Supplier.all
+    begin
+      @material = Material.find(params[:id])
+      @suppliers = Supplier.all
+    rescue Exception => e
+      puts e
+    end
   end
 
   def update
@@ -56,7 +64,11 @@ class MaterialsController < ApplicationController
   end
 
   def new_supplier
-    @supplier = Supplier.new
+    begin
+      @supplier = Supplier.new
+    rescue Exception => e
+      puts e
+    end
   end
 
   private

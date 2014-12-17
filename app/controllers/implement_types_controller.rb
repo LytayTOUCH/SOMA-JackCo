@@ -1,4 +1,6 @@
 class ImplementTypesController < ApplicationController
+  before_filter :set_title
+
   def index
     begin
       @implement_type = ImplementType.new
@@ -54,6 +56,10 @@ class ImplementTypesController < ApplicationController
   end
 
   private
+  def set_title
+    content_for :title, "ImplementType"
+  end
+
   def implement_type_params
     params.require(:implement_type).permit(:name, :note)
   end

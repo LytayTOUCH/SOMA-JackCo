@@ -1,0 +1,16 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-9= "Name"
+      %th.col-md-3= "Active"
+      %th.col-md-1= "Actions"
+  - @resources.each do |resource|
+    %tr
+      %td= resource.name
+      %td
+        - if resource.active?
+          = "active"
+        - else
+          = "inactive"
+      %td
+        = link_to "Edit", edit_resource_path(resource)

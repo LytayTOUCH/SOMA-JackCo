@@ -1,11 +1,19 @@
 class TractorsController < ApplicationController
   def new
-    @tractor = Tractor.new
+    begin
+      @tractor = Tractor.new
+    rescue Exception => e
+      puts e
+    end
   end
 
   def show
-    @tractor = TractorDecorator.new(Tractor.find(params[:id]))
-    @maintenances = Maintenance.find_limit_10
+    begin
+      @tractor = TractorDecorator.new(Tractor.find(params[:id]))
+      @maintenances = Maintenance.find_limit_10
+    rescue Exception => e
+      puts e
+    end
   end
   
   def create
@@ -25,7 +33,11 @@ class TractorsController < ApplicationController
   end
 
   def edit
-    @tractor = Tractor.find(params[:id])
+    begin
+      @tractor = Tractor.find(params[:id])
+    rescue Exception => e
+      puts e
+    end
   end
 
   def update
@@ -36,7 +48,7 @@ class TractorsController < ApplicationController
         flash[:notice] = "Tractor updated successfully"
         redirect_to tractor_path
       else
-        flash[:notice] = "Listing category can't update"
+        flash[:notice] = "Tractor can't update"
         redirect_to :back
       end
     rescue Exception => exp

@@ -2,5 +2,5 @@
   %h1= "Resource"
   %hr
   / - if can? :create, WarehouseType
-  = render partial: 'list_resource', locals: { resources: @resources }
+  = render partial: 'list', locals: { resources: @resources }
   = link_to "New Resource", new_resource_path, class: "btn btn-primary"

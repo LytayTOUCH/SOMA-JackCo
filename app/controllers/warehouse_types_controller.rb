@@ -16,7 +16,11 @@ class WarehouseTypesController < ApplicationController
   end
 
   def new
-    @warehouse_type = WarehouseType.new
+    begin
+      @warehouse_type = WarehouseType.new
+    rescue Exception => e
+      puts e
+    end
   end
 
   def create
@@ -36,7 +40,11 @@ class WarehouseTypesController < ApplicationController
   end
 
   def edit
-    @warehouse_type = WarehouseType.find(params[:id])
+    begin
+      @warehouse_type = WarehouseType.find(params[:id])
+    rescue Exception => e
+      puts e
+    end
   end
 
   def update
@@ -47,6 +55,7 @@ class WarehouseTypesController < ApplicationController
         flash[:notice] = "WarehouseType updated"
         redirect_to warehouse_types_path
       else
+        flash[:notice] = "WarehouseType can't update"
         redirect_to :back
       end
     rescue Exception => e
