@@ -3,5 +3,6 @@
   %h3
     = "Implements"
     .pull-right
-      = link_to "New Implement", new_implement_path, class: "btn btn-primary"
+      - if can? :create, Implement
+        = link_to "New Implement", new_implement_path, class: "btn btn-primary"
   = render partial: 'list_implement', locals: {implements: implements}

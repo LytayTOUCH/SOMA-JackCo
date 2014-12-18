@@ -13,7 +13,7 @@
         - else
           = "Inactived"
       %td
-        / - if can? :update, warehouse_type
-        = link_to "Edit", edit_warehouse_type_path(warehouse_type)
+        - if can? :update, WarehouseType
+          = link_to "Edit", edit_warehouse_type_path(warehouse_type)
 .pull-right
   = paginate @warehouse_types

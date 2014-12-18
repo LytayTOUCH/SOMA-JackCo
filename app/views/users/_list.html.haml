@@ -1,0 +1,35 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-4 Email
+      %th.col-md-3 Role
+      %th.col-md-3 Modules
+      %th.col-md-2 Active
+      %th.col-md-1 Actions
+  - @users.each do |user|
+    %tr
+      %td= user.email
+      %td
+        - if user.role == "it"
+          = "IT"
+        - elsif  
+          = user.role.capitalize
+      %td
+        - if user.role == "admin"
+          = 'Manage all'
+        - elsif user.role == "officer"
+          = 'Create all'
+        - elsif user.role == "top_manager"  
+          = 'Read all'
+        - elsif user.role == "it"  
+          = 'Edit all'  
+      %td
+        - if user.active?
+          = "active"
+        - else  
+          = "inactive"
+      %td
+        - if can? :update, user
+          = link_to "Edit", edit_user_path(user)
+.pull-right
+  = paginate @users

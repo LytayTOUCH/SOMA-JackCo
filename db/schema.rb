@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206022103) do
+ActiveRecord::Schema.define(version: 20141211092638) do
 
   create_table "implement_types", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
@@ -110,16 +110,17 @@ ActiveRecord::Schema.define(version: 20141206022103) do
   add_index "resources_users", ["resource_uuid", "user_uuid"], name: "index_resources_users_on_resource_uuid_and_user_uuid", using: :btree
 
   create_table "roles", id: false, force: true do |t|
-    t.string   "uuid",          limit: 36, null: false
+    t.string   "uuid",       limit: 36, null: false
     t.string   "name"
-    t.string   "resource_id",   limit: 36
-    t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "note"
+    t.string   "label"
+    t.boolean  "active"
+    t.string   "user_id",    limit: 36
   end
 
-  add_index "roles", ["name", "resource_type", "uuid"], name: "index_roles_on_name_and_resource_type_and_uuid", using: :btree
+  add_index "roles", ["name", "uuid"], name: "index_roles_on_name_and_resource_type_and_uuid", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "suppliers", id: false, force: true do |t|
@@ -185,6 +186,7 @@ ActiveRecord::Schema.define(version: 20141206022103) do
     t.datetime "updated_at"
     t.text     "note"
     t.string   "role"
+    t.string   "label"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

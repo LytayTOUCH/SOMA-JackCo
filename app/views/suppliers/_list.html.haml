@@ -17,6 +17,8 @@
             = "Actived"
           - else
             = "Inactived"
-        %td= link_to "Edit", edit_supplier_path(supplier)
+        %td
+          - if can? :update, Supplier
+            = link_to "Edit", edit_supplier_path(supplier)
 .pull-right
   = paginate @suppliers

@@ -1,47 +1,50 @@
 class Registrations::RegistrationsController < Devise::RegistrationsController
-  
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
-
-# protected
-# def after_sign_up_path_for(resource)
-#   super(resource)
-# end
-
   # GET /resource/sign_up
-  def new
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  # def index
+  #   @users = User.all
+  # end
+  
+  # def new
+  #   super
+  #   @user = User.new
+  # end
+
+  # # # POST /resource
+  # def create
+  #   puts "==================================="
+  #   puts @user = User.new(user_params)
+  #   puts "==================================="
+  #   @user.resource_ids = params[:user][:resource_ids]
+    
+  #   # if @user.save!
+  #   #   flash[:notice] = "User has been created successfully"
+  #   #   redirect_to users_path
+  #   # else
+  #   #   flash[:notice] = "User can't save"
+  #   #   redirect_to :back
+  #   # end
+  # end
+
+  # GET /resource/edit
+  def edit
     super
-    @user = User.new
+    puts "======================================"
+    @user = User.find(params[:id])
+    puts "======================================"
   end
 
-  # POST /resource
-  def create
-    puts "==============================="
-    puts @user = User.new(user_params)
-    puts @user.resource_ids = params[:user][:resource_ids]
-    puts "==============================="
-    
-    # puts "====================================="
-    # puts @user
-    # puts "====================================="
-    if @user.save!
-      flash[:notice] = "User has been created successfully"
-      redirect_to new_user_session_path
+  # PUT /resource
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes!(user_params)
+      flash[:notice] = "User updated"
+      redirect_to users_path
     else
-      flash[:notice] = "User can't save"
       redirect_to :back
     end
   end
-
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
-
-  # PUT /resource
-  # def update
-  #   super
-  # end
 
   # DELETE /resource
   # def destroy
@@ -79,7 +82,11 @@ class Registrations::RegistrationsController < Devise::RegistrationsController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :role)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
+  end
+
+  devise_parameter_sanitizer.for(:account_update) do |u|
+    u.permit(:name, :email, :password, :password_confirmation, :current_password)
   end
 
 end

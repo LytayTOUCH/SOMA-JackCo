@@ -2,7 +2,8 @@
   %h1
     = "WarehouseType"
     .pull-right
-      = link_to "New WarehouseType", new_warehouse_type_path, class: "btn btn-primary"
+      - if can? :create, WarehouseType
+        = link_to "New WarehouseType", new_warehouse_type_path, class: "btn btn-primary"
   %hr
   = render partial: 'form_search'
   %hr

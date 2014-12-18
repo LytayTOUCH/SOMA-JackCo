@@ -72,7 +72,7 @@ development:
   <<: *defaults
 
 test:
-  database: soma_database_test
+  database: soma_test
   host: localhost
   <<: *defaults
 

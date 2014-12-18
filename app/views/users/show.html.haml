@@ -1,0 +1,32 @@
+%h1 User Information
+%div
+  %table.table
+    %tr.header
+      %th Fields
+      %th Information
+    %tr
+      %th Email
+      %td= @user.email
+    %tr
+      %th Role
+      %td= @user.role
+    %tr
+      %th Modules
+      %td
+        - if @user.role == "admin"
+          = 'all'
+        - else
+          - @user.resources.each_with_index do |resource, index|
+            = resource.name
+            - if index + 1 != @user.resources.length
+              = ', '
+    %tr
+      %th Active
+      %td
+        - if @user.active?
+          = "yes" 
+        - else  
+          = "no"
+= link_to "New user", new_user_path, class: "btn btn-primary"
+= link_to "Edit user", edit_user_path, class: "btn btn-primary"
+= link_to "Cancel", :back, class: "btn btn-default"

@@ -1,10 +1,10 @@
 %table.table
   %thead
     %tr
-      %th.col-md-4= "Name"
+      %th.col-md-5= "Name"
       %th.col-md-3= "Position"
       %th.col-md-2= "Active"
-      %td.col-md-1= "Action"
+      %th.col-md-2= "Action"
   %tbody
     - @labors.each do |labor|
       %tr
@@ -15,6 +15,7 @@
         - else
           %td= "Inactived"
         %td
-          = link_to "Edit", edit_labor_path(labor)
+          - if can? :update, labor
+            = link_to "Edit", edit_labor_path(labor)
 .pull-right
   = paginate @labors

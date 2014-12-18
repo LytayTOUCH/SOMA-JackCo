@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   # root 'devise/sessions#new'
+  devise_for :users, controllers: { registrations: "users" } 
+    # as :user do
+    #   get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
+    #   put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
+    # end
+  # devise_for :users, controllers: { registrations: "registrations/registrations" }
 
-  devise_for :users, controllers: { registrations: "registrations" }
+  # devise_for :users, controllers: { registrations: "registrations" }
 
   resources :dashboards, only: [:index]
   resources :machineries, only: [:index]
@@ -29,6 +35,13 @@ Rails.application.routes.draw do
     get '/' => 'devise/sessions#new'
   end
 
+  resources :users do
+    member do
+      get 'edit_profile'
+      put 'update_profile'
+    end
+  end
+
   resources :accounts, only: [:index]
   resources :dashboards
   resources :warehouse_types
@@ -40,6 +53,8 @@ Rails.application.routes.draw do
       get 'resources'
     end
   end
+
+  # get 'edit/:id', to: 'users#edit', as: 'edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

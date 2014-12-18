@@ -11,7 +11,13 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+  def after_update_path_for(resource)
+    users_path(resource)
+  end
+
+  protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:role, :resource_ids)
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password) }
   end
 end
