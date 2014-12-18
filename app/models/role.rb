@@ -16,4 +16,5 @@ class Role < ActiveRecord::Base
   #   puts "================************================"
   #   resource_ids = ids.split(",")
   # end
+  
 end
