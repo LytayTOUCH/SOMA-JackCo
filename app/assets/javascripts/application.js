@@ -7,6 +7,9 @@
 //= require bootstrap/modal
 //= require bootstrap/dropdown
 //= require select2
+//= require fullcalendar
+//= require moment
+//= require_tree .
 
 $(document).ready(function() {
   NProgress.start();

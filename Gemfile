@@ -52,6 +52,9 @@ end
 
 gem 'cancan'
 gem 'rolify'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+
 # ruby '2.0.0'
 
 # Use ActiveModel has_secure_password
