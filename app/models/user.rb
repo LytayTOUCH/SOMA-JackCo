@@ -14,16 +14,4 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable#, :confirmable
-
-  def resource_tokens=(ids)
-    puts "================************================"
-    resource_ids = ids.split(",")
-  end
-         
-  # scope :get_role?, ->(r) { where("role < ?", r) }
-  def is_role?(user)
-    admin_role = Role.find(:first, :conditions => ["role = ?", "admin"])
-    return user.roles.include?(admin_role)
-  end
-
 end
