@@ -1,5 +1,5 @@
 .row
-  %h3= "Edit User Profile"
+  %h1= "Edit Profile"
   %hr
   = simple_form_for @user_account, url: url_for(:action => 'update_profile', controller: 'users'), :method => 'put', html: { class: "form-horizontal" } do |f|
     .form-group
