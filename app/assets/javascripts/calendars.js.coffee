@@ -1,36 +1,32 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 $(document).ready ->
-  $('#calendar').fullCalendar
-    editable: true,
+  $("#calendar").fullCalendar
+    editable: true
     header:
-      left: 'prev,next today',
-      center: 'title',
-      right: 'month,agendaWeek,agendaDay'
-    defaultView: 'month',
-    height: 500,
-    slotMinutes: 30,
+      left: "prev,next today"
+      center: "title"
+      right: "month,agendaWeek,agendaDay"
 
-    eventSources: [{
-      url: '/events',
-    }],
-
-    timeFormat: 'h:mm t{ - h:mm t} ',
+    defaultView: "month"
+    height: 500
+    slotMinutes: 30
+    eventSources: [url: "/events"]
+    timeFormat: "h:mm t{ - h:mm t} "
     dragOpacity: "0.5"
-
     eventDrop: (event, dayDelta, minuteDelta, allDay, revertFunc) ->
-      updateEvent(event);
+      updateEvent event
 
     eventResize: (event, dayDelta, minuteDelta, revertFunc) ->
-      updateEvent(event);
+      updateEvent event
 
+    dayClick: (date, jsEvent, view) ->
+    	moment = date.getDate()
+      alert ("Date is " + moment)
 
-updateEvent = (the_event) ->
-  $.update "/events/" + the_event.id,
-    event:
-      title: the_event.title,
-      starts_at: "" + the_event.start,
-      ends_at: "" + the_event.end,
-      description: the_event.description
+    updateEvent: (the_event) ->
+      $.update "/events/" + the_event.id,
+        event:
+          title: the_event.title
+          starts_at: "" + the_event.start
+          ends_at: "" + the_event.end
+          description: the_event.description
+
