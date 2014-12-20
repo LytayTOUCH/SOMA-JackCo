@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#calendar .fc-header {
+  margin: 0;
+  background: #009f3b;
+}
+
 .fc-event-skin {
   background-color: #3366CC;
   border-color: #3366CC;
@@ -9,9 +14,13 @@
 }
 
 .fc-widget-header{
-  background-color: #009f3b;;
+  background-color: #5dcf88;
   margin-top: 10px;
   color: white;
+}
+
+.fc-content td:hover{
+  background: #CCF5DE;
 }
 
 /*
@@ -52,29 +61,30 @@ html .fc,
 ------------------------------------------------------------------------*/
 
 .fc-header td {
-  white-space: nowrap;
+  border: 1px solid #009f3b;
   }
 
 .fc-header-left {
   width: 25%;
   text-align: left;
-  border: 1px solid #fff;
+  
   }
   
 .fc-header-center {
   text-align: center;
-  border: 1px solid #fff;
+  
   }
   
 .fc-header-right {
   width: 25%;
   text-align: right;
-  border: 1px solid #fff;
+  
   }
   
 .fc-header-title {
   display: inline-block;
   vertical-align: top;
+  color: #fff;
   }
   
 .fc-header-title h2 {
@@ -89,12 +99,15 @@ html .fc,
 .fc-header .fc-button {
   margin-bottom: 1em;
   vertical-align: top;
+  background: #5dcf88;
+  border: 1px solid #009f3b;
   }
   
 /* buttons edges butting together */
 
 .fc-header .fc-button {
   margin-right: -1px;
+  border: 1px solid #009f3b;
   }
   
 .fc-header .fc-corner-right {
@@ -146,7 +159,7 @@ html .fc,
   }
   
 .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
-  background: #ffc;
+  background: #34cf6e;
   }
   
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */
@@ -189,8 +202,8 @@ html .fc,
   line-height: 1.9em;
   padding: 0 .6em;
   white-space: nowrap;
-  background: #009f3b;
-  color: #ededed;
+  background: #098939;
+  color: #fff;
   }
   
 /* icon (for jquery ui) */

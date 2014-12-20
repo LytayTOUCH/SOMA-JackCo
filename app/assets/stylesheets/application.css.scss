@@ -12,6 +12,10 @@
 @import "override_bootstrap";
 @import "machineries";
 
+.modal-dialog-center {
+  width: 100%;
+}
+
 .cs-border{
   border: 1px #cccccc solid;
   padding-top: 10px;

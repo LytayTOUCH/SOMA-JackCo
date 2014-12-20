@@ -1,2 +1,54 @@
 #calendar
 
+/ Large modal
+#myModal.modal.fade.bs-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#myLargeModalLabel.modal-title Choose an Activity
+      .modal-body
+        .row
+          .activity-type-chooser-list
+            .col-md-2.col-md-offset-1
+              = link_to "Tilling", warehouses_path, class: "btn activity-pannel btn-danger" 
+              / %a.activity-pannel.pannel-soil.btn.btn-danger.activity-type-button-alpha.log_planting{:href => "#activity/log?activity_type_id=planting&amp;date=2014-12-01"}
+              /   %h6 Tilling
+            .col-md-2
+              = link_to "Planting", warehouses_path, class: "btn activity-pannel btn-warning" 
+            .col-md-2    
+              = link_to "Spraying", warehouses_path, class: "btn activity-pannel btn-success" 
+              / %a.activity-pannel.btn.btn-success.activity-type-button-alpha.log_spraying{:href => "#activity/log?activity_type_id=spraying&amp;date=2014-12-01"}
+              /   %h6 Spraying
+            .col-md-2
+              = link_to "Fertilizing", warehouses_path, class: "btn activity-pannel btn-danger" 
+              / %a.activity-pannel.btn.btn-danger.activity-type-button-alpha.log_harvesting{:href => "#activity/log?activity_type_id=harvesting&amp;date=2014-12-01"}
+              /   %h6 Fertilizing
+
+            .col-md-2
+              = link_to "Harvesting", warehouses_path, class: "btn activity-pannel btn-danger" 
+              / %a.activity-pannel.btn.btn-danger.activity-type-button-alpha.log_harvesting{:href => "#activity/log?activity_type_id=harvesting&amp;date=2014-12-01"}
+              /   %h6 Harvesting    
+        / %br
+        / .row
+        /   .activity-type-chooser-list
+        /     / %a.btn.btn-primary.activity-type-button-alpha.log_tilling, warehouses_path
+        /     .col-md-2.col-md-offset-2
+        /       %a.activity-pannel.pannel-soil.btn.btn-danger.activity-type-button-alpha.log_planting{:href => "#activity/log?activity_type_id=planting&amp;date=2014-12-01"}
+        /         %h6 Tilling
+        /     .col-md-2
+        /       %a.activity-pannel.btn.btn-warning.activity-type-button-alpha.log_planting{:href => "#activity/log?activity_type_id=planting&amp;date=2014-12-01"}
+        /         %h6 Planting
+        /     .col-md-2    
+        /       %a.activity-pannel.btn.btn-success.activity-type-button-alpha.log_spraying{:href => "#activity/log?activity_type_id=spraying&amp;date=2014-12-01"}
+        /         %h6 Spraying
+        /     .col-md-2
+        /       %a.activity-pannel.btn.btn-danger.activity-type-button-alpha.log_harvesting{:href => "#activity/log?activity_type_id=harvesting&amp;date=2014-12-01"}
+        /         %h6 Harvesting
+            
+
+      .modal-footer
+        .pull-right
+          = submit_tag 'Cancel', :type => :reset, :class => "btn btn-default", "data-dismiss" => "modal", "aria-hidden" => "true"

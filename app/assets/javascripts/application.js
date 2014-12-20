@@ -3,13 +3,13 @@
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
-//= require bootstrap/scrollspy
 //= require bootstrap/modal
+//= require bootstrap/scrollspy
 //= require bootstrap/dropdown
 //= require select2
 //= require fullcalendar
 //= require moment
-//= require_tree .
+//= require calendars
 
 $(document).ready(function() {
   NProgress.start();
