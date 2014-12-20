@@ -6,21 +6,38 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Role.create(name: 'admin', note: 'Controlling all modules', label: 'Admin')
-Role.create(name: 'top_manager', note: 'Can read all modules and download all reports', label: 'TOP Manager')
-Role.create(name: 'officer', note: 'Can input all modules', label: 'Officer')
-Role.create(name: 'it', note: 'Can edit all modules', label: 'IT')
+[
+  {name: 'admin', note: 'Controlling all modules', label: 'Admin'},
+  {name: 'top_manager', note: 'Can read all modules and download all reports', label: 'TOP Manager'},
+  {name: 'officer', note: 'Can input all modules', label: 'Officer'},
+  {name: 'it', note: 'Can edit all modules', label: 'IT'}
+].each do |role|
+  Role.create_with(note: role[:note], label: role[:label]).find_or_create_by(name: role[:name])
+end
 
-Resource.create(name: 'User', note: 'Controlling users')
-Resource.create(name: 'Warehouse', note: 'Controlling warehouses')
-Resource.create(name: 'Labor', note: 'Controlling labors')
-Resource.create(name: 'Machinery', note: 'Controlling machineries')
-Resource.create(name: 'Material', note: 'Controlling materials')
-Resource.create(name: 'Zone', note: 'Controlling zones')
+[ 
+  {name: 'User', note: 'Controlling users'},
+  {name: 'Warehouse', note: 'Controlling warehouses'},
+  {name: 'Labor', note: 'Controlling labors'},
+  {name: 'Machinery', note: 'Controlling machineries'},
+  {name: 'Material', note: 'Controlling materials'},
+  {name: 'Zone', note: 'Controlling zones'}
+].each do |resource|
+  Resource.create_with(note: resource[:note]).find_or_create_by(name: resource[:name])
+end
 
-Project.create([{ name: 'Jackfruit' }, { name: 'Coconut' }])
+[ 
+  { name: 'Tilling', note: '' },
+  { name: 'Planting', note: '' },
+  { name: 'Spraying', note: '' },
+  { name: 'Fertilizing', note: '' }
+].each do |activity|
+  Activity.create_with(note: activity[:note]).find_or_create_by(name: activity[:name])
+end
 
-Activity.create([{ name: 'Tilling', note: '' }, { name: 'Planting', note: '' }, { name: 'Spraying', note: '' }, { name: 'Spraying', note: '' }, { name: 'Fertilizing', note: '' }])
-
-# HOW TO RUN:
-# rake db:seed
+[ 
+  { name: 'Jackfruit' },
+  { name: 'Coconut' }
+].each do |project|
+  Project.find_or_create_by(name: project[:name])
+end
