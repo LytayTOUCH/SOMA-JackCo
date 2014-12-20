@@ -18,7 +18,9 @@ Resource.create(name: 'Machinery', note: 'Controlling machineries')
 Resource.create(name: 'Material', note: 'Controlling materials')
 Resource.create(name: 'Zone', note: 'Controlling zones')
 
-# run:
-# rake db:seed
-
 Project.create([{ name: 'Jackfruit' }, { name: 'Coconut' }])
+
+Activity.create([{ name: 'Tilling', note: '' }, { name: 'Planting', note: '' }, { name: 'Spraying', note: '' }, { name: 'Spraying', note: '' }, { name: 'Fertilizing', note: '' }])
+
+# HOW TO RUN:
+# rake db:seed

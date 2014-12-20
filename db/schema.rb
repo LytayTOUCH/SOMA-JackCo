@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211092638) do
+ActiveRecord::Schema.define(version: 20141219041322) do
+
+  create_table "activities", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,                 null: false
+    t.string   "name",       limit: 100,                null: false
+    t.text     "note"
+    t.boolean  "active",                 default: true
+    t.boolean  "boolean",                default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "implement_types", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include UuidHelper
-  # rolify
+
   attr_reader :resource_tokens
   attr_accessor :current_password
   before_create :resource_tokens
