@@ -7,6 +7,7 @@
 //= require bootstrap/modal
 //= require bootstrap/dropdown
 //= require select2
+//= require fields
 
 $(document).ready(function() {
   NProgress.start();
