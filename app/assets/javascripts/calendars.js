@@ -1,6 +1,7 @@
 $(document).ready(function() {
   return $("#calendar").fullCalendar({
     editable: true,
+    
     header: {
       left: "prev,next today",
       center: "title",
@@ -17,20 +18,23 @@ $(document).ready(function() {
     ],
     timeFormat: "h:mm t{ - h:mm t} ",
     dragOpacity: "0.5",
+
     eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
       return updateEvent(event);
     },
+
     eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
       return updateEvent(event);
     },
+
     dayClick: function(date, jsEvent, view) {
       //var moment = date.getDate();
       //alert(moment);
       $('#myModal').modal('hide');
       // $('#myModal').addClass('fade');
       $('#myModal').modal('show');
-      
     },
+
     updateEvent: function(the_event) {
       return $.update("/events/" + the_event.id, {
         event: {
@@ -41,5 +45,6 @@ $(document).ready(function() {
         }
       });
     }
+
   });
 });

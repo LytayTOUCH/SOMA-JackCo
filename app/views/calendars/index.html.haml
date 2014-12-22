@@ -13,17 +13,17 @@
         .row
           .activity-type-chooser-list
             .col-md-2.col-md-offset-1
-              = link_to "Tilling", warehouses_path, class: "btn activity-pannel btn-danger" 
+              = link_to "Tilling", new_event_path, class: "btn activity-pannel btn-danger" 
               / %a.activity-pannel.pannel-soil.btn.btn-danger.activity-type-button-alpha.log_planting{:href => "#activity/log?activity_type_id=planting&amp;date=2014-12-01"}
               /   %h6 Tilling
             .col-md-2
-              = link_to "Planting", warehouses_path, class: "btn activity-pannel btn-warning" 
+              = link_to "Planting", new_event_path, class: "btn activity-pannel btn-warning" 
             .col-md-2    
-              = link_to "Spraying", warehouses_path, class: "btn activity-pannel btn-success" 
+              = link_to "Spraying", new_warehouse_type_path, class: "btn activity-pannel btn-success" 
               / %a.activity-pannel.btn.btn-success.activity-type-button-alpha.log_spraying{:href => "#activity/log?activity_type_id=spraying&amp;date=2014-12-01"}
               /   %h6 Spraying
             .col-md-2
-              = link_to "Fertilizing", warehouses_path, class: "btn activity-pannel btn-danger" 
+              = link_to "Fertilizing", new_warehouse_type_path, class: "btn activity-pannel btn-danger" 
               / %a.activity-pannel.btn.btn-danger.activity-type-button-alpha.log_harvesting{:href => "#activity/log?activity_type_id=harvesting&amp;date=2014-12-01"}
               /   %h6 Fertilizing
 
