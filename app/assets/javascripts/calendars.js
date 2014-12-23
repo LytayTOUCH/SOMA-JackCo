@@ -28,11 +28,13 @@ $(document).ready(function() {
     },
 
     dayClick: function(date, jsEvent, view) {
-      //var moment = date.getDate();
-      //alert(moment);
       $('#myModal').modal('hide');
-      // $('#myModal').addClass('fade');
+      $('#myModal').addClass('fade');
       $('#myModal').modal('show');
+
+      var myDate = new Date();
+      myDate.setDate(date.getDate());
+      $('#current-date').val(myDate);
     },
 
     updateEvent: function(the_event) {
@@ -47,4 +49,5 @@ $(document).ready(function() {
     }
 
   });
+
 });

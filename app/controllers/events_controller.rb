@@ -5,15 +5,12 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-    # @events = Event.between(params['start'], params['end']) if (params['start'] && params['end'])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @events }
     end
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
     @event = Event.find(params[:id])
 
@@ -23,24 +20,21 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/new
-  # GET /events/new.json
   def new
     @event = Event.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @event }
-    end
+    puts "========================================="
+    puts @event.starts_at = params['current-date']
+    @event.ends_at = params['current-date']
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    #   format.json { render :json => @event }
+    # end
   end
 
-  # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
   end
 
-  # POST /events
-  # POST /events.json
   def create
     @event = Event.new(event_params)
 
@@ -55,8 +49,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # PUT /events/1
-  # PUT /events/1.json
   def update
     @event = Event.find(params[:id])
 
@@ -71,8 +63,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
     @event = Event.find(params[:id])
     @event.destroy

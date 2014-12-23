@@ -10,6 +10,7 @@
 //= require fullcalendar
 //= require moment
 //= require calendars
+//= require events
 
 $(document).ready(function() {
   NProgress.start();
