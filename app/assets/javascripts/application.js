@@ -11,7 +11,12 @@
 //= require moment
 //= require calendars
 //= require events
+//= require bootstrap-datetimepicker
 
 $(document).ready(function() {
   NProgress.start();
+});
+
+$(function() {
+  $('input.datepicker').datepicker();
 });

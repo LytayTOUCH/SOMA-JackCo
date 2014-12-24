@@ -1,0 +1,10 @@
+.row
+  %h1
+    = "Activity"
+    .pull-right
+      - if can? :create, Activity
+        = link_to "New Activity", new_activity_path, class: "btn btn-primary"
+  %hr
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'

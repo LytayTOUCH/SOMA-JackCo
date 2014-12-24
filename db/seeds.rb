@@ -22,3 +22,8 @@ Resource.create(name: 'Zone', note: 'Controlling zones')
 # rake db:seed
 
 Project.create([{ name: 'Jackfruit' }, { name: 'Coconut' }])
+
+ActivityType.create(name: 'tilling', note: 'Tilling trees')
+ActivityType.create(name: 'planting', note: 'Planting trees')
+ActivityType.create(name: 'fertilizing', note: 'Fertilizing trees')
+ActivityType.create(name: 'harvesting', note: 'Harvesting products')

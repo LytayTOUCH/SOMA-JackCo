@@ -1,0 +1,22 @@
+= simple_form_for @activity, html: { class: "form-horizontal" } do |f|
+  / .form-group
+  /   %label.col-xs-1.control-label.text-left Warehouse Type
+  /   .col-xs-5
+  /     = f.input :activity_type_uuid, label: false, collection: @activity_types, input_html: {class: "form-control"}, include_blank: true
+  /     %span.help-block= f.error :activity_type_uuid
+  .form-group
+    %label.col-xs-1.control-label.text-left Activity Date
+    .col-xs-5
+      = f.input :date, label:false, as: :string, input_html: { class: "form-control datepicker" }
+      %span.help-block= f.error :date  
+  .form-group
+    %label.col-xs-1.control-label.text-left Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: { class: "form-control" }
+      %span.help-block= f.error :note
+  .form-group
+    .col-xs-6.col-sm-offset-1
+      .pull-right
+        = render partial: 'form_button', locals: { f: f }
+
+

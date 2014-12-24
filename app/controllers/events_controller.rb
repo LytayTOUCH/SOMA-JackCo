@@ -22,13 +22,8 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    puts "========================================="
-    puts @event.starts_at = params['current-date']
+    @event.starts_at = params['current-date']
     @event.ends_at = params['current-date']
-    # respond_to do |format|
-    #   format.html # new.html.erb
-    #   format.json { render :json => @event }
-    # end
   end
 
   def edit

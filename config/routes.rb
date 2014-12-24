@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     end
   end
   resources :calendars, only: [:index]
+  resources :activities
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

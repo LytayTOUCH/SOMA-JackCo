@@ -54,6 +54,7 @@ gem 'cancan'
 gem 'rolify'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 
 # ruby '2.0.0'
 

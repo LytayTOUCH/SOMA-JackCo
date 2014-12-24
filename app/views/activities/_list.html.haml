@@ -1,0 +1,17 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-4 Activity
+      %th.col-md-3 Activity Date
+      %th.col-md-2 Note
+      %th.col-md-1 Actions
+  - @activities.each do |activity|
+    %tr
+      %td= activity.activity_type.name
+      %td= activity.date
+      %td= activity.note
+      %td
+        - if can? :update, activity
+          = link_to "Edit", edit_activity_path(activity)
+.pull-right
+  = paginate @activities

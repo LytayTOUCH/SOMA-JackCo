@@ -11,19 +11,16 @@
       .modal-body
         .row
           .activity-type-chooser-list
-            .col-md-2.col-md-offset-1
-              %form{action: new_event_path}
-                %input#current-date{:type => "hidden", name: "current-date"}
-                / %input{type: "submit"}
+            %form{ action: new_event_path }          
+              %input#current-date{:type => "hidden", name: "current-date"}
+              .col-md-2.col-md-offset-2
                 %input.btn.btn-primary.activity-pannel{type: "submit", value: "Tilling"}
-            .col-md-2
-              = link_to "Planting", new_event_path, class: "btn activity-pannel btn-warning", id: "btn-planting" 
-            .col-md-2
-              = link_to "Spraying", new_warehouse_type_path, class: "btn activity-pannel btn-success" 
-            .col-md-2
-              = link_to "Fertilizing", new_warehouse_type_path, class: "btn activity-pannel btn-danger" 
-            .col-md-2
-              = link_to "Harvesting", warehouses_path, class: "btn activity-pannel btn-danger"
+              .col-md-2
+                %input.btn.btn-danger.activity-pannel{type: "submit", value: "Planting"}
+              .col-md-2
+                %input.btn.btn-warning.activity-pannel{type: "submit", value: "Fertilizing"}
+              .col-md-2
+                %input.btn.btn-danger.activity-pannel{type: "submit", value: "Harvesting"}
       .modal-footer
         .pull-right
           = submit_tag 'Cancel', :type => :reset, :class => "btn btn-default", "data-dismiss" => "modal", "aria-hidden" => "true"
