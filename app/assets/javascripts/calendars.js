@@ -37,13 +37,12 @@ $(document).ready(function() {
       $('#current-date').val(myDate);
     },
 
-    updateEvent: function(the_event) {
-      return $.update("/events/" + the_event.id, {
+    updateEvent: function(activity) {
+      return $.update("/events/" + activity.id, {
         event: {
-          title: the_event.title,
-          starts_at: "" + the_event.start,
-          ends_at: "" + the_event.end,
-          description: the_event.description
+          title: activity.activity_type.name,
+          date: "" + activity.date,
+          note: activity.note
         }
       });
     }

@@ -6,15 +6,25 @@
  *= require nprogress-bootstrap
  *= require fullcalendar
  *= require select2
- *= require bootstrap-datetimepicker
+ *= require datePicker
  */
 
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 @import "override_bootstrap";
 @import "machineries";
 
 .modal-dialog-center {
   width: 100%;
+}
+
+.activity-title {
+  font-size: 30px;
+  color: #a1a1a1;
+}
+
+.activity-label {
+  padding-top: 13px;
 }
 
 /*.form-group .control-label {

@@ -1,13 +1,20 @@
 = simple_form_for @activity, html: { class: "form-horizontal" } do |f|
-  / .form-group
-  /   %label.col-xs-1.control-label.text-left Warehouse Type
-  /   .col-xs-5
-  /     = f.input :activity_type_uuid, label: false, collection: @activity_types, input_html: {class: "form-control"}, include_blank: true
-  /     %span.help-block= f.error :activity_type_uuid
+  = f.input :activity_type_uuid, as: "hidden", lable: false, input_html: {value: @activity_type_uuid}
+  .form-group
+    %label.activity-label.col-xs-2.text-left Activity
+    .col-xs-4
+      %label.activity-title
+        = @activity_type_name
+      / = f.input :activity_type_uuid, label: false, collection: @activity_types, input_html: {class: "form-control"}, include_blank: true, label_method: :name
+      %span.help-block= f.error :activity_type_uuid
   .form-group
     %label.col-xs-1.control-label.text-left Activity Date
     .col-xs-5
-      = f.input :date, label:false, as: :string, input_html: { class: "form-control datepicker" }
+      #datetimepicker1.input-group.date
+        / %input.form-control{ type: "text", name: "date" }
+        = f.input :starts_at, label: false, input_html: { class: "form-control" }
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-calendar
       %span.help-block= f.error :date  
   .form-group
     %label.col-xs-1.control-label.text-left Note
@@ -19,4 +26,7 @@
       .pull-right
         = render partial: 'form_button', locals: { f: f }
 
-
+  :javascript
+    $(function () {
+      $('#datetimepicker1').datetimepicker();
+    });

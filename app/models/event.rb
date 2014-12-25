@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
       description: self.description || "",
       start: starts_at,
       end: ends_at,
-      allDay: self.all_day,
+      # allDay: self.all_day,
       recurring: false,
       url: Rails.application.routes.url_helpers.event_path(id),
       #:color => "red"

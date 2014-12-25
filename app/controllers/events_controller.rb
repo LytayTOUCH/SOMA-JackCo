@@ -37,6 +37,9 @@ class EventsController < ApplicationController
       if @event.save!
         format.html { redirect_to calendars_path, :notice => 'Event was successfully created.' }
         format.json { render :json => @event, :status => :created, :location => @event }
+        puts "==========================================================="
+        puts json: @event
+        puts "==========================================================="
       else
         format.html { render action: "new" }
         format.json { render :json => @event.errors, :status => :unprocessable_entity }

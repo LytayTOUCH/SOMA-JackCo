@@ -11,16 +11,16 @@
       .modal-body
         .row
           .activity-type-chooser-list
-            %form{ action: new_event_path }          
+            %form{ action: new_activity_path }          
               %input#current-date{:type => "hidden", name: "current-date"}
               .col-md-2.col-md-offset-2
-                %input.btn.btn-primary.activity-pannel{type: "submit", value: "Tilling"}
+                %input.btn.btn-primary.activity-pannel{type: "submit", value: "Tilling", id: "btn-tilling", name: "activity_type"}
               .col-md-2
-                %input.btn.btn-danger.activity-pannel{type: "submit", value: "Planting"}
+                %input.btn.btn-danger.activity-pannel{type: "submit", value: "Planting", id: "btn-planting", name: "activity_type"}
               .col-md-2
-                %input.btn.btn-warning.activity-pannel{type: "submit", value: "Fertilizing"}
+                %input.btn.btn-warning.activity-pannel{type: "submit", value: "Fertilizing", id: "btn-fertilizing", name: "activity_type"}
               .col-md-2
-                %input.btn.btn-danger.activity-pannel{type: "submit", value: "Harvesting"}
+                %input.btn.btn-danger.activity-pannel{type: "submit", value: "Harvesting", id: "btn-harvesting", name: "activity_type"}
       .modal-footer
         .pull-right
           = submit_tag 'Cancel', :type => :reset, :class => "btn btn-default", "data-dismiss" => "modal", "aria-hidden" => "true"

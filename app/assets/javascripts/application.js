@@ -17,6 +17,3 @@ $(document).ready(function() {
   NProgress.start();
 });
 
-$(function() {
-  $('input.datepicker').datepicker();
-});

@@ -8,7 +8,7 @@
   - @activities.each do |activity|
     %tr
       %td= activity.activity_type.name
-      %td= activity.date
+      %td= activity.starts_at
       %td= activity.note
       %td
         - if can? :update, activity
