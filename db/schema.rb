@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219041322) do
+ActiveRecord::Schema.define(version: 20141224065404) do
 
   create_table "activities", id: false, force: true do |t|
     t.string   "uuid",       limit: 36,                 null: false
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20141219041322) do
     t.text     "note"
     t.boolean  "active",                 default: true
     t.boolean  "boolean",                default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fields", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,  null: false
+    t.string   "name",       limit: 100, null: false
+    t.float    "dimension",  limit: 24,  null: false
+    t.string   "address"
+    t.text     "note"
+    t.text     "lat_long",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

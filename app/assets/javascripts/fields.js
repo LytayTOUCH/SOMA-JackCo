@@ -1,6 +1,7 @@
 // http://stackoverflow.com/questions/19487751/array-contains-latitude-and-longitude-of-a-polygon-in-google-maps-drawingmanager
 
 $(document).ready(function() {
+
   var mapOptions = {
     center: new google.maps.LatLng(-34.397, 150.644),
     zoom: 8
@@ -34,8 +35,10 @@ $(document).ready(function() {
     var polygonBounds = polygon.getPath();
     var coordinates = [];
     for(var i = 0 ; i < polygonBounds.length ; i++) {
-      coordinates.push(polygonBounds.getAt(i).lat(), polygonBounds.getAt(i).lng());
+      coordinates.push({"lat": polygonBounds.getAt(i).lat(), "long": polygonBounds.getAt(i).lng()});
     }
     $('#form-model-field').modal();
+    $("#field_lat_long").val(JSON.stringify(coordinates));
   });
+
 });
