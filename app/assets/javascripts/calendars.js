@@ -28,13 +28,16 @@ $(document).ready(function() {
     },
 
     dayClick: function(date, jsEvent, view) {
-      $('#myModal').modal('hide');
-      $('#myModal').addClass('fade');
-      $('#myModal').modal('show');
-
       var myDate = new Date();
       myDate.setDate(date.getDate());
       $('#current-date').val(myDate);
+
+      window.location = "/activities/new?current_date="+myDate;
+
+      // $('#myModal').modal('hide');
+      // $('#myModal').addClass('fade');
+      // $('#myModal').modal('show');
+      
     },
 
     updateEvent: function(activity) {

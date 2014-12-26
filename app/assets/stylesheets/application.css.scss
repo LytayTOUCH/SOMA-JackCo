@@ -19,12 +19,21 @@
 }
 
 .activity-title {
-  font-size: 30px;
-  color: #a1a1a1;
+  font-size: 17px;
+  color: #737272;
+}
+
+.no-border{
+  outline: 0;
+  hight: 20px;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .activity-label {
-  padding-top: 13px;
+  padding-top: 7px;
 }
 
 /*.form-group .control-label {

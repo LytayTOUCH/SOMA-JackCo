@@ -41,17 +41,44 @@
 }
 
 .activity-pannel{
-  height: 90px;
-  width: 89px;
+  height: 70px;
+  width: 205px;
   padding-top: 5px;
   text-align: center;
   padding-left: 10px;
+  font-size: 20px;
 }
+
+.modal-content {
+  width: 500px;
+}
+
+.modal-header {
+  background: #009f3b;
+  color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-header .close{
+  color: white;
+}
+
+.modal-body {
+  height: 100px;
+}
+
+.modal-footer {
+  height: 50px;
+  padding-top: 7px;
+}
+
 .pannel-soil{
   color: white;
   background-color: #764802;
   border-color: #240100;
 }
+
 .pannel-soil:hover{
   color: white;
   background-color: #4A260D;

@@ -30,11 +30,19 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-    @activity_type_name = params[:activity_type]
-    @activity_type_uuid = ActivityType.find_by(name: params[:activity_type]).uuid
+    # @activity_type_name = params[:activity_type]
+    # @activity_type_uuid = ActivityType.find_by(name: params[:activity_type]).uuid
     @activity = Activity.new
     @activity_types = ActivityType.all
-    @activity.starts_at = params['current-date']
+    puts "=========================="
+    puts params[:current_date]
+    puts "=========================="
+    @activity.starts_at = params[:current_date]
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @activity }
+    end
   end
 
   def create
@@ -60,7 +68,6 @@ class ActivitiesController < ApplicationController
   end
 
   def edit
-    @activity_type_name = params[:activity_type]
     @activity = Activity.find(params[:id])
     @activity_types = ActivityType.all
   end

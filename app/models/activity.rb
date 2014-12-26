@@ -12,10 +12,11 @@ class Activity < ActiveRecord::Base
       note: self.note || "",
       start: starts_at,
       # activity_type_uuid: self.activity_type_uuid,
-      title: 'hello',
+      # title: 'hello',
       recurring: false,
       url: Rails.application.routes.url_helpers.activity_path(uuid),
       #:color => "red"
+      backgroundColor: "blue"
     }
   end
 
