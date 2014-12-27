@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :events
-
   # root 'devise/sessions#new'
   devise_for :users, controllers: { registrations: "users" } 
     # as :user do

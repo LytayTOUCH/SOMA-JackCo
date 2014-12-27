@@ -1,19 +1,14 @@
 = simple_form_for @activity, html: { class: "form-horizontal" } do |f|
-  / = @activity.activity_type.name
-  / = f.input :activity_type_uuid, as: "hidden", lable: false, input_html: {value: @activity_type_uuid}
   %input#current-date{type: "hidden", name: "current-date"}
   .form-group
     %label.activity-label.col-xs-1.text-left Activity
     .col-xs-5
-      / %label.activity-title
-      / = @activity_type_name
       = f.input :activity_type_uuid, label: false, collection: @activity_types, input_html: {class: "form-control activity-title"}, include_blank: true, label_method: :name
       %span.help-block= f.error :activity_type_uuid
   .form-group
     %label.col-xs-1.control-label.text-left Activity Date
     .col-xs-5
       #datetimepicker1.input-group.date
-        / %input.form-control{ type: "text", name: "date" }
         = f.input :starts_at, label: false, input_html: { class: "form-control" }, value: :current_date
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar

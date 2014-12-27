@@ -1,6 +1,8 @@
 class Activity < ActiveRecord::Base
   include UuidHelper
 
+  # attr_accessible :uuid, :note, :starts_end, :activity_type_uuid
+
   belongs_to :activity_type, foreign_key: :activity_type_uuid
 
   validates :starts_at, presence: true
@@ -8,20 +10,26 @@ class Activity < ActiveRecord::Base
 
   def as_json(options = {})
     {
-      uuid: self.uuid,
+      id: self.uuid,
+      title: self.activity_type.name,
       note: self.note || "",
       start: starts_at,
-      # activity_type_uuid: self.activity_type_uuid,
+
       # title: 'hello',
       recurring: false,
       url: Rails.application.routes.url_helpers.activity_path(uuid),
       #:color => "red"
-      backgroundColor: "blue"
+      
     }
   end
 
   def self.format_date(date_time)
     Time.at(date_time.to_i).to_formatted_s(:db)
+  end
+
+  private
+  def activity_params
+    params.require(:activity).permit(:starts_at, :note, :activity_type_uuid)
   end
 
 end

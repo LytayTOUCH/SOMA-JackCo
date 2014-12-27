@@ -11,21 +11,22 @@ $(document).ready(function() {
     defaultView: "month",
     height: 500,
     slotMinutes: 30,
+
     eventSources: [
       {
-        url: "/events"
+        url: "/activities"
       }
     ],
     timeFormat: "h:mm t{ - h:mm t} ",
     dragOpacity: "0.5",
 
-    eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
-      return updateEvent(event);
-    },
+    // eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+    //   return updateEvent(event);
+    // },
 
-    eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
-      return updateEvent(event);
-    },
+    // eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+    //   return updateEvent(event);
+    // },
 
     dayClick: function(date, jsEvent, view) {
       var myDate = new Date();
@@ -40,11 +41,16 @@ $(document).ready(function() {
       
     },
 
+    eventClick: function(event, element) {
+      // window.location = "/activities/edit/"+activity.uuid;
+      $('#calendar').fullCalendar('updateEvent', event);
+    },
+
     updateEvent: function(activity) {
-      return $.update("/events/" + activity.id, {
+      return $.update("/activities/" + activity.uuid, {
         event: {
-          title: activity.activity_type.name,
-          date: "" + activity.date,
+          title: activity.activity_type_uuid,
+          starts_at: "" + activity.starts_at,
           note: activity.note
         }
       });
