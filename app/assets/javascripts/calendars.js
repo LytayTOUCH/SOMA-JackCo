@@ -20,13 +20,14 @@ $(document).ready(function() {
     timeFormat: "h:mm t{ - h:mm t} ",
     dragOpacity: "0.5",
 
-    // eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
-    //   return updateEvent(event);
-    // },
+    eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+      return updateEvent(event);
+    },
 
-    // eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
-    //   return updateEvent(event);
-    // },
+    eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+      // return updateEvent(event);
+      alert('Hello');
+    },
 
     dayClick: function(date, jsEvent, view) {
       var myDate = new Date();
@@ -43,7 +44,7 @@ $(document).ready(function() {
 
     eventClick: function(event, element) {
       // window.location = "/activities/edit/"+activity.uuid;
-      $('#calendar').fullCalendar('updateEvent', event);
+      // $('#calendar').fullCalendar('updateEvent', event);
     },
 
     updateEvent: function(activity) {
