@@ -1,0 +1,21 @@
+%h1 Activity Information
+%div
+  %table.table
+    %tr.header
+      %th Fields
+      %th Information
+    %tr
+      %th Name
+      %td= @activity.activity_type.name
+    %tr
+      %th Date
+      %td= @activity.starts_at  
+    %tr
+      %th Note
+      %td= @activity.note
+    
+- if can? :create, Activity          
+  = link_to "New activity", new_activity_path, class: "btn btn-primary"
+- if can? :update, Activity            
+  = link_to "Edit activity", edit_activity_path, class: "btn btn-primary"
+= link_to "Cancel", :back, class: "btn btn-default"

@@ -6,12 +6,10 @@
       = f.input :activity_type_uuid, label: false, collection: @activity_types, input_html: {class: "form-control activity-title"}, include_blank: true, label_method: :name
       %span.help-block= f.error :activity_type_uuid
   .form-group
-    %label.col-xs-1.control-label.text-left Activity Date
+    / %label.col-xs-1.control-label.text-left Activity Date
     .col-xs-5
-      #datetimepicker1.input-group.date
-        = f.input :starts_at, label: false, input_html: { class: "form-control" }, value: :current_date
-        %span.input-group-addon
-          %span.glyphicon.glyphicon-calendar
+      / #datetimepicker1.input-group.date
+      = f.input :starts_at, as: :hidden, label: false, input_html: { class: "form-control" }, value: :current_date
       %span.help-block= f.error :date  
   .form-group
     %label.col-xs-1.control-label.text-left Note
@@ -23,7 +21,7 @@
       .pull-right
         = render partial: 'form_button', locals: { f: f }
 
-  :javascript
-    $(function () {
-      $('#datetimepicker1').datetimepicker();
-    });
+  / :javascript
+  /   $(function () {
+  /     $('#datetimepicker1').datetimepicker();
+  /   });

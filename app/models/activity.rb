@@ -18,8 +18,9 @@ class Activity < ActiveRecord::Base
       # title: 'hello',
       recurring: false,
       url: Rails.application.routes.url_helpers.activity_path(uuid),
-      #:color => "red"
-      
+      borderColor: "green",
+      backgroundColor: "white",
+      textColor: "green"
     }
   end
 

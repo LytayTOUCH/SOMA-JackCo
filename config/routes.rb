@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # root 'devise/sessions#new'
   devise_for :users, controllers: { registrations: "users" } 
+  # devise_for :users, controllers: { registrations: "registrations" } 
     # as :user do
     #   get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
     #   put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            

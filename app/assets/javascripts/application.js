@@ -10,7 +10,6 @@
 //= require fullcalendar
 //= require moment
 //= require calendars
-//= require events
 //= require bootstrap-datetimepicker
 
 $(document).ready(function() {

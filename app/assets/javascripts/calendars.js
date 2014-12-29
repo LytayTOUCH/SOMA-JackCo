@@ -1,6 +1,8 @@
 $(document).ready(function() {
   return $("#calendar").fullCalendar({
     editable: true,
+    eventLimit: true,
+
     
     header: {
       left: "prev,next today",
@@ -25,8 +27,8 @@ $(document).ready(function() {
     },
 
     eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
-      // return updateEvent(event);
-      alert('Hello');
+      return updateEvent(event);
+      // alert('Hello');
     },
 
     dayClick: function(date, jsEvent, view) {
