@@ -1,24 +1,30 @@
 $(document).ready(function() {
   return $("#calendar").fullCalendar({
     editable: true,
-    eventLimit: true,
-
-    
+    eventLimit: 3,
+    droppable: true,
+  
     header: {
       left: "prev,next today",
       center: "title",
       right: "month,agendaWeek,agendaDay"
     },
+
     default: true,
     defaultView: "month",
     height: 500,
     slotMinutes: 30,
 
-    eventSources: [
-      {
-        url: "/activities"
-      }
-    ],
+    eventSources: [{
+      url: "/activities"
+    }],
+
+    eventRender: function(activity, element){ 
+      element.find('.fc-event-title').append(" " + activity.note); 
+      // var c = element.find('.fc-day-count').length;
+      // alert(c);
+    },
+
     timeFormat: "h:mm t{ - h:mm t} ",
     dragOpacity: "0.5",
 
@@ -41,13 +47,13 @@ $(document).ready(function() {
       // $('#myModal').modal('hide');
       // $('#myModal').addClass('fade');
       // $('#myModal').modal('show');
-      
     },
 
     eventClick: function(event, element) {
       // window.location = "/activities/edit/"+activity.uuid;
       // $('#calendar').fullCalendar('updateEvent', event);
     },
+
 
     updateEvent: function(activity) {
       return $.update("/activities/" + activity.uuid, {

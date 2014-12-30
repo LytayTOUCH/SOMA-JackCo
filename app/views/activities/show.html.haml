@@ -13,9 +13,7 @@
     %tr
       %th Note
       %td= @activity.note
-    
-- if can? :create, Activity          
-  = link_to "New activity", new_activity_path, class: "btn btn-primary"
+= link_to "New activity", new_activity_path, class: "btn btn-primary"
 - if can? :update, Activity            
   = link_to "Edit activity", edit_activity_path, class: "btn btn-primary"
 = link_to "Cancel", :back, class: "btn btn-default"

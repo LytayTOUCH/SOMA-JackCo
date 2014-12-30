@@ -27,3 +27,5 @@ ActivityType.create(name: 'Tilling', note: 'Tilling trees')
 ActivityType.create(name: 'Planting', note: 'Planting trees')
 ActivityType.create(name: 'Fertilizing', note: 'Fertilizing trees')
 ActivityType.create(name: 'Harvesting', note: 'Harvesting products')
+
+User.create!({email: "teopaocheak@yahoo.com", password: "12345678", password_confirmation: "12345678", role: 'admin'})
