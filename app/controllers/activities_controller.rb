@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
@@ -89,8 +89,18 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def destroy
+    @activity = Activity.find(params[:id])
+    @activity.destroy
+
+    respond_to do |format|
+      format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
+      format.json { render json: @activity, status: :created, location: @activity }
+    end
+  end
+
   private
-    def set_event
+    def set_activity
       @activity = Activity.find(params[:id])
     end
     

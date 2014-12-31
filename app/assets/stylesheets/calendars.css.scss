@@ -6,6 +6,7 @@
   margin: 0;
   /* background: #009f3b; */
   background: green;
+  height: 60px;
 }
 
 .fc-event-skin {
@@ -15,7 +16,7 @@
 }
 
 .fc-widget-header{
-  background-color: #5dcf88;
+  background-color: green;
   margin-top: 10px;
   color: white;
 }
@@ -69,7 +70,9 @@ html .fc,
   
 .fc td,
 .fc th {
-  padding: 0;
+  border-style: solid;
+  border-width: 1px;
+  padding: 6px;
   vertical-align: top;
   }
   
@@ -78,14 +81,15 @@ html .fc,
 ------------------------------------------------------------------------*/
 
 .fc-header td {
-  border: 1px solid #009f3b;
+  border: 1px solid green;
   }
 
 .fc-header-left {
   width: 25%;
+  border-radius: 10px;
   text-align: left;
-  
-  }
+  padding: 10px;  
+}
   
 .fc-header-center {
   text-align: center;
@@ -345,7 +349,7 @@ a.fc-event {
   
 .fc-event-time,
 .fc-event-title {
-  padding: 0 1px;
+  padding-top: 10px;
   }
   
 .fc .ui-resizable-handle { /*** TODO: don't use ui-resizable anymore, change class ***/
@@ -460,7 +464,7 @@ table.fc-border-separate {
   
 .fc-border-separate th,
 .fc-border-separate td {
-  border-width: 1px 0 0 1px;
+  border: 1px solid green;
   }
   
 .fc-border-separate th.fc-last,
@@ -471,11 +475,12 @@ table.fc-border-separate {
 .fc-border-separate tr.fc-last th,
 .fc-border-separate tr.fc-last td {
   border-bottom-width: 1px;
+
   }
   
 .fc-border-separate tbody tr.fc-first td,
 .fc-border-separate tbody tr.fc-first th {
-  border-top-width: 0;
+  border-top-width: 1;
   }
   
   

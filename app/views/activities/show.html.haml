@@ -13,7 +13,20 @@
     %tr
       %th Note
       %td= @activity.note
-= link_to "New activity", new_activity_path, class: "btn btn-primary"
 - if can? :update, Activity            
   = link_to "Edit activity", edit_activity_path, class: "btn btn-primary"
+
+  %button.btn.btn-danger{"data-target" => "#delete-modal", "data-toggle" => "modal", :type => "button"}
+    Delete
 = link_to "Cancel", :back, class: "btn btn-default"
+
+#delete-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        Are you sure?
+      .modal-body.text-center
+        By clicking on Delete, you will delete this Activity. 
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+        %input.btn.btn-danger.danger{type: "", value: "Delete"}

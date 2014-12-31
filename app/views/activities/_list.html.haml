@@ -13,5 +13,8 @@
       %td
         - if can? :update, activity
           = link_to "Edit", edit_activity_path(activity)
+        = "|"
+        %button{"data-target" => "#delete-modal", "data-toggle" => "modal", :type => "button"}
+        Delete
 / .pull-right
 /  = paginate @activities

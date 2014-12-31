@@ -14,5 +14,9 @@
 
 $(document).ready(function() {
   NProgress.start();
+
+  $("#delete-modal").on('hidden.bs.modal', function () {
+    $(this).data('bs.modal', null);
+	});
 });
 
