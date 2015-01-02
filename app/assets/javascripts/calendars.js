@@ -1,14 +1,8 @@
-$(document).ready(function() {
+$(document).on('ready page:load',function() {
   return $("#calendar").fullCalendar({
     editable: true,
     droppable: true,
-    eventLimit: true,
-    views: {
-      agenda: {
-          eventLimit: 3 // adjust to 6 only for agendaWeek/agendaDay
-      }
-    },
-  
+    
     header: {
       left: "prev,next today",
       center: "title",

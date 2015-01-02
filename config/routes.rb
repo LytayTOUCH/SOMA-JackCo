@@ -53,7 +53,7 @@ Rails.application.routes.draw do
       get 'resources'
     end
   end
-  resources :calendars, only: [:index]
+  resources :calendars
   resources :activities
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'

@@ -7,8 +7,8 @@ class ActivitiesController < ApplicationController
     # begin
     #   @activity = Activity.new
 
-    #   if params[:activity] and params[:activity][:name] and !params[:activity][:name].nil?
-    #     @activities = Activity.find_by_name(params[:activity][:name]).page(params[:page]).per(5)
+    #   if params[:activity] and params[:activity][:starts_at] and !params[:activity][:starts_at].nil?
+    #     @activities = Activity.find_by_date(params[:activity][:starts_at]).page(params[:page]).per(5)
     #   else
     #     @activities = Activity.page(params[:page]).per(5)
     #   end
@@ -17,10 +17,6 @@ class ActivitiesController < ApplicationController
     # end
 
     @activities = Activity.all
-    puts "-------------------------------------"
-    puts @activities
-    # puts :json => @activities
-    puts "-------------------------------------"
     respond_to do |format|
       format.html
       format.json { render :json => @activities }
@@ -37,8 +33,6 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-    # @activity_type_name = params[:activity_type]
-    # @activity_type_uuid = ActivityType.find_by(name: params[:activity_type]).uuid
     @activity = Activity.new
     @activity_types = ActivityType.all
     @activity.starts_at = params[:current_date]
@@ -53,9 +47,6 @@ class ActivitiesController < ApplicationController
         if @activity.save!
           format.html { redirect_to calendars_path, :notice => 'Activity was successfully created.' }
           format.json { render :json => @activity, :status => :created, :location => @activity }
-          # puts "==========================================================="
-          # puts json: @activity
-          # puts "==========================================================="
         else
           flash[:notice] = "Activity type can't save"
           format.html { render action: "new" }
@@ -93,10 +84,22 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     @activity.destroy
 
-    respond_to do |format|
-      format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
-      format.json { render json: @activity, status: :created, location: @activity }
-    end
+    puts "======================================"
+    puts URI(request.referer).path.split('/')[1]
+    # puts request.original_url
+    puts "======================================"
+
+    if request.original_url == 'activities'
+      respond_to do |format|
+        format.html { redirect_to activities_path, :notice => 'Activity was successfully deleted.' }
+        format.json { render json: @activity, status: :created, location: @activity }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
+        format.json { render json: @activity, status: :created, location: @activity }
+      end
+    end   
   end
 
   private

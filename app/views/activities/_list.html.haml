@@ -4,7 +4,7 @@
       %th.col-md-3 Activity
       %th.col-md-3 Activity Date
       %th.col-md-3 Note
-      %th.col-md-1 Actions
+      %th.col-md-2 Actions
   - @activities.each do |activity|
     %tr
       %td= activity.activity_type.name
@@ -12,9 +12,32 @@
       %td= activity.note
       %td
         - if can? :update, activity
-          = link_to "Edit", edit_activity_path(activity)
-        = "|"
-        %button{"data-target" => "#delete-modal", "data-toggle" => "modal", :type => "button"}
-        Delete
+          = link_to "Edit", edit_activity_path(activity), class: "btn btn-primary btn-xs"
+        %a.delete-confirm.btn.btn-danger.btn-xs{ "data-id" => activity.id, :href => "#delete-confirm" }
+          Delete
+
+      :javascript
+        $('#delete-confirm').on('show', function() {
+          var $submit = $(this).find('.btn-danger'), href = $submit.attr('href');
+          $submit.attr('href', href.replace('pony', $(this).data('id')));
+        });
+
+        $('.delete-confirm').click(function(e) {
+          e.preventDefault();
+          $('#delete-confirm').data('id', $(this).data('id')).modal('show');
+        });
+
+      #delete-confirm.modal.fade
+        .modal-dialog
+          .modal-content 
+            .modal-header
+              %a.close{"data-dismiss" => "modal"} ×
+              Delete this Activity?
+            .modal-body
+              By clicking on Delete Button, you will destroy this Activity.
+            .modal-footer
+              %a.btn.btn-default{"data-dismiss" => "modal", :href => "#"} Cancel
+              = link_to 'Delete', activity_path(activity), method: :delete, :class => 'btn btn-danger'
+
 / .pull-right
-/  = paginate @activities
+/   = paginate @activities
