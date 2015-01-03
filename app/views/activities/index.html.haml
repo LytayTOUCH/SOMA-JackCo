@@ -3,7 +3,7 @@
     = "Activity"
     .pull-right
       - if can? :create, Activity
-        = link_to "New Activity", calendars_path, class: "btn btn-primary"
+        = link_to "Log Activity", calendars_path, class: "btn btn-primary"
   %hr
   = render partial: 'form_search'
   %hr

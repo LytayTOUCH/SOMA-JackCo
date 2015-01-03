@@ -27,7 +27,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @activity }
     end
   end
@@ -36,7 +36,6 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
     @activity_types = ActivityType.all
     @activity.starts_at = params[:current_date]
-
   end
 
   def create
@@ -83,23 +82,24 @@ class ActivitiesController < ApplicationController
   def destroy
     @activity = Activity.find(params[:id])
     @activity.destroy
+    redirect_url = (request.referer.include?("#{@activity.id}/show") ? activties_url : :back)
 
     puts "======================================"
-    puts URI(request.referer).path.split('/')[1]
-    # puts request.original_url
+    # puts URI(request.referer).path.split('/')[1]
+    puts request.original_url
     puts "======================================"
 
-    if request.original_url == 'activities'
-      respond_to do |format|
-        format.html { redirect_to activities_path, :notice => 'Activity was successfully deleted.' }
-        format.json { render json: @activity, status: :created, location: @activity }
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
-        format.json { render json: @activity, status: :created, location: @activity }
-      end
-    end   
+    # if request.original_url == 'activities'
+    #   respond_to do |format|
+    #     format.html { redirect_to activities_path, :notice => 'Activity was successfully deleted.' }
+    #     format.json { render json: @activity, status: :created, location: @activity }
+    #   end
+    # else
+    respond_to do |format|
+      format.html { redirect_to activities_path, :notice => 'Activity was successfully deleted.' }
+      format.json { render json: @activity, status: :created, location: @activity }
+    end
+    # end   
   end
 
   private
