@@ -80,23 +80,24 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
+    # puts "======================================"
     @activity = Activity.find(params[:id])
+    # puts "======================================"
     @activity.destroy
-    redirect_url = (request.referer.include?("#{@activity.id}/show") ? activties_url : :back)
 
     puts "======================================"
-    # puts URI(request.referer).path.split('/')[1]
-    puts request.original_url
+    puts URI(request.referer).path.split('/')[1]
     puts "======================================"
 
-    # if request.original_url == 'activities'
+    # if URI(request.referer).path.split('/')[1] == 'calendars'
     #   respond_to do |format|
-    #     format.html { redirect_to activities_path, :notice => 'Activity was successfully deleted.' }
+    #     format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
     #     format.json { render json: @activity, status: :created, location: @activity }
     #   end
-    # else
+    # elsif URI(request.referer).path.split('/')[1] == 'activities'
+    
     respond_to do |format|
-      format.html { redirect_to activities_path, :notice => 'Activity was successfully deleted.' }
+      format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
       format.json { render json: @activity, status: :created, location: @activity }
     end
     # end   

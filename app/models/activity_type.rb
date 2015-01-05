@@ -3,4 +3,6 @@ class ActivityType < ActiveRecord::Base
 
   has_one :activity
 
+  validates :name, length: { maximum: 50 }
+
 end

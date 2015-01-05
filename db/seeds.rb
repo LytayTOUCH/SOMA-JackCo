@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create!({email: "teopaocheak@yahoo.com", password: "12345678", password_confirmation: "12345678", role: 'admin'})
+
 Role.create(name: 'admin', note: 'Controlling all modules', label: 'Admin')
 Role.create(name: 'top_manager', note: 'Can read all modules and download all reports', label: 'TOP Manager')
 Role.create(name: 'officer', note: 'Can input all modules', label: 'Officer')
@@ -28,4 +30,10 @@ ActivityType.create(name: 'Planting', note: 'Planting trees')
 ActivityType.create(name: 'Fertilizing', note: 'Fertilizing trees')
 ActivityType.create(name: 'Harvesting', note: 'Harvesting products')
 
-User.create!({email: "teopaocheak@yahoo.com", password: "12345678", password_confirmation: "12345678", role: 'admin'})
+Stage.create(name: 'Stage 1: Nursery (age:1-4month)', period: '4 months', note: 'Phase 1: Seed (Nursery)')
+Stage.create(name: 'Stage 2: Planting', period: '45-50 days', note: 'Phase 1: Seed (Nursery)')
+Stage.create(name: 'Stage 3: Baby Coconut (age: 1-2 years)', period: '2 years', note: 'Phase 2: Plant Growing & Protection')
+Stage.create(name: 'Stage 4: Adult Coconut (Developing age: 3-4 years)', period: '2 years', note: 'Phase 2: Plant Growing & Protection')
+Stage.create(name: 'Stage 5: First Production (age: 5-7 years)', period: '3 years', note: 'Phase3: Production & Harvesting')
+Stage.create(name: 'Stage 6: Full Production (age: 8-15 years)', period: '8 years', note: 'Phase3: Production & Harvesting')
+Stage.create(name: 'Stage 7: Decreasing Production (age: 16-20 years)', period: '5 years', note: 'Phase3: Production & Harvesting')

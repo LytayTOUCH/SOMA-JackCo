@@ -1,0 +1,47 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-5= "Stage Name"
+      %th.col-md-2= "Period"
+      %th.col-md-3= "Note"
+      %th.col-md-2= "Actions"
+  - @stages.each do |stage|
+    = stage.id
+    %tr
+      %td= stage.name
+      %td= stage.period
+      %td= stage.note
+      %td
+        - if can? :update, Stage
+          = link_to "Edit", edit_stage_path(stage)
+        = '|'  
+        / = link_to "Delete", stage, method: :delete, :data => { :confirm => 'Are you sure?'}   
+        = stage.id
+        %a.delete-confirm.btn.btn-danger.btn-xs{ "data-id" => stage.id, :href => "#delete-confirm" }
+          Delete  
+
+        :javascript
+          $('#delete-confirm').on('show', function() {
+            var $submit = $(this).find('.btn-danger'), href = $submit.attr('href');
+            $submit.attr('href', href.replace('pony', $(this).data('id')));
+          });
+
+          $('.delete-confirm').click(function(e) {
+            console.log($(this).data('id'));
+            e.preventDefault();
+            $('#delete-confirm').data('id', $(this).data('id')).modal('show');
+          });
+
+        #delete-confirm.modal.fade
+          .modal-dialog
+            .modal-content 
+              .modal-header
+                %a.close{"data-dismiss" => "modal"} ×
+                Delete this Stage?
+              .modal-body
+                By clicking on Delete Button, you will destroy this Stage.
+              .modal-footer
+                %a.btn.btn-default{"data-dismiss" => "modal", :href => "#"} Cancel
+                = link_to 'Delete', stage, method: :delete, class: 'btn btn-danger'  
+.pull-right
+  = paginate @stages

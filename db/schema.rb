@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141225065723) do
+ActiveRecord::Schema.define(version: 20150105042237) do
 
   create_table "activities", id: false, force: true do |t|
     t.string   "uuid",               limit: 36, null: false
@@ -141,6 +141,15 @@ ActiveRecord::Schema.define(version: 20141225065723) do
 
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+
+  create_table "stages", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36, null: false
+    t.string   "name",       limit: 50, null: false
+    t.string   "period",     limit: 30, null: false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "suppliers", id: false, force: true do |t|
     t.string   "uuid",           limit: 36,                 null: false

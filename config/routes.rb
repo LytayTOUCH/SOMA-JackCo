@@ -48,13 +48,16 @@ Rails.application.routes.draw do
   resources :warehouses
   resources :user_groups
   resources :resources
+
   resources :roles do
     collection do
       get 'resources'
     end
   end
+  
   resources :calendars
   resources :activities
+  resources :stages
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
