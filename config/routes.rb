@@ -54,7 +54,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :fields, except: [:destroy]
+  resources :fields, except: [:destroy] do
+    collection do 
+      get 'fields'
+    end
+  end
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
