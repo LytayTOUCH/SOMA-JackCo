@@ -1,0 +1,19 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-4 Code
+      %th.col-md-3 Status
+      %th.col-md-3 Type
+      %th.col-md-2 Stage
+      %th.col-md-1 Actions
+  - @coconuts.each do |coconut|
+    %tr
+      %td= coconut.code
+      %td= coconut.status
+      %td= coconut.type
+      %td= coconut.stage_uuid.name
+      %td
+        - if can? :update, coconut
+          = link_to "Edit", edit_coconut_path(coconut)
+.pull-right
+  = paginate @coconuts

@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   resources :calendars
   resources :activities
   resources :stages
+  resources :coconuts
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
