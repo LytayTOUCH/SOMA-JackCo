@@ -28,8 +28,7 @@
     %label.col-xs-2.control-label.text-left Growing Date
     .col-xs-5
       .input-group.date.date_pick
-        = f.input :growing_date, label: false, as: :string, input_html: { class: "form-control", value: DateTime.now.strftime('%Y-%m-%d') }, data: { date_format: "YYYY/MM/dd"}, placeholder: "YYYY-MM-DD"
-        / , value: Time.now.strftime('%Y/%m/%d')
+        = f.text_field :growing_date, :class => "form-control", :type => "text", :data => {:date_format => "YYYY/MM/DD"}, :placeholder => "Year-Month-Day", :readonly => true
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar    
       %span.help-block= f.error :growing_date  
@@ -44,8 +43,10 @@
         = render partial: 'form_button', locals: { f: f }
 
 :javascript
-  $(function () {
-    $('.date_pick').datetimepicker({
-      pickTime: false
+  $(document).ready(function() {
+    $(function () {
+      $('.date_pick').datetimepicker({
+        pickTime: false
+      });
     });
   });

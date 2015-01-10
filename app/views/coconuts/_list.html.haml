@@ -13,7 +13,7 @@
       %td= coconut.status
       %td= coconut.coco_type
       %td= coconut.stage.name
-      %td= coconut.growing_date.strftime('%B-%d-%Y')
+      %td= coconut.growing_date.strftime('%Y-%B-%d')
       %td
         - if can? :update, coconut
           = link_to "Edit", edit_coconut_path(coconut)
