@@ -9,5 +9,6 @@ end
 describe Activity, 'column_specification' do
   it { should have_db_column(:uuid).of_type(:string).with_options(length: { maximum: 36 }, presence: true) }
   it { should have_db_column(:starts_at).of_type(:datetime), presence: true }
+  it { should have_db_column(:label).of_type(:string) }
   it { should have_db_column(:note).of_type(:text) }
 end

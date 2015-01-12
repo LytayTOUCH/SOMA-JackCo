@@ -1,20 +1,22 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
+  # load_and_authorize_resource
+
   respond_to :html
 
   def index
-    # begin
-    #   @activity = Activity.new
+    begin
+      @activity = Activity.new
 
-    #   if params[:activity] and params[:activity][:starts_at] and !params[:activity][:starts_at].nil?
-    #     @activities = Activity.find_by_date(params[:activity][:starts_at]).page(params[:page]).per(5)
-    #   else
-    #     @activities = Activity.page(params[:page]).per(5)
-    #   end
-    # rescue Exception => e
-    #   puts e
-    # end
+      if params[:activity] and params[:activity][:starts_at] and !params[:activity][:starts_at].nil?
+        @paginate_activities = Activity.find_by_date(params[:activity][:starts_at]).page(params[:page]).per(5)
+      else
+        @paginate_activities = Activity.page(params[:page]).per(5)
+      end
+    rescue Exception => e
+      puts e
+    end
 
     @activities = Activity.all
     respond_to do |format|

@@ -1,4 +1,6 @@
 class ImplementsController < ApplicationController
+  load_and_authorize_resource
+  
   def new
     @implement = Implement.new
     @implement_types = ImplementType.all

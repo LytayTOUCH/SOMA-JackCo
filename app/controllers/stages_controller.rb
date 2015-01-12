@@ -1,4 +1,6 @@
 class StagesController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     begin
       @stage = Stage.new

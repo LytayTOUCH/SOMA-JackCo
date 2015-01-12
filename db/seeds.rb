@@ -25,10 +25,10 @@ Resource.create(name: 'Zone', note: 'Controlling zones')
 
 Project.create([{ name: 'Jackfruit' }, { name: 'Coconut' }])
 
-ActivityType.create(name: 'Tilling', note: 'Tilling trees')
-ActivityType.create(name: 'Planting', note: 'Planting trees')
-ActivityType.create(name: 'Fertilizing', note: 'Fertilizing trees')
-ActivityType.create(name: 'Harvesting', note: 'Harvesting products')
+ActivityType.create(name: 'Tilling', note: 'Tilling trees', label: 'Tilling')
+ActivityType.create(name: 'Planting', note: 'Planting trees', label: 'Planting')
+ActivityType.create(name: 'Fertilizing', note: 'Fertilizing trees', label: 'Fertilizing')
+ActivityType.create(name: 'Harvesting', note: 'Harvesting products', label: 'Harvesting')
 
 Stage.create(name: 'Stage 1: Nursery (age:1-4month)', period: '4 months', note: 'Phase 1: Seed (Nursery)')
 Stage.create(name: 'Stage 2: Planting', period: '45-50 days', note: 'Phase 1: Seed (Nursery)')

@@ -31,4 +31,6 @@ class Activity < ActiveRecord::Base
     params.require(:activity).permit(:starts_at, :note, :activity_type_uuid)
   end
 
+  scope :find_by_name, -> name {where("Activity.activity_type.name like ?", "%#{name}%") }
+
 end

@@ -1,4 +1,6 @@
 class ImplementTypesController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     begin
       @implement_type = ImplementType.new

@@ -14,21 +14,21 @@
 @import "override_bootstrap";
 @import "machineries";
 
-.modal-dialog-center {
+#delete-confirm.modal-dialog-center {
   width: 100%;
 }
 
-.modal-content {
+#delete-confirm.modal-content {
   margin-left: 70px;
   width: 400px;  
 }
 
-.modal-header {
+#delete-confirm.modal-header {
   height: 50px;
   font-size: 18px;
 }
 
-.modal-body {
+#delete-confirm.modal-body {
   height: 50px;
 }
 
