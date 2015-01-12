@@ -1,6 +1,6 @@
 class Field < ActiveRecord::Base
   include UuidHelper
-  serialize :lat_long
+  serialize :lat_long, Array
 
   validates :name, length: { maximum: 100 }, presence: true
   validates :dimension, numericality: true, presence: true

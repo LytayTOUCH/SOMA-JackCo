@@ -1,5 +1,6 @@
 class FieldsController < ApplicationController
   before_filter :set_title
+  respond_to :html, :js
 
   def index
   end
@@ -28,6 +29,7 @@ class FieldsController < ApplicationController
   def create
     begin
       @field = Field.new(field_params)
+      @field.lat_long = JSON.parse(field_params["lat_long"])
 
       if @field.save!
         flash[:notice] = "Field saved successfully"
@@ -44,6 +46,10 @@ class FieldsController < ApplicationController
   def edit
     begin
       @field = Field.find(params[:id])
+      @field.lat_long = @field.lat_long.to_json
+      puts "=================="
+      puts @field.lat_long.to_json
+      puts "=================="
     rescue Exception => e
       puts e
     end
@@ -52,8 +58,10 @@ class FieldsController < ApplicationController
   def update
     begin
       @field = Field.find(params[:id])
+      temp_field_params = field_params
+      temp_field_params[:lat_long] = JSON.parse(field_params["lat_long"])
 
-      if @field.update_attributes!(field_params)
+      if @field.update_attributes!(temp_field_params)
         flash[:notice] = "Field updated successfully"
         redirect_to fields_path
       else

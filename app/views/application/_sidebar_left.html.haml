@@ -2,24 +2,14 @@
   .sidebar-nav
     %ul.nav
       %li PRE SETUP
-      %li
-        = link_to "Implement Type", implement_types_path
-      %li
-        = link_to "Supplier", suppliers_path
-      %li
-        = link_to "Labor", labors_path
-      %li
-        = link_to 'Warehouse Type', warehouse_types_path
+      = navbar_link "Implement Type", implement_types_path, "active"
+      = navbar_link "Supplier", suppliers_path, "active"
+      = navbar_link "Labor", labors_path, "active"
+      = navbar_link "Warehouse Type", warehouse_types_path, "active"
       %li MANAGE
-      %li.active
-        = link_to "Dashboard", dashboards_path
-      %li
-        = link_to "Material", materials_path
-      %li
-        = link_to "Machinery", machineries_path
-      %li
-        = link_to 'Warehouse', warehouses_path
-      %li
-        = link_to 'Fields', fields_path
-      %li
-        = link_to 'Jackfruit', jackfruits_path
+      = navbar_link "Dashboard", dashboards_path, "active"
+      = navbar_link "Material", materials_path, "active"
+      = navbar_link "Machinery", machineries_path, "active"
+      = navbar_link "Warehouse", warehouses_path, "active"
+      = navbar_link "Fields", fields_path, "active"
+      = navbar_link "Jackfruit", jackfruits_path, "active"

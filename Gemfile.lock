@@ -27,6 +27,7 @@ GEM
     activemodel (4.1.6)
       activesupport (= 4.1.6)
       builder (~> 3.1)
+    activenavbar (1.0.4)
     activerecord (4.1.6)
       activemodel (= 4.1.6)
       activesupport (= 4.1.6)
@@ -234,6 +235,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activenavbar (~> 1.0.4)
   bootstrap-sass (~> 3.0.3.0)
   cancan
   capybara (~> 2.2.1)

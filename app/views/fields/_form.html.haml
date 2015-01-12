@@ -111,6 +111,7 @@
             .pull-right
               = render partial: 'form_button', locals: { f: f }
   :javascript
+    console.log(JSON.parse($("#field_lat_long").val()).length);
     var bermudaTriangle;
     var myLatLng = new google.maps.LatLng(-34.397, 150.644);
 

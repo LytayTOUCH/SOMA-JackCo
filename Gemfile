@@ -27,6 +27,7 @@ gem 'draper', '~> 1.3'
 gem 'select2-rails'
 gem 'kaminari'
 gem 'olive', '~> 0.0.1'
+gem 'activenavbar', '~> 1.0.4'
 
 # heroku environment
 gem 'heroku'
