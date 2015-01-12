@@ -47,9 +47,6 @@ class FieldsController < ApplicationController
     begin
       @field = Field.find(params[:id])
       @field.lat_long = @field.lat_long.to_json
-      puts "=================="
-      puts @field.lat_long.to_json
-      puts "=================="
     rescue Exception => e
       puts e
     end
