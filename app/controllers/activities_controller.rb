@@ -3,6 +3,8 @@ class ActivitiesController < ApplicationController
 
   # load_and_authorize_resource
 
+  has_scope :find_by_date, using: :started_at
+
   respond_to :html
 
   def index

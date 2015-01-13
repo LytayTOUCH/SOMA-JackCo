@@ -21,18 +21,18 @@
           %a.delete-confirm.btn.btn-danger.btn-xs{ "data-id" => stage.id, :href => "#delete-confirm" }
             Delete
 
-          #delete-confirm.modal
-            .modal-dialog
-              .modal-content 
-                .modal-header
-                  %a.close{"data-dismiss" => "modal"} ×
-                  Delete this Stage?
-                .modal-body
-                  By clicking on Delete Button, you will destroy this 
-                  = stage.id
-                .modal-footer
-                  %a.btn.btn-default{"data-dismiss" => "modal", :href => "#"} Cancel
-                  = link_to 'Delete', stage, method: :delete, class: 'btn btn-danger' 
+        #delete-confirm.modal
+          .modal-dialog
+            .modal-content 
+              .modal-header
+                %a.close{"data-dismiss" => "modal"} ×
+                Delete this Stage?
+              .modal-body
+                By clicking on Delete Button, you will destroy this 
+                = stage.id
+              .modal-footer
+                %a.btn.btn-default{"data-dismiss" => "modal", :href => "#"} Cancel
+                = link_to 'Delete', stage, method: :delete, class: 'btn btn-danger' 
 
 .pull-right
   = paginate @stages

@@ -60,6 +60,8 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
+gem 'has_scope'
+
 # ruby '2.0.0'
 
 # Use ActiveModel has_secure_password
