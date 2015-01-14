@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(version: 20150112041231) do
     t.datetime "updated_at"
   end
 
+  create_table "fields", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,  null: false
+    t.string   "name",       limit: 100, null: false
+    t.float    "dimension",  limit: 24,  null: false
+    t.string   "address"
+    t.text     "note"
+    t.text     "lat_long",               null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "implement_types", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
     t.string   "name",       limit: 50, null: false
@@ -143,6 +154,13 @@ ActiveRecord::Schema.define(version: 20150112041231) do
     t.datetime "updated_at"
   end
 
+  create_table "resources_users", id: false, force: true do |t|
+    t.string "resource_uuid"
+    t.string "user_uuid"
+  end
+
+  add_index "resources_users", ["resource_uuid", "user_uuid"], name: "index_resources_users_on_resource_uuid_and_user_uuid", using: :btree
+
   create_table "roles", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
     t.string   "name"
@@ -151,10 +169,11 @@ ActiveRecord::Schema.define(version: 20150112041231) do
     t.text     "note"
     t.string   "label"
     t.boolean  "active"
+    t.string   "user_id",    limit: 36
   end
 
+  add_index "roles", ["name", "uuid"], name: "index_roles_on_name_and_resource_type_and_uuid", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
-  add_index "roles", ["name"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
 
   create_table "stages", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
@@ -193,6 +212,17 @@ ActiveRecord::Schema.define(version: 20150112041231) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  create_table "user_groups", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,                null: false
+    t.string   "name",       limit: 50,                null: false
+    t.text     "note"
+    t.boolean  "active",                default: true, null: false
+    t.boolean  "boolean",               default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "label"
   end
 
   create_table "users", id: false, force: true do |t|

@@ -1,10 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
-
   # load_and_authorize_resource
-
-  respond_to :html
-
   def index
     begin
       @activity = Activity.new
@@ -14,24 +9,15 @@ class ActivitiesController < ApplicationController
       else
         @paginate_activities = Activity.page(params[:page]).per(5)
       end
+
+      activities_json
     rescue Exception => e
       puts e
-    end
-
-    @activities = Activity.all
-    respond_to do |format|
-      format.html
-      format.json { render :json => @activities }
     end
   end
 
   def show
     @activity = Activity.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @activity }
-    end
   end
 
   def new
@@ -43,17 +29,13 @@ class ActivitiesController < ApplicationController
   def create
     begin
       @activity = Activity.new(activity_params)
-
-      respond_to do |format|
-        if @activity.save!
-          format.html { redirect_to calendars_path, :notice => 'Activity was successfully created.' }
-          format.json { render :json => @activity, :status => :created, :location => @activity }
-        else
-          flash[:notice] = "Activity type can't save"
-          format.html { render action: "new" }
-          format.json { render json: @activity.errors, status: :unprocessable_entity }
-        end
-      end  
+      if @activity.save!
+        flash[:notice] = "Activity saved successfully"
+        redirect_to calendars_path
+      else
+        flash[:notice] = "Activity can't save"
+        redirect_to :back
+      end
     rescue Exception => e
       puts e
     end
@@ -67,50 +49,40 @@ class ActivitiesController < ApplicationController
   def update
     begin
       @activity = Activity.find(params[:id])
-
-      respond_to do |format|
-        if @activity.update_attributes!(activity_params)
-          format.html { redirect_to calendars_path, :notice => 'Activity was successfully edited.' }
-          format.json { render json: @activity, status: :created, location: @activity }
-        else
-          redirect_to :back
-        end
-      end  
+      if @activity.update_attributes!(activity_params)
+        flash[:notice] = "Activity saved successfully"
+        redirect_to calendars_path
+      else
+        flash[:notice] = "Activity can't save"
+        redirect_to :back
+      end
     rescue Exception => e
       puts e
     end
   end
 
   def destroy
-    # puts "======================================"
     @activity = Activity.find(params[:id])
-    # puts "======================================"
-    @activity.destroy
-
-    puts "======================================"
-    puts URI(request.referer).path.split('/')[1]
-    puts "======================================"
-
-    # if URI(request.referer).path.split('/')[1] == 'calendars'
-    #   respond_to do |format|
-    #     format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
-    #     format.json { render json: @activity, status: :created, location: @activity }
-    #   end
-    # elsif URI(request.referer).path.split('/')[1] == 'activities'
-    
-    respond_to do |format|
-      format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
-      format.json { render json: @activity, status: :created, location: @activity }
+    if @activity.destroy!
+      flash[:notice] = "Activity deleted successfully"
+      redirect_to calendars_path
+    else
+      flash[:notice] = "Activity can't delete"
+      redirect_to :back
     end
-    # end   
   end
 
   private
-    def set_activity
-      @activity = Activity.find(params[:id])
+  def activities_json
+    activities = Activity.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: activities }
     end
-    
-    def activity_params
-      params.require(:activity).permit(:starts_at, :note, :activity_type_uuid)
-    end
+  end
+
+  def activity_params
+    params.require(:activity).permit(:starts_at, :note, :activity_type_uuid)
+  end
 end

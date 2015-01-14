@@ -1,1 +1,0 @@
-json.extract! activity, :uuid, :starts_at, :note, :activity_type_uuid, :created_at, :updated_at
