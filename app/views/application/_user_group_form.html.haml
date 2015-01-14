@@ -1,0 +1,21 @@
+= simple_form_for user_group, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-2.control-label Name
+    .col-xs-5
+      = f.input :name, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-2.control-label Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :note
+  .form-group
+    %label.col-xs-2.control-label Active
+    .col-xs-5
+      = f.input :active, label: false
+      %span.help-block= f.error :active
+  .form-group
+    .col-xs-7
+      .pull-right
+        = f.submit class: "btn btn-primary", "data-disable-with" => "Update Warehouse Type"
+        = link_to 'Cancel', :back, class: "btn btn-default"

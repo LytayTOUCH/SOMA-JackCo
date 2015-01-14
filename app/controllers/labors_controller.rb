@@ -1,4 +1,6 @@
 class LaborsController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     begin
       @labor = Labor.new

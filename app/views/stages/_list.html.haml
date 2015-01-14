@@ -1,0 +1,46 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-5= "Stage Name"
+      %th.col-md-2= "Period"
+      %th.col-md-3= "Note"
+      %th.col-md-2= "Actions"
+  %tbody    
+    - @stages.each do |stage|
+      / = link_to 'Delete', stage, method: :delete, class: 'btn btn-danger'
+      %tr
+        %td= stage.name
+        %td= stage.period
+        %td= stage.note
+        %td
+          - if can? :update, Stage
+            = link_to "Edit", edit_stage_path(stage)
+          = '|'  
+          / = link_to "Delete", stage, method: :delete, :data => { :confirm => 'Are you sure?'}
+          
+          %a.delete-confirm.btn.btn-danger.btn-xs{ "data-id" => stage.id, :href => "#delete-confirm" }
+            Delete
+
+          #delete-confirm.modal
+            .modal-dialog
+              .modal-content 
+                .modal-header
+                  %a.close{"data-dismiss" => "modal"} ×
+                  Delete this Stage?
+                .modal-body
+                  By clicking on Delete Button, you will destroy this 
+                  = stage.id
+                .modal-footer
+                  %a.btn.btn-default{"data-dismiss" => "modal", :href => "#"} Cancel
+                  = link_to 'Delete', stage, method: :delete, class: 'btn btn-danger' 
+
+.pull-right
+  = paginate @stages
+  
+:javascript
+  $('.delete-confirm').click(function(e) {
+    e.preventDefault();
+    $('#delete-confirm').modal('show');
+  });
+  
+  

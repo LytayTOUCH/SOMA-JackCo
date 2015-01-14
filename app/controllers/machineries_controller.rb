@@ -1,4 +1,6 @@
 class MachineriesController < ApplicationController
+  authorize_resource :class => false
+  
   def index
     begin
       @tractors = Tractor.all

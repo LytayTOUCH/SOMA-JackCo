@@ -1,0 +1,20 @@
+= simple_form_for @activity, html: { class: "form-horizontal" } do |f|
+  %input#current-date{type: "hidden", name: "current-date"}
+  .form-group
+    %label.col-xs-2.control-label.text-left Activity
+    .col-xs-5
+      = f.input :activity_type_uuid, label: false, collection: @activity_types, input_html: {class: "form-control activity-title"}, include_blank: true, label_method: :name
+      %span.help-block= f.error :activity_type_uuid
+  .form-group
+    .col-xs-5
+      = f.input :starts_at, as: :hidden, label: false, input_html: { class: "form-control" }, value: :current_date
+      %span.help-block= f.error :date
+  .form-group
+    %label.col-xs-2.control-label.text-left Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: { class: "form-control" }
+      %span.help-block= f.error :note
+  .form-group
+    .col-xs-6.col-sm-offset-1
+      .pull-right
+        = render partial: 'form_button', locals: { f: f }

@@ -1,4 +1,6 @@
 class MaintenancesController < ApplicationController
+  load_and_authorize_resource
+  
   def new
     begin
       @maintenance = Maintenance.new(machinery_uuid: params[:machinery_uuid],maintenance_type: params[:maintenance_type])

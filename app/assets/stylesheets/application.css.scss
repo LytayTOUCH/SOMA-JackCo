@@ -4,12 +4,55 @@
  *= require select2
  *= require nprogress
  *= require nprogress-bootstrap
+ *= require fullcalendar
  *= require select2
+ *= require datePicker
  */
 
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 @import "override_bootstrap";
 @import "machineries";
+
+#delete-confirm.modal-dialog-center {
+  width: 100%;
+}
+
+#delete-confirm.modal-content {
+  margin-left: 70px;
+  width: 400px;  
+}
+
+#delete-confirm.modal-header {
+  height: 50px;
+  font-size: 18px;
+}
+
+#delete-confirm.modal-body {
+  height: 50px;
+}
+
+.activity-title {
+  font-size: 17px;
+  color: #737272;
+}
+
+.no-border{
+  outline: 0;
+  hight: 20px;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.activity-label {
+  padding-top: 7px;
+}
+
+/*.form-group .control-label {
+  width: 170px;
+}*/
 
 .cs-border{
   border: 1px #cccccc solid;

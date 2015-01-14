@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # root 'devise/sessions#new'
   devise_for :users, controllers: { registrations: "users" } 
+  # devise_for :users, controllers: { registrations: "registrations" } 
     # as :user do
     #   get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
     #   put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
@@ -48,11 +49,17 @@ Rails.application.routes.draw do
   resources :warehouses
   resources :user_groups
   resources :resources
+
   resources :roles do
     collection do
       get 'resources'
     end
   end
+  
+  resources :calendars
+  resources :activities
+  resources :stages
+  resources :coconuts
 
   resources :fields, except: [:destroy] do
     collection do 

@@ -1,4 +1,6 @@
 class ImplementsController < ApplicationController
+  load_and_authorize_resource
+  
   def new
     begin
       @implement = Implement.new

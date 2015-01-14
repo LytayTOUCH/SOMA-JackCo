@@ -1,4 +1,6 @@
 class MaterialsController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     begin
       @material = Material.new

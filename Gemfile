@@ -53,6 +53,14 @@ end
 
 gem 'cancan'
 gem 'rolify'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
+
+group :assets do
+  gem 'twitter-bootstrap-rails'
+end
+
 # ruby '2.0.0'
 
 # Use ActiveModel has_secure_password

@@ -1,4 +1,6 @@
 class TractorsController < ApplicationController
+  load_and_authorize_resource
+  
   def new
     begin
       @tractor = Tractor.new
