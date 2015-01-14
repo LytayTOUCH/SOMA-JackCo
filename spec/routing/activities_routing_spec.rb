@@ -21,3 +21,4 @@ describe 'routing to activities' do
     expect(put: "/activities/1").to route_to(controller: "activities", action: "update", id: "1")
   end
 end
+

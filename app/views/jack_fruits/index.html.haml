@@ -1,0 +1,12 @@
+.row
+  %h1
+    = "JackFruit"
+    .pull-right
+      - if can? :create, JackFruit
+        = link_to "New JackFruit", new_jack_fruit_path, class: "btn btn-primary"
+  %hr
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'
+  
+    

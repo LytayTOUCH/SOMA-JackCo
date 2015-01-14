@@ -4,7 +4,6 @@ class Stage < ActiveRecord::Base
   has_one :coconut
 
   validates :name, length: { maximum: 50 }, presence: true
-  validates :period, length: { maximum: 50 }, presence: true
 
   scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
 

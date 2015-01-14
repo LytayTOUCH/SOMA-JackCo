@@ -1,5 +1,5 @@
 class MaintenancesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
   
   def new
     @maintenance = Maintenance.new(machinery_uuid: params[:machinery_uuid],maintenance_type: params[:maintenance_type])

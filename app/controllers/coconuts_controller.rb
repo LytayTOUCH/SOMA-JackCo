@@ -1,5 +1,5 @@
 class CoconutsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
 
   def index
     begin
@@ -17,7 +17,7 @@ class CoconutsController < ApplicationController
 
   def new
     @coconut = Coconut.new
-    @stages = Stage.all
+    @stages = Stage.where(fruit_type: 'coconut')
   end
 
   def create
@@ -34,7 +34,7 @@ class CoconutsController < ApplicationController
 
   def edit
     @coconut = Coconut.find(params[:id])
-    @stages = Stage.all
+    @stages = Stage.where(fruit_type: 'coconut')
   end
 
   def update

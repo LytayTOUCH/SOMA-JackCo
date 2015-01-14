@@ -1,7 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
-
-  # load_and_authorize_resource
+  load_and_authorize_resource except: :create
 
   has_scope :find_by_date, using: :started_at
 
@@ -93,25 +91,13 @@ class ActivitiesController < ApplicationController
     puts URI(request.referer).path.split('/')[1]
     puts "======================================"
 
-    # if URI(request.referer).path.split('/')[1] == 'calendars'
-    #   respond_to do |format|
-    #     format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
-    #     format.json { render json: @activity, status: :created, location: @activity }
-    #   end
-    # elsif URI(request.referer).path.split('/')[1] == 'activities'
-    
     respond_to do |format|
       format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
       format.json { render json: @activity, status: :created, location: @activity }
     end
-    # end   
   end
 
-  private
-    def set_activity
-      @activity = Activity.find(params[:id])
-    end
-    
+  private    
     def activity_params
       params.require(:activity).permit(:starts_at, :note, :activity_type_uuid)
     end

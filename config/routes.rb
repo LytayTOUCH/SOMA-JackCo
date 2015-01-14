@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   resources :activities
   resources :stages
   resources :coconuts
+  resources :jack_fruits
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

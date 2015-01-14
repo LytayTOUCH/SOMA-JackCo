@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
   # before_filter :load_permissions
 
   def index

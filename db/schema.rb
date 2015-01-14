@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113044847) do
+ActiveRecord::Schema.define(version: 20150114034603) do
 
   create_table "activities", id: false, force: true do |t|
     t.string   "uuid",               limit: 36, null: false
@@ -75,6 +75,19 @@ ActiveRecord::Schema.define(version: 20150113044847) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  create_table "jack_fruits", id: false, force: true do |t|
+    t.string   "uuid",            limit: 36, null: false
+    t.string   "code",            limit: 50, null: false
+    t.string   "status",          limit: 30, null: false
+    t.string   "jack_fruit_type", limit: 30, null: false
+    t.date     "growing_date"
+    t.string   "field_uuid",      limit: 36, null: false
+    t.string   "stage_uuid",      limit: 36, null: false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "labor_projects", id: false, force: true do |t|
