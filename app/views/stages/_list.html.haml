@@ -2,9 +2,9 @@
   %thead
     %tr
       %th.col-md-5= "Stage Name"
-      %th.col-md-2= "Fruit Type"
+      %th.col-md-1= "Type"
       %th.col-md-4= "Note"
-      %th.col-md-1= "Actions"
+      %th.col-md-2= "Actions"
   %tbody    
     - @stages.each do |stage|
       %tr
@@ -14,8 +14,38 @@
         %td
           - if can? :update, Stage
             = link_to "Edit", edit_stage_path(stage)
-          
-          / = link_to "Delete", stage, method: :delete, :data => { :confirm => 'Are you sure?'}
+          = '|'
+
+          = stage.id
+
+          %a.delete-confirm.btn.btn-danger.btn-xs{ "data-id" => stage.id, :href => "#delete-confirm" }
+            Delete
+
+          #delete-confirm.modal.fade
+            .modal-dialog
+              .modal-content 
+                .modal-header
+                  %a.close{"data-dismiss" => "modal"} ×
+                  Delete this Activity?
+                .modal-body
+                  By clicking on Delete Button, you will destroy this Stage.
+                  = stage.id
+                .modal-footer
+                  %a.btn.btn-default{"data-dismiss" => "modal", :href => "#"} Cancel
+                  = link_to 'Delete', stages_path(stage.id), method: :delete, class: 'btn btn-danger'
 
 .pull-right
   = paginate @stages
+
+:javascript
+  $(document).ready(function() {
+    $('#delete-confirm').on('show', function() {
+      var $submit = $(this).find('.btn-danger'), href = $submit.attr('href');
+      $submit.attr('href', href.replace('pony', $(this).data('id')));
+    });
+
+    $('.delete-confirm').click(function(e) {
+      e.preventDefault();
+      $('#delete-confirm').data('id', $(this).data('id')).modal('show');
+    });  
+  });  

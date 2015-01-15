@@ -21,26 +21,26 @@ class JackFruitsController < ApplicationController
   end
 
   def create
-    @jack_fruit = JackFruit.new(coconut_params)
+    @jack_fruit = JackFruit.new(jack_fruit_params)
 
     if @jack_fruit.save!
-      flash[:notice] = "jack_fruit saved successfully"
+      flash[:notice] = "JackFruit saved successfully"
       redirect_to jack_fruits_path
     else
-      flash[:notice] = "jack_fruit can't be saved"
+      flash[:notice] = "JackFruit can't be saved"
       redirect_to :back
     end
   end
 
   def edit
-    @coconut = JackFruit.find(params[:id])
+    @jack_fruit = JackFruit.find(params[:id])
     @stages = Stage.where(fruit_type: 'jackfruit')
   end
 
   def update
     @jack_fruit = JackFruit.find(params[:id])
     if @jack_fruit.update_attributes!(jack_fruit_params)
-      flash[:notice] = "jack_fruit updated"
+      flash[:notice] = "JackFruit updated"
       redirect_to jack_fruits_path
     else
       redirect_to :back
@@ -49,7 +49,7 @@ class JackFruitsController < ApplicationController
 
   private
   def jack_fruit_params
-    params.require(:coconut).permit(:code, :status, :jack_fruit_type, :growing_date, :field_uuid, :stage_uuid, :note)
+    params.require(:jack_fruit).permit(:code, :grown_by, :jack_fruit_type, :planting_date, :field_uuid, :stage_uuid, :note)
   end
 
 end

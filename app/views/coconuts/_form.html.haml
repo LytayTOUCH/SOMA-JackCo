@@ -15,11 +15,6 @@
       = f.input :stage_uuid, label: false, collection: @stages, input_html: {class: "form-control"}, include_blank: true
       %span.help-block= f.error :stage_uuid
   .form-group
-    %label.col-xs-2.control-label.text-left Coconut Status
-    .col-xs-5
-      = f.input :status, label: false, collection: ["Small", "Medium", "Big"], input_html: { class: "form-control" }
-      %span.help-block= f.error :status
-  .form-group
     %label.col-xs-2.control-label.text-left Coconut Type
     .col-xs-5
       = f.input :coco_type, label: false, collection: ["Khmer", "Malaysia", "Thailand"], input_html: { class: "form-control" }

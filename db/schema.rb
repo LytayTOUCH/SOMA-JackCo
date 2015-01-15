@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114034603) do
+ActiveRecord::Schema.define(version: 20150115021154) do
 
   create_table "activities", id: false, force: true do |t|
     t.string   "uuid",               limit: 36, null: false
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20150114034603) do
   create_table "coconuts", id: false, force: true do |t|
     t.string   "uuid",         limit: 36, null: false
     t.string   "code",         limit: 50, null: false
-    t.string   "status",       limit: 30, null: false
     t.string   "coco_type",    limit: 30, null: false
     t.date     "growing_date"
     t.string   "field_uuid",   limit: 36, null: false
@@ -80,9 +79,9 @@ ActiveRecord::Schema.define(version: 20150114034603) do
   create_table "jack_fruits", id: false, force: true do |t|
     t.string   "uuid",            limit: 36, null: false
     t.string   "code",            limit: 50, null: false
-    t.string   "status",          limit: 30, null: false
+    t.string   "grown_by",        limit: 30, null: false
     t.string   "jack_fruit_type", limit: 30, null: false
-    t.date     "growing_date"
+    t.date     "planting_date"
     t.string   "field_uuid",      limit: 36, null: false
     t.string   "stage_uuid",      limit: 36, null: false
     t.text     "note"
