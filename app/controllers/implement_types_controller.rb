@@ -1,11 +1,7 @@
 class ImplementTypesController < ApplicationController
-<<<<<<< HEAD
   before_filter :set_title
-
-=======
   load_and_authorize_resource
   
->>>>>>> coconut
   def index
     begin
       @implement_type = ImplementType.new
