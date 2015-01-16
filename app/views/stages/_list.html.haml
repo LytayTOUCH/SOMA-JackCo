@@ -7,7 +7,9 @@
       %th.col-md-2= "Actions"
   %tbody    
     - @stages.each do |stage|
-      %tr
+
+      %tr{"data-id" => stage.id, "data-target" => "#orderModal", "data-toggle" => "modal"}
+
         %td= stage.name
         %td= stage.fruit_type
         %td= stage.note
@@ -16,36 +18,36 @@
             = link_to "Edit", edit_stage_path(stage)
           = '|'
 
-          = stage.id
-
           %a.delete-confirm.btn.btn-danger.btn-xs{ "data-id" => stage.id, :href => "#delete-confirm" }
             Delete
 
-          #delete-confirm.modal.fade
-            .modal-dialog
-              .modal-content 
-                .modal-header
-                  %a.close{"data-dismiss" => "modal"} ×
-                  Delete this Activity?
-                .modal-body
-                  By clicking on Delete Button, you will destroy this Stage.
-                  = stage.id
-                .modal-footer
-                  %a.btn.btn-default{"data-dismiss" => "modal", :href => "#"} Cancel
-                  = link_to 'Delete', stages_path(stage.id), method: :delete, class: 'btn btn-danger'
+          #orderModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "orderModalLabel", :role => "dialog"}
+            .modal-header
+              %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} x
+              %h3 Order
+            #orderDetails.modal-body
+            #orderItems.modal-body
+            .modal-footer
+              %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close  
+              = link_to 'Delete', stage, method: :delete, class: 'btn btn-danger'
 
 .pull-right
   = paginate @stages
 
 :javascript
   $(document).ready(function() {
-    $('#delete-confirm').on('show', function() {
-      var $submit = $(this).find('.btn-danger'), href = $submit.attr('href');
-      $submit.attr('href', href.replace('pony', $(this).data('id')));
-    });
+    $(function(){
+      $('#orderModal').modal({
+        keyboard: true,
+        backdrop: "static",
+        show:false,
 
-    $('.delete-confirm').click(function(e) {
-      e.preventDefault();
-      $('#delete-confirm').data('id', $(this).data('id')).modal('show');
-    });  
-  });  
+        }).on('show', function(){
+        var getIdFromRow = $(event.target).closest('tr').data('id');
+        \//make your ajax call populate items or what even you need
+        $(this).find('#orderDetails').html($('
+        %b> Order Id selected: ' + getIdFromRow  + '
+        '))
+      });
+    });
+  });
