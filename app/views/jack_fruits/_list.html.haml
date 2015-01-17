@@ -2,9 +2,9 @@
   %thead
     %tr
       %th.col-md-2 Code
-      %th.col-md-1 Grown By
+      %th.col-md-2 Grown By
       %th.col-md-1 Type
-      %th.col-md-4 Stage
+      %th.col-md-3 Stage
       %th.col-md-2 Date
       %th.col-md-1 Actions
   %tbody
@@ -18,5 +18,7 @@
         %td
           - if can? :update, jack_fruit
             = link_to "Edit", edit_jack_fruit_path(jack_fruit)
+          = '|'
+          = link_to "Show", jack_fruit_path(jack_fruit)
 .pull-right
   = paginate @jack_fruits

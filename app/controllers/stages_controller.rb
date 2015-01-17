@@ -15,6 +15,15 @@ class StagesController < ApplicationController
     end
   end
 
+  def show
+    @stage = Stage.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @stage }
+    end
+  end
+
   def new
     @stage = Stage.new
   end
@@ -54,21 +63,8 @@ class StagesController < ApplicationController
     end
   end
 
-  def destroy
-    puts "======================================"
-    puts params[:id]
-    # puts @stage = Stage.find(params[:id])
-    puts "======================================"
-    @stage.destroy
-
-    respond_to do |format|
-      format.html { redirect_to stages_path, :notice => 'Stage was successfully deleted.' }
-      format.json { render json: @stage, status: :created, location: @stage }
-    end
-  end
-
   private
   def stage_params
-    params.require(:stage).permit(:name, :period, :note, :fruit_type)
+    params.require(:stage).permit(:name, :period, :note, :fruit_type, :active)
   end
 end

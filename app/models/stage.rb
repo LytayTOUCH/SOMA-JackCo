@@ -1,8 +1,8 @@
 class Stage < ActiveRecord::Base
   include UuidHelper
 
-  has_one :coconut, dependent: :destroy
-  has_one :jack_fruit, dependent: :destroy
+  has_one :coconut
+  has_one :jack_fruit
 
   validates :name, length: { maximum: 50 }, presence: true
 

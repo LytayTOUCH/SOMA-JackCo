@@ -20,6 +20,11 @@
       = f.input :fruit_type, label: false, collection: ["jackfruit", "coconut"], input_html: { class: "form-control" }
       %span.help-block= f.error :fruit_type
   .form-group
+    %label.col-xs-2.control-label.text-left Active
+    .col-xs-5
+      = f.input :active, label: false, input_html: { style: "margin-top: 12px;" }
+      %span.help-block= f.error :active
+  .form-group
     .col-xs-7
       .pull-right
         = render partial: 'form_button', locals: { f: f }

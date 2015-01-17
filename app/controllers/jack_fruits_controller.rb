@@ -47,6 +47,16 @@ class JackFruitsController < ApplicationController
     end
   end
 
+  def destroy
+    @jack_fruit = JackFruit.find(params[:id])
+    @jack_fruit.destroy
+
+    respond_to do |format|
+      format.html { redirect_to jack_fruits_path, :notice => 'JackFruit was successfully deleted.' }
+      format.json { render json: @jack_fruit, status: :created, location: @jack_fruit }
+    end
+  end
+
   private
   def jack_fruit_params
     params.require(:jack_fruit).permit(:code, :grown_by, :jack_fruit_type, :planting_date, :field_uuid, :stage_uuid, :note)

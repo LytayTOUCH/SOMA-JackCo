@@ -4,50 +4,22 @@
       %th.col-md-5= "Stage Name"
       %th.col-md-1= "Type"
       %th.col-md-4= "Note"
-      %th.col-md-2= "Actions"
+      %th.col-md-4= "Active"
+      %th.col-md-1= "Actions"
   %tbody    
     - @stages.each do |stage|
-
-      %tr{"data-id" => stage.id, "data-target" => "#orderModal", "data-toggle" => "modal"}
-
+      %tr
         %td= stage.name
         %td= stage.fruit_type
         %td= stage.note
         %td
+          - if stage.active?
+            = "Actived"
+          - else
+            = "Inactived"
+        %td
           - if can? :update, Stage
             = link_to "Edit", edit_stage_path(stage)
-          = '|'
-
-          %a.delete-confirm.btn.btn-danger.btn-xs{ "data-id" => stage.id, :href => "#delete-confirm" }
-            Delete
-
-          #orderModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "orderModalLabel", :role => "dialog"}
-            .modal-header
-              %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} x
-              %h3 Order
-            #orderDetails.modal-body
-            #orderItems.modal-body
-            .modal-footer
-              %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close  
-              = link_to 'Delete', stage, method: :delete, class: 'btn btn-danger'
 
 .pull-right
   = paginate @stages
-
-:javascript
-  $(document).ready(function() {
-    $(function(){
-      $('#orderModal').modal({
-        keyboard: true,
-        backdrop: "static",
-        show:false,
-
-        }).on('show', function(){
-        var getIdFromRow = $(event.target).closest('tr').data('id');
-        \//make your ajax call populate items or what even you need
-        $(this).find('#orderDetails').html($('
-        %b> Order Id selected: ' + getIdFromRow  + '
-        '))
-      });
-    });
-  });

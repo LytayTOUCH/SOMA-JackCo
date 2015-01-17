@@ -12,9 +12,11 @@
         %td= coconut.code
         %td= coconut.coco_type
         %td= coconut.stage.name
-        %td= coconut.growing_date.strftime('%Y-%B-%d')
+        %td= coconut.planting_date.strftime('%Y-%B-%d')
         %td
           - if can? :update, coconut
             = link_to "Edit", edit_coconut_path(coconut)
+          = '|'  
+          = link_to "Show", coconut_path(coconut)
 .pull-right
   = paginate @coconuts
