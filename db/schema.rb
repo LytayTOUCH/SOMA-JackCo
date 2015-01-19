@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20141224065404) do
-
-  create_table "activities", id: false, force: true do |t|
-    t.string   "uuid",       limit: 36,                 null: false
-    t.string   "name",       limit: 100,                null: false
-    t.text     "note"
-    t.boolean  "active",                 default: true
-    t.boolean  "boolean",                default: true
-=======
-ActiveRecord::Schema.define(version: 20150112041231) do
+ActiveRecord::Schema.define(version: 20150115072816) do
 
   create_table "activities", id: false, force: true do |t|
     t.string   "uuid",               limit: 36, null: false
@@ -31,6 +21,10 @@ ActiveRecord::Schema.define(version: 20150112041231) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "label"
+    t.string   "field_uuid",         limit: 36
+    t.string   "labor_uuid",         limit: 36
+    t.string   "tractor_uuid",       limit: 36
+    t.string   "implement_uuid",     limit: 36
   end
 
   create_table "activity_types", id: false, force: true do |t|
@@ -60,7 +54,6 @@ ActiveRecord::Schema.define(version: 20150112041231) do
     t.datetime "ends_at"
     t.boolean  "all_day"
     t.text     "description"
->>>>>>> coconut
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -185,8 +178,6 @@ ActiveRecord::Schema.define(version: 20150112041231) do
 
   add_index "roles", ["name", "uuid"], name: "index_roles_on_name_and_resource_type_and_uuid", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
-<<<<<<< HEAD
-=======
 
   create_table "stages", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
@@ -196,7 +187,6 @@ ActiveRecord::Schema.define(version: 20150112041231) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
->>>>>>> coconut
 
   create_table "suppliers", id: false, force: true do |t|
     t.string   "uuid",           limit: 36,                 null: false

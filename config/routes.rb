@@ -57,13 +57,21 @@ Rails.application.routes.draw do
   end
   
   resources :calendars
-  resources :activities
   resources :stages
   resources :coconuts
 
   resources :fields, except: [:destroy] do
     collection do 
       get 'fields'
+    end
+  end
+
+  resources :activities do
+    collection do 
+      get 'fields'
+      get 'labors'
+      get 'tractors'
+      get 'implements'
     end
   end
 

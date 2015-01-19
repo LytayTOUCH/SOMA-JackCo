@@ -6,6 +6,26 @@
       = f.input :activity_type_uuid, label: false, collection: @activity_types, input_html: {class: "form-control activity-title"}, include_blank: true, label_method: :name
       %span.help-block= f.error :activity_type_uuid
   .form-group
+    %label.col-xs-2.control-label{for: 'activity_field_uuid'} Choose a field
+    .col-xs-5
+      = f.input :field_uuid, label: false
+      %span.help-block= f.error :field_uuid
+  .form-group
+    %label.col-xs-2.control-label{for: 'activity_labor_uuid'} People
+    .col-xs-5
+      = f.input :labor_uuid, label: false
+      %span.help-block= f.error :labor_uuid
+  .form-group
+    %label.col-xs-2.control-label{for: 'activity_tractor_uuid'} Tractor
+    .col-xs-5
+      = f.input :tractor_uuid, label: false
+      %span.help-block= f.error :tractor_uuid
+  .form-group
+    %label.col-xs-2.control-label{for: 'activity_implement_uuid'} Implement
+    .col-xs-5
+      = f.input :implement_uuid, label: false
+      %span.help-block= f.error :implement_uuid
+  .form-group
     .col-xs-5
       = f.input :starts_at, as: :hidden, label: false, input_html: { class: "form-control" }, value: :current_date
       %span.help-block= f.error :date
@@ -18,3 +38,91 @@
     .col-xs-6.col-sm-offset-1
       .pull-right
         = render partial: 'form_button', locals: { f: f }
+:javascript
+  $("#activity_field_uuid").select2({
+    width: 366,
+    ajax: {
+      url: '/activities/fields.json',
+      dataType: 'json',
+      quietMillis: 100,
+      data: function (term) {
+        return { term: term };
+      },
+      results: function (data) {
+        var myResults = [];
+        $.each(data, function (index, item) {
+          myResults.push({
+            'id': item.id,
+            'text': item.text
+          });
+        });
+        return { results: myResults };
+      }
+    }
+  });
+
+  $("#activity_labor_uuid").select2({
+    width: 366,
+    ajax: {
+      url: '/activities/labors.json',
+      dataType: 'json',
+      quietMillis: 100,
+      data: function (term) {
+        return { term: term };
+      },
+      results: function (data) {
+        var myResults = [];
+        $.each(data, function (index, item) {
+          myResults.push({
+            'id': item.id,
+            'text': item.text
+          });
+        });
+        return { results: myResults };
+      }
+    }
+  });
+
+  $("#activity_tractor_uuid").select2({
+    width: 366,
+    ajax: {
+      url: '/activities/tractors.json',
+      dataType: 'json',
+      quietMillis: 100,
+      data: function (term) {
+        return { term: term };
+      },
+      results: function (data) {
+        var myResults = [];
+        $.each(data, function (index, item) {
+          myResults.push({
+            'id': item.id,
+            'text': item.text
+          });
+        });
+        return { results: myResults };
+      }
+    }
+  });
+
+  $("#activity_implement_uuid").select2({
+    width: 366,
+    ajax: {
+      url: '/activities/implements.json',
+      dataType: 'json',
+      quietMillis: 100,
+      data: function (term) {
+        return { term: term };
+      },
+      results: function (data) {
+        var myResults = [];
+        $.each(data, function (index, item) {
+          myResults.push({
+            'id': item.id,
+            'text': item.text
+          });
+        });
+        return { results: myResults };
+      }
+    }
+  });
