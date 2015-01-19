@@ -32,7 +32,7 @@ end
   { name: 'Spraying', note: '' },
   { name: 'Fertilizing', note: '' }
 ].each do |activity|
-  Activity.create_with(note: activity[:note]).find_or_create_by(name: activity[:name])
+  ActivityType.create_with(note: activity[:note]).find_or_create_by(name: activity[:name])
 end
 
 [ 

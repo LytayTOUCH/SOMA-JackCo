@@ -1,2 +1,10 @@
-%h1 Plans#index
-%p Find me in app/views/plans/index.html.haml
+.row
+  %h1
+    = "Plan"
+    .pull-right
+      - if can? :create, Plan
+        = link_to "New Plan", new_plan_path, class: "btn btn-primary"
+  %hr
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'
