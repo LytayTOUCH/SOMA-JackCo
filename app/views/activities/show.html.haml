@@ -16,8 +16,9 @@
 - if can? :update, Activity            
   = link_to "Edit activity", edit_activity_path, class: "btn btn-primary"
 
-%a.delete-confirm.btn.btn-danger{"data-id" => @activity.id, :href => "#delete-confirm"}
-  Delete
+- if can? :destroy, Activity
+  %a.delete-confirm.btn.btn-danger{"data-id" => @activity.id, :href => "#delete-confirm"}
+    Delete
 
 = link_to "Cancel", :back, class: "btn btn-default"
 

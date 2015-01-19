@@ -27,8 +27,9 @@
         - else  
           = "no"
 
-%a.delete-confirm.btn.btn-danger{"data-id" => @warehouse.id, :href => "#delete-confirm"}
-  Delete
+- if can? :destroy, Warehouse
+  %a.delete-confirm.btn.btn-danger{"data-id" => @warehouse.id, :href => "#delete-confirm"}
+    Delete
 
 = link_to "Cancel", :back, class: "btn btn-default"
 

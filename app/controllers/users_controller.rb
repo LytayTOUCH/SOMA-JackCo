@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: :create
-  # before_filter :authenticate_user!
 
   def index
     begin
@@ -9,7 +8,7 @@ class UsersController < ApplicationController
       if params[:user] and params[:user][:name] and !params[:user][:name].nil?
         @users = User.find_by_name(params[:user][:name]).page(params[:page]).per(5)
       else
-        @users = User.page(params[:page]).per(5)
+        @users = User.page(params[:page]).per(5).order("role ASC")
       end
     rescue Exception => e
       puts e
@@ -32,7 +31,7 @@ class UsersController < ApplicationController
       flash[:notice] = "User has been created successfully"
       redirect_to users_path
     else
-      flash[:notice] = "User can't save"
+      flash[:notice] = "User can't be saved"
       redirect_to :back
     end
   end
