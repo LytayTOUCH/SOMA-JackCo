@@ -47,6 +47,16 @@ class WarehousesController < ApplicationController
     end
   end
 
+  def destroy
+    @warehouse = Warehouse.find(params[:id])
+    @warehouse.destroy
+
+    respond_to do |format|
+      format.html { redirect_to warehouses_path, :notice => 'Warehouse was successfully deleted.' }
+      format.json { render json: @warehouse, status: :created, location: @warehouse }
+    end
+  end
+
   private
   def warehouse_params
     params.require(:warehouse).permit(:name, :labor_uuid, :warehouse_type_uuid, :address, :note, :active)

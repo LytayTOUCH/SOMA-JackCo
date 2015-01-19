@@ -1,0 +1,56 @@
+%h1 Warehouse Information
+%div
+  %table.table
+    %tr.header
+      %th Fields
+      %th Information
+    %tr
+      %th Name
+      %td= @warehouse.name
+    %tr
+      %th Supervisor
+      %td= @warehouse.labor_uuid
+    %tr
+      %th Warehouse Type
+      %td= @warehouse.warehouse_type.name
+    %tr
+      %th Address
+      %td= @warehouse.address
+    %tr
+      %th Note
+      %td= @warehouse.note  
+    %tr
+      %th Active
+      %td
+        - if @warehouse.active?
+          = "yes"
+        - else  
+          = "no"
+
+%a.delete-confirm.btn.btn-danger{"data-id" => @warehouse.id, :href => "#delete-confirm"}
+  Delete
+
+= link_to "Cancel", :back, class: "btn btn-default"
+
+:javascript
+  $('#delete-confirm').on('show', function() {
+    var $submit = $(this).find('.btn-danger'), href = $submit.attr('href');
+    $submit.attr('href', href.replace('pony', $(this).data('id')));
+  });
+
+  $('.delete-confirm').click(function(e) {
+    e.preventDefault();
+    $('#delete-confirm').data('id', $(this).data('id')).modal('show');
+  });
+
+#delete-confirm.modal.fade
+  .modal-dialog
+    .modal-content 
+      .modal-header
+        %a.close{"data-dismiss" => "modal"} ×
+        Delete this Warehouse?
+      .modal-body
+        By clicking on Delete Button, you will destroy this Warehouse.
+      .modal-footer
+        %a.btn.btn-default{"data-dismiss" => "modal", :href => "#"} Cancel
+        = link_to 'Delete', warehouse_path(@warehouse), method: :delete, :class => 'btn btn-danger'

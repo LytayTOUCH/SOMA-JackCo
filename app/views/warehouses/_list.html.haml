@@ -3,8 +3,8 @@
     %tr
       %th.col-md-4 Name
       %th.col-md-3 Supervisor
-      %th.col-md-3 Warehouse Type
-      %th.col-md-2 Active
+      %th.col-md-2 Warehouse Type
+      %th.col-md-1 Active
       %th.col-md-1 Actions
   - @warehouses.each do |warehouse|
     %tr
@@ -19,5 +19,8 @@
       %td
         - if can? :update, warehouse
           = link_to "Edit", edit_warehouse_path(warehouse)
+        = '|'  
+        = link_to "Show", warehouse_path(warehouse)
+
 .pull-right
   = paginate @warehouses
