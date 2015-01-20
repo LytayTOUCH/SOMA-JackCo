@@ -83,6 +83,11 @@
   color: #fff;
 }
 
+.nav > .active > a {
+  background-color: #EEEEEE;
+  z-index: -100;
+}
+
 footer {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -131,4 +136,3 @@ footer {
     border-top-right-radius: 5px;
   }
 }
-

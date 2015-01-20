@@ -23,10 +23,6 @@
           = 'Read all'
         - elsif user.role == "it"  
           = 'Edit all'  
-          / - user.resources.each_with_index do |resource, index|
-          /   = resource.name
-          /   - if index + 1 != user.resources.length
-          /     = ', '
       %td
         - if user.active?
           = "active"

@@ -21,14 +21,18 @@ class CoconutsController < ApplicationController
   end
 
   def create
-    @coconut = Coconut.new(coconut_params)
+    begin
+      @coconut = Coconut.new(coconut_params)
 
-    if @coconut.save!
-      flash[:notice] = "coconut saved successfully"
-      redirect_to coconuts_path
-    else
-      flash[:notice] = "coconut can't be saved"
-      redirect_to :back
+      if @coconut.save!
+        flash[:notice] = "coconut saved successfully"
+        redirect_to coconuts_path
+      else
+        flash[:notice] = "coconut can't be saved"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
@@ -38,12 +42,18 @@ class CoconutsController < ApplicationController
   end
 
   def update
-    @coconut = Coconut.find(params[:id])
-    if @coconut.update_attributes!(coconut_params)
-      flash[:notice] = "coconut updated"
-      redirect_to coconuts_path
-    else
-      redirect_to :back
+    begin
+      @coconut = Coconut.find(params[:id])
+
+      if @coconut.update_attributes!(coconut_params)
+        flash[:notice] = "coconut updated"
+        redirect_to coconuts_path
+      else
+        flash[:notice] = "coconut can't update"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
@@ -61,5 +71,4 @@ class CoconutsController < ApplicationController
   def coconut_params
     params.require(:coconut).permit(:code, :coco_type, :planting_date, :field_uuid, :stage_uuid, :note)
   end
-
 end

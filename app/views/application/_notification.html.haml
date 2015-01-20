@@ -1,6 +1,6 @@
 - if flash[:notice]
   #notification
-    .alert{ class: "alert-success fade in" }
+    .alert{ class: "alert-success fade in", style: "z-index: 100;" }
       = flash[:notice]
   :javascript
     setTimeout("$('#notification').remove()", 5000);

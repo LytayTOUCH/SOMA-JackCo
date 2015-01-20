@@ -82,6 +82,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
+    # puts "======================================"
     @activity = Activity.find(params[:id])
     @activity.destroy
 
@@ -93,10 +94,11 @@ class ActivitiesController < ApplicationController
       format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }
       format.json { render json: @activity, status: :created, location: @activity }
     end
+    # end   
   end
 
   private    
     def activity_params
       params.require(:activity).permit(:starts_at, :note, :activity_type_uuid)
     end
-end
+ssdfend

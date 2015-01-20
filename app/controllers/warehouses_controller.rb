@@ -16,34 +16,52 @@ class WarehousesController < ApplicationController
   end
 
   def new
-    @warehouse = Warehouse.new
-    @warehouse_types = WarehouseType.all
+    begin
+      @warehouse = Warehouse.new
+      @warehouse_types = WarehouseType.all
+    rescue Exception => e
+      puts e
+    end
   end
 
   def create
-    @warehouse = Warehouse.new(warehouse_params)
+    begin
+      @warehouse = Warehouse.new(warehouse_params)
 
-    if @warehouse.save!
-      flash[:notice] = "Warehouse saved successfully"
-      redirect_to warehouses_path
-    else
-      flash[:notice] = "Warehouse can't be saved"
-      redirect_to :back
+      if @warehouse.save!
+        flash[:notice] = "Warehouse saved successfully"
+        redirect_to warehouses_path
+      else
+        flash[:notice] = "Warehouse can't be saved"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
   def edit
-    @warehouse = Warehouse.find(params[:id])
-    @warehouse_types = WarehouseType.all
+    begin
+      @warehouse = Warehouse.find(params[:id])
+      @warehouse_types = WarehouseType.all
+    rescue Exception => e
+      puts e
+    end
   end
 
   def update
-    @warehouse = Warehouse.find(params[:id])
-    if @warehouse.update_attributes!(warehouse_params)
-      flash[:notice] = "Warehouse updated"
-      redirect_to warehouses_path
-    else
-      redirect_to :back
+    begin
+      @warehouse = Warehouse.find(params[:id])
+
+      if @warehouse.update_attributes!(warehouse_params)
+        flash[:notice] = "Warehouse updated"
+        redirect_to warehouses_path
+      else
+        flash[:notice] = "Warehouse can't update"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 

@@ -16,7 +16,11 @@ class SuppliersController < ApplicationController
   end
 
   def new
-    @supplier = Supplier.new
+    begin
+      @supplier = Supplier.new
+    rescue Exception => e
+      puts e
+    end
   end
 
   def create
@@ -36,7 +40,11 @@ class SuppliersController < ApplicationController
   end
 
   def edit
-    @supplier = Supplier.find(params[:id])
+    begin
+      @supplier = Supplier.find(params[:id])
+    rescue Exception => e
+      puts e
+    end
   end
 
   def update

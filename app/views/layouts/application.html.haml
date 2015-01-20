@@ -3,7 +3,8 @@
   %head
     %title= "SOMA Management"
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
-    = stylesheet_link_tag    "application", :media => "all"
+    = stylesheet_link_tag "application", :media => "all"
+    = google_map_api_drawing
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body{style: "margin-top: 90px;"}

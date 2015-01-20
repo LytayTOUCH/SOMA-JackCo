@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :maintenances, except: [:index]
   resources :implement_types, except: [:destroy]
   resources :suppliers, except: [:destroy]
+  resources :jackfruits, except: [:destroy]
 
   resources :materials, except: [:destroy] do
     collection do
@@ -56,10 +57,24 @@ Rails.application.routes.draw do
   end
   
   resources :calendars
-  resources :activities
   resources :stages
   resources :coconuts
   resources :jack_fruits
+
+  resources :fields, except: [:destroy] do
+    collection do 
+      get 'fields'
+    end
+  end
+
+  resources :activities do
+    collection do 
+      get 'fields'
+      get 'labors'
+      get 'tractors'
+      get 'implements'
+    end
+  end
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

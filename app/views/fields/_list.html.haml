@@ -1,0 +1,62 @@
+#content-form-model-field-show
+#field-container
+:javascript
+  $.ajax({
+    url: "/fields/fields.json",
+    type : "GET",
+  }).done (function(data) {
+    NProgress.start();
+    $.each(data, function(index, value) {
+      var fieldMapImageURL = "https://maps.googleapis.com/maps/api/staticmap?size=170x170&path=color:0x00000000|weight:5|fillcolor:0x000000";
+      var latLongString = "";
+     
+      var latLong = value.lat_long;
+      for(var i = 0; i < latLong.length; i++) {
+        latLongString += "|" + latLong[i].lat + "," + latLong[i].long;
+      }
+
+      var divImageSize = document.createElement('div');
+      divImageSize.className  = "col-md-3";
+
+      var divImage = document.createElement('div');
+      divImage.className  = "thumbnail";
+
+      var divImageCaption = document.createElement('div');
+      divImageCaption.className  = "divImageCaption";
+
+      var image = new Image();
+      $(image).attr('src', '' + fieldMapImageURL + latLongString).appendTo(divImage);
+
+      var h4 = document.createElement('h4');
+      h4.appendChild(document.createTextNode(value.name));
+
+      var p = document.createElement('p');
+      p.appendChild(document.createTextNode('Dimension: ' + value.dimension + "hectares"));
+
+      var aEdit = document.createElement('a');
+      aEdit.appendChild(document.createTextNode("Edit"));
+      aEdit.title = "Edit";
+      aEdit.href = "/fields/" + value.uuid + "/edit";
+
+      // var aShow = document.createElement('a');
+      // aShow.appendChild(document.createTextNode("Show"));
+      // aShow.title = "Show";
+      // aShow.href = "/fields/" + value.uuid;
+      // aShow.setAttribute('data-remote', true);
+
+      // $(divImageCaption).append(aShow);
+      
+      $(divImageCaption).append(h4);
+      $(divImageCaption).append(p);
+      $(divImageCaption).append(aEdit);
+
+      $(divImage).append(divImageCaption);
+      $(divImageSize).append(divImage);
+
+      $('#field-container').append(divImageSize);
+    });
+    NProgress.done();
+  }).fail (function() {
+    NProgress.done();
+    alert("Error");
+  });
