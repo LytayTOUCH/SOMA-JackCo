@@ -19,6 +19,7 @@ class WarehousesController < ApplicationController
     begin
       @warehouse = Warehouse.new
       @warehouse_types = WarehouseType.all
+      @workers = User.all
     rescue Exception => e
       puts e
     end
@@ -44,6 +45,7 @@ class WarehousesController < ApplicationController
     begin
       @warehouse = Warehouse.find(params[:id])
       @warehouse_types = WarehouseType.all
+      @workers = User.all
     rescue Exception => e
       puts e
     end

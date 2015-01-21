@@ -18,6 +18,7 @@ class JackFruitsController < ApplicationController
   def new
     @jack_fruit = JackFruit.new
     @stages = Stage.where(fruit_type: 'jackfruit')
+    @fields = Field.all
   end
 
   def create
@@ -35,6 +36,7 @@ class JackFruitsController < ApplicationController
   def edit
     @jack_fruit = JackFruit.find(params[:id])
     @stages = Stage.where(fruit_type: 'jackfruit')
+    @fields = Field.all
   end
 
   def update

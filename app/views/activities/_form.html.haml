@@ -26,18 +26,19 @@
       = f.input :implement_uuid, label: false
       %span.help-block= f.error :implement_uuid
   .form-group
+    %label.col-xs-2.control-label.text-left Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: { class: "form-control" }
+      %span.help-block= f.error :note    
+  .form-group
     .col-xs-5
       = f.input :starts_at, as: :hidden, label: false, input_html: { class: "form-control" }, value: :current_date
       %span.help-block= f.error :date
   .form-group
-    %label.col-xs-2.control-label.text-left Note
-    .col-xs-5
-      = f.input :note, label: false, input_html: { class: "form-control" }
-      %span.help-block= f.error :note
-  .form-group
     .col-xs-6.col-sm-offset-1
       .pull-right
         = render partial: 'form_button', locals: { f: f }
+
 :javascript
   $("#activity_field_uuid").select2({
     width: 366,

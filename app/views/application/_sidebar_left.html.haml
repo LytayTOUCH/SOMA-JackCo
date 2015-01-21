@@ -25,10 +25,12 @@
         = link_to "Activity", activities_path  
       %li
         = link_to "Machinery", machineries_path
+      %li
+        = link_to 'Field', fields_path
         / - if can? :manage, Zone
         %a{:href => "#"} Zone
-      %li
-        = link_to 'Resource', resources_path
+      / %li
+      /   = link_to 'Resource', resources_path
       %li
         = link_to 'Warehouse Type', warehouse_types_path
       %li
