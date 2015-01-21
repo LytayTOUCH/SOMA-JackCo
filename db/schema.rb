@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(version: 20150117044227) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "label"
+    t.string   "field_uuid",         limit: 36
+    t.string   "labor_uuid",         limit: 36
+    t.string   "tractor_uuid",       limit: 36
+    t.string   "implement_uuid",     limit: 36
   end
 
   create_table "activity_types", id: false, force: true do |t|
@@ -49,6 +53,17 @@ ActiveRecord::Schema.define(version: 20150117044227) do
     t.datetime "ends_at"
     t.boolean  "all_day"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fields", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,  null: false
+    t.string   "name",       limit: 100, null: false
+    t.float    "dimension",  limit: 24,  null: false
+    t.string   "address"
+    t.text     "note"
+    t.text     "lat_long",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
