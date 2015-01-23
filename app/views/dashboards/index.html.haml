@@ -1,1 +1,5 @@
 = image_tag @line_chart
+
+= image_tag @bar_chart
+/ = bar_chart Shirt.group(:size).sum(:price) 
+/ Gchart.bar(:data => [70,20,40,67,100,41,234], :bar_width_and_spacing => '25,6')
