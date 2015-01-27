@@ -17,7 +17,7 @@
         .field
           = f.label :password
           %br
-          = f.password_field :password, autocomplete: "off", :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter password"
+          = f.password_field :password, autocomplete: "off", :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter password (at least 8 characters)"
           %br
         - if devise_mapping.rememberable?
           .field

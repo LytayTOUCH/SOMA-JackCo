@@ -1,9 +1,23 @@
 class DashboardsController < ApplicationController
+  respond_to :html, :json
   def index
 
     data = [['1997',10],['1998',20],['1999',40]]
 
     @labels = Role.pluck(:label)
+    
+    # @labels =[
+    #   ["Officer", 5],
+    #   ["IT Admin", 6],
+    #   ["Cleaner", 3],
+    #   ["Guard", 7],
+    #   ["Cook", 15],
+    #   ["Table Runner", 25],
+    #   ["Table Washer", 65]
+    # ]
+    respond_with do |format|
+      format.json {render :json => @labels}
+    end
 
     @line_chart = Gchart.pie(data: [60,30,50], title: 'Line chart', labels: @labels, size: '400x300')
 
