@@ -4,7 +4,7 @@ class DashboardsController < ApplicationController
 
     data = [['1997',10],['1998',20],['1999',40]]
 
-    @labels = Role.pluck(:label)
+    @labels = TestingChart.pluck(:name, :amount)
     
     # @labels =[
     #   ["Officer", 5],

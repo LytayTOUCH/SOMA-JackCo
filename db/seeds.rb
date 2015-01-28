@@ -42,3 +42,8 @@ Stage.create(name: 'Seed Amount', period: 'unknown', note: 'Phase 1: Seed Grafti
 Stage.create(name: 'Stage 1: Age 1-3 years', period: '1-3 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'jackfruit')
 Stage.create(name: 'Stage 2: Age > 4 years', period: 'more than 4 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'jackfruit')
 Stage.create(name: 'Stage 3: Age 5-15 years', period: '5-15 years', note: 'Phase 3: Harvesting', fruit_type: 'jackfruit')
+
+TestingChart.create(name: 'Fertilizer', amount: 3000)
+TestingChart.create(name: 'Small Tree', amount: 5000)
+TestingChart.create(name: 'Workers', amount: 2000)
+TestingChart.create(name: 'Fuel', amount: 10000)
