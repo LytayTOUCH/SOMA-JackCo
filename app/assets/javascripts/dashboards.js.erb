@@ -9,7 +9,7 @@ $.ajax({
 
 // Load the Visualization API and the piechart package.
 google.load('visualization', '1.0', {'packages':['corechart']});
-google.load('visualization', "1.1", {'packages':["bar"]});
+
 // Set a callback to run when the Google Visualization API is loaded.
 google.setOnLoadCallback(drawChart);
 
@@ -18,46 +18,56 @@ google.setOnLoadCallback(drawChart);
 // draws it.
 function drawChart() {
 
+  // ======================= Bar Chart ======================
+  var data_bar = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["Copper", 8.94, "#b87333"],
+        ["Silver", 10.49, "silver"],
+        ["Gold", 19.30, "gold"],
+        ["Platinum", 21.45, "color: #e5e4e2"]
+      ]);
+
+      var view = new google.visualization.DataView(data_bar);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Density of Precious Metals, in g/cm^3",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+      
+  
   // ======================= Pie Chart ======================
   // Create the data table.
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
-  // data.addRows([
-  //   [myData[0], 1000],
-  //   [myData[1], 300],
-  //   [myData[2], 5000]
-  // ]);
   data.addRows(myData);
+  
   // Set chart options
   var options = {'title':'Expense',
-                 'width':700,
-                 'height':400};
+                 'width': 700,
+                 'height': 400};
 
   // Instantiate and draw our chart, passing in some options.
   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
   chart.draw(data, options);
 
 
-  // ======================= Bar Chart ======================
-  var data1 = google.visualization.arrayToDataTable([
-    ['Year', 'Sales', 'Expenses', 'Profit'],
-    ['2014', 1000, 400, 200],
-    ['2015', 1170, 460, 250],
-    ['2016', 660, 1120, 300],
-    ['2017', 1030, 540, 350]
-  ]);
-
-  var options = {
-    pie_chart: {
-      title: 'Company Performance',
-      subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-    },
-    bars: 'horizontal' // Required for Material Bar Charts.
-  };
-
-  var pie_chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
-  pie_chart.draw(data1, options);
+  
 }
+
+
+
+
+
 
