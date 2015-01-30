@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128020101) do
+ActiveRecord::Schema.define(version: 20150130030432) do
 
   create_table "activities", id: false, force: true do |t|
     t.string   "uuid",               limit: 36, null: false
@@ -213,6 +213,15 @@ ActiveRecord::Schema.define(version: 20150128020101) do
     t.integer  "amount"
     t.string   "x_label",    limit: 50
     t.string   "y_label",    limit: 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "testing_with_bar_charts", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36, null: false
+    t.string   "element",    limit: 50
+    t.float    "amount",     limit: 24
+    t.string   "bar_color",  limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
   end

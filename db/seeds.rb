@@ -47,3 +47,8 @@ TestingChart.create(name: 'Fertilizer', amount: 3000)
 TestingChart.create(name: 'Small Tree', amount: 5000)
 TestingChart.create(name: 'Workers', amount: 2000)
 TestingChart.create(name: 'Fuel', amount: 10000)
+
+TestingWithBarChart.create(element: 'Janurary', amount: 40.49, bar_color: 'silver')
+TestingWithBarChart.create(element: 'Februry', amount: 20.49, bar_color: 'gold')
+TestingWithBarChart.create(element: 'March', amount: 20.49, bar_color: 'blue')
+TestingWithBarChart.create(element: 'April', amount: 20.49, bar_color: 'green')

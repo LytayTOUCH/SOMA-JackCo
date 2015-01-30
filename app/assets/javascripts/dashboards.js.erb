@@ -1,11 +1,31 @@
 var myData;
-$.ajax({
-  url:'dashboards.json',
-  dataType: 'json',
-  success: function(data){
-    myData = data;
-  }
-});
+// $.ajax({
+//   url:'dashboards/getbardata.json',
+//   dataType: 'json',
+//   success: function(data){
+//     data.unshift(["Element", "Expense", { role: "style" }]);
+//     myData = data;
+//   }
+// });
+
+
+function chartAjax(url,opt){
+  $.ajax({
+    url:url,
+    dataType: 'json',
+    success: function(data){
+      if(opt){
+        return data.unshift(["Element", "Expense", { role: "style" }]);
+        console.log(data);
+      }
+      else{
+        return data;
+        console.log(data);
+      }
+        
+    }
+  });
+}
 
 google.load('visualization', '1.0', {'packages':['corechart']});
 
@@ -43,11 +63,14 @@ function drawChart() {
 //         chart.draw(data, options);
 
   // ======================= Pie Chart ======================
+  console.log(chartAjax('dashboards/getpiedata.json',false));
+
+  var mypieData = [["Fertilizer",3000],["Small Tree",5000],["Workers",2000],["Fuel",20000]];
   var data = new google.visualization.DataTable();
   
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
-  data.addRows(myData);
+  data.addRows(mypieData);
   
   var options = {'title':'Expense',
                  'width': 700,
@@ -58,13 +81,12 @@ function drawChart() {
 
 
   // ======================= Bar Chart ======================
-  var data_bar = google.visualization.arrayToDataTable([
-        ["Yoyo", "Expense", { role: "style" }],
-        ["Copper", 8.94, "red"],
-        ["Silver", 40.49, "silver"],
-        ["Gold", 19.30, "gold"],
-        ["Platinum", 31.45, "blue"]
-      ]);
+
+var data_bar = google.visualization.arrayToDataTable(myData);
+  // var data_bar = google.visualization.arrayToDataTable([
+  //       ["Element", "Expense", { role: "style" }],
+  //       ['Jan', 19.20, 'red']
+  //     ]);
 
       var view = new google.visualization.DataView(data_bar);
       view.setColumns([0, 1,

@@ -10,7 +10,13 @@ Rails.application.routes.draw do
 
   # devise_for :users, controllers: { registrations: "registrations" }
 
-  resources :dashboards, only: [:index]
+  resources :dashboards, only: [:index] do
+    collection do
+      get 'getbardata'
+      get 'getpiedata'
+    end
+  end
+
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
   resources :implements, except: [:index]
