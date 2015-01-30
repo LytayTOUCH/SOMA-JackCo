@@ -7,18 +7,19 @@ $.ajax({
   }
 });
 
-// google.load('visualization', '1.0', {'packages':['corechart']});
+google.load('visualization', '1.0', {'packages':['corechart']});
 
-function gChartLoading(version, package_type){
-return google.load('visualization', version, {'packages':[package_type]});
-}
+// function gChartLoading(version, package_type){
+//   return google.load('visualization', version, {'packages':[package_type]});
+// }
+
 
 // (function barChartShowing(){
 
 // gChartLoading('1.1', 'bar');
-// google.setOnLoadCallback(drawChart);
+google.setOnLoadCallback(drawChart);
 
-// function drawChart() {
+function drawChart() {
 
 
 // var data = google.visualization.arrayToDataTable([
@@ -41,48 +42,6 @@ return google.load('visualization', version, {'packages':[package_type]});
 
 //         chart.draw(data, options);
 
-
-
-//   // ======================= Bar Chart ======================
-//   // var data_bar = google.visualization.arrayToDataTable([
-//   //       ["Element", "Density", { role: "style" } ],
-//   //       ["Copper", 8.94, "#b87333"],
-//   //       ["Silver", 10.49, "silver"],
-//   //       ["Gold", 19.30, "gold"],
-//   //       ["Platinum", 21.45, "color: #e5e4e2"]
-//   //     ]);
-
-//   //     var view = new google.visualization.DataView(data_bar);
-//   //     view.setColumns([0, 1,
-//   //                      { calc: "stringify",
-//   //                        sourceColumn: 1,
-//   //                        type: "string",
-//   //                        role: "annotation" },
-//   //                      2]);
-
-//   //     var options = {
-//   //       title: "Density of Precious Metals, in g/cm^3",
-//   //       width: 600,
-//   //       height: 400,
-//   //       bar: {groupWidth: "95%"},
-//   //       legend: { position: "none" },
-//   //     };
-//   //     var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-//   //     chart.draw(view, options);
-
-  
-
-// }
-// })();
-
-(function pieChartShowing(){
-
-gChartLoading('1', 'corechart');
-
-google.setOnLoadCallback(drawPieChart);
-
-function drawPieChart() {
-  
   // ======================= Pie Chart ======================
   var data = new google.visualization.DataTable();
   
@@ -98,9 +57,63 @@ function drawPieChart() {
   chartpie.draw(data, options);
 
 
-  
+  // ======================= Bar Chart ======================
+  var data_bar = google.visualization.arrayToDataTable([
+        ["Yoyo", "Expense", { role: "style" }],
+        ["Copper", 8.94, "red"],
+        ["Silver", 40.49, "silver"],
+        ["Gold", 19.30, "gold"],
+        ["Platinum", 31.45, "blue"]
+      ]);
+
+      var view = new google.visualization.DataView(data_bar);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Production rate",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+
+
 }
-})();
+// })();
+
+// (function pieChartShowing(){
+
+// gChartLoading('1', 'corechart');
+
+// google.setOnLoadCallback(drawPieChart);
+
+// function drawPieChart() {
+  
+//   // ======================= Pie Chart ======================
+//   var data = new google.visualization.DataTable();
+  
+//   data.addColumn('string', 'Topping');
+//   data.addColumn('number', 'Slices');
+//   data.addRows(myData);
+  
+//   var options = {'title':'Expense',
+//                  'width': 700,
+//                  'height': 400};
+
+//   var chartpie = new google.visualization.PieChart(document.getElementById('chart_div'));
+//   chartpie.draw(data, options);
+
+
+  
+// }
+// })();
 
 
 
