@@ -61,6 +61,11 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
+gem 'pdfkit', '~> 0.6.2'
+gem 'wkhtmltopdf-binary'
+
+
+
 # ruby '2.0.0'
 
 # Use ActiveModel has_secure_password

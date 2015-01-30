@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'pdfkit'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,6 +24,7 @@ module Soma
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.autoload_paths << "#{config.root}/lib"
+    config.middleware.use PDFKit::Middleware, :print_media_type => true
 
     config.autoload_paths += %W(
       #{config.root}/app/controllers/concerns

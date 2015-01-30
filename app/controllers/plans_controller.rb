@@ -9,11 +9,24 @@ class PlansController < ApplicationController
       if params[:plan] and params[:plan][:name] and !params[:plan][:name].nil?
         @plans = Plan.find_by_name(params[:plan][:name]).page(params[:page]).per(5)
       else
-        @plans = Plan.page(params[:page]).per(5)
+        @plans = Plan.page(params[:page]).order('updated_at DESC').per(5)
+        @plans_pdf = Plan.page(params[:page]).order('updated_at DESC')
+
       end
     rescue Exception => e
       puts e
     end
+  end
+
+  def downloadpdf
+    @plans = Plan.order('updated_at DESC')
+    # Load the html to convert to PDF
+    html = render_to_string(:layout => false , :action => "downloadpdf", :formats => :html)
+    # Create a new kit and define page size to be USE A4 Paper
+    kit = PDFKit.new(html, :page_size => 'A4', :orientation => 'Landscape')
+    # Save the html to a PDF file
+    send_file kit.to_file("#{Rails.root}/public/plans.pdf")
+  
   end
 
   def new

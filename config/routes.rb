@@ -19,7 +19,12 @@ Rails.application.routes.draw do
   resources :implement_types, except: [:destroy]
   resources :suppliers, except: [:destroy]
   resources :jackfruits, except: [:destroy]
-  resources :plans
+  # resources :plans
+  # get "plans/downloadpdf" => "plans#downloadpdf"
+
+  resources :plans do
+    get 'downloadpdf', on: :collection
+  end
 
   resources :materials, except: [:destroy] do
     collection do
