@@ -2,10 +2,10 @@
 
 #columnchart_values{:style => "width: 600px; height: 400px;"}
 
-= image_tag @line_chart
+#curve_line_chart{:style => "width: 600px; height: 400px"}
 
-/ = pie_chart Role.group(:name).count
+/ = image_tag @line_chart
 
-%div{:style => "width: 50px; block: inline"}
+/ %div{:style => "width: 50px; block: inline"}
 
-= image_tag @bar_chart
+/ = image_tag @bar_chart

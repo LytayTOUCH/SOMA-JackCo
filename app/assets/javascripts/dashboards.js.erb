@@ -1,76 +1,51 @@
-var myData;
-// $.ajax({
-//   url:'dashboards/getbardata.json',
-//   dataType: 'json',
-//   success: function(data){
-//     data.unshift(["Element", "Expense", { role: "style" }]);
-//     myData = data;
-//   }
-// });
+var pieData;
+$.ajax({
+  url:'dashboards/getPieData.json',
+  dataType: 'json',
+  success: function(data){
+    pieData = data;
+  }
+});
 
+var barData;
+$.ajax({
+  url:'dashboards/getBarData.json',
+  dataType: 'json',
+  success: function(data){
+    data.unshift(["Element", "Expense", { role: "style" }]);
+    barData = data;
+  }
+});
 
-function chartAjax(url,opt){
-  $.ajax({
-    url:url,
-    dataType: 'json',
-    success: function(data){
-      if(opt){
-        return data.unshift(["Element", "Expense", { role: "style" }]);
-        console.log(data);
-      }
-      else{
-        return data;
-        console.log(data);
-      }
+// function chartAjax(url,opt){
+//   $.ajax({
+//     url:url,
+//     dataType: 'json',
+//     success: function(data){
+//       if(opt){
+//         return data.unshift(["Element", "Expense", { role: "style" }]);
+//         console.log(data);
+//       }
+//       else{
+//         return data;
+//         console.log(data);
+//       }
         
-    }
-  });
-}
-
-google.load('visualization', '1.0', {'packages':['corechart']});
-
-// function gChartLoading(version, package_type){
-//   return google.load('visualization', version, {'packages':[package_type]});
+//     }
+//   });
 // }
 
-
-// (function barChartShowing(){
-
-// gChartLoading('1.1', 'bar');
+google.load('visualization', '1.0', {'packages':['corechart']});
 google.setOnLoadCallback(drawChart);
 
 function drawChart() {
 
-
-// var data = google.visualization.arrayToDataTable([
-//           ['Year', 'Sales', 'Expenses', 'Profit'],
-//           ['2014', 1000, 400, 200],
-//           ['2015', 1170, 460, 250],
-//           ['2016', 660, 1120, 300],
-//           ['2017', 1030, 540, 350]
-//         ]);
-
-//         var options = {
-//           chart: {
-//             title: 'Company Performance',
-//             subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-//           },
-//           bars: 'horizontal' // Required for Material Bar Charts.
-//         };
-
-//         var chart = new google.charts.Bar(document.getElementById('columnchart_values'));
-
-//         chart.draw(data, options);
-
   // ======================= Pie Chart ======================
-  console.log(chartAjax('dashboards/getpiedata.json',false));
-
-  var mypieData = [["Fertilizer",3000],["Small Tree",5000],["Workers",2000],["Fuel",20000]];
   var data = new google.visualization.DataTable();
   
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
-  data.addRows(mypieData);
+  data.addRows(pieData);
   
   var options = {'title':'Expense',
                  'width': 700,
@@ -81,61 +56,44 @@ function drawChart() {
 
 
   // ======================= Bar Chart ======================
+  var data_bar = google.visualization.arrayToDataTable(barData);
+  var view = new google.visualization.DataView(data_bar);
+  view.setColumns([0, 1,
+                   { calc: "stringify",
+                     sourceColumn: 1,
+                     type: "string",
+                     role: "annotation" },
+                   2]);
 
-var data_bar = google.visualization.arrayToDataTable(myData);
-  // var data_bar = google.visualization.arrayToDataTable([
-  //       ["Element", "Expense", { role: "style" }],
-  //       ['Jan', 19.20, 'red']
-  //     ]);
+  var options = {
+    title: "Production rate",
+    width: 600,
+    height: 400,
+    bar: {groupWidth: "95%"},
+    legend: { position: "none" },
+  };
+  var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+  chart.draw(view, options);
 
-      var view = new google.visualization.DataView(data_bar);
-      view.setColumns([0, 1,
-                       { calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation" },
-                       2]);
 
-      var options = {
-        title: "Production rate",
-        width: 600,
-        height: 400,
-        bar: {groupWidth: "95%"},
-        legend: { position: "none" },
-      };
-      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-      chart.draw(view, options);
+  // ======================= Line Chart ======================
+  var data_line = google.visualization.arrayToDataTable([
+    ['Year', 'Sales', 'Expenses', 'Investment'],
+    ['2004',  1000, 400, 300],
+    ['2005',  1170, 460, 500],
+    ['2006',  660, 1120, 550],
+    ['2007',  1030, 540, 700]
+  ]);
 
+    var options = {
+      title: 'Company Performance',
+      curveType: 'function',
+      legend: { position: 'bottom' }
+    };
+
+    var line_chart = new google.visualization.LineChart(document.getElementById('curve_line_chart'));
+
+    line_chart.draw(data_line, options);
+  
 
 }
-// })();
-
-// (function pieChartShowing(){
-
-// gChartLoading('1', 'corechart');
-
-// google.setOnLoadCallback(drawPieChart);
-
-// function drawPieChart() {
-  
-//   // ======================= Pie Chart ======================
-//   var data = new google.visualization.DataTable();
-  
-//   data.addColumn('string', 'Topping');
-//   data.addColumn('number', 'Slices');
-//   data.addRows(myData);
-  
-//   var options = {'title':'Expense',
-//                  'width': 700,
-//                  'height': 400};
-
-//   var chartpie = new google.visualization.PieChart(document.getElementById('chart_div'));
-//   chartpie.draw(data, options);
-
-
-  
-// }
-// })();
-
-
-

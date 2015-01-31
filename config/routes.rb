@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   resources :dashboards, only: [:index] do
     collection do
-      get 'getbardata'
-      get 'getpiedata'
+      get 'getBarData'
+      get 'getPieData'
     end
   end
 
