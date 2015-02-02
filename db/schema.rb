@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130030432) do
+ActiveRecord::Schema.define(version: 20150202043227) do
 
   create_table "activities", id: false, force: true do |t|
     t.string   "uuid",               limit: 36, null: false
@@ -146,6 +146,21 @@ ActiveRecord::Schema.define(version: 20150130030432) do
     t.datetime "updated_at"
   end
 
+  create_table "permissions", id: false, force: true do |t|
+    t.string   "name",          limit: 50,                null: false
+    t.string   "user_group_id"
+    t.string   "resource_id"
+    t.boolean  "access_list"
+    t.boolean  "access_create"
+    t.boolean  "access_update"
+    t.boolean  "access_delete"
+    t.boolean  "access_full"
+    t.boolean  "active",                   default: true, null: false
+    t.boolean  "boolean",                  default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "projects", id: false, force: true do |t|
     t.string   "uuid",       limit: 36, null: false
     t.string   "name",       limit: 50, null: false
@@ -169,6 +184,7 @@ ActiveRecord::Schema.define(version: 20150130030432) do
     t.boolean  "boolean",               default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url"
   end
 
   create_table "roles", id: false, force: true do |t|
@@ -244,6 +260,15 @@ ActiveRecord::Schema.define(version: 20150130030432) do
     t.datetime "photo_updated_at"
   end
 
+  create_table "user_groups", id: false, force: true do |t|
+    t.string   "uuid",       limit: 36,                null: false
+    t.string   "name",       limit: 50,                null: false
+    t.boolean  "active",                default: true, null: false
+    t.boolean  "boolean",               default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", id: false, force: true do |t|
     t.string   "uuid",                   limit: 36,                null: false
     t.string   "name",                   limit: 50
@@ -267,6 +292,7 @@ ActiveRecord::Schema.define(version: 20150130030432) do
     t.text     "note"
     t.string   "role"
     t.string   "label"
+    t.string   "user_group_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

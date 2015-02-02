@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
   before_create :resource_tokens
 
-  has_many :resource_users, foreign_key: :user_id 
-  has_many :resources, through: :resource_users, dependent: :destroy
+  belongs_to :user_group
+  
+  # has_many :resources, through: :resource_users, dependent: :destroy
 
   # has_and_belongs_to_many :permissions
 
