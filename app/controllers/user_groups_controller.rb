@@ -3,7 +3,17 @@ class UserGroupsController < ApplicationController
   # before_filter :load_permissions
 
   def index
-    @user_groups = UserGroup.all
+    begin
+      @user_group = UserGroup.new
+
+      if params[:user_group] and params[:user_group][:name] and !params[:user_group][:name].nil?
+        @user_groups = UserGroup.find_by_name(params[:user_group][:name]).page(params[:page]).per(5)
+      else
+        @user_groups = UserGroup.page(params[:page]).per(5)
+      end
+    rescue Exception => e
+      puts e
+    end
   end
 
   def new
@@ -13,10 +23,10 @@ class UserGroupsController < ApplicationController
   def create   
     @user_group = UserGroup.new(user_group_params)
     if @user_group.save!
-      flash[:notice] = "Warehouse type saved successfully"
+      flash[:notice] = "User Group type saved successfully"
       redirect_to user_groups_path
     else
-      flash[:notice] = "Warehouse type can't save"
+      flash[:notice] = "User Group type can't save"
       redirect_to :back
     end
   end

@@ -1,0 +1,21 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-5= "Name"
+      %th.col-md-3= "URL"
+      %th.col-md-3= "Active"
+      %th.col-md-1= "Actions"
+  - @resources.each do |resource|
+    %tr
+      %td= resource.name
+      %td= resource.url
+      %td
+        - if resource.active?
+          = "Actived"
+        - else
+          = "Inactived"
+      %td
+        - if can? :update, Resource
+          = link_to "Edit", edit_resource_path(resource)
+.pull-right
+  = paginate @resources

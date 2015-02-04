@@ -9,7 +9,7 @@ class CreatePermissions < ActiveRecord::Migration
       t.boolean :access_update
       t.boolean :access_delete
       t.boolean :access_full
-      t.boolean :active, :boolean, default: true, null: false
+      t.boolean :active, default: true, null: false
       t.timestamps
     end
   end

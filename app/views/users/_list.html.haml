@@ -3,7 +3,7 @@
     %tr
       %th.col-md-4 Email
       %th.col-md-3 Role
-      %th.col-md-3 Modules
+      %th.col-md-3 Group
       %th.col-md-2 Active
       %th.col-md-1 Actions
   - @users.each do |user|
@@ -15,14 +15,7 @@
         - elsif  
           = user.role.capitalize
       %td
-        - if user.role == "admin"
-          = 'Manage all'
-        - elsif user.role == "officer"
-          = 'Create all'
-        - elsif user.role == "top_manager"  
-          = 'Read all'
-        - elsif user.role == "it"  
-          = 'Edit all'  
+        = user.user_group.name
       %td
         - if user.active?
           = "active"

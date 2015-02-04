@@ -3,7 +3,7 @@ class CreateUserGroups < ActiveRecord::Migration
     create_table :user_groups, id: false do |t|
       t.string :uuid, limit: 36, primary: true, null: false
       t.string :name, limit: 50, null: false
-      t.boolean :active, :boolean, default: true, null: false
+      t.boolean :active, default: true, null: false
       
       t.timestamps
     end

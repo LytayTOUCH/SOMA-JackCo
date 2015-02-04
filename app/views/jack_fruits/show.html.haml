@@ -20,9 +20,9 @@
       %th Note
       %td= @jack_fruit.note
 
-- if can? :destroy, JackFruit 
-  %a.delete-confirm.btn.btn-danger{"data-id" => @jack_fruit.id, :href => "#delete-confirm"}
-    Delete
+/ - if can? :destroy, JackFruit 
+/   %a.delete-confirm.btn.btn-danger{"data-id" => @jack_fruit.id, :href => "#delete-confirm"}
+/     Delete
 
 = link_to "Cancel", :back, class: "btn btn-default"
 

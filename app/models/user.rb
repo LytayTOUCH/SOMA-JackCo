@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
   before_create :resource_tokens
 
-  belongs_to :user_group
+  belongs_to :user_group, foreign_key: :user_group_uuid
   
   # has_many :resources, through: :resource_users, dependent: :destroy
 

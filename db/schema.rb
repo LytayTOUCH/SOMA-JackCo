@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202043227) do
+ActiveRecord::Schema.define(version: 20150204045206) do
 
   create_table "activities", id: false, force: true do |t|
     t.string   "uuid",               limit: 36, null: false
@@ -37,15 +37,16 @@ ActiveRecord::Schema.define(version: 20150202043227) do
   end
 
   create_table "coconuts", id: false, force: true do |t|
-    t.string   "uuid",          limit: 36, null: false
-    t.string   "code",          limit: 50, null: false
-    t.string   "coco_type",     limit: 30, null: false
+    t.string   "uuid",          limit: 36,                null: false
+    t.string   "code",          limit: 50,                null: false
+    t.string   "coco_type",     limit: 30,                null: false
     t.date     "planting_date"
-    t.string   "field_uuid",    limit: 36, null: false
-    t.string   "stage_uuid",    limit: 36, null: false
+    t.string   "field_uuid",    limit: 36,                null: false
+    t.string   "stage_uuid",    limit: 36,                null: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                   default: true
   end
 
   create_table "events", force: true do |t|
@@ -93,16 +94,17 @@ ActiveRecord::Schema.define(version: 20150202043227) do
   end
 
   create_table "jack_fruits", id: false, force: true do |t|
-    t.string   "uuid",            limit: 36, null: false
-    t.string   "code",            limit: 50, null: false
-    t.string   "grown_by",        limit: 30, null: false
-    t.string   "jack_fruit_type", limit: 30, null: false
+    t.string   "uuid",            limit: 36,                null: false
+    t.string   "code",            limit: 50,                null: false
+    t.string   "grown_by",        limit: 30,                null: false
+    t.string   "jack_fruit_type", limit: 30,                null: false
     t.date     "planting_date"
-    t.string   "field_uuid",      limit: 36, null: false
-    t.string   "stage_uuid",      limit: 36, null: false
+    t.string   "field_uuid",      limit: 36,                null: false
+    t.string   "stage_uuid",      limit: 36,                null: false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                     default: true
   end
 
   create_table "labor_projects", id: false, force: true do |t|
@@ -156,7 +158,6 @@ ActiveRecord::Schema.define(version: 20150202043227) do
     t.boolean  "access_delete"
     t.boolean  "access_full"
     t.boolean  "active",                   default: true, null: false
-    t.boolean  "boolean",                  default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -181,7 +182,6 @@ ActiveRecord::Schema.define(version: 20150202043227) do
     t.string   "label",      limit: 50
     t.text     "note"
     t.boolean  "active",                default: true, null: false
-    t.boolean  "boolean",               default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
@@ -264,9 +264,9 @@ ActiveRecord::Schema.define(version: 20150202043227) do
     t.string   "uuid",       limit: 36,                null: false
     t.string   "name",       limit: 50,                null: false
     t.boolean  "active",                default: true, null: false
-    t.boolean  "boolean",               default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "note"
   end
 
   create_table "users", id: false, force: true do |t|
@@ -292,7 +292,7 @@ ActiveRecord::Schema.define(version: 20150202043227) do
     t.text     "note"
     t.string   "role"
     t.string   "label"
-    t.string   "user_group_id"
+    t.string   "user_group_uuid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
