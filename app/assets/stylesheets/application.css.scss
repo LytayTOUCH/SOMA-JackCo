@@ -1,18 +1,8 @@
 /*
  *= require_tree .
  *= require_self
- *= require select2
- *= require nprogress
- *= require nprogress-bootstrap
- *= require fullcalendar
- *= require select2
- *= require datePicker
  */
 
-@import "bootstrap";
-@import 'bootstrap-datetimepicker';
-@import "override_bootstrap";
-@import "machineries";
 
 #delete-confirm.modal-dialog-center {
   width: 100%;

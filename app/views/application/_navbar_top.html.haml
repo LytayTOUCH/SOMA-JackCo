@@ -1,0 +1,320 @@
+.navbar.navbar-default.navbar-fixed-top
+  .navbar-header
+    %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to dashboards_path, :class => "navbar-brand" do
+      %i.fa.fa-dashboard.fa-lg.icon-yellowish
+      Agriculture System
+  #navbar.navbar-collapse.collapse
+    %ul.nav.navbar-nav
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-gears.fa-lg.icon-orangish
+          Initial Setup
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            %a{:href => "#"} Labors
+          %li
+            %a{:href => "#"} Application
+          %li
+            %a{:href => "#"} Phase
+          %li
+            = link_to "Plant Types", dashboards_path
+          %li
+            %a{:href => "#"} Production Stage
+          %li.divider
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-orange.text-color-white Material
+          %li
+            %a{:href => "#"} Fertilizer
+          %li
+            %a{:href => "#"} Pesticide
+          %li
+            %a{:href => "#"} Machinery
+          %li
+            %a{:href => "#"} Hand Tools
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-leaf.fa-lg.icon-greenish
+          Farms
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li= link_to 'All Farms', dashboards_path
+          %li= link_to "All Blocks", dashboards_path
+          %li
+            %a{:href => "#"} All Fields
+          %li= link_to "Warehouses", warehouses_path
+          %li.divider
+          %li
+            %a{:href => "#"} Maps
+          %li
+            %a{:href => "#"} Weather
+          %li
+            %a{:href => "#"} Location
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-area-chart.fa-lg.icon-red
+          Plans
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            %a{:href => "#"} Labors
+          %li
+            %a{:href => "#"} Application
+          %li
+            %a{:href => "#"} Phase
+          %li
+            %a{:href => "#"} Plant Types
+          %li
+            %a{:href => "#"} Production Stage
+          %li.divider
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-red.text-color-white Material
+          %li
+            %a{:href => "#"} Fertilizer
+          %li
+            %a{:href => "#"} Pesticide
+          %li
+            %a{:href => "#"} Machinery
+          %li
+            %a{:href => "#"} Hand Tools
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-bar-chart-o.fa-lg.icon-bluish
+          Analyses
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            %a{:href => "#"} Dashboard Overviews
+          %li.divider
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white Report
+          %li
+            %a{:href => "#"} Labors
+          %li
+            %a{:href => "#"} Fertilizers
+          %li
+            %a{:href => "#"} Pesticides
+          %li
+            %a{:href => "#"} Machineries
+          %li
+            %a{:href => "#"} Hand Tools
+          %li= navbar_link "Farms", dashboards_path, "active"
+          %li= navbar_link "Home1", dashboards_path, "active"
+    / Right Navigator Menu
+    %ul.nav.navbar-nav.navbar-right.custom-navbar-right
+      %li
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-clock-o.fa-lg
+          %span.badge.progress-bar-warning 14
+        %ul.dropdown-menu.dropdown-custom-width{:role => "menu"}
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-orange.text-color-white Reminders
+          %li.divider
+          .container-fluid
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-warning{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  សាកល្បងសរសេរជាភាសាខ្មែរនៃខេមរាអក្ខរាវិរុទ។ ក្បឿងដំបូងស្លឹកស័ង្គសីប្រក់ផ្ទះ។
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-warning{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-warning{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-warning{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-warning{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-warning{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                .text-center Show All Reminders
+      %li
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-envelope.fa-lg
+          %span.badge.progress-bar-danger 34
+        %ul.dropdown-menu.dropdown-custom-width{:role => "menu"}
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-red.text-color-white Mails
+          %li.divider
+          .container-fluid
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-danger{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-danger{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-danger{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-danger{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-danger{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-danger{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                .text-center Show All Reminders
+      %li
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-flag.fa-lg
+          %span.badge.progress-bar-info 15
+        %ul.dropdown-menu.dropdown-custom-width{:role => "menu"}
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white Tasks
+          %li.divider
+          .container-fluid
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-info{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-info{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-info{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-info{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-info{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                %h5{:style => "margin: 5px 0px;"}
+                  %span.label.label-info{:style => "line-height: 10px;"}
+                    %i.fa.fa-clock-o
+                    03/Feb/2015
+                %p.p-line-height
+                  Due date for payout of expense is approaching:Tractor001
+            %li.divider
+            %li
+              %a.all-notification-style{:href => "#"}
+                .text-center Show All Reminders
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          សួន សុវណ្ណ
+          %i.fa.fa-user.fa-lg
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            = link_to dashboards_path do
+              %i.fa.fa-info-circle.fa-lg
+              My Profile
+          %li
+            = link_to edit_user_registration_path do
+              %i.fa.fa-gear.fa-lg
+              Setting
+          %li
+            = link_to destroy_user_session_path, :method => :delete do
+              %i.fa.fa-sign-out.fa-lg
+              Sign Out
+  / /.nav-collapse
