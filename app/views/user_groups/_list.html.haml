@@ -10,10 +10,17 @@
       %td= user_group.name
       %td= user_group.note
       %td
-        - if user_group.active?
-          = "Actived"
-        - else
-          = "Inactived"
+        = form_for(user_group) do |f|
+          - if user_group.active
+            %span{style: "color:auto;"}= "active"
+            |
+            #{f.hidden_field :active, value: false}
+            #{submit_tag "inactivate", :class => "btn btn-default btn-xs"}
+          - else
+            %span{:style => "color:red;"}= "inactive"
+            |
+            #{f.hidden_field :active, value: true}
+            #{submit_tag "activate", :class => "btn btn-default btn-xs"}
       %td
         - if can? :update, UserGroup
           = link_to "Edit", edit_user_group_path(user_group)
