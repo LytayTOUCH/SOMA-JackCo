@@ -1,5 +1,5 @@
 class CoconutsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
 
   def index
     begin
@@ -17,7 +17,8 @@ class CoconutsController < ApplicationController
 
   def new
     @coconut = Coconut.new
-    @stages = Stage.all
+    @stages = Stage.where(fruit_type: 'coconut')
+    @fields = Field.all
   end
 
   def create
@@ -38,7 +39,8 @@ class CoconutsController < ApplicationController
 
   def edit
     @coconut = Coconut.find(params[:id])
-    @stages = Stage.all
+    @stages = Stage.where(fruit_type: 'coconut')
+    @fields = Field.all
   end
 
   def update
@@ -57,8 +59,18 @@ class CoconutsController < ApplicationController
     end
   end
 
+  def destroy
+    @coconut = Coconut.find(params[:id])
+    @coconut.destroy
+
+    respond_to do |format|
+      format.html { redirect_to coconuts_path, :notice => 'Coconut was successfully deleted.' }
+      format.json { render json: @coconut, status: :created, location: @coconut }
+    end
+  end
+
   private
   def coconut_params
-    params.require(:coconut).permit(:code, :status, :coco_type, :growing_date, :field_uuid, :stage_uuid, :note)
+    params.require(:coconut).permit(:code, :coco_type, :planting_date, :field_uuid, :stage_uuid, :note)
   end
 end

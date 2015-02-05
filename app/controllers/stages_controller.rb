@@ -1,5 +1,5 @@
 class StagesController < ApplicationController
-  # load_and_authorize_resource
+  load_and_authorize_resource except: :create
   
   def index
     begin
@@ -15,6 +15,15 @@ class StagesController < ApplicationController
     end
   end
 
+  def show
+    @stage = Stage.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @stage }
+    end
+  end
+
   def new
     @stage = Stage.new
   end
@@ -24,10 +33,10 @@ class StagesController < ApplicationController
       @stage = Stage.new(stage_params)
 
       if @stage.save!
-        flash[:notice] = "Warehouse type saved successfully"
+        flash[:notice] = "Stage saved successfully"
         redirect_to stages_path
       else
-        flash[:notice] = "Warehouse type can't save"
+        flash[:notice] = "Stage can't save"
         redirect_to :back
       end
     rescue Exception => e
@@ -54,21 +63,8 @@ class StagesController < ApplicationController
     end
   end
 
-  def destroy
-    puts "======================================"
-    puts params[:id]
-    # puts @stage = Stage.find(params[:id])
-    puts "======================================"
-    # @stage.destroy
-
-    # respond_to do |format|
-    #   format.html { redirect_to stages_path, :notice => 'Stage was successfully deleted.' }
-    #   format.json { render json: @stage, status: :created, location: @stage }
-    # end
-  end
-
   private
   def stage_params
-    params.require(:stage).permit(:name, :period, :note)
+    params.require(:stage).permit(:name, :period, :note, :fruit_type, :active)
   end
 end

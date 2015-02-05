@@ -7,7 +7,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Field
     .col-xs-5
-      = f.input :field_uuid, label: false, input_html: { class: "form-control" }
+      = f.input :field_uuid, label: false, collection: @fields, input_html: { class: "form-control" }, include_blank: true
       %span.help-block= f.error :field_uuid
   .form-group
     %label.col-xs-2.control-label.text-left Coconut Stage
@@ -15,23 +15,18 @@
       = f.input :stage_uuid, label: false, collection: @stages, input_html: {class: "form-control"}, include_blank: true
       %span.help-block= f.error :stage_uuid
   .form-group
-    %label.col-xs-2.control-label.text-left Coconut Status
-    .col-xs-5
-      = f.input :status, label: false, collection: ["Small", "Medium", "Big"], input_html: { class: "form-control" }
-      %span.help-block= f.error :status
-  .form-group
     %label.col-xs-2.control-label.text-left Coconut Type
     .col-xs-5
       = f.input :coco_type, label: false, collection: ["Khmer", "Malaysia", "Thailand"], input_html: { class: "form-control" }
       %span.help-block= f.error :coco_type
   .form-group
-    %label.col-xs-2.control-label.text-left Growing Date
+    %label.col-xs-2.control-label.text-left Planting Date
     .col-xs-5
       .input-group.date.date_pick
-        = f.text_field :growing_date, :class => "form-control", :type => "text", :data => {:date_format => "YYYY/MM/DD"}, :placeholder => "Year-Month-Day", :readonly => true
+        = f.text_field :planting_date, :class => "form-control", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, :placeholder => "Year-Month-Day", :readonly => true
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar    
-      %span.help-block= f.error :growing_date  
+      %span.help-block= f.error :planting_date      
   .form-group
     %label.col-xs-2.control-label.text-left Note
     .col-xs-5

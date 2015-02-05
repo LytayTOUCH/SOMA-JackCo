@@ -2,21 +2,21 @@
   %thead
     %tr
       %th.col-md-2 Code
-      %th.col-md-1 Status
       %th.col-md-1 Type
       %th.col-md-4 Stage
       %th.col-md-2 Date
       %th.col-md-1 Actions
-  %tbody    
+  %tbody
     - @coconuts.each do |coconut|
       %tr
         %td= coconut.code
-        %td= coconut.status
         %td= coconut.coco_type
         %td= coconut.stage.name
-        %td= coconut.growing_date.strftime('%Y-%B-%d')
+        %td= coconut.planting_date.strftime('%Y-%B-%d')
         %td
           - if can? :update, coconut
             = link_to "Edit", edit_coconut_path(coconut)
+          = '|'  
+          = link_to "Show", coconut_path(coconut)
 .pull-right
   = paginate @coconuts

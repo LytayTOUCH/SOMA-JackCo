@@ -11,7 +11,14 @@ Rails.application.routes.draw do
 
   # devise_for :users, controllers: { registrations: "registrations" }
 
-  resources :dashboards, only: [:index]
+  # resources :dashboards, only: [:index]
+  resources :dashboards, only: [:index] do
+    collection do 
+      get 'downloadpdf'
+      get 'downloadexcel'
+    end
+  end
+
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
   resources :implements, except: [:index]
@@ -23,7 +30,10 @@ Rails.application.routes.draw do
   # get "plans/downloadpdf" => "plans#downloadpdf"
 
   resources :plans do
-    get 'downloadpdf', on: :collection
+    collection do 
+      get 'downloadpdf'
+      get 'downloadexcel'
+    end
   end
 
   resources :materials, except: [:destroy] do
@@ -64,13 +74,22 @@ Rails.application.routes.draw do
   end
   
   resources :calendars
-  resources :activities
   resources :stages
   resources :coconuts
+  resources :jack_fruits
 
   resources :fields, except: [:destroy] do
     collection do 
       get 'fields'
+    end
+  end
+
+  resources :activities do
+    collection do 
+      get 'fields'
+      get 'labors'
+      get 'tractors'
+      get 'implements'
     end
   end
 

@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
 
   def index
     begin
@@ -19,6 +19,7 @@ class WarehousesController < ApplicationController
     begin
       @warehouse = Warehouse.new
       @warehouse_types = WarehouseType.all
+      @workers = User.all
     rescue Exception => e
       puts e
     end
@@ -44,6 +45,7 @@ class WarehousesController < ApplicationController
     begin
       @warehouse = Warehouse.find(params[:id])
       @warehouse_types = WarehouseType.all
+      @workers = User.all
     rescue Exception => e
       puts e
     end
@@ -62,6 +64,16 @@ class WarehousesController < ApplicationController
       end
     rescue Exception => e
       puts e
+    end
+  end
+
+  def destroy
+    @warehouse = Warehouse.find(params[:id])
+    @warehouse.destroy
+
+    respond_to do |format|
+      format.html { redirect_to warehouses_path, :notice => 'Warehouse was successfully deleted.' }
+      format.json { render json: @warehouse, status: :created, location: @warehouse }
     end
   end
 

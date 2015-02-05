@@ -1,6 +1,16 @@
-.row
-  .panel.panel-success
-    .panel-heading
-      %h3.panel-title= "RECENT ACTIVITY"
-    .panel-body
-      You haven't logged any activities yet.
+/ %p#pdf_link= link_to "Download Graph as PDF",  downloadpdf_dashboards_path, class: "btn btn-primary"
+= link_to "PDF",  downloadpdf_dashboards_path, title: "Download Graph as PDF",class: "btn btn-primary"
+
+= link_to "EXCEL",  downloadexcel_dashboards_path, title: "Download Graph as Excel", class: "btn btn-primary"
+
+#chart_div
+
+#columnchart_values{:style => "width: 600px; height: 400px;"}
+
+/ = image_tag @line_chart
+
+/ = pie_chart Role.group(:name).count
+
+/ %div{:style => "width: 50px; block: inline"}
+
+/ = image_tag @bar_chart

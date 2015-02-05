@@ -1,0 +1,16 @@
+/ Put Page Number
+%meta{:name => 'pdfkit-footer_right', :content => "[page]"}
+
+%div#title Graph
+
+#chart_div
+
+#columnchart_values{:style => "width: 600px; height: 400px;"}
+
+/ = image_tag @line_chart
+
+/ = pie_chart Role.group(:name).count
+
+%div{:style => "width: 50px; block: inline"}
+
+/ = image_tag @bar_chart

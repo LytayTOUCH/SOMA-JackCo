@@ -1,5 +1,5 @@
 class TractorsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
   
   def new
     begin
@@ -29,8 +29,8 @@ class TractorsController < ApplicationController
         flash[:notice] = "Tractor can't save"
         redirect_to :back
       end
-    rescue Exception => exp
-      puts exp
+    rescue Exception => e
+      puts e
     end
   end
 

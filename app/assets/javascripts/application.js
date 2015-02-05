@@ -12,3 +12,8 @@
 //= require moment
 //= require calendars
 //= require bootstrap-datetimepicker
+//= require dashboards
+
+$(document).ready(function() {
+  NProgress.start();
+});

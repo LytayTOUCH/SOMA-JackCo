@@ -1,4 +1,6 @@
-%p#pdf_link= link_to "Download Plans as PDF",  downloadpdf_plans_path, class: "btn btn-primary"
+= link_to "PDF",  downloadpdf_plans_path, title: "Download Plans as PDF",class: "btn btn-primary"
+
+= link_to "EXCEL",  downloadexcel_plans_path, title: "Download Plans as Excel", class: "btn btn-primary"
 
 %table.table
   %thead

@@ -1,6 +1,6 @@
 class ImplementTypesController < ApplicationController
   before_filter :set_title
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
   
   def index
     begin
@@ -60,7 +60,6 @@ class ImplementTypesController < ApplicationController
   def set_title
     content_for :title, "ImplementType"
   end
-
   def implement_type_params
     params.require(:implement_type).permit(:name, :note)
   end
