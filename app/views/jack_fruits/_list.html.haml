@@ -2,10 +2,11 @@
   %thead
     %tr
       %th.col-md-2 Code
-      %th.col-md-2 Grown By
+      %th.col-md-1 Grown By
       %th.col-md-1 Type
       %th.col-md-3 Stage
       %th.col-md-2 Date
+      %th.col-md-1 Active
       %th.col-md-1 Actions
   %tbody
     - @jack_fruits.each do |jack_fruit|
@@ -15,6 +16,11 @@
         %td= jack_fruit.jack_fruit_type
         %td= jack_fruit.stage.name
         %td= jack_fruit.planting_date.strftime('%Y-%B-%d')
+        %td
+          - if jack_fruit.active?
+            = "active"
+          - else  
+            = "inactive"
         %td
           - if can? :update, jack_fruit
             = link_to "Edit", edit_jack_fruit_path(jack_fruit)
