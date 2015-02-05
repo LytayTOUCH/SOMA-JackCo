@@ -1,0 +1,40 @@
+:css
+  @media print {
+    #title {
+      color: #2E2E2E;
+      font-size: 20px;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    th {
+      color: #013ADF;
+      font-size: 16px;
+    }
+    td {
+      font-size: 14px;
+    }
+    #line_items {  
+      page-break-inside:avoid !important;
+    }  
+  }
+
+/ Put Page Number
+%meta{:name => 'pdfkit-footer_right', :content => "[page]"}
+
+%div#title Plan List
+
+%table{:border => "1", :cellspacing => "0", :width => "100%"}
+  %thead
+    %tr
+      %th Name
+      %th Quantity
+      %th Unit
+      %th Year
+  %tbody
+    - @plans.each do |plan|
+      %tr#line_items
+        %td= plan.name
+        %td= plan.quantity
+        %td= plan.unit
+        %td= plan.year

@@ -61,7 +61,10 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
-gem 'has_scope'
+gem 'pdfkit', '~> 0.6.2'
+gem 'wkhtmltopdf-binary'
+gem "googlecharts"
+gem 'axlsx', '~> 2.0.1'
 
 # ruby '2.0.0'
 

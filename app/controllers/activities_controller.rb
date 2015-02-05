@@ -14,6 +14,8 @@ class ActivitiesController < ApplicationController
       else
         @paginate_activities = Activity.page(params[:page]).per(5).order("starts_at ASC")
       end
+
+      activities_json
     rescue Exception => e
       puts e
     end

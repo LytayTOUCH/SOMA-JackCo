@@ -18,6 +18,7 @@ class CoconutsController < ApplicationController
   def new
     @coconut = Coconut.new
     @stages = Stage.where(fruit_type: 'coconut')
+    @fields = Field.all
   end
 
   def create
@@ -39,6 +40,7 @@ class CoconutsController < ApplicationController
   def edit
     @coconut = Coconut.find(params[:id])
     @stages = Stage.where(fruit_type: 'coconut')
+    @fields = Field.all
   end
 
   def update

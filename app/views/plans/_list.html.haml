@@ -1,0 +1,25 @@
+= link_to "PDF",  downloadpdf_plans_path, title: "Download Plans as PDF",class: "btn btn-primary"
+
+= link_to "EXCEL",  downloadexcel_plans_path, title: "Download Plans as Excel", class: "btn btn-primary"
+
+%table.table
+  %thead
+    %tr
+      %th.col-md-2.5= "Name"
+      %th.col-md-2.5= "Quantity"
+      %th.col-md-2.5= "Unit"
+      %th.col-md-2.5= "Year"
+      %th.col-md-2= "Action"
+  %tbody
+    - @plans.each do |p|
+      %tr
+        %td= p.name
+        %td= p.quantity
+        %td= p.unit
+        %td= p.year
+        %td
+          - if can? :update, Plan
+            = link_to "Edit", edit_plan_path(p)          
+            
+.pull-right
+  = paginate @plans

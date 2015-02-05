@@ -1,6 +1,5 @@
 /tmp/*
 /log/*
 *.orig
-Gemfile.lock
 /db/schema.rb
-
+Gemfile.lock

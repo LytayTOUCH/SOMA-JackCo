@@ -7,7 +7,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Field
     .col-xs-5
-      = f.input :field_uuid, label: false, input_html: { class: "form-control" }
+      = f.input :field_uuid, label: false, collection: @fields, input_html: { class: "form-control" }, include_blank: true
       %span.help-block= f.error :field_uuid
   .form-group
     %label.col-xs-2.control-label.text-left JackFruit Stage

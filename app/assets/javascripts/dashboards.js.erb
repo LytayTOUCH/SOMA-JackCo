@@ -1,0 +1,121 @@
+var myData;
+$.ajax({
+  url:'dashboards.json',
+  dataType: 'json',
+  success: function(data){
+    myData = data;
+  }
+});
+
+google.load('visualization', '1.0', {'packages':['corechart']});
+
+// function gChartLoading(version, package_type){
+//   return google.load('visualization', version, {'packages':[package_type]});
+// }
+
+
+// (function barChartShowing(){
+
+// gChartLoading('1.1', 'bar');
+google.setOnLoadCallback(drawChart);
+
+function drawChart() {
+
+
+// var data = google.visualization.arrayToDataTable([
+//           ['Year', 'Sales', 'Expenses', 'Profit'],
+//           ['2014', 1000, 400, 200],
+//           ['2015', 1170, 460, 250],
+//           ['2016', 660, 1120, 300],
+//           ['2017', 1030, 540, 350]
+//         ]);
+
+//         var options = {
+//           chart: {
+//             title: 'Company Performance',
+//             subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+//           },
+//           bars: 'horizontal' // Required for Material Bar Charts.
+//         };
+
+//         var chart = new google.charts.Bar(document.getElementById('columnchart_values'));
+
+//         chart.draw(data, options);
+
+  // ======================= Pie Chart ======================
+  var data = new google.visualization.DataTable();
+  
+  data.addColumn('string', 'Topping');
+  data.addColumn('number', 'Slices');
+  data.addRows(myData);
+  
+  var options = {'title':'Expense',
+                 'width': 700,
+                 'height': 400,
+                 'colors': ['blue', 'red', 'orange', 'green', 'pink', 'gray', 'yellow']
+                };
+
+  var chartpie = new google.visualization.PieChart(document.getElementById('chart_div'));
+  chartpie.draw(data, options);
+
+
+  // ======================= Bar Chart ======================
+  var data_bar = google.visualization.arrayToDataTable([
+        ["Yoyo", "Expense", { role: "style" }],
+        ["Copper", 8.94, "red"],
+        ["Silver", 40.49, "silver"],
+        ["Gold", 19.30, "gold"],
+        ["Platinum", 31.45, "blue"]
+      ]);
+
+      var view = new google.visualization.DataView(data_bar);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Production rate",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+
+
+}
+// })();
+
+// (function pieChartShowing(){
+
+// gChartLoading('1', 'corechart');
+
+// google.setOnLoadCallback(drawPieChart);
+
+// function drawPieChart() {
+  
+//   // ======================= Pie Chart ======================
+//   var data = new google.visualization.DataTable();
+  
+//   data.addColumn('string', 'Topping');
+//   data.addColumn('number', 'Slices');
+//   data.addRows(myData);
+  
+//   var options = {'title':'Expense',
+//                  'width': 700,
+//                  'height': 400};
+
+//   var chartpie = new google.visualization.PieChart(document.getElementById('chart_div'));
+//   chartpie.draw(data, options);
+
+
+  
+// }
+// })();
+
+
+

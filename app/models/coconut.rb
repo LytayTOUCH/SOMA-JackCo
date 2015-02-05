@@ -2,6 +2,7 @@ class Coconut < ActiveRecord::Base
   include UuidHelper
 
   belongs_to :stage, foreign_key: :stage_uuid
+  belongs_to :field, foreign_key: :field_uuid
 
   validates :code, length: { maximum: 50 }, presence: true
   validates :coco_type, length: { maximum: 30 }, presence: true
