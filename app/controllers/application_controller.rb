@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_filter :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
-
+  add_breadcrumb "Home", :dashboards_path
   private
   def after_sign_in_path_for(resource)
     dashboards_path
