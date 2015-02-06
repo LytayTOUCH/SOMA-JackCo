@@ -1,16 +1,5 @@
-/ %p#pdf_link= link_to "Download Graph as PDF",  downloadpdf_dashboards_path, class: "btn btn-primary"
-= link_to "PDF",  downloadpdf_dashboards_path, title: "Download Graph as PDF",class: "btn btn-primary"
-
-= link_to "EXCEL",  downloadexcel_dashboards_path, title: "Download Graph as Excel", class: "btn btn-primary"
-
 #chart_div
 
 #columnchart_values{:style => "width: 600px; height: 400px;"}
 
-/ = image_tag @line_chart
-
-/ = pie_chart Role.group(:name).count
-
-/ %div{:style => "width: 50px; block: inline"}
-
-/ = image_tag @bar_chart
+#curve_line_chart{:style => "width: 600px; height: 400px"}
