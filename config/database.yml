@@ -82,6 +82,6 @@ staging:
   <<: *defaults
 
 production:
-  database: soma_database_production
+  database: soma_production
   host: localhost
   <<: *defaults
