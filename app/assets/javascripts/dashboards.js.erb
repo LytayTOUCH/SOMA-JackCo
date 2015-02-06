@@ -1,63 +1,85 @@
-google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
+var pieData;
+var barData;
+$(document).ready(function() {
+  // ======================= Pie Chart ======================
+  $.ajax({
+    url:'dashboards/getPieData.json',
+    dataType: 'json',
+    success: function(pdata){
+      pieData = pdata;
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
+      google.load('visualization', '1.0', {'packages':['corechart']});
 
-        var options = {
-          title: 'My Daily Activities'
-        };
+      var data = new google.visualization.DataTable();
+    
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows(pieData);
+      
+      var options = {'title':'Expense',
+                     'width': 700,
+                     'height': 400};
 
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      var chartpie = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chartpie.draw(data, options);
+    }
+  });
 
-        chart.draw(data, options);
+  // ======================= Bar Chart ======================
+  $.ajax({
+    url:'dashboards/getBarData.json',
+    dataType: 'json',
+    success: function(bdata){
+      bdata.unshift(["Element", "Expense", { role: "style" }]);
+      barData = bdata;
 
+      google.load('visualization', '1.0', {'packages':['corechart']});
 
+       
+      var data_bar = google.visualization.arrayToDataTable(barData);
+      var view = new google.visualization.DataView(data_bar);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
 
+      var options = {
+        title: "Production rate",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+    }
+  });
+});  
 
+google.load('visualization', '1.0', {'packages':['corechart']});
 
-var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
+google.setOnLoadCallback(drawChart);
 
-        var options = {
-          title: 'Company Performance',
-          vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
-        };
+function drawChart() {
 
-        var chart = new google.visualization.BarChart(document.getElementById('columnchart_values'));
+  // ======================= Line Chart ======================
+  var data_line = google.visualization.arrayToDataTable([
+    ['Year', 'Sales', 'Expenses', 'Investment'],
+    ['2004',  1000, 400, 300],
+    ['2005',  1170, 460, 500],
+    ['2006',  660, 1120, 550],
+    ['2007',  1030, 540, 700]
+  ]);
 
-        chart.draw(data, options);
+  var line_chart = new google.visualization.LineChart(document.getElementById('curve_line_chart'));
 
+ var line_options = {
+        title: 'Company Performance',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
 
-
-var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
-
-        var options = {
-          title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-
-      }
+  line_chart.draw(data_line, line_options);
+}

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # root 'devise/sessions#new'
   devise_for :users, controllers: { registrations: "users" } 
   # devise_for :users, controllers: { registrations: "registrations" } 
@@ -11,11 +10,10 @@ Rails.application.routes.draw do
 
   # devise_for :users, controllers: { registrations: "registrations" }
 
-  # resources :dashboards, only: [:index]
   resources :dashboards, only: [:index] do
-    collection do 
-      get 'downloadpdf'
-      get 'downloadexcel'
+    collection do
+      get 'getBarData'
+      get 'getPieData'
     end
   end
 
@@ -26,15 +24,6 @@ Rails.application.routes.draw do
   resources :implement_types, except: [:destroy]
   resources :suppliers, except: [:destroy]
   resources :jackfruits, except: [:destroy]
-  # resources :plans
-  # get "plans/downloadpdf" => "plans#downloadpdf"
-
-  resources :plans do
-    collection do 
-      get 'downloadpdf'
-      get 'downloadexcel'
-    end
-  end
 
   resources :materials, except: [:destroy] do
     collection do

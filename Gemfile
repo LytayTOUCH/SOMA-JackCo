@@ -66,7 +66,7 @@ gem 'bootstrap3-datetimepicker-rails'
 gem 'pdfkit', '~> 0.6.2'
 gem 'wkhtmltopdf-binary'
 gem "googlecharts"
-gem 'axlsx', '~> 2.0.1'
+gem 'axlsx'
 
 # ruby '2.0.0'
 
