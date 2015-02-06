@@ -5,16 +5,17 @@
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
     = stylesheet_link_tag "application", :media => "all"
     = google_map_api_drawing
+    = google_chart_api
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body{style: "margin-top: 90px;"}
-    = render 'sidebar_top'
+  %body{style: "margin-top: 40px;"}
+    = render 'navbar_top'
     = render 'notification'
     .container
-      .col-lg-2.sidebar
-        = render 'sidebar_left'
-      .col-lg-10
+      / .col-lg-2
+      /   = render 'sidebar_left'
+      .col-lg-12
         = yield
-        / %br
-        / = debug(params) if Rails.env,development?
+        .row
+          = debug(params) if Rails.env.development?
     = render 'footer'

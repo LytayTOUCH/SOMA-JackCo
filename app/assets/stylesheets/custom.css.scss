@@ -1,0 +1,108 @@
+$font-size-base : 12px;
+$line-height-computed : 16px;
+
+$navbar-height : 30px;
+$navbar-default-bg : #188D00;
+$navbar-default-link-color : #fff;
+$navbar-default-link-hover-color : #D0FFC6;
+$navbar-default-link-active-color : #fff;
+$navbar-default-link-active-bg : #18AF00;
+$navbar-default-toggle-icon-bar-bg : $navbar-default-link-color;
+$navbar-margin-bottom : 5px;
+$navbar-default-toggle-hover-bg : $navbar-default-link-hover-color;
+
+$breadcrumb-bg : $navbar-default-link-hover-color;
+
+$dropdown-link-active-bg : #18AF00;
+$dropdown-link-hover-bg : #18AF00;
+$dropdown-link-hover-color : #ffffff;
+
+$nprogress-color: #FFE16B;
+$nprogress-height: 3px;
+
+@import "bootstrap";
+@import 'nprogress';
+@import 'nprogress-bootstrap';
+@import "font-awesome";
+
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 30px;
+    height: 30px;
+    padding-top: 0px;
+}
+
+.navbar-toggle {
+  padding: 5px 5px;
+  @include navbar-vertical-align(26px);
+}
+
+.icon-yellowish{
+  color: #FFE16B;
+}
+.icon-greenish{
+  color: #5EFF4A;
+}
+.icon-red{
+  color: #FF6364;
+}
+.icon-brownish{
+  color: #FF9863;
+}
+.icon-orangish{
+  color: #FFBA5F;
+}
+.icon-bluish{
+  color: #87B9FF;
+}
+.dropdown-custom-width{
+  width:280px
+}
+.dropdown-header-custom-font{
+  font-weight: bolder;
+}
+.bg-color-orange{
+  background-color:#f0ad4e;
+}
+.bg-color-red{
+  background-color:#d9534f;
+}
+.bg-color-blue{
+  background-color:#5bc0de;
+}
+.text-color-white{
+  color:#fff;
+}
+a.all-notification-style{
+  line-height: 15px;
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+}
+a.all-notification-style:hover{
+  color: grey;
+}
+.p-line-height{
+  line-height: 17px;
+}
+
+.breadcrumb-sm{
+  margin-bottom: 0px;
+  padding: 3px 15px;
+}
+
+.badge, .p-line-height{
+  font-size: 11px;
+}
+
+.custom-alert{
+  position: fixed;
+  top: 20%;
+  left: 40%;
+  z-index: 10000;
+  padding: 5px 20px;
+  width: 20%;
+}
+.custom-navbar-right{
+  padding-right: 20px;
+}
