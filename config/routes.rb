@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     collection do
       get 'getBarData'
       get 'getPieData'
+      get 'downloadpdf'
+      get 'downloadexcel'
     end
   end
 

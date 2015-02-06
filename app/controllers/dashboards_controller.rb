@@ -30,4 +30,12 @@ class DashboardsController < ApplicationController
       format.json {render :json => @pie_chart_data}
     end
   end
+
+  def downloadpdf
+
+  end
+
+  def downloadexcel
+
+  end
 end
