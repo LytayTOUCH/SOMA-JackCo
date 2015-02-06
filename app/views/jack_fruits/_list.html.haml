@@ -14,7 +14,7 @@
         %td= jack_fruit.grown_by
         %td= jack_fruit.jack_fruit_type
         %td= jack_fruit.stage.name
-        %td= jack_fruit.planting_date.strftime('%Y-%B-%d')
+        %td= jack_fruit.planting_date
         %td
           - if can? :update, jack_fruit
             = link_to "Edit", edit_jack_fruit_path(jack_fruit)
