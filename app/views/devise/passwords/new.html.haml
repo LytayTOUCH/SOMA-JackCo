@@ -1,18 +1,25 @@
 .row
-  .col-sm-4.col-sm-offset-4.text-center
-    %h2 Forgot your password?
-.row
-  .col-sm-4.col-sm-offset-4.cs-border
-    .form-group
-      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-        = devise_error_messages!
-        .field
-          = f.label :email
-          %br
-          = f.email_field :email, autofocus: true, :id => 'exampleInputEmail1', :class => 'form-control', :placeholder => "Enter email"
-          %br
-        .row  
-          .col-sm-10 
-            .actions
-              = f.submit "Send reset password instructions", :class => 'btn btn-success form-control'
-          = link_to "Log in", new_user_session_path
+  .col-sm-10.col-sm-offset-1
+    .row.move-down
+      .col-sm-4.col-sm-offset-4.text-center
+        = image_tag "logo.png"
+    .row
+      .col-sm-6.col-sm-offset-3
+        .panel.panel-danger
+          .panel-heading
+            %h3.panel-title Forgot your password?
+          .panel-body
+            = devise_error_messages!
+            .form-group
+              = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+                .field
+                  = f.email_field :email, autofocus: true, :class => 'form-control', :placeholder => "Your Email"
+                  %br
+                .row
+                  .col-lg-3
+                    .actions
+                      = f.submit "Send me reset password instructions", :class => "btn btn-danger btn-sm"
+                  .col-lg-4.col-lg-offset-4
+                    = link_to "Back to Login", new_session_path(resource_name)
+                    %br/
+              %div

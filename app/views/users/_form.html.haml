@@ -4,21 +4,7 @@
     .col-xs-5
       = f.input :email, label: false, input_html: { class: "form-control" } 
       %span.help-block= f.error :name
-<<<<<<< HEAD:app/views/users/_form.html.haml
-  / .form-group
-  /   %label.col-xs-1.control-label.text-left Password
-  /   .col-xs-5
-  /     - if @validatable
-  /       %em
-  /         (#{@minimum_password_length} characters minimum)
-  /     = f.input :password, label: false, input_html: { class: "form-control" } 
-  /     %span.help-block= f.error :password
-  / .form-group
-  /   %label.col-xs-1.control-label.text-left Confirm Password
-  /   .col-xs-5
-  /     = f.input :password_confirmation, label: false, input_html: { class: "form-control" }
-  /     %span.help-block= f.error :password_confirmation
-=======
+
   .form-group
     %label.col-xs-2.control-label.text-left Password
     .col-xs-5
@@ -32,7 +18,7 @@
     .col-xs-5
       = f.input :password_confirmation, label: false, input_html: { class: "form-control" } 
       %span.help-block= f.error :password_confirmation
->>>>>>> coconut:app/views/application/_user_new_form.html.haml
+
   .form-group
     %label.col-xs-2.control-label.text-left Role
     .col-xs-5

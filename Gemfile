@@ -28,6 +28,8 @@ gem 'select2-rails'
 gem 'kaminari'
 gem 'olive', '~> 0.0.1'
 gem 'activenavbar', '~> 1.0.4'
+gem "font-awesome-rails"
+gem "breadcrumbs_on_rails"
 
 # heroku environment
 gem 'heroku'
@@ -57,9 +59,9 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
-group :assets do
-  gem 'twitter-bootstrap-rails'
-end
+# group :assets do
+#   gem 'twitter-bootstrap-rails'
+# end
 
 gem 'pdfkit', '~> 0.6.2'
 gem 'wkhtmltopdf-binary'

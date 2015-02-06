@@ -1,19 +1,14 @@
 //= require jquery
-//= require fullcalendar
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap
 //= require nprogress
 //= require nprogress-turbolinks
-//= require bootstrap/modal
-//= require bootstrap/scrollspy
-//= require bootstrap/dropdown
-//= require select2
-//= require fields
-//= require moment
-//= require calendars
-//= require bootstrap-datetimepicker
-//= require dashboards
+//= require turbolinks
+//= require_tree .
 
 $(document).ready(function() {
-  NProgress.start();
+	NProgress.configure({
+	  showSpinner: false,
+	});
+	NProgress.start();
 });
