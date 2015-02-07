@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # root 'devise/sessions#new'
   devise_for :users, controllers: { registrations: "users" } 
   # devise_for :users, controllers: { registrations: "registrations" } 
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :farms
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
   resources :implements, except: [:index]
