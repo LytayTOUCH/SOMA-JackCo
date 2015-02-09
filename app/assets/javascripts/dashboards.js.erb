@@ -17,8 +17,8 @@ $(document).ready(function() {
       data.addRows(pieData);
       
       var options = {'title':'Expense',
-                     'width': 700,
-                     'height': 400};
+                     'width': 400,
+                     'height': 300};
 
       var chartpie = new google.visualization.PieChart(document.getElementById('chart_div'));
       chartpie.draw(data, options);
@@ -47,8 +47,8 @@ $(document).ready(function() {
 
       var options = {
         title: "Production rate",
-        width: 600,
-        height: 400,
+        width: 400,
+        height: 300,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
       };
