@@ -1,10 +1,11 @@
 %table.table
   %thead
     %tr
-      %th.col-md-2 Code
+      %th.col-md-1 Code
       %th.col-md-1 Type
       %th.col-md-4 Stage
       %th.col-md-2 Date
+      %th.col-md-2 Active
       %th.col-md-1 Actions
   %tbody
     - @coconuts.each do |coconut|
@@ -13,6 +14,18 @@
         %td= coconut.coco_type
         %td= coconut.stage.name
         %td= coconut.planting_date.strftime('%Y-%B-%d')
+        %td
+          = form_for(coconut) do |f|
+            - if coconut.active
+              %span{style: "color:auto;"}= "active"
+              |
+              #{f.hidden_field :active, value: false}
+              #{submit_tag "inactivate", :class => "btn btn-default btn-xs"}
+            - else
+              %span{:style => "color:red;"}= "inactive"
+              |
+              #{f.hidden_field :active, value: true}
+              #{submit_tag "activate", :class => "btn btn-default btn-xs"}
         %td
           - if can? :update, coconut
             = link_to "Edit", edit_coconut_path(coconut)

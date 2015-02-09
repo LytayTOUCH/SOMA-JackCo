@@ -1,15 +1,17 @@
 %table.table
   %thead
     %tr
-      %th.col-md-8= "Name"
+      %th.col-md-5= "Name"
+      %th.col-md-3= "URL"
       %th.col-md-3= "Active"
       %th.col-md-1= "Actions"
-  - @warehouse_types.each do |warehouse_type|
+  - @resources.each do |resource|
     %tr
-      %td= warehouse_type.name
+      %td= resource.name
+      %td= resource.url
       %td
-        = form_for(warehouse_type) do |f|
-          - if warehouse_type.active
+        = form_for(resource) do |f|
+          - if resource.active
             %span{style: "color:auto;"}= "active"
             |
             #{f.hidden_field :active, value: false}
@@ -20,7 +22,7 @@
             #{f.hidden_field :active, value: true}
             #{submit_tag "activate", :class => "btn btn-default btn-xs"}
       %td
-        - if can? :update, WarehouseType
-          = link_to "Edit", edit_warehouse_type_path(warehouse_type)
+        - if can? :update, Resource
+          = link_to "Edit", edit_resource_path(resource)
 .pull-right
-  = paginate @warehouse_types
+  = paginate @resources

@@ -5,7 +5,7 @@ class CreateResources < ActiveRecord::Migration
       t.string :name, limit: 50, null: false
       t.string :label, limit: 50
       t.text :note 
-      t.boolean :active, :boolean, default: true, null: false
+      t.boolean :active, default: true, null: false
 
       t.timestamps
     end

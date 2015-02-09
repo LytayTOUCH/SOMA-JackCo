@@ -61,7 +61,7 @@ class JackFruitsController < ApplicationController
 
   private
   def jack_fruit_params
-    params.require(:jack_fruit).permit(:code, :grown_by, :jack_fruit_type, :planting_date, :field_uuid, :stage_uuid, :note)
+    params.require(:jack_fruit).permit(:code, :grown_by, :jack_fruit_type, :planting_date, :field_uuid, :stage_uuid, :note, :active)
   end
 
 end
