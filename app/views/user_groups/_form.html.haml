@@ -14,6 +14,32 @@
     .col-xs-5
       = f.input :active, label: false, input_html: { style: "margin-top: 12px;" }
       %span.help-block= f.error :active
+
+  .panel.panel-default
+    .panel-heading
+      %b Permissions
+    .panel-body
+    %table.table
+      %thead
+        %tr
+          %th.col-md-3= "Module Name"
+          %th.col-md-2= "Full control"
+          %th.col-md-2= "View"
+          %th.col-md-2= "Create"
+          %th.col-md-2= "Update"
+          %th.col-md-1= "Delete"
+
+        - @resources.each do |resource|
+          %tr
+            %td= resource.name
+            %td
+              - @permissions.each do |permission|
+                = simple_form_for @permission do |f|
+                  = f.input :access_list, :as => :check_boxes, :collection => @permissions
+              / - @permissions.each do |permission|
+              /   = form_for(permission) do |f|
+              /     = check_box_tag 'access_list', 'yes', true
+    
   .form-group
     .col-xs-6
       .pull-right
