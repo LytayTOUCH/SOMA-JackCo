@@ -114,3 +114,12 @@ end
 ].each do |testing_chart|
   TestingChart.create_with(amount: testing_chart[:amount]).find_or_create_by(name: testing_chart[:name])
 end
+
+[
+  {element: 'Janurary', amount: 40.49, bar_color: 'silver'},
+  {element: 'Februry', amount: 20.49, bar_color: 'gold'},
+  {element: 'March', amount: 20.49, bar_color: 'blue'},
+  {element: 'April', amount: 20.49, bar_color: 'green'}
+].each do |bar_chart|
+  TestingWithBarChart.create_with(bar_color: bar_chart[:bar_color] ,amount: bar_chart[:amount]).find_or_create_by(element: bar_chart[:element])
+end
