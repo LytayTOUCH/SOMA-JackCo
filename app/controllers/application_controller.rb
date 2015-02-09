@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include ExceptionHandler
   
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :count_farm
   before_filter :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
   add_breadcrumb "Home", :dashboards_path
@@ -19,4 +19,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up).push(:role, :resource_ids)
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password) }
   end
+  
+  def count_farm
+    @farms=Farm.count(:all)
+  end
+
 end

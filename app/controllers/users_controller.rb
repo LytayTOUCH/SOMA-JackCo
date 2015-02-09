@@ -16,45 +16,65 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    begin
+      @user = User.find(params[:id])
+    rescue Exception => e
+      puts e
+    end
   end
 
   def new
-    @user = User.new
+    begin
+      @user = User.new
+    rescue Exception => e
+      puts e
+    end
   end
 
   def create
-    @user = User.new(user_params)
-    @user.resource_ids = params[:user][:resource_ids]
-    
-    if @user.save!
-      flash[:notice] = "User has been created successfully"
-      redirect_to users_path
-    else
-      flash[:notice] = "User can't be saved"
-      redirect_to :back
+    begin
+      @user = User.new(user_params)
+      @user.resource_ids = params[:user][:resource_ids]
+      
+      if @user.save!
+        flash[:notice] = "User has been created successfully"
+        redirect_to users_path
+      else
+        flash[:notice] = "User can't save"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts s
     end
   end
 
   def edit_profile
-    @user_account = User.find(params[:id])
+    begin
+      @user_account = User.find(params[:id])
+    rescue Exception => e
+      puts e
+    end
   end
 
   def update_profile
-    @user_account = User.find(params[:id])
+    begin
+      @user_account = User.find(params[:id])
 
-    if @user_account.update_attributes!(account_update_params)
-      flash[:notice] = "User updated"
-      redirect_to users_path
-    else
-      redirect_to :back
+      if @user_account.update_attributes!(account_update_params)
+        flash[:notice] = "User updated"
+        redirect_to users_path
+      else
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
     end
   end
 
   def edit
-    puts "================================"
-    puts params[:id]
-    @user = User.find(params[:id])
+    # puts "================================"
+    # puts params[:id]
+    @user = User.find_by_email('lytaytouch@hotmail.com')
   end
 
   def update
