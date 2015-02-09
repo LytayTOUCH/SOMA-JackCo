@@ -18,6 +18,8 @@ class UserGroupsController < ApplicationController
 
   def new
     @user_group = UserGroup.new
+    @resources = Resource.all
+    @permissions = Permission.all
   end
 
   def create   

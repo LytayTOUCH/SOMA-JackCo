@@ -21,6 +21,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :plans do
+    collection do
+      get 'downloadpdf'
+      get 'downloadexcel'
+    end
+  end
   resources :farms
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
