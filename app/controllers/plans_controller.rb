@@ -33,68 +33,13 @@ class PlansController < ApplicationController
     @plans = Plan.order('updated_at DESC')
     p = Axlsx::Package.new
     wb = p.workbook
-
-    # Start Bar Chart
-    # a = Plan.where(unit: "Kg").count
-    # b = Plan.where(unit: "Liter").count
-    # c = Plan.where(unit: "Piece").count
-    # set = Plan.where(unit: "Set").count
     wb.add_worksheet(name: "Multi Chart and Plan Data") do |sheet|
-      # sheet.add_row ["", "Result Analysis", "", "", "", ""], height: 30
-      # sheet.add_row ["Unit Kg", "Unit Liter", "Unit Piece", "Unit Set"]
-      # sheet.add_row [a, b, c, set]
-      # sheet.add_chart(Axlsx::Bar3DChart, :start_at => "H2", :end_at => "O14", :bar_dir => :col) do |chart|
-      #   chart.add_series :data => sheet["A3:D3"], :labels => sheet["A2:D2"], :title => sheet["B1"], colors: ["00FF00", "0066CC", "F00000", "F7FE2E"]
-      # end
-    # End Bar Chart
-
-    # Start Pie Chart
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row ["", "Result Analysis"]
-      # sheet.add_row ["Unit", "Value"], height: 30
-      # a = Plan.where(unit: "Kg").count
-      # b = Plan.where(unit: "Liter").count
-      # c = Plan.where(unit: "Piece").count
-      # d = Plan.where(unit: "Set").count
-      # sheet.add_row ["Kg", a]
-      # sheet.add_row ["Liter", b]
-      # sheet.add_row ["Piece", c]
-      # sheet.add_row ["Set", d]
-      # # sheet.add_row ["Simple Pie Chart"]
-      # sheet.add_chart(Axlsx::Pie3DChart, :start_at => [7,15], :end_at => "P27", :title => "Pie Chart") do |chart|
-      #   chart.add_series :data => sheet["B16:B19"], :labels => sheet["A16:A19"], :colors => ['FF0000', '00FF00', '0000FF', 'FFFF00']
-      #   chart.d_lbls.d_lbl_pos = :bestFit
-      #   chart.d_lbls.show_percent = :true
-      # end
-    # End Pie Chart
-
-      # Start to Get All Plan data
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
-      # sheet.add_row [""]
       heading = sheet.styles.add_style alignment: {horizontal: :center}, b: true, sz: 14, bg_color: "0066CC", fg_color: "FF"
-      text_body = sheet.styles.add_style bg_color: "DCDCDC"
+      text_body = sheet.styles.add_style alignment: {horizontal: :left}, bg_color: "DCDCDC"
       sheet.add_row ["Name", "Quantity","Unit","Year"], style: heading
       @plans.each do |plan|
         sheet.add_row [plan.name, plan.quantity,plan.unit,plan.year], style: text_body
       end
-      # End to Get All Plan data  
-
     end
 
     send_data p.to_stream.read, type: "application/xlsx", filename: "Plans.xlsx" 
