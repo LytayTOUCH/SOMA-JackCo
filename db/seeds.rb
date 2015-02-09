@@ -100,7 +100,8 @@ end
   { name: 'Seed Amount', period: 'unknown', note: 'Phase 1: Seed Grafting', fruit_type: 'jackfruit' },
   { name: 'Stage 1: Age 1-3 years', period: '1-3 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'jackfruit'},
   { name: 'Stage 2: Age > 4 years', period: 'more than 4 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'jackfruit'},
-  { name: 'Stage 3: Age 5-15 years', period: '5-15 years', note: 'Phase 3: Harvesting', fruit_type: 'jackfruit'} 
+  { name: 'Stage 3: Age 5-15 years', period: '5-15 years', note: 'Phase 3: Harvesting', fruit_type: 'jackfruit'}
+  
 ].each do |stage|
   Stage.create_with(period: stage[:period], note: stage[:note], fruit_type: stage[:fruit_type]).find_or_create_by(name: stage[:name])
 end
@@ -114,3 +115,11 @@ end
   TestingChart.create_with(amount: testing_chart[:amount]).find_or_create_by(name: testing_chart[:name])
 end
 
+[
+  {element: 'Janurary', amount: 40.49, bar_color: 'silver'},
+  {element: 'Februry', amount: 20.49, bar_color: 'gold'},
+  {element: 'March', amount: 20.49, bar_color: 'blue'},
+  {element: 'April', amount: 20.49, bar_color: 'green'}
+].each do |bar_chart|
+  TestingWithBarChart.create_with(bar_color: bar_chart[:bar_color] ,amount: bar_chart[:amount]).find_or_create_by(element: bar_chart[:element])
+end
