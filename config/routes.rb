@@ -16,7 +16,8 @@ Rails.application.routes.draw do
       get 'getBarData'
       get 'getPieData'
       get 'downloadpdf'
-      get 'downloadexcel'
+      get 'download_piechart_excel'
+      get 'download_barchart_excel'
     end
   end
 
