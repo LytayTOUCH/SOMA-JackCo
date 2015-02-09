@@ -72,16 +72,16 @@ development:
   <<: *defaults
 
 test:
-  database: soma_database_test
+  database: soma_test
   host: localhost
   <<: *defaults
 
 staging:
-  database: soma_database_staging
+  database: soma_staging
   host: localhost
   <<: *defaults
 
 production:
-  database: soma_database_production
+  database: soma_production
   host: localhost
   <<: *defaults

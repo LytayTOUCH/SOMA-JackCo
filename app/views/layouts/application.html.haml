@@ -8,14 +8,19 @@
     = google_chart_api
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body{style: "margin-top: 40px;"}
-    = render 'navbar_top'
-    = render 'notification'
+  %body{style: "margin-top: 35px;"}
     .container
-      / .col-lg-2
-      /   = render 'sidebar_left'
-      .col-lg-12
-        = yield
-        .row
-          = debug(params) if Rails.env.development?
+      .row
+        = render 'navbar_top'
+      .row
+        = render "breadcrumb"
+        = render 'notification'
+      / .row
+      /   .col-lg-2
+      /     = render 'sidebar_left'
+      .row
+        .col-lg-12
+          = yield
+      .row
+        = debug(params) if Rails.env.development?
     = render 'footer'

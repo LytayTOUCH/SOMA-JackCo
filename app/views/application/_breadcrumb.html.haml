@@ -1,0 +1,20 @@
+%ol.breadcrumb.breadcrumb-sm
+  = render_breadcrumbs :separator => " -> "
+  .pull-right.lg-icon
+    %span
+      %a.all-notification-style{:href => "#"}
+        %i.fa.fa-bars.icon-brown
+        Farms
+        %span.badge.progress-bar-success= 5
+    %span &nbsp;
+    %span
+      %a.all-notification-style{:href => "#"}
+        %i.fa.fa-files-o
+        Documnets
+        %span.badge.progress-bar-success= 3
+    %span &nbsp;
+    %span
+      %a.all-notification-style{:href => "#"}
+        %i.fa.fa-hdd-o.icon-green
+        Yields
+        %span.badge.progress-bar-success= 32
