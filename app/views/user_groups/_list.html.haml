@@ -1,15 +1,17 @@
 %table.table
   %thead
     %tr
-      %th.col-md-8= "Name"
+      %th.col-md-5= "Name"
+      %th.col-md-3= "Note"
       %th.col-md-3= "Active"
       %th.col-md-1= "Actions"
-  - @warehouse_types.each do |warehouse_type|
+  - @user_groups.each do |user_group|
     %tr
-      %td= warehouse_type.name
+      %td= user_group.name
+      %td= user_group.note
       %td
-        = form_for(warehouse_type) do |f|
-          - if warehouse_type.active
+        = form_for(user_group) do |f|
+          - if user_group.active
             %span{style: "color:auto;"}= "active"
             |
             #{f.hidden_field :active, value: false}
@@ -20,7 +22,7 @@
             #{f.hidden_field :active, value: true}
             #{submit_tag "activate", :class => "btn btn-default btn-xs"}
       %td
-        - if can? :update, WarehouseType
-          = link_to "Edit", edit_warehouse_type_path(warehouse_type)
+        - if can? :update, UserGroup
+          = link_to "Edit", edit_user_group_path(user_group)
 .pull-right
-  = paginate @warehouse_types
+  = paginate @user_groups

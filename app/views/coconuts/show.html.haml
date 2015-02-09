@@ -19,10 +19,17 @@
     %tr
       %th Note
       %td= @coconut.note
+    %tr
+      %th Active
+      %td
+        - if @coconut.active?
+          = "yes"
+        - else  
+          = "no"
 
-- if can? :destroy, Coconut
-  %a.delete-confirm.btn.btn-danger{"data-id" => @coconut.id, :href => "#delete-confirm"}
-    Delete
+/ - if can? :destroy, Coconut
+/  %a.delete-confirm.btn.btn-danger{"data-id" => @coconut.id, :href => "#delete-confirm"}
+/   Delete
 
 = link_to "Cancel", :back, class: "btn btn-default"
 

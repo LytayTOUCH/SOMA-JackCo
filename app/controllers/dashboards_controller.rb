@@ -1,5 +1,6 @@
 class DashboardsController < ApplicationController
   respond_to :html, :json
+
   def index
 
     data = [['1997',10],['1998',20],['1999',40]]

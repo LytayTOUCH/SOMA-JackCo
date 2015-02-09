@@ -16,65 +16,47 @@ class UsersController < ApplicationController
   end
 
   def show
-    begin
-      @user = User.find(params[:id])
-    rescue Exception => e
-      puts e
-    end
+    @user = User.find(params[:id])
   end
 
   def new
-    begin
-      @user = User.new
-    rescue Exception => e
-      puts e
-    end
+    @user = User.new
   end
 
   def create
-    begin
-      @user = User.new(user_params)
-      @user.resource_ids = params[:user][:resource_ids]
-      
-      if @user.save!
-        flash[:notice] = "User has been created successfully"
-        redirect_to users_path
-      else
-        flash[:notice] = "User can't save"
-        redirect_to :back
-      end
-    rescue Exception => e
-      puts s
+    @user = User.new(user_params)
+    @user_groups = UserGroup.all
+    # @user.resource_ids = params[:user][:resource_ids]
+    
+    if @user.save!
+      flash[:notice] = "User has been created successfully"
+      redirect_to users_path
+    else
+      flash[:notice] = "User can't be saved"
+      redirect_to :back
     end
   end
 
   def edit_profile
-    begin
-      @user_account = User.find(params[:id])
-    rescue Exception => e
-      puts e
-    end
+    @user_account = User.find(params[:id])
   end
 
   def update_profile
-    begin
-      @user_account = User.find(params[:id])
+    @user_account = User.find(params[:id])
 
-      if @user_account.update_attributes!(account_update_params)
-        flash[:notice] = "User updated"
-        redirect_to users_path
-      else
-        redirect_to :back
-      end
-    rescue Exception => e
-      puts e
+    if @user_account.update_attributes!(account_update_params)
+      flash[:notice] = "User updated"
+      redirect_to users_path
+    else
+      redirect_to :back
     end
   end
 
   def edit
-    # puts "================================"
-    # puts params[:id]
-    @user = User.find_by_email('lytaytouch@hotmail.com')
+    puts "================================"
+    puts params[:id]
+    @user = User.find(params[:id])
+    @user_groups = UserGroup.all
   end
 
   def update
@@ -91,7 +73,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :role)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :role, :user_group_uuid)
   end
 
   private

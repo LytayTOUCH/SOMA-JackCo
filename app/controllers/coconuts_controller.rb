@@ -71,6 +71,6 @@ class CoconutsController < ApplicationController
 
   private
   def coconut_params
-    params.require(:coconut).permit(:code, :coco_type, :planting_date, :field_uuid, :stage_uuid, :note)
+    params.require(:coconut).permit(:code, :coco_type, :planting_date, :field_uuid, :stage_uuid, :note, :active)
   end
 end
