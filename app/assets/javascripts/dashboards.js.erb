@@ -17,8 +17,10 @@ $(document).ready(function() {
       data.addRows(pieData);
       
       var options = {'title':'Expense',
-                     'width': 400,
-                     'height': 300};
+                     // 'width': 420,
+                     // 'height': 195,
+                   'colors': ['blue', 'red', 'orange', 'green', 'pink', 'yellow', 'gray', 'Purple', 'Gold', 'Lime', 'Olive', 'Cyan']
+                 };
 
       var chartpie = new google.visualization.PieChart(document.getElementById('chart_div'));
       chartpie.draw(data, options);
@@ -47,8 +49,8 @@ $(document).ready(function() {
 
       var options = {
         title: "Production rate",
-        width: 400,
-        height: 300,
+        // width: 420,
+        // height: 195,
         bar: {groupWidth: "95%"},
         legend: { position: "none" },
       };

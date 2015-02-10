@@ -116,8 +116,8 @@ end
 end
 
 [
-  {element: 'Janurary', amount: 40.49, bar_color: 'silver'},
-  {element: 'Februry', amount: 20.49, bar_color: 'gold'},
+  {element: 'January', amount: 40.49, bar_color: 'silver'},
+  {element: 'February', amount: 20.49, bar_color: 'gold'},
   {element: 'March', amount: 20.49, bar_color: 'blue'},
   {element: 'April', amount: 20.49, bar_color: 'green'}
 ].each do |bar_chart|
