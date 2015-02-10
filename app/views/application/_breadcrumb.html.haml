@@ -1,11 +1,11 @@
 %ol.breadcrumb.breadcrumb-sm
-  = render_breadcrumbs :separator => " -> "
+  = render_breadcrumbs :separator => " / "
   .pull-right.lg-icon
     %span
       %a.all-notification-style{:href => "#"}
         %i.fa.fa-bars.icon-brown
         Farms
-        %span.badge.progress-bar-success= @farms.inspect
+        %span.badge.progress-bar-success= @farms_amount.inspect
     %span &nbsp;
     %span
       %a.all-notification-style{:href => "#"}
