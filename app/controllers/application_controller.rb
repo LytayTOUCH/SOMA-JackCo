@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include ExceptionHandler
   
-  before_action :authenticate_user!, :count_farm
+  before_action :authenticate_user!, :count_farm, :farm_name_navigator
   before_filter :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
   add_breadcrumb "Home", :dashboards_path
@@ -21,7 +21,10 @@ class ApplicationController < ActionController::Base
   end
   
   def count_farm
-    @farms=Farm.count(:all)
+    @farms_amount=Farm.count(:all)
   end
 
+  def farm_name_navigator
+    @farm_names=Farm.pluck(:uuid, :name)
+  end
 end
