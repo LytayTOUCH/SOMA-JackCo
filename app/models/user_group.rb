@@ -14,6 +14,7 @@ class UserGroup < ActiveRecord::Base
   def resource_tokens=(ids)
     puts "================************================"
     resource_ids = ids.split(",")
+    puts "================************================"
   end
 
   scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
