@@ -48,7 +48,7 @@ end
 end
 
 [ 
-  {email: "admin@gmail.com", password: "admin", password_confirmation: "admin", role: 'admin'}
+  {email: "admin@cltag.com", password: "admin1234567890", password_confirmation: "admin1234567890", role: 'admin'}
 ].each do |user|
   User.create_with(password: user[:password], password_confirmation: user[:password_confirmation], role: user[:role]).find_or_create_by(email: user[:email])
 end
