@@ -1,8 +1,60 @@
+.page-header.custom-page-header
+  %h3.custom-h3
+    = 'All Farms Information'
+    = link_to "(+) Add farm", "#", class: "btn btn-xs btn-primary"
+.row{:style => "padding-left: 15px;margin:0px;"}
+  - @farms.each do |farm|
+    .col-sm-4
+      .box-farm-info
+        .page-header.custom-page-header
+          %h4.custom-h4
+            = link_to farm.name.capitalize, farm_path(farm), :class => "text-color-green"
+        .row
+          .col-lg-12.map-info
+            = link_to farm_path(farm) do
+              .thumbnail.custom-thumbnail
+                %img.map{:src => "https://maps.googleapis.com/maps/api/staticmap?center=#{farm.latlong_farm}&zoom=16&size=348x250&maptype=satellite&markers=color:red|#{farm.latlong_farm}"}/
+            / .map{:id => "map-canvas-#{farm.uuid}"}
+            </haml:block>
+        .row
+          .col-lg-12.farm-info
+            %div Surface: #{@farms_amount}
+            %div Blocks Amount: #{58}
+            %div Planting Project: Coconut
+            %div Location: #{farm.location}
+            %div
+              %i.fa.fa-map-marker
+              = farm.latlong_farm
 
-%h1 Farms#index
-%p Find me in app/views/farms/index.html.haml
+    :javascript
+      var map;
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(#{farm.latlong_farm});
+        var mapOptions = {
+          zoom: 16,
+          center: myLatlng,
+          disableDefaultUI: true,
+          scrollwheel: false,
+          navigationControl: false,
+          mapTypeControl: false,
+          scaleControl: false,
+          draggable: false,
+          mapTypeId: google.maps.MapTypeId.SATELLITE
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas-#{farm.uuid}'), mapOptions);
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: '#{farm.name}'
+        });
+      }
+      initialize();
+      // google.maps.event.addDomListener(window, 'load', initialize);
 
 
+            
+
+      
 
 / - @farms.each do |farm|
 /   = link_to "a farm", farm
