@@ -3,3 +3,5 @@
 *.orig
 /db/schema.rb
 Gemfile.lock
+/public/*
+/config/database.yml
