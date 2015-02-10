@@ -32,7 +32,7 @@
         - @resources.each do |resource|
           %tr
             %td 
-              = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource)
+              / = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource)
               = h resource.name.camelize
             %td
               = check_box_tag 'full_control', false
