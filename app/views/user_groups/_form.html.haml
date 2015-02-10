@@ -22,23 +22,26 @@
     %table.table
       %thead
         %tr
-          %th.col-md-3= "Module Name"
+          %th.col-md-2= "Module Name"
           %th.col-md-2= "Full control"
-          %th.col-md-2= "View"
-          %th.col-md-2= "Create"
-          %th.col-md-2= "Update"
-          %th.col-md-1= "Delete"
+          %th.col-md-2= "View control"
+          %th.col-md-2= "Create control"
+          %th.col-md-2= "Update control"
+          %th.col-md-2= "Delete control"
 
         - @resources.each do |resource|
           %tr
             %td= resource.name
             %td
-              - @permissions.each do |permission|
-                = simple_form_for @permission do |f|
-                  = f.input :access_list, :as => :check_boxes, :collection => @permissions
-              / - @permissions.each do |permission|
-              /   = form_for(permission) do |f|
-              /     = check_box_tag 'access_list', 'yes', true
+              = check_box_tag 'full_control', 'yes', false
+            %td
+              = check_box_tag 'view_control', 'yes', false
+            %td
+              = check_box_tag 'create_control', 'yes', false
+            %td
+              = check_box_tag 'update_control', 'yes', false
+            %td
+              = check_box_tag 'delete_control', 'yes', false        
     
   .form-group
     .col-xs-6
