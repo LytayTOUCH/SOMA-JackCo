@@ -1,3 +1,46 @@
+:css
+  .dropdown-submenu {
+    position:relative;
+  }
+  .dropdown-submenu>.dropdown-menu {
+    top:0;
+    left:100%;
+    margin-top:-6px;
+    margin-left:-1px;
+    -webkit-border-radius:0 6px 6px 6px;
+    -moz-border-radius:0 6px 6px 6px;
+    border-radius:0 6px 6px 6px;
+  }
+  .dropdown-submenu:hover>.dropdown-menu {
+    display:block;
+  }
+  .dropdown-submenu>a:after {
+    display:block;
+    content:" ";
+    float:right;
+    width:0;
+    height:0;
+    border-color:transparent;
+    border-style:solid;
+    border-width:5px 0 5px 5px;
+    border-left-color:#cccccc;
+    margin-top:5px;
+    margin-right:-10px;
+  }
+  .dropdown-submenu:hover>a:after {
+    border-left-color:#ffffff;
+  }
+  .dropdown-submenu.pull-left {
+    float:none;
+  }
+  .dropdown-submenu.pull-left>.dropdown-menu {
+    left:-100%;
+    margin-left:10px;
+    -webkit-border-radius:6px 0 6px 6px;
+    -moz-border-radius:6px 0 6px 6px;
+    border-radius:6px 0 6px 6px;
+  }
+
 .navbar.navbar-default.navbar-fixed-top
   .navbar-header
     %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
@@ -16,141 +59,41 @@
           %i.fa.fa-gears.fa-lg.icon-orangish
           Initial Setup
           %span.caret
-        %ul.dropdown-menu{:role => "menu"}
+        %ul.dropdown-menu{"aria-labelledby" => "dLabel", :role => "menu"}
           %li
-            = navbar_link "Labor", labors_path, "active"
-          %li
-            %a{:href => "#"} Application
-          %li
-            %a{:href => "#"} Phase
-          %li
-            = link_to "Plant Types", dashboards_path
-          %li
-            %a{:href => "#"} Production Stage
-          %li.divider
-          %li
-            = navbar_link "Material", materials_path, "active"
-          %li
-            = navbar_link "Machinery", machineries_path, "active"
-          %li
-            %a{:href => "#"} Hand Tools
+            = navbar_link "Planting Project", planting_project_index_path, "active"
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Inventory
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Warehouses", warehouses_path, "active"
+              %li
+                = navbar_link "Warehouse Type", warehouse_types_path, "active"
+              %li
+                = navbar_link "Transaction Status", transaction_status_index_path, "active"
+              %li.divider
+              %li
+                = navbar_link "Materials", materials_path, "active"
+              %li
+                = navbar_link "Material Category", "#", "active"
+              %li
+                = navbar_link "Unit of Measurement", unit_of_measurement_index_path, "active"
 
-      %li.dropdown
-        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %i.fa.fa-cog.fa-lg.icon-light-blue
-          Pre-Setup
-          %span.caret
-        %ul.dropdown-menu{:role => "menu"}
-          %li
-            = navbar_link "Implement Type", implement_types_path, "active"
-          %li
-            = navbar_link "Supplier", suppliers_path, "active"
-          %li
-            = navbar_link "Labor", labors_path, "active"
-          %li
-            = link_to "Plant Types", dashboards_path
-          %li
-            = navbar_link "Warehouse Type", warehouse_types_path, "active"
-          %li
-            = navbar_link "Stage", stages_path, "active"
-          %li.divider
-          %li
-            = navbar_link "Plans", plans_path, "active"
-          %li
-            = navbar_link "Coconut", coconuts_path, "active"
-          %li
-            = navbar_link "Jackfruit", jack_fruits_path, "active"
-            
-      %li.dropdown
-        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %i.fa.fa-compass.fa-lg.icon-brownish
-          Manage
-          %span.caret
-        %ul.dropdown-menu{:role => "menu"}
-          %li
-            = navbar_link "Dashboard", dashboards_path, "active"
-          %li
-            = navbar_link "Material", materials_path, "active"
-          %li
-            = navbar_link "Machinery", machineries_path, "active"
-          %li
-            = navbar_link "Warehouse", warehouses_path, "active"
-          %li
-            = navbar_link "Fields", fields_path, "active"
-          %li
-            = navbar_link "Calendar", calendars_path, "active"
-          %li.divider
-          %li
-            = navbar_link "Activity", activities_path, "active"
-          %li
-            = navbar_link "Resource", resources_path, "active"
-          %li
-            = navbar_link "Warehouse", warehouses_path, "active"
 
-      %li.dropdown
-        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %i.fa.fa-leaf.fa-lg.icon-greenish
-          Farms
-          %span.caret
-        %ul.dropdown-menu{:role => "menu"}
-          %li= link_to 'All Farms', farms_path
-          %li.divider
-          %li
-            %a{:href => "#"} All Fields
-          %li= link_to "Warehouses", warehouses_path
-          %li
-            %a{:href => "#"} Maps
-          %li
-            %a{:href => "#"} Weather
-          %li
-            %a{:href => "#"} Location
-      %li.dropdown
-        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %i.fa.fa-area-chart.fa-lg.icon-red
-          Plans
-          %span.caret
-        %ul.dropdown-menu{:role => "menu"}
-          %li
-            %a{:href => "#"} Labors
-          %li
-            %a{:href => "#"} Application
-          %li
-            %a{:href => "#"} Phase
-          %li
-            %a{:href => "#"} Plant Types
-          %li
-            %a{:href => "#"} Production Stage
-          %li.divider
-          %li.dropdown-header.dropdown-header-custom-font.bg-color-red.text-color-white Material
-          %li
-            %a{:href => "#"} Fertilizer
-          %li
-            %a{:href => "#"} Pesticide
-          %li
-            %a{:href => "#"} Machinery
-          %li
-            %a{:href => "#"} Hand Tools
-      %li.dropdown
-        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %i.fa.fa-bar-chart-o.fa-lg.icon-bluish
-          Analyses
-          %span.caret
-        %ul.dropdown-menu{:role => "menu"}
-          %li
-            %a{:href => "#"} Dashboard Overviews
-          %li.divider
-          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white Report
-          %li
-            %a{:href => "#"} Labors
-          %li
-            %a{:href => "#"} Fertilizers
-          %li
-            %a{:href => "#"} Pesticides
-          %li
-            %a{:href => "#"} Machineries
-          %li
-            %a{:href => "#"} Hand Tools
-          %li= navbar_link "Farms", dashboards_path, "active"
+        / %ul.dropdown-menu{:role => "menu"}
+        /   %li
+        /     = navbar_link "Labor", labors_path, "active"
+
+
+
+
+        / %ul.dropdown-menu{:role => "menu"}
+        /   %li
+        /     %a{:href => labors_path, :tabindex => "-1"} Planting Project
+        /   %li.dropdown-submenu
+        /     %a{:href => "#", :tabindex => "-1"} More options
+        /     %ul.dropdown-menu
+        /       %li test2
 
     / Right Navigator Menu
     = render 'navbar_right'

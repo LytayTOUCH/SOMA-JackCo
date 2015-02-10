@@ -1,15 +1,15 @@
 %table.table
   %thead
     %tr
-      %th.col-md-2= "Name"
-      %th.col-md-3= "Supervisor"
-      %th.col-md-2= "Warehouse Type"
+      %th.col-md-4= "Name"
+      / %th.col-md-3= "Supervisor"
+      %th.col-md-4= "Warehouse Type"
       %th.col-md-2= "Active"
       %th.col-md-1= "Actions"
   - @warehouses.each do |warehouse|
     %tr
       %td= warehouse.name
-      %td= warehouse.labor_uuid
+      / %td= warehouse.labor_uuid
       %td= warehouse.warehouse_type.name
       %td
         = form_for(warehouse) do |f|

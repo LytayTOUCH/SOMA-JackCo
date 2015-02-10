@@ -1,0 +1,10 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-12= "Name"
+  - @transaction_status.each do |ts|
+    %tr
+      %td= ts.name
+.pull-right
+  = paginate @transaction_status
+

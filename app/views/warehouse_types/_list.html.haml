@@ -1,26 +1,11 @@
 %table.table
   %thead
     %tr
-      %th.col-md-8= "Name"
-      %th.col-md-3= "Active"
-      %th.col-md-1= "Actions"
+      %th.col-md-4= "Name"
+      %th.col-md-8= "Description"
   - @warehouse_types.each do |warehouse_type|
     %tr
       %td= warehouse_type.name
-      %td
-        = form_for(warehouse_type) do |f|
-          - if warehouse_type.active
-            %span{style: "color:auto;"}= "active"
-            |
-            #{f.hidden_field :active, value: false}
-            #{submit_tag "inactivate", :class => "btn btn-default btn-xs"}
-          - else
-            %span{:style => "color:red;"}= "inactive"
-            |
-            #{f.hidden_field :active, value: true}
-            #{submit_tag "activate", :class => "btn btn-default btn-xs"}
-      %td
-        - if can? :update, WarehouseType
-          = link_to "Edit", edit_warehouse_type_path(warehouse_type)
+      %td= warehouse_type.description
 .pull-right
   = paginate @warehouse_types
