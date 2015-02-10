@@ -3,7 +3,7 @@ class FarmsController < ApplicationController
   # before_action :set_farm, only: [:show, :edit, :update, :destroy]
   add_breadcrumb "All Farms", :farms_path
   def index
-    # @farms=Farm.all
+    @farms=Farm.all
   end
   
   def create
