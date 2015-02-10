@@ -56,7 +56,7 @@ class DashboardsController < ApplicationController
         sheet.add_row [d.name, d.amount], style: text_body
       end
       sheet.add_chart(Axlsx::Pie3DChart, :start_at => "H3", :end_at => "N14", :title => "Pie Chart") do |chart|
-        chart.add_series :data => sheet["B3:B10"], :labels => sheet["A3:A10"], :colors => ['0000FF', 'FF0000', 'FFA500', '008000', 'FFC0CB', 'FFFF00', '808080', '800080', 'FFD700', '00FF00', '808000', '00FFFF']
+        chart.add_series :data => sheet["B3:B6"], :labels => sheet["A3:A6"], :colors => ['0000FF', 'FF0000', 'FFA500', '008000', 'FFC0CB', 'FFFF00', '808080', '800080', 'FFD700', '00FF00', '808000', '00FFFF']
         chart.d_lbls.d_lbl_pos = :bestFit
         chart.d_lbls.show_percent = :true
       end
