@@ -24,6 +24,7 @@ class UserGroupsController < ApplicationController
 
   def create   
     @user_group = UserGroup.new(user_group_params)
+    @user_group.resource_ids = params[:user_group][:resource_ids]
     if @user_group.save!
       flash[:notice] = "User Group type saved successfully"
       redirect_to user_groups_path
@@ -39,6 +40,7 @@ class UserGroupsController < ApplicationController
 
   def edit
     @user_group = UserGroup.find(params[:id])
+    @user_group.resource_ids = params[:user_group][:resource_ids]
   end
 
   def update

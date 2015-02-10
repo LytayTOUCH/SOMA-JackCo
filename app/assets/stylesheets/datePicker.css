@@ -19,10 +19,12 @@ table.jCalendar td {
 	padding: 3px 5px;
 	text-align: center;
 }
+
 table.jCalendar td.other-month {
 	background: #ddd;
 	color: #aaa;
 }
+
 table.jCalendar td.today {
 	background: #666;
 	color: #fff;

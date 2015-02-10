@@ -16,7 +16,7 @@
       %span.help-block= f.error :active
 
   .panel.panel-default
-    .panel-heading
+    .panel-heading.background-color
       %b Permissions
     .panel-body
     %table.table
@@ -31,9 +31,11 @@
 
         - @resources.each do |resource|
           %tr
-            %td= resource.name
+            %td 
+              = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource)
+              = h resource.name.camelize
             %td
-              = check_box_tag 'full_control', 'yes', false
+              = check_box_tag 'full_control', false
             %td
               = check_box_tag 'view_control', 'yes', false
             %td
@@ -44,6 +46,6 @@
               = check_box_tag 'delete_control', 'yes', false        
     
   .form-group
-    .col-xs-6
+    .col-xs-12
       .pull-right
         = render partial: 'form_button', locals: { f: f }

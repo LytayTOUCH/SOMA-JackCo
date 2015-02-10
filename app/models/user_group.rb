@@ -7,5 +7,10 @@ class UserGroup < ActiveRecord::Base
   
   validates :name, length: { maximum: 50 }, presence: true
 
+  def resource_tokens=(ids)
+    puts "================************================"
+    resource_ids = ids.split(",")
+  end
+
   scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
 end

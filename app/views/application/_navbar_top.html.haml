@@ -64,29 +64,16 @@
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %i.fa.fa-compass.fa-lg.icon-brownish
-          Manage
+          Security
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
           %li
-            = navbar_link "Dashboard", dashboards_path, "active"
+            = navbar_link "Users", users_path, "active"
           %li
-            = navbar_link "Material", materials_path, "active"
+            = navbar_link "User Groups", user_groups_path, "active"
           %li
-            = navbar_link "Machinery", machineries_path, "active"
-          %li
-            = navbar_link "Warehouse", warehouses_path, "active"
-          %li
-            = navbar_link "Fields", fields_path, "active"
-          %li
-            = navbar_link "Calendar", calendars_path, "active"
-          %li.divider
-          %li
-            = navbar_link "Activity", activities_path, "active"
-          %li
-            = navbar_link "Resource", resources_path, "active"
-          %li
-            = navbar_link "Warehouse", warehouses_path, "active"
-
+            = navbar_link "Resources", resources_path, "active"
+          
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %i.fa.fa-leaf.fa-lg.icon-greenish
