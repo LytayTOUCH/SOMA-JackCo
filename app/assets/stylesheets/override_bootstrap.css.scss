@@ -2,10 +2,6 @@
   padding-left: 0px;
 }
 
-.col-md-2 {
-
-}
-
 .sidebar-nav {
   padding-left: 0px;
 }
@@ -83,4 +79,14 @@
   color: white;
   background-color: #4A260D;
   border-color: #1B0100;
+}
+
+.panel-default {
+  border-color: green;
+}
+
+.panel-default > .panel-heading {
+  color: #fff;
+  background-color: green;
+  border-color: #ddd;
 }

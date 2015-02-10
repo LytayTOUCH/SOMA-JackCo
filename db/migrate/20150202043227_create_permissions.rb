@@ -1,7 +1,7 @@
 class CreatePermissions < ActiveRecord::Migration
   def change
     create_table :permissions, id: false do |t|
-      t.string :name, limit: 50, null: false
+      t.string :name, limit: 50
       t.string :user_group_id
       t.string :resource_id
       t.boolean :access_list

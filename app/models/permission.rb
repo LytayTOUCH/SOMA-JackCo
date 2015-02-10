@@ -1,3 +1,4 @@
 class Permission < ActiveRecord::Base
-  validates :name, length: { maximum: 50 }, presence: true
+  belongs_to :resource
+  belongs_to :user_group
 end

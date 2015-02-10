@@ -80,20 +80,101 @@
                 = navbar_link "Unit of Measurement", unit_of_measurement_index_path, "active"
 
 
-        / %ul.dropdown-menu{:role => "menu"}
-        /   %li
-        /     = navbar_link "Labor", labors_path, "active"
-
-
-
-
-        / %ul.dropdown-menu{:role => "menu"}
-        /   %li
-        /     %a{:href => labors_path, :tabindex => "-1"} Planting Project
-        /   %li.dropdown-submenu
-        /     %a{:href => "#", :tabindex => "-1"} More options
-        /     %ul.dropdown-menu
-        /       %li test2
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-cog.fa-lg.icon-light-blue
+          Pre-Setup
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            = navbar_link "Implement Type", implement_types_path, "active"
+          %li
+            = navbar_link "Supplier", suppliers_path, "active"
+          %li
+            = navbar_link "Labor", labors_path, "active"
+          %li
+            = link_to "Plant Types", dashboards_path
+          %li
+            = navbar_link "Warehouse Type", warehouse_types_path, "active"
+          %li
+            = navbar_link "Stage", stages_path, "active"
+          %li.divider
+          %li
+            = navbar_link "Plans", plans_path, "active"
+          %li
+            = navbar_link "Coconut", coconuts_path, "active"
+          %li
+            = navbar_link "Jackfruit", jack_fruits_path, "active"
+            
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-compass.fa-lg.icon-brownish
+          Security
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            = navbar_link "Users", users_path, "active"
+          %li
+            = navbar_link "User Groups", user_groups_path, "active"
+          %li
+            = navbar_link "Resources", resources_path, "active"
+          
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-leaf.fa-lg.icon-greenish
+          Farms
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li= link_to 'All Farms', farms_path
+          %li.divider
+          = render "farm_names_navigator"
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-area-chart.fa-lg.icon-red
+          Plans
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            %a{:href => "#"} Labors
+          %li
+            %a{:href => "#"} Application
+          %li
+            %a{:href => "#"} Phase
+          %li
+            %a{:href => "#"} Plant Types
+          %li
+            %a{:href => "#"} Production Stage
+          %li.divider
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-red.text-color-white Material
+          %li
+            %a{:href => "#"} Fertilizer
+          %li
+            %a{:href => "#"} Pesticide
+          %li
+            %a{:href => "#"} Machinery
+          %li
+            %a{:href => "#"} Hand Tools
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-bar-chart-o.fa-lg.icon-bluish
+          Analyses
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            %a{:href => "#"} Dashboard Overviews
+          %li.divider
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white Report
+          %li
+            %a{:href => "#"} Labors
+          %li
+            %a{:href => "#"} Fertilizers
+          %li
+            %a{:href => "#"} Pesticides
+          %li
+            %a{:href => "#"} Machineries
+          %li
+            %a{:href => "#"} Hand Tools
+          %li= navbar_link "Farms", dashboards_path, "active"
 
     / Right Navigator Menu
     = render 'navbar_right'

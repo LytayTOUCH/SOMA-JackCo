@@ -16,31 +16,43 @@
       %span.help-block= f.error :active
 
   .panel.panel-default
-    .panel-heading
+    .panel-heading.background-color
       %b Permissions
     .panel-body
     %table.table
       %thead
         %tr
-          %th.col-md-3= "Module Name"
-          %th.col-md-2= "Full control"
-          %th.col-md-2= "View"
-          %th.col-md-2= "Create"
-          %th.col-md-2= "Update"
-          %th.col-md-1= "Delete"
+          .col-xs-1       
+            %th{:style => "text-align:center;"}
+              = "Module Name"
+            %th{:style => "text-align:center;"}
+              = "Full control"
+            %th{:style => "text-align:center;"}
+              = "View control"
+            %th{:style => "text-align:center;"}
+              = "Create control"
+            %th{:style => "text-align:center;"}
+              = "Update control"
+            %th{:style => "text-align:center;"}
+              = "Delete control"
 
-        - @resources.each do |resource|
-          %tr
-            %td= resource.name
-            %td
-              - @permissions.each do |permission|
-                = simple_form_for @permission do |f|
-                  = f.input :access_list, :as => :check_boxes, :collection => @permissions
-              / - @permissions.each do |permission|
-              /   = form_for(permission) do |f|
-              /     = check_box_tag 'access_list', 'yes', true
+          - @resources.each do |resource|
+            %tr
+              %td 
+                / = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource)
+                = h resource.name.camelize
+              %td{:style => "text-align:center;"}
+                = check_box_tag 'full_control', false
+              %td{:style => "text-align:center;"}
+                = check_box_tag 'view_control', 'yes', false
+              %td{:style => "text-align:center;"}
+                = check_box_tag 'create_control', 'yes', false
+              %td{:style => "text-align:center;"}
+                = check_box_tag 'update_control', 'yes', false
+              %td{:style => "text-align:center;"}
+                = check_box_tag 'delete_control', 'yes', false        
     
   .form-group
-    .col-xs-6
+    .col-xs-12
       .pull-right
         = render partial: 'form_button', locals: { f: f }

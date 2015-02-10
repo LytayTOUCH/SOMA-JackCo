@@ -39,7 +39,7 @@ gem 'thin'
 gem 'uuidtools'
 
 # activerecord
-gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'paperclip'
 gem 'has_scope'
 
 group :test, :development do

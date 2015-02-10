@@ -72,7 +72,7 @@ class FieldsController < ApplicationController
 
   private
   def set_title
-    content_for :title, "Field"
+    content_for :title, "Fields"
   end
 
   def field_params
