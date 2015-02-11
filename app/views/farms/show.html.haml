@@ -1,1 +1,28 @@
 = @farm.inspect
+.page-header.custom-page-header
+  %h3.custom-h3 #{@farm.name}
+
+/ .row{:style => "padding-left: 15px;margin:0px;"}
+/   - @farms.each do |farm|
+/     .col-sm-4
+/       .box-farm-info
+/         .page-header.custom-page-header
+/           %h4.custom-h4
+/             = link_to farm.name.upcase, farm_path(farm), :class => "text-color-green"
+/         .row
+/           .col-lg-12.farm-info
+/             %div Surface: #{@farms_amount}
+/             %div Blocks Amount: #{58}
+/             %div Planting Project: Coconut
+/             %div Location: #{farm.location}
+/             %div
+/               %i.fa.fa-map-marker
+/               = farm.latlong_farm
+            
+
+      
+
+/ - @farms.each do |farm|
+/   = link_to "a farm", farm
+
+
