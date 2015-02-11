@@ -11,15 +11,16 @@
       %th Role
       %td= @user.role
     %tr
-      %th Modules
+      %th User Group
       %td
-        - if @user.role == "admin"
-          = 'all'
-        - else
-          - @user.resources.each_with_index do |resource, index|
-            = resource.name
-            - if index + 1 != @user.resources.length
-              = ', '
+        = @user.user_group.name
+        / - if @user.role == "admin"
+        /   = 'all'
+        / - else
+        /   - @user.resources.each_with_index do |resource, index|
+        /     = resource.name
+        /     - if index + 1 != @user.resources.length
+        /       = ', '
     %tr
       %th Active
       %td

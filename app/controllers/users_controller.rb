@@ -25,8 +25,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user_groups = UserGroup.all
-    # @user.resource_ids = params[:user][:resource_ids]
     
     if @user.save!
       flash[:notice] = "User has been created successfully"
@@ -61,7 +59,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.resource_ids = params[:user][:resource_ids]
     
     if @user.update_attributes!(user_params)
       flash[:notice] = "User updated"
@@ -73,7 +70,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :role, :user_group_uuid)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :role, :user_group_id, :active)
   end
 
   private
