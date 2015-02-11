@@ -61,7 +61,7 @@
           %span.caret
         %ul.dropdown-menu{"aria-labelledby" => "dLabel", :role => "menu"}
           %li
-            = navbar_link "Planting Project", planting_project_index_path, "active"
+            = navbar_link "Planting Project", planting_projects_path, "active"
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Inventory
             %ul.dropdown-menu
@@ -75,7 +75,7 @@
               %li
                 = navbar_link "Materials", materials_path, "active"
               %li
-                = navbar_link "Material Category", "#", "active"
+                = navbar_link "Material Category", material_categories_path, "active"
               %li
                 = navbar_link "Unit of Measurement", unit_of_measurement_index_path, "active"
 

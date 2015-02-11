@@ -94,8 +94,9 @@ Rails.application.routes.draw do
   end
 
   resources :transaction_status
-  resources :planting_project
+  resources :planting_projects
   resources :unit_of_measurement
+  resources :material_categories
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

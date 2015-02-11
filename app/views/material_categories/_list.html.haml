@@ -1,0 +1,9 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-12= "Name"
+  - @material_categories.each do |mc|
+    %tr
+      %td= mc.name
+.pull-right
+  = paginate @material_categories

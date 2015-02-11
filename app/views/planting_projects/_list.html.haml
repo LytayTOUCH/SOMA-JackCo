@@ -1,0 +1,16 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-4= "Name"
+      %th.col-md-6= "Note"
+      %th.col-md-2= "Actions"
+  - @planting_projects.each do |pp|
+    %tr
+      %td= pp.project_name
+      %td= pp.note
+      %td
+        - if can? :update, pp
+          = link_to "Edit", edit_planting_project_path(pp)
+.pull-right
+  = paginate @planting_projects
+

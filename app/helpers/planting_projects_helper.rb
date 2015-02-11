@@ -1,0 +1,2 @@
+module PlantingProjectsHelper
+end

@@ -151,8 +151,17 @@ end
 [
   {name: 'Tree'},
   {name: 'Kg'},
-  {name: 'Ton'},
+  {name: 'Ml'},
   {name: 'Litre'}
 ].each do |unit_measure|
   UnitOfMeasurement.find_or_create_by(name: unit_measure[:name])
+end
+
+[
+  {name: 'FERTILIZERS'},
+  {name: 'PEST & INSECTICIDES'},
+  {name: 'FUNGICIDE'},
+  {name: 'HERBICIDE'}
+].each do |material_category|
+  MaterialCategory.find_or_create_by(name: material_category[:name])
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PlantingProjectController do
+describe MaterialCategoriesController do
 
   describe "GET 'index'" do
     it "returns http success" do
