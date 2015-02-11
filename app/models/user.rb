@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :current_password
 
-  belongs_to :user_group, foreign_key: :user_group_uuid
+  belongs_to :user_group, foreign_key: :user_group_id
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
