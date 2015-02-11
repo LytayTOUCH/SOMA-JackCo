@@ -23,33 +23,33 @@
       %thead
         %tr
           .col-xs-1       
-            %th{:style => "text-align:center;"}
-              = "Module Name"
-            %th{:style => "text-align:center;"}
+            %th{style: "text-align:center;"}
+              = "Resource Name"
+            %th{style: "text-align:center;"}
               = "Full control"
-            %th{:style => "text-align:center;"}
-              = "View control"
-            %th{:style => "text-align:center;"}
-              = "Create control"
-            %th{:style => "text-align:center;"}
-              = "Update control"
-            %th{:style => "text-align:center;"}
-              = "Delete control"
+            %th{style: "text-align:center;"}
+              = "View"
+            %th{style: "text-align:center;"}
+              = "Create"
+            %th{style: "text-align:center;"}
+              = "Update"
+            %th{style: "text-align:center;"}
+              = "Delete"
 
           - @resources.each do |resource|
             %tr
-              %td 
-                / = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource)
+              %td{style: "font-size: 15px;"} 
+                = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource)
                 = h resource.name.camelize
-              %td{:style => "text-align:center;"}
+              %td{style: "text-align:center;"}
                 = check_box_tag 'full_control', false
-              %td{:style => "text-align:center;"}
+              %td{style: "text-align:center;"}
                 = check_box_tag 'view_control', 'yes', false
-              %td{:style => "text-align:center;"}
+              %td{style: "text-align:center;"}
                 = check_box_tag 'create_control', 'yes', false
-              %td{:style => "text-align:center;"}
+              %td{style: "text-align:center;"}
                 = check_box_tag 'update_control', 'yes', false
-              %td{:style => "text-align:center;"}
+              %td{style: "text-align:center;"}
                 = check_box_tag 'delete_control', 'yes', false        
     
   .form-group

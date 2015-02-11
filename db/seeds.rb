@@ -48,10 +48,17 @@ end
 end
 
 [ 
-  {email: "admin@cltag.com", password: "admin1234567890", password_confirmation: "admin1234567890", role: 'admin'}
-].each do |user|
-  User.create_with(password: user[:password], password_confirmation: user[:password_confirmation], role: user[:role]).find_or_create_by(email: user[:email])
+  {name: "Manager", note: "Controlling general tasks", active: true},
+  {name: "Project Leader", note: "Controlling all projects", active: true},
+  {name: "Data Entry", note: "Inputting data", active: true}
+].each do |user_group|
+  UserGroup.create_with(note: user_group[:note], active: user_group[:active]).find_or_create_by(name: user_group[:name])
 end
+
+#Create Administrator group, and add one user to that group
+usergroup = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
+user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", role: "admin").find_or_create_by(email: "admin@cltag.com")
+usergroup.users << user
 
 [
   {name: 'admin', note: 'Controlling all modules', label: 'Admin'},

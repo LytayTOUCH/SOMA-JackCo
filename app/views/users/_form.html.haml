@@ -4,19 +4,6 @@
     .col-xs-5
       = f.input :email, label: false, input_html: { class: "form-control" } 
       %span.help-block= f.error :name
-  / .form-group
-  /   %label.col-xs-2.control-label.text-left Password
-  /   .col-xs-5
-  /     - if @validatable
-  /       %em
-  /         (#{@minimum_password_length} characters minimum)
-  /     = f.input :password, label: false, input_html: { class: "form-control" } 
-  /     %span.help-block= f.error :password
-  / .form-group
-  /   %label.col-xs-2.control-label.text-left Confirm Password
-  /   .col-xs-5
-  /     = f.input :password_confirmation, label: false, input_html: { class: "form-control" } 
-  /     %span.help-block= f.error :password_confirmation
   .form-group
     %label.col-xs-2.control-label.text-left Role
     .col-xs-5
@@ -25,8 +12,8 @@
   .form-group
     %label.col-xs-2.control-label User Group
     .col-xs-5   
-      = f.input :user_group_uuid, label: false, collection: @user_groups, include_blank: true, input_html: { class: "form-control" }
-      %span.help-block= f.error :user_group_uuid   
+      = f.input :user_group_id, label: false, collection: @user_groups, include_blank: true, input_html: { class: "form-control" }
+      %span.help-block= f.error :user_group_id   
   .form-group
     .col-xs-7
       .pull-right
