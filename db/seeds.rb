@@ -123,3 +123,36 @@ end
 ].each do |bar_chart|
   TestingWithBarChart.create_with(bar_color: bar_chart[:bar_color] ,amount: bar_chart[:amount]).find_or_create_by(element: bar_chart[:element])
 end
+
+[
+  {name: 'Central Warehouse', description: 'It is the big warehouse.'},
+  {name: 'Project Warehouse', description: 'It is the warehouse that is near the farms.'},
+  {name: 'Finished Goods Warehouse', description: 'It is the warehouse that stock all yields harvest from the farms.'}
+].each do |warehouse_type|
+  WarehouseType.create_with(description: warehouse_type[:description]).find_or_create_by(name: warehouse_type[:name])
+end
+
+[
+  {name: 'Stock-in'},
+  {name: 'Stock-out'},
+  {name: 'Adjustment'}
+].each do |transaction_status|
+  TransactionStatus.find_or_create_by(name: transaction_status[:name])
+end
+
+[
+  {project_name: 'Coconut'},
+  {project_name: 'Jackfruit'},
+  {project_name: 'Mango'}
+].each do |planting_project|
+  PlantingProject.find_or_create_by(project_name: planting_project[:project_name])
+end
+
+[
+  {name: 'Tree'},
+  {name: 'Kg'},
+  {name: 'Ton'},
+  {name: 'Litre'}
+].each do |unit_measure|
+  UnitOfMeasurement.find_or_create_by(name: unit_measure[:name])
+end

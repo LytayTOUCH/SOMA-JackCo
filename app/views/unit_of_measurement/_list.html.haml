@@ -1,0 +1,10 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-12= "Name"
+  - @unit_measurement.each do |um|
+    %tr
+      %td= um.name
+.pull-right
+  = paginate @unit_measurement
+

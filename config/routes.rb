@@ -93,6 +93,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :transaction_status
+  resources :planting_project
+  resources :unit_of_measurement
+
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
   # The priority is based upon order of creation: first created -> highest priority.

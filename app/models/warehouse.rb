@@ -4,7 +4,7 @@ class Warehouse < ActiveRecord::Base
   belongs_to :warehouse_type, foreign_key: :warehouse_type_uuid
 
   validates :name, length: { maximum: 50 }, presence: true
-  validates :labor_uuid, length: {maximum: 36}
+  # validates :labor_uuid, length: {maximum: 36}
   validates :warehouse_type_uuid, length: {maximum: 36}
 
   scope :find_by_name, -> name { where("name like ?", "%#{name}%") }

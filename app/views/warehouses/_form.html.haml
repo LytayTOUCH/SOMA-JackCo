@@ -4,11 +4,11 @@
     .col-xs-5
       = f.input :name, label: false, input_html: { class: "form-control" }
       %span.help-block= f.error :name
-  .form-group
-    %label.col-xs-2.control-label.text-left Supervisor
-    .col-xs-5
-      = f.input :labor_uuid, label: false, collection: @workers, input_html: { class: "form-control" }
-      %span.help-block= f.error :labor_uuid
+  / .form-group
+  /   %label.col-xs-2.control-label.text-left Supervisor
+  /   .col-xs-5
+  /     = f.input :labor_uuid, label: false, collection: @workers, input_html: { class: "form-control" }
+  /     %span.help-block= f.error :labor_uuid
   .form-group
     %label.col-xs-2.control-label.text-left Warehouse Type
     .col-xs-5
