@@ -4,10 +4,24 @@ class FarmsController < ApplicationController
   add_breadcrumb "All Farms", :farms_path
   def index
     @farms=Farm.all
+    @farm = Farm.new
   end
-  
+
   def create
-    
+
+    @farm = Farm.new(farm_params)
+    respond_to do |format|
+      if @farm.save
+        format.html { redirect_to @farm, notice: 'Farm was successfully created.' }
+        format.json { render :show, status: :created, location: @farm }
+        format.js   { render action: 'show', status: :created, location: @farm }
+      else
+        format.html { render :new }
+        format.json { render json: @farm.errors, status: :unprocessable_entity }
+        format.js   { render json: @person.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
   
   def edit
