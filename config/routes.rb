@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   resources :warehouses
   resources :user_groups
   resources :resources
+  resources :permissions
 
   resources :roles do
     collection do

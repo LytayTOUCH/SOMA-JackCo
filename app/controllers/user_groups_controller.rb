@@ -19,7 +19,7 @@ class UserGroupsController < ApplicationController
   def new
     @user_group = UserGroup.new
     @resources = Resource.all
-    @permissions = Permission.all
+    @permission = Permission.new
   end
 
   def create   
@@ -41,11 +41,14 @@ class UserGroupsController < ApplicationController
 
   def edit
     @user_group = UserGroup.find(params[:id])
-    @user_group.resource_ids = params[:user_group][:resource_ids]
+    @resources = Resource.all
+    @permission = Permission.new
   end
 
   def update
     @user_group = UserGroup.find(params[:id])
+    @user_group.resource_ids = params[:user_group][:resource_ids]
+
     if @user_group.update_attributes!(user_group_params)
       flash[:notice] = "User Group updated"
       redirect_to user_groups_path
@@ -57,5 +60,6 @@ class UserGroupsController < ApplicationController
   private
   def user_group_params
     params.require(:user_group).permit(:name, :note, :active)
+    # permission_actions_attributes: [:access_full, :access_list, :access_create, :access_update, :access_delete]
   end
 end

@@ -12,7 +12,7 @@
   .form-group
     %label.col-xs-2.control-label Active
     .col-xs-5
-      = f.input :active, label: false, input_html: { style: "margin-top: 12px;" }
+      = f.input :active, label: false
       %span.help-block= f.error :active
 
   .panel.panel-default
@@ -28,7 +28,7 @@
             %th{style: "text-align:center;"}
               = "Full control"
             %th{style: "text-align:center;"}
-              = "View"
+              = "View lists"
             %th{style: "text-align:center;"}
               = "Create"
             %th{style: "text-align:center;"}
@@ -39,18 +39,25 @@
           - @resources.each do |resource|
             %tr
               %td{style: "font-size: 15px;"} 
-                = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource)
+                / = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource)
                 = h resource.name.camelize
               %td{style: "text-align:center;"}
-                = check_box_tag 'full_control', false
+                %input#full{name: "full_" + resource.uuid, type: "checkbox"}
+
               %td{style: "text-align:center;"}
-                = check_box_tag 'view_control', 'yes', false
+                %input#list{name: "list_" + resource.uuid, type: "checkbox"}
+
               %td{style: "text-align:center;"}
-                = check_box_tag 'create_control', 'yes', false
+                %input#create{name: "create_" + resource.uuid, type: "checkbox"}
+
               %td{style: "text-align:center;"}
-                = check_box_tag 'update_control', 'yes', false
+                %input#update{name: "update_" + resource.uuid, type: "checkbox"}
+
               %td{style: "text-align:center;"}
-                = check_box_tag 'delete_control', 'yes', false        
+                %input#delete{name: "delete_" + resource.uuid, type: "checkbox"}
+
+                / = simple_form_for @permission do |f|
+                /   = f.input :access_delete, label: false
     
   .form-group
     .col-xs-12

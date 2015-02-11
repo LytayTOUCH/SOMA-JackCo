@@ -61,7 +61,9 @@ end
   UserGroup.create_with(note: user_group[:note], active: user_group[:active]).find_or_create_by(name: user_group[:name])
 end
 
-UserGroup.users.create(email: "admin@cltag.com", password: "admin1234567890", password_confirmation: "admin1234567890", role: 'admin')
+User.create(email: "admin@cltag.com", password: "admin1234567890", password_confirmation: "admin1234567890", role: 'admin')
+
+# user_group.users.create(email: "admin@cltag.com", password: "admin1234567890", password_confirmation: "admin1234567890", role: 'admin')
 
 # [ 
 #   {email: "admin@cltag.com", password: "admin1234567890", password_confirmation: "admin1234567890", role: 'admin'}
