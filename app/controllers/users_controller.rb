@@ -25,7 +25,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user_groups = UserGroup.all
     
     if @user.save!
       flash[:notice] = "User has been created successfully"
@@ -71,7 +70,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :role, :user_group_id)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :role, :user_group_id, :active)
   end
 
   private
