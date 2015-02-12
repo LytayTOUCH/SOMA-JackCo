@@ -8,7 +8,7 @@ class MaterialsController < ApplicationController
       if params[:material] and params[:material][:name] and !params[:material][:name].nil?
         @materials = Material.find_by_name(params[:material][:name]).page(params[:page]).per(5)
       else
-        @materials = Material.page(params[:page]).per(5)
+        @materials = Material.page(params[:page]).order('updated_at DESC').per(5)
       end
     rescue Exception => e
       puts e
@@ -18,7 +18,9 @@ class MaterialsController < ApplicationController
   def new
     begin
       @material = Material.new
-      @suppliers = Supplier.all
+      # @suppliers = Supplier.all
+      @material_categories = MaterialCategory.all
+      @unit_measurements = UnitOfMeasurement.all
     rescue Exception => e
       puts e
     end
@@ -30,7 +32,8 @@ class MaterialsController < ApplicationController
 
       if @material.save!
         flash[:notice] = "Material saved successfully"
-        redirect_to :back
+        # redirect_to :back
+        redirect_to materials_path
       else
         flash[:notice] = "Material can't save"
         redirect_to :back
@@ -43,7 +46,9 @@ class MaterialsController < ApplicationController
   def edit
     begin
       @material = Material.find(params[:id])
-      @suppliers = Supplier.all
+      # @suppliers = Supplier.all
+      @material_categories = MaterialCategory.all
+      @unit_measurements = UnitOfMeasurement.all
     rescue Exception => e
       puts e
     end
@@ -65,16 +70,16 @@ class MaterialsController < ApplicationController
     end
   end
 
-  def new_supplier
-    begin
-      @supplier = Supplier.new
-    rescue Exception => e
-      puts e
-    end
-  end
+  # def new_supplier
+  #   begin
+  #     @supplier = Supplier.new
+  #   rescue Exception => e
+  #     puts e
+  #   end
+  # end
 
   private
   def material_params
-    params.require(:material).permit(:name, :quantity, :unit, :supplier_uuid, :warehouse_uuid)
+    params.require(:material).permit(:name, :material_cate_uuid, :unit_measure_uuid, :supplier, :note)
   end
 end

@@ -1,0 +1,11 @@
+.row
+  %h3
+    = "Planting Project"
+    .pull-right
+      - if can? :create, Project
+        = link_to "New Project", new_planting_project_path, class: "btn btn-primary"
+    
+  %hr
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'

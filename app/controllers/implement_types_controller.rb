@@ -58,7 +58,7 @@ class ImplementTypesController < ApplicationController
 
   private
   def set_title
-    content_for :title, "ImplementType"
+    content_for :title, "Implement Type"
   end
   def implement_type_params
     params.require(:implement_type).permit(:name, :note)

@@ -67,6 +67,7 @@ end
   UserGroup.create_with(note: user_group[:note], active: user_group[:active]).find_or_create_by(name: user_group[:name])
 end
 
+
 #Create Administrator group, and add one user to that group
 usergroup = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
 user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", role: "admin").find_or_create_by(email: "admin@cltag.com")
@@ -170,8 +171,17 @@ end
 [
   {name: 'Tree'},
   {name: 'Kg'},
-  {name: 'Ton'},
+  {name: 'Ml'},
   {name: 'Litre'}
 ].each do |unit_measure|
   UnitOfMeasurement.find_or_create_by(name: unit_measure[:name])
+end
+
+[
+  {name: 'FERTILIZERS'},
+  {name: 'PEST & INSECTICIDES'},
+  {name: 'FUNGICIDE'},
+  {name: 'HERBICIDE'}
+].each do |material_category|
+  MaterialCategory.find_or_create_by(name: material_category[:name])
 end

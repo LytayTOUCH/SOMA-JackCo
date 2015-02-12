@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   resources :warehouses
   resources :user_groups
   resources :resources
+  resources :permissions
 
   resources :roles do
     collection do
@@ -94,8 +95,9 @@ Rails.application.routes.draw do
   end
 
   resources :transaction_status
-  resources :planting_project
+  resources :planting_projects
   resources :unit_of_measurement
+  resources :material_categories
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

@@ -197,7 +197,8 @@
 
   %li.dropdown
     %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-      សួន សុវណ្ណ
+      - current_name = current_user.email.split('@')
+      = current_name.first
       %i.fa.fa-user.fa-lg
       %span.caret
     %ul.dropdown-menu{:role => "menu"}
@@ -206,7 +207,7 @@
           %i.fa.fa-info-circle.fa-lg
           My Profile
       %li
-        = link_to edit_user_registration_path do
+        = link_to edit_profile_user_path(current_user.id) do
           %i.fa.fa-gear.fa-lg
           Setting
       %li

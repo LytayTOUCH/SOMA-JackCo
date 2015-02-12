@@ -6,28 +6,62 @@
       = f.input :name, label: false, input_html: {class: "form-control"}
       %span.help-block= f.error :name
   .form-group
-    %label.col-xs-2.control-label{for: 'material_quantity'} Quantity
+    %label.col-xs-2.control-label{for: 'material category'} Material Category
     .col-xs-5
-      = f.input :quantity, label: false, input_html: {class: "form-control"}
-      %span.help-block= f.error :quantity
+      = f.input :material_cate_uuid, label: false, collection: @material_categories, input_html: {class: "form-control"}, include_blank: true
+      %span.help-block= f.error :material_cate_id
   .form-group
-    %label.col-xs-2.control-label{for: 'material_unit'} Unit
+    %label.col-xs-2.control-label{for: 'unit of measurement'} Unit of Measurement
     .col-xs-5
-      = f.input :unit, label: false, selected: 2, collection: [["Kg", "Kg"], ["Liter", "Liter"], ["Piece", "Piece"], ["Set", "Set"]], input_html: {class: "form-control"}
-      %span.help-block= f.error :unit
+      = f.input :unit_measure_uuid, label: false, collection: @unit_measurements, input_html: {class: "form-control"}, include_blank: true
+      %span.help-block= f.error :unit_measure_id
   .form-group
-    %label.col-xs-2.control-label{for: 'material_supplier'} Supplier
+    %label.col-xs-2.control-label{for: 'supplier'} Supplier
     .col-xs-5
-      = f.input :supplier_uuid, label: false, collection: @suppliers, input_html: {class: "form-control"}, include_blank: true
-      .pull-right
-        = link_to "New Supplier", new_supplier_materials_path, remote: true
-      %span.help-block= f.error :supplier_uuid
+      = f.input :supplier, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :supplier
   .form-group
-    %label.col-xs-2.control-label{for: 'material_supplier'} Warehouse
+    %label.col-xs-2.control-label{for: 'note'} Note
     .col-xs-5
-      = f.input :warehouse_uuid, label: false, input_html: {class: "form-control"}
-      %span.help-block= f.error :warehouse_uuid
+      = f.input :note, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :note
   .form-group
     .col-xs-7
       .pull-right
         = render partial: 'form_button', locals: { f: f }
+
+
+
+/ #form-model-content-supplier
+/ = simple_form_for @material, html: {class: 'form-horizontal'} do |f|
+/   .form-group
+/     %label.col-xs-2.control-label{for: 'material_name'} Name
+/     .col-xs-5
+/       = f.input :name, label: false, input_html: {class: "form-control"}
+/       %span.help-block= f.error :name
+/   .form-group
+/     %label.col-xs-2.control-label{for: 'material_quantity'} Quantity
+/     .col-xs-5
+/       = f.input :quantity, label: false, input_html: {class: "form-control"}
+/       %span.help-block= f.error :quantity
+/   .form-group
+/     %label.col-xs-2.control-label{for: 'material_unit'} Unit
+/     .col-xs-5
+/       = f.input :unit, label: false, selected: 2, collection: [["Kg", "Kg"], ["Liter", "Liter"], ["Piece", "Piece"], ["Set", "Set"]], input_html: {class: "form-control"}
+/       %span.help-block= f.error :unit
+/   .form-group
+/     %label.col-xs-2.control-label{for: 'material_supplier'} Supplier
+/     .col-xs-5
+/       = f.input :supplier_uuid, label: false, collection: @suppliers, input_html: {class: "form-control"}, include_blank: true
+/       .pull-right
+/         = link_to "New Supplier", new_supplier_materials_path, remote: true
+/       %span.help-block= f.error :supplier_uuid
+/   .form-group
+/     %label.col-xs-2.control-label{for: 'material_supplier'} Warehouse
+/     .col-xs-5
+/       = f.input :warehouse_uuid, label: false, input_html: {class: "form-control"}
+/       %span.help-block= f.error :warehouse_uuid
+/   .form-group
+/     .col-xs-7
+/       .pull-right
+/         = render partial: 'form_button', locals: { f: f }

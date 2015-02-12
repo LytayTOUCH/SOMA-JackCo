@@ -1,0 +1,15 @@
+= simple_form_for @planting_project, html: {class: 'form-horizontal'} do |f|
+  .form-group
+    %label.col-xs-2.control-label Project Name
+    .col-xs-5
+      = f.input :project_name, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :project_name
+  .form-group
+    %label.col-xs-2.control-label Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :note
+  .form-group
+    .col-xs-7
+      .pull-right
+        = render partial: 'form_button', locals: { f: f }

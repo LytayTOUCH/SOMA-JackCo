@@ -1,4 +1,4 @@
-class UnitOfMeasurement < ActiveRecord::Base
+class MaterialCategory < ActiveRecord::Base
   include UuidHelper
 
   has_one :material
