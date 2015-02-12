@@ -1,4 +1,3 @@
-= @farm.inspect
 .page-header.custom-page-header
   %h3.custom-h3 #{@farm.name}
 
@@ -20,9 +19,9 @@
 /               = farm.latlong_farm
             
 
-      
+= @farm.inspect
 
 / - @farms.each do |farm|
 /   = link_to "a farm", farm
-
+= @blocks.inspect
 

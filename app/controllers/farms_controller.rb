@@ -8,7 +8,6 @@ class FarmsController < ApplicationController
   end
 
   def create
-
     @farm = Farm.new(farm_params)
     respond_to do |format|
       if @farm.save
@@ -31,6 +30,7 @@ class FarmsController < ApplicationController
   def show
     @farm=Farm.find(params[:id])
     add_breadcrumb @farm.name, :farm_path
+    @blocks = @farm.blocks.all
   end
 
   def destroy
