@@ -18,8 +18,8 @@
             </haml:block>
         .row
           .col-lg-12.farm-info
-            %div Surface: #{@farms_amount}
-            %div Blocks Amount: #{58}
+            %div Surface: #{farm.blocks.sum(:surface)}
+            %div Blocks Amount: #{farm.blocks.count}
             %div Planting Project: Coconut
             %div Location: #{farm.location}
             %div

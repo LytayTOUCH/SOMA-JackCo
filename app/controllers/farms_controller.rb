@@ -1,13 +1,15 @@
 class FarmsController < ApplicationController
-  before_action :set_title
+  # before_action :set_title
   # before_action :set_farm, only: [:show, :edit, :update, :destroy]
   add_breadcrumb "All Farms", :farms_path
   def index
+    set_title('All Farms')
     @farms=Farm.all
     @farm = Farm.new
   end
 
   def create
+
     @farm = Farm.new(farm_params)
     respond_to do |format|
       if @farm.save
@@ -30,11 +32,15 @@ class FarmsController < ApplicationController
   def show
     @farm=Farm.find(params[:id])
     add_breadcrumb @farm.name, :farm_path
-    @blocks = @farm.blocks.all
+    set_title(@farm.name)
   end
 
   def destroy
     
+  end
+
+  def set_title(name='')
+    content_for :title, name
   end
 
   private
@@ -46,10 +52,6 @@ class FarmsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def farm_params
       params.require(:farm).permit(:name, :location, :latlong_farm)
-    end
-
-    def set_title
-      content_for :title, "All Farms"
     end
 
 end
