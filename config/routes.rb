@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   end
 
   resources :accounts, only: [:index]
+  put '/dashboards', :to => 'dashboards#index'
   resources :dashboards
   resources :warehouse_types
   resources :warehouses

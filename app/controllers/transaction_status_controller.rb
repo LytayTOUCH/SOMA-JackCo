@@ -1,12 +1,12 @@
 class TransactionStatusController < ApplicationController
   def index
     begin
-      @tran_status = TransactionStatus.new
+      @transaction_status = TransactionStatus.new
 
-      if params[:tran_status] and params[:tran_status][:name] and !params[:tran_status][:name].nil?
-        @transaction_status = TransactionStatus.find_by_name(params[:tran_status][:name]).page(params[:page]).per(5)
+      if params[:transaction_status] and params[:transaction_status][:name] and !params[:transaction_status][:name].nil?
+        @transaction_statuses = TransactionStatus.find_by_name(params[:transaction_status][:name]).page(params[:page]).per(5)
       else
-        @transaction_status = TransactionStatus.page(params[:page]).per(5)
+        @transaction_statuses = TransactionStatus.page(params[:page]).per(5)
       end
     rescue Exception => e
       puts e

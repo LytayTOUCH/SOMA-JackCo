@@ -1,12 +1,13 @@
 class UnitOfMeasurementController < ApplicationController
   def index
   	begin
-      @unit_measure = UnitOfMeasurement.new
+      @unit_of_measurement = UnitOfMeasurement.new
 
-      if params[:unit_measure] and params[:unit_measure][:name] and !params[:unit_measure][:name].nil?
-        @unit_measurement = UnitOfMeasurement.find_by_name(params[:unit_measure][:name]).page(params[:page]).per(5)
+      if params[:unit_of_measurement] and params[:unit_of_measurement][:name] and !params[:unit_of_measurement][:name].nil?
+        
+        @unit_of_measurements = UnitOfMeasurement.find_by_name(params[:unit_of_measurement][:name]).page(params[:page]).per(5)        
       else
-        @unit_measurement = UnitOfMeasurement.page(params[:page]).per(5)
+        @unit_of_measurements = UnitOfMeasurement.page(params[:page]).per(5)       
       end
     rescue Exception => e
       puts e

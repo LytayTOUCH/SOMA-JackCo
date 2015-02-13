@@ -5,6 +5,8 @@ class Material < ActiveRecord::Base
   belongs_to :unit_of_measurement, foreign_key: :unit_measure_uuid
 
   validates :name, length: { maximum: 50 }, presence: true
+  validates :material_cate_uuid, length: { maximum: 36 }, presence: true
+  validates :unit_measure_uuid, length: { maximum: 36 }, presence: true
   # validates :quantity, numericality: true
   # validates :unit, length: { maximum: 100 }, presence: true
 
