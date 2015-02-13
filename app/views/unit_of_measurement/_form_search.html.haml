@@ -1,4 +1,4 @@
-= simple_form_for @unit_measure, url: unit_of_measurement_index_path, method: :get, html: {novalidate: true, class: 'form-inline'} do |f|
+= simple_form_for @unit_of_measurement, url: unit_of_measurement_index_path, method: :get, html: {novalidate: true, class: 'form-inline'} do |f|
   .input-group.col-xs-5
     = f.input :name, as: :string, label: false, input_html: {class: "form-control", placeholder: "Search by name"}
     .input-group-btn
