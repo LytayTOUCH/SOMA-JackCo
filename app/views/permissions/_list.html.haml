@@ -1,0 +1,33 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-3= "Group name"
+      %th.col-md-3= "Resource name"
+      %th.col-md-2= "Full access"
+      %th.col-md-1= "View"
+      %th.col-md-1= "Create"
+      %th.col-md-1= "Update"
+      %th.col-md-1= "Delete"
+  - @permissions.each do |permission|
+    %tr
+      %td= permission.user_group.name
+      %td= permission.resource.name
+      %td
+        = form_for(permission) do |f|
+          - if permission.active
+            %span{style: "color:green;"}= "active"
+            |
+            #{f.hidden_field :active, value: false}
+            #{submit_tag "inactivate", :class => "btn btn-default btn-xs"}
+          - else
+            %span{:style => "color:red;"}= "inactive"
+            |
+            #{f.hidden_field :active, value: true}
+            #{submit_tag "activate", :class => "btn btn-default btn-xs"}
+      %td= check_box_tag :access_list
+      %td= check_box_tag :access_create
+      %td= check_box_tag :access_update
+      %td= check_box_tag :access_delete
+
+
+      / = check_box_tag :access_delete

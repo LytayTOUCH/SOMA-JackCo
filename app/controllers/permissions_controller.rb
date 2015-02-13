@@ -1,2 +1,60 @@
 class PermissionsController < ApplicationController
+
+  def index
+    begin
+      @permissions = Permission.all
+    rescue Exception => e
+      puts e
+    end
+  end
+
+  def new
+    @permission = Permission.new
+  end
+
+  def newrp
+    # @user_group = Permission.find(params[:id])
+    @permission = Permission.new
+  end
+
+  def create
+    @permission = Permission.new(permission_params)
+
+    if @permission.save!
+      flash[:notice] = "Permission saved successfully"
+      redirect_to permissions_path
+    else
+      flash[:notice] = "Permission can't be saved"
+      redirect_to :back
+    end
+  end
+
+  def edit
+    begin
+      @permission = Permission.find(params[:id])
+    rescue Exception => e
+      puts e
+    end
+  end
+
+  def update
+    begin
+      @permission = Permission.find(params[:id])
+
+      if @permission.update_attributes!(permission_params)
+        flash[:notice] = "Permission updated"
+        redirect_to permissions_path
+      else
+        flash[:notice] = "Permission can't update"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
+    end
+  end
+
+  private
+  def permission_params
+    params.require(:permission).permit(:user_group_id, :resource_id, :access_full, :access_list, :access_create, :access_update, :access_delete)
+  end
 end
