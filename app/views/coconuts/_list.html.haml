@@ -17,7 +17,7 @@
         %td
           = form_for(coconut) do |f|
             - if coconut.active
-              %span{style: "color:auto;"}= "active"
+              %span{style: "color:green;"}= "active"
               |
               #{f.hidden_field :active, value: false}
               #{submit_tag "inactivate", :class => "btn btn-default btn-xs"}
