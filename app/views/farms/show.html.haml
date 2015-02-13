@@ -1,5 +1,7 @@
 .page-header.custom-page-header
-  %h3.custom-h3 #{@farm.name}
+  %h3.custom-h3.icon-green
+    .fa.fa-tree
+    #{@farm.name}
 
 / .row{:style => "padding-left: 15px;margin:0px;"}
 /   - @farms.each do |farm|
@@ -17,11 +19,35 @@
 /             %div
 /               %i.fa.fa-map-marker
 /               = farm.latlong_farm
-            
 
-= @farm.inspect
+%div Surface: #{@farm.blocks.sum(:surface)}
+%div Blocks Amount: #{@farm.blocks.count}
+%div Planting Project: Coconut
+%div Location: #{@farm.location}      
 
-/ - @farms.each do |farm|
-/   = link_to "a farm", farm
-= @farm.blocks.inspect
+.page-header.custom-page-header
+  %h3.custom-h3
+    .fa.fa-cubes.icon-brown
+    All Blocks Information
 
+.row
+  - @farm.blocks.each do |block|
+    .col-sm-3
+      .box-farm-info
+        .page-header.custom-page-header
+          %h4.custom-h4
+            = link_to block.name, "#", :class => "text-color-green"
+        .row
+          .col-lg-12.map-info
+            = link_to "#" do
+              .thumbnail.custom-thumbnail
+                %img.map{:src => "https://maps.googleapis.com/maps/api/staticmap?center=#{block.location_lat_long}&zoom=17&size=348x250&maptype=satellite&markers=color:red|#{block.location_lat_long}"}/
+            / .map{:id => "map-canvas-#{farm.uuid}"}
+            </haml:block>
+        .row
+          .col-lg-12.farm-info
+            %div Surface: #{block.surface}
+            %div Planting Project: Coconut
+            %div
+              %i.fa.fa-map-marker
+              = block.location_lat_long
