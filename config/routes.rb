@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   resources :resources
   resources :permissions
 
-  get ':user_group_id/permissions/newrp', to: 'permissions#newrp', as: :permissions_newrp
+  get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
 
   resources :roles do
     collection do

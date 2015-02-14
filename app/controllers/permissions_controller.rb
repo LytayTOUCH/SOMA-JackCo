@@ -1,20 +1,9 @@
 class PermissionsController < ApplicationController
-
-  def index
-    begin
-      @permissions = Permission.all
-    rescue Exception => e
-      puts e
-    end
-  end
-
   def new
     @permission = Permission.new
-  end
-
-  def newrp
-    # @user_group = Permission.find(params[:id])
-    @permission = Permission.new
+    puts "==========================="
+    puts @user_group = UserGroup.find(params[:id])
+    puts "==========================="
   end
 
   def create
@@ -31,7 +20,14 @@ class PermissionsController < ApplicationController
 
   def edit
     begin
-      @permission = Permission.find(params[:id])
+      @user_group = UserGroup.find(params[:id])
+      # puts "======================================="
+      # puts  @user_group
+      @resources = Resource.all
+
+      
+      # @permissions = Permission.find_by(user_group_id: "89D9B466-B3F6-11E4-AFBD-E0DB55A6E603")
+      puts "======================================="
     rescue Exception => e
       puts e
     end
