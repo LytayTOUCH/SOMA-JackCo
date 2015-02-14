@@ -36,6 +36,7 @@
         - if permission.user_group_id == @user_group.uuid
           %td
             = check_box_tag permission.access_full, :data => { resource_id: resource.id, user_group_id: @user_group.uuid }
+            
           %td
             = check_box_tag permission.access_list
             / permission.access_list
