@@ -1,9 +1,11 @@
 %table.table
   %thead
     %tr
-      %th.col-md-12= "Name"
+      %th.col-md-4= "Name"
+      %th.col-md-8= "Note"
   - @material_categories.each do |mc|
     %tr
       %td= mc.name
+      %td= mc.note
 .pull-right
   = paginate @material_categories
