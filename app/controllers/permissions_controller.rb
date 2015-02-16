@@ -2,7 +2,6 @@ class PermissionsController < ApplicationController
   def new
     @permission = Permission.new
     @user_group = UserGroup.find(params[:id])
-    @resources = Resource.all
   end
 
   def create
@@ -25,7 +24,6 @@ class PermissionsController < ApplicationController
   def edit
     begin
       @user_group = UserGroup.find(params[:id])
-      @resources = Resource.all
     rescue Exception => e
       puts e
     end
@@ -33,7 +31,8 @@ class PermissionsController < ApplicationController
 
   def update
     begin
-      @permission = Permission.find(params[:id])
+      @permission = Permission.find_by(user_group_id: params[:id], resource_id: params[:resource_id])
+      # @permission = Permission.find(params[:id])
 
       if @permission.update_attributes!(permission_params)
         flash[:notice] = "Permission updated"

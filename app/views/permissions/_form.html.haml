@@ -12,35 +12,72 @@
       %th.col-md-1= "Create"
       %th.col-md-1= "Update"
       %th.col-md-1= "Delete"
-  - @resources.each do |resource|
-    %tr
-      %td= resource.name
-      - resource.permissions.each do |permission|
-        - if permission.user_group_id == @user_group.uuid
-          %td
-            = check_box_tag permission.access_full, :data => { resource_id: resource.id, user_group_id: @user_group.uuid } 
+    - @user_group.permissions.each do |permission|
+      / = permission.resource.name.inspect
+      %tr
+        %td= permission.resource.name
+        %td
+          = check_box_tag permission.access_full, :data => { resource_id: permission.resource.uuid, user_group_id: @user_group.uuid }
+        %td
+          / = fields_for permission do |permission_fields|
+          /   #{permission_fields.check_box :access_list}
+          / = form_tag edit_permission_path(permission), method: :put do |f|
+          /   - if permission.access_full
+          /     %span{style: "color:green;"}= "set"
+          /     |
+          /     #{f.hidden_field :access_full, value: false}
+          /     #{submit_tag "unset", :class => "btn btn-default btn-xs"}
+          /   - else
+          /     %span{:style => "color:red;"}= "unset"
+          /     |
+          /     #{f.hidden_field :access_full, value: true}
+          /     #{submit_tag "set", :class => "btn btn-default btn-xs"}
+          = check_box_tag permission.access_list
+        %td
+          = check_box_tag permission.access_create
+        %td
+          = check_box_tag permission.access_update
+        %td
+          = check_box_tag permission.access_delete
 
-          %td
-            / = fields_for permission do |permission_fields|
-            /   #{permission_fields.check_box :access_list}
-            = form_tag edit_permission_path(permission), method: :put do |f|
-              - if permission.access_full
-                %span{style: "color:green;"}= "set"
-                |
-                #{f.hidden_field :access_full, value: false}
-                #{submit_tag "unset", :class => "btn btn-default btn-xs"}
-              - else
-                %span{:style => "color:red;"}= "unset"
-                |
-                #{f.hidden_field :access_full, value: true}
-                #{submit_tag "set", :class => "btn btn-default btn-xs"}
-            / = check_box_tag permission.access_list
-          %td
-            = check_box_tag permission.access_create
-          %td
-            = check_box_tag permission.access_update
-          %td
-            = check_box_tag permission.access_delete
+
+
+    / - @resources.each do |resource|
+    /   - resource.permissions.each do |permission|
+    /     = permission.resource.inspect
+    /     %br
+    /     %br
+    /     %br
+    /     = permission.user_group.inspect
+
+    / %tr
+    /   %td= resource.name
+    /   - resource.permissions.each do |permission|
+    /     - if permission.user_group_id == @user_group.uuid
+    /       %td
+    /         = check_box_tag permission.access_full, :data => { resource_id: resource.id, user_group_id: @user_group.uuid } 
+
+    /       %td
+    /         / = fields_for permission do |permission_fields|
+    /         /   #{permission_fields.check_box :access_list}
+    /         = form_tag edit_permission_path(permission), method: :put do |f|
+    /           - if permission.access_full
+    /             %span{style: "color:green;"}= "set"
+    /             |
+    /             #{f.hidden_field :access_full, value: false}
+    /             #{submit_tag "unset", :class => "btn btn-default btn-xs"}
+    /           - else
+    /             %span{:style => "color:red;"}= "unset"
+    /             |
+    /             #{f.hidden_field :access_full, value: true}
+    /             #{submit_tag "set", :class => "btn btn-default btn-xs"}
+    /         / = check_box_tag permission.access_list
+    /       %td
+    /         = check_box_tag permission.access_create
+    /       %td
+    /         = check_box_tag permission.access_update
+    /       %td
+    /         = check_box_tag permission.access_delete
 
 / .form-group
 /   .pull-right
