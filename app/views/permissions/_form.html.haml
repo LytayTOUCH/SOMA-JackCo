@@ -20,7 +20,7 @@
           %td
             = check_box_tag permission.access_full, :data => { resource_id: resource.id, user_group_id: @user_group.uuid } 
           %td
-            = form_for(permission) do |f|
+            = form_for :permission do |f|
               - if permission.access_full
                 %span{style: "color:green;"}= "set"
                 |
