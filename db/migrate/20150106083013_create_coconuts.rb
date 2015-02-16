@@ -13,4 +13,3 @@ class CreateCoconuts < ActiveRecord::Migration
       t.timestamps
     end
   end
-end

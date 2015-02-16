@@ -18,17 +18,6 @@
 end
 
 [ 
-  {name: 'User', note: 'Controlling users'},
-  {name: 'Warehouse', note: 'Controlling warehouses'},
-  {name: 'Labor', note: 'Controlling labors'},
-  {name: 'Machinery', note: 'Controlling machineries'},
-  {name: 'Material', note: 'Controlling materials'},
-  {name: 'Zone', note: 'Controlling zones'}
-].each do |resource|
-  Resource.create_with(note: resource[:note]).find_or_create_by(name: resource[:name])
-end
-
-[ 
   { name: 'Tilling', note: '' },
   { name: 'Planting', note: '' },
   { name: 'Spraying', note: '' },
@@ -37,19 +26,32 @@ end
   ActivityType.create_with(note: activity[:note]).find_or_create_by(name: activity[:name])
 end
 
+# Create UserGroup, Resource and Permissions
 [ 
+  {name: "Administrator", note: "Controlling everything", active: true},
   {name: "Manager", note: "Controlling general tasks", active: true},
   {name: "Project Leader", note: "Controlling all projects", active: true},
   {name: "Data Entry", note: "Inputting data", active: true}
 ].each do |user_group|
-  UserGroup.create_with(note: user_group[:note], active: user_group[:active]).find_or_create_by(name: user_group[:name])
+  userg = UserGroup.create_with(note: user_group[:note], active: user_group[:active]).find_or_create_by(name: user_group[:name])
+
+  [ 
+    {name: 'User', note: 'Controlling users'},
+    {name: 'Warehouse', note: 'Controlling warehouses'},
+    {name: 'Machinery', note: 'Controlling machineries'},
+    {name: 'Material', note: 'Controlling materials'}
+  ].each do |resource|
+    res = Resource.create_with(note: resource[:note]).find_or_create_by(name: resource[:name])
+
+    Permission.create(user_group: userg, resource: res, access_full: true, access_list: true, access_create: true, access_update: true, access_delete: true)
+  end  
 end
 
-
-#Create Administrator group, and add one user to that group
-usergroup = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
+# Create Administrator group and add one user to that group
+user_group = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
 user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", role: "admin").find_or_create_by(email: "admin@cltag.com")
-usergroup.users << user
+
+user_group.users << user
 
 [
   {name: 'admin', note: 'Controlling all modules', label: 'Admin'},
@@ -58,17 +60,6 @@ usergroup.users << user
   {name: 'it', note: 'Can edit all modules', label: 'IT'}
 ].each do |role|
   Role.create_with(note: role[:note], label: role[:label]).find_or_create_by(name: role[:name])
-end
-
-[ 
-  {name: 'User', note: 'Controlling users'},
-  {name: 'Warehouse', note: 'Controlling warehouses'},
-  {name: 'Labor', note: 'Controlling labors'},
-  {name: 'Machinery', note: 'Controlling machineries'},
-  {name: 'Material', note: 'Controlling materials'},
-  {name: 'Zone', note: 'Controlling zones'}
-].each do |resource|
-  Resource.create_with(note: resource[:note]).find_or_create_by(name: resource[:name])
 end
 
 [ 

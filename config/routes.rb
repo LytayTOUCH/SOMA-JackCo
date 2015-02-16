@@ -61,12 +61,20 @@ Rails.application.routes.draw do
   end
 
   resources :accounts, only: [:index]
+  put '/dashboards', :to => 'dashboards#index'
   resources :dashboards
   resources :warehouse_types
   resources :warehouses
-  resources :user_groups
-  resources :resources
+  resources :user_groups  
+  
+  resources :resources do 
+    get 'permissions'
+    post 'permissions'
+  end  
+
   resources :permissions
+
+  get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
 
   resources :roles do
     collection do

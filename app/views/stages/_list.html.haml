@@ -13,10 +13,17 @@
         %td= stage.fruit_type
         %td= stage.note
         %td
-          - if stage.active?
-            = "Actived"
-          - else
-            = "Inactived"
+          = form_for(stage) do |f|
+            - if stage.active
+              %span{style: "color:green;"}= "active"
+              |
+              #{f.hidden_field :active, value: false}
+              #{submit_tag "inactivate", :class => "btn btn-default btn-xs"}
+            - else
+              %span{:style => "color:red;"}= "inactive"
+              |
+              #{f.hidden_field :active, value: true}
+              #{submit_tag "activate", :class => "btn btn-default btn-xs"}
         %td
           - if can? :update, Stage
             = link_to "Edit", edit_stage_path(stage)

@@ -12,7 +12,7 @@
       %td
         = form_for(resource) do |f|
           - if resource.active
-            %span{style: "color:auto;"}= "active"
+            %span{style: "color:green;"}= "active"
             |
             #{f.hidden_field :active, value: false}
             #{submit_tag "inactivate", :class => "btn btn-default btn-xs"}

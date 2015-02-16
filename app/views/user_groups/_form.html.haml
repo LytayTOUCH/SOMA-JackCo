@@ -9,11 +9,6 @@
     .col-xs-5
       = f.input :note, label: false, input_html: { class: "form-control" }
       %span.help-block= f.error :note
-  .form-group
-    %label.col-xs-2.control-label Active
-    .col-xs-5
-      = f.input :active, label: false
-      %span.help-block= f.error :active
 
   - @resources.each do |resource|
     = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource), checked: true, style: 'visibility: hidden'

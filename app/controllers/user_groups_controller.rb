@@ -1,6 +1,5 @@
 class UserGroupsController < ApplicationController
   load_and_authorize_resource except: :create
-  # before_filter :load_permissions
 
   def index
     begin
@@ -27,7 +26,7 @@ class UserGroupsController < ApplicationController
 
     if @user_group.save!
       flash[:notice] = "User Group type saved successfully"
-      redirect_to user_groups_path
+      redirect_to edit_permission_path(@user_group)
     else
       flash[:notice] = "User Group type can't save"
       redirect_to :back

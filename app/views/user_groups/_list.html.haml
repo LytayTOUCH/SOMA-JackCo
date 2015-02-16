@@ -1,10 +1,10 @@
 %table.table
   %thead
     %tr
-      %th.col-md-5= "Name"
-      %th.col-md-3= "Note"
-      %th.col-md-3= "Active"
-      %th.col-md-1= "Actions"
+      %th.col-md-4= "Name"
+      %th.col-md-4= "Note"
+      %th.col-md-2= "Active"
+      %th.col-md-2= "Actions"
   - @user_groups.each do |user_group|
     %tr
       %td= user_group.name
@@ -12,7 +12,7 @@
       %td
         = form_for(user_group) do |f|
           - if user_group.active
-            %span{style: "color:auto;"}= "active"
+            %span{style: "color:green;"}= "active"
             |
             #{f.hidden_field :active, value: false}
             #{submit_tag "inactivate", :class => "btn btn-default btn-xs"}
@@ -24,5 +24,7 @@
       %td
         - if can? :update, UserGroup
           = link_to "Edit", edit_user_group_path(user_group)
+        = "|"
+        = link_to "Edit Permissions", edit_permission_path(user_group)
 .pull-right
   = paginate @user_groups

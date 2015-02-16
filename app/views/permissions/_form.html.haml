@@ -1,0 +1,40 @@
+%table.table
+  %thead
+    %tr 
+      %td
+        %h3= "User Group"
+      %td
+        %h2= @user_group.name
+    %tr
+      %th.col-md-3= "Resource name"
+      %th.col-md-2= "Full access"
+      %th.col-md-1= "View"
+      %th.col-md-1= "Create"
+      %th.col-md-1= "Update"
+      %th.col-md-1= "Delete"
+  - @resources.each do |resource|
+    %tr
+      %td= resource.name
+      - resource.permissions.each do |permission|
+        - if permission.user_group_id == @user_group.uuid
+          %td
+            = check_box_tag permission.access_full, :data => { resource_id: resource.id, user_group_id: @user_group.uuid } 
+          %td
+            = form_for :permission do |f|
+              - if permission.access_full
+                %span{style: "color:green;"}= "set"
+                |
+                #{f.hidden_field :access_full, value: false}
+                #{submit_tag "unset", :class => "btn btn-default btn-xs"}
+              - else
+                %span{:style => "color:red;"}= "unset"
+                |
+                #{f.hidden_field :access_full, value: true}
+                #{submit_tag "set", :class => "btn btn-default btn-xs"}
+            / = check_box_tag permission.access_full
+          %td
+            = check_box_tag permission.access_create
+          %td
+            = check_box_tag permission.access_update
+          %td
+            = check_box_tag permission.access_delete
