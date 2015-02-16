@@ -2,10 +2,10 @@
   %thead
     %tr
       %th.col-md-4= "Name"
-      %th.col-md-8= "Description"
+      %th.col-md-8= "Note"
   - @warehouse_types.each do |warehouse_type|
     %tr
       %td= warehouse_type.name
-      %td= warehouse_type.description
+      %td= warehouse_type.note
 .pull-right
   = paginate @warehouse_types

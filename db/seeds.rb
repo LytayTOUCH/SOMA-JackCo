@@ -151,19 +151,20 @@ end
 end
 
 [
-  {name: 'Central Warehouse', description: 'It is the big warehouse.'},
-  {name: 'Project Warehouse', description: 'It is the warehouse that is near the farms.'},
-  {name: 'Finished Goods Warehouse', description: 'It is the warehouse that stock all yields harvest from the farms.'}
+  {name: 'Central Warehouse', note: 'It is the big warehouse.'},
+  {name: 'Project Warehouse', note: 'It is the warehouse that is near the farms.'},
+  {name: 'Finished Goods Warehouse', note: 'It is the warehouse that stock all yields harvest from the farms.'},
+  {name: 'Nursery Warehouse', note: 'It is the plant nursery warehouse.'}
 ].each do |warehouse_type|
-  WarehouseType.create_with(description: warehouse_type[:description]).find_or_create_by(name: warehouse_type[:name])
+  WarehouseType.create_with(note: warehouse_type[:note]).find_or_create_by(name: warehouse_type[:name])
 end
 
 [
-  {name: 'Stock-in'},
-  {name: 'Stock-out'},
-  {name: 'Adjustment'}
+  {name: 'Stock-in', note: 'Import into stock.'},
+  {name: 'Stock-out', note: 'Export from stock.'},
+  {name: 'Adjustment', note: 'Adjustment note'}
 ].each do |transaction_status|
-  TransactionStatus.find_or_create_by(name: transaction_status[:name])
+  TransactionStatus.create_with(note: transaction_status[:note]).find_or_create_by(name: transaction_status[:name])
 end
 
 [
@@ -175,19 +176,20 @@ end
 end
 
 [
-  {name: 'Tree'},
-  {name: 'Kg'},
-  {name: 'Ml'},
-  {name: 'Litre'}
+  {name: 'Unit', note: 'Unit of measurement for tree, amount of fruit,...'},
+  {name: 'Kg', note: 'Unit of measurement for kilogram.'},
+  {name: 'g', note: 'Unit of measurement for gram.'},
+  {name: 'Litre', note: 'Unit of measurement for litre.'},
+  {name: 'Ml', note: 'Unit of measurement for mili-litre.'}
 ].each do |unit_measure|
-  UnitOfMeasurement.find_or_create_by(name: unit_measure[:name])
+  UnitOfMeasurement.create_with(note: unit_measure[:note]).find_or_create_by(name: unit_measure[:name])
 end
 
 [
-  {name: 'FERTILIZERS'},
-  {name: 'PEST & INSECTICIDES'},
-  {name: 'FUNGICIDE'},
-  {name: 'HERBICIDE'}
+  {name: 'FERTILIZERS', note: 'Fertilizer note'},
+  {name: 'PEST & INSECTICIDES', note: 'Pest and Insecticide note'},
+  {name: 'FUNGICIDE', note: 'Fungicide note'},
+  {name: 'HERBICIDE', note: 'Herbicide note'}
 ].each do |material_category|
-  MaterialCategory.find_or_create_by(name: material_category[:name])
+  MaterialCategory.create_with(note: material_category[:note]).find_or_create_by(name: material_category[:name])
 end
