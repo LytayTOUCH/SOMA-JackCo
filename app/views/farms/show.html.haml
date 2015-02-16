@@ -47,7 +47,12 @@
         .row
           .col-lg-12.farm-info
             %div Surface: #{block.surface}
-            %div Planting Project: Coconut
+            %div
+              Planting Project:
+              - if block.planting_project.project_name.downcase.eql? 'coconut'
+                %span.label.label-success #{block.planting_project.project_name}
+              - else
+                %span.label.label-warning #{block.planting_project.project_name}
             %div
               %i.fa.fa-map-marker
               = block.location_lat_long
