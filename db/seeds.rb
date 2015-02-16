@@ -9,6 +9,7 @@
 # run:
 # rake db:seed
 
+# ========== Create Farms ==========
 [
   {name: 'Oroung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.333019, 104.864575'},
   {name: 'Chamkar Doung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.341900, 104.822941'},
@@ -18,6 +19,7 @@
   Farm.create_with(location: farm[:location], latlong_farm: farm[:latlong_farm]).find_or_create_by(name: farm[:name])
 end
 
+# ========== Create Blocks for Chamkar Doung Farm ========== 
 coconut_farm = Farm.find_by_name('Chamkar Doung Farm')
 [
   {name: 'Block A1', surface: 4, shape_lat_long: '[[11.34228844248775,104.8173368444448],[11.34222380000888,104.8171604557845],[11.3419655618982,104.8170819933822],[11.34197186349495,104.8169376349896],[11.34152765634626,104.8168564506022],[11.34152565378016,104.8161860309814],[11.34072187781601,104.8161618977276],[11.34073587728222,104.8166945670797],[11.34083425409179,104.8171092601984],[11.34104359934694,104.8174874094787],[11.34114577172203,104.8181746246259],[11.34214745471061,104.8184887833901],[11.34225258745473,104.8181561580298],[11.34287072363673,104.8182904066128],[11.34309297859914,104.8175375089032],[11.34228844248775,104.8173368444448]]', location_lat_long: '11.341644, 104.817429', rental_status: 0, status: 0, planting_project_id: 1, farm_id: coconut_farm.uuid, tree_amount: 150},
@@ -30,6 +32,7 @@ coconut_farm = Farm.find_by_name('Chamkar Doung Farm')
   Block.create_with(surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount]).find_or_create_by(name: block[:name])
 end
 
+# ========== Create Blocks for Oroung Farm ========== 
 oroung_farm= Farm.find_by_name('Oroung Farm')
 [
   {name: 'Block A1', surface: 4, shape_lat_long: '[[11.33311439628769,104.863074517573],[11.33303836909471,104.8645267817349],[11.33419647990755,104.8649847944117],[11.33421414894168,104.8637520663834],[11.33311439628769,104.863074517573]]', location_lat_long: '11.333647, 104.864061', rental_status: 0, status: 0, planting_project_id: 1, farm_id: oroung_farm.uuid, tree_amount: 150},
@@ -44,7 +47,7 @@ oroung_farm= Farm.find_by_name('Oroung Farm')
   Block.create_with(surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount]).find_or_create_by(name: block[:name])
 end
 
-
+# ========== Create Roles ========== 
 [
   {name: 'admin', note: 'Controlling all modules', label: 'Admin'},
   {name: 'top_manager', note: 'Can read all modules and download all reports', label: 'TOP Manager'},
@@ -54,16 +57,7 @@ end
   Role.create_with(note: role[:note], label: role[:label]).find_or_create_by(name: role[:name])
 end
 
-[ 
-  { name: 'Tilling', note: '' },
-  { name: 'Planting', note: '' },
-  { name: 'Spraying', note: '' },
-  { name: 'Fertilizing', note: '' }
-].each do |activity|
-  ActivityType.create_with(note: activity[:note]).find_or_create_by(name: activity[:name])
-end
-
-# Create UserGroup, Resource and Permissions
+# ==========  Create UserGroup ========== 
 [ 
   {name: "Administrator", note: "Controlling everything", active: true},
   {name: "Manager", note: "Controlling general tasks", active: true},
@@ -71,34 +65,45 @@ end
   {name: "Data Entry", note: "Inputting data", active: true}
 ].each do |user_group|
   userg = UserGroup.create_with(note: user_group[:note], active: user_group[:active]).find_or_create_by(name: user_group[:name])
-
-  [ 
-    {name: 'User', note: 'Controlling users'},
-    {name: 'Warehouse', note: 'Controlling warehouses'},
-    {name: 'Machinery', note: 'Controlling machineries'},
-    {name: 'Material', note: 'Controlling materials'}
-  ].each do |resource|
-    res = Resource.create_with(note: resource[:note]).find_or_create_by(name: resource[:name])
-
-    Permission.create(user_group: userg, resource: res, access_full: true, access_list: true, access_create: true, access_update: true, access_delete: true)
-  end  
 end
 
-# Create Administrator group and add one user to that group
+# ==========  Create Resource ========== 
+[ 
+  {name: 'User', note: 'Controlling users'},
+  {name: 'Warehouse', note: 'Controlling warehouses'}
+].each do |resource|
+  res = Resource.create_with(note: resource[:note]).find_or_create_by(name: resource[:name])
+end  
+
+# ========== Create a User ========== 
 user_group = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
 user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", role: "admin").find_or_create_by(email: "admin@cltag.com")
-
 user_group.users << user
 
-[
-  {name: 'admin', note: 'Controlling all modules', label: 'Admin'},
-  {name: 'top_manager', note: 'Can read all modules and download all reports', label: 'TOP Manager'},
-  {name: 'officer', note: 'Can input all modules', label: 'Officer'},
-  {name: 'it', note: 'Can edit all modules', label: 'IT'}
-].each do |role|
-  Role.create_with(note: role[:note], label: role[:label]).find_or_create_by(name: role[:name])
+# ========== Create Objects from UserGroup and Resource ========== 
+user_group_admin = UserGroup.find_by_name("Administrator")
+user_group_manager = UserGroup.find_by_name("Manager")
+user_group_project_leader = UserGroup.find_by_name("Project Leader")
+user_group_data_entry = UserGroup.find_by_name("Data Entry")
+
+resource_user = Resource.find_by_name("User")
+resource_warehouse = Resource.find_by_name("Warehouse")
+
+# ========== Create Permissions ========== 
+[ 
+  {name: "Admin Permission on User", user_group_id: user_group_admin.uuid, resource_id:  resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
+  {name: "Admin Permission on warehouse", user_group_id: user_group_admin.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
+  {name: "Manager Permission on User", user_group_id: user_group_manager.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
+  {name: "Manager Permission on warehouse", user_group_id: user_group_manager.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
+  {name: "Project leader Permission on User", user_group_id: user_group_project_leader.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
+  {name: "Project leader Permission on warehouse", user_group_id: user_group_project_leader.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
+  {name: "Data Entry Permission on User", user_group_id: user_group_data_entry.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
+  {name: "Data Entry Permission on warehouse", user_group_id: user_group_data_entry.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
+].each do |permission|
+  Permission.create_with(user_group_id: permission[:user_group_id], resource_id: permission[:resource_id], access_full: permission[:access_full], access_list: permission[:access_list], access_create: permission[:access_create], access_update: permission[:access_update], access_delete: permission[:access_delete], active: permission[:active]).find_or_create_by(name: permission[:name])
 end
 
+# ========== Create Projects ========== 
 [ 
   { name: 'Jackfruit' },
   { name: 'Coconut' }
@@ -106,6 +111,7 @@ end
   Project.find_or_create_by(name: project[:name])
 end
 
+# ========== Create Activity types ========== 
 [ 
   { name: 'Tilling', note: 'Tilling trees', label: 'Tilling' },
   { name: 'Planting', note: 'Planting trees', label: 'Planting' },
@@ -115,6 +121,7 @@ end
   ActivityType.create_with(note: activity_type[:note], label: activity_type[:label]).find_or_create_by(name: activity_type[:name])
 end
 
+# ========== Create Stages ========== 
 [ 
   { name: 'Stage 1: Nursery (age:1-4month)', period: '4 months', note: 'Phase 1: Seed (Nursery)', fruit_type: 'coconut' },
   { name: 'Stage 2: Planting', period: '45-50 days', note: 'Phase 1: Seed (Nursery)', fruit_type: 'coconut' },
@@ -132,6 +139,7 @@ end
   Stage.create_with(period: stage[:period], note: stage[:note], fruit_type: stage[:fruit_type]).find_or_create_by(name: stage[:name])
 end
 
+# ========== Create Data for Pie Chart ========== 
 [
   {name: 'Fertilizer', amount: 3000},
   {name: 'Small Tree', amount: 5000},
@@ -141,6 +149,7 @@ end
   TestingChart.create_with(amount: testing_chart[:amount]).find_or_create_by(name: testing_chart[:name])
 end
 
+# ========== Create Data for Bar Chart ========== 
 [
   {element: 'January', amount: 40.49, bar_color: 'silver'},
   {element: 'February', amount: 20.49, bar_color: 'gold'},
@@ -150,6 +159,7 @@ end
   TestingWithBarChart.create_with(bar_color: bar_chart[:bar_color] ,amount: bar_chart[:amount]).find_or_create_by(element: bar_chart[:element])
 end
 
+# ========== Create Warehouse Types ========== 
 [
   {name: 'Central Warehouse', description: 'It is the big warehouse.'},
   {name: 'Project Warehouse', description: 'It is the warehouse that is near the farms.'},
@@ -158,6 +168,7 @@ end
   WarehouseType.create_with(description: warehouse_type[:description]).find_or_create_by(name: warehouse_type[:name])
 end
 
+# ========== Create Transaction Statuses ========== 
 [
   {name: 'Stock-in'},
   {name: 'Stock-out'},
@@ -166,6 +177,7 @@ end
   TransactionStatus.find_or_create_by(name: transaction_status[:name])
 end
 
+# ========== Create Planting Projects ========== 
 [
   {project_name: 'Coconut'},
   {project_name: 'Jackfruit'},
@@ -174,6 +186,7 @@ end
   PlantingProject.find_or_create_by(project_name: planting_project[:project_name])
 end
 
+# ========== Create Unit of Measurement ========== 
 [
   {name: 'Tree'},
   {name: 'Kg'},
@@ -183,6 +196,7 @@ end
   UnitOfMeasurement.find_or_create_by(name: unit_measure[:name])
 end
 
+# ========== Create Material Categories ========== 
 [
   {name: 'FERTILIZERS'},
   {name: 'PEST & INSECTICIDES'},

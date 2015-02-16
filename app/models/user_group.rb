@@ -15,5 +15,5 @@ class UserGroup < ActiveRecord::Base
     resource_ids = ids.split(",")
   end
 
-  scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
+  scope :find_by_user_group_name, -> name { where("name like ?", "%#{name}%") }
 end
