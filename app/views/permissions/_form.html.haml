@@ -1,27 +1,10 @@
-/ = simple_form_for @user_group, html: { class: "form-horizontal" } do |f|
-/   .form-group
-/     %label.col-xs-2.control-label Name
-/     .col-xs-5
-/       = f.input :name, label: false, input_html: { class: "form-control" }
-/       %span.help-block= f.error :name
-/   .form-group
-/     %label.col-xs-2.control-label 
-/     .col-xs-5
-/       = f.input :note, label: false, input_html: { class: "form-control" }
-/       %span.help-block= f.error :note
-/   .form-group
-/     %label.col-xs-2.control-label Active
-/     .col-xs-5
-/       = f.input :active, label: false
-/       %span.help-block= f.error :active
-/   .form-group
-/     .col-xs-7
-/       .pull-right
-/         = render partial: 'form_button', locals: { f: f }
-
-%h3= @user_group.name
 %table.table
   %thead
+    %tr 
+      %td
+        %h3= "User Group"
+      %td
+        %h2= @user_group.name
     %tr
       %th.col-md-3= "Resource name"
       %th.col-md-2= "Full access"
@@ -35,11 +18,20 @@
       - resource.permissions.each do |permission|
         - if permission.user_group_id == @user_group.uuid
           %td
-            = check_box_tag permission.access_full, :data => { resource_id: resource.id, user_group_id: @user_group.uuid }
-            
+            = check_box_tag permission.access_full, :data => { resource_id: resource.id, user_group_id: @user_group.uuid } 
           %td
-            = check_box_tag permission.access_list
-            / permission.access_list
+            = form_for(permission) do |f|
+              - if permission.access_full
+                %span{style: "color:green;"}= "set"
+                |
+                #{f.hidden_field :access_full, value: false}
+                #{submit_tag "unset", :class => "btn btn-default btn-xs"}
+              - else
+                %span{:style => "color:red;"}= "unset"
+                |
+                #{f.hidden_field :access_full, value: true}
+                #{submit_tag "set", :class => "btn btn-default btn-xs"}
+            / = check_box_tag permission.access_full
           %td
             = check_box_tag permission.access_create
           %td

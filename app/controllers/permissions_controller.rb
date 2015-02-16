@@ -21,13 +21,7 @@ class PermissionsController < ApplicationController
   def edit
     begin
       @user_group = UserGroup.find(params[:id])
-      # puts "======================================="
-      # puts  @user_group
       @resources = Resource.all
-
-      
-      # @permissions = Permission.find_by(user_group_id: "89D9B466-B3F6-11E4-AFBD-E0DB55A6E603")
-      puts "======================================="
     rescue Exception => e
       puts e
     end

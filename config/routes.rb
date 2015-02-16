@@ -65,8 +65,13 @@ Rails.application.routes.draw do
   resources :dashboards
   resources :warehouse_types
   resources :warehouses
-  resources :user_groups
-  resources :resources
+  resources :user_groups  
+  
+  resources :resources do 
+    get 'permissions'
+    post 'permissions'
+  end  
+
   resources :permissions
 
   get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new

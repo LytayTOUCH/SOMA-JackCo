@@ -25,7 +25,6 @@
         - if can? :update, UserGroup
           = link_to "Edit", edit_user_group_path(user_group)
         = "|"
-        = link_to "Set Permissions", edit_permission_path(user_group)
-        / permissions_new_path(:user_group_id => user_group.uuid)
+        = link_to "Edit Permissions", edit_permission_path(user_group)
 .pull-right
   = paginate @user_groups
