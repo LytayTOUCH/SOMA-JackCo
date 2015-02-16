@@ -6,7 +6,7 @@ class StagesController < ApplicationController
       @stage = Stage.new
 
       if params[:stage] and params[:stage][:name] and !params[:stage][:name].nil?
-        @stages = Stage.find_by_name(params[:stage][:name]).page(params[:page]).per(5)
+        @stages = Stage.find_by_stage_name(params[:stage][:name]).page(params[:page]).per(5)
       else
         @stages = Stage.page(params[:page]).per(5)
       end

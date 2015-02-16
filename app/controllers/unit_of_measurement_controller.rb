@@ -5,7 +5,7 @@ class UnitOfMeasurementController < ApplicationController
 
       if params[:unit_of_measurement] and params[:unit_of_measurement][:name] and !params[:unit_of_measurement][:name].nil?
         
-        @unit_of_measurements = UnitOfMeasurement.find_by_name(params[:unit_of_measurement][:name]).page(params[:page]).per(5)        
+        @unit_of_measurements = UnitOfMeasurement.find_by_unit_of_measurement_name(params[:unit_of_measurement][:name]).page(params[:page]).per(5)        
       else
         @unit_of_measurements = UnitOfMeasurement.page(params[:page]).per(5)       
       end

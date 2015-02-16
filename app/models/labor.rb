@@ -13,7 +13,7 @@ class Labor < ActiveRecord::Base
   has_one :labor
   belongs_to :labor, foreign_key: :subordinate_uuid
 
-  scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
+  scope :find_by_labor_name, -> name { where("name like ?", "%#{name}%") }
   
   def project_tokens=(ids)
     self.project_ids = ids.split(",")

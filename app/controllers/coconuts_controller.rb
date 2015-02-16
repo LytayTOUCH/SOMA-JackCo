@@ -6,7 +6,7 @@ class CoconutsController < ApplicationController
       @coconut = Coconut.new
 
       if params[:coconut] and params[:coconut][:code] and !params[:coconut][:code].nil?
-        @coconuts = Coconut.find_by_code(params[:coconut][:code]).page(params[:page]).per(5)
+        @coconuts = Coconut.find_by_coconut_code(params[:coconut][:code]).page(params[:page]).per(5)
       else
         @coconuts = Coconut.page(params[:page]).per(5)
       end

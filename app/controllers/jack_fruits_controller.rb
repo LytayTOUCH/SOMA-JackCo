@@ -6,7 +6,7 @@ class JackFruitsController < ApplicationController
       @jack_fruit = JackFruit.new
 
       if params[:jack_fruit] and params[:jack_fruit][:code] and !params[:jack_fruit][:code].nil?
-        @jack_fruits = JackFruit.find_by_code(params[:jack_fruit][:code]).page(params[:page]).per(5)
+        @jack_fruits = JackFruit.find_by_jack_fruit_code(params[:jack_fruit][:code]).page(params[:page]).per(5)
       else
         @jack_fruits = JackFruit.page(params[:page]).per(5)
       end

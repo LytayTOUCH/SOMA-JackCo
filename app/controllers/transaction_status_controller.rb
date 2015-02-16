@@ -4,7 +4,7 @@ class TransactionStatusController < ApplicationController
       @transaction_status = TransactionStatus.new
 
       if params[:transaction_status] and params[:transaction_status][:name] and !params[:transaction_status][:name].nil?
-        @transaction_statuses = TransactionStatus.find_by_name(params[:transaction_status][:name]).page(params[:page]).per(5)
+        @transaction_statuses = TransactionStatus.find_by_transaction_name(params[:transaction_status][:name]).page(params[:page]).per(5)
       else
         @transaction_statuses = TransactionStatus.page(params[:page]).per(5)
       end

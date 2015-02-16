@@ -76,6 +76,10 @@ Rails.application.routes.draw do
 
   get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
 
+  get ':user_group_id/permissions/edit', to: 'permissions#edit', as: :permissions_edit
+
+  put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
+
   resources :roles do
     collection do
       get 'resources'

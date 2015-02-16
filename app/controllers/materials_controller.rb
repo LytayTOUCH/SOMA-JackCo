@@ -6,7 +6,7 @@ class MaterialsController < ApplicationController
       @material = Material.new
 
       if params[:material] and params[:material][:name] and !params[:material][:name].nil?
-        @materials = Material.find_by_name(params[:material][:name]).page(params[:page]).per(5)
+        @materials = Material.find_by_material_name(params[:material][:name]).page(params[:page]).per(5)
       else
         @materials = Material.page(params[:page]).order('updated_at DESC').per(5)
       end

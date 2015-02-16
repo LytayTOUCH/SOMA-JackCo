@@ -31,7 +31,7 @@ class Activity < ActiveRecord::Base
     params.require(:activity).permit(:starts_at, :note, :activity_type_uuid)
   end
 
-  scope :find_by_date, -> start_date {
+  scope :find_by_activity_date, -> start_date {
     if start_date.present?
       where("starts_at >= ?", start_date ) 
     end

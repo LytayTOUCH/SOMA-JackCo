@@ -8,5 +8,5 @@ class Supplier < ActiveRecord::Base
 
   has_one :material
 
-  scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
+  scope :find_by_supplier_name, -> name { where("name like ?", "%#{name}%") }
 end

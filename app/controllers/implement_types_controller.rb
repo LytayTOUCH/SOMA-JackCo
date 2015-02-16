@@ -7,7 +7,7 @@ class ImplementTypesController < ApplicationController
       @implement_type = ImplementType.new
 
       if params[:implement_type] and params[:implement_type][:name] and !params[:implement_type][:name].nil?
-        @implement_types = ImplementType.find_by_name(params[:implement_type][:name]).page(params[:page]).per(5)
+        @implement_types = ImplementType.find_by_implement_type_name(params[:implement_type][:name]).page(params[:page]).per(5)
       else
         @implement_types = ImplementType.page(params[:page]).per(5)
       end

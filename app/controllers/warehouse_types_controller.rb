@@ -6,7 +6,7 @@ class WarehouseTypesController < ApplicationController
       @warehouse_type = WarehouseType.new
 
       if params[:warehouse_type] and params[:warehouse_type][:name] and !params[:warehouse_type][:name].nil?
-        @warehouse_types = WarehouseType.find_by_name(params[:warehouse_type][:name]).page(params[:page]).per(5)
+        @warehouse_types = WarehouseType.find_by_warehouse_type_name(params[:warehouse_type][:name]).page(params[:page]).per(5)
       else
         @warehouse_types = WarehouseType.page(params[:page]).per(5)
       end

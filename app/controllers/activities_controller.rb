@@ -10,7 +10,7 @@ class ActivitiesController < ApplicationController
       @activity = Activity.new
 
       if params[:activity] and params[:activity][:starts_at] and !params[:activity][:starts_at].nil?
-        @paginate_activities = Activity.find_by_date(params[:activity][:starts_at]).page(params[:page]).per(5)
+        @paginate_activities = Activity.find_by_activity_date(params[:activity][:starts_at]).page(params[:page]).per(5)
       else
         @paginate_activities = Activity.page(params[:page]).per(5).order("starts_at ASC")
       end

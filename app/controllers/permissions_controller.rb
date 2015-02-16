@@ -1,9 +1,8 @@
 class PermissionsController < ApplicationController
   def new
     @permission = Permission.new
-    puts "==========================="
-    puts @user_group = UserGroup.find(params[:id])
-    puts "==========================="
+    @user_group = UserGroup.find(params[:id])
+    @resources = Resource.all
   end
 
   def create
@@ -16,6 +15,11 @@ class PermissionsController < ApplicationController
       flash[:notice] = "Permission can't be saved"
       redirect_to :back
     end
+  end
+
+  def set_permission
+    Permission.update_all([""])
+    redirect_to user_groups_path
   end
 
   def edit

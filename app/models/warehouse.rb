@@ -7,5 +7,5 @@ class Warehouse < ActiveRecord::Base
   # validates :labor_uuid, length: {maximum: 36}
   validates :warehouse_type_uuid, length: {maximum: 36}
 
-  scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
+  scope :find_by_warehouse_name, -> name { where("name like ?", "%#{name}%") }
 end
