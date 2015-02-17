@@ -53,14 +53,14 @@ resource_warehouse = Resource.find_by_name("Warehouse")
 
 # ========== Create Permissions ========== 
 [ 
-  {name: "Admin Permission on User", user_group_id: user_group_admin.uuid, resource_id:  resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
-  {name: "Admin Permission on warehouse", user_group_id: user_group_admin.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
-  {name: "Manager Permission on User", user_group_id: user_group_manager.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
-  {name: "Manager Permission on warehouse", user_group_id: user_group_manager.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
-  {name: "Project leader Permission on User", user_group_id: user_group_project_leader.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
-  {name: "Project leader Permission on warehouse", user_group_id: user_group_project_leader.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
-  {name: "Data Entry Permission on User", user_group_id: user_group_data_entry.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
-  {name: "Data Entry Permission on warehouse", user_group_id: user_group_data_entry.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: true},
+  {name: "Admin Permission on User", user_group_id: user_group_admin.uuid, resource_id:  resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Admin Permission on warehouse", user_group_id: user_group_admin.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Manager Permission on User", user_group_id: user_group_manager.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Manager Permission on warehouse", user_group_id: user_group_manager.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Project leader Permission on User", user_group_id: user_group_project_leader.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Project leader Permission on warehouse", user_group_id: user_group_project_leader.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Data Entry Permission on User", user_group_id: user_group_data_entry.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Data Entry Permission on warehouse", user_group_id: user_group_data_entry.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
 ].each do |permission|
   Permission.create_with(user_group_id: permission[:user_group_id], resource_id: permission[:resource_id], access_full: permission[:access_full], access_list: permission[:access_list], access_create: permission[:access_create], access_update: permission[:access_update], access_delete: permission[:access_delete], active: permission[:active]).find_or_create_by(name: permission[:name])
 end

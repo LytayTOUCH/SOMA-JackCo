@@ -17,7 +17,7 @@
       %tr
         %td= permission.resource.name
         %td
-          = check_box_tag permission.access_full, :data => { resource_id: permission.resource.uuid, user_group_id: @user_group.uuid }
+          = check_box_tag 'full', 'access_full', permission.access_full, {id: permission.uuid}
         %td
           / = fields_for permission do |permission_fields|
           /   #{permission_fields.check_box :access_list}
@@ -32,14 +32,13 @@
           /     |
           /     #{f.hidden_field :access_full, value: true}
           /     #{submit_tag "set", :class => "btn btn-default btn-xs"}
-          = check_box_tag permission.access_list
+          = check_box_tag 'list', 'access_list', permission.access_list, {id: permission.uuid}
         %td
-          = check_box_tag permission.access_create
+          = check_box_tag 'create', 'access_create', permission.access_create, {id: permission.uuid}
         %td
-          = check_box_tag permission.access_update
+          = check_box_tag 'update', 'access_update', permission.access_update, {id: permission.uuid}
         %td
-          = check_box_tag permission.access_delete
-
+          = check_box_tag 'delete', 'access_delete', permission.access_delete, {id: permission.uuid}
 
 
     / - @resources.each do |resource|
