@@ -1,6 +1,8 @@
 class RolesController < ApplicationController
   load_and_authorize_resource
   # before_filter :load_permissions
+
+  add_breadcrumb "All Roles", :roles_path
   
   respond_to :html, :json
   # load_and_authorize_resource
@@ -21,6 +23,7 @@ class RolesController < ApplicationController
 
   def show
     @role = Role.find(params[:id])
+    add_breadcrumb @role.name, :role_path
   end
 
   def new
@@ -41,6 +44,7 @@ class RolesController < ApplicationController
 
   def edit
     @role = Role.find(params[:id])
+    add_breadcrumb @role.name, :edit_role_path
   end
 
   def update

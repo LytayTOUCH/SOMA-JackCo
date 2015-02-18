@@ -1,6 +1,8 @@
 class MaterialsController < ApplicationController
   load_and_authorize_resource except: :create
   
+  add_breadcrumb "All Materials", :materials_path
+
   def index
     begin
       @material = Material.new
@@ -49,6 +51,7 @@ class MaterialsController < ApplicationController
       # @suppliers = Supplier.all
       @material_categories = MaterialCategory.all
       @unit_measurements = UnitOfMeasurement.all
+      add_breadcrumb @material.name, :edit_material_path
     rescue Exception => e
       puts e
     end

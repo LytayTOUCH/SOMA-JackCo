@@ -1,6 +1,8 @@
 class ImplementTypesController < ApplicationController
   before_filter :set_title
   load_and_authorize_resource except: :create
+
+  add_breadcrumb "All Implement Types", :implement_types_path
   
   def index
     begin
@@ -38,6 +40,7 @@ class ImplementTypesController < ApplicationController
 
   def edit
     @implement_type = ImplementType.find(params[:id])
+    add_breadcrumb @implement_type.name, :edit_implement_type_path
   end
 
   def update

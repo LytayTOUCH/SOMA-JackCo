@@ -9,7 +9,6 @@ class FarmsController < ApplicationController
   end
 
   def create
-
     @farm = Farm.new(farm_params)
     respond_to do |format|
       if @farm.save
@@ -22,7 +21,6 @@ class FarmsController < ApplicationController
         format.js   { render json: @person.errors, status: :unprocessable_entity }
       end
     end
-
   end
   
   def edit
@@ -53,5 +51,4 @@ class FarmsController < ApplicationController
     def farm_params
       params.require(:farm).permit(:name, :location, :latlong_farm)
     end
-
 end

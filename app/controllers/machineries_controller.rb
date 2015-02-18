@@ -1,5 +1,7 @@
 class MachineriesController < ApplicationController
   authorize_resource :class => false
+
+  add_breadcrumb "All Machineries", :machineries_path
   
   def index
     begin

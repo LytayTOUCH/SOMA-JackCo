@@ -2,6 +2,8 @@ class PlantingProjectsController < ApplicationController
   before_filter :set_title
   # load_and_authorize_resource except: :create
 
+  add_breadcrumb "All Planting Projects", :planting_projects_path
+
   def index
   	begin
       @planting_project = PlantingProject.new
@@ -38,6 +40,7 @@ class PlantingProjectsController < ApplicationController
 
   def edit
     @planting_project = PlantingProject.find(params[:id])
+    add_breadcrumb @planting_project.project_name, :edit_planting_project_path
   end
 
   def update

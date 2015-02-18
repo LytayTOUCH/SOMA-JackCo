@@ -1,5 +1,7 @@
 class WarehouseTypesController < ApplicationController
   load_and_authorize_resource except: :create
+
+  add_breadcrumb "All Warehouse Types", :warehouse_types_path
   
   def index
     begin
@@ -42,6 +44,7 @@ class WarehouseTypesController < ApplicationController
   def edit
     begin
       @warehouse_type = WarehouseType.find(params[:id])
+      add_breadcrumb @warehouse_type.name, :edit_warehouse_type_path
     rescue Exception => e
       puts e
     end

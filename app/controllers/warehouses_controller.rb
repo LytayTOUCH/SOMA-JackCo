@@ -1,6 +1,8 @@
 class WarehousesController < ApplicationController
   load_and_authorize_resource except: :create
 
+  add_breadcrumb "All Warehouses", :warehouses_path
+
   def index
     begin
       @warehouse = Warehouse.new
@@ -25,6 +27,11 @@ class WarehousesController < ApplicationController
     end
   end
 
+  def show
+    @warehouse = Warehouse.find(params[:id])
+    add_breadcrumb @warehouse.name, :warehouse_path
+  end
+
   def create
     begin
       @warehouse = Warehouse.new(warehouse_params)
@@ -46,6 +53,7 @@ class WarehousesController < ApplicationController
       @warehouse = Warehouse.find(params[:id])
       @warehouse_types = WarehouseType.all
       @workers = User.all
+      add_breadcrumb @warehouse.name, :edit_warehouse_path
     rescue Exception => e
       puts e
     end

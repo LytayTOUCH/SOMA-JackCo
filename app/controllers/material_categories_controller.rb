@@ -1,4 +1,5 @@
 class MaterialCategoriesController < ApplicationController
+  add_breadcrumb "All Material Categories", :material_categories_path
   def index
     begin
       @material_category = MaterialCategory.new

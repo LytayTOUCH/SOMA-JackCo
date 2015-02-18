@@ -2,6 +2,8 @@ class ResourcesController < ApplicationController
   load_and_authorize_resource except: :create
   # before_filter :load_permissions
 
+  add_breadcrumb "All Resources", :resources_path
+
   def index
     begin
       @resource = Resource.new
@@ -33,10 +35,12 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = Resource.find(params[:id])
+    add_breadcrumb @resource.name, :resource_path
   end
 
   def edit
     @resource = Resource.find(params[:id])
+    add_breadcrumb @resource.name, :edit_resource_path
   end
 
   def update

@@ -2,9 +2,9 @@ class ActivitiesController < ApplicationController
   load_and_authorize_resource except: :create
 
   has_scope :find_by_date, using: :started_at
-
   respond_to :html
 
+  add_breadcrumb "All Activities", :activities_path
   def index
     begin
       @activity = Activity.new
@@ -29,6 +29,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    add_breadcrumb @activity.activity_type.name, :activity_path
 
     respond_to do |format|
       format.html
@@ -64,6 +65,7 @@ class ActivitiesController < ApplicationController
   def edit
     @activity = Activity.find(params[:id])
     @activity_types = ActivityType.all
+    add_breadcrumb @activity.activity_type.name, :edit_activity_path
   end
 
   def update

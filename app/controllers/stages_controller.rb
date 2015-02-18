@@ -1,6 +1,8 @@
 class StagesController < ApplicationController
   load_and_authorize_resource except: :create
   
+  add_breadcrumb "All Stages", :stages_path
+
   def index
     begin
       @stage = Stage.new
@@ -17,6 +19,7 @@ class StagesController < ApplicationController
 
   def show
     @stage = Stage.find(params[:id])
+    add_breadcrumb @stage.name, :stage_path
 
     respond_to do |format|
       format.html
@@ -46,6 +49,7 @@ class StagesController < ApplicationController
 
   def edit
     @stage = Stage.find(params[:id])
+    add_breadcrumb @stage.name, :edit_stage_path
   end
 
   def update

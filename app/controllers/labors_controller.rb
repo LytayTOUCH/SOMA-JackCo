@@ -1,6 +1,8 @@
 class LaborsController < ApplicationController
   load_and_authorize_resource except: :create
   
+  add_breadcrumb "All Labors", :labors_path
+
   def index
     begin
       @labor = Labor.new
@@ -47,6 +49,7 @@ class LaborsController < ApplicationController
 
   def edit
     @labor = Labor.find(params[:id])
+    add_breadcrumb @labor.name, :edit_labor_path
   end
 
   def projects
