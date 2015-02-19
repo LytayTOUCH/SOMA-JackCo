@@ -1,34 +1,29 @@
 = simple_form_for @warehouse, html: { class: "form-horizontal" } do |f|
   .form-group
-    %label.col-xs-2.control-label.text-left Name
+    %label.col-xs-2.control-label.text-left Name *
     .col-xs-5
-      = f.input :name, label: false, input_html: { class: "form-control" }
-      %span.help-block= f.error :name
-  / .form-group
-  /   %label.col-xs-2.control-label.text-left Supervisor
-  /   .col-xs-5
-  /     = f.input :labor_uuid, label: false, collection: @workers, input_html: { class: "form-control" }
-  /     %span.help-block= f.error :labor_uuid
+      = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :name
   .form-group
-    %label.col-xs-2.control-label.text-left Warehouse Type
+    %label.col-xs-2.control-label.text-left Warehouse Type *
     .col-xs-5
-      = f.input :warehouse_type_uuid, label: false, collection: @warehouse_types, input_html: {class: "form-control"}, include_blank: true
-      %span.help-block= f.error :warehouse_type_uuid
+      = f.input :warehouse_type_uuid, label: false, collection: @warehouse_types, input_html: {class: "form-control"}, error_html: {class: "err_msg"}, include_blank: true
+    %span.help-block= f.error :warehouse_type_uuid
   .form-group
     %label.col-xs-2.control-label.text-left Address
     .col-xs-5
       = f.input :address, label: false, input_html: { class: "form-control" }
-      %span.help-block= f.error :address
+    %span.help-block= f.error :address
   .form-group
     %label.col-xs-2.control-label.text-left Note
     .col-xs-5
       = f.input :note, label: false, input_html: { class: "form-control" }
-      %span.help-block= f.error :note
+    %span.help-block= f.error :note
   .form-group
     %label.col-xs-2.control-label.text-left Active
     .col-xs-5
       = f.input :active, label: false
-      %span.help-block= f.error :active
+    %span.help-block= f.error :active
   .form-group
     .col-xs-7
       .pull-right

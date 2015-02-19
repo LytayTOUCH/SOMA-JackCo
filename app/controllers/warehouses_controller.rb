@@ -29,12 +29,13 @@ class WarehousesController < ApplicationController
     begin
       @warehouse = Warehouse.new(warehouse_params)
 
-      if @warehouse.save!
+      if @warehouse.save
         flash[:notice] = "Warehouse saved successfully"
         redirect_to warehouses_path
       else
         flash[:notice] = "Warehouse can't be saved"
         redirect_to :back
+        # render 'new'
       end
     rescue Exception => e
       puts e
@@ -55,12 +56,13 @@ class WarehousesController < ApplicationController
     begin
       @warehouse = Warehouse.find(params[:id])
 
-      if @warehouse.update_attributes!(warehouse_params)
+      if @warehouse.update_attributes(warehouse_params)
         flash[:notice] = "Warehouse updated"
         redirect_to warehouses_path
       else
         flash[:notice] = "Warehouse can't update"
         redirect_to :back
+        # render 'edit'
       end
     rescue Exception => e
       puts e
