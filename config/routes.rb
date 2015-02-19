@@ -73,12 +73,13 @@ Rails.application.routes.draw do
   end  
 
   resources :permissions
+  
+  # patch 'permissions/:id/update', :to => 'permissions#update'
+  # get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
 
-  get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
+  # get ':user_group_id/permissions/edit', to: 'permissions#edit', as: :permissions_edit
 
-  get ':user_group_id/permissions/edit', to: 'permissions#edit', as: :permissions_edit
-
-  put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
+  # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
   resources :roles do
     collection do

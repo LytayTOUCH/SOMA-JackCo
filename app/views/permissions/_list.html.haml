@@ -8,9 +8,9 @@
       %th.col-md-1= "Create"
       %th.col-md-1= "Update"
       %th.col-md-1= "Delete"
-  - @permissions.each do |permission|
-    %tr
-      %td= permission.user_group.name
+  / - @permissions.each do |permission|
+  /   %tr
+  /     %td= permission.user_group.name
   / - @permissions.each do |permission|
   /   %tr
   /     %td= permission.user_group.name
@@ -33,4 +33,3 @@
   /     %td= check_box_tag :access_delete
 
 
-      / = check_box_tag :access_delete

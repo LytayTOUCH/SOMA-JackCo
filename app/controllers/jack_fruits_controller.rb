@@ -1,6 +1,8 @@
 class JackFruitsController < ApplicationController
   load_and_authorize_resource except: :create
   
+  add_breadcrumb "All Jack Fruits", :jack_fruits_path
+
   def index
     begin
       @jack_fruit = JackFruit.new
@@ -13,6 +15,11 @@ class JackFruitsController < ApplicationController
     rescue Exception => e
       puts e
     end
+  end
+
+  def show
+    @jack_fruit = JackFruit.find(params[:id])
+    add_breadcrumb @jack_fruit.code, :jack_fruit_path
   end
 
   def new
@@ -37,6 +44,7 @@ class JackFruitsController < ApplicationController
     @jack_fruit = JackFruit.find(params[:id])
     @stages = Stage.where(fruit_type: 'jackfruit')
     @fields = Field.all
+    add_breadcrumb @jack_fruit.code, :edit_jack_fruit_path
   end
 
   def update

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: :create
 
+  add_breadcrumb "All Users", :users_path
+
   def index
     begin
       @user = User.new
@@ -17,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    add_breadcrumb @user.email, :user_path
   end
 
   def new
@@ -37,6 +40,7 @@ class UsersController < ApplicationController
 
   def edit_profile
     @user_account = User.find(params[:id])
+    add_breadcrumb @user_account.email, :edit_profile_user_path
   end
 
   def update_profile
@@ -55,6 +59,7 @@ class UsersController < ApplicationController
     puts params[:id]
     @user = User.find(params[:id])
     @user_groups = UserGroup.all
+    add_breadcrumb @user.email, :edit_user_path
   end
 
   def update

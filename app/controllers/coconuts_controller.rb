@@ -1,6 +1,8 @@
 class CoconutsController < ApplicationController
   load_and_authorize_resource except: :create
 
+  add_breadcrumb "All Coconuts", :coconuts_path
+
   def index
     begin
       @coconut = Coconut.new
@@ -41,6 +43,7 @@ class CoconutsController < ApplicationController
     @coconut = Coconut.find(params[:id])
     @stages = Stage.where(fruit_type: 'coconut')
     @fields = Field.all
+    add_breadcrumb @coconut.code, :edit_coconut_path
   end
 
   def update

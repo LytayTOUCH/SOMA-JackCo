@@ -8,6 +8,7 @@ class UserGroup < ActiveRecord::Base
   
   has_many :permissions, foreign_key: :user_group_id 
   has_many :resources, through: :permissions
+  # accepts_nested_attributes_for :permissions
   
   validates :name, length: { maximum: 50 }, presence: true
 

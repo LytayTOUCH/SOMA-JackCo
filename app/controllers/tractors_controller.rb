@@ -1,6 +1,8 @@
 class TractorsController < ApplicationController
   load_and_authorize_resource except: :create
   
+  # add_breadcrumb "All Tractors", :tractors_path
+
   def new
     begin
       @tractor = Tractor.new
@@ -13,6 +15,7 @@ class TractorsController < ApplicationController
     begin
       @tractor = TractorDecorator.new(Tractor.find(params[:id]))
       @maintenances = Maintenance.find_limit_10
+      add_breadcrumb @tractor.name, :tractor_path
     rescue Exception => e
       puts e
     end
@@ -37,6 +40,7 @@ class TractorsController < ApplicationController
   def edit
     begin
       @tractor = Tractor.find(params[:id])
+      add_breadcrumb @tractor.name, :edit_tractor_path
     rescue Exception => e
       puts e
     end

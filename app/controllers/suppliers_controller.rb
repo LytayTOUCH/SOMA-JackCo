@@ -1,5 +1,7 @@
 class SuppliersController < ApplicationController
   load_and_authorize_resource except: :create
+
+  add_breadcrumb "All Suppliers", :suppliers_path
   
   def index
     begin
@@ -42,6 +44,7 @@ class SuppliersController < ApplicationController
   def edit
     begin
       @supplier = Supplier.find(params[:id])
+      add_breadcrumb @supplier.name, :edit_supplier_path
     rescue Exception => e
       puts e
     end

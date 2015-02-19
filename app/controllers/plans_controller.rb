@@ -2,6 +2,8 @@ class PlansController < ApplicationController
   before_filter :set_title
   load_and_authorize_resource except: :create
   
+  add_breadcrumb "All Plans", :plans_path
+
   def index
     begin
       @plan = Plan.new
@@ -68,6 +70,7 @@ class PlansController < ApplicationController
 
   def edit
     @plan = Plan.find(params[:id])
+    add_breadcrumb @plan.name, :edit_plan_path
   end
 
   def update
