@@ -151,12 +151,13 @@ end
 end
 
 # ========== Create Unit of Measurement ========== 
+UnitOfMeasurement.delete_all
 [
   {name: 'Unit', note: 'Unit of measurement for tree, amount of fruit,...'},
-  {name: 'Kg', note: 'Unit of measurement for kilogram.'},
-  {name: 'g', note: 'Unit of measurement for gram.'},
+  {name: 'Kilogram', note: 'Unit of measurement for kilogram.'},
+  {name: 'Gram', note: 'Unit of measurement for gram.'},
   {name: 'Litre', note: 'Unit of measurement for litre.'},
-  {name: 'Ml', note: 'Unit of measurement for mili-litre.'}
+  {name: 'Millilitre', note: 'Unit of measurement for mili-litre.'}
 ].each do |unit_measure|
   UnitOfMeasurement.create_with(note: unit_measure[:note]).find_or_create_by(name: unit_measure[:name])
 end
@@ -171,6 +172,8 @@ end
   MaterialCategory.create_with(note: material_category[:note]).find_or_create_by(name: material_category[:name])
 end
 # ========== Create Farms ==========
+Farm.delete_all
+
 [
   {name: 'Oroung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.333019, 104.864575'},
   {name: 'Chamkar Doung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.341900, 104.822941'},
@@ -180,6 +183,8 @@ end
   Farm.create_with(location: farm[:location], latlong_farm: farm[:latlong_farm]).find_or_create_by(name: farm[:name])
 end
 # ========== Create Blocks for Chamkar Doung Farm ==========
+Block.delete_all
+
 coconut_farm = Farm.find_by_name('Chamkar Doung Farm')
 oroung_farm= Farm.find_by_name('Oroung Farm')
 coconut_planting_project=PlantingProject.find_by_project_name('Coconut')
