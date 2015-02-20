@@ -9,7 +9,7 @@
 = form_tag dashboards_path, :class => 'form-inline', :role => 'form', :method => 'get' do
   .form-group{style: "padding-left: 0; padding: 2px 0 5px 0;"}
     .input-group
-      = select_tag "uuid", options_for_select(@farms.map {|value| [ value.name, value.uuid ] }, :selected => params[:uuid]), class: 'form-control', style:"border-radius: 4px;", :prompt => 'All'
+      = select_tag "farm_id", options_for_select(@farms.map {|value| [ value.name, value.uuid ] }, :selected => params[:farm_id]), class: 'form-control', style:"border-radius: 4px;", :prompt => 'All'
   = submit_tag 'filter', :class => 'btn btn-success', :name => nil
 
 .row
@@ -26,8 +26,13 @@
       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
         %h3.panel-title{:style => "font-weight: bold; color: Black"} Projects
       .panel-body{:style => "width: 100%; height: 190px"}
-        - @farms_scope.each do |fa|
-          %li= fa.name + " ; " + fa.location + " ; " + fa.latlong_farm
+        / - @blocks_scope.each do |b|
+        /   %h4{style: "font-weight: bold;"}= "+ " + b.farm.name + " ; " + b.planting_project.project_name
+        /   %p= "Surface: " + b.surface.to_s + " ; Tree Amount: " + b.tree_amount.to_s
+
+        %div
+          - @foos.each do |foo|
+            =foo.project_name + " - " + foo.total_surface.to_s + " - " + foo.total_tree.to_s
 
 .row
   .col-xs-12

@@ -1,12 +1,27 @@
 class DashboardsController < ApplicationController
   respond_to :html, :json
 
-  has_scope :uuid
+  has_scope :farm_id
 
   def index
     @farms=Farm.all
-    @farms_scope = apply_scopes(Farm).all
+    @blocks_scope = apply_scopes(Block).all
+
+    @planting_project_ids = @blocks_scope.select(:planting_project_id).uniq
+
     @farm=Farm.new
+
+    @foos = Array.new
+
+    @planting_project_ids.each do |p|
+      project_name = PlantingProject.find_by_uuid(p.planting_project_id).project_name
+      surface = @blocks_scope.where("planting_project_id=?", p.planting_project_id).sum(:surface)
+      tree = @blocks_scope.where("planting_project_id=?", p.planting_project_id).sum(:tree_amount)
+
+      f = Foo.new(project_name, surface, tree)
+      @foos.push(f)
+    end
+
 
     data = [['1997',10],['1998',20],['1999',40]]
 
