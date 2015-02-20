@@ -1,6 +1,12 @@
 class DashboardsController < ApplicationController
   respond_to :html, :json
+
+  has_scope :uuid
+
   def index
+    @farms=Farm.all
+    @farms_scope = apply_scopes(Farm).all
+    @farm=Farm.new
 
     data = [['1997',10],['1998',20],['1999',40]]
 
