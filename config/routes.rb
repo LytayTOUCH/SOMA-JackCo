@@ -42,13 +42,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :labors, except: [:destroy] do
-    collection do 
-      get 'projects'
-      get 'labors'
-    end
-  end
+  # resources :labors, except: [:destroy] do
+  #   collection do 
+  #     get 'projects'
+  #     get 'labors'
+  #   end
+  # end
   
+  resources :labors
+
   devise_scope :user do
     get '/' => 'devise/sessions#new'
   end
@@ -111,6 +113,9 @@ Rails.application.routes.draw do
   resources :planting_projects
   resources :unit_of_measurement
   resources :material_categories
+  resources :production_statuses
+  resources :production_stages
+  resources :positions
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

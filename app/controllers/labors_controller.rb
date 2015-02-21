@@ -20,6 +20,8 @@ class LaborsController < ApplicationController
   def new
     begin
       @labor = Labor.new
+      @labors = Labor.all
+      @positions = Position.all
 
       @projects = Project.all
       respond_to do |format|
@@ -36,10 +38,10 @@ class LaborsController < ApplicationController
       @labor = Labor.new(labor_params)
 
       if @labor.save!
-        flash[:notice] = "Implement saved successfully"
-        redirect_to :back
+        flash[:notice] = "Labor saved successfully"
+        redirect_to :labors_path
       else
-        flash[:notice] = "Implement can't save"
+        flash[:notice] = "Labor can't save"
         redirect_to :back
       end
     rescue Exception => e
@@ -49,7 +51,25 @@ class LaborsController < ApplicationController
 
   def edit
     @labor = Labor.find(params[:id])
+    @labors = Labor.all
+    @positions = Position.all
     add_breadcrumb @labor.name, :edit_labor_path
+  end
+
+  def update
+    begin
+      @labor = Labor.find(params[:id])
+
+      if @labor.update_attributes!(labor_params)
+        flash[:notice] = "Labor updated successfully"
+        redirect_to labors_path
+      else
+        flash[:notice] = "Labor category can't update"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
+    end
   end
 
   def projects

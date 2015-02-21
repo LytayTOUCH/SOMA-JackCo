@@ -5,20 +5,42 @@
       = f.input :name, label: false, input_html: {class: "form-control"}
       %span.help-block= f.error :name
   .form-group
-    %label.col-xs-2.control-label{for: 'maintenance_name'} Person
+    %label.col-xs-2.control-label{for: 'maintenance_name'} Position
     .col-xs-5
-      = f.input :position_uuid, label: false, selected: 2, collection: [["Supervisor", 1], ["Worker", 2]], input_html: {class: "form-control"}
-      %span.help-block= f.error :labor_uuid
+      = f.input :position_uuid, label: false, collection: @positions, input_html: {class: "form-control"}
+      %span.help-block= f.error :position_uuid
   .form-group
-    %label.col-xs-2.control-label{for: 'labor_project_tokens'} Invoke project
+    %label.col-xs-2.control-label{for: 'maintenance_name'} Gender
     .col-xs-5
-      = f.input :project_tokens, label: false
-      %span.help-block= f.error :project_tokens
+      = f.input :gender, label: false, collection: ["M", "F"], input_html: {class: "form-control"}
+      %span.help-block= f.error :gender    
   .form-group
-    %label.col-xs-2.control-label{for: 'labor_subordinate_tokens'} Subordinate
+    %label.col-xs-2.control-label{for: 'maintenance_name'} Phone Number
     .col-xs-5
-      = f.input :subordinate_uuid, label: false
-      %span.help-block= f.error :subordinate_uuid
+      = f.input :phone, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :phone
+  .form-group
+    %label.col-xs-2.control-label{for: 'maintenance_name'} Email
+    .col-xs-5
+      = f.input :email, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :email
+  .form-group
+    %label.col-xs-2.control-label{for: 'maintenance_name'} Address
+    .col-xs-5
+      = f.input :address, label: false, input_html: {class: "form-control"}
+      %span.help-block= f.error :address
+              
+          
+  / .form-group
+  /   %label.col-xs-2.control-label{for: 'labor_project_tokens'} Invoke project
+  /   .col-xs-5
+  /     = f.input :project_tokens, label: false
+  /     %span.help-block= f.error :project_tokens
+  .form-group
+    %label.col-xs-2.control-label{for: 'labor_subordinate_tokens'} Manager
+    .col-xs-5
+      = f.input :manager_uuid, label: false, collection: @labors, input_html: {class: "form-control"}
+      %span.help-block= f.error :manager_uuid
   .form-group
     %label.col-xs-2.control-label{for: 'labor_description'} Note
     .col-xs-5

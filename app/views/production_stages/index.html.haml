@@ -1,0 +1,10 @@
+.row
+  %h3
+    = "Production Stage"
+    .pull-right
+      - if can? :create, ProductionStage
+        = link_to "New Production Stage", new_production_stage_path, class: "btn btn-primary"
+  %hr
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'
