@@ -32,7 +32,7 @@ class MaterialsController < ApplicationController
     begin
       @material = Material.new(material_params)
 
-      if @material.save!
+      if @material.save
         flash[:notice] = "Material saved successfully"
         # redirect_to :back
         redirect_to materials_path
@@ -61,11 +61,11 @@ class MaterialsController < ApplicationController
     begin
       @material = Material.find(params[:id])
 
-      if @material.update_attributes!(material_params)
+      if @material.update_attributes(material_params)
         flash[:notice] = "Material updated successfully"
         redirect_to materials_path
       else
-        flash[:notice] = "Material category can't update"
+        flash[:notice] = "Material can't update"
         redirect_to :back
       end
     rescue Exception => e

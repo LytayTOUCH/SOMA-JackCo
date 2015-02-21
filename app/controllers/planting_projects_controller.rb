@@ -26,12 +26,13 @@ class PlantingProjectsController < ApplicationController
     begin
       @planting_project = PlantingProject.new(planting_project_params)
 
-      if @planting_project.save!
+      if @planting_project.save
         flash[:notice] = "Planting Project saved successfully"
         redirect_to planting_projects_path
       else
         flash[:notice] = "Planting Project can't save"
         redirect_to :back
+        # render 'new'
       end
     rescue Exception => e
       puts e
@@ -47,12 +48,13 @@ class PlantingProjectsController < ApplicationController
     begin
       @planting_project = PlantingProject.find(params[:id])
 
-      if @planting_project.update_attributes!(planting_project_params)
+      if @planting_project.update_attributes(planting_project_params)
         flash[:notice] = "Planting Project updated successfully"
         redirect_to planting_projects_path
       else
         flash[:notice] = "Planting Project can't update"
         redirect_to :back
+        # render 'edit'
       end
     rescue Exception => e
       puts e

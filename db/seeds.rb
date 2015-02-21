@@ -151,12 +151,13 @@ end
 end
 
 # ========== Create Unit of Measurement ========== 
+UnitOfMeasurement.delete_all
 [
   {name: 'Unit', note: 'Unit of measurement for tree, amount of fruit,...'},
-  {name: 'Kg', note: 'Unit of measurement for kilogram.'},
-  {name: 'g', note: 'Unit of measurement for gram.'},
+  {name: 'Kilogram', note: 'Unit of measurement for kilogram.'},
+  {name: 'Gram', note: 'Unit of measurement for gram.'},
   {name: 'Litre', note: 'Unit of measurement for litre.'},
-  {name: 'Ml', note: 'Unit of measurement for mili-litre.'}
+  {name: 'Millilitre', note: 'Unit of measurement for mili-litre.'}
 ].each do |unit_measure|
   UnitOfMeasurement.create_with(note: unit_measure[:note]).find_or_create_by(name: unit_measure[:name])
 end
@@ -171,6 +172,8 @@ end
   MaterialCategory.create_with(note: material_category[:note]).find_or_create_by(name: material_category[:name])
 end
 # ========== Create Farms ==========
+Farm.delete_all
+
 [
   {name: 'Oroung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.333019, 104.864575'},
   {name: 'Chamkar Doung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.341900, 104.822941'},
@@ -180,6 +183,8 @@ end
   Farm.create_with(location: farm[:location], latlong_farm: farm[:latlong_farm]).find_or_create_by(name: farm[:name])
 end
 # ========== Create Blocks for Chamkar Doung Farm ==========
+Block.delete_all
+
 coconut_farm = Farm.find_by_name('Chamkar Doung Farm')
 oroung_farm= Farm.find_by_name('Oroung Farm')
 coconut_planting_project=PlantingProject.find_by_project_name('Coconut')
@@ -194,7 +199,7 @@ jackfruit_planting_project=PlantingProject.find_by_project_name('Jackfruit')
   {name: 'Block C1', surface: 4, shape_lat_long: '[[11.34024659610298,104.8271098186776],[11.34060069812196,104.8268441183729],[11.33498493139846,104.8223869773665],[11.33533785551793,104.8213092938915],[11.33489589388238,104.8211246009857],[11.33447832386705,104.822553696527],[11.34024659610298,104.8271098186776]]', location_lat_long: '11.337009, 104.824281', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 150},
   {name: 'Block C1', surface: 4, shape_lat_long: '[[11.34024659610298,104.8271098186776],[11.34060069812196,104.8268441183729],[11.33498493139846,104.8223869773665],[11.33533785551793,104.8213092938915],[11.33489589388238,104.8211246009857],[11.33447832386705,104.822553696527],[11.34024659610298,104.8271098186776]]', location_lat_long: '11.337009, 104.824281', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 150}
 ].each do |block|
-  Block.create_with(surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount]).find_or_create_by(name: block[:name])
+  Block.create(name: block[:name], surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount])
 end
 [
   {name: 'Block A1', surface: 4, shape_lat_long: '[[11.33311439628769,104.863074517573],[11.33303836909471,104.8645267817349],[11.33419647990755,104.8649847944117],[11.33421414894168,104.8637520663834],[11.33311439628769,104.863074517573]]', location_lat_long: '11.333647, 104.864061', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 150},
@@ -206,5 +211,5 @@ end
   {name: 'Block C2', surface: 4, shape_lat_long: '[[11.3322750761453,104.8693063700752],[11.33222632314401,104.8708299466653],[11.33250555605274,104.8708585729013],[11.33257165108565,104.8693194724903],[11.3322750761453,104.8693063700752]]', location_lat_long: '11.332514, 104.870210', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 150},
   {name: 'Block C3', surface: 4, shape_lat_long: '[[11.33327767462742,104.8714486012229],[11.33326530072757,104.8722167315754],[11.33389699046733,104.8722127064837],[11.33389957250136,104.871824944219],[11.33373153189838,104.8717984056386],[11.33375157922602,104.8714607584913],[11.33327767462742,104.8714486012229]]', location_lat_long: '11.333539, 104.871830', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 150}
 ].each do |block|
-  Block.create_with(surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount]).find_or_create_by(name: block[:name])
+  Block.create(name: block[:name], surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount])
 end
