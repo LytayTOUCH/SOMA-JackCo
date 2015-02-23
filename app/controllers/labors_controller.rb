@@ -20,7 +20,11 @@ class LaborsController < ApplicationController
   def new
     begin
       @labor = Labor.new
-      @labors = Labor.all
+      
+      @position = Position.find_by_name("Manager")
+      
+      @selected_labors = @position.labors
+        
       @positions = Position.all
 
       @projects = Project.all
@@ -39,7 +43,7 @@ class LaborsController < ApplicationController
 
       if @labor.save!
         flash[:notice] = "Labor saved successfully"
-        redirect_to :labors_path
+        redirect_to labors_path
       else
         flash[:notice] = "Labor can't save"
         redirect_to :back
@@ -53,6 +57,8 @@ class LaborsController < ApplicationController
     @labor = Labor.find(params[:id])
     @labors = Labor.all
     @positions = Position.all
+    @position = Position.find_by_name("Manager")
+    @selected_labors = @position.labors
     add_breadcrumb @labor.name, :edit_labor_path
   end
 
@@ -64,7 +70,7 @@ class LaborsController < ApplicationController
         flash[:notice] = "Labor updated successfully"
         redirect_to labors_path
       else
-        flash[:notice] = "Labor category can't update"
+        flash[:notice] = "Labor can't be updated"
         redirect_to :back
       end
     rescue Exception => e
@@ -100,6 +106,6 @@ class LaborsController < ApplicationController
 
   private
   def labor_params
-    params.require(:labor).permit(:name, :position_uuid, :description, :active, :project_tokens, :subordinate_uuid)
+    params.require(:labor).permit(:name, :position_id, :gender, :phone, :email, :address, :manager_uuid, :note, :active)
   end
 end

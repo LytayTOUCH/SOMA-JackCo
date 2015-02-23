@@ -13,7 +13,11 @@
         %td= labor.name
         %td= labor.position.name
         %td= labor.gender
-        %td= labor.manager_uuid
+        %td
+          - if labor.labor.blank? == true
+            = "N/A"
+          - else
+            = labor.labor.name
         %td 
           = form_for(labor) do |f|
             - if labor.active

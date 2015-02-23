@@ -2,12 +2,12 @@ class Labor < ActiveRecord::Base
   include UuidHelper
 
   validates :name, length: { maximum: 50 }, presence: true
-  validates :position_uuid, length: { maximum: 36 }, presence: true
+  validates :position_id, length: { maximum: 36 }, presence: true
 
   has_many :labors
   belongs_to :labor, foreign_key: :manager_uuid
 
-  has_one :position, foreign_key: :position_uuid
+  belongs_to :position, foreign_key: :position_id
 
   scope :find_by_labor_name, -> name { where("name like ?", "%#{name}%") }
 

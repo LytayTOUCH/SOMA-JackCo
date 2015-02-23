@@ -83,24 +83,6 @@ end
   ActivityType.create_with(note: activity_type[:note], label: activity_type[:label]).find_or_create_by(name: activity_type[:name])
 end
 
-# ========== Create Stages ========== 
-[ 
-  { name: 'Stage 1: Nursery (age:1-4month)', period: '4 months', note: 'Phase 1: Seed (Nursery)', fruit_type: 'coconut' },
-  { name: 'Stage 2: Planting', period: '45-50 days', note: 'Phase 1: Seed (Nursery)', fruit_type: 'coconut' },
-  { name: 'Stage 3: Baby Coconut (age: 1-2 years)', period: '2 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'coconut' },
-  { name: 'Stage 4: Adult Coconut (Developing age: 3-4 years)', period: '2 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'coconut' },
-  { name: 'Stage 5: First Production (age: 5-7 years)', period: '3 years', note: 'Phase3: Production & Harvesting', fruit_type: 'coconut' },
-  { name: 'Stage 6: Full Production (age: 8-15 years)', period: '8 years', note: 'Phase3: Production & Harvesting', fruit_type: 'coconut' },
-  { name: 'Stage 7: Decreasing Production (age: 16-20 years)', period: '5 years', note: 'Phase3: Production & Harvesting', fruit_type: 'coconut' },
-  { name: 'Seed Amount', period: 'unknown', note: 'Phase 1: Seed Grafting', fruit_type: 'jackfruit' },
-  { name: 'Stage 1: Age 1-3 years', period: '1-3 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'jackfruit'},
-  { name: 'Stage 2: Age > 4 years', period: 'more than 4 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'jackfruit'},
-  { name: 'Stage 3: Age 5-15 years', period: '5-15 years', note: 'Phase 3: Harvesting', fruit_type: 'jackfruit'}
-  
-].each do |stage|
-  Stage.create_with(period: stage[:period], note: stage[:note], fruit_type: stage[:fruit_type]).find_or_create_by(name: stage[:name])
-end
-
 # ========== Create Data for Pie Chart ========== 
 [
   {name: 'Fertilizer', amount: 3000},
@@ -213,3 +195,27 @@ end
 ].each do |block|
   Block.create(name: block[:name], surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount])
 end
+
+# ========== Production Status ==========
+[
+  {name: 'Seed Replace', note: 'For replacing a new tree to the same pit', active: true},
+  {name: 'New Planting', note: 'For growing a new tree in a new pit', active: true},
+  {name: 'Blossoming Tree', note: 'For a tree that is blossoming', active: true}
+].each do |production_status|
+  ProductionStatus.create_with(note: production_status[:note]).find_or_create_by(name: production_status[:name])
+end
+
+# ========== Position ==========
+[
+  {name: 'Manager', note: 'Controlling a labor in field', active: true},
+  {name: 'Worker', note: 'Doing farming in the field', active: true}
+].each do |position|
+  Position.create_with(note: position[:note]).find_or_create_by(name: position[:name])
+end
+
+# ========== Labor ==========
+position = Position.create_with(note: 'Controlling a labor in field', active: true).find_or_create_by(name: 'Manager')
+
+labor = Labor.create_with(gender: "M", phone: "012 785 058", email: "teopaocheak@gmail.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true).find_or_create_by(name: "Teo Paocheak")
+
+position.labors << labor
