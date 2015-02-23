@@ -5,6 +5,9 @@ class AlterTableLabor < ActiveRecord::Migration
     add_column :labors, :email, :string, limit: 30
     add_column :labors, :address, :text
     rename_column :labors, :description, :note
-    rename_column :labors, :subordinate_uuid, :manager_uuid, null: true
+    
+    if column_exists? :labors, :subordinate_uuid
+      rename_column :labors, :subordinate_uuid, :manager_uuid
+    end
   end
 end
