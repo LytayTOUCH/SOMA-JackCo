@@ -4,6 +4,7 @@ class DashboardsController < ApplicationController
   has_scope :farm_id
 
   def index
+    # Projects Overviews
     @farms=Farm.all
     @blocks_scope = apply_scopes(Block).all
 
@@ -11,16 +12,17 @@ class DashboardsController < ApplicationController
 
     @farm=Farm.new
 
-    @foos = Array.new
+    @farm_plantings = Array.new
 
     @planting_project_ids.each do |p|
-      project_n = PlantingProject.find_by_uuid(p.planting_project_id).project_name
+      project_name = PlantingProject.find_by_uuid(p.planting_project_id).project_name
       surface = @blocks_scope.where("planting_project_id=?", p.planting_project_id).sum(:surface)
       tree = @blocks_scope.where("planting_project_id=?", p.planting_project_id).sum(:tree_amount)
 
-      f = Foo.new(project_n, surface, tree)
-      @foos.push(f)
+      f = FarmPlanting.new(project_name, surface, tree)
+      @farm_plantings.push(f)
     end
+    # End Projects Overviews
 
 
     data = [['1997',10],['1998',20],['1999',40]]

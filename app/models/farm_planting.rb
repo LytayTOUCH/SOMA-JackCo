@@ -1,4 +1,4 @@
-class Foo
+class FarmPlanting
 	attr_accessor :project_name, :total_surface, :total_tree
 
 	def initialize(project_name, total_surface, total_tree)
