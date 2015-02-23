@@ -32,7 +32,11 @@
 
         %div
           - @foos.each do |foo|
-            =foo.project_name + " - " + foo.total_surface.to_s + " - " + foo.total_tree.to_s
+            / =foo.project_name + " - " + foo.total_surface.to_s + " - " + foo.total_tree.to_s
+            %div=foo.project_name
+            %br
+            %div= foo.total_surface.to_s + " - " + foo.total_tree.to_s
+            %br
 
 .row
   .col-xs-12
