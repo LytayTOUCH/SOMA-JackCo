@@ -8,8 +8,8 @@ class PlantingProjectsController < ApplicationController
   	begin
       @planting_project = PlantingProject.new
 
-      if params[:planting_project] and params[:planting_project][:project_name] and !params[:planting_project][:project_name].nil?
-        @planting_projects = PlantingProject.find_by_planting_project_name(params[:planting_project][:project_name]).page(params[:page]).per(5)
+      if params[:planting_project] and params[:planting_project][:name] and !params[:planting_project][:name].nil?
+        @planting_projects = PlantingProject.find_by_project_name(params[:planting_project][:name]).page(params[:page]).per(5)
       else
         @planting_projects = PlantingProject.page(params[:page]).order('updated_at DESC').per(5)
       end
@@ -41,7 +41,7 @@ class PlantingProjectsController < ApplicationController
 
   def edit
     @planting_project = PlantingProject.find(params[:id])
-    add_breadcrumb @planting_project.project_name, :edit_planting_project_path
+    add_breadcrumb @planting_project.name, :edit_planting_project_path
   end
 
   def update
@@ -66,7 +66,7 @@ class PlantingProjectsController < ApplicationController
     content_for :title, "Planting Project"
   end
   def planting_project_params
-    params.require(:planting_project).permit(:project_name, :note)
+    params.require(:planting_project).permit(:name, :note)
   end
 
 end

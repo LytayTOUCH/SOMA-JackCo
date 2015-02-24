@@ -15,11 +15,11 @@ class DashboardsController < ApplicationController
     @farm_plantings = Array.new
 
     @planting_project_ids.each do |p|
-      project_name = PlantingProject.find_by_uuid(p.planting_project_id).project_name
+      name = PlantingProject.find_by_uuid(p.planting_project_id).name
       surface = @blocks_scope.where("planting_project_id=?", p.planting_project_id).sum(:surface)
       tree = @blocks_scope.where("planting_project_id=?", p.planting_project_id).sum(:tree_amount)
 
-      f = FarmPlanting.new(project_name, surface, tree)
+      f = FarmPlanting.new(name, surface, tree)
       @farm_plantings.push(f)
     end
     # End Projects Overviews

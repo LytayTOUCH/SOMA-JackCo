@@ -3,9 +3,9 @@ class PlantingProject < ActiveRecord::Base
 
   has_many :blocks
   has_many :farms, through: :blocks
-  validates :project_name, length: { maximum: 50 }, presence: true
+  validates :name, length: { maximum: 50 }, presence: true
 
   has_many :production_stages
 
-  scope :find_by_planting_project_name, -> project_name { where("project_name like ?", "%#{project_name}%") }
+  scope :find_by_project_name, -> name { where("name like ?", "%#{name}%") }
 end

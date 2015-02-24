@@ -20,7 +20,7 @@
       .panel-body{:style => "width: 100%; height: 190px"}
         %div
           - @farm_plantings.each do |farm|
-            %li{style: "font-size: 16px; font-weight: bold; margin-left: 10px;"}=farm.project_name
+            %li{style: "font-size: 16px; font-weight: bold; margin-left: 10px;"}=farm.name
             %div{style: "margin-left: 10px; padding-bottom: 7px;"}
               Total Surface:
               %span{style: "font-weight: bold"}=farm.total_surface.to_s

@@ -24,10 +24,10 @@
             %div
               Planting Project:
               - farm.blocks.select(:planting_project_id).distinct.each do |block|
-                - if block.planting_project.project_name.downcase.eql? 'coconut'
-                  %span.label.label-success #{block.planting_project.project_name}
+                - if block.planting_project.name.downcase.eql? 'coconut'
+                  %span.label.label-success #{block.planting_project.name}
                 - else
-                  %span.label.label-warning #{block.planting_project.project_name}
+                  %span.label.label-warning #{block.planting_project.name}
             %div Location: #{farm.location}
             %div
               %i.fa.fa-map-marker
