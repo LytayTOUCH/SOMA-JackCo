@@ -1,0 +1,31 @@
+$(".form-modal").html("#{escape_javascript(render 'add_farm')}");
+$('#myModalAdd').modal('show');
+$('#myModalAdd').on('shown.bs.modal', function () {
+var map;
+var markers = [];
+function initialize() {
+var mapOptions = {
+zoom: 15,
+center: new google.maps.LatLng(11.332509, 104.863757)
+};
+map = new google.maps.Map(document.getElementById('map-farm'), mapOptions);
+}
+initialize();
+google.maps.event.addListener(map, 'click', function(e){
+var marker = new google.maps.Marker({
+position: e.latLng,
+map: map,
+draggable: true
+});
+markers.push(marker);
+google.maps.event.addListener(map, 'click', function() {
+marker.setMap(null);
+for (var i = 0, I = markers.length; i < I && markers[i] != marker; ++i);
+markers.splice(i, 1);
+});
+google.maps.event.addListener(marker, 'dragend', function(e) {
+$("#farm_latlong_farm").val(e.latLng.lat()+", "+e.latLng.lng());
+});
+$("#farm_latlong_farm").val(e.latLng.lat()+", "+e.latLng.lng());  
+});
+});

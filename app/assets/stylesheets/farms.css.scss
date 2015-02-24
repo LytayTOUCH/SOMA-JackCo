@@ -53,16 +53,24 @@ overflow-y: hidden;
 }
 
 .custom-modal-body {
-	padding: 20px 20px 0px 0px;
+	padding: 0px 0px 0px 0px;
 }
 
 .custom-modal-footer {
     margin-top: 0px;
-	padding: 10px 20px 10px;
+	padding: 10px 0px 0px 0px;
 }
 .icon-green{
 	color: green;
 }
 .icon-brown{
 	color: #B57500;	
+}
+.custom-alert-msg {
+	padding: 0px 10px;
+	margin-bottom: 0px;
+}
+
+#map-farm {
+  height:300px;
 }

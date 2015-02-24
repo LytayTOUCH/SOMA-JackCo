@@ -22,14 +22,18 @@
 
 %div Surface: #{@farm.blocks.sum(:surface)}
 %div Blocks Amount: #{@farm.blocks.count}
-%div Planting Project: Coconut
-%div Location: #{@farm.location}      
-
+%div
+  Planting Project:
+  - @farm.blocks.select(:planting_project_id).distinct.each do |block|
+    - if block.planting_project.project_name.downcase.eql? 'coconut'
+      %span.label.label-success #{block.planting_project.project_name}
+    - else
+      %span.label.label-warning #{block.planting_project.project_name}
+%div Location: #{@farm.location}
 .page-header.custom-page-header
   %h3.custom-h3
     .fa.fa-cubes.icon-brown
     All Blocks Information
-
 .row
   - @farm.blocks.each do |block|
     .col-sm-3
@@ -41,18 +45,19 @@
           .col-lg-12.map-info
             = link_to "#" do
               .thumbnail.custom-thumbnail
-                %img.map{:src => "https://maps.googleapis.com/maps/api/staticmap?center=#{block.location_lat_long}&zoom=17&size=348x250&maptype=satellite&markers=color:red|#{block.location_lat_long}"}/
+                %img.map{:src => "https://maps.googleapis.com/maps/api/staticmap?center=#{block.location_lat_long}&zoom=17&size=348x250&scale=1&maptype=satellite&path=color:0xff0000ff|weight:1|fillcolor:0xFFFF0033|#{block.shape_lat_long.split("],[").join("|").gsub!(/[\[\]]/,'')}"}/
             / .map{:id => "map-canvas-#{farm.uuid}"}
             </haml:block>
         .row
           .col-lg-12.farm-info
-            %div Surface: #{block.surface}
             %div
               Planting Project:
               - if block.planting_project.project_name.downcase.eql? 'coconut'
                 %span.label.label-success #{block.planting_project.project_name}
               - else
                 %span.label.label-warning #{block.planting_project.project_name}
+            %div Surface: #{block.surface}
+            %div Tree Amount: #{block.tree_amount}
             %div
               %i.fa.fa-map-marker
               = block.location_lat_long

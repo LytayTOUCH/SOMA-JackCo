@@ -1,6 +1,5 @@
 $font-size-base : 12px;
 $line-height-computed : 16px;
-
 $navbar-height : 30px;
 $navbar-default-bg : #188D00;
 $navbar-default-link-color : #fff;
@@ -112,4 +111,11 @@ a.all-notification-style:hover{
 }
 a:hover{
   text-decoration: none;
+}
+
+.custom-label-dark-yellow{
+  background-color: #DDD200;
+}
+.custom-label-light-green{
+  background-color: #78D700;
 }

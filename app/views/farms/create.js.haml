@@ -1,0 +1,6 @@
+- if @notice
+    $(".msg-farm-name").addClass("alert custom-alert-msg").html("#{escape_javascript(@farm.errors.full_messages[0])}");
+    $(".msg-farm-location-name").addClass("alert custom-alert-msg").html("#{escape_javascript(@farm.errors.full_messages[1])}");
+- else
+    $("#notice").html("#{escape_javascript("Successfully Created!")}");
+    $('#myModalAdd').modal('hide');
