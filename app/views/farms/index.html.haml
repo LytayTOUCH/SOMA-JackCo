@@ -2,38 +2,9 @@
   %h3.custom-h3
     = 'All Farms Information'
     = link_to '(+) Add farm', new_farm_path, :remote => true, class: 'btn btn-xs btn-primary'
-.row{:style => "padding-left: 15px;margin:0px;"}
+.row.farm-baord{:style => "padding-left: 15px;margin:0px;"}
   - @farms.each do |farm|
-    .col-sm-4
-      .box-farm-info
-        .page-header.custom-page-header
-          %h4.custom-h4
-            = link_to farm.name.camelize, farm_path(farm), :class => "text-color-green"
-        .row
-          .col-lg-12.map-info
-            = link_to farm_path(farm) do
-              .thumbnail.custom-thumbnail
-                %img.map{:src => "https://maps.googleapis.com/maps/api/staticmap?center=#{farm.latlong_farm}&zoom=15&size=180x125&scale=2&maptype=satellite&markers=color:red|#{farm.latlong_farm}"}
-            / .map{:id => "map-canvas-#{farm.uuid}"}
-            </haml:block>
-        .row
-          .col-lg-12.farm-info
-            %div
-              Planting Project:
-              - farm.blocks.select(:planting_project_id).distinct.each do |block|
-                - if block.planting_project.project_name.downcase.eql? 'coconut'
-                  %span.label.label-success #{block.planting_project.project_name}
-                - else
-                  %span.label.label-warning #{block.planting_project.project_name}
-                  %span.label.custom-label-dark-yellow #{'Mango'}
-                  %span.label.custom-label-light-green #{'Lemon'}
-            %div Surface: #{farm.blocks.sum(:surface)}
-            %div Blocks Amount: #{farm.blocks.count}
-            %div Tree Amount: #{farm.blocks.sum(:tree_amount)}
-            %div Location: #{farm.location}
-            %div
-              %i.fa.fa-map-marker
-              = farm.latlong_farm
+    = render 'farm_board', farm: farm
 / :javascript
 /   var map;
 /   function initialize() {

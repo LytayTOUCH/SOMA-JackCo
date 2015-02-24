@@ -6,7 +6,8 @@ var markers = [];
 function initialize() {
 var mapOptions = {
 zoom: 15,
-center: new google.maps.LatLng(11.332509, 104.863757)
+center: new google.maps.LatLng(11.332509, 104.863757),
+streetViewControl: false
 };
 map = new google.maps.Map(document.getElementById('map-farm'), mapOptions);
 }

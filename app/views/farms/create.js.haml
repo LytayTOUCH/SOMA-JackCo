@@ -4,3 +4,4 @@
 - else
     $("#notice").html("#{escape_javascript("Successfully Created!")}");
     $('#myModalAdd').modal('hide');
+    $('.farm-baord').append("#{escape_javascript(render 'farm_board', farm: @farm)}");
