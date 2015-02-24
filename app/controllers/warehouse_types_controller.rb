@@ -58,7 +58,7 @@ class WarehouseTypesController < ApplicationController
         flash[:notice] = "WarehouseType updated"
         redirect_to warehouse_types_path
       else
-        flash[:notice] = "WarehouseType can't update"
+        flash[:notice] = "WarehouseType can't be updated"
         redirect_to :back
       end
     rescue Exception => e

@@ -124,12 +124,12 @@ end
 
 # ========== Create Planting Projects ========== 
 [
-  {project_name: 'Coconut'},
-  {project_name: 'Jackfruit'},
-  {project_name: 'Mango'},
-  {project_name: 'Lemon'}
+  {name: 'Coconut'},
+  {name: 'Jackfruit'},
+  {name: 'Mango'},
+  {name: 'Lemon'}
 ].each do |planting_project|
-  PlantingProject.find_or_create_by(project_name: planting_project[:project_name])
+  PlantingProject.find_or_create_by(name: planting_project[:name])
 end
 
 # ========== Create Unit of Measurement ========== 
@@ -169,8 +169,8 @@ Block.delete_all
 
 coconut_farm = Farm.find_by_name('Chamkar Doung Farm')
 oroung_farm= Farm.find_by_name('Oroung Farm')
-coconut_planting_project=PlantingProject.find_by_project_name('Coconut')
-jackfruit_planting_project=PlantingProject.find_by_project_name('Jackfruit')
+coconut_planting_project=PlantingProject.find_by_name('Coconut')
+jackfruit_planting_project=PlantingProject.find_by_name('Jackfruit')
 # ========== Create Blocks for Oroung Farm ========== 
 [
   {name: 'Block A1', surface: 4, shape_lat_long: '[[11.34228844248775,104.8173368444448],[11.34222380000888,104.8171604557845],[11.3419655618982,104.8170819933822],[11.34197186349495,104.8169376349896],[11.34152765634626,104.8168564506022],[11.34152565378016,104.8161860309814],[11.34072187781601,104.8161618977276],[11.34073587728222,104.8166945670797],[11.34083425409179,104.8171092601984],[11.34104359934694,104.8174874094787],[11.34114577172203,104.8181746246259],[11.34214745471061,104.8184887833901],[11.34225258745473,104.8181561580298],[11.34287072363673,104.8182904066128],[11.34309297859914,104.8175375089032],[11.34228844248775,104.8173368444448]]', location_lat_long: '11.341644, 104.817429', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 150},
@@ -215,7 +215,21 @@ end
 
 # ========== Labor ==========
 position = Position.create_with(note: 'Controlling a labor in field', active: true).find_or_create_by(name: 'Manager')
-
 labor = Labor.create_with(gender: "M", phone: "012 785 058", email: "teopaocheak@gmail.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true).find_or_create_by(name: "Teo Paocheak")
-
 position.labors << labor
+
+# ========== Phase ==========
+[
+  {name: 'Phase 1: Nursery Seed', note: 'The first phase of planting', active: true},
+  {name: 'Phase 2: Plant Growing & Protection', note: 'The second phase of planting', active: true}
+].each do |phase|
+  Phase.create_with(note: phase[:note]).find_or_create_by(name: phase[:name])
+end
+
+# ========== Production Stage ==========
+planting_project = PlantingProject.create_with(note: 'For project Coconut').find_or_create_by(name: 'Coconut')
+phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 1: Nursery Seed')
+production_stage = ProductionStage.create_with(planting_project_id: planting_project.uuid, phase_id: phase.uuid, note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 1-2 Years')
+
+# planting_project.production_stages << production_stage
+# phase.production_stages << production_stage

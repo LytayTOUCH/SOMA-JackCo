@@ -20,6 +20,8 @@ class ProductionStagesController < ApplicationController
   def new
     begin
       @production_stage = ProductionStage.new
+      @planting_projects = PlantingProject.all
+      @phases = Phase.all
     rescue Exception => e
       puts e
     end
@@ -30,10 +32,10 @@ class ProductionStagesController < ApplicationController
       @production_stage = ProductionStage.new(production_stage_params)
 
       if @production_stage.save!
-        flash[:notice] = "Production Status type saved successfully"
+        flash[:notice] = "Production Status saved successfully"
         redirect_to production_stages_path
       else
-        flash[:notice] = "Production Status type can't save"
+        flash[:notice] = "Production Status can't be saved"
         redirect_to :back
       end
     rescue Exception => e
@@ -44,6 +46,8 @@ class ProductionStagesController < ApplicationController
   def edit
     begin
       @production_stage = ProductionStage.find(params[:id])
+      @planting_projects = PlantingProject.all
+      @phases = Phase.all
       add_breadcrumb @production_stage.name, :edit_production_stage_path
     rescue Exception => e
       puts e
@@ -58,7 +62,7 @@ class ProductionStagesController < ApplicationController
         flash[:notice] = "Production Stage updated"
         redirect_to production_stages_path
       else
-        flash[:notice] = "Production Stage can't update"
+        flash[:notice] = "Production Stage can't be updated"
         redirect_to :back
       end
     rescue Exception => e
@@ -68,6 +72,6 @@ class ProductionStagesController < ApplicationController
 
   private
   def production_stage_params
-    params.require(:production_stage).permit(:name, :note, :active)
+    params.require(:production_stage).permit(:name, :planting_project_id, :phase_id, :note, :active)
   end
 end

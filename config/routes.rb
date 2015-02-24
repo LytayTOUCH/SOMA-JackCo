@@ -116,6 +116,7 @@ Rails.application.routes.draw do
   resources :production_statuses
   resources :production_stages
   resources :positions
+  resources :phases
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

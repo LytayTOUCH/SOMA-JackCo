@@ -5,6 +5,16 @@
       = f.input :name, label: false, input_html: { class: "form-control" }
       %span.help-block= f.error :name
   .form-group
+    %label.col-xs-2.control-label.text-left Project Type *
+    .col-xs-5
+      = f.input :planting_project_id, label: false, collection: @planting_projects, input_html: {class: "form-control"}, error_html: {class: "err_msg"}, include_blank: true
+    %span.help-block= f.error :planting_project_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Production Phase *
+    .col-xs-5
+      = f.input :phase_id, label: false, collection: @phases, input_html: {class: "form-control"}, error_html: {class: "err_msg"}, include_blank: true
+    %span.help-block= f.error :phase_id   
+  .form-group
     %label.col-xs-2.control-label Note
     .col-xs-5
       = f.input :note, label: false, input_html: { class: "form-control" }
