@@ -20,10 +20,10 @@
         %div
           Planting Project:
           - farm.blocks.select(:planting_project_id).distinct.each do |block|
-            - if block.planting_project.project_name.downcase.eql? 'coconut'
-              %span.label.label-success #{block.planting_project.project_name}
+            - if block.planting_project.name.downcase.eql? 'coconut'
+              %span.label.label-success #{block.planting_project.name}
             - else
-              %span.label.label-warning #{block.planting_project.project_name}
+              %span.label.label-warning #{block.planting_project.name}
               %span.label.custom-label-dark-yellow #{'Mango'}
               %span.label.custom-label-light-green #{'Lemon'}
         %div Surface: #{farm.blocks.sum(:surface)}

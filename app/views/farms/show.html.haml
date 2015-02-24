@@ -2,7 +2,6 @@
   %h3.custom-h3.icon-green
     .fa.fa-tree
     #{@farm.name}
-
 / .row{:style => "padding-left: 15px;margin:0px;"}
 /   - @farms.each do |farm|
 /     .col-sm-4
@@ -25,10 +24,10 @@
 %div
   Planting Project:
   - @farm.blocks.select(:planting_project_id).distinct.each do |block|
-    - if block.planting_project.project_name.downcase.eql? 'coconut'
-      %span.label.label-success #{block.planting_project.project_name}
+    - if block.planting_project.name.downcase.eql? 'coconut'
+      %span.label.label-success #{block.planting_project.name}
     - else
-      %span.label.label-warning #{block.planting_project.project_name}
+      %span.label.label-warning #{block.planting_project.name}
 %div Location: #{@farm.location}
 .page-header.custom-page-header
   %h3.custom-h3
@@ -52,10 +51,10 @@
           .col-lg-12.farm-info
             %div
               Planting Project:
-              - if block.planting_project.project_name.downcase.eql? 'coconut'
-                %span.label.label-success #{block.planting_project.project_name}
+              - if block.planting_project.name.downcase.eql? 'coconut'
+                %span.label.label-success #{block.planting_project.name}
               - else
-                %span.label.label-warning #{block.planting_project.project_name}
+                %span.label.label-warning #{block.planting_project.name}
             %div Surface: #{block.surface}
             %div Tree Amount: #{block.tree_amount}
             %div
