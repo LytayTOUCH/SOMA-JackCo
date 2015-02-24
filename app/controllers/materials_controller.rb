@@ -1,12 +1,14 @@
 class MaterialsController < ApplicationController
   load_and_authorize_resource except: :create
   
+  add_breadcrumb "All Materials", :materials_path
+
   def index
     begin
       @material = Material.new
 
       if params[:material] and params[:material][:name] and !params[:material][:name].nil?
-        @materials = Material.find_by_name(params[:material][:name]).page(params[:page]).per(5)
+        @materials = Material.find_by_material_name(params[:material][:name]).page(params[:page]).per(5)
       else
         @materials = Material.page(params[:page]).order('updated_at DESC').per(5)
       end
@@ -30,7 +32,7 @@ class MaterialsController < ApplicationController
     begin
       @material = Material.new(material_params)
 
-      if @material.save!
+      if @material.save
         flash[:notice] = "Material saved successfully"
         # redirect_to :back
         redirect_to materials_path
@@ -49,6 +51,7 @@ class MaterialsController < ApplicationController
       # @suppliers = Supplier.all
       @material_categories = MaterialCategory.all
       @unit_measurements = UnitOfMeasurement.all
+      add_breadcrumb @material.name, :edit_material_path
     rescue Exception => e
       puts e
     end
@@ -58,11 +61,11 @@ class MaterialsController < ApplicationController
     begin
       @material = Material.find(params[:id])
 
-      if @material.update_attributes!(material_params)
+      if @material.update_attributes(material_params)
         flash[:notice] = "Material updated successfully"
         redirect_to materials_path
       else
-        flash[:notice] = "Material category can't update"
+        flash[:notice] = "Material can't update"
         redirect_to :back
       end
     rescue Exception => e

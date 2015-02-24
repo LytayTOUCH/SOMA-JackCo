@@ -1,22 +1,30 @@
 %table.table
   %thead
     %tr
-      %th.col-md-5= "Name"
-      %th.col-md-3= "Position"
+      %th.col-md-3= "Name"
+      %th.col-md-2= "Position"
+      %th.col-md-1= "Gender"
+      %th.col-md-3= "Manager"
       %th.col-md-2= "Active"
-      %th.col-md-2= "Action"
+      %th.col-md-1= "Action"
   %tbody
     - @labors.each do |labor|
       %tr
         %td= labor.name
-        %td= labor.position_uuid
+        %td= labor.position.name
+        %td= labor.gender
+        %td
+          - if labor.labor.blank? == true
+            = "N/A"
+          - else
+            = labor.labor.name
         %td 
           = form_for(labor) do |f|
             - if labor.active
               %span{style: "color:green;"}= "active"
               |
               #{f.hidden_field :active, value: false}
-              #{submit_tag "inactivate", :class => "btn btn-default btn-xs"}
+              #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
             - else
               %span{:style => "color:red;"}= "inactive"
               |

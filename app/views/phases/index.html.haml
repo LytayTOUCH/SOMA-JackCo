@@ -1,0 +1,10 @@
+.row
+  %h3
+    = "Phase"
+    .pull-right
+      - if can? :create, Phase
+        = link_to "New Phase", new_phase_path, class: "btn btn-primary"
+  %hr
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'

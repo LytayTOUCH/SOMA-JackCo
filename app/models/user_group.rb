@@ -8,6 +8,7 @@ class UserGroup < ActiveRecord::Base
   
   has_many :permissions, foreign_key: :user_group_id 
   has_many :resources, through: :permissions
+  # accepts_nested_attributes_for :permissions
   
   validates :name, length: { maximum: 50 }, presence: true
 
@@ -15,5 +16,5 @@ class UserGroup < ActiveRecord::Base
     resource_ids = ids.split(",")
   end
 
-  scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
+  scope :find_by_user_group_name, -> name { where("name like ?", "%#{name}%") }
 end

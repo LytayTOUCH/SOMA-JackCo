@@ -1,12 +1,14 @@
 class CoconutsController < ApplicationController
   load_and_authorize_resource except: :create
 
+  add_breadcrumb "All Coconuts", :coconuts_path
+
   def index
     begin
       @coconut = Coconut.new
 
       if params[:coconut] and params[:coconut][:code] and !params[:coconut][:code].nil?
-        @coconuts = Coconut.find_by_code(params[:coconut][:code]).page(params[:page]).per(5)
+        @coconuts = Coconut.find_by_coconut_code(params[:coconut][:code]).page(params[:page]).per(5)
       else
         @coconuts = Coconut.page(params[:page]).per(5)
       end
@@ -41,6 +43,7 @@ class CoconutsController < ApplicationController
     @coconut = Coconut.find(params[:id])
     @stages = Stage.where(fruit_type: 'coconut')
     @fields = Field.all
+    add_breadcrumb @coconut.code, :edit_coconut_path
   end
 
   def update

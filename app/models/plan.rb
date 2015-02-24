@@ -6,5 +6,5 @@ class Plan < ActiveRecord::Base
   validates :unit, length: { maximum: 100 }, presence: true
   validates :year, length: { maximum: 10 }, presence: true
 
-  scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
+  scope :find_by_plan_name, -> name { where("name like ?", "%#{name}%") }
 end

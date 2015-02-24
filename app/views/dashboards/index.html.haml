@@ -1,32 +1,70 @@
+= form_tag dashboards_path, :class => 'form-inline', :role => 'form', :method => 'get' do
+  .form-group{style: "padding-left: 0; padding: 2px 0 5px 0;"}
+    .input-group
+      = select_tag "farm_id", options_for_select(@farms.map {|value| [ value.name, value.uuid ] }, :selected => params[:farm_id]), class: 'form-control', style:"border-radius: 4px;", :prompt => 'All Farms'
+  = submit_tag 'filter', :class => 'btn btn-success', :name => nil
+
 .row
   .col-xs-6
     .panel.panel-default
       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-        %h3.panel-title{:style => "font-weight: bold; color: Black"} Resource in stock
-        = link_to '<i class="fa fa-file-excel-o fa-2x" style="float: right; margin-top: -20px; color: black; padding-left: 5px" title="Download Graph as Excel"></i>'.html_safe, download_piechart_excel_dashboards_path
-        = link_to '<i class="fa fa-file-pdf-o fa-2x" style="float: right; margin-top: -20px; color: black" title="Download Graph as PDF"></i>'.html_safe, downloadpdf_dashboards_path     
-      .panel-body
-        #chart_div{:style => "width: 100%; height: 190px"}
+        %h3.panel-title{:style => "font-weight: bold; color: Black"} Recent Activities
+        
+      .panel-body{:style => "width: 100%; height: 190px"}
+        %p Show Recent Activities from Farm...      
 
   .col-xs-6
     .panel.panel-default
       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
         %h3.panel-title{:style => "font-weight: bold; color: Black"} Projects
-      .panel-body
+      .panel-body{:style => "width: 100%; height: 190px"}
+        %div
+          - @farm_plantings.each do |farm|
+            %li{style: "font-size: 16px; font-weight: bold; margin-left: 10px;"}=farm.name
+            %div{style: "margin-left: 10px; padding-bottom: 7px;"}
+              Total Surface:
+              %span{style: "font-weight: bold"}=farm.total_surface.to_s
+              ; Total Tree:
+              %span{style: "font-weight: bold"}=farm.total_tree.to_s
 
 .row
-  .col-xs-6
+  .col-xs-12
     .panel.panel-default
       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-        %h3.panel-title{:style => "font-weight: bold; color: Black"} Production rate
-        = link_to '<i class="fa fa-file-excel-o fa-2x" style="float: right; margin-top: -20px; color: black; padding-left: 5px" title="Download Graph as Excel"></i>'.html_safe, download_barchart_excel_dashboards_path
-        = link_to '<i class="fa fa-file-pdf-o fa-2x" style="float: right; margin-top: -20px; color: black" title="Download Graph as PDF"></i>'.html_safe, downloadpdf_dashboards_path
-      .panel-body     
-        #columnchart_values{:style => "width: 100%; height: 190px"}
+        %h3.panel-title{:style => "font-weight: bold; color: Black"} Weathers
+             
+      .panel-body{:style => "width: 100%; height: 190px"}
+        
 
-  .col-xs-6
-    .panel.panel-default
-      .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-        %h3.panel-title{:style => "font-weight: bold; color: Black"} Production rate
-      .panel-body
-        #curve_line_chart{:style => "width: 100%; height: 190px"}
+/ .row
+/   .col-xs-6
+/     .panel.panel-default
+/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
+/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Resource in stock
+/         = link_to '<i class="fa fa-file-excel-o fa-2x" style="float: right; margin-top: -20px; color: black; padding-left: 5px" title="Download Graph as Excel"></i>'.html_safe, download_piechart_excel_dashboards_path
+/         = link_to '<i class="fa fa-file-pdf-o fa-2x" style="float: right; margin-top: -20px; color: black" title="Download Graph as PDF"></i>'.html_safe, downloadpdf_dashboards_path     
+/       .panel-body
+/         #chart_div{:style => "width: 100%; height: 190px"}
+
+/   .col-xs-6
+/     .panel.panel-default
+/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
+/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Projects
+/       .panel-body
+
+/ .row
+/   .col-xs-6
+/     .panel.panel-default
+/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
+/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Production rate
+/         = link_to '<i class="fa fa-file-excel-o fa-2x" style="float: right; margin-top: -20px; color: black; padding-left: 5px" title="Download Graph as Excel"></i>'.html_safe, download_barchart_excel_dashboards_path
+/         = link_to '<i class="fa fa-file-pdf-o fa-2x" style="float: right; margin-top: -20px; color: black" title="Download Graph as PDF"></i>'.html_safe, downloadpdf_dashboards_path
+/       .panel-body     
+/         #columnchart_values{:style => "width: 100%; height: 190px"}
+
+/   .col-xs-6
+/     .panel.panel-default
+/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
+/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Production rate
+/       .panel-body
+/         #curve_line_chart{:style => "width: 100%; height: 190px"}

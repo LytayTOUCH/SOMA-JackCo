@@ -2,15 +2,15 @@ class ActivitiesController < ApplicationController
   load_and_authorize_resource except: :create
 
   has_scope :find_by_date, using: :started_at
-
   respond_to :html
 
+  add_breadcrumb "All Activities", :activities_path
   def index
     begin
       @activity = Activity.new
 
       if params[:activity] and params[:activity][:starts_at] and !params[:activity][:starts_at].nil?
-        @paginate_activities = Activity.find_by_date(params[:activity][:starts_at]).page(params[:page]).per(5)
+        @paginate_activities = Activity.find_by_activity_date(params[:activity][:starts_at]).page(params[:page]).per(5)
       else
         @paginate_activities = Activity.page(params[:page]).per(5).order("starts_at ASC")
       end
@@ -29,6 +29,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    add_breadcrumb @activity.activity_type.name, :activity_path
 
     respond_to do |format|
       format.html
@@ -64,6 +65,7 @@ class ActivitiesController < ApplicationController
   def edit
     @activity = Activity.find(params[:id])
     @activity_types = ActivityType.all
+    add_breadcrumb @activity.activity_type.name, :edit_activity_path
   end
 
   def update

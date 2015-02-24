@@ -1,0 +1,10 @@
+.row
+  %h3
+    = "Position"
+    .pull-right
+      - if can? :create, Position
+        = link_to "New Position", new_position_path, class: "btn btn-primary"
+  %hr
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'

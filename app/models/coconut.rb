@@ -9,6 +9,6 @@ class Coconut < ActiveRecord::Base
   validates :field_uuid, length: {maximum: 36}, presence: true
   validates :stage_uuid, length: {maximum: 36}, presence: true
 
-  scope :find_by_code, -> code { where("code like ?", "%#{code}%") }
+  scope :find_by_coconut_code, -> code { where("code like ?", "%#{code}%") }
 
 end

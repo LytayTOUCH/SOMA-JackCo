@@ -2,6 +2,8 @@ class FieldsController < ApplicationController
   before_filter :set_title
   respond_to :html, :js
 
+  add_breadcrumb "All fields", :fields_path
+
   def index
   end
 
@@ -47,6 +49,7 @@ class FieldsController < ApplicationController
     begin
       @field = Field.find(params[:id])
       @field.lat_long = @field.lat_long.to_json
+      add_breadcrumb @field.name, :edit_field_path
     rescue Exception => e
       puts e
     end

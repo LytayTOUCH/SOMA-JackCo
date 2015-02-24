@@ -1,6 +1,8 @@
 class UserGroupsController < ApplicationController
   load_and_authorize_resource except: :create
 
+  add_breadcrumb "All User Groups", :user_groups_path
+
   def index
     begin
       @user_group = UserGroup.new
@@ -41,6 +43,7 @@ class UserGroupsController < ApplicationController
     @user_group = UserGroup.find(params[:id])
     @resources = Resource.all
     @permission = Permission.new
+    add_breadcrumb @user_group.name, :edit_user_group_path
   end
 
   def update

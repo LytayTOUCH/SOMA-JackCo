@@ -1,12 +1,14 @@
 class WarehouseTypesController < ApplicationController
   load_and_authorize_resource except: :create
+
+  add_breadcrumb "All Warehouse Types", :warehouse_types_path
   
   def index
     begin
       @warehouse_type = WarehouseType.new
 
       if params[:warehouse_type] and params[:warehouse_type][:name] and !params[:warehouse_type][:name].nil?
-        @warehouse_types = WarehouseType.find_by_name(params[:warehouse_type][:name]).page(params[:page]).per(5)
+        @warehouse_types = WarehouseType.find_by_warehouse_type_name(params[:warehouse_type][:name]).page(params[:page]).per(5)
       else
         @warehouse_types = WarehouseType.page(params[:page]).per(5)
       end
@@ -42,6 +44,7 @@ class WarehouseTypesController < ApplicationController
   def edit
     begin
       @warehouse_type = WarehouseType.find(params[:id])
+      add_breadcrumb @warehouse_type.name, :edit_warehouse_type_path
     rescue Exception => e
       puts e
     end
@@ -55,7 +58,7 @@ class WarehouseTypesController < ApplicationController
         flash[:notice] = "WarehouseType updated"
         redirect_to warehouse_types_path
       else
-        flash[:notice] = "WarehouseType can't update"
+        flash[:notice] = "WarehouseType can't be updated"
         redirect_to :back
       end
     rescue Exception => e

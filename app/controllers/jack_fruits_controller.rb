@@ -1,18 +1,25 @@
 class JackFruitsController < ApplicationController
   load_and_authorize_resource except: :create
   
+  add_breadcrumb "All Jack Fruits", :jack_fruits_path
+
   def index
     begin
       @jack_fruit = JackFruit.new
 
       if params[:jack_fruit] and params[:jack_fruit][:code] and !params[:jack_fruit][:code].nil?
-        @jack_fruits = JackFruit.find_by_code(params[:jack_fruit][:code]).page(params[:page]).per(5)
+        @jack_fruits = JackFruit.find_by_jack_fruit_code(params[:jack_fruit][:code]).page(params[:page]).per(5)
       else
         @jack_fruits = JackFruit.page(params[:page]).per(5)
       end
     rescue Exception => e
       puts e
     end
+  end
+
+  def show
+    @jack_fruit = JackFruit.find(params[:id])
+    add_breadcrumb @jack_fruit.code, :jack_fruit_path
   end
 
   def new
@@ -37,6 +44,7 @@ class JackFruitsController < ApplicationController
     @jack_fruit = JackFruit.find(params[:id])
     @stages = Stage.where(fruit_type: 'jackfruit')
     @fields = Field.all
+    add_breadcrumb @jack_fruit.code, :edit_jack_fruit_path
   end
 
   def update

@@ -1,12 +1,14 @@
 class LaborsController < ApplicationController
   load_and_authorize_resource except: :create
   
+  add_breadcrumb "All Labors", :labors_path
+
   def index
     begin
       @labor = Labor.new
       
       if params[:labor] and params[:labor][:name] and !params[:labor][:name].nil?
-        @labors = LaborDecorator.new(Labor.find_by_name(params[:labor][:name]).page(params[:page]).per(5))
+        @labors = LaborDecorator.new(Labor.find_by_labor_name(params[:labor][:name]).page(params[:page]).per(5))
       else
         @labors = LaborDecorator.new(Labor.page(params[:page]).per(5))
       end
@@ -18,6 +20,12 @@ class LaborsController < ApplicationController
   def new
     begin
       @labor = Labor.new
+      
+      @position = Position.find_by_name("Manager")
+      
+      @selected_labors = @position.labors
+        
+      @positions = Position.all
 
       @projects = Project.all
       respond_to do |format|
@@ -34,10 +42,10 @@ class LaborsController < ApplicationController
       @labor = Labor.new(labor_params)
 
       if @labor.save!
-        flash[:notice] = "Implement saved successfully"
-        redirect_to :back
+        flash[:notice] = "Labor saved successfully"
+        redirect_to labors_path
       else
-        flash[:notice] = "Implement can't save"
+        flash[:notice] = "Labor can't save"
         redirect_to :back
       end
     rescue Exception => e
@@ -47,6 +55,27 @@ class LaborsController < ApplicationController
 
   def edit
     @labor = Labor.find(params[:id])
+    @labors = Labor.all
+    @positions = Position.all
+    @position = Position.find_by_name("Manager")
+    @selected_labors = @position.labors
+    add_breadcrumb @labor.name, :edit_labor_path
+  end
+
+  def update
+    begin
+      @labor = Labor.find(params[:id])
+
+      if @labor.update_attributes!(labor_params)
+        flash[:notice] = "Labor updated successfully"
+        redirect_to labors_path
+      else
+        flash[:notice] = "Labor can't be updated"
+        redirect_to :back
+      end
+    rescue Exception => e
+      puts e
+    end
   end
 
   def projects
@@ -77,6 +106,6 @@ class LaborsController < ApplicationController
 
   private
   def labor_params
-    params.require(:labor).permit(:name, :position_uuid, :description, :active, :project_tokens, :subordinate_uuid)
+    params.require(:labor).permit(:name, :position_id, :gender, :phone, :email, :address, :manager_uuid, :note, :active)
   end
 end

@@ -19,6 +19,16 @@
         %ul.dropdown-menu{"aria-labelledby" => "dLabel", :role => "menu"}
           %li
             = navbar_link "Planting Project", planting_projects_path, "active"
+          %li
+            = navbar_link "Production Status", production_statuses_path, "active"
+          %li
+            = navbar_link "Production Stage", production_stages_path, "active"
+          %li
+            = navbar_link "Labor", labors_path, "active"
+          %li
+            = navbar_link "Position", positions_path, "active"
+          %li
+            = navbar_link "Phase", phases_path, "active"    
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Inventory
             %ul.dropdown-menu
@@ -35,8 +45,6 @@
                 = navbar_link "Material Category", material_categories_path, "active"
               %li
                 = navbar_link "Unit of Measurement", unit_of_measurement_index_path, "active"
-
-
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %i.fa.fa-cog.fa-lg.icon-greenish
@@ -53,8 +61,6 @@
             = link_to "Plant Types", dashboards_path
           %li
             = navbar_link "Warehouse Type", warehouse_types_path, "active"
-          %li
-            = navbar_link "Stage", stages_path, "active"
           %li.divider
           %li
             = navbar_link "Plans", plans_path, "active"

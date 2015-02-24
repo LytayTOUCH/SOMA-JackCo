@@ -39,6 +39,7 @@ class ImplementsController < ApplicationController
     begin
       @implement = Implement.find(params[:id])
       @implement_types = ImplementType.all
+      add_breadcrumb @implement.name, :edit_implement_path
     rescue Exception => e
       puts e
     end

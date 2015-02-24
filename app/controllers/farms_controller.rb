@@ -40,7 +40,7 @@ class FarmsController < ApplicationController
     content_for :title, name
   end
 
-  private
+  private 
     def farm_params
       params.require(:farm).permit(:name, :location, :latlong_farm)
     end

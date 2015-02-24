@@ -1,17 +1,17 @@
 #form-model-content-supplier
 = simple_form_for @material, html: {class: 'form-horizontal'} do |f|
   .form-group
-    %label.col-xs-2.control-label{for: 'material_name'} Name
+    %label.col-xs-2.control-label{for: 'material_name'} Name *
     .col-xs-5
       = f.input :name, label: false, input_html: {class: "form-control"}
       %span.help-block= f.error :name
   .form-group
-    %label.col-xs-2.control-label{for: 'material category'} Material Category
+    %label.col-xs-2.control-label{for: 'material category'} Material Category *
     .col-xs-5
       = f.input :material_cate_uuid, label: false, collection: @material_categories, input_html: {class: "form-control"}, include_blank: true
       %span.help-block= f.error :material_cate_id
   .form-group
-    %label.col-xs-2.control-label{for: 'unit of measurement'} Unit of Measurement
+    %label.col-xs-2.control-label{for: 'unit of measurement'} Unit of Measurement *
     .col-xs-5
       = f.input :unit_measure_uuid, label: false, collection: @unit_measurements, input_html: {class: "form-control"}, include_blank: true
       %span.help-block= f.error :unit_measure_id

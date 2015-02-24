@@ -1,0 +1,15 @@
+= simple_form_for @position, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-2.control-label Name
+    .col-xs-5
+      = f.input :name, label: false, input_html: { class: "form-control" }
+      %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-2.control-label Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: { class: "form-control" }
+      %span.help-block= f.error :note
+  .form-group
+    .col-xs-7
+      .pull-right
+        = render partial: 'form_button', locals: { f: f }

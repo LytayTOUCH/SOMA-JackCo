@@ -1,13 +1,15 @@
 class ImplementTypesController < ApplicationController
   before_filter :set_title
   load_and_authorize_resource except: :create
+
+  add_breadcrumb "All Implement Types", :implement_types_path
   
   def index
     begin
       @implement_type = ImplementType.new
 
       if params[:implement_type] and params[:implement_type][:name] and !params[:implement_type][:name].nil?
-        @implement_types = ImplementType.find_by_name(params[:implement_type][:name]).page(params[:page]).per(5)
+        @implement_types = ImplementType.find_by_implement_type_name(params[:implement_type][:name]).page(params[:page]).per(5)
       else
         @implement_types = ImplementType.page(params[:page]).per(5)
       end
@@ -38,6 +40,7 @@ class ImplementTypesController < ApplicationController
 
   def edit
     @implement_type = ImplementType.find(params[:id])
+    add_breadcrumb @implement_type.name, :edit_implement_type_path
   end
 
   def update

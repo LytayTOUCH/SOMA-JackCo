@@ -1,0 +1,15 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-4= "Name"
+      %th.col-md-6= "Note"
+      %th.col-md-2= "Action"
+  - @positions.each do |position|
+    %tr
+      %td= position.name
+      %td= position.note
+      %td
+        - if can? :update, position
+          = link_to "Edit", edit_position_path(position)      
+.pull-right
+  = paginate @positions

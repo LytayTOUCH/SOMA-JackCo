@@ -2,12 +2,14 @@ class PlansController < ApplicationController
   before_filter :set_title
   load_and_authorize_resource except: :create
   
+  add_breadcrumb "All Plans", :plans_path
+
   def index
     begin
       @plan = Plan.new
 
       if params[:plan] and params[:plan][:name] and !params[:plan][:name].nil?
-        @plans = Plan.find_by_name(params[:plan][:name]).page(params[:page]).per(5)
+        @plans = Plan.find_by_plan_name(params[:plan][:name]).page(params[:page]).per(5)
       else
         @plans = Plan.page(params[:page]).order('updated_at DESC').per(5)
         @plans_pdf = Plan.page(params[:page]).order('updated_at DESC')
@@ -68,6 +70,7 @@ class PlansController < ApplicationController
 
   def edit
     @plan = Plan.find(params[:id])
+    add_breadcrumb @plan.name, :edit_plan_path
   end
 
   def update

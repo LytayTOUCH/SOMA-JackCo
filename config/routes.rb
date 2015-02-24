@@ -42,13 +42,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :labors, except: [:destroy] do
-    collection do 
-      get 'projects'
-      get 'labors'
-    end
-  end
+  # resources :labors, except: [:destroy] do
+  #   collection do 
+  #     get 'projects'
+  #     get 'labors'
+  #   end
+  # end
   
+  resources :labors
+
   devise_scope :user do
     get '/' => 'devise/sessions#new'
   end
@@ -73,8 +75,13 @@ Rails.application.routes.draw do
   end  
 
   resources :permissions
+  
+  # patch 'permissions/:id/update', :to => 'permissions#update'
+  # get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
 
-  get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
+  # get ':user_group_id/permissions/edit', to: 'permissions#edit', as: :permissions_edit
+
+  # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
   resources :roles do
     collection do
@@ -106,6 +113,10 @@ Rails.application.routes.draw do
   resources :planting_projects
   resources :unit_of_measurement
   resources :material_categories
+  resources :production_statuses
+  resources :production_stages
+  resources :positions
+  resources :phases
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

@@ -1,10 +1,12 @@
 %table.table
   %thead
     %tr
-      %th.col-md-12= "Name"
+      %th.col-md-4= "Name"
+      %th.col-md-8= "Note"
   - @unit_of_measurements.each do |um|
     %tr
       %td= um.name
+      %td= um.note
 .pull-right
   = paginate @unit_of_measurements
 

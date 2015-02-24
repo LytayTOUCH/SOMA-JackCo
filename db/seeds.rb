@@ -8,6 +8,7 @@
 
 # run:
 # rake db:seed
+# ========== Create Roles ========== 
 [
   {name: 'admin', note: 'Controlling all modules', label: 'Admin'},
   {name: 'top_manager', note: 'Can read all modules and download all reports', label: 'TOP Manager'},
@@ -17,16 +18,7 @@
   Role.create_with(note: role[:note], label: role[:label]).find_or_create_by(name: role[:name])
 end
 
-[ 
-  { name: 'Tilling', note: '' },
-  { name: 'Planting', note: '' },
-  { name: 'Spraying', note: '' },
-  { name: 'Fertilizing', note: '' }
-].each do |activity|
-  ActivityType.create_with(note: activity[:note]).find_or_create_by(name: activity[:name])
-end
-
-# Create UserGroup, Resource and Permissions
+# ==========  Create UserGroup ========== 
 [ 
   {name: "Administrator", note: "Controlling everything", active: true},
   {name: "Manager", note: "Controlling general tasks", active: true},
@@ -34,34 +26,46 @@ end
   {name: "Data Entry", note: "Inputting data", active: true}
 ].each do |user_group|
   userg = UserGroup.create_with(note: user_group[:note], active: user_group[:active]).find_or_create_by(name: user_group[:name])
-
-  [ 
-    {name: 'User', note: 'Controlling users'},
-    {name: 'Warehouse', note: 'Controlling warehouses'},
-    {name: 'Machinery', note: 'Controlling machineries'},
-    {name: 'Material', note: 'Controlling materials'}
-  ].each do |resource|
-    res = Resource.create_with(note: resource[:note]).find_or_create_by(name: resource[:name])
-
-    Permission.create(user_group: userg, resource: res, access_full: true, access_list: true, access_create: true, access_update: true, access_delete: true)
-  end  
 end
 
-# Create Administrator group and add one user to that group
+# ==========  Create Resource ========== 
+[ 
+  {name: 'User', note: 'Controlling users'},
+  {name: 'Warehouse', note: 'Controlling warehouses'}
+].each do |resource|
+  res = Resource.create_with(note: resource[:note]).find_or_create_by(name: resource[:name])
+end  
+
+# ========== Create a User ========== 
 user_group = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
 user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", role: "admin").find_or_create_by(email: "admin@cltag.com")
 
 user_group.users << user
 
-[
-  {name: 'admin', note: 'Controlling all modules', label: 'Admin'},
-  {name: 'top_manager', note: 'Can read all modules and download all reports', label: 'TOP Manager'},
-  {name: 'officer', note: 'Can input all modules', label: 'Officer'},
-  {name: 'it', note: 'Can edit all modules', label: 'IT'}
-].each do |role|
-  Role.create_with(note: role[:note], label: role[:label]).find_or_create_by(name: role[:name])
+# ========== Create Objects from UserGroup and Resource ========== 
+user_group_admin = UserGroup.find_by_name("Administrator")
+user_group_manager = UserGroup.find_by_name("Manager")
+user_group_project_leader = UserGroup.find_by_name("Project Leader")
+user_group_data_entry = UserGroup.find_by_name("Data Entry")
+
+resource_user = Resource.find_by_name("User")
+resource_warehouse = Resource.find_by_name("Warehouse")
+
+# ========== Create Permissions ========== 
+[ 
+  {name: "Admin Permission on User", user_group_id: user_group_admin.uuid, resource_id:  resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Admin Permission on warehouse", user_group_id: user_group_admin.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Manager Permission on User", user_group_id: user_group_manager.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Manager Permission on warehouse", user_group_id: user_group_manager.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Project leader Permission on User", user_group_id: user_group_project_leader.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Project leader Permission on warehouse", user_group_id: user_group_project_leader.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Data Entry Permission on User", user_group_id: user_group_data_entry.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+  {name: "Data Entry Permission on warehouse", user_group_id: user_group_data_entry.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
+].each do |permission|
+  Permission.create_with(user_group_id: permission[:user_group_id], resource_id: permission[:resource_id], access_full: permission[:access_full], access_list: permission[:access_list], access_create: permission[:access_create], access_update: permission[:access_update], access_delete: permission[:access_delete], active: permission[:active]).find_or_create_by(name: permission[:name])
 end
 
+# ========== Create Projects ========== 
 [ 
   { name: 'Jackfruit' },
   { name: 'Coconut' }
@@ -69,6 +73,7 @@ end
   Project.find_or_create_by(name: project[:name])
 end
 
+# ========== Create Activity types ========== 
 [ 
   { name: 'Tilling', note: 'Tilling trees', label: 'Tilling' },
   { name: 'Planting', note: 'Planting trees', label: 'Planting' },
@@ -78,23 +83,7 @@ end
   ActivityType.create_with(note: activity_type[:note], label: activity_type[:label]).find_or_create_by(name: activity_type[:name])
 end
 
-[ 
-  { name: 'Stage 1: Nursery (age:1-4month)', period: '4 months', note: 'Phase 1: Seed (Nursery)', fruit_type: 'coconut' },
-  { name: 'Stage 2: Planting', period: '45-50 days', note: 'Phase 1: Seed (Nursery)', fruit_type: 'coconut' },
-  { name: 'Stage 3: Baby Coconut (age: 1-2 years)', period: '2 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'coconut' },
-  { name: 'Stage 4: Adult Coconut (Developing age: 3-4 years)', period: '2 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'coconut' },
-  { name: 'Stage 5: First Production (age: 5-7 years)', period: '3 years', note: 'Phase3: Production & Harvesting', fruit_type: 'coconut' },
-  { name: 'Stage 6: Full Production (age: 8-15 years)', period: '8 years', note: 'Phase3: Production & Harvesting', fruit_type: 'coconut' },
-  { name: 'Stage 7: Decreasing Production (age: 16-20 years)', period: '5 years', note: 'Phase3: Production & Harvesting', fruit_type: 'coconut' },
-  { name: 'Seed Amount', period: 'unknown', note: 'Phase 1: Seed Grafting', fruit_type: 'jackfruit' },
-  { name: 'Stage 1: Age 1-3 years', period: '1-3 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'jackfruit'},
-  { name: 'Stage 2: Age > 4 years', period: 'more than 4 years', note: 'Phase 2: Plant Growing & Protection', fruit_type: 'jackfruit'},
-  { name: 'Stage 3: Age 5-15 years', period: '5-15 years', note: 'Phase 3: Harvesting', fruit_type: 'jackfruit'}
-  
-].each do |stage|
-  Stage.create_with(period: stage[:period], note: stage[:note], fruit_type: stage[:fruit_type]).find_or_create_by(name: stage[:name])
-end
-
+# ========== Create Data for Pie Chart ========== 
 [
   {name: 'Fertilizer', amount: 3000},
   {name: 'Small Tree', amount: 5000},
@@ -104,6 +93,7 @@ end
   TestingChart.create_with(amount: testing_chart[:amount]).find_or_create_by(name: testing_chart[:name])
 end
 
+# ========== Create Data for Bar Chart ========== 
 [
   {element: 'January', amount: 40.49, bar_color: 'silver'},
   {element: 'February', amount: 20.49, bar_color: 'gold'},
@@ -113,48 +103,58 @@ end
   TestingWithBarChart.create_with(bar_color: bar_chart[:bar_color] ,amount: bar_chart[:amount]).find_or_create_by(element: bar_chart[:element])
 end
 
+# ========== Create Warehouse Types ========== 
 [
-  {name: 'Central Warehouse', description: 'It is the big warehouse.'},
-  {name: 'Project Warehouse', description: 'It is the warehouse that is near the farms.'},
-  {name: 'Finished Goods Warehouse', description: 'It is the warehouse that stock all yields harvest from the farms.'}
+  {name: 'Central Warehouse', note: 'It is the big warehouse.'},
+  {name: 'Project Warehouse', note: 'It is the warehouse that is near the farms.'},
+  {name: 'Finished Goods Warehouse', note: 'It is the warehouse that stock all yields harvest from the farms.'},
+  {name: 'Nursery Warehouse', note: 'It is the plant nursery warehouse.'}
 ].each do |warehouse_type|
-  WarehouseType.create_with(description: warehouse_type[:description]).find_or_create_by(name: warehouse_type[:name])
+  WarehouseType.create_with(note: warehouse_type[:note]).find_or_create_by(name: warehouse_type[:name])
 end
 
+# ========== Create Transaction Statuses ========== 
 [
-  {name: 'Stock-in'},
-  {name: 'Stock-out'},
-  {name: 'Adjustment'}
+  {name: 'Stock-in', note: 'Import into stock.'},
+  {name: 'Stock-out', note: 'Export from stock.'},
+  {name: 'Adjustment', note: 'Adjustment note'}
 ].each do |transaction_status|
-  TransactionStatus.find_or_create_by(name: transaction_status[:name])
+  TransactionStatus.create_with(note: transaction_status[:note]).find_or_create_by(name: transaction_status[:name])
 end
 
+# ========== Create Planting Projects ========== 
 [
-  {project_name: 'Coconut'},
-  {project_name: 'Jackfruit'},
-  {project_name: 'Mango'},
-  {project_name: 'Lemon'}
+  {name: 'Coconut'},
+  {name: 'Jackfruit'},
+  {name: 'Mango'},
+  {name: 'Lemon'}
 ].each do |planting_project|
-  PlantingProject.find_or_create_by(project_name: planting_project[:project_name])
+  PlantingProject.find_or_create_by(name: planting_project[:name])
 end
 
+# ========== Create Unit of Measurement ========== 
+UnitOfMeasurement.delete_all
 [
-  {name: 'Tree'},
-  {name: 'Kg'},
-  {name: 'Ml'},
-  {name: 'Litre'}
+  {name: 'Unit', note: 'Unit of measurement for tree, amount of fruit,...'},
+  {name: 'Kilogram', note: 'Unit of measurement for kilogram.'},
+  {name: 'Gram', note: 'Unit of measurement for gram.'},
+  {name: 'Litre', note: 'Unit of measurement for litre.'},
+  {name: 'Millilitre', note: 'Unit of measurement for mili-litre.'}
 ].each do |unit_measure|
-  UnitOfMeasurement.find_or_create_by(name: unit_measure[:name])
+  UnitOfMeasurement.create_with(note: unit_measure[:note]).find_or_create_by(name: unit_measure[:name])
 end
 
+# ========== Create Material Categories ========== 
 [
-  {name: 'FERTILIZERS'},
-  {name: 'PEST & INSECTICIDES'},
-  {name: 'FUNGICIDE'},
-  {name: 'HERBICIDE'}
+  {name: 'FERTILIZERS', note: 'Fertilizer note'},
+  {name: 'PEST & INSECTICIDES', note: 'Pest and Insecticide note'},
+  {name: 'FUNGICIDE', note: 'Fungicide note'},
+  {name: 'HERBICIDE', note: 'Herbicide note'}
 ].each do |material_category|
-  MaterialCategory.find_or_create_by(name: material_category[:name])
+  MaterialCategory.create_with(note: material_category[:note]).find_or_create_by(name: material_category[:name])
 end
+# ========== Create Farms ==========
+Farm.delete_all
 
 [
   {name: 'Oroung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.333019, 104.864575'},
@@ -164,12 +164,14 @@ end
 ].each do |farm|
   Farm.create_with(location: farm[:location], latlong_farm: farm[:latlong_farm]).find_or_create_by(name: farm[:name])
 end
+# ========== Create Blocks for Chamkar Doung Farm ==========
+Block.delete_all
 
 coconut_farm = Farm.find_by_name('Chamkar Doung Farm')
 oroung_farm= Farm.find_by_name('Oroung Farm')
-coconut_planting_project=PlantingProject.find_by_project_name('Coconut')
-jackfruit_planting_project=PlantingProject.find_by_project_name('Jackfruit')
-
+coconut_planting_project=PlantingProject.find_by_name('Coconut')
+jackfruit_planting_project=PlantingProject.find_by_name('Jackfruit')
+# ========== Create Blocks for Oroung Farm ========== 
 [
   {name: 'Block A1', surface: 4, shape_lat_long: '[[11.34228844248775,104.8173368444448],[11.34222380000888,104.8171604557845],[11.3419655618982,104.8170819933822],[11.34197186349495,104.8169376349896],[11.34152765634626,104.8168564506022],[11.34152565378016,104.8161860309814],[11.34072187781601,104.8161618977276],[11.34073587728222,104.8166945670797],[11.34083425409179,104.8171092601984],[11.34104359934694,104.8174874094787],[11.34114577172203,104.8181746246259],[11.34214745471061,104.8184887833901],[11.34225258745473,104.8181561580298],[11.34287072363673,104.8182904066128],[11.34309297859914,104.8175375089032],[11.34228844248775,104.8173368444448]]', location_lat_long: '11.341644, 104.817429', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 150},
   {name: 'Block A2', surface: 4, shape_lat_long: '[[11.34120932973546,104.8183803286982],[11.34112138334435,104.8184150176988],[11.34092905012725,104.8183922652106],[11.34081065229375,104.8186381489472],[11.34173900706889,104.8191704886344],[11.34189976470813,104.8186003149401],[11.34120932973546,104.8183803286982]]', location_lat_long: '11.341650, 104.818817', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 150},
@@ -179,7 +181,7 @@ jackfruit_planting_project=PlantingProject.find_by_project_name('Jackfruit')
   {name: 'Block C1', surface: 4, shape_lat_long: '[[11.34024659610298,104.8271098186776],[11.34060069812196,104.8268441183729],[11.33498493139846,104.8223869773665],[11.33533785551793,104.8213092938915],[11.33489589388238,104.8211246009857],[11.33447832386705,104.822553696527],[11.34024659610298,104.8271098186776]]', location_lat_long: '11.337009, 104.824281', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 150},
   {name: 'Block C1', surface: 4, shape_lat_long: '[[11.34024659610298,104.8271098186776],[11.34060069812196,104.8268441183729],[11.33498493139846,104.8223869773665],[11.33533785551793,104.8213092938915],[11.33489589388238,104.8211246009857],[11.33447832386705,104.822553696527],[11.34024659610298,104.8271098186776]]', location_lat_long: '11.337009, 104.824281', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 150}
 ].each do |block|
-  Block.create_with(surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount]).find_or_create_by(name: block[:name])
+  Block.create(name: block[:name], surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount])
 end
 [
   {name: 'Block A1', surface: 4, shape_lat_long: '[[11.33311439628769,104.863074517573],[11.33303836909471,104.8645267817349],[11.33419647990755,104.8649847944117],[11.33421414894168,104.8637520663834],[11.33311439628769,104.863074517573]]', location_lat_long: '11.333647, 104.864061', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 150},
@@ -191,5 +193,43 @@ end
   {name: 'Block C2', surface: 4, shape_lat_long: '[[11.3322750761453,104.8693063700752],[11.33222632314401,104.8708299466653],[11.33250555605274,104.8708585729013],[11.33257165108565,104.8693194724903],[11.3322750761453,104.8693063700752]]', location_lat_long: '11.332514, 104.870210', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 150},
   {name: 'Block C3', surface: 4, shape_lat_long: '[[11.33327767462742,104.8714486012229],[11.33326530072757,104.8722167315754],[11.33389699046733,104.8722127064837],[11.33389957250136,104.871824944219],[11.33373153189838,104.8717984056386],[11.33375157922602,104.8714607584913],[11.33327767462742,104.8714486012229]]', location_lat_long: '11.333539, 104.871830', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 150}
 ].each do |block|
-  Block.create_with(surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount]).find_or_create_by(name: block[:name])
+  Block.create(name: block[:name], surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount])
 end
+
+# ========== Production Status ==========
+[
+  {name: 'Seed Replace', note: 'For replacing a new tree to the same pit', active: true},
+  {name: 'New Planting', note: 'For growing a new tree in a new pit', active: true},
+  {name: 'Blossoming Tree', note: 'For a tree that is blossoming', active: true}
+].each do |production_status|
+  ProductionStatus.create_with(note: production_status[:note]).find_or_create_by(name: production_status[:name])
+end
+
+# ========== Position ==========
+[
+  {name: 'Manager', note: 'Controlling a labor in field', active: true},
+  {name: 'Worker', note: 'Doing farming in the field', active: true}
+].each do |position|
+  Position.create_with(note: position[:note]).find_or_create_by(name: position[:name])
+end
+
+# ========== Labor ==========
+position = Position.create_with(note: 'Controlling a labor in field', active: true).find_or_create_by(name: 'Manager')
+labor = Labor.create_with(gender: "M", phone: "012 785 058", email: "teopaocheak@gmail.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true).find_or_create_by(name: "Teo Paocheak")
+position.labors << labor
+
+# ========== Phase ==========
+[
+  {name: 'Phase 1: Nursery Seed', note: 'The first phase of planting', active: true},
+  {name: 'Phase 2: Plant Growing & Protection', note: 'The second phase of planting', active: true}
+].each do |phase|
+  Phase.create_with(note: phase[:note]).find_or_create_by(name: phase[:name])
+end
+
+# ========== Production Stage ==========
+planting_project = PlantingProject.create_with(note: 'For project Coconut').find_or_create_by(name: 'Coconut')
+phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 1: Nursery Seed')
+production_stage = ProductionStage.create_with(planting_project_id: planting_project.uuid, phase_id: phase.uuid, note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 1-2 Years')
+
+# planting_project.production_stages << production_stage
+# phase.production_stages << production_stage

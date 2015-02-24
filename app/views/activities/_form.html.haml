@@ -1,10 +1,11 @@
 = simple_form_for @activity, html: { class: "form-horizontal" } do |f|
   %input#current-date{type: "hidden", name: "current-date"}
   .form-group
-    %label.col-xs-2.control-label.text-left Activity
+    %label.col-xs-2.control-label Activity
     .col-xs-5
-      = f.input :activity_type_uuid, label: false, collection: @activity_types, input_html: {class: "form-control activity-title"}, include_blank: true, label_method: :name
+      = f.input :activity_type_uuid, label: false, collection: @activity_types, input_html: {class: "form-control"}, include_blank: true, label_method: :name
       %span.help-block= f.error :activity_type_uuid
+      / activity-title
   .form-group
     %label.col-xs-2.control-label{for: 'activity_field_uuid'} Choose a field
     .col-xs-5
