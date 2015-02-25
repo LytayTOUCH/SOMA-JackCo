@@ -1,13 +1,13 @@
-.col-sm-4
+.col-sm-4{id: "farm_#{farm.uuid}"}
   .box-farm-info
     .page-header.custom-page-header
       %h4.custom-h4
         = link_to farm.name.camelize, farm_path(farm), :class => "text-color-green"
         .pull-right
           = link_to "#", :class => "icon-orangish" do
-            .fa.fa-pencil.fa-lg
-          = link_to farm_path(farm), method: :delete, :class => "icon-red", data: { confirm: 'Are you sure to delete this?', ok: 'Delete', cancel: 'Back'} do
-            .fa.fa-trash-o
+            .fa.fa-pencil
+          = link_to farm_path(farm), remote:true, method: :delete, :class => "icon-red", data: { confirm: 'Are you sure to delete this?', ok: 'Delete', cancel: 'Back'} do
+            .fa.fa-trash
     .row
       .col-lg-12.map-info
         = link_to farm_path(farm) do
