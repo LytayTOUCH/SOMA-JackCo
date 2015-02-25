@@ -41,8 +41,8 @@ class WarehousesController < ApplicationController
         redirect_to warehouses_path
       else
         flash[:notice] = "Warehouse can't be saved"
-        redirect_to :back
-        # render 'new'
+        # redirect_to :back
+        render 'new'
       end
     rescue Exception => e
       puts e
@@ -69,8 +69,8 @@ class WarehousesController < ApplicationController
         redirect_to warehouses_path
       else
         flash[:notice] = "Warehouse can't update"
-        redirect_to :back
-        # render 'edit'
+        # redirect_to :back
+        render 'edit'
       end
     rescue Exception => e
       puts e
