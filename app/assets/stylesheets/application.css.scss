@@ -3,6 +3,14 @@
  *= require_self
  */
 
+.err_msg {
+  display:none
+}
+
+.help-block {
+  color: #EC2121;
+}
+
 #delete-confirm.modal-dialog-center {
   width: 100%;
 }

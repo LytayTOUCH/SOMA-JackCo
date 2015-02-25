@@ -2,17 +2,15 @@
   .form-group
     %label.col-xs-2.control-label Name
     .col-xs-5
-      = f.input :name, label: false, input_html: { class: "form-control" }
+      = f.input :name, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
       %span.help-block= f.error :name
   .form-group
     %label.col-xs-2.control-label Note
     .col-xs-5
       = f.input :note, label: false, input_html: { class: "form-control" }
       %span.help-block= f.error :note
-
   - @resources.each do |resource|
     = check_box_tag "user_group[resource_ids][]", resource.id, @user_group.resources.include?(resource), checked: true, style: 'visibility: hidden'
-          
   .form-group
     .col-xs-7
       .pull-right
