@@ -38,7 +38,8 @@ class MaterialsController < ApplicationController
         redirect_to materials_path
       else
         flash[:notice] = "Material can't save"
-        redirect_to :back
+        # redirect_to :back
+        render 'new'
       end
     rescue Exception => e
       puts e
@@ -66,7 +67,8 @@ class MaterialsController < ApplicationController
         redirect_to materials_path
       else
         flash[:notice] = "Material can't update"
-        redirect_to :back
+        # redirect_to :back
+        render 'edit'
       end
     rescue Exception => e
       puts e

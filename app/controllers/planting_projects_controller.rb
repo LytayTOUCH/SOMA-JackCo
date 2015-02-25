@@ -31,8 +31,8 @@ class PlantingProjectsController < ApplicationController
         redirect_to planting_projects_path
       else
         flash[:notice] = "Planting Project can't save"
-        redirect_to :back
-        # render 'new'
+        # redirect_to :back
+        render 'new'
       end
     rescue Exception => e
       puts e
@@ -53,8 +53,8 @@ class PlantingProjectsController < ApplicationController
         redirect_to planting_projects_path
       else
         flash[:notice] = "Planting Project can't update"
-        redirect_to :back
-        # render 'edit'
+        # redirect_to :back
+        render 'edit'
       end
     rescue Exception => e
       puts e
