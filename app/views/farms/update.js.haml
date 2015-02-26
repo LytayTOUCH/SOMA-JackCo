@@ -3,4 +3,5 @@
     $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
 - else
   $('#myModalAdd').modal('hide');
-  $('.farm-baord').append("#{escape_javascript(render 'farm_board', farm: @farm)}");
+  $("#farm_#{@farm.uuid}").empty();
+  $('#farm_#{@farm.uuid}').html("#{escape_javascript(render 'farm_board', farm: @farm)}");

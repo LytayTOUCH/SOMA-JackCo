@@ -1,4 +1,5 @@
 class FarmsController < ApplicationController
+  before_action :set_farm, only: [:show, :edit, :update, :destroy]
   add_breadcrumb "All Farms", :farms_path
   
   def index
@@ -14,18 +15,20 @@ class FarmsController < ApplicationController
   def create
     @farm = Farm.new(farm_params)
     if @farm.save
-      @notice = @farm.errors.any?
-    else
-      @notice = @farm.errors.any?
+      @farm
     end
   end
   
   def edit
-    
+  end
+
+  def update
+    if @farm.update(farm_params)
+      @farm
+    end
   end
   
   def show
-    @farm=Farm.find(params[:id])
     add_breadcrumb @farm.name, :farm_path
     set_title(@farm.name)
   end
@@ -33,14 +36,16 @@ class FarmsController < ApplicationController
   def destroy
     @farm = Farm.find(params[:id])
     @farm.destroy
-    # redirect_to farms_path
   end
 
   def set_title(name='')
     content_for :title, name
   end
 
-  private 
+  private
+    def set_farm
+      @farm = Farm.find(params[:id])
+    end
     def farm_params
       params.require(:farm).permit(:name, :location, :latlong_farm)
     end
