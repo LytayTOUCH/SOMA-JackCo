@@ -2,8 +2,13 @@
   .form-group
     %label.col-xs-2.control-label Name
     .col-xs-5
-      = f.input :name, label: false, input_html: { class: "form-control" }
-      %span.help-block= f.error :name
+      = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-2.control-label.text-left Production Stage *
+    .col-xs-5
+      = f.association :production_stage, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :stage_id      
   .form-group
     %label.col-xs-2.control-label Note
     .col-xs-5

@@ -196,15 +196,6 @@ end
   Block.create(name: block[:name], surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount])
 end
 
-# ========== Production Status ==========
-[
-  {name: 'Seed Replace', note: 'For replacing a new tree to the same pit', active: true},
-  {name: 'New Planting', note: 'For growing a new tree in a new pit', active: true},
-  {name: 'Blossoming Tree', note: 'For a tree that is blossoming', active: true}
-].each do |production_status|
-  ProductionStatus.create_with(note: production_status[:note]).find_or_create_by(name: production_status[:name])
-end
-
 # ========== Position ==========
 [
   {name: 'Manager', note: 'Controlling a labor in field', active: true},
@@ -227,9 +218,10 @@ position.labors << labor
 end
 
 # ========== Production Stage ==========
-planting_project = PlantingProject.create_with(note: 'For project Coconut').find_or_create_by(name: 'Coconut')
 phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 1: Nursery Seed')
-production_stage = ProductionStage.create_with(planting_project_id: planting_project.uuid, phase_id: phase.uuid, note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 1-2 Years')
+production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 1-2 Years')
 
-# planting_project.production_stages << production_stage
-# phase.production_stages << production_stage
+phase.production_stages << production_stage
+
+# ========== Production Status ==========
+ProductionStatus.create_with(name: 'New Planting', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')

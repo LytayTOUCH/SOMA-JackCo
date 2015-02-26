@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user_groups = UserGroup.where(active: true)
   end
 
   def create
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
     puts "================================"
     puts params[:id]
     @user = User.find(params[:id])
-    @user_groups = UserGroup.all
+    @user_groups = UserGroup.where(active: true)
     add_breadcrumb @user.email, :edit_user_path
   end
 

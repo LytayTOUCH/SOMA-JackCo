@@ -21,7 +21,8 @@
   .form-group
     %label.col-xs-2.control-label User Group *
     .col-xs-5   
-      = f.association :user_group, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+      / = f.association :user_group, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+      = f.input :user_group_id, label: false, collection: @user_groups, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :user_group_id   
   .form-group
     %label.col-xs-2.control-label.text-left Active
