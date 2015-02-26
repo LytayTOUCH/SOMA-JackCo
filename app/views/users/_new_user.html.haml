@@ -1,12 +1,12 @@
 = simple_form_for @user, html: { class: "form-horizontal" } do |f|
   / = f.error_notification
   .form-group
-    %label.col-xs-2.control-label.text-left Email
+    %label.col-xs-2.control-label.text-left Email *
     .col-xs-5
       = f.input :email, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" } 
     %span.help-block= f.error :email
   .form-group
-    %label.col-xs-2.control-label.text-left Password
+    %label.col-xs-2.control-label.text-left Password *
     .col-xs-5
       - if @validatable
         %em
@@ -14,12 +14,12 @@
       = f.input :password, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, placeholder: 'Password must be at least 8 characters'  
     %span.help-block= f.error :password
   .form-group
-    %label.col-xs-2.control-label.text-left Confirm Password
+    %label.col-xs-2.control-label.text-left Confirm Password *
     .col-xs-5
       = f.input :password_confirmation, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, placeholder: 'Password must be at least 8 characters'
     %span.help-block= f.error :password_confirmation    
   .form-group
-    %label.col-xs-2.control-label User Group
+    %label.col-xs-2.control-label User Group *
     .col-xs-5   
       = f.association :user_group, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :user_group_id   
