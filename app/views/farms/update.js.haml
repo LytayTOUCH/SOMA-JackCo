@@ -4,4 +4,5 @@
 - else
   $('#myModalAdd').modal('hide');
   $("#farm_#{@farm.uuid}").empty();
-  $('#farm_#{@farm.uuid}').html("#{escape_javascript(render 'farm_board', farm: @farm)}");
+  $('#farm_#{@farm.uuid}').after("#{escape_javascript(render 'farm_board', farm: @farm)}").first().remove();
+  $('#nav_farm_#{@farm.uuid}').after("#{escape_javascript(render 'nav_farm', farm: @farm)}").first().remove();
