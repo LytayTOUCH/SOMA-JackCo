@@ -30,6 +30,7 @@
           - if can? :update, coconut
             = link_to "Edit", edit_coconut_path(coconut)
           = '|'  
-          = link_to "Show", coconut_path(coconut)
+          - if can? :read, coconut
+            = link_to "Show", coconut_path(coconut)
 .pull-right
   = paginate @coconuts

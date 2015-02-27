@@ -1,4 +1,5 @@
 class FarmsController < ApplicationController
+  load_and_authorize_resource except: :create
   add_breadcrumb "All Farms", :farms_path
   
   def index

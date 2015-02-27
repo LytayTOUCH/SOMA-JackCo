@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
   # before_filter :load_permissions
 
   add_breadcrumb "All Roles", :roles_path

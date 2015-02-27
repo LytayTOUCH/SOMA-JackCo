@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     begin
       @user = User.new
 
-      if params[:user] and params[:user][:name] and !params[:user][:name].nil?
+      if params[:user] and params[:user][:email] and !params[:user][:email].nil?
         @users = User.find_by_email(params[:user][:email]).page(params[:page]).per(5)
       else
         @users = User.page(params[:page]).per(5).order("email ASC")

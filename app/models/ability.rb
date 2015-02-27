@@ -9,7 +9,7 @@ class Ability
     else
       can [:create, :read], :all if user.user_group.name == "Data Entry"
       can :read, :all if user.user_group.name == "Project Leader"
-      can :read, :all
+      can :read, [PlantingProject] if user.user_group.name = "Manager"
     end
   end  
 

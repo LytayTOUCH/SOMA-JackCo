@@ -1,4 +1,5 @@
 class FieldsController < ApplicationController
+  load_and_authorize_resource except: :create
   before_filter :set_title
   respond_to :html, :js
 
