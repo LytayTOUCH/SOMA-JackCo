@@ -69,13 +69,6 @@ Rails.application.routes.draw do
   resources :warehouses
   resources :user_groups  
   
-  resources :resources do 
-    get 'permissions'
-    post 'permissions'
-  end  
-
-  resources :permissions
-  
   # patch 'permissions/:id/update', :to => 'permissions#update'
   # get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
 

@@ -32,6 +32,7 @@
           - if can? :update, jack_fruit
             = link_to "Edit", edit_jack_fruit_path(jack_fruit)
           = '|'
-          = link_to "Show", jack_fruit_path(jack_fruit)
+          - if can? :read, jack_fruit
+            = link_to "Show", jack_fruit_path(jack_fruit)
 .pull-right
   = paginate @jack_fruits

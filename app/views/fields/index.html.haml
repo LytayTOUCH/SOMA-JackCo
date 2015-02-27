@@ -2,6 +2,7 @@
   %h1
     = "Fields"
     .pull-right
-      = link_to "New Field", new_field_path, class: "btn btn-primary"
+      - if can? :create, Field
+        = link_to "New Field", new_field_path, class: "btn btn-primary"
   %hr
   = render 'list'

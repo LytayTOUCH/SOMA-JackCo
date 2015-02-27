@@ -11,9 +11,9 @@
 # ========== Create Roles ========== 
 [
   {name: 'admin', note: 'Controlling all modules', label: 'Admin'},
-  {name: 'top_manager', note: 'Can read all modules and download all reports', label: 'TOP Manager'},
-  {name: 'officer', note: 'Can input all modules', label: 'Officer'},
-  {name: 'it', note: 'Can edit all modules', label: 'IT'}
+  {name: 'manager', note: 'Can read all modules and download all reports', label: 'Manager'},
+  {name: 'project_leader', note: 'Can input all modules', label: 'Project Leader'},
+  {name: 'data_entry', note: 'Can edit all modules', label: 'Data Entry'}
 ].each do |role|
   Role.create_with(note: role[:note], label: role[:label]).find_or_create_by(name: role[:name])
 end
@@ -28,42 +28,11 @@ end
   userg = UserGroup.create_with(note: user_group[:note], active: user_group[:active]).find_or_create_by(name: user_group[:name])
 end
 
-# ==========  Create Resource ========== 
-[ 
-  {name: 'User', note: 'Controlling users'},
-  {name: 'Warehouse', note: 'Controlling warehouses'}
-].each do |resource|
-  res = Resource.create_with(note: resource[:note]).find_or_create_by(name: resource[:name])
-end  
-
 # ========== Create a User ========== 
 user_group = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
-user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", role: "admin").find_or_create_by(email: "admin@cltag.com")
+user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", user_group_id: user_group.uuid).find_or_create_by(email: "admin@cltag.com")
 
 user_group.users << user
-
-# ========== Create Objects from UserGroup and Resource ========== 
-user_group_admin = UserGroup.find_by_name("Administrator")
-user_group_manager = UserGroup.find_by_name("Manager")
-user_group_project_leader = UserGroup.find_by_name("Project Leader")
-user_group_data_entry = UserGroup.find_by_name("Data Entry")
-
-resource_user = Resource.find_by_name("User")
-resource_warehouse = Resource.find_by_name("Warehouse")
-
-# ========== Create Permissions ========== 
-[ 
-  {name: "Admin Permission on User", user_group_id: user_group_admin.uuid, resource_id:  resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
-  {name: "Admin Permission on warehouse", user_group_id: user_group_admin.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
-  {name: "Manager Permission on User", user_group_id: user_group_manager.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
-  {name: "Manager Permission on warehouse", user_group_id: user_group_manager.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
-  {name: "Project leader Permission on User", user_group_id: user_group_project_leader.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
-  {name: "Project leader Permission on warehouse", user_group_id: user_group_project_leader.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
-  {name: "Data Entry Permission on User", user_group_id: user_group_data_entry.uuid, resource_id: resource_user.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
-  {name: "Data Entry Permission on warehouse", user_group_id: user_group_data_entry.uuid, resource_id: resource_warehouse.uuid, access_full: false, access_list: false, access_create: false, access_update: false, access_delete: false, active: false},
-].each do |permission|
-  Permission.create_with(user_group_id: permission[:user_group_id], resource_id: permission[:resource_id], access_full: permission[:access_full], access_list: permission[:access_list], access_create: permission[:access_create], access_update: permission[:access_update], access_delete: permission[:access_delete], active: permission[:active]).find_or_create_by(name: permission[:name])
-end
 
 # ========== Create Projects ========== 
 [ 

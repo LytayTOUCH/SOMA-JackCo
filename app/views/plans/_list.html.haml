@@ -18,7 +18,7 @@
         %td= p.unit
         %td= p.year
         %td
-          - if can? :update, Plan
+          - if can? :update, p
             = link_to "Edit", edit_plan_path(p)          
             
 .pull-right

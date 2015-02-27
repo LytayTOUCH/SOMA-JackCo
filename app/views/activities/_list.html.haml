@@ -14,7 +14,8 @@
         - if can? :update, Activity
           = link_to "Edit", edit_activity_path(activity)
         = '|'
-        = link_to "Show", activity_path(activity)
+        - if can? :read, Activity
+          = link_to "Show", activity_path(activity)
 
 .pull-right
   = paginate @paginate_activities       

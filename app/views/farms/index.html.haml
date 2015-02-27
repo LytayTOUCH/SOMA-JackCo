@@ -1,7 +1,8 @@
 .page-header.custom-page-header
   %h3.custom-h3
     = 'All Farms Information'
-    = link_to '(+) Add farm', new_farm_path, :remote => true, class: 'btn btn-xs btn-primary'
+    - if can? :create, Farm
+      = link_to '(+) Add farm', new_farm_path, :remote => true, class: 'btn btn-xs btn-primary'
 .row.farm-baord{:style => "padding-left: 15px;margin:0px;"}
   - @farms.each do |farm|
     = render 'farm_board', farm: farm

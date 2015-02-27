@@ -19,16 +19,14 @@ class UserGroupsController < ApplicationController
 
   def new
     @user_group = UserGroup.new
-    @resources = Resource.all
   end
 
   def create   
     @user_group = UserGroup.new(user_group_params)
-    @user_group.resource_ids = params[:user_group][:resource_ids]
-
+    
     if @user_group.save
       flash[:notice] = "User Group type saved successfully"
-      redirect_to edit_permission_path(@user_group)
+      redirect_to user_groups_path(@user_group)
     else
       flash[:notice] = "User Group type can't save"
       # redirect_to :back
@@ -42,14 +40,11 @@ class UserGroupsController < ApplicationController
 
   def edit
     @user_group = UserGroup.find(params[:id])
-    @resources = Resource.all
-    @permission = Permission.new
     add_breadcrumb @user_group.name, :edit_user_group_path
   end
 
   def update
     @user_group = UserGroup.find(params[:id])
-    @user_group.resource_ids = params[:user_group][:resource_ids]
 
     if @user_group.update_attributes(user_group_params)
       flash[:notice] = "User Group updated"

@@ -16,7 +16,7 @@
         %td= material.supplier
         %td= material.note
         %td
-          - if can? :update, Material
+          - if can? :update, material
             = link_to "Edit", edit_material_path(material)
 .pull-right
   = paginate @materials

@@ -1,5 +1,0 @@
-= simple_form_for @resource, url: resources_path, method: :get, html: {novalidate: true, class: 'form-inline'} do |f|
-  .input-group.col-xs-5
-    = f.input :name, as: :string, label: false, input_html: {class: "form-control", placeholder: "Search by name"}
-    .input-group-btn
-      = f.submit :Search, class: "btn btn-default"

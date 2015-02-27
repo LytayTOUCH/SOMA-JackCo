@@ -18,38 +18,50 @@
           %span.caret
         %ul.dropdown-menu{"aria-labelledby" => "dLabel", :role => "menu"}
           %li
-            = navbar_link "Planting Project", planting_projects_path, "active"
+            - if can? :read, PlantingProject
+              = navbar_link "Planting Project", planting_projects_path, "active"
           %li
-            = navbar_link "Labor", labors_path, "active"
+            - if can? :read, Labor
+              = navbar_link "Labor", labors_path, "active"
           %li
-            = navbar_link "Position", positions_path, "active"
+            - if can? :read, Position
+              = navbar_link "Position", positions_path, "active"
           
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Production
             %ul.dropdown-menu
               %li
-                = navbar_link "Production Status", production_statuses_path, "active"
+                - if can? :read, Phase
+                  = navbar_link "Production Phase", phases_path, "active"
               %li
-                = navbar_link "Production Stage", production_stages_path, "active"  
+                - if can? :read, ProductionStage
+                  = navbar_link "Production Stage", production_stages_path, "active"    
               %li
-                = navbar_link "Production Phase", phases_path, "active"
+                - if can? :read, ProductionStatus
+                  = navbar_link "Production Status", production_statuses_path, "active"
 
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Inventory
             %ul.dropdown-menu
               %li
-                = navbar_link "Warehouses", warehouses_path, "active"
+                - if can? :read, Warehouse
+                  = navbar_link "Warehouses", warehouses_path, "active"
               %li
-                = navbar_link "Warehouse Type", warehouse_types_path, "active"
+                - if can? :read, WarehouseType
+                  = navbar_link "Warehouse Type", warehouse_types_path, "active"
               %li
-                = navbar_link "Transaction Status", transaction_status_index_path, "active"
+                - if can? :read, TransactionStatus
+                  = navbar_link "Transaction Status", transaction_status_index_path, "active"
               %li.divider
               %li
-                = navbar_link "Materials", materials_path, "active"
+                - if can? :read, Material
+                  = navbar_link "Materials", materials_path, "active"
               %li
-                = navbar_link "Material Category", material_categories_path, "active"
+                - if can? :read, MaterialCategory
+                  = navbar_link "Material Category", material_categories_path, "active"
               %li
-                = navbar_link "Unit of Measurement", unit_of_measurement_index_path, "active"
+                - if can? :read, UnitOfMeasurement
+                  = navbar_link "Unit of Measurement", unit_of_measurement_index_path, "active"
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %i.fa.fa-cog.fa-lg.icon-greenish
@@ -57,22 +69,21 @@
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
           %li
-            = navbar_link "Implement Type", implement_types_path, "active"
+            - if can? :read, ImplementType
+              = navbar_link "Implement Type", implement_types_path, "active"
           %li
-            = navbar_link "Supplier", suppliers_path, "active"
-          %li
-            = navbar_link "Labor", labors_path, "active"
-          %li
-            = link_to "Plant Types", dashboards_path
-          %li
-            = navbar_link "Warehouse Type", warehouse_types_path, "active"
+            - if can? :read, Supplier
+              = navbar_link "Supplier", suppliers_path, "active"
           %li.divider
           %li
-            = navbar_link "Plans", plans_path, "active"
+            - if can? :read, Plan
+              = navbar_link "Plans", plans_path, "active"
           %li
-            = navbar_link "Coconut", coconuts_path, "active"
+            - if can? :read, Coconut
+              = navbar_link "Coconut", coconuts_path, "active"
           %li
-            = navbar_link "Jackfruit", jack_fruits_path, "active"
+            - if can? :read, JackFruit
+              = navbar_link "Jackfruit", jack_fruits_path, "active"
             
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -81,11 +92,11 @@
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
           %li
-            = navbar_link "Users", users_path, "active"
+            - if can? :read, User
+              = navbar_link "Users", users_path, "active"
           %li
-            = navbar_link "User Groups", user_groups_path, "active"
-          %li
-            = navbar_link "Resources", resources_path, "active"
+            - if can? :read, UserGroup
+              = navbar_link "User Groups", user_groups_path, "active"
           
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -93,7 +104,9 @@
           Farms
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
-          %li= link_to 'All Farms', farms_path
+          %li
+            - if can? :read, Farm
+              = link_to 'All Farms', farms_path
           %li.divider
           = render "farm_names_navigator"
       %li.dropdown

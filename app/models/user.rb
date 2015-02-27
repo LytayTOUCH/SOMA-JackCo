@@ -13,4 +13,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable#, :confirmable
+
+  scope :find_by_email, -> email { where("email like ?", "%#{email}%") }       
 end

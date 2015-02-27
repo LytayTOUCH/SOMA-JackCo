@@ -7,10 +7,10 @@ class UsersController < ApplicationController
     begin
       @user = User.new
 
-      if params[:user] and params[:user][:name] and !params[:user][:name].nil?
-        @users = User.find_by_name(params[:user][:name]).page(params[:page]).per(5)
+      if params[:user] and params[:user][:email] and !params[:user][:email].nil?
+        @users = User.find_by_email(params[:user][:email]).page(params[:page]).per(5)
       else
-        @users = User.page(params[:page]).per(5).order("role ASC")
+        @users = User.page(params[:page]).per(5).order("email ASC")
       end
     rescue Exception => e
       puts e
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :role, :user_group_id, :active)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :user_group_id, :active)
   end
 
   private
