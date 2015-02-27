@@ -1,11 +1,10 @@
 class FarmsController < ApplicationController
   before_action :set_farm, only: [:show, :edit, :update, :destroy]
+  before_action :all_farm
   add_breadcrumb "All Farms", :farms_path
   
   def index
     set_title('All Farms')
-    @farms=Farm.all
-    @farm = Farm.new
   end
 
   def new
@@ -16,6 +15,7 @@ class FarmsController < ApplicationController
     @farm = Farm.new(farm_params)
     if @farm.save
       @farm
+      @farms_amount=@farms.count
     end
   end
   
@@ -34,8 +34,8 @@ class FarmsController < ApplicationController
   end
 
   def destroy
-    @farm = Farm.find(params[:id])
     @farm.destroy
+    @farms_amount=@farms.count
   end
 
   def set_title(name='')
@@ -43,6 +43,9 @@ class FarmsController < ApplicationController
   end
 
   private
+    def all_farm
+      @farms=Farm.all  
+    end
     def set_farm
       @farm = Farm.find(params[:id])
     end

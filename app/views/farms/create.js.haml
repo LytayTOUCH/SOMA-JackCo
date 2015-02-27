@@ -4,3 +4,6 @@
 - else
   $('#myModalAdd').modal('hide');
   $('.farm-baord').append("#{escape_javascript(render 'farm_board', farm: @farm)}");
+  $(".nav_trigger").append("#{escape_javascript(render 'nav_farm', farm: @farm)}");
+  $(".farm_count").html("#{@farms_amount}");
+  
