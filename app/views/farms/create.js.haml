@@ -1,7 +1,9 @@
-- if @notice
-    $(".msg-farm-name").addClass("alert custom-alert-msg").html("#{escape_javascript(@farm.errors.full_messages[0])}");
-    $(".msg-farm-location-name").addClass("alert custom-alert-msg").html("#{escape_javascript(@farm.errors.full_messages[1])}");
+- if @farm.errors.any?
+  - @farm.errors.messages.each do |key, msg|
+    $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
 - else
-    $("#notice").html("#{escape_javascript("Successfully Created!")}");
-    $('#myModalAdd').modal('hide');
-    $('.farm-baord').append("#{escape_javascript(render 'farm_board', farm: @farm)}");
+  $('#myModalAdd').modal('hide');
+  $('.farm-baord').append("#{escape_javascript(render 'farm_board', farm: @farm)}");
+  $(".nav_trigger").append("#{escape_javascript(render 'nav_farm', farm: @farm)}");
+  $(".farm_count").html("#{@farms_amount}");
+  

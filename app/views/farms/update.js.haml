@@ -1,0 +1,8 @@
+- if @farm.errors.any?
+  - @farm.errors.messages.each do |key, msg|
+    $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
+- else
+  $('#myModalAdd').modal('hide');
+  $("#farm_#{@farm.uuid}").empty();
+  $('#farm_#{@farm.uuid}').after("#{escape_javascript(render 'farm_board', farm: @farm)}").first().remove();
+  $('#nav_farm_#{@farm.uuid}').after("#{escape_javascript(render 'nav_farm', farm: @farm)}").first().remove();
