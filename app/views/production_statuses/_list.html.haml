@@ -1,13 +1,15 @@
 %table.table
   %thead
     %tr
-      %th.col-md-4= "Name"
-      %th.col-md-4= "Note"
+      %th.col-md-3= "Name"
+      %th.col-md-3= "Production Stage"
+      %th.col-md-3= "Note"
       %th.col-md-2= "Active"
-      %th.col-md-2= "Action"
+      %th.col-md-1= "Action"
   - @production_statuses.each do |production_status|
     %tr
       %td= production_status.name
+      %td= production_status.production_stage.name
       %td= production_status.note
       %td
         = form_for(production_status) do |f|

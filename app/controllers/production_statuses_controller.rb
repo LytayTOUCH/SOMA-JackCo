@@ -29,12 +29,13 @@ class ProductionStatusesController < ApplicationController
     begin
       @production_status = ProductionStatus.new(production_status_params)
 
-      if @production_status.save!
+      if @production_status.save
         flash[:notice] = "Production Status type saved successfully"
         redirect_to production_statuses_path
       else
-        flash[:notice] = "Production Status type can't save"
-        redirect_to :back
+        # flash[:notice] = "Production Status type can't save"
+        # redirect_to :back
+        render 'new'
       end
     rescue Exception => e
       puts e
@@ -54,20 +55,21 @@ class ProductionStatusesController < ApplicationController
     begin
       @production_status = ProductionStatus.find(params[:id])
 
-      if @production_status.update_attributes!(production_status_params)
+      if @production_status.update_attributes(production_status_params)
         flash[:notice] = "ProductionStatus updated"
         redirect_to production_statuses_path
       else
-        flash[:notice] = "ProductionStatus can't update"
-        redirect_to :back
+        # flash[:notice] = "ProductionStatus can't update"
+        # redirect_to :back
+        render 'edit'
       end
     rescue Exception => e
       puts e
     end
   end
-
+ 
   private
   def production_status_params
-    params.require(:production_status).permit(:name, :note, :active)
+    params.require(:production_status).permit(:name, :stage_id, :note, :active)
   end
 end

@@ -2,15 +2,13 @@
   %thead
     %tr
       %th.col-md-2= "Name"
-      %th.col-md-1= "Project Type"
       %th.col-md-3= "Phase"
-      %th.col-md-3= "Note"
+      %th.col-md-4= "Note"
       %th.col-md-2= "Active"
       %th.col-md-1= "Action"
   - @production_stages.each do |production_stage|
     %tr
       %td= production_stage.name
-      %td= production_stage.planting_project.name
       %td= production_stage.phase.name
       %td= production_stage.note
       %td

@@ -24,17 +24,19 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user_groups = UserGroup.where(active: true)
   end
 
   def create
     @user = User.new(user_params)
     
-    if @user.save!
+    if @user.save
       flash[:notice] = "User has been created successfully"
       redirect_to users_path
     else
       flash[:notice] = "User can't be saved"
-      redirect_to :back
+      # redirect_to :back
+      render 'new'
     end
   end
 
@@ -46,11 +48,12 @@ class UsersController < ApplicationController
   def update_profile
     @user_account = User.find(params[:id])
 
-    if @user_account.update_attributes!(account_update_params)
+    if @user_account.update_attributes(account_update_params)
       flash[:notice] = "User updated"
       redirect_to users_path
     else
-      redirect_to :back
+      # redirect_to :back
+      render 'edit'
     end
   end
 
@@ -58,18 +61,19 @@ class UsersController < ApplicationController
     puts "================================"
     puts params[:id]
     @user = User.find(params[:id])
-    @user_groups = UserGroup.all
+    @user_groups = UserGroup.where(active: true)
     add_breadcrumb @user.email, :edit_user_path
   end
 
   def update
     @user = User.find(params[:id])
     
-    if @user.update_attributes!(user_params)
+    if @user.update_attributes(user_params)
       flash[:notice] = "User updated"
       redirect_to users_path
     else
-      redirect_to :back
+      # redirect_to :back
+      render 'edit'
     end
   end
 

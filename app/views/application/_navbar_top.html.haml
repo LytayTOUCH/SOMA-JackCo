@@ -20,15 +20,20 @@
           %li
             = navbar_link "Planting Project", planting_projects_path, "active"
           %li
-            = navbar_link "Production Status", production_statuses_path, "active"
-          %li
-            = navbar_link "Production Stage", production_stages_path, "active"
-          %li
             = navbar_link "Labor", labors_path, "active"
           %li
             = navbar_link "Position", positions_path, "active"
-          %li
-            = navbar_link "Phase", phases_path, "active"    
+          
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Production
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Production Status", production_statuses_path, "active"
+              %li
+                = navbar_link "Production Stage", production_stages_path, "active"  
+              %li
+                = navbar_link "Production Phase", phases_path, "active"
+
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Inventory
             %ul.dropdown-menu

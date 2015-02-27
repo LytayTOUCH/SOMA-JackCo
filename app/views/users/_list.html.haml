@@ -1,19 +1,13 @@
 %table.table
   %thead
     %tr
-      %th.col-md-4 Email
-      %th.col-md-3 Role
-      %th.col-md-3 Group
+      %th.col-md-5 Email
+      %th.col-md-4 Group
       %th.col-md-2 Active
       %th.col-md-1 Actions
   - @users.each do |user|
     %tr
       %td= user.email
-      %td
-        - if user.role == "it"
-          = "IT"
-        - elsif  
-          = user.role.capitalize
       %td
         = user.user_group.name
       %td

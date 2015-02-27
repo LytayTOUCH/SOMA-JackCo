@@ -26,12 +26,13 @@ class UserGroupsController < ApplicationController
     @user_group = UserGroup.new(user_group_params)
     @user_group.resource_ids = params[:user_group][:resource_ids]
 
-    if @user_group.save!
+    if @user_group.save
       flash[:notice] = "User Group type saved successfully"
       redirect_to edit_permission_path(@user_group)
     else
       flash[:notice] = "User Group type can't save"
-      redirect_to :back
+      # redirect_to :back
+      render 'new'
     end
   end
 
@@ -50,11 +51,12 @@ class UserGroupsController < ApplicationController
     @user_group = UserGroup.find(params[:id])
     @user_group.resource_ids = params[:user_group][:resource_ids]
 
-    if @user_group.update_attributes!(user_group_params)
+    if @user_group.update_attributes(user_group_params)
       flash[:notice] = "User Group updated"
       redirect_to user_groups_path
     else
-      redirect_to :back
+      # redirect_to :back
+      render 'edit'
     end
   end
 
