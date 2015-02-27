@@ -1,42 +1,59 @@
-= form_tag dashboards_path, :class => 'form-inline', :role => 'form', :method => 'get' do
-  .form-group{style: "padding-left: 0; padding: 2px 0 5px 0;"}
-    .input-group
-      = select_tag "farm_id", options_for_select(@farms.map {|value| [ value.name, value.uuid ] }, :selected => params[:farm_id]), class: 'form-control', style:"border-radius: 4px;", :prompt => 'All Farms'
-  = submit_tag 'filter', :class => 'btn btn-success', :name => nil
+.row
+  .col-xs-6
+    .panel.panel-default
+      .panel-heading{:style => "background-color:PaleGreen; font-weight: bold;"}
+        %h3.panel-title{:style => "font-weight: bold; color: Black"} Farms       
+      .panel-body{:style => "width: 100%; height: 200px"}
+        %div.tab-content
+          %div.tab-pane.active
+            %table.table
+              %thead
+                %tr
+                  %th.col-md-3= "Name"
+                  %th.col-md-2= "Weather"
+                  %th.col-md-1= "View"
+              - @farms.each do |farm|
+                %tr
+                  %td=farm.name
+                  %td
+                    %i.fa.fa-cloud
+                  %td
+                    = link_to '<i class="fa fa-search-plus"></i>'.html_safe, farm_path(farm)
+
+  .col-xs-6
+    .panel.panel-default
+      .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
+        %h3.panel-title{:style => "font-weight: bold; color: Black"} Projects
+      .panel-body{:style => "width: 100%; height: 200px"}
+        %div.tab-content
+          %div.tab-pane.active
+            %div
+              - @planting_projects.each do |planting_project|
+                = link_to planting_project.name, farms_path, :class => "", :style => "font-size: 16px; font-weight: bold;"
+                %br
+                - planting_project.farms.distinct.each do |farm|
+                  = link_to farm.name, farms_path, :class => "", :style => "padding-left: 15px"
+                  %div{style: "padding-bottom: 10px; padding-left: 30px"}
+                    Total Surface:
+                    %span{style: "font-weight: bold"}=farm.blocks.where(:planting_project_id => planting_project.uuid).sum(:surface)
+                    ; Total Tree:
+                    %span{style: "font-weight: bold"}=farm.blocks.where(:planting_project_id => planting_project.uuid).sum(:tree_amount)
 
 .row
   .col-xs-6
     .panel.panel-default
       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
         %h3.panel-title{:style => "font-weight: bold; color: Black"} Recent Activities
-        
-      .panel-body{:style => "width: 100%; height: 190px"}
-        %p Show Recent Activities from Farm...      
+             
+      .panel-body{:style => "width: 100%; height: 200px"}
+        %p Show Recent Activities from Farm... 
 
   .col-xs-6
     .panel.panel-default
       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-        %h3.panel-title{:style => "font-weight: bold; color: Black"} Projects
-      .panel-body{:style => "width: 100%; height: 190px"}
-        %div
-          - @farm_plantings.each do |farm_plant|
-            / %li{style: "font-size: 16px; font-weight: bold; margin-left: 10px;"}=farm_plant.name
-
-            = link_to farm_plant.name, farms_path, :class => "", :style => "font-size: 16px; font-weight: bold;"
-
-            %div{style: "padding-bottom: 7px;"}
-              Total Surface:
-              %span{style: "font-weight: bold"}=farm_plant.total_surface.to_s
-              ; Total Tree:
-              %span{style: "font-weight: bold"}=farm_plant.total_tree.to_s
-
-.row
-  .col-xs-12
-    .panel.panel-default
-      .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-        %h3.panel-title{:style => "font-weight: bold; color: Black"} Weathers
+        %h3.panel-title{:style => "font-weight: bold; color: Black"} Yield Overview
              
-      .panel-body{:style => "width: 100%; height: 190px"}
+      .panel-body{:style => "width: 100%; height: 200px"}
         
 
 / .row
