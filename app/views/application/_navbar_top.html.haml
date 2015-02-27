@@ -18,7 +18,8 @@
           %span.caret
         %ul.dropdown-menu{"aria-labelledby" => "dLabel", :role => "menu"}
           %li
-            = navbar_link "Planting Project", planting_projects_path, "active"
+            - if can? :read, PlantingProject
+              = navbar_link "Planting Project", planting_projects_path, "active"
           %li
             = navbar_link "Labor", labors_path, "active"
           %li
@@ -28,11 +29,11 @@
             %a{:href => "#", :tabindex => "-1"} Production
             %ul.dropdown-menu
               %li
-                = navbar_link "Production Status", production_statuses_path, "active"
-              %li
-                = navbar_link "Production Stage", production_stages_path, "active"  
-              %li
                 = navbar_link "Production Phase", phases_path, "active"
+              %li
+                = navbar_link "Production Stage", production_stages_path, "active"    
+              %li
+                = navbar_link "Production Status", production_statuses_path, "active"
 
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Inventory
@@ -84,8 +85,6 @@
             = navbar_link "Users", users_path, "active"
           %li
             = navbar_link "User Groups", user_groups_path, "active"
-          %li
-            = navbar_link "Resources", resources_path, "active"
           
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}

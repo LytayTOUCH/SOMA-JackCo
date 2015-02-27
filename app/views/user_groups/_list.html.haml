@@ -24,7 +24,5 @@
       %td
         - if can? :update, UserGroup
           = link_to "Edit", edit_user_group_path(user_group)
-        = "|"
-        = link_to "Edit Permissions", edit_permission_path(user_group)
 .pull-right
   = paginate @user_groups

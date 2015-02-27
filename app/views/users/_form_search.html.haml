@@ -1,0 +1,5 @@
+= simple_form_for @user, url: users_path, method: :get, html: {novalidate: true, class: 'form-inline'} do |f|
+  .input-group.col-xs-5
+    = f.input :email, as: :string, label: false, input_html: {class: "form-control", placeholder: "Search by email"}
+    .input-group-btn
+      = f.submit :Search, class: "btn btn-default"
