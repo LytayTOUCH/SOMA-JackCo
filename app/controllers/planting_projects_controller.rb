@@ -61,6 +61,10 @@ class PlantingProjectsController < ApplicationController
     end
   end
 
+  def show
+    @planting_project = PlantingProject.find(params[:id])
+  end
+
   private
   def set_title
     content_for :title, "Planting Project"

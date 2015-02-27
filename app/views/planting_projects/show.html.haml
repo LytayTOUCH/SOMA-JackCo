@@ -1,0 +1,34 @@
+%h3= @planting_project.name
+%hr
+- @planting_project.farms.distinct.each do |farm|
+  %div &nbsp;
+  %h4.icon-green
+    .fa.fa-tree
+      = farm.name
+  %hr
+  / %div= farm.name
+  - farm.blocks.where(:planting_project_id => @planting_project.uuid).each do |block|
+    .col-sm-3
+      .box-farm-info
+        .page-header.custom-page-header
+          %h4.custom-h4
+            = link_to block.name, "#", :class => "text-color-green"
+        .row
+          .col-lg-12.map-info
+            = link_to "#" do
+              .thumbnail.custom-thumbnail
+                %img.map{:src => "https://maps.googleapis.com/maps/api/staticmap?center=#{block.location_lat_long}&zoom=17&size=348x250&scale=1&maptype=satellite&path=color:0xff0000ff|weight:1|fillcolor:0xFFFF0033|#{block.shape_lat_long.split("],[").join("|").gsub!(/[\[\]]/,'')}"}/
+            </haml:block>
+        .row
+          .col-lg-12.farm-info
+            %div
+              Planting Project:
+              - if block.planting_project.name.downcase.eql? 'coconut'
+                %span.label.label-success #{block.planting_project.name}
+              - else
+                %span.label.label-warning #{block.planting_project.name}
+            %div Surface: #{block.surface}
+            %div Tree Amount: #{block.tree_amount}
+            %div
+              %i.fa.fa-map-marker
+              = block.location_lat_long
