@@ -103,7 +103,7 @@
           %i.fa.fa-leaf.fa-lg.icon-greenish
           Farms
           %span.caret
-        %ul.dropdown-menu{:role => "menu"}
+        %ul.dropdown-menu.nav_trigger{:role => "menu"}
           %li
             - if can? :read, Farm
               = link_to 'All Farms', farms_path
