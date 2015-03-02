@@ -2,6 +2,7 @@
 %hr
 - @planting_project.farms.distinct.each do |farm|
   %div &nbsp;
+  .row
   %h4.icon-green
     .fa.fa-tree
       = farm.name

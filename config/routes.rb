@@ -110,6 +110,7 @@ Rails.application.routes.draw do
   resources :production_stages
   resources :positions
   resources :phases
+  resources :warehouse_item_transactions
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
