@@ -2,6 +2,11 @@
   %h3.custom-h3.icon-green
     .fa.fa-tree
     #{@farm.name}
+    - if can? :create, Farm
+      = link_to '(+) Add block', new_farm_block_path(@farm), :remote => true, class: 'btn btn-xs btn-primary btn-add'
+      = link_to "#", :remote => true, class: 'btn btn-xs btn-primary' do
+        .fa.fa-chain.fa-lg
+        Link block
 / .row{:style => "padding-left: 15px;margin:0px;"}
 /   - @farms.each do |farm|
 /     .col-sm-4
@@ -60,3 +65,4 @@
             %div
               %i.fa.fa-map-marker
               = block.location_lat_long
+.form-modal
