@@ -62,28 +62,42 @@
               %li
                 - if can? :read, UnitOfMeasurement
                   = navbar_link "Unit of Measurement", unit_of_measurement_index_path, "active"
+
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %i.fa.fa-cog.fa-lg.icon-greenish
-          Pre-Setup
+          Resources
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
           %li
-            - if can? :read, ImplementType
-              = navbar_link "Implement Type", implement_types_path, "active"
+            = navbar_link "Adjust/Initialize Stock", "#", "active"
           %li
-            - if can? :read, Supplier
-              = navbar_link "Supplier", suppliers_path, "active"
-          %li.divider
+            = navbar_link "Warehouse Request", "#", "active"
           %li
-            - if can? :read, Plan
-              = navbar_link "Plans", plans_path, "active"
-          %li
-            - if can? :read, Coconut
-              = navbar_link "Coconut", coconuts_path, "active"
-          %li
-            - if can? :read, JackFruit
-              = navbar_link "Jackfruit", jack_fruits_path, "active"
+            = navbar_link "Warehouse Receive", "#", "active"
+          
+      / %li.dropdown
+      /   %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+      /     %i.fa.fa-cog.fa-lg.icon-greenish
+      /     Pre-Setup
+      /     %span.caret
+      /   %ul.dropdown-menu{:role => "menu"}
+      /     %li
+      /       - if can? :read, ImplementType
+      /         = navbar_link "Implement Type", implement_types_path, "active"
+      /     %li
+      /       - if can? :read, Supplier
+      /         = navbar_link "Supplier", suppliers_path, "active"
+      /     %li.divider
+      /     %li
+      /       - if can? :read, Plan
+      /         = navbar_link "Plans", plans_path, "active"
+      /     %li
+      /       - if can? :read, Coconut
+      /         = navbar_link "Coconut", coconuts_path, "active"
+      /     %li
+      /       - if can? :read, JackFruit
+      /         = navbar_link "Jackfruit", jack_fruits_path, "active"
             
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
