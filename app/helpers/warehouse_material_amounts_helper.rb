@@ -1,0 +1,2 @@
+module WarehouseMaterialAmountsHelper
+end
