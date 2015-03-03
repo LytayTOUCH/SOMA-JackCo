@@ -70,11 +70,11 @@
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
           %li
-            = navbar_link "Adjust/Initialize Stock", "#", "active"
+            = navbar_link "Adjust/Initialize Stock", new_warehouse_material_amount_path, "active"
           %li
-            = navbar_link "Warehouse Request", "#", "active"
+            = navbar_link "Material Request", warehouse_item_requested_transactions_path, "active"
           %li
-            = navbar_link "Warehouse Receive", "#", "active"
+            = navbar_link "Material Receive", warehouse_item_received_transactions_path, "active"
           
       / %li.dropdown
       /   %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}

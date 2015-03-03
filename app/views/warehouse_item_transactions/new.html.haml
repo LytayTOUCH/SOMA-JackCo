@@ -1,3 +1,5 @@
+%h2= "New #{yield :title}"
+%hr
 = simple_form_for @warehouse_item_transaction, html: { class: "form-horizontal" } do |f|
   .form-group
     %label.col-xs-2.control-label Requested By *
@@ -22,13 +24,13 @@
   .form-group
     %label.col-xs-2.control-label Request Date
     .col-xs-5
-      = f.input :requested_date, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
+      = f.text_field :requested_date, label: false, :class => "form-control", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, value: Date.today, input_html: { class: "form-control" }, readonly: true, error_html: { class: "err_msg" }
     %span.help-block= f.error :requested_date
   .form-group
     %label.col-xs-2.control-label Due Date *
     .col-xs-5
       .input-group.date.date_pick
-        = f.text_field :due_date, :class => "form-control", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, :placeholder => "Year-Month-Day"
+        = f.text_field :due_date, :class => "form-control", :type => "text", :data => {:date_format => "YYYY-MM-DD : H:M"}, :placeholder => "Year-Month-Day", error_html: { class: "err_msg" }
         %span.input-group-addon
           %span.glyphicon.glyphicon-calendar    
       %span.help-block= f.error :due_date
@@ -41,12 +43,23 @@
     %label.col-xs-2.control-label Note
     .col-xs-5
       = f.input :note, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :note          
+    %span.help-block= f.error :note   
+  / .form-group
+  /   .col-xs-5
+  /     = f.hidden_field :received_date, label: false, :class => "form-control", :type => "text", error_html: { class: "err_msg" }, value: ""
+  /   %span.help-block= f.error :received_date
   .form-group
-    %label.col-xs-2.control-label Active
     .col-xs-5
-      = f.input :active, label: false
-      %span.help-block= f.error :active
+      = f.input :created_by, :as => :hidden, :value => current_user.uuid 
+    %span.help-block= f.error :created_by          
+  / .form-group
+  /   .col-xs-5
+  /     = f.input :transaction_status, :as => :hidden, :input_html => { :value => "Requested" }    
+  /   %span.help-block= f.error :transaction_status            
+  / .form-group
+  /   .col-xs-5
+  /     = f.input :updated_by, :as => :hidden, :input_html => { :value => "" }
+  /     %span.help-block= f.error :updated_by            
   .form-group
     .col-xs-7
       .pull-right

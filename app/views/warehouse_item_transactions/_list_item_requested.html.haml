@@ -1,0 +1,27 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-2= "Requested Date"
+      %th.col-md-2= "Due Date"
+      %th.col-md-2= "Requested Number"
+      %th.col-md-2= "Material"
+      %th.col-md-2= "Material Category"
+      %th.col-md-1= "Amount"
+      %th.col-md-1= "Actions"
+  - @warehouse_item_transactions.each do |warehouse_item_transaction|
+    %tr
+      %td= warehouse_item_transaction.requested_date
+      %td= warehouse_item_transaction.due_date
+      %td= warehouse_item_transaction.requested_number
+      %td
+        - material = Material.find_by_uuid(warehouse_item_transaction.material_id)
+        = material.name
+      %td
+        - material = Material.find_by_uuid(warehouse_item_transaction.material_id)
+        = material.material_category.name
+      %td= warehouse_item_transaction.amount
+      %td
+        - if can? :update, WarehouseItemTransaction
+          = link_to "View", edit_warehouse_item_transaction_path(warehouse_item_transaction)
+.pull-right
+  = paginate @warehouse_item_transactions          

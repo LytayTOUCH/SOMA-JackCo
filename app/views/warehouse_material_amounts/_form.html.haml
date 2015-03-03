@@ -1,0 +1,53 @@
+= simple_form_for @warehouse_material_amount, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-2.control-label.text-left Material Name *
+    .col-xs-4
+      = f.association :material, label: false, input_html: {class: "form-control material_id"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :material_uuid
+  .form-group
+    .col-xs-6
+      .pull-right
+        = render partial: 'form_button', locals: { f: f }
+
+
+:javascript
+  / $(document).ready(function() {
+  /    $('.rental_id').change(
+  /       function() {
+  /         var rental_id = $(".rental_id").val();
+  /         jQuery.ajax({
+  /           url: "/get_contract_data",
+  /           type: "GET",
+  /           data: {"rental_id" : rental_id},
+  /           dataType: "json",
+  /           success: function(data) {
+  /             $.each(data, function(i, value) {
+  /               $(".monthly_price").val(value.monthly_price);
+  /               $(".start_date").val(value.start_date);
+  /               $(".end_date").val(value.end_date);
+  /             });
+  /           }
+  /         });
+  /       }
+  /     );
+
+  $(document).ready(function() {
+    $('.material_id').change(
+      function() {
+        var material_id = $(".material_id").val();
+        jQuery.ajax({
+          url: "/get_warehouse_data",
+          type: "GET",
+          data: {"material_id" : material_id},
+          dataType: "json",
+          success: function(data){
+            $.each(data, function(i, value) {
+              $(".warehouse_uuid").val(value.warehouse_uuid);
+              $(".warehouse_name").val(value.warehouse_name);
+            });
+          }
+        });
+      }
+    );
+
+  });

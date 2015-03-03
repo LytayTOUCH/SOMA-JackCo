@@ -3,7 +3,21 @@ class WarehouseItemTransactionsController < ApplicationController
 
   add_breadcrumb "All Warehouse Item Transactions", :warehouse_item_transactions_path
 
-  def index
+  def index_item_requested
+    begin
+      @warehouse_item_transaction = WarehouseItemTransaction.new
+
+      if params[:warehouse_item_transaction] and params[:warehouse_item_transaction][:name] and !params[:warehouse_item_transaction][:name].nil?
+        @warehouse_item_transactions = WarehouseItemTransaction.find_by_warehouse_item_transaction_name(params[:warehouse_item_transaction][:name]).page(params[:page]).per(5)
+      else
+        @warehouse_item_transactions = WarehouseItemTransaction.page(params[:page]).per(5).where(transaction_status: "Requested")
+      end
+    rescue Exception => e
+      puts e
+    end
+  end
+
+  def index_item_received
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.new
 
@@ -31,13 +45,13 @@ class WarehouseItemTransactionsController < ApplicationController
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.new(warehouse_item_transaction_params)
 
-      if @warehouse_item_transaction.save
+      if @warehouse_item_transaction.save!
         flash[:notice] = "WarehouseItemTransaction saved successfully"
         redirect_to warehouse_item_transactions_path
       else
         flash[:notice] = "WarehouseItemTransaction can't be saved"
-        # redirect_to :back
-        render 'new'
+        redirect_to :back
+        # render 'new'
       end
     rescue Exception => e
       puts e
@@ -82,6 +96,6 @@ class WarehouseItemTransactionsController < ApplicationController
 
   private
   def warehouse_item_transaction_params
-    params.require(:warehouse_item_transaction).permit(:sender_id, :receiver_id, :material_id, :transaction_status, :requested_number, :created_by, :updated_by, :requested_date, :received_date, :due_date, :note)
+    params.require(:warehouse_item_transaction).permit(:sender_id, :receiver_id, :material_id, :transaction_status, :requested_number, :created_by, :updated_by, :requested_date, :received_date, :due_date, :note, :amount)
   end
 end
