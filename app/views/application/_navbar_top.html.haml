@@ -49,9 +49,6 @@
               %li
                 - if can? :read, WarehouseType
                   = navbar_link "Warehouse Type", warehouse_types_path, "active"
-              %li
-                - if can? :read, TransactionStatus
-                  = navbar_link "Transaction Status", transaction_status_index_path, "active"
               %li.divider
               %li
                 - if can? :read, Material
