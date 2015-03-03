@@ -82,15 +82,6 @@ end
   WarehouseType.create_with(note: warehouse_type[:note]).find_or_create_by(name: warehouse_type[:name])
 end
 
-# ========== Create Transaction Statuses ========== 
-[
-  {name: 'Stock-in', note: 'Import into stock.'},
-  {name: 'Stock-out', note: 'Export from stock.'},
-  {name: 'Adjustment', note: 'Adjustment note'}
-].each do |transaction_status|
-  TransactionStatus.create_with(note: transaction_status[:note]).find_or_create_by(name: transaction_status[:name])
-end
-
 # ========== Create Planting Projects ========== 
 [
   {name: 'Coconut'},
