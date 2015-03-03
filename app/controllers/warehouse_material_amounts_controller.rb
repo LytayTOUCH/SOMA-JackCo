@@ -6,9 +6,12 @@ class WarehouseMaterialAmountsController < ApplicationController
   	begin
   		@warehouse_material_amount = WarehouseMaterialAmount.new
   		@materials = Material.all
-  		@warehouses = Warehouse.all  	
-      # @warehouses = Warehouse.select("uuid, name").where("active = ?", true).where("warehouse_type.name=?", @project_warehouse)
-      # @project_warehouse = WarehouseType.where(:name, "Project Warehouse").or(:name, "Central Warehouse")
+      
+      project_warehouse = WarehouseType.find_by(name: 'Project Warehouse')
+      central_warehouse = WarehouseType.find_by(name: 'Central Warehouse')
+      
+      @warehouses = Warehouse.where("(warehouse_type_uuid = '" + project_warehouse.uuid + "' or warehouse_type_uuid = '" + central_warehouse.uuid + "') and active=1")
+      
   	rescue Exception => e
   		puts e 		
   	end
