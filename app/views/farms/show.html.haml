@@ -34,6 +34,25 @@
     - else
       %span.label.label-warning #{block.planting_project.name}
 %div Location: #{@farm.location}
+%div
+  %i.fa.fa-map-marker
+  %span.farm-latlong= "#{@farm.latlong_farm}"
+
+.page-header.custom-page-header
+  %h3.custom-h3
+    .fa.fa-cubes.icon-brown
+    All Blocks Map
+.row
+  .col-lg-8
+    #blocks-map
+  .col-lg-4
+    - @farm.blocks.each do |block|
+      = block.name
+      = block.surface
+      = block.tree_amount
+      %input{:name => "#{block.name}", :type => "hidden", :value => "#{block.shape_lat_long}"}
+      %br
+%br
 .page-header.custom-page-header
   %h3.custom-h3
     .fa.fa-cubes.icon-brown
