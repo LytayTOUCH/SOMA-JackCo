@@ -114,6 +114,8 @@ Rails.application.routes.draw do
   resources :phases
   resources :warehouse_material_amounts
 
+  get 'get_warehouse_data', to: 'warehouses#get_warehouse_data'
+
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
