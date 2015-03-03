@@ -27,7 +27,9 @@ Rails.application.routes.draw do
       get 'downloadexcel'
     end
   end
-  resources :farms
+  resources :farms do
+    resources :blocks
+  end
   resources :machineries, only: [:index]
   resources :tractors, except: [:index]
   resources :implements, except: [:index]

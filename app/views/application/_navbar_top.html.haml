@@ -121,6 +121,9 @@
           %li
             - if can? :read, Farm
               = link_to 'All Farms', farms_path
+          %li
+            - if can? :read, Farm
+              = link_to 'All Blocks', "#"
           %li.divider
           = render "farm_names_navigator"
       %li.dropdown

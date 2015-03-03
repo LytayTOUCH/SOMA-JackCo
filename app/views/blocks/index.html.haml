@@ -1,0 +1,8 @@
+%h1 Blocks#index
+%p Find me in app/views/blocks/index.html.haml
+/ - @blocks.each do |block|
+/   = block.farm.inspect
+= @blocks.select(:farm_id).distinct[0].farm.name
+%br
+- @blocks.select(:planting_project_id).distinct.each do |block|
+  = block.planting_project.name
