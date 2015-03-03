@@ -2,40 +2,29 @@ ready = ->
   initialize = ->
     farm_latlong = $('.farm-latlong').text().split(", ")
     mapOptions = 
-      zoom: 14
+      zoom: 16
       center: new (google.maps.LatLng)(parseFloat(farm_latlong[0]), parseFloat(farm_latlong[1]))
       streetViewControl: false
       panControl: false
     map = new (google.maps.Map)(document.getElementById('blocks-map'), mapOptions)
 
-    polypoints = []
-    points = [
-      [
-        11.342527
-        104.817818
-      ]
-      [
-        11.338278
-        104.819578
-      ]
-      [
-        11.339287
-        104.814707
-      ]
-    ]
-    for i in points by 1
-      polypoints.push new (google.maps.LatLng)(i[0], i[1])
-    console.log polypoints
-
-    Triangle = new (google.maps.Polygon)(
-      paths: polypoints
-      strokeColor: '#126c00'
-      strokeOpacity: 0.8
-      strokeWeight: 1
-      fillColor: '#99FF84'
-      fillOpacity: 0.35)
-
-    Triangle.setMap map
+    $("input[type=hidden]").each ->
+      console.log $(this).attr('name').replace(" ", "-")
+      console.log $(this).val().substr(2).slice(0,-2).split("],[")
+      
+      polypoints = []
+      points = $(this).val().substr(2).slice(0,-2).split("],[")
+      for i in points by 1
+        polypoints.push new (google.maps.LatLng)(parseFloat(i.split(",")[0]), parseFloat(i.split(",")[1]))
+      console.log polypoints
+      Triangle = new (google.maps.Polygon)(
+        paths: polypoints
+        strokeColor: '#126c00'
+        strokeOpacity: 0.8
+        strokeWeight: 1
+        fillColor: '#99FF84'
+        fillOpacity: 0.35)
+      Triangle.setMap map
 
   initialize()
 
