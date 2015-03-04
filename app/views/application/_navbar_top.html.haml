@@ -20,39 +20,44 @@
           %li
             - if can? :read, PlantingProject
               = navbar_link "Planting Project", planting_projects_path, "active"
-          %li
-            - if can? :read, Labor
-              = navbar_link "Labor", labors_path, "active"
-          %li
-            - if can? :read, Position
-              = navbar_link "Position", positions_path, "active"
+          
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Workforce
+            %ul.dropdown-menu
+              %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white WORKFORCE
+              %li
+                - if can? :read, Labor
+                  = navbar_link "Labor", labors_path, "active"
+              %li
+                - if can? :read, Position
+                  = navbar_link "Position", positions_path, "active"
           
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Production
             %ul.dropdown-menu
+              %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white PRODUCTION
               %li
                 - if can? :read, Phase
-                  = navbar_link "Production Phase", phases_path, "active"
+                  = navbar_link "Phase", phases_path, "active"
               %li
                 - if can? :read, ProductionStage
-                  = navbar_link "Production Stage", production_stages_path, "active"    
+                  = navbar_link "Stage", production_stages_path, "active"    
               %li
                 - if can? :read, ProductionStatus
-                  = navbar_link "Production Status", production_statuses_path, "active"
+                  = navbar_link "Tree Status", production_statuses_path, "active"
 
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Inventory
             %ul.dropdown-menu
+              %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white WAREHOUSE
               %li
                 - if can? :read, Warehouse
                   = navbar_link "Warehouses", warehouses_path, "active"
               %li
                 - if can? :read, WarehouseType
                   = navbar_link "Warehouse Type", warehouse_types_path, "active"
-              %li
-                - if can? :read, TransactionStatus
-                  = navbar_link "Transaction Status", transaction_status_index_path, "active"
               %li.divider
+              %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white MATERIAL
               %li
                 - if can? :read, Material
                   = navbar_link "Materials", materials_path, "active"
@@ -69,12 +74,15 @@
           Resources
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white ADJUSTMENT
           %li
-            = navbar_link "Adjust/Initialize Stock", "#", "active"
+            = navbar_link "Adjust/Initialize Stock", new_warehouse_material_amount_path, "active"
+          %li.divider
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white REQUEST / RECEIVE
           %li
-            = navbar_link "Warehouse Request", "#", "active"
+            = navbar_link "Material Request", "#", "active"
           %li
-            = navbar_link "Warehouse Receive", "#", "active"
+            = navbar_link "Material Receive", "#", "active"
           
       / %li.dropdown
       /   %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -155,24 +163,20 @@
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %i.fa.fa-bar-chart-o.fa-lg.icon-greenish
-          Analyses
+          Reports
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white INPUT / OUTPUT
           %li
-            %a{:href => "#"} Dashboard Overviews
+            %a{:href => "#"} Input Use Summary
+          %li
+            %a{:href => "#"} Output Summary
           %li.divider
-          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white Report
+          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white STOCK / INVENTORY
           %li
-            %a{:href => "#"} Labors
+            %a{:href => "#"} Products Classification
           %li
-            %a{:href => "#"} Fertilizers
-          %li
-            %a{:href => "#"} Pesticides
-          %li
-            %a{:href => "#"} Machineries
-          %li
-            %a{:href => "#"} Hand Tools
-          %li= navbar_link "Farms", dashboards_path, "active"
+            %a{:href => "#"} Stock / Inventory Summery
 
     / Right Navigator Menu
     = render 'navbar_right'

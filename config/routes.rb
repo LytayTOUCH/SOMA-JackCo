@@ -112,6 +112,9 @@ Rails.application.routes.draw do
   resources :production_stages
   resources :positions
   resources :phases
+  resources :warehouse_material_amounts
+
+  get 'get_warehouse_data', to: 'warehouses#get_warehouse_data'
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

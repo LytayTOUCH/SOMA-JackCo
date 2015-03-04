@@ -1,4 +1,4 @@
-class TransactionStatusDecorator < Draper::Decorator
+class WarehouseMaterialAmountDecorator < Draper::Decorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
