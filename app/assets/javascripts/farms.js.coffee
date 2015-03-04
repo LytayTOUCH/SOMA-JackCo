@@ -6,6 +6,8 @@ ready = ->
       center: new (google.maps.LatLng)(parseFloat(farm_latlong[0]), parseFloat(farm_latlong[1]))
       streetViewControl: false
       panControl: false
+      mapTypeControl: false
+      mapTypeId: google.maps.MapTypeId.SATELLITE
     map = new (google.maps.Map)(document.getElementById('blocks-map'), mapOptions)
 
     $("input[type=hidden]").each ->
