@@ -7,21 +7,17 @@
       %th.col-md-2= "Material"
       %th.col-md-2= "Material Category"
       %th.col-md-1= "Amount"
-      %th.col-md-1= "Actions"
-  - @warehouse_item_transactions.each do |warehouse_item_transaction|
+  - @warehouse_item_received_transactions.each do |warehouse_item_received_transaction|
     %tr
-      %td= warehouse_item_transaction.requested_date
-      %td= warehouse_item_transaction.due_date
-      %td= warehouse_item_transaction.requested_number
+      %td= warehouse_item_received_transaction.requested_date
+      %td= warehouse_item_received_transaction.due_date
+      %td= warehouse_item_received_transaction.requested_number
       %td
-        - material = Material.find_by_uuid(warehouse_item_transaction.material_id)
+        - material = Material.find_by_uuid(warehouse_item_received_transaction.material_id)
         = material.name
       %td
-        - material = Material.find_by_uuid(warehouse_item_transaction.material_id)
+        - material = Material.find_by_uuid(warehouse_item_received_transaction.material_id)
         = material.material_category.name
-      %td= warehouse_item_transaction.amount
-      %td
-        - if can? :update, WarehouseItemTransaction
-          = link_to "View", edit_warehouse_item_transaction_path(warehouse_item_transaction)
+      %td= warehouse_item_received_transaction.amount
 .pull-right
-  = paginate @warehouse_item_transactions          
+  = paginate @warehouse_item_received_transactions          

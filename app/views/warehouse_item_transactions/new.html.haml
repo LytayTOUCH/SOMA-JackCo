@@ -1,4 +1,4 @@
-%h2= "New #{yield :title}"
+%h2= "New Item Request"
 %hr
 = simple_form_for @warehouse_item_transaction, html: { class: "form-horizontal" } do |f|
   .form-group
@@ -15,7 +15,15 @@
     %label.col-xs-2.control-label Material *
     .col-xs-5
       = f.input :material_id, label: false, collection: @materials, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :material_id
+    %span.help-block= f.error :material_id 
+
+  .form-group.uom
+    .col-xs-5
+    - @materials.each do |material|
+      = f.input :material_id, label: false, input_html: { class: "form-control", type: "hidden", value: material.uuid }, error_html: { class: "err_msg" }
+      %label.col-xs-2.control-label.text-left
+        = material.unit_of_measurement.name
+
   .form-group
     %label.col-xs-2.control-label Amount *
     .col-xs-5
@@ -44,22 +52,10 @@
     .col-xs-5
       = f.input :note, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :note   
-  / .form-group
-  /   .col-xs-5
-  /     = f.hidden_field :received_date, label: false, :class => "form-control", :type => "text", error_html: { class: "err_msg" }, value: ""
-  /   %span.help-block= f.error :received_date
   .form-group
     .col-xs-5
       = f.input :created_by, :as => :hidden, :value => current_user.uuid 
     %span.help-block= f.error :created_by          
-  / .form-group
-  /   .col-xs-5
-  /     = f.input :transaction_status, :as => :hidden, :input_html => { :value => "Requested" }    
-  /   %span.help-block= f.error :transaction_status            
-  / .form-group
-  /   .col-xs-5
-  /     = f.input :updated_by, :as => :hidden, :input_html => { :value => "" }
-  /     %span.help-block= f.error :updated_by            
   .form-group
     .col-xs-7
       .pull-right
