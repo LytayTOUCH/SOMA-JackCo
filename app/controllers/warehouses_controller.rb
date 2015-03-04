@@ -77,6 +77,12 @@ class WarehousesController < ApplicationController
     end
   end
 
+  def get_warehouse_data
+    # @warehouse_data = Warehouse.select("uuid, name").where("warehouse_types.name = 'Central Warehouse' or warehouse_types.name = 'Project Warehouse' and active = ?", true)
+    @warehouse_data = Warehouse.all
+    render :json => @warehouse_data
+  end
+
   def destroy
     @warehouse = Warehouse.find(params[:id])
     @warehouse.destroy
