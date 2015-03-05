@@ -11,17 +11,15 @@
     .col-xs-5
       = f.input :receiver_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :receiver_id
-  .form-group
+
+  .form-group.material_uuid
     %label.col-xs-2.control-label Material *
     .col-xs-5
       = f.input :material_id, label: false, collection: @materials, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :material_id 
 
-  .form-group.uom
-    .col-xs-5
-    - @materials.each do |material|
-      = f.input :material_id, label: false, input_html: { class: "form-control", type: "hidden", value: material.uuid }, error_html: { class: "err_msg" }
-      %label.col-xs-2.control-label.text-left
+    .form-group.unit-of-measurement-name
+      %label.control-label.text-left
         = material.unit_of_measurement.name
 
   .form-group

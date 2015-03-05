@@ -8,16 +8,19 @@
       %th.col-md-2= "Material Category"
       %th.col-md-1= "Amount"
   - @warehouse_item_received_transactions.each do |warehouse_item_received_transaction|
+    - material = Material.find_by_uuid(warehouse_item_received_transaction.material_id)
     %tr
       %td= warehouse_item_received_transaction.requested_date
       %td= warehouse_item_received_transaction.due_date
       %td= warehouse_item_received_transaction.requested_number
       %td
-        - material = Material.find_by_uuid(warehouse_item_received_transaction.material_id)
         = material.name
       %td
-        - material = Material.find_by_uuid(warehouse_item_received_transaction.material_id)
         = material.material_category.name
-      %td= warehouse_item_received_transaction.amount
+      %td
+        = warehouse_item_received_transaction.amount
+        = '('
+        = material.unit_of_measurement.name
+        = ')'
 .pull-right
   = paginate @warehouse_item_received_transactions          

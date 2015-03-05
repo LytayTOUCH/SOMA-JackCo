@@ -1,6 +1,7 @@
 class WarehouseItemTransactionsController < ApplicationController
   # before_update :change_data_values
   load_and_authorize_resource except: :create
+  respond_to :html, :json
 
   add_breadcrumb "All Warehouse Item Transactions", :warehouse_item_transactions_path
 
@@ -37,7 +38,6 @@ class WarehouseItemTransactionsController < ApplicationController
       @warehouse_item_transaction = WarehouseItemTransaction.new
       @warehouses = Warehouse.all
       @materials = Material.all
-      # @unit_of_measurement = UnitOfMeasurement.materials
     rescue Exception => e
       puts e
     end
@@ -58,6 +58,10 @@ class WarehouseItemTransactionsController < ApplicationController
     rescue Exception => e
       puts e
     end
+  end
+
+  def get_uom_data
+    
   end
 
   def edit

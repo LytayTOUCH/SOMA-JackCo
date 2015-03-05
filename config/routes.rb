@@ -120,6 +120,8 @@ Rails.application.routes.draw do
 
   get 'get_warehouse_data', to: 'warehouses#get_warehouse_data'
 
+  get 'get_uom_data', to: 'warehouse_item_transactions#get_uom_data'
+
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
   # The priority is based upon order of creation: first created -> highest priority.

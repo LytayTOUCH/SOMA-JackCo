@@ -50,15 +50,11 @@
     %span.help-block= f.error :received_date
   .form-group
     .col-xs-5
-      = f.input :created_by, :as => :hidden, :value => current_user.uuid 
-    %span.help-block= f.error :created_by          
-  / .form-group
-  /   .col-xs-5
-  /     = f.input :transaction_status, :as => :hidden, :input_html => { :value => "Received" } 
-  /   %span.help-block= f.error :transaction_status            
+      = f.input :transaction_status, as: :hidden, :input_html => { :value => "Received" } 
+    %span.help-block= f.error :transaction_status            
   .form-group
     .col-xs-5
-      = f.input :updated_by, :as => :hidden, :input_html => { :value => current_user.uuid }
+      = f.input :updated_by, as: :hidden, :input_html => { :value => current_user.uuid }
       %span.help-block= f.error :updated_by            
   .form-group
     .col-xs-7
