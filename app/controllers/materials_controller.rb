@@ -75,6 +75,14 @@ class MaterialsController < ApplicationController
     end
   end
 
+  def get_material_data
+    # @warehouse_data = Warehouse.select("uuid, name").where("warehouse_types.name = 'Central Warehouse' or warehouse_types.name = 'Project Warehouse' and active = ?", true)
+    # @material_data = Material.select("uuid, name").where("material_cate_uuid = ?", material_category_uuid)
+    @material_data = Material.where(material_cate_uuid: params[:material_cate_uuid])
+    # @material_data = Material.all
+    render :json => @material_data
+  end
+
   # def new_supplier
   #   begin
   #     @supplier = Supplier.new
