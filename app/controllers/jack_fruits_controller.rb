@@ -24,7 +24,7 @@ class JackFruitsController < ApplicationController
 
   def new
     @jack_fruit = JackFruit.new
-    @stages = Stage.where(fruit_type: 'jackfruit')
+    # @stages = Stage.where(fruit_type: 'jackfruit')
     @fields = Field.all
   end
 
@@ -42,7 +42,7 @@ class JackFruitsController < ApplicationController
 
   def edit
     @jack_fruit = JackFruit.find(params[:id])
-    @stages = Stage.where(fruit_type: 'jackfruit')
+    # @stages = Stage.where(fruit_type: 'jackfruit')
     @fields = Field.all
     add_breadcrumb @jack_fruit.code, :edit_jack_fruit_path
   end

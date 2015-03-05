@@ -5,7 +5,6 @@ class WarehouseMaterialAmountsController < ApplicationController
   def new
   	begin
   		@warehouse_material_amount = WarehouseMaterialAmount.new
-  		# @materials = Material.all
       
       project_warehouse = WarehouseType.find_by(name: 'Project Warehouse')
       central_warehouse = WarehouseType.find_by(name: 'Central Warehouse')
