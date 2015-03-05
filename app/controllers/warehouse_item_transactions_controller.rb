@@ -12,7 +12,7 @@ class WarehouseItemTransactionsController < ApplicationController
       if params[:warehouse_item_requested_transaction] and params[:warehouse_item_requested_transaction][:requested_date] and !params[:warehouse_item_requested_transaction][:requested_date].nil?
         @warehouse_item_requested_transactions = WarehouseItemTransaction.find_by_requested_transaction_date(params[:warehouse_item_requested_transaction][:requested_date]).page(params[:page]).per(5)
       else
-        @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(5).where(transaction_status: "Requested")
+        @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(5)
       end
     rescue Exception => e
       puts e
@@ -58,10 +58,6 @@ class WarehouseItemTransactionsController < ApplicationController
     rescue Exception => e
       puts e
     end
-  end
-
-  def get_uom_data
-    
   end
 
   def edit

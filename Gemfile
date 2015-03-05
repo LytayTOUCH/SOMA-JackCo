@@ -20,6 +20,7 @@ gem 'spring', group: :development
 # view
 gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bootstrap3-datetimepicker-rails'
 gem 'devise'
 gem 'nprogress-rails'
 gem 'simple_form'
@@ -57,7 +58,6 @@ gem 'cancan'
 gem 'rolify'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
-gem 'bootstrap3-datetimepicker-rails'
 
 # group :assets do
 #   gem 'twitter-bootstrap-rails'
@@ -67,6 +67,7 @@ gem 'pdfkit', '~> 0.6.2'
 gem 'wkhtmltopdf-binary'
 gem "googlecharts"
 gem 'axlsx'
+
 
 # ruby '2.0.0'
 

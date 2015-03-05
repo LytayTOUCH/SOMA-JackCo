@@ -7,7 +7,7 @@
       = f.input :sender_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
     %span.help-block= f.error :sender_id
   .form-group
-    %label.col-xs-2.control-label Sent By *
+    %label.col-xs-2.control-label Requested To *
     .col-xs-5
       = f.input :receiver_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
     %span.help-block= f.error :receiver_id
@@ -21,6 +21,8 @@
     .col-xs-5
       = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
     %span.help-block= f.error :amount
+    %span.uom-name-receive
+
   .form-group
     %label.col-xs-2.control-label Request Date
     .col-xs-5

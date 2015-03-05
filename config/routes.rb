@@ -120,7 +120,7 @@ Rails.application.routes.draw do
 
   get 'get_material_data', to: 'materials#get_material_data'
 
-  get 'get_uom_data', to: 'warehouse_item_transactions#get_uom_data'
+  get 'get_unit_of_measurement_data', to: 'materials#get_material_uom_data'
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
