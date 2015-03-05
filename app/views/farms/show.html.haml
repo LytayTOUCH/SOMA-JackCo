@@ -43,15 +43,8 @@
     .fa.fa-cubes.icon-brown
     All Blocks Map
 .row
-  .col-lg-8
+  .col-lg-12
     #blocks-map
-  .col-lg-4
-    - @farm.blocks.each do |block|
-      = block.name
-      = block.surface
-      = block.tree_amount
-      %input{:name => "#{block.name}", :type => "hidden", :value => "#{block.shape_lat_long}"}
-      %br
 %br
 .page-header.custom-page-header
   %h3.custom-h3
@@ -85,3 +78,35 @@
               %i.fa.fa-map-marker
               = block.location_lat_long
 .form-modal
+:javascript
+  var map;
+  mapOptions = {
+        zoom: 16,
+        center: new google.maps.LatLng(#{@farm.latlong_farm}),
+        streetViewControl: false,
+        panControl: false,
+        mapTypeControl: false,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+      };
+  map = new google.maps.Map(document.getElementById('blocks-map'), mapOptions);
+- @farm.blocks.each do |block|
+  :javascript
+    show_blocks = function() {
+      var block_points = #{block.shape_lat_long};
+      polypoints = [];
+      console.log(block_points.length);
+      for(i=0;i<block_points.length;i++){
+        polypoints.push(new google.maps.LatLng(block_points[i][0],block_points[i][1]));
+      }
+      console.log(polypoints);
+      block = new google.maps.Polygon({
+        paths: polypoints,
+        strokeColor: '#ff0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 1,
+        fillColor: '#FFFF00',
+        fillOpacity: 0.35
+      });
+      block.setMap(map);
+    };
+    show_blocks();

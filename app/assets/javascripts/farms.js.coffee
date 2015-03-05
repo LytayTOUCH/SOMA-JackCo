@@ -1,38 +1,4 @@
 ready = ->
-  initialize = ->
-    farm_latlong = $('.farm-latlong').text().split(", ")
-    mapOptions = 
-      zoom: 16
-      center: new (google.maps.LatLng)(parseFloat(farm_latlong[0]), parseFloat(farm_latlong[1]))
-      streetViewControl: false
-      panControl: false
-      mapTypeControl: false
-      mapTypeId: google.maps.MapTypeId.SATELLITE
-    map = new (google.maps.Map)(document.getElementById('blocks-map'), mapOptions)
-
-    $("input[type=hidden]").each ->
-      console.log $(this).attr('name').replace(" ", "-")
-      console.log $(this).val().substr(2).slice(0,-2).split("],[")
-      
-      polypoints = []
-      points = $(this).val().substr(2).slice(0,-2).split("],[")
-      for i in points by 1
-        polypoints.push new (google.maps.LatLng)(parseFloat(i.split(",")[0]), parseFloat(i.split(",")[1]))
-      console.log polypoints
-      Triangle = new (google.maps.Polygon)(
-        paths: polypoints
-        strokeColor: '#126c00'
-        strokeOpacity: 0.8
-        strokeWeight: 1
-        fillColor: '#99FF84'
-        fillOpacity: 0.35)
-      Triangle.setMap map
-
-  initialize()
-
-  $('.btn-test').click ->
-    alert($('.farm-latlong').text());
-
   $('.btn-add').click ->
     loading_box = """
       <div aria-hidden="false" aria-labelledby="myModalLabel" class="modal fade in" data-backdrop="static" data-keyboard="false" id="myModalLoading" role="dialog" tabindex="-1" style="display: block;">
