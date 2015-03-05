@@ -15,7 +15,7 @@
               - @farms.each do |farm|
                 %tr
                   %td=farm.name
-                  %td
+                  %td.temp{id: farm.uuid, latlong: farm.latlong_farm}
                     %i.fa.fa-cloud
                   %td
                     = link_to '<i class="fa fa-search-plus"></i>'.html_safe, farm_path(farm)
