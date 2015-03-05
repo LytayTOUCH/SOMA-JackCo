@@ -1,23 +1,26 @@
 $(document).ready(function() {
-    $('.warehouse-name').hide();
-    $('.material_id').change(
+    $('.material-name').hide();
+    $('.material_category_uuid').change(
       function() {
-        $('.warehouse-name').show();
-        // $(".warehouse_name").css("visibility","visible");
+        $('.material-name').show();
 
-        // var material_id = $(".material_id").val();
-        // jQuery.ajax({
-        //   url: "/get_warehouse_data",
-        //   type: "GET",
-        //   data: {"material_id" : material_id},
-        //   dataType: "json",
-        //   success: function(data){
-        //     $.each(data, function(i, value) {
-        //       $(".warehouse_uuid").val(value.uuid);
-        //       $(".warehouse_name").val(value.name);
-        //     });
-        //   }
-        // });
+        var material_category_uuid = $(".material_category_uuid").val();
+        jQuery.ajax({
+          url: "/get_material_data",
+          type: "GET",
+          data: {"material_cate_uuid" : material_category_uuid},
+          dataType: "json",
+          success: function(data){
+            $(".material_name").empty();
+            $.each(data, function(i, value) {
+              // $(".material_uuid").val(value.uuid);
+              $(".material_name").append("<tr><td>"+value.name+"</td></tr>");
+              // console.log(i+"," +value);
+              // $('span.test').html(i+", "+value);
+
+            });
+          }
+        });
         
       }
     );

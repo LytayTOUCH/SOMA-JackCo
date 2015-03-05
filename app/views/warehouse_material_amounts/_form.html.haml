@@ -1,25 +1,22 @@
-= simple_form_for @warehouse_material_amount, html: { class: "form-horizontal" } do |f|
+.row
   .form-group
-    %label.col-xs-2.control-label.text-left Material Name *
+    %label.col-xs-2.control-label.text-left Material Category *
     .col-xs-4
-      = f.association :material, label: false, input_html: {class: "form-control material_id", style: "border-radius: 0"}, error_html: {class: "err_msg"}
-    %span.help-block= f.error :material_uuid
-  .form-group.warehouse-name
-    - @warehouses.each do |warehouse|
-      = f.input :warehouse_uuid, label: false, input_html: {class: "", type: "hidden", value: warehouse.uuid}
-      %label.col-xs-2.control-label.text-left
-        = warehouse.name
-      .input-group.col-xs-4
-        = f.input :amount, label: false, input_html: {class: "form-control", type: "text", style: "margin-left: 15px;"}
-        .input-group-btn{style: "padding-right: 12px;"}
-          = f.submit "Save", class: 'btn btn-default'
-      %br
- 
+      %select.form-control.material_category_uuid
+        %option{:value => ""}
+        - @material_categories.each do |material_category|
+          %option{:value => material_category.uuid}
+            = material_category.name
 
-  / .form-group
-  /   .col-xs-6
-  /     .pull-right
-  /       = render partial: 'form_button', locals: { f: f }
+.row
+  .form-group.material-name
+    %label.col-xs-2.control-label.text-left Material Name  
+
+    %table.table
+      %th
+      - @warehouses.each do |wh|
+        %th= wh.name
+      %tbody.material_name
 
 
 / :javascript

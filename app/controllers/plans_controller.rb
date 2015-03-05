@@ -53,19 +53,22 @@ class PlansController < ApplicationController
   end
 
   def create
-    begin
+    # begin
       @plan = Plan.new(plan_params)
 
       if @plan.save!
         flash[:notice] = "Plan saved successfully"
+        puts "1111111111111111111111111111111111111"
         redirect_to plans_path
       else
+        puts "22222222222222222222222222222222222222"
         flash[:notice] = "Plan can't save"
         redirect_to :back
       end
-    rescue Exception => e
-      puts e
-    end
+    # rescue Exception => e
+    #   puts "333333333333333333333333333333333333333333333333333"
+    #   puts e
+    # end
   end
 
   def edit

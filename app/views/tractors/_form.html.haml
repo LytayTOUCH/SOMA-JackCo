@@ -1,6 +1,6 @@
 = simple_form_for @tractor, html: {class: 'form-horizontal', multipart: true} do |f|
   .form-group
-    %label.col-xs-2.control-label{for: 'tractor_name'} Name
+    %label.col-xs-2.control-label{for: 'tractor_name'} Name *
     .col-xs-5
       = f.input :name, label: false, input_html: {class: "form-control"}
       %span.help-block= f.error :name

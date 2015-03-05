@@ -24,7 +24,6 @@ class JackFruitsController < ApplicationController
 
   def new
     @jack_fruit = JackFruit.new
-    @stages = Stage.where(fruit_type: 'jackfruit')
     @fields = Field.all
   end
 

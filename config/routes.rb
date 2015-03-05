@@ -71,6 +71,9 @@ Rails.application.routes.draw do
   resources :warehouses
   resources :user_groups  
   
+  get 'warehouse_item_requested_transactions', to: 'warehouse_item_transactions#index_item_requested', as: :warehouse_item_requested_transactions
+  get 'warehouse_item_received_transactions', to: 'warehouse_item_transactions#index_item_received', as: :warehouse_item_received_transactions
+
   # patch 'permissions/:id/update', :to => 'permissions#update'
   # get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
 
@@ -112,9 +115,12 @@ Rails.application.routes.draw do
   resources :production_stages
   resources :positions
   resources :phases
+  resources :warehouse_item_transactions
   resources :warehouse_material_amounts
 
-  get 'get_warehouse_data', to: 'warehouses#get_warehouse_data'
+  get 'get_material_data', to: 'materials#get_material_data'
+
+  get 'get_unit_of_measurement_data', to: 'materials#get_material_uom_data'
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

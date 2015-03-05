@@ -1,11 +1,11 @@
 = simple_form_for @user, html: { class: "form-horizontal" } do |f|
   .form-group
-    %label.col-xs-2.control-label.text-left Email
+    %label.col-xs-2.control-label.text-left Email *
     .col-xs-5
       = f.input :email, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" } 
     %span.help-block= f.error :email
   .form-group
-    %label.col-xs-2.control-label User Group
+    %label.col-xs-2.control-label User Group *
     .col-xs-5   
       = f.input :user_group_id, label: false, collection: @user_groups, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :user_group_id   

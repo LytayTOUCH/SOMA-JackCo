@@ -80,9 +80,9 @@
           %li.divider
           %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white REQUEST / RECEIVE
           %li
-            = navbar_link "Material Request", "#", "active"
+            = navbar_link "Material Request", warehouse_item_requested_transactions_path, "active"
           %li
-            = navbar_link "Material Receive", "#", "active"
+            = navbar_link "Material Receive", warehouse_item_received_transactions_path, "active"
           
       / %li.dropdown
       /   %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
