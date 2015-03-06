@@ -10,6 +10,12 @@
 # rake db:seed
 # ========== Create Roles ========== 
 [
+  {code: 'item_per_page', note: 'Amount of item show in a list per page', valueType: 'INT', valueInteger: 10, valueString: nil, valueFloat: nil}
+].each do |setting|
+  Setting.create_with(note: setting[:note], valueType: setting[:valueType], valueInteger: setting[:valueInteger], valueString: setting[:valueString], valueFloat: setting[:valueFloat]).find_or_create_by(code: setting[:code])
+end
+
+[
   {name: 'admin', note: 'Controlling all modules', label: 'Admin'},
   {name: 'manager', note: 'Can read all modules and download all reports', label: 'Manager'},
   {name: 'project_leader', note: 'Can input all modules', label: 'Project Leader'},

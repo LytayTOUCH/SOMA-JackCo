@@ -20,7 +20,6 @@
           %li
             - if can? :read, PlantingProject
               = navbar_link "Planting Project", planting_projects_path, "active"
-          
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Workforce
             %ul.dropdown-menu
@@ -67,18 +66,21 @@
               %li
                 - if can? :read, UnitOfMeasurement
                   = navbar_link "Unit of Measurement", unit_of_measurement_index_path, "active"
+              %li.divider
+              %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white ADJUSTMENT
+              %li
+                = navbar_link "Initialize Stock", new_warehouse_material_amount_path, "active"
+          
+          %li.divider
+          %li
+            = navbar_link "Settings", settings_path, "active"
 
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %i.fa.fa-cog.fa-lg.icon-greenish
+          %i.fa.fa-cubes.fa-lg.icon-greenish
           Resources
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
-          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white ADJUSTMENT
-          %li
-            = navbar_link "Initialize Stock", new_warehouse_material_amount_path, "active"
-          %li.divider
-          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white REQUEST / RECEIVE
           %li
             = navbar_link "Material Request", warehouse_item_requested_transactions_path, "active"
           %li
@@ -109,7 +111,7 @@
             
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %i.fa.fa-compass.fa-lg.icon-greenish
+          %i.fa.fa-users.fa-lg.icon-greenish
           Security
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
@@ -163,13 +165,11 @@
           Reports
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
-          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white INPUT / OUTPUT
           %li
             %a{:href => "#"} Input Use Summary
           %li
             %a{:href => "#"} Output Summary
           %li.divider
-          %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white STOCK / INVENTORY
           %li
             %a{:href => "#"} Products Classification
           %li

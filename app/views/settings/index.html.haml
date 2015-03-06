@@ -1,0 +1,28 @@
+.row
+  %h3
+    = "System Settings"
+  %hr
+  %table.table
+    %thead
+      %tr
+        %th= "Setting Definition"
+        %th= "Type"
+        %th= "Value"
+        %th= "Actions"
+    - @settings.each do |setting|
+      %tr
+        %td= setting.note
+        %td
+          - if setting.valueType == "STR"
+            = "String"
+          - else
+            = "Number"
+        %td
+          - if setting.valueType == "STR"
+            = setting.valueString
+          - elsif setting.valueType == "INT"
+            = setting.valueInteger
+          - else
+            = setting.valueFloat
+        %td
+          = link_to "Edit", edit_setting_path(setting)
