@@ -3,14 +3,14 @@ class WarehouseItemTransactionsController < ApplicationController
   load_and_authorize_resource except: :create
   respond_to :html, :json
 
-  add_breadcrumb "All Warehouse Item Transactions", :warehouse_item_transactions_path
+  add_breadcrumb "All Warehouse Item Transactions", :warehouse_item_requested_transactions_path
 
   def index_item_requested
     begin
       @warehouse_item_requested_transaction = WarehouseItemTransaction.new
 
       if params[:warehouse_item_requested_transaction] and params[:warehouse_item_requested_transaction][:requested_date] and !params[:warehouse_item_requested_transaction][:requested_date].nil?
-        @warehouse_item_requested_transactions = WarehouseItemTransaction.find_by_requested_transaction_date(params[:warehouse_item_requested_transaction][:requested_date]).page(params[:page]).per(5)
+        @warehouse_item_requested_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_requested_transaction][:requested_date]).page(params[:page]).per(5)
       else
         @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(5)
       end
@@ -24,7 +24,7 @@ class WarehouseItemTransactionsController < ApplicationController
       @warehouse_item_received_transaction = WarehouseItemTransaction.new
 
       if params[:warehouse_item_received_transaction] and params[:warehouse_item_received_transaction][:received_date] and !params[:warehouse_item_received_transaction][:received_date].nil?
-        @warehouse_item_received_transactions = WarehouseItemTransaction.find_by_received_transaction_date(params[:warehouse_item_received_transaction][:received_date]).page(params[:page]).per(5)
+        @warehouse_item_received_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_received_transaction][:received_date]).page(params[:page]).per(5)
       else
         @warehouse_item_received_transactions = WarehouseItemTransaction.page(params[:page]).per(5).where(transaction_status: "Received")
       end
@@ -36,8 +36,15 @@ class WarehouseItemTransactionsController < ApplicationController
   def new
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.new
-      @warehouses = Warehouse.all
+      
       @materials = Material.all
+
+      @central_warehouse_type = WarehouseType.find-by_name("Central Warehouse") 
+      @project_warehouse_type = WarehouseType.find-by_name("Project Warehouse") 
+
+      @central_warehouses = Warehouse.find_by('(warehouse_type_uuid= ? AND active= ?)', central_warehouse_type.uuid, true)
+      @project_warehouses = Warehouse.find_by('(warehouse_type_uuid= ? AND active= ?)', project_warehouse_type.uuid, true)
+
     rescue Exception => e
       puts e
     end

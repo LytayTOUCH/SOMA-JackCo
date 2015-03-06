@@ -1,5 +1,8 @@
 = simple_form_for @warehouse_item_received_transaction, url: warehouse_item_received_transactions_path, method: :get, html: {novalidate: true, class: 'form-inline'} do |f|
   .input-group.col-xs-5
-    = f.input :received_date, as: :string, label: false, input_html: {class: "form-control", placeholder: "Search by received date"}
+    = f.input :requested_number, as: :string, label: false, input_html: {class: "form-control", placeholder: "Search by requested number"}
     .input-group-btn
       = f.submit :Search, class: "btn btn-default"
+
+:javascript
+  $('.date_pick').datetimepicker({});      

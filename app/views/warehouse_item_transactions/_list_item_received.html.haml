@@ -1,19 +1,23 @@
 %table.table
   %thead
     %tr
-      %th.col-md-2= "Requested Date"
-      %th.col-md-2= "Received Date"
-      %th.col-md-1= "Due Date"
-      %th.col-md-1= "Requested No"
-      %th.col-md-1= "Material"
-      %th.col-md-2= "Material Category"
-      %th.col-md-2= "Amount"
+      %th= "Request By"
+      %th= "Request To"
+      %th= "Requested Date"
+      %th= "Received Date"
+      %th= "Requested No"
+      %th= "Material"
+      %th= "Material Category"
+      %th= "Amount"
   - @warehouse_item_received_transactions.each do |warehouse_item_received_transaction|
     - material = Material.find_by_uuid(warehouse_item_received_transaction.material_id)
+    - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_received_transaction.sender_id)
+    - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_received_transaction.receiver_id)
     %tr
+      %td= sender_warehouse.name
+      %td= receiver_warehouse.name
       %td= warehouse_item_received_transaction.requested_date
       %td= warehouse_item_received_transaction.received_date
-      %td= warehouse_item_received_transaction.due_date
       %td= warehouse_item_received_transaction.requested_number
       %td
         = material.name

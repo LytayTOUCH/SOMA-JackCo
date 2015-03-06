@@ -3,7 +3,7 @@
     = "Warehouse Item Request"
     .pull-right
       - if can? :create, WarehouseItemTransaction
-        = link_to "New Warehouse", new_warehouse_item_transaction_path, class: "btn btn-primary"
+        = link_to "New Material Request", new_warehouse_item_transaction_path, class: "btn btn-primary"
   %hr
   = render partial: 'form_item_requested_search'
   %hr

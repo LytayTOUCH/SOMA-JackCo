@@ -17,7 +17,10 @@ class WarehouseItemTransaction < ActiveRecord::Base
 
   scope :find_by_received_transaction_date, -> received_date {
     if received_date.present?
-      where("received_date >= ?", received_date ) 
+      where("received_date <= ?", received_date ) 
     end
   }
+
+  scope :find_by_requested_number, -> requested_number { where("requested_number like ?", "%#{requested_number}%") }
+
 end 
