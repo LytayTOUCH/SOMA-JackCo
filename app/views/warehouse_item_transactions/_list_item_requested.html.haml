@@ -10,7 +10,7 @@
       %th.col-md-1= "Actions"
   - @warehouse_item_requested_transactions.each do |warehouse_item_requested_transaction|
     - material = Material.find_by_uuid(warehouse_item_requested_transaction.material_id)
-    - if warehouse_item_requested_transaction.transaction_status == "Requested"
+    - if warehouse_item_requested_transaction.transaction_status == "Received"
       %tr.requested-row-color
         %td= warehouse_item_requested_transaction.requested_date
         %td= warehouse_item_requested_transaction.due_date
@@ -27,7 +27,7 @@
         %td
           - if can? :update, WarehouseItemTransaction
             = link_to "View", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction)  
-    - elsif warehouse_item_requested_transaction.transaction_status == "Received"        
+    - elsif warehouse_item_requested_transaction.transaction_status == "Requested"        
       %tr
         %td= warehouse_item_requested_transaction.requested_date
         %td= warehouse_item_requested_transaction.due_date
