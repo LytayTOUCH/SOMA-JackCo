@@ -44,5 +44,24 @@
         %td
           - if can? :update, WarehouseItemTransaction
             = link_to "View", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction)
+
+    - elsif Date.parse(warehouse_item_requested_transaction.due_date).past?
+      / warehouse_item_requested_transaction.due_date < Date.today
+      %tr.requested-expired-row-color
+        %td= warehouse_item_requested_transaction.requested_date
+        %td= warehouse_item_requested_transaction.due_date
+        %td= warehouse_item_requested_transaction.requested_number
+        %td
+          = material.name
+        %td
+          = material.material_category.name
+        %td
+          = warehouse_item_requested_transaction.amount
+          = '('
+          = material.unit_of_measurement.name
+          = ')'
+        %td
+          - if can? :update, WarehouseItemTransaction
+            = link_to "View", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction)      
 .pull-right
   = paginate @warehouse_item_requested_transactions          
