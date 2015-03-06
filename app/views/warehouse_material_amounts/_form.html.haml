@@ -10,12 +10,13 @@
 
 .row
   .form-group.material-name
-    %label.col-xs-2.control-label.text-left Material Name  
+    %label.col-xs-2.control-label.text-left  
 
     %table.table
-      %th
+      %th Material Name
+      %input{:name => "warehouse_amount", :id => "warehouse_amount", :type => "hidden", :value => @warehouse_amount}/
       - @warehouses.each do |wh|
-        %th= wh.name
+        %th#warehouse-id{uuid: wh.uuid}= wh.name
       %tbody.material_name
 
 
