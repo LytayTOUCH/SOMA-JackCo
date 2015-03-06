@@ -23,29 +23,24 @@
 /             %div
 /               %i.fa.fa-map-marker
 /               = farm.latlong_farm
-
-%div Surface: #{@farm.blocks.sum(:surface)}
-%div Blocks Amount: #{@farm.blocks.count}
-%div
-  Planting Project:
-  - @farm.blocks.select(:planting_project_id).distinct.each do |block|
-    - if block.planting_project.name.downcase.eql? 'coconut'
-      %span.label.label-success #{block.planting_project.name}
-    - else
-      %span.label.label-warning #{block.planting_project.name}
-%div Location: #{@farm.location}
-%div
-  %i.fa.fa-map-marker
-  %span.farm-latlong= "#{@farm.latlong_farm}"
-
-.page-header.custom-page-header
-  %h3.custom-h3
-    .fa.fa-cubes.icon-brown
-    All Blocks Map
 .row
   .col-lg-12
-    #blocks-map
-%br
+    #blocks-map.img-rounded
+.row.farm-box-infowindow
+  %div Surface: #{@farm.blocks.sum(:surface)}
+  %div Blocks Amount: #{@farm.blocks.count}
+  %div
+    Planting Project:
+    - @farm.blocks.select(:planting_project_id).distinct.each do |block|
+      - if block.planting_project.name.downcase.eql? 'coconut'
+        %span.label.label-success #{block.planting_project.name}
+      - else
+        %span.label.label-warning #{block.planting_project.name}
+  %div Location: #{@farm.location}
+  %div
+    %i.fa.fa-map-marker
+    %span.farm-latlong= "#{@farm.latlong_farm}"
+
 .page-header.custom-page-header
   %h3.custom-h3
     .fa.fa-cubes.icon-brown
@@ -79,26 +74,45 @@
               = block.location_lat_long
 .form-modal
 :javascript
+  var latlongfarm = new google.maps.LatLng(#{@farm.latlong_farm});
   var map;
   mapOptions = {
         zoom: 16,
-        center: new google.maps.LatLng(#{@farm.latlong_farm}),
+        center: latlongfarm,
         streetViewControl: false,
         panControl: false,
         mapTypeControl: false,
         mapTypeId: google.maps.MapTypeId.SATELLITE
       };
   map = new google.maps.Map(document.getElementById('blocks-map'), mapOptions);
+  $("div.row.farm-box-infowindow").hide();
+  var contentbox = $("div.row.farm-box-infowindow").get()[0].innerHTML;
+  var infowindow = new google.maps.InfoWindow({
+      content: contentbox,
+      maxWidth: 600,
+      zIndex: 10000
+  });
+  var marker = new google.maps.Marker({
+        position: latlongfarm,
+        map: map,
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });
+  infowindow.open(map, marker);
+  var addListenersOnPolygon = function(polygon) {
+    google.maps.event.addListener(polygon, 'click', function (event) {
+      console.log(polygon);
+    });
+  }
 - @farm.blocks.each do |block|
   :javascript
     show_blocks = function() {
       var block_points = #{block.shape_lat_long};
       polypoints = [];
-      console.log(block_points.length);
       for(i=0;i<block_points.length;i++){
         polypoints.push(new google.maps.LatLng(block_points[i][0],block_points[i][1]));
       }
-      console.log(polypoints);
       block = new google.maps.Polygon({
         paths: polypoints,
         strokeColor: '#ff0000',
@@ -108,5 +122,6 @@
         fillOpacity: 0.35
       });
       block.setMap(map);
+      addListenersOnPolygon(block);
     };
     show_blocks();

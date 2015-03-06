@@ -76,7 +76,7 @@
         %ul.dropdown-menu{:role => "menu"}
           %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white ADJUSTMENT
           %li
-            = navbar_link "Adjust/Initialize Stock", new_warehouse_material_amount_path, "active"
+            = navbar_link "Initialize Stock", new_warehouse_material_amount_path, "active"
           %li.divider
           %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white REQUEST / RECEIVE
           %li
@@ -129,9 +129,6 @@
           %li
             - if can? :read, Farm
               = link_to 'All Farms', farms_path
-          %li
-            - if can? :read, Farm
-              = link_to 'All Blocks', "#"
           %li.divider
           = render "farm_names_navigator"
       %li.dropdown
