@@ -1,0 +1,48 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-2= "Requested Date"
+      %th.col-md-2= "Due Date"
+      %th.col-md-2= "Requested No"
+      %th.col-md-1= "Material"
+      %th.col-md-2= "Material Category"
+      %th.col-md-2= "Amount"
+      %th.col-md-1= "Actions"
+  - @warehouse_item_requested_transactions.each do |warehouse_item_requested_transaction|
+    - material = Material.find_by_uuid(warehouse_item_requested_transaction.material_id)
+    - if warehouse_item_requested_transaction.transaction_status == "Requested"
+      %tr.requested-row-color
+        %td= warehouse_item_requested_transaction.requested_date
+        %td= warehouse_item_requested_transaction.due_date
+        %td= warehouse_item_requested_transaction.requested_number
+        %td
+          = material.name
+        %td
+          = material.material_category.name
+        %td
+          = warehouse_item_requested_transaction.amount
+          = '('
+          = material.unit_of_measurement.name
+          = ')'
+        %td
+          - if can? :update, WarehouseItemTransaction
+            = link_to "View", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction)  
+    - elsif warehouse_item_requested_transaction.transaction_status == "Received"        
+      %tr
+        %td= warehouse_item_requested_transaction.requested_date
+        %td= warehouse_item_requested_transaction.due_date
+        %td= warehouse_item_requested_transaction.requested_number
+        %td
+          = material.name
+        %td
+          = material.material_category.name
+        %td
+          = warehouse_item_requested_transaction.amount
+          = '('
+          = material.unit_of_measurement.name
+          = ')'
+        %td
+          - if can? :update, WarehouseItemTransaction
+            = link_to "View", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction)
+.pull-right
+  = paginate @warehouse_item_requested_transactions          

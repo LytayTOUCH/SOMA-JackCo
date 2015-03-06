@@ -14,9 +14,9 @@
 
     %table.table
       %th Material Name
+      %input{:name => "warehouse_amount", :id => "warehouse_amount", :type => "hidden", :value => @warehouse_amount}/
       - @warehouses.each do |wh|
-        %input{:name => "warehouse_uuid", :type => "hidden", :value => wh.uuid}/
-        %th= wh.name
+        %th#warehouse-id{uuid: wh.uuid}= wh.name
       %tbody.material_name
 
 

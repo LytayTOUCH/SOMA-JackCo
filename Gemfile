@@ -57,7 +57,6 @@ gem 'cancan'
 gem 'rolify'
 gem 'fullcalendar-rails'
 
-
 # group :assets do
 #   gem 'twitter-bootstrap-rails'
 # end
@@ -68,6 +67,7 @@ gem "googlecharts"
 gem 'axlsx'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+
 
 # ruby '2.0.0'
 

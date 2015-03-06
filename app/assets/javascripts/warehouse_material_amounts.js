@@ -11,10 +11,17 @@ $(document).ready(function() {
           data: {"material_cate_uuid" : material_category_uuid},
           dataType: "json",
           success: function(data){
+            // $(".material_id").empty();
             $(".material_name").empty();
             $.each(data, function(i, value) {
-              // $(".material_uuid").val(value.uuid);
-              $(".material_name").append("<tr><td>"+value.name+"</td></tr>");
+              // $(".material_id").append('<input type="hidden" name="material_uuid" value="'+value.uuid+'">');
+
+              $(".material_name").append("<tr id='"+value.uuid+"'><td>"+value.name+"</td></tr>");
+
+              var warehouse_amount = $("#warehouse_amount").val();
+              for(var i = 0 ; i<warehouse_amount ; i++) {
+                $("#"+value.uuid).append("<td><input type='number' size='15' value='0' style='width: 80px;'></td>");
+              }
               // console.log(i+"," +value);
               // $('span.test').html(i+", "+value);
 

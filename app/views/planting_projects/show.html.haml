@@ -7,6 +7,7 @@
     .fa.fa-tree
       = farm.name
   %hr
+  / %div= farm.name
   - farm.blocks.where(:planting_project_id => @planting_project.uuid).each do |block|
     .col-sm-3
       .box-farm-info

@@ -10,11 +10,6 @@
       = f.input :field_uuid, label: false, collection: @fields, input_html: { class: "form-control" }, include_blank: true
       %span.help-block= f.error :field_uuid
   .form-group
-    %label.col-xs-2.control-label.text-left JackFruit Stage
-    .col-xs-5
-      = f.input :stage_uuid, label: false, collection: @stages, input_html: {class: "form-control"}, include_blank: true
-      %span.help-block= f.error :stage_uuid
-  .form-group
     %label.col-xs-2.control-label.text-left JackFruit Type
     .col-xs-5
       = f.input :jack_fruit_type, label: false, collection: ["F1", "F2", "F3", "F4", "F5"], input_html: { class: "form-control" }

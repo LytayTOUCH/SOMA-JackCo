@@ -25,7 +25,7 @@ class UserGroupsController < ApplicationController
     @user_group = UserGroup.new(user_group_params)
     
     if @user_group.save
-      flash[:notice] = "User Group type saved successfully"
+      flash[:notice] = "This user group is not active yet. Please contact us for activate this user group."
       redirect_to user_groups_path(@user_group)
     else
       flash[:notice] = "User Group type can't save"

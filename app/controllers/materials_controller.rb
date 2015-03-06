@@ -80,6 +80,11 @@ class MaterialsController < ApplicationController
     render :json => @material_data
   end
 
+  def get_material_uom_data
+    @material_data = Material.find_by_uuid(params[:material_uuid]).unit_of_measurement
+    render :json => @material_data
+  end
+
   # def new_supplier
   #   begin
   #     @supplier = Supplier.new
