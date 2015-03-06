@@ -1,11 +1,16 @@
 /*
+ *= require bootstrap
+ *= require bootstrap-datetimepicker
  *= require_tree .
  *= require_self
  */
 
 .requested-row-color {
   background: #8eec6a;
-  
+}
+
+.requested-expired-row-color {
+  background: #fb3f51;
 }
 
 #delete-confirm.modal-dialog-center {

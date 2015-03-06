@@ -1,13 +1,13 @@
-%h2= "New Item Request"
+%h2= "New Material Request"
 %hr
 = simple_form_for @warehouse_item_transaction, html: { class: "form-horizontal" } do |f|
   .form-group
-    %label.col-xs-2.control-label Requested By *
+    %label.col-xs-2.control-label Request By *
     .col-xs-5
       = f.input :sender_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :sender_id
   .form-group
-    %label.col-xs-2.control-label Requested To *
+    %label.col-xs-2.control-label Request To *
     .col-xs-5
       = f.input :receiver_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :receiver_id
@@ -23,6 +23,7 @@
       = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :amount
     %span.uom-name
+
   .form-group
     %label.col-xs-2.control-label Request Date
     .col-xs-5
@@ -53,6 +54,7 @@
   .form-group
     .col-xs-7
       .pull-right
-        = render partial: 'form_button', locals: { f: f }
+        = submit_tag "Create Material Request", class: "btn btn-primary", locals: { f: f }
+        = link_to "Cancel", :back, class: "btn btn-default", locals: { f: f }
 
      

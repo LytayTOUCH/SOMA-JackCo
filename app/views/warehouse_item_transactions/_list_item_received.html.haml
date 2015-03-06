@@ -2,8 +2,9 @@
   %thead
     %tr
       %th.col-md-2= "Requested Date"
-      %th.col-md-2= "Due Date"
-      %th.col-md-2= "Requested No"
+      %th.col-md-2= "Received Date"
+      %th.col-md-1= "Due Date"
+      %th.col-md-1= "Requested No"
       %th.col-md-1= "Material"
       %th.col-md-2= "Material Category"
       %th.col-md-2= "Amount"
@@ -11,6 +12,7 @@
     - material = Material.find_by_uuid(warehouse_item_received_transaction.material_id)
     %tr
       %td= warehouse_item_received_transaction.requested_date
+      %td= warehouse_item_received_transaction.received_date
       %td= warehouse_item_received_transaction.due_date
       %td= warehouse_item_received_transaction.requested_number
       %td

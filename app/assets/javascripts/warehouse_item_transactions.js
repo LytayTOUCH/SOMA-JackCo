@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function() {
   $('.uom-name').hide();
   $('.material_uuid').change(
     function() {
@@ -10,17 +10,9 @@ $(document).ready(function() {
         data: {"material_uuid" : material_uuid},
         dataType: "json",
         success: function(data){
-          // $.each(data, function(i, value){
           $("span.uom-name").html(data.name);
-          // });
         }
       });      
     }
   );
-
-  // $(function () {
-  //     $('.date_pick').datetimepicker({
-  //       pickTime: false
-  //     });
-  //   });
 }); 
