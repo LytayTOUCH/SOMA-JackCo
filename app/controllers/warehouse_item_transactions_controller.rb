@@ -39,11 +39,12 @@ class WarehouseItemTransactionsController < ApplicationController
       
       @materials = Material.all
 
-      @central_warehouse_type = WarehouseType.find-by_name("Central Warehouse") 
-      @project_warehouse_type = WarehouseType.find-by_name("Project Warehouse") 
+      @central_warehouse_type = WarehouseType.find_by_name("Central Warehouse") 
+      @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse") 
 
-      @central_warehouses = Warehouse.find_by('(warehouse_type_uuid= ? AND active= ?)', central_warehouse_type.uuid, true)
-      @project_warehouses = Warehouse.find_by('(warehouse_type_uuid= ? AND active= ?)', project_warehouse_type.uuid, true)
+      @central_warehouses = @central_warehouse_type.warehouses.where(active: true)
+
+      @project_warehouses = @project_warehouse_type.warehouses.where(active: true)
 
     rescue Exception => e
       puts e
@@ -82,6 +83,25 @@ class WarehouseItemTransactionsController < ApplicationController
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.find(params[:id])
 
+      @warehouse_material_amount = WarehouseMaterialAmount.new
+
+      @warehouse_central_material = WarehouseMaterialAmount.find_by(warehouse_uuid: @warehouse_item_transaction.sender_id, material_uuid: @warehouse_item_transaction.material_id)
+
+      @warehouse_project_material = WarehouseMaterialAmount.find_by(warehouse_uuid: @warehouse_item_transaction.receiver_id, material_uuid: @warehouse_item_transaction.material_id)      
+
+      requested_amount = @warehouse_item_transaction.amount
+      amount_in_hand = @warehouse_central_material.amount
+
+      if amount_in_hand >= requested_amount
+        remain_amount = amount_in_hand - requested_amount
+        @warehouse_central_material.amount = remain_amount
+        @warehouse_project_material.amount += requested_amount
+        @warehouse_central_material.update_attributes(warehouse_material_amount_params)
+        @warehouse_project_material.update_attributes(warehouse_material_amount_params)
+      else
+      
+      end  
+
       if @warehouse_item_transaction.update_attributes(warehouse_item_transaction_params)
         flash[:notice] = "Warehouse Item Transaction updated"
         redirect_to warehouse_item_requested_transactions_path
@@ -116,5 +136,9 @@ class WarehouseItemTransactionsController < ApplicationController
   private
   def warehouse_item_transaction_params
     params.require(:warehouse_item_transaction).permit(:sender_id, :receiver_id, :material_id, :transaction_status, :requested_number, :created_by, :updated_by, :requested_date, :received_date, :due_date, :note, :amount)
+  end
+
+  def warehouse_material_amount_params
+    params.require(:warehouse_material_amount).permit(:warehouse_uuid, :material_uuid, :amount)
   end
 end

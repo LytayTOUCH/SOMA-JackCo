@@ -31,8 +31,7 @@
           = material.unit_of_measurement.name
           = ')'
         %td
-          - if can? :update, WarehouseItemTransaction
-            = link_to "View", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction)  
+          = "Received"
     - elsif warehouse_item_requested_transaction.due_date.past?
       / warehouse_item_requested_transaction.due_date < Date.today
       %tr.requested-expired-row-color

@@ -4,6 +4,7 @@
   .form-group
     %label.col-xs-2.control-label Request By *
     .col-xs-5
+      / = @project_warehouses.inspect
       = f.input :sender_id, label: false, collection: @project_warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :sender_id
   .form-group
