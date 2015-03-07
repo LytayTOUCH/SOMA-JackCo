@@ -99,7 +99,7 @@ end
 end
 
 # ========== Create Unit of Measurement ========== 
-UnitOfMeasurement.delete_all
+# UnitOfMeasurement.delete_all
 [
   {name: 'Unit', note: 'Unit of measurement for tree, amount of fruit,...'},
   {name: 'Kilogram', note: 'Unit of measurement for kilogram.'},
