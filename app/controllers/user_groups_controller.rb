@@ -8,9 +8,9 @@ class UserGroupsController < ApplicationController
       @user_group = UserGroup.new
 
       if params[:user_group] and params[:user_group][:name] and !params[:user_group][:name].nil?
-        @user_groups = UserGroup.find_by_name(params[:user_group][:name]).page(params[:page]).per(5)
+        @user_groups = UserGroup.find_by_name(params[:user_group][:name]).page(params[:page]).per(session[:item_per_page])
       else
-        @user_groups = UserGroup.page(params[:page]).per(5)
+        @user_groups = UserGroup.page(params[:page]).per(session[:item_per_page])
       end
     rescue Exception => e
       puts e

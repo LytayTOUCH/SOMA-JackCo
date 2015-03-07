@@ -4,9 +4,9 @@
     #{@farm.name}
     - if can? :create, Farm
       = link_to '(+) Add block', new_farm_block_path(@farm), :remote => true, class: 'btn btn-xs btn-primary btn-add'
-      = link_to "#", :remote => true, class: 'btn btn-xs btn-primary' do
-        .fa.fa-chain.fa-lg
-        Link block
+      / = link_to "#", :remote => true, class: 'btn btn-xs btn-primary' do
+      /   .fa.fa-chain.fa-lg
+      /   Link block
 / .row{:style => "padding-left: 15px;margin:0px;"}
 /   - @farms.each do |farm|
 /     .col-sm-4
@@ -27,19 +27,22 @@
   .col-lg-12
     #blocks-map.img-rounded
 .row.farm-box-infowindow
-  %div Surface: #{@farm.blocks.sum(:surface)}
-  %div Blocks Amount: #{@farm.blocks.count}
-  %div
-    Planting Project:
-    - @farm.blocks.select(:planting_project_id).distinct.each do |block|
-      - if block.planting_project.name.downcase.eql? 'coconut'
-        %span.label.label-success #{block.planting_project.name}
-      - else
-        %span.label.label-warning #{block.planting_project.name}
-  %div Location: #{@farm.location}
-  %div
-    %i.fa.fa-map-marker
-    %span.farm-latlong= "#{@farm.latlong_farm}"
+  .col-xs-8
+    %div Total Surface: #{@farm.blocks.sum(:surface)}
+    %div Blocks Amount: #{@farm.blocks.count}
+    %div
+      Planting Project:
+      - @farm.blocks.select(:planting_project_id).distinct.each do |block|
+        - if block.planting_project.name.downcase.eql? 'coconut'
+          %span.label.label-success #{block.planting_project.name}
+        - else
+          %span.label.label-warning #{block.planting_project.name}
+    %div Location: #{@farm.location}
+    %div
+      %i.fa.fa-map-marker
+      %span.farm-latlong= "#{@farm.latlong_farm}"
+  .col-xs-4
+    %div.weather-temp
 
 .page-header.custom-page-header
   %h3.custom-h3
@@ -74,6 +77,17 @@
               = block.location_lat_long
 .form-modal
 :javascript
+  var latlong="#{@farm.latlong_farm}".split(", ");
+  $.ajax({
+    url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ latlong[0] +'&lon='+ latlong[1] +'&units=metric',
+    dataType: 'json',
+    success: function(data){
+      var icon = "<img src='http://openweathermap.org/img/w/"+data.weather[0].icon+".png' class='img-rounded' alt='Cinque Terre' width='48' height='48'>";
+      var description = data.weather[0].description
+      $('div.weather-temp').append("<div style='margin: -10px 0px -15px 0px;'>"+data.main.temp+" <sup>o</sup>C"+icon+"</div><div>"+description+"</div><div>Humidity: "+data.main.humidity+"</div><div>Winds: "+data.wind.speed+" m/s</div><div>Pressure: "+data.main.pressure+" hPa</div>");
+    }
+  });
+
   var latlongfarm = new google.maps.LatLng(#{@farm.latlong_farm});
   var map;
   mapOptions = {
@@ -89,7 +103,7 @@
   var contentbox = $("div.row.farm-box-infowindow").get()[0].innerHTML;
   var infowindow = new google.maps.InfoWindow({
       content: contentbox,
-      maxWidth: 600,
+      maxWidth: 1000,
       zIndex: 10
   });
   var marker = new google.maps.Marker({
@@ -100,9 +114,11 @@
     infowindow.open(map,marker);
   });
   infowindow.open(map, marker);
-  var addListenersOnPolygon = function(polygon) {
+  var addListenersOnPolygon = function(polygon, name) {
     google.maps.event.addListener(polygon, 'click', function (event) {
-      alert(polygon);
+      console.log(name);
+      console.log(polygon);
+
     });
   }
   
@@ -149,6 +165,6 @@
       var ibLabel = new InfoBox(myOptions);
       ibLabel.open(map);
       block.setMap(map);
-      addListenersOnPolygon(block);
+      addListenersOnPolygon(block, "#{block.name}");
     };
     show_blocks();
