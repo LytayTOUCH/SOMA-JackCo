@@ -4,9 +4,9 @@
     #{@farm.name}
     - if can? :create, Farm
       = link_to '(+) Add block', new_farm_block_path(@farm), :remote => true, class: 'btn btn-xs btn-primary btn-add'
-      = link_to "#", :remote => true, class: 'btn btn-xs btn-primary' do
-        .fa.fa-chain.fa-lg
-        Link block
+      / = link_to "#", :remote => true, class: 'btn btn-xs btn-primary' do
+      /   .fa.fa-chain.fa-lg
+      /   Link block
 / .row{:style => "padding-left: 15px;margin:0px;"}
 /   - @farms.each do |farm|
 /     .col-sm-4
