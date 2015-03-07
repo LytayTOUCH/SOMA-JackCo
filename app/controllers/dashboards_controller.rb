@@ -2,6 +2,11 @@ class DashboardsController < ApplicationController
   respond_to :html, :json
 
   def index
+    if session[:item_per_page].nil?
+      setting = Setting.find_by_code("item_per_page")
+      session[:item_per_page] = setting.valueInteger
+    end
+    
     @farms=Farm.all
     @planting_projects = PlantingProject.all
 

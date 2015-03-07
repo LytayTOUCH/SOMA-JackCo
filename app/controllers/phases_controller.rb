@@ -8,9 +8,9 @@ class PhasesController < ApplicationController
       @phase = Phase.new
 
       if params[:phase] and params[:phase][:name] and !params[:phase][:name].nil?
-        @phases = Phase.find_by_phase_name(params[:phase][:name]).page(params[:page]).per(5)
+        @phases = Phase.find_by_phase_name(params[:phase][:name]).page(params[:page]).per(session[:item_per_page])
       else
-        @phases = Phase.page(params[:page]).per(5)
+        @phases = Phase.page(params[:page]).per(session[:item_per_page])
       end
     rescue Exception => e
       puts e

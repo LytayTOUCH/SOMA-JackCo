@@ -8,9 +8,9 @@ class UsersController < ApplicationController
       @user = User.new
 
       if params[:user] and params[:user][:email] and !params[:user][:email].nil?
-        @users = User.find_by_email(params[:user][:email]).page(params[:page]).per(5)
+        @users = User.find_by_email(params[:user][:email]).page(params[:page]).per(session[:item_per_page])
       else
-        @users = User.page(params[:page]).per(5).order("email ASC")
+        @users = User.page(params[:page]).per(session[:item_per_page]).order("email ASC")
       end
     rescue Exception => e
       puts e
