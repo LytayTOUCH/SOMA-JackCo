@@ -96,10 +96,11 @@ class WarehouseItemTransactionsController < ApplicationController
         remain_amount = amount_in_hand - requested_amount
         @warehouse_central_material.amount = remain_amount
         @warehouse_project_material.amount += requested_amount
-        @warehouse_central_material.update_attributes(warehouse_material_amount_params)
-        @warehouse_project_material.update_attributes(warehouse_material_amount_params)
+        @warehouse_central_material.update_attributes!(warehouse_material_amount_params)
+        @warehouse_project_material.update_attributes!(warehouse_material_amount_params)
       else
-      
+        flash[:notice] = "Can not update Stock"
+        redirect_to :back
       end  
 
       if @warehouse_item_transaction.update_attributes(warehouse_item_transaction_params)
