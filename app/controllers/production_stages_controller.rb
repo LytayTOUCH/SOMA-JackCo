@@ -8,9 +8,9 @@ class ProductionStagesController < ApplicationController
       @production_stage = ProductionStage.new
 
       if params[:production_stage] and params[:production_stage][:name] and !params[:production_stage][:name].nil?
-        @production_stages = ProductionStage.find_by_production_stage_name(params[:production_stage][:name]).page(params[:page]).per(5)
+        @production_stages = ProductionStage.find_by_production_stage_name(params[:production_stage][:name]).page(params[:page]).per(session[:item_per_page])
       else
-        @production_stages = ProductionStage.page(params[:page]).per(5)
+        @production_stages = ProductionStage.page(params[:page]).per(session[:item_per_page])
       end
     rescue Exception => e
       puts e

@@ -8,9 +8,9 @@ class PositionsController < ApplicationController
       @position = Position.new
 
       if params[:position] and params[:position][:name] and !params[:position][:name].nil?
-        @positions = Position.find_by_position_name(params[:position][:name]).page(params[:page]).per(5)
+        @positions = Position.find_by_position_name(params[:position][:name]).page(params[:page]).per(session[:item_per_page])
       else
-        @positions = Position.page(params[:page]).per(5)
+        @positions = Position.page(params[:page]).per(session[:item_per_page])
       end
     rescue Exception => e
       puts e

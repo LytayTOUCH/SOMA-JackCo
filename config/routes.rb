@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'settings' => 'settings#index'
   get 'settings/:code' => 'settings#show', :as => 'setting'
   get 'settings/:code/edit' => 'settings#edit', :as => 'edit_setting'
+  patch 'settings/:code', :to => 'settings#update'
+  put 'settings/:code', :to => 'settings#update'
 
   # root 'devise/sessions#new'
   devise_for :users, controllers: { registrations: "users" } 
