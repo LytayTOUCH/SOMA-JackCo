@@ -7,42 +7,27 @@
       / = link_to "#", :remote => true, class: 'btn btn-xs btn-primary' do
       /   .fa.fa-chain.fa-lg
       /   Link block
-/ .row{:style => "padding-left: 15px;margin:0px;"}
-/   - @farms.each do |farm|
-/     .col-sm-4
-/       .box-farm-info
-/         .page-header.custom-page-header
-/           %h4.custom-h4
-/             = link_to farm.name.upcase, farm_path(farm), :class => "text-color-green"
-/         .row
-/           .col-lg-12.farm-info
-/             %div Surface: #{@farms_amount}
-/             %div Blocks Amount: #{58}
-/             %div Planting Project: Coconut
-/             %div Location: #{farm.location}
-/             %div
-/               %i.fa.fa-map-marker
-/               = farm.latlong_farm
 .row
   .col-lg-12
     #blocks-map.img-rounded
 .row.farm-box-infowindow
-  .col-xs-8
-    %div Total Surface: #{@farm.blocks.sum(:surface)}
-    %div Blocks Amount: #{@farm.blocks.count}
-    %div
-      Planting Project:
-      - @farm.blocks.select(:planting_project_id).distinct.each do |block|
-        - if block.planting_project.name.downcase.eql? 'coconut'
-          %span.label.label-success #{block.planting_project.name}
-        - else
-          %span.label.label-warning #{block.planting_project.name}
-    %div Location: #{@farm.location}
-    %div
-      %i.fa.fa-map-marker
-      %span.farm-latlong= "#{@farm.latlong_farm}"
-  .col-xs-4
-    %div.weather-temp
+  .col-lg-12
+    .col-lg-8
+      %div Total Surface: #{@farm.blocks.sum(:surface)}
+      %div Blocks Amount: #{@farm.blocks.count}
+      %div
+        Planting Project:
+        - @farm.blocks.select(:planting_project_id).distinct.each do |block|
+          - if block.planting_project.name.downcase.eql? 'coconut'
+            %span.label.label-success #{block.planting_project.name}
+          - else
+            %span.label.label-warning #{block.planting_project.name}
+      %div Location: #{@farm.location}
+      %div
+        %i.fa.fa-map-marker
+        %span.farm-latlong= "#{@farm.latlong_farm}"
+    .col-lg-4
+      %div.weather-temp
 
 .page-header.custom-page-header
   %h3.custom-h3
@@ -51,43 +36,28 @@
 .row
   - @farm.blocks.each do |block|
     .col-sm-3
-      .box-farm-info
-        .page-header.custom-page-header
-          %h4.custom-h4
-            = link_to block.name, "#", :class => "text-color-green"
-        .row
-          .col-lg-12.map-info
-            = link_to "#" do
-              .thumbnail.custom-thumbnail
-                %img.map{:src => "https://maps.googleapis.com/maps/api/staticmap?center=#{block.location_lat_long}&zoom=17&size=348x250&scale=1&maptype=satellite&path=color:0xff0000ff|weight:1|fillcolor:0xFFFF0033|#{block.shape_lat_long.split("],[").join("|").gsub!(/[\[\]]/,'')}"}/
-            / .map{:id => "map-canvas-#{farm.uuid}"}
-            </haml:block>
-        .row
-          .col-lg-12.farm-info
-            %div
-              Planting Project:
-              - if block.planting_project.name.downcase.eql? 'coconut'
-                %span.label.label-success #{block.planting_project.name}
-              - else
-                %span.label.label-warning #{block.planting_project.name}
-            %div Surface: #{block.surface}
-            %div Tree Amount: #{block.tree_amount}
-            %div
-              %i.fa.fa-map-marker
-              = block.location_lat_long
+      %div{id:"#{block.uuid}"}
+        .box-farm-info
+          .page-header.custom-page-header
+            %h4.custom-h4
+              = link_to block.name, "#", :class => "text-color-green"
+          .row
+            .col-lg-12.farm-info
+              %div
+                Planting Project:
+                - if block.planting_project.name.downcase.eql? 'coconut'
+                  %span.label.label-success #{block.planting_project.name}
+                - else
+                  %span.label.label-warning #{block.planting_project.name}
+              %div Surface: #{block.surface}
+              %div Tree Amount: #{block.tree_amount}
+              %div
+                %i.fa.fa-map-marker
+                = block.location_lat_long
+
 .form-modal
 :javascript
   var latlong="#{@farm.latlong_farm}".split(", ");
-  $.ajax({
-    url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ latlong[0] +'&lon='+ latlong[1] +'&units=metric',
-    dataType: 'json',
-    success: function(data){
-      var icon = "<img src='http://openweathermap.org/img/w/"+data.weather[0].icon+".png' class='img-rounded' alt='Cinque Terre' width='48' height='48'>";
-      var description = data.weather[0].description
-      $('div.weather-temp').append("<div style='margin: -10px 0px -15px 0px;'>"+data.main.temp+" <sup>o</sup>C"+icon+"</div><div>"+description+"</div><div>Humidity: "+data.main.humidity+"</div><div>Winds: "+data.wind.speed+" m/s</div><div>Pressure: "+data.main.pressure+" hPa</div>");
-    }
-  });
-
   var latlongfarm = new google.maps.LatLng(#{@farm.latlong_farm});
   var map;
   mapOptions = {
@@ -101,70 +71,124 @@
   map = new google.maps.Map(document.getElementById('blocks-map'), mapOptions);
   $("div.row.farm-box-infowindow").hide();
   var contentbox = $("div.row.farm-box-infowindow").get()[0].innerHTML;
-  var infowindow = new google.maps.InfoWindow({
-      content: contentbox,
-      maxWidth: 1000,
-      zIndex: 10
-  });
+  var infowin = function(content){
+    var infowindow = new google.maps.InfoWindow({
+        content: content,
+        maxWidth: 1000,
+        zIndex: 10
+    });
+    return infowindow;
+  }
   var marker = new google.maps.Marker({
         position: latlongfarm,
         map: map,
   });
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.open(map,marker);
+  var infobox = infowin(contentbox);
+  google.maps.event.addListener(map, 'click', function() {
+    infobox.close();
   });
-  infowindow.open(map, marker);
-  var addListenersOnPolygon = function(polygon, name) {
-    google.maps.event.addListener(polygon, 'click', function (event) {
-      console.log(name);
-      console.log(polygon);
-
-    });
+  google.maps.event.addListener(marker, 'click', function() {
+    infobox.setContent($("div.row.farm-box-infowindow").get()[0].innerHTML);
+    infobox.setPosition(this.getPosition());
+    infobox.open(map);
+  });
+  infobox.setPosition(latlongfarm);
+  infobox.open(map);
+  $.ajax({
+    url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ latlong[0] +'&lon='+ latlong[1] +'&units=metric',
+    dataType: 'json',
+    success: function(data){
+      var icon = "<img src='http://openweathermap.org/img/w/"+data.weather[0].icon+".png' class='img-rounded' alt='Cinque Terre' width='48' height='48'>";
+      var description = data.weather[0].description
+      $('div.weather-temp').append("<div style='margin: -10px 0px -15px 0px;'>"+data.main.temp+" <sup>o</sup>C"+icon+"</div><div>"+description+"</div><div>Humidity: "+data.main.humidity+" %</div><div>Winds: "+data.wind.speed+" m/s</div><div>Pressure: "+data.main.pressure+" hPa</div>");
+    }
+  });
+  var getPolygonPoints = function (shape_latlong){
+    var polypoints = [];
+    for(i=0;i<shape_latlong.length;i++){
+      polypoints.push(new google.maps.LatLng(shape_latlong[i][0],shape_latlong[i][1]));
+    }
+    return polypoints;
   }
-  
-- @farm.blocks.each do |block|
-  :javascript
-    show_blocks = function() {
-      var block_points = #{block.shape_lat_long};
-      polypoints = [];
-      for(i=0;i<block_points.length;i++){
-        polypoints.push(new google.maps.LatLng(block_points[i][0],block_points[i][1]));
-      }
-      block = new google.maps.Polygon({
-        paths: polypoints,
-        strokeColor: '#ff0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 1,
-        fillColor: '#FFFF00',
-        fillOpacity: 0.35
-      });
-      
+  var getCenterLatlngPolygon = function(polypoints){
       var bounds = new google.maps.LatLngBounds();
       for (i = 0; i < polypoints.length; i++) {
         bounds.extend(polypoints[i]);
       }
-      var labelText = "#{block.name}";
-      var myOptions = {
-        content: labelText
-        ,boxStyle: {
-           border: "1px solid white"
-          ,textAlign: "center"
-          ,fontSize: "8pt"
-          ,fontWeight: "bold"
-          ,color: "white"
-          ,width: "50px"
-         }
-        ,pixelOffset: new google.maps.Size(-25, 0)
-        ,position: bounds.getCenter()
-        ,disableAutoPan: true
-        ,closeBoxURL: ""
-        ,isHidden: false
-        ,pane: "floatPane"
-        ,enableEventPropagation: true
-      };
-      var ibLabel = new InfoBox(myOptions);
-      ibLabel.open(map);
-      block.setMap(map);
-      addListenersOnPolygon(block, "#{block.name}");
+      return bounds.getCenter();
+  }
+  var showBlock = function(name, shape_latlong, project_name){
+    var stroke_color =  "#126c00", fill_color;
+    var poly_latlng_center = getCenterLatlngPolygon(getPolygonPoints(shape_latlong));
+    var poly_latlng = getPolygonPoints(shape_latlong);
+    switch (project_name) {
+        case "coconut":
+            stroke_color =  "#5EFF4A";
+            fill_color = "#5EFF4A";
+            break;
+        case "jackfruit":
+            stroke_color = "#FFCC00"
+            fill_color = "#FFCC00";
+            break;
+        case "lemon":
+            stroke_color =  "#99FF33";
+            fill_color = "#99FF33";
+            break;
+        case "mango":
+            stroke_color = "#FFFF00"
+            fill_color = "#FFFF00";
+            break;
+    }
+    block = new google.maps.Polygon({
+      paths: poly_latlng,
+      strokeColor: stroke_color,
+      strokeOpacity: 0.8,
+      strokeWeight: 1,
+      fillColor: fill_color,
+      fillOpacity: 0.35
+    });
+    block.setMap(map);
+  }
+  var showBlockName = function(block_name, block_shape, block_id){
+    var myOptions = {
+      content: block_name
+      ,boxStyle: {
+         border: "1px solid white"
+        ,textAlign: "center"
+        ,fontSize: "8pt"
+        ,fontWeight: "bold"
+        ,color: "white"
+        ,width: "50px"
+       }
+      ,pixelOffset: new google.maps.Size(-25, 0)
+      ,position: getCenterLatlngPolygon(getPolygonPoints(block_shape))
+      ,disableAutoPan: true
+      ,closeBoxURL: ""
+      ,isHidden: false
+      ,pane: "floatPane"
+      ,enableEventPropagation: true
+    };
+    var ibLabel = new InfoBox(myOptions);
+    ibLabel.open(map);
+    addListenersOnPolygon(block, block_name, getCenterLatlngPolygon(getPolygonPoints(block_shape)), block_id);
+  }
+  var addListenersOnPolygon = function(polygon, block_name, center_latlong, block_id) {
+    google.maps.event.addListener(polygon, 'click', function (event){
+      infobox.close();
+      infobox.setContent("<div class = 'col-lg-12'><div class ='col-lg-7'>"+$("#"+block_id).get()[0].innerHTML+"</div><div class='col-lg-5'><div style='padding: 10px 0px 0px 0px;'>"+ $('div.weather-temp').get()[0].innerHTML+"</div></div></div>");
+      infobox.setPosition(center_latlong);
+      infobox.open(map);
+    });
+  }
+
+- @farm.blocks.each do |block|
+  :javascript
+    show_blocks = function() {
+      var block_id = "#{block.uuid}";
+      var block_name = "#{block.name}";
+      var block_shape = #{block.shape_lat_long};
+      var project_name = "#{block.planting_project.name.downcase}";
+      showBlock(block_name, block_shape, project_name);
+      showBlockName(block_name, block_shape, block_id);
     };
     show_blocks();

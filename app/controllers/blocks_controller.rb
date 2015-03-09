@@ -9,7 +9,6 @@ class BlocksController < ApplicationController
 
   def new
     @block = Block.new
-    sleep 3
   end
   def create
     @block = Farm.new(block_params)
