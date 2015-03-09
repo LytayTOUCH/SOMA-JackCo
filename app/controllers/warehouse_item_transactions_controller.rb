@@ -83,27 +83,28 @@ class WarehouseItemTransactionsController < ApplicationController
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.find(params[:id])
 
-      @warehouse_material_amount = WarehouseMaterialAmount.new
-
       @warehouse_central_material = WarehouseMaterialAmount.find_by(warehouse_uuid: @warehouse_item_transaction.sender_id, material_uuid: @warehouse_item_transaction.material_id)
 
       @warehouse_project_material = WarehouseMaterialAmount.find_by(warehouse_uuid: @warehouse_item_transaction.receiver_id, material_uuid: @warehouse_item_transaction.material_id)      
 
-      requested_amount = @warehouse_item_transaction.amount
-      amount_in_hand = @warehouse_central_material.amount
+      requested_amount = @warehouse_item_transaction.amount # 2000
+      amount_in_hand = @warehouse_central_material.amount # 5000
+      
+      if @warehouse_item_transaction.update_attributes!(warehouse_item_transaction_params)
 
-      if amount_in_hand >= requested_amount
-        remain_amount = amount_in_hand - requested_amount
-        @warehouse_central_material.amount = remain_amount
-        @warehouse_project_material.amount += requested_amount
-        @warehouse_central_material.update_attributes!(warehouse_material_amount_params)
-        @warehouse_project_material.update_attributes!(warehouse_material_amount_params)
-      else
-        flash[:notice] = "Can not update Stock"
-        redirect_to :back
-      end  
+        if amount_in_hand >= requested_amount
+          remain_amount = amount_in_hand - requested_amount
+          @warehouse_central_material.amount = remain_amount
+          @warehouse_project_material.amount = @warehouse_project_material.amount + requested_amount
+          
+          @warehouse_central_material.update_attributes!(warehouse_uuid: @warehouse_item_transaction.sender_id, material_uuid: @warehouse_item_transaction.material_id, amount: remain_amount)
 
-      if @warehouse_item_transaction.update_attributes(warehouse_item_transaction_params)
+          @warehouse_project_material.update_attributes!(warehouse_uuid: @warehouse_item_transaction.receiver_id, material_uuid: @warehouse_item_transaction.material_id, amount: @warehouse_project_material.amount)
+        else
+          flash[:notice] = "Can not update Stock"
+          redirect_to :back
+        end  
+
         flash[:notice] = "Warehouse Item Transaction updated"
         redirect_to warehouse_item_requested_transactions_path
       else
