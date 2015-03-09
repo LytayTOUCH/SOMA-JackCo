@@ -20,7 +20,7 @@ $(document).ready(function() {
 
               var warehouse_amount = $("#warehouse_amount").val();
               for(var i = 0 ; i<warehouse_amount ; i++) {
-                $("#"+value.uuid).append("<td><input type='number' size='15' value='0' style='width: 80px;'></td>");
+                $("#"+value.uuid).append("<td><input material_uuid='"+value.uuid+"' type='number' class='' size='15' style='width: 90px; border-radius: 4px; border: 1px solid #cccccc; padding: 6px 12px;' placeholder='Amount'><i class='fa fa-check-square-o fa-lg' title='Save', style='padding: 4px;'></i></td>");
               }
               // console.log(i+"," +value);
               // $('span.test').html(i+", "+value);

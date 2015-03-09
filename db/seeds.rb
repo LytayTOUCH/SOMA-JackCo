@@ -99,7 +99,7 @@ end
 end
 
 # ========== Create Unit of Measurement ========== 
-UnitOfMeasurement.delete_all
+# UnitOfMeasurement.delete_all
 [
   {name: 'Unit', note: 'Unit of measurement for tree, amount of fruit,...'},
   {name: 'Kilogram', note: 'Unit of measurement for kilogram.'},
@@ -112,12 +112,14 @@ end
 
 # ========== Create Material Categories ========== 
 [
-  {name: 'FERTILIZERS', note: 'Fertilizer note'},
-  {name: 'PEST & INSECTICIDES', note: 'Pest and Insecticide note'},
-  {name: 'FUNGICIDE', note: 'Fungicide note'},
-  {name: 'HERBICIDE', note: 'Herbicide note'}
+  {name: 'Fertilizers', kh_name: 'ជីបំប៉នដំណាំ', note: 'Fertilizer note'},
+  {name: 'Pese & Inseticides', kh_name: 'ថ្នាំសំលាប់សត្វល្អិត', note: 'Pest and Insecticide note'},
+  {name: 'Fungicides', kh_name: 'ថ្នាំសំលាប់ផ្សិត', note: 'Fungicide note'},
+  {name: 'Herbicides', kh_name: 'ថ្នាំសំលាប់ស្មៅ', note: 'Herbicide note'},
+  {name: 'Indirect Materials', kh_name: 'សម្ភារៈប្រយោល', note: 'Herbicide note'},
+  {name: 'Other', kh_name: 'សម្ភារៈផ្សេងៗ', note: 'Herbicide note'}
 ].each do |material_category|
-  MaterialCategory.create_with(note: material_category[:note]).find_or_create_by(name: material_category[:name])
+  MaterialCategory.create_with(note: material_category[:note], kh_name: material_category[:kh_name]).find_or_create_by(name: material_category[:name])
 end
 # ========== Create Farms ==========
 Farm.delete_all

@@ -4,14 +4,13 @@
   .form-group
     %label.col-xs-2.control-label Request By *
     .col-xs-5
-      = f.input :sender_id, label: false, collection: @project_warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :sender_id
+      = f.input :receiver_id, label: false, collection: @project_warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+    %span.help-block= f.error :receiver_id
   .form-group
     %label.col-xs-2.control-label Request To *
     .col-xs-5
-      = f.input :receiver_id, label: false, collection: @central_warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :receiver_id
-
+      = f.input :sender_id, label: false, collection: @central_warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+    %span.help-block= f.error :sender_id
   .form-group
     %label.col-xs-2.control-label Material *
     .col-xs-5

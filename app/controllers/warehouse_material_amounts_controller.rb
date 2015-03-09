@@ -5,6 +5,8 @@ class WarehouseMaterialAmountsController < ApplicationController
   def new
   	begin
   		@warehouse_material_amount = WarehouseMaterialAmount.new
+
+      @material_categories = MaterialCategory.all
       
       project_warehouse = WarehouseType.find_by(name: 'Project Warehouse')
       central_warehouse = WarehouseType.find_by(name: 'Central Warehouse')
@@ -12,8 +14,6 @@ class WarehouseMaterialAmountsController < ApplicationController
       @warehouses = Warehouse.where("(warehouse_type_uuid = '" + project_warehouse.uuid + "' or warehouse_type_uuid = '" + central_warehouse.uuid + "') and active=1")
       
       @warehouse_amount = @warehouses.count
-
-      @material_categories = MaterialCategory.all
 
   	rescue Exception => e
   		puts e 		
