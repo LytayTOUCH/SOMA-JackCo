@@ -104,6 +104,11 @@ class LaborsController < ApplicationController
     end
   end
 
+  def get_labor_email
+    @labor_email = Labor.find_by_uuid(params[:labor_uuid])
+    render :json => @labor_email
+  end
+
   private
   def labor_params
     params.require(:labor).permit(:name, :position_id, :gender, :phone, :email, :address, :manager_uuid, :note, :active)

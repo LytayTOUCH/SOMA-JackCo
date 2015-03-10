@@ -8,7 +8,7 @@
       %th= "Requested No"
       %th= "Material"
       %th= "Material Category"
-      %th= "Amount"
+      %th= "Quantity"
   - @warehouse_item_received_transactions.each do |warehouse_item_received_transaction|
     - material = Material.find_by_uuid(warehouse_item_received_transaction.material_id)
     - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_received_transaction.sender_id)

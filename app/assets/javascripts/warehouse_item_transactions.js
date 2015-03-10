@@ -1,5 +1,5 @@
 $(document).on('ready page:load', function() {
-  $('.uom-name').hide();
+  // $('.uom-name').hide();
   $('.material_uuid').change(
     function() {
       $('.uom-name').show();

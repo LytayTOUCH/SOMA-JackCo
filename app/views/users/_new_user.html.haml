@@ -1,8 +1,13 @@
 = simple_form_for @user, html: { class: "form-horizontal" } do |f|
   .form-group
-    %label.col-xs-2.control-label.text-left Email *
+    %label.col-xs-2.control-label Labor *
+    .col-xs-5   
+      = f.input :labor_id, label: false, collection: @labors, input_html: { class: "form-control labor_uuid" }, error_html: { class: "err_msg" }
+    %span.help-block= f.error :labor_id   
+  .form-group
+    %label.col-xs-2.control-label.text-left Login Email *
     .col-xs-5
-      = f.input :email, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" } 
+      = f.input :email, label: false, input_html: { class: "form-control labor-email" }, error_html: { class: "err_msg" } 
     %span.help-block= f.error :email
   .form-group
     %label.col-xs-2.control-label.text-left Password *
@@ -22,7 +27,7 @@
     .col-xs-5   
       / = f.association :user_group, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
       = f.input :user_group_id, label: false, collection: @user_groups, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :user_group_id   
+    %span.help-block= f.error :user_group_id    
   .form-group
     %label.col-xs-2.control-label.text-left Active
     .col-xs-5
