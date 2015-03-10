@@ -119,7 +119,7 @@ end
 # ========== Create Material Categories ========== 
 [
   {name: 'Fertilizers', kh_name: 'ជីបំប៉នដំណាំ', note: 'Fertilizer note'},
-  {name: 'Pese & Inseticides', kh_name: 'ថ្នាំសំលាប់សត្វល្អិត', note: 'Pest and Insecticide note'},
+  {name: 'Pest & Insecticides', kh_name: 'ថ្នាំសំលាប់សត្វល្អិត', note: 'Pest and Insecticide note'},
   {name: 'Fungicides', kh_name: 'ថ្នាំសំលាប់ផ្សិត', note: 'Fungicide note'},
   {name: 'Herbicides', kh_name: 'ថ្នាំសំលាប់ស្មៅ', note: 'Herbicide note'},
   {name: 'Indirect Materials', kh_name: 'សម្ភារៈប្រយោល', note: 'Herbicide note'},
