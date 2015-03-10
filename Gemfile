@@ -50,6 +50,7 @@ group :test, :development do
   gem 'capybara', '~> 2.2.1'
   gem 'shoulda-matchers'
   gem 'pry'
+  gem 'meta_request'
   # gem 'pry-debugger'
 end
 

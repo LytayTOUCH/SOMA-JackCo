@@ -40,7 +40,8 @@
         .box-farm-info
           .page-header.custom-page-header
             %h4.custom-h4
-              = link_to block.name, "#", :class => "text-color-green"
+              / = link_to block.name, farm_block_path(block.uuid), :class => "text-color-green"
+              = link_to block.name, {:action=>"show", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, :class => "text-color-green"
           .row
             .col-lg-12.farm-info
               %div

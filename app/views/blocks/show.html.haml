@@ -1,0 +1,8 @@
+.page-header.custom-page-header
+  %h3.custom-h3.icon-green
+    .fa.fa-tree
+    #{@block.name}
+    - if can? :create, Farm
+      = link_to '(+) Add Tree', new_farm_block_path, :remote => true, class: 'btn btn-xs btn-primary btn-add'
+= @block.inspect
+.form-modal

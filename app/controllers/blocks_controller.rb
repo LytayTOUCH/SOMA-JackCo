@@ -2,14 +2,20 @@ class BlocksController < ApplicationController
   add_breadcrumb "All Farms", :farms_path
   before_action :set_block, only: [:show, :edit, :update, :destroy]
   def index
-    @blocks=Block.where(farm_id: params[:farm_id]).all
-    # add_breadcrumb @blocks.select(:farm_id).distinct[0].farm.name, :farm_blocks_path
-    @farm_name=@blocks.select(:farm_id).inspect
+    @farm = Farm.find_by(uuid: params[:farm_id])
+    @blocks = Block.all.where(farm_id: params[:farm_id])
+    add_breadcrumb @farm.name, :farm_blocks_path
   end
 
   def new
     @block = Block.new
   end
+
+  def show
+    add_breadcrumb @block.farm.name, :farm_blocks_path
+    add_breadcrumb @block.name, :farm_block_path
+  end
+
   def create
     @block = Farm.new(block_params)
     if @block.save
