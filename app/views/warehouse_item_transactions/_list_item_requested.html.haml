@@ -8,12 +8,12 @@
       %th= "Requested No"
       %th= "Material"
       %th= "Material Category"
-      %th= "Amount"
-      %th= "Actions"
+      %th= "Quantity"
+      %th= "Status"
   - @warehouse_item_requested_transactions.each do |warehouse_item_requested_transaction|
     - material = Material.find_by_uuid(warehouse_item_requested_transaction.material_id)
-    - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_requested_transaction.receiver_id)
-    - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_requested_transaction.sender_id)
+    - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_requested_transaction.sender_id)
+    - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_requested_transaction.receiver_id)
     - if warehouse_item_requested_transaction.transaction_status == "Received"
       %tr.requested-row-color
         %td= receiver_warehouse.name

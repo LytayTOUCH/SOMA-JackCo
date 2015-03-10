@@ -128,6 +128,8 @@ Rails.application.routes.draw do
 
   get 'get_unit_of_measurement_data', to: 'materials#get_material_uom_data'
 
+  get 'get_labor_email_data', to: 'labors#get_labor_email'
+
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
   # The priority is based upon order of creation: first created -> highest priority.

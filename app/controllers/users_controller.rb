@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @user_groups = UserGroup.where(active: true)
+    @labors = Labor.where(active: true)
   end
 
   def create
@@ -58,10 +59,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    puts "================================"
-    puts params[:id]
     @user = User.find(params[:id])
     @user_groups = UserGroup.where(active: true)
+    @labors = Labor.where(active: true)
     add_breadcrumb @user.email, :edit_user_path
   end
 
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :user_group_id, :active)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :user_group_id, :labor_id, :active)
   end
 
   private

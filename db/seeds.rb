@@ -8,20 +8,25 @@
 
 # run:
 # rake db:seed
+
+# ========== Position ==========
+[
+  {name: 'Manager', note: 'Controlling a labor in field', active: true},
+  {name: 'Worker', note: 'Doing farming in the field', active: true}
+].each do |position|
+  Position.create_with(note: position[:note]).find_or_create_by(name: position[:name])
+end
+
+# ========== Labor ==========
+position = Position.create_with(note: 'Controlling a labor in field', active: true).find_or_create_by(name: 'Manager')
+labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "admin@cltag.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true).find_or_create_by(name: "Manager")
+position.labors << labor
+
 # ========== Create Roles ========== 
 [
   {code: 'item_per_page', note: 'Amount of item show in a list per page', valueType: 'INT', valueInteger: 10, valueString: nil, valueFloat: nil}
 ].each do |setting|
   Setting.create_with(note: setting[:note], valueType: setting[:valueType], valueInteger: setting[:valueInteger], valueString: setting[:valueString], valueFloat: setting[:valueFloat]).find_or_create_by(code: setting[:code])
-end
-
-[
-  {name: 'admin', note: 'Controlling all modules', label: 'Admin'},
-  {name: 'manager', note: 'Can read all modules and download all reports', label: 'Manager'},
-  {name: 'project_leader', note: 'Can input all modules', label: 'Project Leader'},
-  {name: 'data_entry', note: 'Can edit all modules', label: 'Data Entry'}
-].each do |role|
-  Role.create_with(note: role[:note], label: role[:label]).find_or_create_by(name: role[:name])
 end
 
 # ==========  Create UserGroup ========== 
@@ -36,7 +41,8 @@ end
 
 # ========== Create a User ========== 
 user_group = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
-user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", user_group_id: user_group.uuid).find_or_create_by(email: "admin@cltag.com")
+# labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "admin@gmail.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true)
+user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", user_group_id: user_group.uuid, labor_id: labor.uuid).find_or_create_by(email: "admin@cltag.com")
 
 user_group.users << user
 
@@ -162,19 +168,6 @@ end
 ].each do |block|
   Block.create(name: block[:name], surface: block[:surface], shape_lat_long: block[:shape_lat_long], location_lat_long: block[:location_lat_long], rental_status: block[:rental_status], status: block[:status], planting_project_id: block[:planting_project_id], farm_id: block[:farm_id], tree_amount: block[:tree_amount])
 end
-
-# ========== Position ==========
-[
-  {name: 'Manager', note: 'Controlling a labor in field', active: true},
-  {name: 'Worker', note: 'Doing farming in the field', active: true}
-].each do |position|
-  Position.create_with(note: position[:note]).find_or_create_by(name: position[:name])
-end
-
-# ========== Labor ==========
-position = Position.create_with(note: 'Controlling a labor in field', active: true).find_or_create_by(name: 'Manager')
-labor = Labor.create_with(gender: "M", phone: "012 785 058", email: "teopaocheak@gmail.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true).find_or_create_by(name: "Teo Paocheak")
-position.labors << labor
 
 # ========== Phase ==========
 [
