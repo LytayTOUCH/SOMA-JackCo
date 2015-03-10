@@ -4,7 +4,7 @@ class Material < ActiveRecord::Base
   belongs_to :material_category, foreign_key: :material_cate_uuid
   belongs_to :unit_of_measurement, foreign_key: :unit_measure_uuid
 
-  has_many :warehouse_material_amounts
+  has_many :warehouse_material_amounts, foreign_key: :material_uuid
   has_many :warehouses, through: :warehouse_material_amounts 
 
   validates :name, length: { maximum: 50 }, presence: true
