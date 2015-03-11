@@ -8,18 +8,15 @@
           %option{:value => material_category.uuid}
             = material_category.name
 
+%br
 .row
   .form-group.material-name
-    %label.col-xs-2.control-label.text-left  
-
     %table.table
       %th Material Name
       %input{:name => "warehouse_amount", :id => "warehouse_amount", :type => "hidden", :value => @warehouse_amount}/
       - @warehouses.each do |wh|
         %th#warehouse-id{uuid: wh.uuid}= wh.name
       %tbody.material_name
-
-
 
 
 
