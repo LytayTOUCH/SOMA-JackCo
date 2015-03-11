@@ -68,7 +68,7 @@ class WarehousesController < ApplicationController
         flash[:notice] = "Warehouse updated"
         redirect_to warehouses_path
       else
-        flash[:notice] = "Warehouse can't update"
+        flash[:notice] = "Warehouse can't be updated"
         # redirect_to :back
         render 'edit'
       end

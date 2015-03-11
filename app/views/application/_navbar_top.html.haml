@@ -39,6 +39,9 @@
               %li
                 - if can? :read, ProductionStatus
                   = navbar_link "Tree Status", production_statuses_path, "active"
+              %li
+                - if can? :read, Production
+                  = navbar_link "Production", productions_path, "active"    
 
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Inventory
