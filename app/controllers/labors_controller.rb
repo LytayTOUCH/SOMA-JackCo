@@ -111,6 +111,6 @@ class LaborsController < ApplicationController
 
   private
   def labor_params
-    params.require(:labor).permit(:name, :position_id, :gender, :phone, :email, :address, :manager_uuid, :note, :active)
+    params.require(:labor).permit(:name, :position_id, :gender, :phone, :email, :address, :manager_uuid, :note, :selected, :active)
   end
 end

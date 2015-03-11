@@ -1,12 +1,15 @@
 %table.table
   %thead
     %tr
-      %th.col-md-5 Email
-      %th.col-md-4 Group
+      %th.col-md-3 Labor
+      %th.col-md-3 Email
+      %th.col-md-3 Group
       %th.col-md-2 Active
       %th.col-md-1 Actions
   - @users.each do |user|
     %tr
+      %td
+        = user.labor.name  
       %td= user.email
       %td
         = user.user_group.name

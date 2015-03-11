@@ -25,13 +25,16 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @user_groups = UserGroup.where(active: true)
-    @labors = Labor.where(active: true)
+    @labors = Labor.where(selected: false, active: true)
   end
 
   def create
     @user = User.new(user_params)
     
     if @user.save
+      @labor = Labor.find_by_uuid(@user.labor_id)
+      @labor.update_attributes!(selected: true)
+
       flash[:notice] = "User has been created successfully"
       redirect_to users_path
     else
@@ -61,7 +64,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @user_groups = UserGroup.where(active: true)
-    @labors = Labor.where(active: true)
+    @labors = Labor.where(selected: true, active: true)
     add_breadcrumb @user.email, :edit_user_path
   end
 
