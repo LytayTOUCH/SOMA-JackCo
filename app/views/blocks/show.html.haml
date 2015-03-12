@@ -3,6 +3,33 @@
     .fa.fa-tree
     #{@block.name}
     - if can? :create, Farm
-      = link_to '(+) Add Tree', new_farm_block_path, :remote => true, class: 'btn btn-xs btn-primary btn-add'
-= @block.inspect
+      / = link_to '(+) Add Tree', new_farm_block_path, :remote => true, class: 'btn btn-xs btn-primary btn-add'
+
+.row.farm-box-infowindow
+  .col-lg-12
+    .col-lg-8
+      %div Total Surface: #{@block.surface}
+      %div Tree Amount: #{@block.tree_amount}
+      %div
+        Planting Project:
+        - if @block.planting_project.name.downcase.eql? 'coconut'
+          %span.label.label-success #{@block.planting_project.name}
+        - elsif @block.planting_project.name.downcase.eql? 'jackfruit'
+          %span.label.label-warning #{@block.planting_project.name}
+        - elsif @block.planting_project.name.downcase.eql? 'mango'
+          %span.label.custom-label-dark-yellow #{@block.planting_project.name}
+        - elsif @block.planting_project.name.downcase.eql? 'lemon'
+          %span.label.custom-label-light-green #{@block.planting_project.name}
+      %div
+        %i.fa.fa-map-marker
+        %span.farm-latlong= "#{@block.location_lat_long}"
+
+.page-header.custom-page-header
+  %h3.custom-h3.icon-green
+    All Tasks
+
+.page-header.custom-page-header
+  %h3.custom-h3.icon-green
+    Complete Activities
+
 .form-modal
