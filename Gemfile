@@ -68,6 +68,7 @@ gem "googlecharts"
 gem 'axlsx'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+gem 'paper_trail'
 
 
 # ruby '2.0.0'

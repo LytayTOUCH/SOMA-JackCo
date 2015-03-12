@@ -87,6 +87,7 @@ end
 # ========== Create Warehouse Types ========== 
 [
   {name: 'Central Warehouse', note: 'It is the big warehouse.'},
+  {name: 'Fertilizer Warehouse', note: 'It is the warehouse that is used to store the fertilizer.'},
   {name: 'Project Warehouse', note: 'It is the warehouse that is near the farms.'},
   {name: 'Finished Goods Warehouse', note: 'It is the warehouse that stock all yields harvest from the farms.'},
   {name: 'Nursery Warehouse', note: 'It is the plant nursery warehouse.'}
