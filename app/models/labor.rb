@@ -5,6 +5,7 @@ class Labor < ActiveRecord::Base
   validates :position_id, length: { maximum: 36 }, presence: true
 
   has_many :labors
+  has_many :stock_ins
 
   has_one :user
 
