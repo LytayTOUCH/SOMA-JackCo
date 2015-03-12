@@ -3,6 +3,7 @@ class PlantingProject < ActiveRecord::Base
 
   has_many :blocks
   has_many :farms, through: :blocks
+  has_many :productions
   validates :name, length: { maximum: 50 }, presence: true
 
   has_many :production_stages

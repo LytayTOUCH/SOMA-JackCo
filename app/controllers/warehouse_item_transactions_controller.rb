@@ -42,10 +42,10 @@ class WarehouseItemTransactionsController < ApplicationController
       @central_warehouse_type = WarehouseType.find_by_name("Central Warehouse") 
       @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse") 
 
-      @central_warehouses = @central_warehouse_type.warehouses.where(active: true)
+      # @central_warehouses = @central_warehouse_type.warehouses.where(active: true)
+      # @project_warehouses = @project_warehouse_type.warehouses.where(active: true)
 
-      @project_warehouses = @project_warehouse_type.warehouses.where(active: true)
-
+      @central_project_warehouses = Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ?", @central_warehouse_type.uuid, @project_warehouse_type.uuid)
     rescue Exception => e
       puts e
     end

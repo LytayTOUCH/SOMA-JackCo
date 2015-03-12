@@ -76,10 +76,9 @@ end
 
 # ========== Create Data for Bar Chart ========== 
 [
-  {element: 'January', amount: 40.49, bar_color: 'silver'},
-  {element: 'February', amount: 20.49, bar_color: 'gold'},
-  {element: 'March', amount: 20.49, bar_color: 'blue'},
-  {element: 'April', amount: 20.49, bar_color: 'green'}
+  {element: 'Actual', amount: 40.00, bar_color: 'gold'},
+  {element: 'Forecast', amount: 40.50, bar_color: 'blue'},
+  {element: 'Stardard', amount: 35.50, bar_color: 'green'}
 ].each do |bar_chart|
   TestingWithBarChart.create_with(bar_color: bar_chart[:bar_color] ,amount: bar_chart[:amount]).find_or_create_by(element: bar_chart[:element])
 end

@@ -4,17 +4,17 @@
   .form-group
     %label.col-xs-2.control-label Request By *
     .col-xs-5
-      = f.input :sender_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
+      = f.input :sender_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true, disabled: true
     %span.help-block= f.error :sender_id
   .form-group
     %label.col-xs-2.control-label Request To *
     .col-xs-5
-      = f.input :receiver_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
+      = f.input :receiver_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true, disabled: true
     %span.help-block= f.error :receiver_id
   .form-group
     %label.col-xs-2.control-label Material *
     .col-xs-5
-      = f.input :material_id, label: false, collection: @materials, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
+      = f.input :material_id, label: false, collection: @materials, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true, disabled: true
     %span.help-block= f.error :material_id
   .form-group
     %label.col-xs-2.control-label Quantity *
