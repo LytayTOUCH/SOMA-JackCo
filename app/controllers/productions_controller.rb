@@ -35,8 +35,16 @@ class ProductionsController < ApplicationController
   def create
     begin
       @production = Production.new(production_params)
+      # @production.warehouse_ids = params[:production][:warehouse_ids]   
+      @finished_warehouse = WarehouseType.find_by_name("Finished Goods Warehouse") 
+      @nursery_warehouse = WarehouseType.find_by_name("Nursery Warehouse") 
+
+      @production_warehouses = Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ?", @finished_warehouse.uuid, @nursery_warehouse.uuid) 
 
       if @production.save
+        @production_warehouses.each do |warehouse|
+          WarehouseProductionAmount.create(warehouse_id: warehouse.uuid, production_id: @production.uuid, amount: 0)
+        end 
         flash[:notice] = "Production saved successfully"
         redirect_to productions_path
       else
@@ -63,6 +71,7 @@ class ProductionsController < ApplicationController
   def update
     begin
       @production = Production.find(params[:id])
+      @production.warehouse_ids = params[:production][:warehouse_ids]      
 
       if @production.update_attributes(production_params)
         flash[:notice] = "Production updated"

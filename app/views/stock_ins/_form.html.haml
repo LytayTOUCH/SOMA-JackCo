@@ -1,0 +1,34 @@
+= simple_form_for @stock_in, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-2.control-label.text-left Warehouse *
+    .col-xs-5
+      = f.input :warehouse_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :warehouse_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Material *
+    .col-xs-5
+      = f.input :material_id, label: false, collection: @materials, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :material_id
+  .form-group
+    %label.col-xs-2.control-label.text-left User *
+    .col-xs-5
+      = f.input :labor_id, label: false, collection: @labors, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :labor_id  
+  .form-group
+    %label.col-xs-2.control-label Stock In Date *
+    .col-xs-5
+      .controls
+        = f.text_field :stock_in_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
+      %span.help-block= f.error :stock_in_date  
+  .form-group
+    %label.col-xs-2.control-label.text-left Amount *
+    .col-xs-5
+      = f.input :amount, label: false, input_html: { class: "form-control" }
+    %span.help-block= f.error :amount
+  .form-group
+    .col-xs-7
+      .pull-right
+        = render partial: 'form_button', locals: { f: f }
+
+:javascript
+  $('.date_pick').datetimepicker({});

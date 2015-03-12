@@ -1,0 +1,12 @@
+.row
+  %h3
+    = "Stock In"
+    .pull-right
+      - if can? :create, StockIn
+        = link_to "New Stock In", new_stock_in_path, class: "btn btn-primary"
+  / %hr
+  / = render partial: 'form_search'
+  %hr
+  = render partial: 'list'
+  
+    
