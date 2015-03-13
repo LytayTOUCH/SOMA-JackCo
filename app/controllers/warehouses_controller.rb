@@ -36,7 +36,23 @@ class WarehousesController < ApplicationController
     begin
       @warehouse = Warehouse.new(warehouse_params)
 
+      @finishedGooduuid = WarehouseType.find_by_name("Finished Goods Warehouse").uuid
+      @nurseryuuid = WarehouseType.find_by_name("Nursery Warehouse").uuid
+
+      @productions = Production.all
+      @materials = Material.all     
+
       if @warehouse.save
+        if @warehouse.warehouse_type_uuid == @finishedGooduuid || @warehouse.warehouse_type_uuid == @nurseryuuid
+          @productions.each do |production|
+            WarehouseProductionAmount.create(warehouse_id: @warehouse.uuid, production_id: production.uuid, amount: 0)
+          end
+        else
+          @materials.each do |material|
+            WarehouseMaterialAmount.create(warehouse_uuid: @warehouse.uuid, material_uuid: material.uuid, amount: 0, returnable: false)
+          end
+        end
+
         flash[:notice] = "Warehouse saved successfully"
         redirect_to warehouses_path
       else
