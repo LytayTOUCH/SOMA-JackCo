@@ -124,7 +124,7 @@ Rails.application.routes.draw do
   resources :warehouse_item_transactions
   resources :warehouse_material_amounts
   resources :productions
-  resources :stock_ins
+  resources :stock_ins, only: [:index, :new, :create]
 
   get 'get_material_data', to: 'materials#get_material_data'
 

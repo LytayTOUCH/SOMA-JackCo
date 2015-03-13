@@ -1,5 +1,4 @@
 class WarehouseItemTransactionsController < ApplicationController
-  # before_update :change_data_values
   load_and_authorize_resource except: :create
   respond_to :html, :json
 
@@ -41,9 +40,6 @@ class WarehouseItemTransactionsController < ApplicationController
 
       @central_warehouse_type = WarehouseType.find_by_name("Central Warehouse") 
       @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse") 
-
-      # @central_warehouses = @central_warehouse_type.warehouses.where(active: true)
-      # @project_warehouses = @project_warehouse_type.warehouses.where(active: true)
 
       @central_project_warehouses = Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ?", @central_warehouse_type.uuid, @project_warehouse_type.uuid)
     rescue Exception => e
@@ -127,20 +123,8 @@ class WarehouseItemTransactionsController < ApplicationController
     end
   end
 
-  def change_data_values
-    if @warehouse_item_transaction.transaction_status = "Requested"
-      @warehouse_item_transaction.transaction_status = "Received"
-    else
-      @warehouse_item_transaction.transaction_status = "Requested"  
-    end  
-  end
-
   private
   def warehouse_item_transaction_params
     params.require(:warehouse_item_transaction).permit(:sender_id, :receiver_id, :material_id, :transaction_status, :requested_number, :created_by, :updated_by, :requested_date, :received_date, :due_date, :note, :amount)
-  end
-
-  def warehouse_material_amount_params
-    params.require(:warehouse_material_amount).permit(:warehouse_uuid, :material_uuid, :amount)
   end
 end

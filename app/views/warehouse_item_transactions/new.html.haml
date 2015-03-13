@@ -19,9 +19,10 @@
   .form-group
     %label.col-xs-2.control-label Quantity *
     .col-xs-5
-      = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+      .input-group
+        = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+        %span.input-group-addon.uom-name
     %span.help-block= f.error :amount
-    %span.uom-name
 
   .form-group
     %label.col-xs-2.control-label Request Date

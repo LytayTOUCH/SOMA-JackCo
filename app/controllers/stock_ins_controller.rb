@@ -37,11 +37,19 @@ class StockInsController < ApplicationController
     begin
       @stock_in = StockIn.new(stock_in_params)
 
-      if @stock_in.save
-        flash[:notice] = "StockIn saved successfully"
+      if @stock_in.save!
+        @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: @stock_in.warehouse.uuid, material_uuid: @stock_in.material.uuid)
+
+        stock_in_amount = @stock_in.amount
+        total_amount = @warehouse_material_amount.amount + stock_in_amount
+
+        @warehouse_material_amount.update_attributes!(warehouse_uuid: @stock_in.warehouse.uuid, material_uuid: @stock_in.material.uuid, amount: total_amount)
+
+        flash[:notice] = "Stock In saved successfully"
         redirect_to stock_ins_path
       else
-        flash[:notice] = "StockIn can't be saved"
+        flash[:notice] = "No such material in Stock"
+        flash[:notice] = "Stock In can't be saved"
         # redirect_to :back
         render 'new'
       end
