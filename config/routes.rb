@@ -124,6 +124,7 @@ Rails.application.routes.draw do
   resources :warehouse_item_transactions
   resources :warehouse_material_amounts
   resources :productions
+  resources :stock_ins
 
   get 'get_material_data', to: 'materials#get_material_data'
 

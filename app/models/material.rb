@@ -6,6 +6,7 @@ class Material < ActiveRecord::Base
 
   has_many :warehouse_material_amounts, foreign_key: :material_uuid
   has_many :warehouses, through: :warehouse_material_amounts 
+  has_many :stock_ins
 
   validates :name, length: { maximum: 50 }, presence: true
   validates :material_cate_uuid, length: { maximum: 36 }, presence: true
