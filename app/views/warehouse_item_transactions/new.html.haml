@@ -17,7 +17,7 @@
       = f.input :material_id, label: false, collection: @materials, input_html: { class: "form-control material_uuid" }, error_html: { class: "err_msg" }
     %span.help-block= f.error :material_id         
   .form-group
-    %label.col-xs-2.control-label Quantity *
+    %label.col-xs-2.control-label Requested Quantity *
     .col-xs-5
       .input-group
         = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
@@ -48,7 +48,7 @@
   .form-group
     .col-xs-5
       = f.input :created_by, :as => :hidden, :value => current_user.uuid 
-    %span.help-block= f.error :created_by          
+    %span.help-block= f.error :created_by
   .form-group
     .col-xs-7
       .pull-right

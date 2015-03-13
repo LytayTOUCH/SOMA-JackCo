@@ -17,12 +17,17 @@
       = f.input :material_id, label: false, collection: @materials, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true, disabled: true
     %span.help-block= f.error :material_id
   .form-group
-    %label.col-xs-2.control-label Quantity *
+    %label.col-xs-2.control-label Requested Quantity *
     .col-xs-5
       .input-group
         = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
         %span.input-group-addon.uom-name-receive
-    %span.help-block= f.error :amount
+    %span.help-block= f.error :amounta
+  .form-group
+    %label.col-xs-2.control-label Remaining Quantity *
+    .col-xs-5
+      = f.input :remaining_amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
+    %span.help-block= f.error :remaining_amount  
 
   .form-group
     %label.col-xs-2.control-label Request Date
@@ -52,11 +57,7 @@
   / .form-group
   /   .col-xs-5
   /     = f.input :received_date, label: false, :class => "form-control", :type => "text", error_html: { class: "err_msg" }, readonly: true, as: :hidden, :input_html => { value: Date.today }
-  /   %span.help-block= f.error :received_date
-  .form-group
-    .col-xs-5
-      = f.input :transaction_status, as: :hidden, :input_html => { :value => "Received" } 
-    %span.help-block= f.error :transaction_status            
+  /   %span.help-block= f.error :received_date            
   .form-group
     .col-xs-5
       = f.input :updated_by, as: :hidden, :input_html => { :value => current_user.uuid }

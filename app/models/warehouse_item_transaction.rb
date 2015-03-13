@@ -1,6 +1,8 @@
 class WarehouseItemTransaction < ActiveRecord::Base
   include UuidHelper
 
+  has_many :warehouse_material_receiveds
+
   validates :sender_id, length: { maximum: 36 }, presence: true
   validates :receiver_id, length: { maximum: 36 }, presence: true
   validates :material_id, length: { maximum: 36 }, presence: true

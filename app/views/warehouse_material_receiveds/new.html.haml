@@ -1,0 +1,45 @@
+%h2= "Receiving Form"
+%hr
+= simple_form_for @warehouse_material_received, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-2.control-label Requested ID *
+    .col-xs-5
+      .input-group
+        = f.input :warehouse_item_transaction_id, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true, value: @warehouse_item_transaction_uuid
+        / %span.input-group-addon.uom-name-receive
+  .form-group
+    %label.col-xs-2.control-label Remaining Quantity *
+    .col-xs-5
+      = f.input :warehouse_item_transaction_id, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true, value: @warehouse_item_transaction_remaining_amount
+    %span.help-block= f.error :warehouse_item_transaction_id
+  .form-group
+    %label.col-xs-2.control-label Received Quantity *
+    .col-xs-5
+      = f.input :received_amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+    %span.help-block= f.error :received_amount  
+  .form-group
+    %label.col-xs-2.control-label Receive Date
+    .col-xs-5
+      = f.text_field :received_date, label: false, :class => "form-control", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, error_html: { class: "err_msg" }, readonly: true, :input_html => { class: "form-control" }, value: Date.today 
+  / .form-group
+  /   %label.col-xs-2.control-label Request Number *
+  /   .col-xs-5
+  /     = f.input :requested_number, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }, readonly: true
+  /   %span.help-block= f.error :requested_number
+  
+  / .form-group
+  /   .col-xs-5
+  /     = f.input :received_date, label: false, :class => "form-control", :type => "text", error_html: { class: "err_msg" }, readonly: true, as: :hidden, :input_html => { value: Date.today }
+  /   %span.help-block= f.error :received_date            
+  .form-group
+    .col-xs-5
+      = f.input :updated_by, as: :hidden, :input_html => { :value => current_user.uuid }
+      %span.help-block= f.error :updated_by            
+  .form-group
+    .col-xs-7
+      .pull-right
+        = submit_tag "Receive Item", class: "btn btn-primary", locals: { f: f }
+        = link_to "Cancel", :back, class: "btn btn-default", locals: { f: f }
+
+:javascript
+  $('.date_pick').datetimepicker({});        
