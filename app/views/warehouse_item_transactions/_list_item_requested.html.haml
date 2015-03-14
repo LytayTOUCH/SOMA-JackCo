@@ -10,10 +10,12 @@
       %th= "Material Category"
       %th= "Quantity"
       %th= "Status"
+      %th= "Action"
   - @warehouse_item_requested_transactions.each do |warehouse_item_requested_transaction|
     - material = Material.find_by_uuid(warehouse_item_requested_transaction.material_id)
     - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_requested_transaction.sender_id)
     - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_requested_transaction.receiver_id)
+
     - if warehouse_item_requested_transaction.transaction_status == "Received"
       %tr.requested-row-color
         %td= receiver_warehouse.name
@@ -32,8 +34,8 @@
           = ')'
         %td
           = "Received"
+        %td  
     - elsif warehouse_item_requested_transaction.due_date.past?
-      / warehouse_item_requested_transaction.due_date < Date.today
       %tr.requested-expired-row-color
         %td= receiver_warehouse.name
         %td= sender_warehouse.name
@@ -49,9 +51,34 @@
           = '('
           = material.unit_of_measurement.name
           = ')'
+        %td 
+          = "Expired"  
         %td
           - if can? :update, WarehouseItemTransaction
-            = link_to "View", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction)              
+            = link_to "View", new_warehouse_material_received_path(warehouse_item_requested_transaction)
+
+    - elsif warehouse_item_requested_transaction.transaction_status == "Partially Received"
+      %tr
+        %td= receiver_warehouse.name
+        %td= sender_warehouse.name
+        %td= warehouse_item_requested_transaction.requested_date
+        %td= warehouse_item_requested_transaction.due_date
+        %td= warehouse_item_requested_transaction.requested_number
+        %td
+          = material.name
+        %td
+          = material.material_category.name
+        %td
+          = warehouse_item_requested_transaction.amount
+          = '('
+          = material.unit_of_measurement.name
+          = ')'
+        %td 
+          = "Partially Received"  
+        %td
+          - if can? :update, WarehouseItemTransaction
+            = link_to "View", new_warehouse_material_received_path(warehouse_item_requested_transaction)     
+
     - elsif warehouse_item_requested_transaction.transaction_status == "Requested"        
       %tr
         %td= receiver_warehouse.name
@@ -68,6 +95,8 @@
           = '('
           = material.unit_of_measurement.name
           = ')'
+        %td
+          = "Not Received"  
         %td
           - if can? :update, WarehouseItemTransaction
             = link_to "View", new_warehouse_material_received_path(warehouse_item_requested_transaction)
