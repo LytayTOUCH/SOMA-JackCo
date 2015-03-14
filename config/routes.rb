@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     member do
       get 'edit_profile'
       put 'update_profile'
+      get 'log_tracking'
     end
   end
 

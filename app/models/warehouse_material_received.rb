@@ -9,4 +9,6 @@ class WarehouseMaterialReceived < ActiveRecord::Base
   validates :created_by, length: { maximum: 36 }, presence: true
   validates :updated_by, length: { maximum: 36 }, presence: true
 
+  has_paper_trail
+
 end

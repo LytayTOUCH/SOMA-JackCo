@@ -11,6 +11,6 @@ class Ability
       can :read, :all if user.user_group.name == "Project Leader"
       can :read, [PlantingProject] if user.user_group.name = "Manager"
     end
-  end  
-
+  end 
+  
 end

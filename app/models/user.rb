@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   belongs_to :labor, foreign_key: :labor_id
 
+  has_many :versions, foreign_key: :whodunnit
+
   validates :email, length: { maximum: 60 }, presence: true
 
   validates :user_group_id, length: { maximum: 36 }, presence: true  
@@ -18,5 +20,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable#, :confirmable
 
-  scope :find_by_email, -> email { where("email like ?", "%#{email}%") }       
+  scope :find_by_email, -> email { where("email like ?", "%#{email}%") }
+
 end
