@@ -83,7 +83,7 @@ Rails.application.routes.draw do
   # patch 'permissions/:id/update', :to => 'permissions#update'
   # get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
 
-  get ':warehouse_item_requested_transaction_id/warehouse_material_receiveds/new', to: 'warehouse_material_receiveds#new', as: :warehouse_material_receiveds_new
+  get 'warehouse_material_received/:warehouse_item_requested_transaction_id', to: 'warehouse_material_receiveds#new', as: :new_warehouse_material_received
 
   # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
@@ -125,7 +125,7 @@ Rails.application.routes.draw do
   resources :warehouse_material_amounts
   resources :productions
   resources :stock_ins, only: [:index, :new, :create]
-  resources :warehouse_material_receiveds, only: [:index, :new, :create, :edit]
+  resources :warehouse_material_receiveds
 
   get 'get_material_data', to: 'materials#get_material_data'
 
