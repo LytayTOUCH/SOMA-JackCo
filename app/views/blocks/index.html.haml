@@ -17,8 +17,12 @@
         - @blocks.select(:planting_project_id).distinct.each do |block|
           - if block.planting_project.name.downcase.eql? 'coconut'
             %span.label.label-success #{block.planting_project.name}
-          - else
+          - elsif block.planting_project.name.downcase.eql? 'jackfruit'
             %span.label.label-warning #{block.planting_project.name}
+          - elsif block.planting_project.name.downcase.eql? 'mango'
+            %span.label.custom-label-dark-yellow #{'Mango'}
+          - elsif block.planting_project.name.downcase.eql? 'lemon'
+            %span.label.custom-label-light-green #{'Lemon'}
       %div Location: #{@farm.location}
       %div
         %i.fa.fa-map-marker
