@@ -134,6 +134,10 @@
           %li
             - if can? :read, UserGroup
               = navbar_link "User Groups", user_groups_path, "active"
+          %li
+            - if can? :read, Version
+              = navbar_link "Log Tracking", log_tracking_index_path, "active"
+              
           
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}

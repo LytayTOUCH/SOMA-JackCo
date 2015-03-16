@@ -80,10 +80,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def log_tracking
-    @users = User.all
-  end
-
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :user_group_id, :labor_id, :active)

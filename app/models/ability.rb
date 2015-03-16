@@ -8,6 +8,9 @@ class Ability
       can :manage, :all
     else
       can [:create, :read], :all if user.user_group.name == "Data Entry"
+      cannot :read, Version if user.user_group.name == "Data Entry"
+      cannot :read, Version if user.user_group.name == "Project Leader"
+      cannot :read, Version if user.user_group.name == "Manager" 
       can :read, :all if user.user_group.name == "Project Leader"
       can :read, [PlantingProject] if user.user_group.name = "Manager"
     end

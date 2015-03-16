@@ -1,0 +1,2 @@
+module LogTrackingHelper
+end
