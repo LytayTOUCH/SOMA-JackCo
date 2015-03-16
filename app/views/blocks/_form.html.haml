@@ -7,45 +7,39 @@
         %h4#myModalLabel.modal-title Add New Block
       .modal-body
         .row
-          .col-lg-8
+          .col-xs-8
             #map-block
-          .col-lg-4
+          .col-xs-4
             = form_for([farm, block], remote: true, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"}) do |f|
               = f.hidden_field :farm_id, value: farm.uuid
               .form-group
-                = f.label :name, class: 'col-xs-2 control-label'
-                .col-xs-10
+                .col-xs-10.col-xs-offset-2
                   = f.text_field :name, class: 'form-control', placeholder: 'Block Name'
                   .msg-name.alert-danger{:role => "alert"}
               .form-group
-                = f.label :surface, class: 'col-xs-2 control-label'
-                .col-xs-10
+                .col-xs-10.col-xs-offset-2
                   = f.text_field :surface, class: 'form-control', placeholder: 'Surface Area'
                   .msg-surface.alert-danger{:role => "alert"}
               .form-group
-                = f.label :tree_amount, class: 'col-xs-2 control-label'
-                .col-xs-10
+                .col-xs-10.col-xs-offset-2
                   = f.text_field :tree_amount, class: 'form-control', placeholder: 'Tree Amount'
                   .msg-tree_amount.alert-danger{:role => "alert"}
               .form-group
+                = f.label "Planting", class: 'col-xs-2 control-label'
+                .col-xs-10
+                  = f.select :planting_project_id, planting_projects.collect {|p| [ p.name, p.id ] }, { include_blank: false }, class: 'form-control', placeholder: 'Planting Type'
+                  .msg-planting_project_id.alert-danger{:role => "alert"}
+              .form-group
                 = f.label :shape_lat_long, class: 'col-xs-2 control-label'
                 .col-xs-10
-                  .input-group
-                    = f.text_field :shape_lat_long, class: 'form-control', placeholder: 'shape_lat_long'
-                    .input-group-btn
-                      %button.btn.btn-default#btn-draw-block{:type => "button"} Draw Block
+                  = f.text_field :shape_lat_long, class: 'form-control', placeholder: 'shape_lat_long'
                   .msg-shape_lat_long.alert-danger{:role => "alert"}
               .form-group
                 = f.label :location_lat_long, class: 'col-xs-2 control-label'
                 .col-xs-10
                   = f.text_field :location_lat_long, class: 'form-control', placeholder: 'location_lat_long'
                   .msg-location_lat_long.alert-danger{:role => "alert"}
-              .form-group
-                = f.label "Planting", class: 'col-xs-2 control-label'
-                .col-xs-10
-                  / = f.text_field :planting_project_id, class: 'form-control', placeholder: 'planting_project_id'
-                  = f.select :planting_project_id, planting_projects.collect {|p| [ p.name, p.id ] }, { include_blank: false }, class: 'form-control', placeholder: 'Planting Type'
-                  .msg-planting_project_id.alert-danger{:role => "alert"}
+              
               .form-group
                 = f.label :rental_status, class: 'col-xs-2 control-label'
                 .col-xs-10
