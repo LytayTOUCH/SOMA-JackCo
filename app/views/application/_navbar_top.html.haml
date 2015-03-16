@@ -75,9 +75,6 @@
               %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white ADJUSTMENT
               %li
                 = navbar_link "Initialize Stock", new_warehouse_material_amount_path, "active"
-
-          %li.dropdown-submenu
-            = navbar_link "Stock In", stock_ins_path, "active"
           
           %li.divider
           %li
@@ -92,12 +89,15 @@
           %li
             = navbar_link "Material Request", warehouse_item_requested_transactions_path, "active"
           %li
-            = navbar_link "Material Receive", warehouse_item_received_transactions_path, "active"
+            = navbar_link "Material Receive", warehouse_material_receiveds_path, "active"
           %li.divider
           %li
             = navbar_link "Input Tasks", "#", "active"
           %li
             = navbar_link "Output Tasks", "#", "active"
+          %li.divider
+          %li  
+            = navbar_link "Stock In", stock_ins_path, "active"  
           
       / %li.dropdown
       /   %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}

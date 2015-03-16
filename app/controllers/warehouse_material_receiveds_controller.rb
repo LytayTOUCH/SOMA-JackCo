@@ -5,13 +5,7 @@ class WarehouseMaterialReceivedsController < ApplicationController
 
   def index
     begin
-      @warehouse_material_received = WarehouseMaterialReceived.new
-
-      if params[:warehouse_material_received] and params[:warehouse_material_received][:name] and !params[:warehouse_material_received][:name].nil?
-        @warehouse_material_receiveds = WarehouseMaterialReceived.find_by_warehouse_material_received_name(params[:warehouse_material_received][:name]).page(params[:page]).per(session[:item_per_page])
-      else
-        @warehouse_material_receiveds = WarehouseMaterialReceived.page(params[:page]).per(session[:item_per_page])
-      end
+      @warehouse_material_receiveds = WarehouseMaterialReceived.all.select("DISTINCT(warehouse_item_transaction_id)")
     rescue Exception => e
       puts e
     end
@@ -41,13 +35,17 @@ class WarehouseMaterialReceivedsController < ApplicationController
 
         remaining_amount = @warehouse_item_transaction.remaining_amount # 2000
         received_amount = @warehouse_material_received.received_amount # 1000
-        amount_in_hand = @warehouse_central_material.amount
+        puts "============================******============================"
+        puts amount_in_hand = @warehouse_central_material.amount
+        puts "============================******============================"
 
         if amount_in_hand >= remaining_amount
           if remaining_amount >= received_amount
             remain_amount_central_stock = amount_in_hand - received_amount
             remain_amount_request_partial = remaining_amount - received_amount
-            @warehouse_central_material.amount = remain_amount_central_stock
+            puts "============================******============================"
+            puts @warehouse_central_material.amount = remain_amount_central_stock
+            puts "============================******============================"
             warehouse_project_material_amount = @warehouse_project_material.amount + received_amount
             
             if remain_amount_request_partial == 0
@@ -62,8 +60,8 @@ class WarehouseMaterialReceivedsController < ApplicationController
 
             @warehouse_item_transaction.update_attributes!(remaining_amount: remain_amount_request_partial, transaction_status: status)
           end  
-        else 
-          
+        else
+          flash[:notice] = "Requested quantity exceeds stock quantity"    
         end  
 
         flash[:notice] = "Warehouse Material Received saved"

@@ -5,6 +5,16 @@
  *= require_self
  */
 
+.received-header {
+  background: green;
+  color: white;
+  height: 30px;
+  padding-top: 6px;
+  padding-left: 5px;
+  font-size: 15px;
+  word-spacing: 10px;
+}
+
 .requested-row-color {
   background: #8eec6a;
 }
