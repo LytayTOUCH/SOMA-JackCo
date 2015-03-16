@@ -1,0 +1,44 @@
+- @warehouse_material_receiveds.each do |warehouse_material_received|
+  - warehouse_item_transaction = WarehouseItemTransaction.find_by_uuid(warehouse_material_received.warehouse_item_transaction_id)
+
+  %div.received-header
+    ="Request:"
+    = warehouse_material_received.warehouse_item_transaction.requested_number
+    = ','
+    = warehouse_material_received.warehouse_item_transaction.transaction_status
+    = ','
+    - if warehouse_material_received.warehouse_item_transaction.remaining_amount > 0
+      = warehouse_material_received.warehouse_item_transaction.remaining_amount
+    - else
+      = "0.0"
+
+
+  %table.table
+    %thead
+      %tr
+        %th= "Request By"
+        %th= "Request To"
+        %th= "Received Date"
+        %th= "Material"
+        %th= "Material Category"
+        %th= "Quantity"
+
+      - @warehouse_item_transactions = warehouse_item_transaction.warehouse_material_receiveds
+      - @warehouse_item_transactions.each do |wit|
+        - material = Material.find_by_uuid(warehouse_item_transaction.material_id)
+        - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_transaction.sender_id)
+        - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_transaction.receiver_id)
+
+        %tr
+          %td= sender_warehouse.name
+          %td= receiver_warehouse.name
+          %td= wit.received_date
+          %td
+            = material.name
+          %td
+            = material.material_category.name
+          %td
+            = wit.received_amount
+            = '('
+            = material.unit_of_measurement.name
+            = ')'  
