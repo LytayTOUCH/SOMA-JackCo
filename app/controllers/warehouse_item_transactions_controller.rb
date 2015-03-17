@@ -11,7 +11,7 @@ class WarehouseItemTransactionsController < ApplicationController
       if params[:warehouse_item_requested_transaction] and params[:warehouse_item_requested_transaction][:requested_date] and !params[:warehouse_item_requested_transaction][:requested_date].nil?
         @warehouse_item_requested_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_requested_transaction][:requested_date]).page(params[:page]).per(session[:item_per_page])
       else
-        @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(session[:item_per_page])
+        @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(session[:item_per_page]).order("created_at desc")
       end
     rescue Exception => e
       puts e
@@ -41,7 +41,7 @@ class WarehouseItemTransactionsController < ApplicationController
       @central_warehouse_type = WarehouseType.find_by_name("Central Warehouse") 
       @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse") 
 
-      @central_project_warehouses = Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ?", @central_warehouse_type.uuid, @project_warehouse_type.uuid)
+      @central_project_warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", @central_warehouse_type.uuid, true, @project_warehouse_type.uuid, true)
     rescue Exception => e
       puts e
     end
@@ -80,9 +80,6 @@ class WarehouseItemTransactionsController < ApplicationController
   def update
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.find(params[:id])
-
-      # if @warehouse_item_transaction. = 
-
 
       # "============== Cutting Stock ============="  
       # @warehouse_central_material = WarehouseMaterialAmount.find_by(warehouse_uuid: @warehouse_item_transaction.sender_id, material_uuid: @warehouse_item_transaction.material_id)

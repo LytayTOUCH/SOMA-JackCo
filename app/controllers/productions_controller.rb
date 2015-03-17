@@ -36,11 +36,10 @@ class ProductionsController < ApplicationController
   def create
     begin
       @production = Production.new(production_params)
-      # @production.warehouse_ids = params[:production][:warehouse_ids]   
       @finished_warehouse = WarehouseType.find_by_name("Finished Goods Warehouse") 
       @nursery_warehouse = WarehouseType.find_by_name("Nursery Warehouse") 
 
-      @production_warehouses = Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ?", @finished_warehouse.uuid, @nursery_warehouse.uuid) 
+      @production_warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", @finished_warehouse.uuid, true, @nursery_warehouse.uuid, true) 
 
       if @production.save
         @production_warehouses.each do |warehouse|
