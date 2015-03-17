@@ -19,10 +19,10 @@ end
 
 # ========== Labor ==========
 position = Position.create_with(note: 'Controlling a labor in field', active: true).find_or_create_by(name: 'Manager')
-labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "manager@cltag.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true, selected: true).find_or_create_by(name: "Manager")
+labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "manager@cltag.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true, selected: true).find_or_create_by(name: "Default Manager")
 position.labors << labor
 
-# ========== Create Roles ========== 
+# ========== Create Setting ========== 
 [
   {code: 'item_per_page', note: 'Amount of item show in a list per page', valueType: 'INT', valueInteger: 10, valueString: nil, valueFloat: nil}
 ].each do |setting|
