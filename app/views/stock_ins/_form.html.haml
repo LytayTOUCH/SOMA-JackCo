@@ -7,7 +7,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Material *
     .col-xs-5
-      = f.input :material_id, label: false, collection: @materials, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+      = f.input :material_id, label: false, collection: @materials, input_html: {class: "form-control material_uuid"}, error_html: {class: "err_msg"}
     %span.help-block= f.error :material_id
   .form-group
     %label.col-xs-2.control-label.text-left User *
@@ -19,12 +19,16 @@
     .col-xs-5
       .controls
         = f.text_field :stock_in_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
-      %span.help-block= f.error :stock_in_date  
+      %span.help-block= f.error :stock_in_date
+        
   .form-group
-    %label.col-xs-2.control-label.text-left Amount *
+    %label.col-xs-2.control-label Quantity *
     .col-xs-5
-      = f.input :amount, label: false, input_html: { class: "form-control" }
+      .input-group
+        = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+        %span.input-group-addon.uom-name
     %span.help-block= f.error :amount
+    
   .form-group
     .col-xs-7
       .pull-right
