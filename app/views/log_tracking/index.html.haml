@@ -1,5 +1,6 @@
 - @users.each do |user|
-	%h3= "User: " + user.email
+	%div.received-header{style: "margin-top: 15px;"}
+		= "User: " + user.email
 	%table.table
 		%thead
 			%tr
