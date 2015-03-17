@@ -39,9 +39,6 @@
               %li
                 - if can? :read, ProductionStatus
                   = navbar_link "Tree Status", production_statuses_path, "active"
-              %li
-                - if can? :read, Production
-                  = navbar_link "Production", productions_path, "active"    
 
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Inventory
@@ -67,10 +64,11 @@
               %li.divider
               %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white OUTPUT
               %li
+                - if can? :read, Production
+                  = navbar_link "Production", productions_path, "active"
+              %li
                 - if can? :read, PlantingProject
                   = navbar_link "Planting Project", planting_projects_path, "active"
-              %li
-                = navbar_link "Production Category", "#", "active"
               %li.divider
               %li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white ADJUSTMENT
               %li
@@ -87,6 +85,9 @@
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
           %li
+            = navbar_link "Stock In", stock_ins_path, "active"
+          %li.divider
+          %li
             = navbar_link "Material Request", warehouse_item_requested_transactions_path, "active"
           %li
             = navbar_link "Material Receive", warehouse_material_receiveds_path, "active"
@@ -95,9 +96,6 @@
             = navbar_link "Input Tasks", "#", "active"
           %li
             = navbar_link "Output Tasks", "#", "active"
-          %li.divider
-          %li  
-            = navbar_link "Stock In", stock_ins_path, "active"  
           
       / %li.dropdown
       /   %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
