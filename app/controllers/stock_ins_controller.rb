@@ -19,8 +19,13 @@ class StockInsController < ApplicationController
 
   def new
     begin
+      central_uuid = WarehouseType.find_by_name("Central Warehouse").uuid 
+      project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
+      fertilizer_uuid = WarehouseType.find_by_name("Fertilizer Warehouse").uuid
+      
+      @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", central_uuid, true, project_uuid, true, fertilizer_uuid, true)
+      
       @stock_in = StockIn.new
-      @warehouses = Warehouse.all
       @materials = Material.all
       @labors = Labor.all
     rescue Exception => e

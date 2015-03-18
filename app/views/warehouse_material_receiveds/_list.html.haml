@@ -2,11 +2,13 @@
   - warehouse_item_transaction = WarehouseItemTransaction.find_by_uuid(warehouse_material_received.warehouse_item_transaction_id)
 
   %div.received-header
-    ="Request:"
+    ="Request No:"
     = warehouse_material_received.warehouse_item_transaction.requested_number
-    = ','
+    = '('
     = warehouse_material_received.warehouse_item_transaction.transaction_status
-    = ','
+    = '), Requested:'
+    = warehouse_material_received.warehouse_item_transaction.amount
+    = ', Remaining:'
     - if warehouse_material_received.warehouse_item_transaction.remaining_amount > 0
       = warehouse_material_received.warehouse_item_transaction.remaining_amount
     - else
