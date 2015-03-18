@@ -5,11 +5,14 @@ class WarehouseMaterialReceivedsController < ApplicationController
 
   def index
     begin
-      # if params[:warehouse_material_received] and params[:warehouse_material_received][:requested_number] and !params[:warehouse_material_received][:requested_number].nil?
-      #   @warehouse_material_receiveds = WarehouseMaterialReceived.find_by_requested_number(params[:warehouse_material_received][:code]).page(params[:page]).per(5)
-      # else
-      @warehouse_material_receiveds = WarehouseMaterialReceived.page(params[:page]).per(session[:item_per_page]).select("DISTINCT(warehouse_item_transaction_id)").order("created_at desc")
-      # end
+      @warehouse_material_received = WarehouseMaterialReceived.new
+
+      if params[:warehouse_material_received] and params[:warehouse_material_received][:requested_number] and !params[:warehouse_material_received][:requested_number].nil?
+        @warehouse_material_receiveds = WarehouseMaterialReceived.find_by_requested_number(params[:warehouse_material_received][:requested_number]).select("DISTINCT(warehouse_item_transaction_id)").order("created_at desc").page(params[:page]).per(5)
+      else
+        # @warehouse_material_receiveds = WarehouseMaterialReceived.select_all_receives.order("created_at desc").page(params[:page]).per(4)
+        @warehouse_material_receiveds = WarehouseMaterialReceived.select("DISTINCT(warehouse_item_transaction_id)").order("created_at desc").page(params[:page]).per(4)
+      end
     rescue Exception => e
       puts e
     end
