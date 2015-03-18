@@ -9,7 +9,7 @@
   .form-group
     %label.col-xs-2.control-label Received Quantity *
     .col-xs-5
-      = f.input :received_amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+      = f.input :received_amount, label: false, input_html: { class: "form-control", value: f.object.received_amount || '0' }, error_html: { class: "err_msg" }
     %span.help-block= f.error :received_amount  
   .form-group
     %label.col-xs-2.control-label Receive Date

@@ -12,13 +12,12 @@
     - else
       = "0.0"
 
-
   %table.table
     %thead
       %tr
+        %th= "Received Date"
         %th= "Request By"
         %th= "Request To"
-        %th= "Received Date"
         %th= "Material"
         %th= "Material Category"
         %th= "Quantity"
@@ -30,9 +29,9 @@
         - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_transaction.receiver_id)
 
         %tr
+          %td= wit.received_date
           %td= sender_warehouse.name
           %td= receiver_warehouse.name
-          %td= wit.received_date
           %td
             = material.name
           %td
@@ -42,3 +41,5 @@
             = '('
             = material.unit_of_measurement.name
             = ')'  
+.pull-right
+  = paginate @warehouse_material_receiveds             

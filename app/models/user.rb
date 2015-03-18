@@ -22,4 +22,7 @@ class User < ActiveRecord::Base
 
   scope :find_by_email, -> email { where("email like ?", "%#{email}%") }
 
+  # has_paper_trail
+  has_paper_trail :versions => :paper_trail_versions
+
 end

@@ -6,12 +6,12 @@ class WarehouseItemTransactionsController < ApplicationController
 
   def index_item_requested
     begin
-      @warehouse_item_requested_transaction = WarehouseItemTransaction.new
+      @warehouse_item_transaction = WarehouseItemTransaction.new
 
-      if params[:warehouse_item_requested_transaction] and params[:warehouse_item_requested_transaction][:requested_date] and !params[:warehouse_item_requested_transaction][:requested_date].nil?
-        @warehouse_item_requested_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_requested_transaction][:requested_date]).page(params[:page]).per(session[:item_per_page])
+      if params[:warehouse_item_transaction] and params[:warehouse_item_transaction][:requested_number] and !params[:warehouse_item_transaction][:requested_number].nil?
+        @warehouse_item_requested_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_transaction][:requested_number]).page(params[:page]).per(5)
       else
-        @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(session[:item_per_page]).order("created_at desc")
+        @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(5).order("created_at desc")
       end
     rescue Exception => e
       puts e
@@ -23,9 +23,9 @@ class WarehouseItemTransactionsController < ApplicationController
       @warehouse_item_received_transaction = WarehouseItemTransaction.new
 
       if params[:warehouse_item_received_transaction] and params[:warehouse_item_received_transaction][:received_date] and !params[:warehouse_item_received_transaction][:received_date].nil?
-        @warehouse_item_received_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_received_transaction][:received_date]).page(params[:page]).per(session[:item_per_page])
+        @warehouse_item_received_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_received_transaction][:received_date]).page(params[:page]).per(5)
       else
-        @warehouse_item_received_transactions = WarehouseItemTransaction.page(params[:page]).per(session[:item_per_page]).where(transaction_status: "Received")
+        @warehouse_item_received_transactions = WarehouseItemTransaction.page(params[:page]).per(5).where(transaction_status: "Received")
       end
     rescue Exception => e
       puts e

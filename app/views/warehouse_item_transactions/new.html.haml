@@ -27,7 +27,7 @@
   .form-group
     %label.col-xs-2.control-label Request Date
     .col-xs-5
-      = f.text_field :requested_date, label: false, :class => "form-control", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, value: Date.today, input_html: { class: "form-control" }, readonly: true, error_html: { class: "err_msg" }
+      = f.text_field :requested_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
     %span.help-block= f.error :requested_date
   .form-group
     %label.col-xs-2.control-label Due Date *
