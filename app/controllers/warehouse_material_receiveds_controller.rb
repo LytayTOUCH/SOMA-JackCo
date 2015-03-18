@@ -8,7 +8,7 @@ class WarehouseMaterialReceivedsController < ApplicationController
       # if params[:warehouse_material_received] and params[:warehouse_material_received][:requested_number] and !params[:warehouse_material_received][:requested_number].nil?
       #   @warehouse_material_receiveds = WarehouseMaterialReceived.find_by_requested_number(params[:warehouse_material_received][:code]).page(params[:page]).per(5)
       # else
-      @warehouse_material_receiveds = WarehouseMaterialReceived.page(params[:page]).per(5).select("DISTINCT(warehouse_item_transaction_id)").order("created_at desc")
+      @warehouse_material_receiveds = WarehouseMaterialReceived.page(params[:page]).per(session[:item_per_page]).select("DISTINCT(warehouse_item_transaction_id)").order("created_at desc")
       # end
     rescue Exception => e
       puts e
