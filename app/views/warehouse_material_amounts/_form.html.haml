@@ -1,43 +1,21 @@
-.row
+= simple_form_for @warehouse_material_amount, html: {class: 'form-horizontal'} do |f|
   .form-group
-    %label.col-xs-2.control-label.text-left Material Category *
-    .col-xs-4
-      %select.form-control.material_category_uuid
-        %option{:value => ""}
-        - @material_categories.each do |material_category|
-          %option{:value => material_category.uuid}
-            = material_category.name
-
-%br
-.row
-  .form-group.material-name
-    %table.table
-      %th Material Name
-      %input{:name => "warehouse_amount", :id => "warehouse_amount", :type => "hidden", :value => @warehouse_amount}/
-      - @warehouses.each do |wh|
-        %th#warehouse-id{uuid: wh.uuid}= wh.name
-      %tbody.material_name
-
-
-
-/ :javascript
-/   $(document).ready(function() {
-/     $('.material_id').change(
-/       function() {
-/         var material_id = $(".material_id").val();
-/         jQuery.ajax({
-/           url: "/get_warehouse_data",
-/           type: "GET",
-/           data: {"material_id" : material_id},
-/           dataType: "json",
-/           success: function(data){
-/             $.each(data, function(i, value) {
-/               $(".warehouse_uuid").val(value.uuid);
-/               $(".warehouse_name").val(value.name);
-/             });
-/           }
-/         });
-/       }
-/     );
-
-/   });
+    %label.col-xs-2.control-label.text-left Warehouse:
+    .col-xs-5
+      = f.association :warehouse, label: false, disabled: true, input_html: {class: "form-control"}
+  .form-group
+    %label.col-xs-2.control-label.text-left Material:
+    .col-xs-5
+      = f.association :material, label: false, disabled: true, input_html: {class: "form-control"}
+  .form-group
+    %label.col-xs-2.control-label Quantity *
+    .col-xs-5
+      .input-group
+        = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+        %span.input-group-addon.uom-name
+          = @uom_name
+  .form-group
+    .col-xs-7
+      .pull-right
+        = f.submit class: "btn btn-primary", "data-disable-with" => "Submitting..."
+        = link_to "Cancel", :back, class: "btn btn-default", "data-disable-with" => "Cancel..."

@@ -1,0 +1,5 @@
+= simple_form_for @selected_warehouse, url: warehouse_material_amounts_path, method: :get, html: {novalidate: true, class: 'form-inline'} do |f|
+  .input-group.col-xs-5
+    = f.input :uuid, label: false, collection: @warehouses, input_html: { class: "form-control", style: "width:100%;" }
+    .input-group-btn
+      = f.submit :Search, class: "btn btn-default"

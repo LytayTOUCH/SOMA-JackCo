@@ -125,6 +125,8 @@ Rails.application.routes.draw do
   resources :phases
   resources :warehouse_item_transactions
   resources :warehouse_material_amounts
+  resources :material_adjustments
+  resources :warehouse_production_amounts
   resources :productions
   resources :stock_ins, only: [:index, :new, :create]
   resources :warehouse_material_receiveds
