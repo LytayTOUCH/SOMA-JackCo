@@ -1,6 +1,5 @@
 class Warehouse < ActiveRecord::Base
   include UuidHelper
-  has_paper_trail
   
   belongs_to :warehouse_type, foreign_key: :warehouse_type_uuid
 
@@ -11,6 +10,8 @@ class Warehouse < ActiveRecord::Base
   has_many :productions, through: :warehouse_production_amounts
 
   has_many :stock_ins
+
+  has_many :input_tasks, foreign_key: :warehouse_id
 
   validates :name, length: { maximum: 50 }, presence: true
 

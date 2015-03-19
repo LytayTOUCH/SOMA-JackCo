@@ -135,6 +135,8 @@ Rails.application.routes.draw do
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
+  resources :input_tasks
+
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
