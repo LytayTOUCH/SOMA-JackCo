@@ -11,7 +11,14 @@ Rails.application.routes.draw do
   post 'material_adjustments' => 'material_adjustments#create'
   post 'material_adjustments/create' => 'material_adjustments#create'
   
-  # resources :warehouse_production_amounts
+  # warehouse_production_amounts
+  get 'warehouse_production_amounts' => 'warehouse_production_amounts#index'
+  
+  # production_adjustments
+  get 'production_adjustments' => 'production_adjustments#index'
+  get 'production_adjustments/new/:id' => 'production_adjustments#new'
+  post 'production_adjustments' => 'production_adjustments#create'
+  post 'production_adjustments/create' => 'production_adjustments#create'
 
   get 'settings' => 'settings#index'
   get 'settings/:code' => 'settings#show', :as => 'setting'

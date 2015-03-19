@@ -6,6 +6,8 @@ class WarehouseProductionAmount < ActiveRecord::Base
   
   has_many :production_adjustments
   
+  scope :find_by_warehouse, -> warehouse_id { where("warehouse_id = ?", "#{warehouse_id}") }
+  
   has_paper_trail
 
 end

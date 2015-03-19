@@ -1,2 +1,8 @@
-%h1 WarehouseProductionAmounts#index
-%p Find me in app/views/warehouse_production_amounts/index.html.haml
+.row
+  %h1
+    = "Product In Stock"
+  %hr
+  = render partial: 'form_search'
+    
+  %hr
+  = render partial: 'list'

@@ -1,7 +1,7 @@
 class WarehouseMaterialAmountsController < ApplicationController
   load_and_authorize_resource except: :create
   
-  add_breadcrumb "Set Material In Stock", :warehouse_material_amounts_path
+  add_breadcrumb "Material In Stock", :warehouse_material_amounts_path
   
   def index
     begin
