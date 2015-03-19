@@ -55,7 +55,6 @@ class StockInsController < ApplicationController
       else
         flash[:notice] = "No such material in Stock"
         flash[:notice] = "Stock In can't be saved"
-        # redirect_to :back
         render 'new'
       end
     rescue Exception => e
@@ -65,7 +64,7 @@ class StockInsController < ApplicationController
 
   private
   def stock_in_params
-    params.require(:stock_in).permit(:warehouse_id, :labor_id, :material_id, :amount, :stock_in_date)
+    params.require(:stock_in).permit(:warehouse_id, :labor_id, :material_id, :amount, :stock_in_date, :reference_number, :item_desc, :note)
   end
 
 end

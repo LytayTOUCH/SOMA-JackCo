@@ -28,7 +28,25 @@
         = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
         %span.input-group-addon.uom-name
     %span.help-block= f.error :amount
-    
+
+  .form-group
+    %label.col-xs-2.control-label Reference Number *
+    .col-xs-5
+      = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+    %span.help-block= f.error :reference_number
+      
+  .form-group
+    %label.col-xs-2.control-label Item Description
+    .col-xs-5
+      = f.input :item_desc, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+    %span.help-block= f.error :item_desc
+
+  .form-group
+    %label.col-xs-2.control-label Note 
+    .col-xs-5
+      = f.input :note, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+    %span.help-block= f.error :note  
+
   .form-group
     .col-xs-7
       .pull-right
