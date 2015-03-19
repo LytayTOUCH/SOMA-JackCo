@@ -20,4 +20,4 @@
                 = wh_a.material.unit_of_measurement.name
                 = ")"
               %td
-                = link_to "Adjust", edit_warehouse_material_amount_path(wh_a)
+                = link_to "Adjust", "material_adjustments/new/#{wh_a.uuid}"

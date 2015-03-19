@@ -1,27 +1,25 @@
 = simple_form_for @material_adjustment, html: {class: 'form-horizontal'} do |f|
-  /.form-group
-  /  %label.col-xs-2.control-label.text-left Warehouse:
-  /  .col-xs-5
-  /    = f.association :warehouse, label: false, disabled: true, input_html: {class: "form-control"}
-  /.form-group
-  /  %label.col-xs-2.control-label.text-left Material:
-  /  .col-xs-5
-  /    = f.association :material, label: false, disabled: true, input_html: {class: "form-control"}
+  = f.input :user_id, :input_html => { :value => current_user.uuid }, as: :hidden
+  = f.input :old_amount, as: :hidden
+  = f.input :warehouse_material_amount_id, as: :hidden
+  = f.input :user_name, as: :hidden
   .form-group
-    .col-xs-5
-      = f.input :user_id, :input_html => { :value => current_user.uuid }, as: :hidden
-  .form-group
-    .col-xs-5
-      = f.input :user_name, :input_html => { :value => current_user.name }, as: :hidden
-  .form-group
-    %label.col-xs-2.control-label Adjust Date
+    %label.col-xs-2.control-label Adjust Date:
     .col-xs-5
       = f.text_field :adjust_date, label: false, :class => "form-control", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, error_html: { class: "err_msg" }, readonly: true, :input_html => { class: "form-control" }, value: Date.today
+  .form-group
+    %label.col-xs-2.control-label Warehouse:
+    .col-xs-5
+      %input.form-control{value: @material_adjustment.warehouse_material_amount.warehouse.name, readonly: true}
+  .form-group
+    %label.col-xs-2.control-label Material:
+    .col-xs-5
+      %input.form-control{value: @material_adjustment.warehouse_material_amount.material.name, readonly: true}
   .form-group
     %label.col-xs-2.control-label Quantity *
     .col-xs-5
       .input-group
-        = f.input :new_amount, :input_html => { :value => @material_adjustment.warehouse_material_amount.amount }, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+        = f.input :new_amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
         %span.input-group-addon.uom-name
           = @uom_name
   .form-group
