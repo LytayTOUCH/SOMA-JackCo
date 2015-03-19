@@ -7,4 +7,7 @@ class ProductionStatus < ActiveRecord::Base
   validates :stage_id, length: { maximum: 36 }, presence: true
 
   scope :find_by_production_status_name, -> name { where("name like ?", "%#{name}%") }
+
+  has_paper_trail
+
 end

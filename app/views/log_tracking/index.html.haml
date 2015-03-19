@@ -1,0 +1,14 @@
+- @users.each do |user|
+	%div.received-header{style: "margin-top: 15px;"}
+		= "User: " + user.email
+	%table.table
+		%thead
+			%tr
+				%th.col-md-4= "Item type"
+				%th.col-md-4= "Event"
+				%th.col-md-4= "Created at"
+		- user.versions.each do |version|
+			%tr
+				%td= version.item_type
+				%td= version.event
+				%td= version.created_at

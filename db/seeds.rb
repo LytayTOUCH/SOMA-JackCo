@@ -19,10 +19,10 @@ end
 
 # ========== Labor ==========
 position = Position.create_with(note: 'Controlling a labor in field', active: true).find_or_create_by(name: 'Manager')
-labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "manager@cltag.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true, selected: true).find_or_create_by(name: "Manager")
+labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "manager@cltag.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true, selected: true).find_or_create_by(name: "Default Manager")
 position.labors << labor
 
-# ========== Create Roles ========== 
+# ========== Create Setting ========== 
 [
   {code: 'item_per_page', note: 'Amount of item show in a list per page', valueType: 'INT', valueInteger: 10, valueString: nil, valueFloat: nil}
 ].each do |setting|
@@ -108,10 +108,10 @@ end
 # UnitOfMeasurement.delete_all
 [
   {name: 'Unit', note: 'Unit of measurement for tree, amount of fruit,...'},
-  {name: 'Kilogram', note: 'Unit of measurement for kilogram.'},
-  {name: 'Gram', note: 'Unit of measurement for gram.'},
-  {name: 'Litre', note: 'Unit of measurement for litre.'},
-  {name: 'Millilitre', note: 'Unit of measurement for mili-litre.'}
+  {name: 'Kg', note: 'Unit of measurement for kilogram.'},
+  {name: 'g', note: 'Unit of measurement for gram.'},
+  {name: 'L', note: 'Unit of measurement for litre.'},
+  {name: 'mL', note: 'Unit of measurement for mili-litre.'}
 ].each do |unit_measure|
   UnitOfMeasurement.create_with(note: unit_measure[:note]).find_or_create_by(name: unit_measure[:name])
 end

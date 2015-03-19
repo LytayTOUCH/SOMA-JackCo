@@ -12,4 +12,7 @@ class Maintenance < ActiveRecord::Base
   belongs_to :implement, foreign_key: :machinery_uuid
 
   scope :find_limit_10, -> { limit(10) }
+
+  has_paper_trail
+
 end

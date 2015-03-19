@@ -5,8 +5,11 @@ class WarehouseMaterialReceived < ActiveRecord::Base
 
   validates :warehouse_item_transaction_id, length: { maximum: 36 }, presence: true
   validates :received_date, presence: true
-  validates :remaining_amount, presence: true
-  validates :created_by, length: { maximum: 36 }, presence: true
-  validates :updated_by, length: { maximum: 36 }, presence: true
+  
+  scope :select_all_receives, select('DISTINCT(warehouse_item_transaction_id)')
+
+  scope :find_by_requested_number, -> requested_number { where("warehouse_item_transaction.requested_number like ?", "%#{requested_number}%") }
+
+  has_paper_trail
 
 end

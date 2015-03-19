@@ -37,4 +37,6 @@ class Activity < ActiveRecord::Base
     end
   }
 
+  has_paper_trail
+
 end

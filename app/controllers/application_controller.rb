@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   add_breadcrumb "Home", :dashboards_path
   
+  def user_for_paper_trail
+    # Save the user responsible for the action
+    user_signed_in? ? current_user.id : 'Guest'
+  end
+  
   private
   def after_sign_in_path_for(resource)
     dashboards_path
@@ -28,4 +33,5 @@ class ApplicationController < ActionController::Base
   def farm_name_navigator
     @farm_names=Farm.pluck(:uuid, :name)
   end
+
 end

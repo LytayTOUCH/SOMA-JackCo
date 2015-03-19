@@ -1,2 +1,12 @@
-%h1 WarehouseMaterialAmounts#index
-%p Find me in app/views/warehouse_material_amounts/index.html.haml
+.row
+  %h1
+    = "Set Material In Stock"
+  %hr
+  = simple_form_for @warehouse_material_amount, url: warehouse_material_amounts_path, method: :get, html: {novalidate: true, class: 'form-inline'} do |f|
+    .input-group.col-xs-5
+      = f.input :warehouse_uuid, label: false, collection: @warehouses, input_html: { class: "form-control", placeholder: "Search by Warehouse" }
+      .input-group-btn
+        = f.submit :Search, class: "btn btn-default"
+
+  %hr
+  = render partial: 'list'

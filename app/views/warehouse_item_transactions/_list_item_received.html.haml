@@ -1,32 +1,32 @@
-%table.table
-  %thead
-    %tr
-      %th= "Request By"
-      %th= "Request To"
-      %th= "Requested Date"
-      %th= "Received Date"
-      %th= "Requested No"
-      %th= "Material"
-      %th= "Material Category"
-      %th= "Quantity"
-  - @warehouse_item_received_transactions.each do |warehouse_item_received_transaction|
-    - material = Material.find_by_uuid(warehouse_item_received_transaction.material_id)
-    - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_received_transaction.sender_id)
-    - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_received_transaction.receiver_id)
-    %tr
-      %td= sender_warehouse.name
-      %td= receiver_warehouse.name
-      %td= warehouse_item_received_transaction.requested_date
-      %td= warehouse_item_received_transaction.received_date
-      %td= warehouse_item_received_transaction.requested_number
-      %td
-        = material.name
-      %td
-        = material.material_category.name
-      %td
-        = warehouse_item_received_transaction.amount
-        = '('
-        = material.unit_of_measurement.name
-        = ')'
-.pull-right
-  = paginate @warehouse_item_received_transactions          
+- @warehouse_material_receiveds.each do |warehouse_material_received|
+  - warehouse_item_transaction = WarehouseItemTransaction.find_by_uuid(wwarehouse_material_received.warehouse_item_transaction_id)
+
+  = warehouse_item_transaction
+
+  %table.table
+    %thead
+      %tr
+        %th= "Request By"
+        %th= "Request To"
+        %th= "Received Date"
+        %th= "Material"
+        %th= "Material Category"
+        %th= "Quantity"
+    
+        - material = Material.find_by_uuid(warehouse_material_received.material_id)
+        - sender_warehouse = Warehouse.find_by_uuid(warehouse_material_received.sender_id)
+        - receiver_warehouse = Warehouse.find_by_uuid(warehouse_material_received.receiver_id)
+        %tr
+          %td= sender_warehouse.name
+          %td= receiver_warehouse.name
+          %td= warehouse_material_received.received_date
+          %td= warehouse_material_received.warehouse_requested_number
+          %td
+            = material.name
+          %td
+            = material.material_category.name
+          %td
+            = warehouse_material_received.amount
+            = '('
+            = material.unit_of_measurement.name
+            = ')'

@@ -5,4 +5,7 @@ class Project < ActiveRecord::Base
   
   has_many :labor_projects, dependent: :destroy
   has_many :labors, through: :labor_projects
+
+  has_paper_trail
+
 end

@@ -9,4 +9,6 @@ class StockIn < ActiveRecord::Base
   validates :material_id, length: {maximum: 36}, presence: true
   validates :labor_id, length: {maximum: 36}, presence: true
 
+  has_paper_trail
+
 end

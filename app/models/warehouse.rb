@@ -1,5 +1,6 @@
 class Warehouse < ActiveRecord::Base
   include UuidHelper
+  has_paper_trail
   
   belongs_to :warehouse_type, foreign_key: :warehouse_type_uuid
 
@@ -16,4 +17,7 @@ class Warehouse < ActiveRecord::Base
   validates :warehouse_type_uuid, length: {maximum: 36}, presence: true
 
   scope :find_by_warehouse_name, -> name { where("name like ?", "%#{name}%") }
+
+  has_paper_trail
+
 end

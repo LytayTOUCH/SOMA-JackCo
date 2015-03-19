@@ -11,4 +11,7 @@ class JackFruit < ActiveRecord::Base
   validates :stage_uuid, length: {maximum: 36}, presence: true
 
   scope :find_by_jack_fruit_code, -> code { where("code like ?", "%#{code}%") }
+
+  has_paper_trail
+
 end
