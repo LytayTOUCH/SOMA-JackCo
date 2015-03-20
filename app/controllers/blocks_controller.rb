@@ -1,13 +1,14 @@
 class BlocksController < ApplicationController
   add_breadcrumb "All Farms", :farms_path
+  before_action :get_farm, only: [:index, :new]
   before_action :set_block, only: [:show, :edit, :update, :destroy]
   def index
-    @farm = Farm.find_by(uuid: params[:farm_id])
     @blocks = Block.all.where(farm_id: params[:farm_id])
     add_breadcrumb @farm.name, :farm_blocks_path
   end
 
   def new
+    @planting_projects=PlantingProject.all
     @block = Block.new
   end
 
@@ -17,13 +18,19 @@ class BlocksController < ApplicationController
   end
 
   def create
-    @block = Farm.new(block_params)
+    # p "==============================="
+    # p block_params
+    # p "==============================="
+    @block = Block.new(block_params)
     if @block.save
       @block
     end
   end
 
   private
+    def get_farm
+      @farm = Farm.find_by(uuid: params[:farm_id])
+    end
     def set_block
       @block = Block.find(params[:id])
     end

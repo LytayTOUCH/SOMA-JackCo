@@ -8,10 +8,15 @@ class WarehouseItemTransactionsController < ApplicationController
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.new
 
+      unless params[:requested_id].nil?
+        @warehouse_item_transaction = WarehouseItemTransaction.find(params[:requested_id])
+        @warehouse_item_transaction.update_attributes!(transaction_status: "Closed")
+      end
+
       if params[:warehouse_item_transaction] and params[:warehouse_item_transaction][:requested_number] and !params[:warehouse_item_transaction][:requested_number].nil?
-        @warehouse_item_requested_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_transaction][:requested_number]).page(params[:page]).per(5)
+        @warehouse_item_requested_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_transaction][:requested_number]).page(params[:page]).per(7)
       else
-        @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(5).order("created_at desc")
+        @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(7).order("created_at desc")
       end
     rescue Exception => e
       puts e
@@ -39,9 +44,10 @@ class WarehouseItemTransactionsController < ApplicationController
       @materials = Material.all
 
       @central_warehouse_type = WarehouseType.find_by_name("Central Warehouse") 
-      @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse") 
+      @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse")
+      @fertilizer_warehouse_type = WarehouseType.find_by_name("Fertilizer Warehouse") 
 
-      @central_project_warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", @central_warehouse_type.uuid, true, @project_warehouse_type.uuid, true)
+      @central_project_fertilizer_warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", @central_warehouse_type.uuid, true, @project_warehouse_type.uuid, true, @fertilizer_warehouse_type, true)
     rescue Exception => e
       puts e
     end

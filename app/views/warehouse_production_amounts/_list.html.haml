@@ -1,0 +1,23 @@
+- if !@warehouse_production_amounts.nil?
+  - @planting_projects.each do |project|
+    .received-header
+      = project.name
+
+    %table.table
+      %thead
+        %tr
+          %th.col-md-6= "Material Name"
+          %th.col-md-5= "Qty In Stock"
+          %th.col-md-1= "Action"
+      %tbody
+        - @warehouse_production_amounts.each do |wh_a|
+          - if wh_a.production.planting_project.uuid == project.uuid
+            %tr
+              %td= wh_a.production.status
+              %td
+                = wh_a.amount
+                = "("
+                = wh_a.production.unit_of_measurement.name
+                = ")"
+              %td
+                = link_to "Adjust", "production_adjustments/new/#{wh_a.uuid}"

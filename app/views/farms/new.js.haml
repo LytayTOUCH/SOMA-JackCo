@@ -1,6 +1,6 @@
 :plain
 	$('.modal-backdrop').first().remove(); //remove backdrop from the loading box
-	$(".form-modal").html("#{escape_javascript(render 'form', farm: @farm)}");
+	$(".form-modal").html("#{escape_javascript(render 'farm_new', locals: @farm)}");
 	$('#myModalAdd').modal('show');
 	$('#myModalAdd').on('shown.bs.modal', function () {
 		var map;

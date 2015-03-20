@@ -47,8 +47,6 @@ class WarehouseMaterialReceivedsController < ApplicationController
       puts "Amount in Main Stock"
       puts amount_in_hand
       puts "============================******============================"
-
-      puts "============================******============================"
       puts "Remaining Amount"
       puts remaining_amount
       puts "============================******============================"
@@ -76,7 +74,6 @@ class WarehouseMaterialReceivedsController < ApplicationController
         else
           flash[:notice] = "Warehouse Material Received can't be saved"
           redirect_to :back
-          # render 'edit'
         end
       else
         flash[:notice] = "Requested quantity exceeds stock quantity or remaining quantity. Please import stock in first"  
