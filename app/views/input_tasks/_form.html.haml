@@ -19,7 +19,9 @@
   .form-group
     %label.col-xs-2.control-label.text-left Block *
     .col-xs-5
-      = f.association :block, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+      / = f.association :block, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+      = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name+" ; "+value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control'}
+
     %span.help-block= f.error :block_id
   .form-group
     %label.col-xs-2.control-label.text-left Tree amount *
@@ -49,12 +51,14 @@
   .form-group
     %label.col-xs-2.control-label.text-left Material *
     .col-xs-5
-      = f.association :material, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+      = f.association :material, label: false, input_html: {class: "form-control material_uuid"}, error_html: {class: "err_msg"}
     %span.help-block= f.error :material_id
   .form-group
     %label.col-xs-2.control-label.text-left Material amount *
     .col-xs-5
-      = f.input :material_amount, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+      .input-group
+        = f.input :material_amount, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+        %span.input-group-addon.uom-name
     %span.help-block= f.error :material_amount
   .form-group
     %label.col-xs-2.control-label.text-left Note

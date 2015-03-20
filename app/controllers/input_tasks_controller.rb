@@ -25,6 +25,8 @@ class InputTasksController < ApplicationController
       
       @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
 
+      @farms_name = Block.select("uuid, name, farm_id")
+
     rescue Exception => e
       puts e
     end
@@ -62,6 +64,10 @@ class InputTasksController < ApplicationController
     rescue Exception => e
       puts e
     end
+  end
+
+  def show
+    @input_task = InputTask.find(params[:id])
   end
 
   private
