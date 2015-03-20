@@ -5,7 +5,7 @@
  *= require_self
  */
 
-.received-header, .partially-received-received-header, .expired-received-header, .close-received-header {
+.received-header, .partially-received-received-header, .expired-received-header, .closed-received-header {
   height: 30px;
   padding-top: 6px;
   padding-left: 5px;
@@ -25,7 +25,7 @@
   background: #fb3f51;
 }
 
-.close-received-header {
+.closed-received-header {
   background: #ffa500; 
 }
 
