@@ -1,65 +1,65 @@
-- @warehouse_material_receiveds.each do |warehouse_material_received|
-  - warehouse_item_transaction = WarehouseItemTransaction.find_by_uuid(warehouse_material_received.warehouse_item_transaction_id)
+- @warehouse_item_receive_transactions.each do |warehouse_item_receive_transaction|
 
-  - if warehouse_material_received.warehouse_item_transaction.transaction_status == "Received"
+  - if warehouse_item_receive_transaction.transaction_status == "Received"
     %div.received-header 
       ="Request No:"
-      = warehouse_material_received.warehouse_item_transaction.requested_number
+      = warehouse_item_receive_transaction.requested_number
       = '('
-      = warehouse_material_received.warehouse_item_transaction.transaction_status
+      = warehouse_item_receive_transaction.transaction_status
       = '), Requested:'
-      = warehouse_material_received.warehouse_item_transaction.amount
+      = warehouse_item_receive_transaction.amount
       = ', Remaining:'
-      - if warehouse_material_received.warehouse_item_transaction.remaining_amount > 0
-        = warehouse_material_received.warehouse_item_transaction.remaining_amount
-      - else
-        = "0.0"
-  - elsif warehouse_material_received.warehouse_item_transaction.transaction_status == "Partially Received"
-    %div.partially-received-received-header
-      ="Request No:"
-      = warehouse_material_received.warehouse_item_transaction.requested_number
-      = '('
-      = warehouse_material_received.warehouse_item_transaction.transaction_status
-      = '), Requested:'
-      = warehouse_material_received.warehouse_item_transaction.amount
-      = ', Remaining:'
-      - if warehouse_material_received.warehouse_item_transaction.remaining_amount > 0
-        = warehouse_material_received.warehouse_item_transaction.remaining_amount
+      - if warehouse_item_receive_transaction.remaining_amount > 0
+        = warehouse_item_receive_transaction.remaining_amount
       - else
         = "0.0"
 
-  - elsif warehouse_material_received.warehouse_item_transaction.transaction_status == "Partially Received"  
+  - elsif warehouse_item_receive_transaction.transaction_status == "Partially Received"
     %div.partially-received-received-header
       ="Request No:"
-      = warehouse_material_received.warehouse_item_transaction.requested_number
+      = warehouse_item_receive_transaction.requested_number
       = '('
-      = warehouse_material_received.warehouse_item_transaction.transaction_status
+      = warehouse_item_receive_transaction.transaction_status
       = '), Requested:'
-      = warehouse_material_received.warehouse_item_transaction.amount
+      = warehouse_item_receive_transaction.amount
       = ', Remaining:'
-      - if warehouse_material_received.warehouse_item_transaction.remaining_amount > 0
-        = warehouse_material_received.warehouse_item_transaction.remaining_amount
+      - if warehouse_item_receive_transaction.remaining_amount > 0
+        = warehouse_item_receive_transaction.remaining_amount
+      - else
+        = "0.0"
+
+  - elsif warehouse_item_receive_transaction.transaction_status == "Closed"  
+    %div.closed-received-header
+      ="Request No:"
+      = warehouse_item_receive_transaction.requested_number
+      = '('
+      = warehouse_item_receive_transaction.transaction_status
+      = '), Requested:'
+      = warehouse_item_receive_transaction.amount
+      = ', Remaining:'
+      - if warehouse_item_receive_transaction.remaining_amount > 0
+        = warehouse_item_receive_transaction.remaining_amount
       - else
         = "0.0"    
   
   %table.table
     %thead
       %tr
-        %th= "Received Date"
-        %th= "Request By"
-        %th= "Request To"
-        %th= "Material"
-        %th= "Material Category"
-        %th= "Quantity"
+        %th.col-md-2= "Received Date"
+        %th.col-md-2= "Request By"
+        %th.col-md-2= "Request To"
+        %th.col-md-2= "Material"
+        %th.col-md-2= "Material Category"
+        %th.col-md-2= "Received Quantity"
 
-      - @warehouse_item_transactions = warehouse_item_transaction.warehouse_material_receiveds
-      - @warehouse_item_transactions.each do |wit|
-        - material = Material.find_by_uuid(warehouse_item_transaction.material_id)
-        - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_transaction.sender_id)
-        - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_transaction.receiver_id)
+      - @warehouse_material_receives = warehouse_item_receive_transaction.warehouse_material_receiveds
+      - @warehouse_material_receives.each do |warehouse_material_receive|
+        - material = Material.find_by_uuid(warehouse_item_receive_transaction.material_id)
+        - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_receive_transaction.sender_id)
+        - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_receive_transaction.receiver_id)
 
         %tr
-          %td= wit.received_date
+          %td= warehouse_material_receive.received_date
           %td= sender_warehouse.name
           %td= receiver_warehouse.name
           %td
@@ -67,9 +67,9 @@
           %td
             = material.material_category.name
           %td
-            = wit.received_amount
+            = warehouse_material_receive.received_amount
             = '('
             = material.unit_of_measurement.name
             = ')'  
 .pull-right
-  = paginate @warehouse_material_receiveds             
+  = paginate @warehouse_item_receive_transactions

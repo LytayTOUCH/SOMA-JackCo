@@ -18,6 +18,11 @@ class WarehouseItemTransactionsController < ApplicationController
       else
         @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(7).order("created_at desc")
       end
+
+      puts "======================================================"
+      puts params[:warehouse_item_transaction][:requested_number]
+      puts "======================================================"
+      
     rescue Exception => e
       puts e
     end
