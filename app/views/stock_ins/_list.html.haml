@@ -1,20 +1,20 @@
 %table.table
   %thead
     %tr
+      %th= "Stock In Date"
       %th= "Warehouse"
       %th= "Material"
       %th= "User"
-      %th= "Stock In Date"
       %th= "Quantity"
       %th= "Reference No"
       %th= "Item Description"
       %th= "Note"
   - @stock_ins.each do |stock_in|
     %tr
+      %td= stock_in.stock_in_date
       %td= stock_in.warehouse.name
       %td= stock_in.material.name
       %td= stock_in.labor.name
-      %td= stock_in.stock_in_date
       %td= stock_in.amount
       %td= stock_in.reference_number
       %td= stock_in.item_desc
