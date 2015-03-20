@@ -108,10 +108,10 @@ end
 # UnitOfMeasurement.delete_all
 [
   {name: 'Unit', note: 'Unit of measurement for tree, amount of fruit,...'},
-  {name: 'Kilogram', note: 'Unit of measurement for kilogram.'},
-  {name: 'Gram', note: 'Unit of measurement for gram.'},
-  {name: 'Litre', note: 'Unit of measurement for litre.'},
-  {name: 'Millilitre', note: 'Unit of measurement for mili-litre.'}
+  {name: 'Kg', note: 'Unit of measurement for kilogram.'},
+  {name: 'g', note: 'Unit of measurement for gram.'},
+  {name: 'L', note: 'Unit of measurement for litre.'},
+  {name: 'mL', note: 'Unit of measurement for mili-litre.'}
 ].each do |unit_measure|
   UnitOfMeasurement.create_with(note: unit_measure[:note]).find_or_create_by(name: unit_measure[:name])
 end

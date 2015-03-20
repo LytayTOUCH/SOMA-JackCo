@@ -1,0 +1,14 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-6= "Material Name"
+      %th.col-md-5= "Qty In Stock"
+      %th.col-md-1= "Action"
+  %tbody
+    - if !@warehouse_material_amounts.nil?
+      - @warehouse_material_amounts.each do |wh_a|
+        %tr
+          %td= wh_a.material.name
+          %td= wh_a.amount
+          %td
+            = link_to "Adjust", edit_warehouse_material_amount_path(wh_a)
