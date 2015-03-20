@@ -8,6 +8,8 @@ class PlantingProject < ActiveRecord::Base
   validates :name, length: { maximum: 50 }, presence: true
 
   has_many :production_stages
+  
+  has_many :warehouse_production_amounts, through: :productions
 
   scope :find_by_project_name, -> name { where("name like ?", "%#{name}%") }
 

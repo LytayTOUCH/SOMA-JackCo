@@ -10,8 +10,8 @@
           %th.col-md-5= "Qty In Stock"
           %th.col-md-1= "Action"
       %tbody
-        - @warehouse_material_amounts.each do |wh_a|
-          - if wh_a.material.material_category.uuid == category.uuid
+        - category.warehouse_material_amounts.each do |wh_a|
+          - if wh_a.warehouse.uuid == params[:warehouse][:uuid]
             %tr
               %td= wh_a.material.name
               %td

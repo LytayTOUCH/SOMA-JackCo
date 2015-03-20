@@ -10,9 +10,8 @@ class WarehouseProductionAmountsController < ApplicationController
       @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", finish_uuid, true, nursery_uuid, true)
       
       if params[:warehouse] and params[:warehouse][:uuid] and !params[:warehouse][:uuid].nil?
-        @planting_projects = PlantingProject.all
         @selected_warehouse = Warehouse.find_by_uuid(params[:warehouse][:uuid])
-        @warehouse_production_amounts = WarehouseProductionAmount.find_by_warehouse(params[:warehouse][:uuid])
+        @planting_projects = @selected_warehouse.planting_projects.distinct
       else
         @selected_warehouse = Warehouse.new
         @warehouse_production_amounts = nil

@@ -5,6 +5,9 @@ class Warehouse < ActiveRecord::Base
 
   has_many :warehouse_material_amounts, foreign_key: :warehouse_uuid
   has_many :materials, through: :warehouse_material_amounts
+  
+  has_many :material_categories, through: :materials
+  has_many :planting_projects, through: :productions
 
   has_many :warehouse_production_amounts, foreign_key: :warehouse_id
   has_many :productions, through: :warehouse_production_amounts

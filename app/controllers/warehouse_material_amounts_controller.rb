@@ -11,9 +11,8 @@ class WarehouseMaterialAmountsController < ApplicationController
       @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", central_uuid, true, project_uuid, true, fertilizer_uuid, true)
       
       if params[:warehouse] and params[:warehouse][:uuid] and !params[:warehouse][:uuid].nil?
-        @material_categories = MaterialCategory.all
         @selected_warehouse = Warehouse.find_by_uuid(params[:warehouse][:uuid])
-        @warehouse_material_amounts = WarehouseMaterialAmount.find_by_warehouse(params[:warehouse][:uuid])
+        @material_categories = @selected_warehouse.material_categories.distinct
       else
         @selected_warehouse = Warehouse.new
         @warehouse_material_amounts = nil
