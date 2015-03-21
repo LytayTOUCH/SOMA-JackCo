@@ -1,6 +1,0 @@
-/tmp/*
-/log/*
-*.orig
-/db/schema.rb
-Gemfile.lock
-/public/*
