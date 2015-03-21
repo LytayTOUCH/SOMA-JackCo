@@ -1,0 +1,6 @@
+- if @warehouse_item_transaction.errors.any?
+  - @warehouse_item_transaction.errors.messages.each do |key, msg|
+    $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
+- else
+  $('#myModalAdd').modal('hide');
+  location.reload();

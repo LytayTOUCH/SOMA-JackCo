@@ -1,6 +1,7 @@
 /tmp/*
 /log/*
 *.orig
+.project
 /db/schema.rb
 Gemfile.lock
 /public/*

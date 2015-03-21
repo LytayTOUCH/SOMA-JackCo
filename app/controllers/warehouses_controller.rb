@@ -8,9 +8,9 @@ class WarehousesController < ApplicationController
       @warehouse = Warehouse.new
 
       if params[:warehouse] and params[:warehouse][:name] and !params[:warehouse][:name].nil?
-        @warehouses = Warehouse.find_by_warehouse_name(params[:warehouse][:name]).page(params[:page]).per(5)
+        @warehouses = Warehouse.find_by_warehouse_name(params[:warehouse][:name]).page(params[:page]).per(session[:item_per_page])
       else
-        @warehouses = Warehouse.page(params[:page]).per(5)
+        @warehouses = Warehouse.page(params[:page]).per(session[:item_per_page])
       end
     rescue Exception => e
       puts e

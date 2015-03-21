@@ -1,14 +1,23 @@
-%table.table
-  %thead
-    %tr
-      %th.col-md-6= "Material Name"
-      %th.col-md-5= "Qty In Stock"
-      %th.col-md-1= "Action"
-  %tbody
-    - if !@warehouse_material_amounts.nil?
-      - @warehouse_material_amounts.each do |wh_a|
+- if !@warehouse_material_amounts.nil?
+  - @material_categories.each do |category|
+    .received-header
+      = category.name
+
+    %table.table
+      %thead
         %tr
-          %td= wh_a.material.name
-          %td= wh_a.amount
-          %td
-            = link_to "Adjust", edit_warehouse_material_amount_path(wh_a)
+          %th.col-md-6= "Material Name"
+          %th.col-md-5= "Qty In Stock"
+          %th.col-md-1= "Action"
+      %tbody
+        - category.warehouse_material_amounts.each do |wh_a|
+          - if wh_a.warehouse.uuid == params[:warehouse][:uuid]
+            %tr
+              %td= wh_a.material.name
+              %td
+                = wh_a.amount
+                = "("
+                = wh_a.material.unit_of_measurement.name
+                = ")"
+              %td
+                = link_to "Adjust", "material_adjustments/new/#{wh_a.uuid}"

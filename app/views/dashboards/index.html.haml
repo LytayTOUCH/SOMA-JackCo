@@ -47,7 +47,15 @@
         %h3.panel-title{:style => "font-weight: bold; color: Black"} Recent Activities
              
       .panel-body{:style => "width: 100%; height: 200px"}
-        %p Show Recent Activities from Farm... 
+        %div.tab-content
+          %div.tab-pane.active
+            %div
+              - @planting_projects.each do |planting_project|
+                %div{:style => "font-size: 16px; font-weight: bold;"}= planting_project.name
+                - planting_project.blocks.each do |block|
+                  / %div{style: "font-size: 14px; padding-left: 10px"}= block.name
+                  - block.input_tasks.each do |input_task|
+                    %div{style: "font-size: 14px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name + " - " + input_task.material.name + " - " + input_task.material_amount.to_s
 
   .col-xs-6
     .panel.panel-default

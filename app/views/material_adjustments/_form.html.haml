@@ -1,0 +1,29 @@
+= simple_form_for @material_adjustment, html: {class: 'form-horizontal'} do |f|
+  = f.input :user_id, :input_html => { :value => current_user.uuid }, as: :hidden
+  = f.input :old_amount, as: :hidden
+  = f.input :warehouse_material_amount_id, as: :hidden
+  = f.input :user_name, as: :hidden
+  .form-group
+    %label.col-xs-2.control-label Adjust Date:
+    .col-xs-5
+      = f.text_field :adjust_date, label: false, :class => "form-control", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, error_html: { class: "err_msg" }, readonly: true, :input_html => { class: "form-control" }, value: Date.today
+  .form-group
+    %label.col-xs-2.control-label Warehouse:
+    .col-xs-5
+      %input.form-control{value: @material_adjustment.warehouse_material_amount.warehouse.name, readonly: true}
+  .form-group
+    %label.col-xs-2.control-label Material:
+    .col-xs-5
+      %input.form-control{value: @material_adjustment.warehouse_material_amount.material.name, readonly: true}
+  .form-group
+    %label.col-xs-2.control-label Quantity *
+    .col-xs-5
+      .input-group
+        = f.input :new_amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+        %span.input-group-addon.uom-name
+          = @uom_name
+  .form-group
+    .col-xs-7
+      .pull-right
+        = f.submit class: "btn btn-primary", "data-disable-with" => "Submitting..."
+        = link_to "Cancel", :back, class: "btn btn-default", "data-disable-with" => "Cancel..."

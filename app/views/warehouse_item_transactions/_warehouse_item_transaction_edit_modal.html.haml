@@ -1,0 +1,10 @@
+#myModalAdd.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "data-backdrop"=>"static"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header.modal-header-color
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title.label-header Closing Requested Number: #{locals.requested_number} Warehouse Item Transaction
+      .modal-body
+        .form-info
+          = render 'edit', warehouse_item_transaction: locals

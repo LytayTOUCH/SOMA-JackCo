@@ -5,9 +5,7 @@
  *= require_self
  */
 
-.received-header {
-  background: green;
-  color: white;
+.received-header, .partially-received-received-header, .expired-received-header, .closed-received-header {
   height: 30px;
   padding-top: 6px;
   padding-left: 5px;
@@ -15,12 +13,36 @@
   word-spacing: 10px;
 }
 
+.received-header {
+  background: #8eec6a;
+}
+
+.partially-received-received-header {
+  background: #ffff00;
+}
+
+.expired-received-header {
+  background: #fb3f51;
+}
+
+.closed-received-header {
+  background: #ffa500; 
+}
+
 .requested-row-color {
   background: #8eec6a;
 }
 
+.requested-partial-received-row-color {
+  background: #ffff00;
+}
+
 .requested-expired-row-color {
   background: #fb3f51;
+}
+
+.requested-closed-row-color {
+  background: #ffa500; 
 }
 
 #delete-confirm.modal-dialog-center {

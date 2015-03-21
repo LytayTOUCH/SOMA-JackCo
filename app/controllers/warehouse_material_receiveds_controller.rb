@@ -1,18 +1,25 @@
 class WarehouseMaterialReceivedsController < ApplicationController
   load_and_authorize_resource except: :create
 
-  add_breadcrumb "All Receives", :warehouse_item_requested_transactions_path
+  add_breadcrumb "All Receives", :warehouse_material_receiveds_path
+  # redirect_to warehouse_material_receiveds_path, notice: "All Receives"
 
   def index
     begin
-      @warehouse_material_received = WarehouseMaterialReceived.new
+      @warehouse_item_transaction = WarehouseItemTransaction.new
+      # @warehouse_material_received = WarehouseMaterialReceived.new
 
-      if params[:warehouse_material_received] and params[:warehouse_material_received][:requested_number] and !params[:warehouse_material_received][:requested_number].nil?
-        @warehouse_material_receiveds = WarehouseMaterialReceived.find_by_requested_number(params[:warehouse_material_received][:requested_number]).select("DISTINCT(warehouse_item_transaction_id)").order("created_at desc").page(params[:page]).per(5)
+      if params[:warehouse_item_transaction] and params[:warehouse_item_transaction][:requested_number] and !params[:warehouse_item_transaction][:requested_number].nil?
+        @warehouse_item_receive_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_transaction][:requested_number]).page(params[:page]).per(4)
       else
-        # @warehouse_material_receiveds = WarehouseMaterialReceived.select_all_receives.order("created_at desc").page(params[:page]).per(4)
-        @warehouse_material_receiveds = WarehouseMaterialReceived.select("DISTINCT(warehouse_item_transaction_id)").order("created_at desc").page(params[:page]).per(4)
+        @warehouse_item_receive_transactions = WarehouseItemTransaction.where("transaction_status = ? OR transaction_status = ? OR transaction_status = ?", "Received", "Closed", "Partially Received").order("created_at desc").page(params[:page]).per(4)
       end
+
+      # if params[:warehouse_material_received] and params[:warehouse_material_received][:requested_number] and !params[:warehouse_material_received][:requested_number].nil?
+      #   @warehouse_material_receiveds = WarehouseMaterialReceived.find_by_requested_number(params[:warehouse_material_received][:requested_number]).select("DISTINCT(warehouse_item_transaction_id)").order("created_at desc").page(params[:page]).per(5)
+      # else
+        # @warehouse_material_receiveds = WarehouseMaterialReceived.select("DISTINCT(warehouse_item_transaction_id)").order("created_at desc").page(params[:page]).per(4)
+      # end
     rescue Exception => e
       puts e
     end
@@ -47,8 +54,6 @@ class WarehouseMaterialReceivedsController < ApplicationController
       puts "Amount in Main Stock"
       puts amount_in_hand
       puts "============================******============================"
-
-      puts "============================******============================"
       puts "Remaining Amount"
       puts remaining_amount
       puts "============================******============================"
@@ -76,7 +81,6 @@ class WarehouseMaterialReceivedsController < ApplicationController
         else
           flash[:notice] = "Warehouse Material Received can't be saved"
           redirect_to :back
-          # render 'edit'
         end
       else
         flash[:notice] = "Requested quantity exceeds stock quantity or remaining quantity. Please import stock in first"  
@@ -86,6 +90,8 @@ class WarehouseMaterialReceivedsController < ApplicationController
       puts e
     end
   end
+
+
 
   private
   def warehouse_material_received_params
