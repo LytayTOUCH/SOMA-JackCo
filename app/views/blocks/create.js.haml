@@ -1,8 +1,8 @@
 - if @block.errors.any?
   - @block.errors.messages.each do |key, msg|
     $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
-  "#{escape_javascript(@block.inspect)}";
 - else
   $('#myModalAdd').modal('hide');
-  $('.block-baord').append("#{escape_javascript(render 'block_board', block: @block)}");
-  $(".nav_trigger").append("#{escape_javascript(render 'nav_block', block: @block)}");
+  //location.reload();
+  //$('.block-baord').append("#{escape_javascript(render 'block_board', block: @block)}");
+  //$(".nav_trigger").append("#{escape_javascript(render 'nav_block', block: @block)}");

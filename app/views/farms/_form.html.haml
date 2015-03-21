@@ -7,7 +7,10 @@
   .form-group
     = f.label :location, class: 'col-xs-2 control-label'
     .col-xs-10
-      = f.text_field :location, class: 'form-control', placeholder: 'Location Address'
+      .input-group
+        = f.text_field :location, class: 'form-control', placeholder: 'Location Address'
+        %span.input-group-btn
+          %button.btn.btn-default.btn-search-location{:type => "button"} Search
       .msg-location.alert-danger{:role => "alert"}
   .form-group
     %label.col-xs-2.control-label Coodornate

@@ -3,32 +3,59 @@
 	$(".form-modal").html("#{escape_javascript(render 'farm_new', locals: @farm)}");
 	$('#myModalAdd').modal('show');
 	$('#myModalAdd').on('shown.bs.modal', function () {
+		geocoder = new google.maps.Geocoder();
 		var map;
 		var markers = [];
+		var marker = new google.maps.Marker({draggable: true,animation: google.maps.Animation.DROP});
 		function initialize() {
 			var mapOptions = {
 				zoom: 15,
-				center: new google.maps.LatLng(11.332509, 104.863757),
 				streetViewControl: false
 			};
 			map = new google.maps.Map(document.getElementById('map-farm'), mapOptions);
+			// Detect user current location while using system
+			if(navigator.geolocation) {
+			    navigator.geolocation.getCurrentPosition(function(position) {
+			      var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			      marker.setPosition(pos);
+				  map.setCenter(pos);
+				  marker.setMap(map);
+			    }, function() {
+			      handleNoGeolocation(true);
+			    });
+			  } else {
+			    // Browser doesn't support Geolocation
+			    handleNoGeolocation(false);
+			  }
 		}
 		initialize();
 		google.maps.event.addListener(map, 'click', function(e){
-			var marker = new google.maps.Marker({
-				position: e.latLng,
-				map: map,
-				draggable: true
-			});
-			markers.push(marker);
-			google.maps.event.addListener(map, 'click', function() {
-				marker.setMap(null);
-				for (var i = 0, I = markers.length; i < I && markers[i] != marker; ++i);
-				markers.splice(i, 1);
-			});
+			marker.setPosition(e.latLng);
+			marker.setMap(map);
 			google.maps.event.addListener(marker, 'dragend', function(e) {
 				$("#farm_latlong_farm").val(e.latLng.lat()+", "+e.latLng.lng());
 			});
-				$("#farm_latlong_farm").val(e.latLng.lat()+", "+e.latLng.lng());  
+			$("#farm_latlong_farm").val(e.latLng.lat()+", "+e.latLng.lng());
 		});
+		$(".btn-search-location").click(function(){
+			var address = $("#farm_location").val();
+			geocoder.geocode( { 'address': address}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+			  map.panTo(results[0].geometry.location);
+			  marker.setPosition(results[0].geometry.location);
+			  marker.setMap(map);
+			  $("#farm_latlong_farm").val(results[0].geometry.location.toString().slice(1,-1));
+			} else {
+			  alert('Geocode was not successful for the following reason: ' + status);
+			}
+			});
+		});
+		function handleNoGeolocation(errorFlag) {
+			if (errorFlag) {
+			  alert('Error: The Geolocation service failed.');
+			} else {
+			  alert('Error: Your browser doesn\'t support geolocation.');
+			}
+			map.setCenter(new google.maps.LatLng(11.332509, 104.863757));
+		}
 	});

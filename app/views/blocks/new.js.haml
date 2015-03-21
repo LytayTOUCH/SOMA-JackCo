@@ -4,7 +4,8 @@
   $('#myModalAdd').modal('show');
   $('#myModalAdd').on('shown.bs.modal', function () {
     $('.loading').remove();
-    var farm_latlong = new google.maps.LatLng(#{@farm.latlong_farm});
+    $('#map-block').html(map.getDiv());
+    /*var farm_latlong = new google.maps.LatLng(#{@farm.latlong_farm});
     var map;
     var markers = [];
     function initialize() {
@@ -18,7 +19,8 @@
       };
       map = new google.maps.Map(document.getElementById('map-block'), mapOptions);
     }
-    initialize();
+    initialize();*/
+
     var polygonOptions = {
       fillColor: '#4cae4c',
       fillOpacity: 0.8,
@@ -52,8 +54,9 @@
       });
     });
     $('#myModalAdd').on('hidden.bs.modal', function () {
-      // drawingManager.setDrawingMode(null);
-      // $(".form-modal").empty();
-      // $('.reset-map').html(map.getDiv());
+      drawingManager.setDrawingMode(null);
+      $(".form-modal").empty();
+      $('.reset-map').html(map.getDiv());
     });
+    $('#block_planting_project_id').select();
   });
