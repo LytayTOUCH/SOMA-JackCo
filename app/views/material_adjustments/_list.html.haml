@@ -1,0 +1,28 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-2= "Adjust Date"
+      %th.col-md-2= "Warehouse"
+      %th.col-md-2= "Material"
+      %th.col-md-2= "Old Qty"
+      %th.col-md-2= "Adjust Qty"
+      %th.col-md-2= "Adjust By"
+  %tbody
+    - @material_adjustments.each do |aj|
+      %tr
+        %td= aj.adjust_date
+        %td= aj.warehouse_material_amount.warehouse.name
+        %td= aj.warehouse_material_amount.material.name
+        %td
+          = aj.old_amount
+          = "("
+          = aj.warehouse_material_amount.material.unit_of_measurement.name
+          = ")"
+        %td
+          = aj.new_amount
+          = "("
+          = aj.warehouse_material_amount.material.unit_of_measurement.name
+          = ")"
+        %td= aj.user_name
+.pull-right
+  = paginate @material_adjustments

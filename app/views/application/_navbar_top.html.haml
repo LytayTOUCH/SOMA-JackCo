@@ -81,22 +81,28 @@
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
           %li.dropdown-submenu
-            %a{:href => "#", :tabindex => "-1"} Adjustment
+            %a{:href => "#", :tabindex => "-1"} Materials
             %ul.dropdown-menu
               %li
-                = navbar_link "Materials In Stock", warehouse_material_amounts_path, "active"
+                = navbar_link "Remaining In Stock", warehouse_material_amounts_path, "active"
               %li
-                = navbar_link "Productions In Stock", warehouse_production_amounts_path, "active"
-          %li.dropdown-submenu
-            %a{:href => "#", :tabindex => "-1"} Transfer
-            %ul.dropdown-menu
-              %li
-                = navbar_link "Stock In Material", stock_ins_path, "active"
+                = navbar_link "Adjustments", material_adjustments_path, "active"
               %li.divider
               %li
-                = navbar_link "Material Request", warehouse_item_requested_transactions_path, "active"
+                = navbar_link "Stock In", stock_ins_path, "active"
+              %li.divider
               %li
-                = navbar_link "Material Receive", warehouse_material_receiveds_path, "active"
+                = navbar_link "Request", warehouse_item_requested_transactions_path, "active"
+              %li
+                = navbar_link "Receive", warehouse_material_receiveds_path, "active"
+              
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Productions
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Remaining In Stock", warehouse_production_amounts_path, "active"
+              %li
+                = navbar_link "Adjustments", production_adjustments_path, "active"
           %li.divider
           %li
             = navbar_link "Input Tasks", input_tasks_path, "active"
