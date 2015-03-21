@@ -78,7 +78,7 @@
         %td
           = link_to "View", new_warehouse_material_received_path(warehouse_item_requested_transaction)
           = " | "
-          = link_to "Close", "warehouse_item_requested_transactions?requested_id=#{warehouse_item_requested_transaction.uuid}"
+          = link_to "Close", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction), remote: true
 
     - elsif warehouse_item_requested_transaction.transaction_status == "Partially Received"
       %tr.requested-partial-received-row-color
@@ -101,7 +101,7 @@
         %td
           = link_to "View", new_warehouse_material_received_path(warehouse_item_requested_transaction)
           = " | "
-          = link_to "Close", "warehouse_item_requested_transactions?requested_id=#{warehouse_item_requested_transaction.uuid}"
+          = link_to "Close", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction), remote: true
 
     - elsif warehouse_item_requested_transaction.transaction_status == "Requested"        
       %tr
@@ -124,6 +124,6 @@
         %td
           = link_to "View", new_warehouse_material_received_path(warehouse_item_requested_transaction)
           = " | "
-          = link_to "Close", "warehouse_item_requested_transactions?requested_id=#{warehouse_item_requested_transaction.uuid}"
+          = link_to "Close", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction), remote: true
 .pull-right
-  = paginate @warehouse_item_requested_transactions          
+  = paginate @warehouse_item_requested_transactions
