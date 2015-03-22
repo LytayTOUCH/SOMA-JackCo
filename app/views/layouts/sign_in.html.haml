@@ -4,6 +4,8 @@
     %title Jacknut
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
       = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+      = google_map_api_drawing
+      = google_chart_api
       = javascript_include_tag 'application', 'data-turbolinks-track' => true
       = csrf_meta_tags
   %body
