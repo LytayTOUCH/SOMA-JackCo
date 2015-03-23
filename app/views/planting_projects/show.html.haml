@@ -1,4 +1,28 @@
 %h3= @planting_project.name
+/ - my_farms = @planting_project.farms.distinct.each do |my_farm|
+/   - my_farm_latlngs = my_farm.latlong_farm 
+
+
+%hr
+  .col-lg-12.reset-map
+    .img-rounded{id: "list-blocks-map", style: "height: 500px;"}
+    / 11.340924, 104.811314
+/ = @my_farm_latlngs.each do |my_farm_latlngs|    
+/ var farmlatlngs = ["#{my_farms.latlong_farm}"];
+/ var getcenterlatlongfarm = getCenterLatlngPolygon(farmlatlngs);
+
+:javascript
+  var latlongfarm = new google.maps.LatLng(11.340924, 104.811314);
+  var map;
+  mapOptions = {
+        zoom: 15,
+        center: latlongfarm,
+        streetViewControl: false,
+        panControl: false,
+        mapTypeControl: false,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+      };
+  map = new google.maps.Map(document.getElementById('list-blocks-map'), mapOptions);
 %hr
 - @planting_project.farms.distinct.each do |farm|
   %span &nbsp;
@@ -6,20 +30,16 @@
   %h4.icon-green
     .fa.fa-tree
       = farm.name
+      / = farm.latlong_farm
+
   %hr
   / %div= farm.name
-  - farm.blocks.where(:planting_project_id => @planting_project.uuid).each do |block|
+  - farm.blocks.where(:planting_project_id => @planting_project.uuid).distinct.each do |block|
     .col-sm-3
       .box-farm-info
         .page-header.custom-page-header
           %h4.custom-h4
             = link_to block.name, "#", :class => "text-color-green"
-        .row
-          .col-lg-12.map-info
-            = link_to "#" do
-              .thumbnail.custom-thumbnail
-                %img.map{:src => "https://maps.googleapis.com/maps/api/staticmap?center=#{block.location_lat_long}&zoom=17&size=348x250&scale=1&maptype=satellite&path=color:0xff0000ff|weight:1|fillcolor:0xFFFF0033|#{block.shape_lat_long.split("],[").join("|").gsub!(/[\[\]]/,'')}"}/
-            </haml:block>
         .row
           .col-lg-12.farm-info
             %div
@@ -33,3 +53,33 @@
             %div
               %i.fa.fa-map-marker
               = block.location_lat_long
+
+    :javascript
+      show_blocks = function() {
+        var block_id = "#{block.uuid}";
+        var block_name = "#{block.name}";
+        var block_shape = #{block.shape_lat_long};
+        var project_name = "#{block.planting_project.name.downcase}";
+        showBlock(block_name, block_shape, project_name);
+        showBlockName(block_name, block_shape, block_id);
+      };
+      show_blocks();     
+
+  
+
+    
+  //   var map;
+  //   function load_map(){
+  //     mapOptions = {
+  //       zoom: 17,
+  //       center: new google.maps.LatLng(11.546107, 104.847820),
+  //       streetViewControl: false,
+  //       panControl: false,
+  //       mapTypeControl: false,
+  //       mapTypeId: google.maps.MapTypeId.SATELLITE
+  //     };
+  //     map = new google.maps.Map(document.getElementById('list-blocks-map'), mapOptions);
+  //   }
+  // load_map();
+
+
