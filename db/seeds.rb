@@ -128,12 +128,12 @@ end
 end
 # ========== Create Farms ==========
 [
-  {name: 'Oroung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.333019, 104.864575'},
-  {name: 'Chamkar Doung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.341900, 104.822941'},
-  {name: 'Otarath Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336964, 104.830418'},
-  {name: 'Kapaet Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336681, 104.858414'}
+  {name: 'Oroung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.333019, 104.864575', active: true},
+  {name: 'Chamkar Doung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.341900, 104.822941', active: true},
+  {name: 'Otarath Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336964, 104.830418', active: true},
+  {name: 'Kapaet Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336681, 104.858414', active: true}
 ].each do |farm|
-  Farm.create_with(location: farm[:location], latlong_farm: farm[:latlong_farm]).find_or_create_by(name: farm[:name])
+  Farm.create_with(location: farm[:location], latlong_farm: farm[:latlong_farm], active: farm[:active]).find_or_create_by(name: farm[:name])
 end
 # ========== Create Blocks for All Farms ==========
 coconut_farm = Farm.find_by_name('Chamkar Doung Farm')
