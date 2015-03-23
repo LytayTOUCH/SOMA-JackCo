@@ -1,0 +1,8 @@
+:plain
+  $("#nav_farm_#{@farm.uuid}").remove();
+  $("#farm_#{@farm.uuid}").remove();
+  $(".no-active-farm").remove();
+  $(".nav_trigger").append("#{escape_javascript(render 'nav_farm', farm: @farm)}");
+  if(!$(".farm-board").children().length){
+    $(".farm-board").html("<div class='jumbotron text-center'>No Farms</div>");
+  }

@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def farm_name_navigator
-    @farm_names=Farm.pluck(:uuid, :name)
+    @farm_nav=Farm.where(active: true).all
   end
 
 end
