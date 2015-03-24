@@ -1,3 +1,7 @@
-- @farm_names.each do |farm|
-  %li{id:"nav_farm_#{farm[0]}"}
-    = link_to farm[1], farm_blocks_path(farm[0])
+- if !@farm_nav.blank?
+  - @farm_nav.each do |farm|
+    %li{id:"nav_farm_#{farm.uuid}"}
+      = link_to farm.name, farm_blocks_path(farm.uuid)
+- else
+  %li.no-active-farm
+    = link_to "No Activ Farm", "#"

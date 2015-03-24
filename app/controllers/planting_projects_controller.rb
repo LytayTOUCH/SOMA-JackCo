@@ -63,6 +63,8 @@ class PlantingProjectsController < ApplicationController
 
   def show
     @planting_project = PlantingProject.find(params[:id])
+    @blocks = Block.all.where(farm_id: params[:id])
+    @my_farm_latlngs = @planting_project.farms.distinct
   end
 
   private

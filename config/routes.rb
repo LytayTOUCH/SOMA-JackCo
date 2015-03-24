@@ -55,14 +55,22 @@ Rails.application.routes.draw do
   end
   resources :farms do
     resources :blocks
+    collection do
+      get 'inactive', to: 'farms#all_inactive_farms', as: 'inactive_farms'
+      get 'active', to: 'farms#all_active_farms', as: 'active_farms'
+      get 'restore/:id', to: 'farms#restore_farm', as: 'restore_farms'
+    end
   end
-  resources :machineries, only: [:index]
-  resources :tractors, except: [:index]
-  resources :implements, except: [:index]
-  resources :maintenances, except: [:index]
-  resources :implement_types, except: [:destroy]
-  resources :suppliers, except: [:destroy]
-  resources :jackfruits, except: [:destroy]
+  
+  # resources :machineries, only: [:index]
+  # resources :tractors, except: [:index]
+  # resources :implements, except: [:index]
+  # resources :maintenances, except: [:index]
+  # resources :implement_types, except: [:destroy]
+  # resources :suppliers, except: [:destroy]
+  # resources :jackfruits, except: [:destroy]
+  
+  resources :machinery_types, except: [:destroy]
 
   resources :materials, except: [:destroy] do
     collection do

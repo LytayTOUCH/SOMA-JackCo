@@ -1,3 +1,6 @@
 $("#nav_farm_#{@farm.uuid}").remove();
 $("#farm_#{@farm.uuid}").remove();
 $(".farm_count").html("#{@farms_amount}");
+- if @farms.blank?
+  $(".farm-board").html("<div class='jumbotron text-center'>No Farms</div>");
+  $(".nav_trigger").append("<li class='no-active-farm'><a href='#'>No Activ Farm</a></li>");

@@ -1,7 +1,7 @@
 class FarmsController < ApplicationController
   load_and_authorize_resource except: :create
   before_action :set_farm, only: [:show, :edit, :update, :destroy]
-  before_action :all_farm
+  before_action :all_active_farm
   add_breadcrumb "All Farms", :farms_path
   
   def index
@@ -35,8 +35,21 @@ class FarmsController < ApplicationController
   end
 
   def destroy
-    @farm.destroy
-    @farms_amount=@farms.count
+    @farm.active = false
+    @farm.save
+  end
+
+  def restore_farm
+    @farm.active = true
+    @farm.save
+  end
+
+  def all_inactive_farms
+    @inactive_farms=Farm.where(active: false).all
+  end
+
+  def all_active_farms
+    @farms
   end
 
   def set_title(name='')
@@ -44,8 +57,8 @@ class FarmsController < ApplicationController
   end
 
   private
-    def all_farm
-      @farms=Farm.all  
+    def all_active_farm
+      @farms = Farm.where(active: true).all
     end
     def set_farm
       @farm = Farm.find(params[:id])

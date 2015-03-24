@@ -1,0 +1,4 @@
+$(".farm-board").empty();
+$("span.btn-farms-status").empty();
+$("span.btn-farms-status").html("#{escape_javascript(render 'farms/buttons/show_active_farms')}");
+$('.farm-board').append("#{escape_javascript(render 'farm_board', farms: @inactive_farms)}");

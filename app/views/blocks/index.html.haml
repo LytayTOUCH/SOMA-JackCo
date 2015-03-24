@@ -29,6 +29,7 @@
         %span.farm-latlong= "#{@farm.latlong_farm}"
     .col-lg-5
       %div.weather-temp
+
 :javascript
   var latlong="#{@farm.latlong_farm}".split(", ");
   var latlongfarm = new google.maps.LatLng(#{@farm.latlong_farm});
@@ -42,6 +43,8 @@
         mapTypeId: google.maps.MapTypeId.SATELLITE
       };
   map = new google.maps.Map(document.getElementById('blocks-map'), mapOptions);
+
+  // A white color div for showing Block information
   $("div.row.farm-box-infowindow").hide();
   var contentbox = $("div.row.farm-box-infowindow").get()[0].innerHTML;
   var infowin = function(content){
@@ -52,21 +55,32 @@
     });
     return infowindow;
   }
+
+  // A small dot on map
   var marker = new google.maps.Marker({
         position: latlongfarm,
         map: map,
   });
+
+  // This function will call div information when clicking
   var infobox = infowin(contentbox);
   google.maps.event.addListener(map, 'click', function() {
     infobox.close();
   });
+
+  // Calling div information when clicking on the small dot
   google.maps.event.addListener(marker, 'click', function() {
     infobox.setContent($("div.row.farm-box-infowindow").get()[0].innerHTML);
     infobox.setPosition(this.getPosition());
     infobox.open(map);
   });
+
+  // Set position for div information when map already loaded
   infobox.setPosition(latlongfarm);
+  // Load div information
   infobox.open(map);
+
+  // This Ajax will call for Weather
   $.ajax({
     url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ latlong[0] +'&lon='+ latlong[1] +'&units=metric',
     dataType: 'json',
@@ -76,6 +90,7 @@
       $('div.weather-temp').append("<div style='margin: -10px 0px -15px 0px;'>"+data.main.temp+" <sup>o</sup>C"+icon+"</div><div>"+description+"</div><div>Humidity: "+data.main.humidity+" %</div><div>Winds: "+data.wind.speed+" m/s</div><div>Pressure: "+data.main.pressure+" hPa</div>");
     }
   });
+
 .page-header.custom-page-header
   %h3.custom-h3
     .fa.fa-cubes.icon-brown
