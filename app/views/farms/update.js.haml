@@ -5,4 +5,4 @@
   $('#myModalAdd').modal('hide');
   $("#farm_#{@farm.uuid}").empty();
   $('#farm_#{@farm.uuid}').after("#{escape_javascript(render 'farm_board', farm: @farm)}").first().remove();
-  $('#nav_farm_#{@farm.uuid}').after("#{escape_javascript(render 'nav_farm', farm: @farm)}").first().remove();
+  $('#nav_farm_#{@farm.uuid}').after("#{escape_javascript(render 'nav_farm', farms: @farm)}").first().remove();

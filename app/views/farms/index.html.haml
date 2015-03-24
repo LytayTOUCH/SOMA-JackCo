@@ -2,11 +2,13 @@
   %h3.custom-h3
     = 'All Farms Information'
     - if can? :create, Farm
-      = link_to new_farm_path, :remote => true, class: 'btn btn-xs btn-success btn-add' do
-        %i.fa.fa-plus
-          = " Add Farm"
+      %span
+        = link_to new_farm_path, :remote => true, class: 'btn btn-xs btn-success btn-add' do
+          %i.fa.fa-plus
+            = " Add Farm"
       %span.btn-farms-status
-        = render 'farms/buttons/show_inactive_farms'
-.row.farm-board{:style => "padding-left: 15px;margin:0px;"}
-  = render 'farm_board', farms: @farms
+        = render 'farms/buttons/show_inactive_farms' 
+.row.farm-board{:style => "padding-left: 0px;margin:0px;"}
+  #active-farms
+    = render 'farms_board', farms: @farms
 .form-modal

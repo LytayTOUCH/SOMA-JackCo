@@ -1,0 +1,4 @@
+- if farms.blank?
+  .jumbotron.text-center No Farms
+- farms.each do |farm|
+  = render "farm_board", farm: farm

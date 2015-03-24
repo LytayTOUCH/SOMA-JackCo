@@ -14,6 +14,7 @@ class FarmsController < ApplicationController
 
   def create
     @farm = Farm.new(farm_params)
+    @farm.active = true
     if @farm.save
       @farm
       @farms_amount=@farms.count
