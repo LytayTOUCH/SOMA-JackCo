@@ -27,6 +27,11 @@ class BlocksController < ApplicationController
     end
   end
 
+  def get_tree_amounts
+    @get_tree = Block.select("tree_amount").where("uuid=?",params[:block_id]).limit(1)
+    render :json => @get_tree
+  end
+
   private
     def get_farm
       @farm = Farm.find_by(uuid: params[:farm_id])

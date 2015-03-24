@@ -153,6 +153,7 @@ Rails.application.routes.draw do
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
   resources :input_tasks
+  get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 
