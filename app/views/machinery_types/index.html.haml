@@ -1,0 +1,10 @@
+.row
+  %h1
+    = "Machinery Type"
+    .pull-right
+      = link_to "New Machinery Type", new_machinery_type_path, class: "btn btn-primary"
+    
+  %hr
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'

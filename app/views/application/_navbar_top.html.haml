@@ -70,6 +70,14 @@
                 - if can? :read, PlantingProject
                   = navbar_link "Planting Project", planting_projects_path, "active"
           
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Machinery
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Machinery Types", machinery_types_path, "active"
+              %li
+                = navbar_link "Machineries", "#", "active"
+          
           %li.divider
           %li
             = navbar_link "Settings", settings_path, "active"
