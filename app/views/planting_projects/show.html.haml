@@ -79,10 +79,8 @@
   %h4.icon-green
     .fa.fa-tree
       = farm.name
-      / = farm.latlong_farm
 
   %hr
-  / %div= farm.name
   - farm.blocks.where(:planting_project_id => @planting_project.uuid).distinct.each do |block|
     .col-sm-3
       %div{id:"#{block.uuid}"}
@@ -91,9 +89,9 @@
             %h4.custom-h4
               = link_to block.name, "#", :class => "text-color-green"
               .pull-right
-                = link_to "#", id: "icon-arrow-down", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Input" do
+                = link_to "#", id: "icon-input", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Input" do
                   .fa.fa-arrow-down
-                = link_to "#", id: "icon-arrow-up", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Output" do
+                = link_to "#", id: "icon-output", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Output" do
                   .fa.fa-arrow-up
           .row
             .col-lg-12.farm-info
