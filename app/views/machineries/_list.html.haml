@@ -1,0 +1,36 @@
+%table.table
+  %thead
+    %tr
+      %th.col-md-2= "Name"
+      %th.col-md-2= "Type"
+      %th.col-md-2= "Status"
+      %th.col-md-2= "Manufacturer"
+      %th.col-md-1= "Model"
+      %th.col-md-1= "Regis. No"
+      %th.col-md-1= "Year"
+      %th.col-md-1= "Action"
+  %tbody
+    - @machineries.each do |machinery|
+      %tr
+        %td= machinery.name
+        %td= machinery.machinery_type.name
+        %td
+          = form_for(machinery) do |f|
+            - if machinery.status
+              %span{style: "color:green;"}= "active"
+              |
+              #{f.hidden_field :status, value: false}
+              #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
+            - else
+              %span{style: "color:red;"}= "inactive"
+              |
+              #{f.hidden_field :status, value: true}
+              #{submit_tag "activate", :class => "btn btn-default btn-xs"}
+        %td= machinery.manufacturer
+        %td= machinery.model
+        %td= machinery.registration_number
+        %td= machinery.year
+        %td
+          = link_to "Edit", edit_machinery_path(machinery)
+.pull-right
+  = paginate @machineries

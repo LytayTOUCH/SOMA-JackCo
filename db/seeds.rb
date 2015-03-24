@@ -8,6 +8,14 @@
 
 # run:
 # rake db:seed
+# ========== Machinery Type ==========
+[
+  {uuid: '00000000-0000-0000-0000-000000000001', name: 'Tractor', note: 'Tractor', status: true},
+  {uuid: '00000000-0000-0000-0000-000000000002', name: 'Excavator', note: 'Excavator', status: true},
+  {uuid: '00000000-0000-0000-0000-000000000003', name: 'Grass Cutter', note: 'Grass Cutter', status: true}
+].each do |machinery_type|
+  MachineryType.create_with(name: machinery_type[:name], note: machinery_type[:note], status: machinery_type[:status]).find_or_create_by(uuid: machinery_type[:uuid])
+end
 
 # ========== Position ==========
 [
