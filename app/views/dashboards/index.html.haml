@@ -52,10 +52,12 @@
             %div
               - @planting_projects.each do |planting_project|
                 %div{:style => "font-size: 16px; font-weight: bold;"}= planting_project.name
-                - planting_project.blocks.each do |block|
-                  / %div{style: "font-size: 14px; padding-left: 10px"}= block.name
-                  - block.input_tasks.each do |input_task|
-                    %div{style: "font-size: 14px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name + " - " + input_task.material.name + " - " + input_task.material_amount.to_s
+                - planting_project.input_tasks.order('updated_at DESC').limit(5).each do |input_task|
+                  %div{style: "font-size: 12px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name + " - " + input_task.material.name + " - " + input_task.material_amount.to_s
+
+                - if planting_project.input_tasks.length > 5
+                  %div{style: "font-size: 12px; padding-left: 15px"}
+                    = link_to "More...", "input_tasks?planting_project_id=#{planting_project.uuid}"
 
   .col-xs-6
     .panel.panel-default

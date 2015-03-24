@@ -5,11 +5,14 @@
       %th Fields
       %th Information
     %tr
-      %th Name
-      %td= @input_task.name
+      %th Start date
+      %td= @input_task.start_date.to_s
     %tr
-      %th Date
-      %td= @input_task.start_date.to_s + " To " + @input_task.end_date.to_s
+      %th End date
+      %td= @input_task.end_date.to_s
+    %tr
+      %th Task
+      %td= @input_task.name
     %tr
       %th Block Name
       %td= @input_task.block.name
@@ -20,7 +23,7 @@
       %th Labor name
       %td= @input_task.labor.name
       %tr
-      %th Reference number
+      %th Reference
       %td= @input_task.reference_number 
       %tr
       %th Warehouse name
@@ -29,8 +32,8 @@
       %th Material name
       %td= @input_task.material.name
       %tr
-      %th Material amount
-      %td= @input_task.material_amount.to_s + " " + @input_task.material.unit_of_measurement.name
+      %th Quantity
+      %td= @input_task.material_amount.to_s + " ( " + @input_task.material.unit_of_measurement.name + " )"
       %tr
       %th Note
       %td= @input_task.note   

@@ -2,7 +2,8 @@ class PlantingProject < ActiveRecord::Base
   include UuidHelper
   has_paper_trail
   
-  has_many :blocks
+  has_many :blocks, foreign_key: :planting_project_id
+  has_many :input_tasks, through: :blocks
   has_many :farms, through: :blocks
   has_many :productions
   validates :name, length: { maximum: 50 }, presence: true

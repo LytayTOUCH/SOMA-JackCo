@@ -20,13 +20,18 @@
     %label.col-xs-2.control-label.text-left Block *
     .col-xs-5
       / = f.association :block, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
-      = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name+" ; "+value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control'}
+      = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name+" ; "+value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control block_id'}
 
     %span.help-block= f.error :block_id
+  / .form-group
+  /   %label.col-xs-2.control-label.text-left Tree amount *
+  /   .col-xs-5
+  /     = f.input :tree_amount, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+  /   %span.help-block= f.error :tree_amount
   .form-group
     %label.col-xs-2.control-label.text-left Tree amount *
     .col-xs-5
-      = f.input :tree_amount, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+      = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :tree_amount
   .form-group
     %label.col-xs-2.control-label.text-left Labor *

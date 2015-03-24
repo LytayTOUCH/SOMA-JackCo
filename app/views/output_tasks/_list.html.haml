@@ -1,0 +1,27 @@
+%table.table
+  %thead
+    %tr
+      %th= "Start Date"
+      %th= "End Date"
+      %th= "Reference"
+      %th= "Farm - Block"
+      %th= "Tree Amount"
+      %th= "Total Output"
+      %th= "Finish Output"
+      %th= "Nursery Output"
+      %th= "Spoiled"
+  - @input_tasks.each do |input_task|
+    %tr
+      %td= input_task.name
+      %td= input_task.start_date.to_s + " To " + input_task.end_date.to_s
+      %td= input_task.block.name
+      %td= input_task.tree_amount
+      %td= input_task.labor.name
+      %td= input_task.reference_number
+      %td= input_task.warehouse.name
+      %td= input_task.material.name
+      %td= input_task.material_amount.to_s + " " + input_task.material.unit_of_measurement.name
+      %td= link_to "View", input_task_path(input_task)
+
+.pull-right
+  = paginate @input_tasks
