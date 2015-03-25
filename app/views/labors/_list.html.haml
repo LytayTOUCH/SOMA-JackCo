@@ -1,4 +1,4 @@
-%table#list.cell-border{:cellspacing => "0", :width => "100%"}
+%table#list_data_table
   %thead
     %tr
       %th.col-md-3= "Name"
@@ -33,12 +33,6 @@
         %td
           - if can? :update, labor
             = link_to "Edit", edit_labor_path(labor)
-
-:javascript
-  $(document).ready(function() {
-    $('#list').DataTable();
-
-  });
 
 
   

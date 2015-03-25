@@ -4,17 +4,7 @@ class WarehousesController < ApplicationController
   add_breadcrumb "All Warehouses", :warehouses_path
 
   def index
-    begin
-      @warehouse = Warehouse.new
-
-      if params[:warehouse] and params[:warehouse][:name] and !params[:warehouse][:name].nil?
-        @warehouses = Warehouse.find_by_warehouse_name(params[:warehouse][:name]).page(params[:page]).order('updated_at DESC').per(session[:item_per_page])
-      else
-        @warehouses = Warehouse.page(params[:page]).order('updated_at DESC').per(session[:item_per_page])
-      end
-    rescue Exception => e
-      puts e
-    end
+    @warehouses = Warehouse.order('updated_at DESC')
   end
 
   def new

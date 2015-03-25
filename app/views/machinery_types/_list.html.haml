@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-3= "Name"
@@ -11,5 +11,3 @@
       %td
         - if can? :update, mt
           = link_to "Edit", edit_machinery_type_path(mt)
-.pull-right
-  = paginate @machinery_types

@@ -6,17 +6,7 @@ class InputTasksController < ApplicationController
   has_scope :planting_project_id
 
   def index
-  	begin
-      @input_task = InputTask.new
-
-      if params[:input_task] and params[:input_task][:name] and !params[:input_task][:name].nil?
-        @input_tasks = InputTask.find_by_name(params[:input_task][:name]).page(params[:page]).order('updated_at DESC').per(session[:item_per_page])
-      else
-        @input_tasks = apply_scopes(InputTask).page(params[:page]).order('updated_at DESC').per(session[:item_per_page])
-      end
-    rescue Exception => e
-      puts e
-    end
+    @input_tasks = InputTask.order('updated_at DESC')
   end
 
   def new

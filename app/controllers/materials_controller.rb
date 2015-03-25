@@ -4,17 +4,7 @@ class MaterialsController < ApplicationController
   add_breadcrumb "All Materials", :materials_path
 
   def index
-    begin
-      @material = Material.new
-
-      if params[:material] and params[:material][:name] and !params[:material][:name].nil?
-        @materials = Material.find_by_material_name(params[:material][:name]).page(params[:page]).order('updated_at DESC').per(session[:item_per_page])
-      else
-        @materials = Material.page(params[:page]).order('updated_at DESC').per(session[:item_per_page])
-      end
-    rescue Exception => e
-      puts e
-    end
+    @materials = Material.order('updated_at DESC')
   end
 
   def new

@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-4= "Name"
@@ -25,8 +25,3 @@
       %td
         - if can? :update, warehouse
           = link_to "Edit", edit_warehouse_path(warehouse)
-        / = '|'  
-        / = link_to "Show", warehouse_path(warehouse)
-
-.pull-right
-  = paginate @warehouses

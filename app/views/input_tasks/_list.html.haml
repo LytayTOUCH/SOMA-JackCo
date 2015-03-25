@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th= "Start date"
@@ -31,6 +31,3 @@
       %td= input_task.material.name
       %td= input_task.material_amount.to_s + " ( "+ input_task.material.unit_of_measurement.name + " )"
       %td= link_to "View", input_task_path(input_task)
-
-.pull-right
-  = paginate @input_tasks
