@@ -7,7 +7,7 @@ class MaterialAdjustmentsController < ApplicationController
     
     if params[:warehouse] and params[:warehouse][:uuid] and params[:warehouse][:uuid] != "" and !params[:warehouse][:uuid].nil?
       @selected_warehouse = Warehouse.find_by_uuid(params[:warehouse][:uuid])
-      @material_adjustments = MaterialAdjustmentDecorator.new(MaterialAdjustment.find_by_warehouse(params[:warehouse][:uuid]).page(params[:page]).per(session[:item_per_page]))
+      @material_adjustments = MaterialAdjustmentDecorator.new(MaterialAdjustment.find_by_warehouse(params[:warehouse][:uuid]).order(created_at: :desc).page(params[:page]).per(session[:item_per_page]))
     else
       @selected_warehouse = Warehouse.new
       @material_adjustments = MaterialAdjustmentDecorator.new(MaterialAdjustment.order(created_at: :desc).page(params[:page]).per(session[:item_per_page]))
@@ -52,7 +52,7 @@ class MaterialAdjustmentsController < ApplicationController
 
   private
   def material_adjustment_params
-    params.require(:material_adjustment).permit(:adjust_date, :warehouse_material_amount_id, :old_amount, :new_amount, :user_id, :user_name)
+    params.require(:material_adjustment).permit(:adjust_date, :warehouse_material_amount_id, :old_amount, :new_amount, :user_id, :user_name, :note)
   end
   
 end
