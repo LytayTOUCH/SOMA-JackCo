@@ -39,6 +39,11 @@
       = f.association :labor, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
     %span.help-block= f.error :labor_id
   .form-group
+    %label.col-xs-2.control-label.text-left Machinery
+    .col-xs-5
+      = f.association :machinery, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :machinery_id
+  .form-group
     %label.col-xs-2.control-label.text-left Reference Number *
     .col-xs-5
       = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}

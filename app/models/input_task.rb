@@ -5,6 +5,7 @@ class InputTask < ActiveRecord::Base
 	belongs_to :labor, foreign_key: :labor_id
 	belongs_to :warehouse, foreign_key: :warehouse_id
 	belongs_to :material, foreign_key: :material_id
+	belongs_to :machinery, foreign_key: :machinery_id
 
 	validates :name, length: { maximum: 50 }, presence: true
 	validates :start_date, presence: true

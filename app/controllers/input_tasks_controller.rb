@@ -75,7 +75,7 @@ class InputTasksController < ApplicationController
 
   private
   def input_task_params
-    params.require(:input_task).permit(:name, :start_date, :end_date, :block_id, :tree_amount, :labor_id, :reference_number, :warehouse_id, :material_id, :material_amount, :note, :created_by)
+    params.require(:input_task).permit(:name, :start_date, :end_date, :block_id, :tree_amount, :labor_id, :machinery_id, :reference_number, :warehouse_id, :material_id, :material_amount, :note, :created_by)
   end
 
 end
