@@ -146,10 +146,13 @@ Rails.application.routes.draw do
   resources :productions
   resources :stock_ins, only: [:index, :new, :create]
   resources :warehouse_material_receiveds
+  resources :output_tasks
 
   get 'get_material_data', to: 'materials#get_material_data'
 
   get 'get_unit_of_measurement_data', to: 'materials#get_material_uom_data'
+
+  get 'get_block_planting_project_data', to: 'blocks#get_block_planting_project_data'
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 

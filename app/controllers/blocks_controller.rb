@@ -32,6 +32,13 @@ class BlocksController < ApplicationController
     render :json => @get_tree
   end
 
+  def get_block_planting_project_data
+    @planting_project_id = Block.select("planting_project_id").find_by_uuid(params[:block_id])
+    @block_data = PlantingProject.select("uuid, name").where("uuid = ?", @planting_project_id)
+    # @block_data = Block.joins(:planting_project).select("planting_project.uuid, planting_project.name").where("uuid = ?", params[:block_id])
+    render :json => @block_data
+  end
+
   private
     def get_farm
       @farm = Farm.find_by(uuid: params[:farm_id])

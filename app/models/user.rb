@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   belongs_to :labor, foreign_key: :labor_id
 
   has_many :versions, foreign_key: :whodunnit
+  has_many :output_tasks
 
   validates :email, length: { maximum: 60 }, presence: true
 
