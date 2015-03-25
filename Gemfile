@@ -69,6 +69,7 @@ gem 'axlsx'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'paper_trail'
+gem 'jquery-datatables-rails', '~> 1.12.2'
 
 # ruby '2.0.0'
 

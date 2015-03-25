@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'input_uses/index'
+
   get 'log_tracking/index'
   
   # warehouse_material_amounts
