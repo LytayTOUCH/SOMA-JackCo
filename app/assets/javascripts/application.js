@@ -84,7 +84,7 @@ var showBlockName = function(block_name, block_shape, block_id){
       ,fontSize: "8pt"
       ,fontWeight: "bold"
       ,color: "white"
-      ,width: "50px"
+      ,width: "60px"
      }
     ,pixelOffset: new google.maps.Size(-25, -10)
     ,position: getCenterLatlngPolygon(getPolygonPoints(block_shape))

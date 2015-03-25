@@ -7,53 +7,51 @@
         %h4#myModalLabel.modal-title Add New Block
       .modal-body
         .row
-          .col-xs-8
-            #map-block
-          .col-xs-4
+          .col-lg-3
             = form_for([farm, block], remote: true, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"}) do |f|
               = f.hidden_field :farm_id, value: farm.uuid
               .form-group
-                .col-xs-10.col-xs-offset-2
+                .col-xs-11
                   = f.text_field :name, class: 'form-control', placeholder: 'Block Name'
                   .msg-name.alert-danger{:role => "alert"}
               .form-group
-                .col-xs-10.col-xs-offset-2
+                .col-xs-11
                   = f.text_field :surface, class: 'form-control', placeholder: 'Surface Area'
                   .msg-surface.alert-danger{:role => "alert"}
               .form-group
-                .col-xs-10.col-xs-offset-2
+                .col-xs-11
                   = f.text_field :tree_amount, class: 'form-control', placeholder: 'Tree Amount'
                   .msg-tree_amount.alert-danger{:role => "alert"}
               .form-group
-                = f.label "Planting", class: 'col-xs-2 control-label'
-                .col-xs-10
-                  = f.select :planting_project_id, planting_projects.collect {|p| [ p.name, p.id ] }, { include_blank: false }, class: 'form-control', placeholder: 'Planting Type'
-                  .msg-planting_project_id.alert-danger{:role => "alert"}
+                .col-xs-11
+                  .input-group
+                    = f.select :planting_project_id, planting_projects.collect {|p| [ p.name, p.id ] }, {include_blank: "Select Planting Type"}, class: 'form-control'
+                    %span.input-group-btn
+                      %button.btn.btn-default#btn-draw-block{:type => "button", style: "display: none;"} Draw Block
+                    .msg-planting_project_id.alert-danger{:role => "alert"}
               .form-group
-                = f.label :shape_lat_long, class: 'col-xs-2 control-label'
-                .col-xs-10
+                .col-xs-11
                   = f.text_field :shape_lat_long, class: 'form-control', placeholder: 'shape_lat_long'
                   .msg-shape_lat_long.alert-danger{:role => "alert"}
               .form-group
-                = f.label :location_lat_long, class: 'col-xs-2 control-label'
-                .col-xs-10
+                .col-xs-11
                   = f.text_field :location_lat_long, class: 'form-control', placeholder: 'location_lat_long'
                   .msg-location_lat_long.alert-danger{:role => "alert"}
-              
               .form-group
-                = f.label :rental_status, class: 'col-xs-2 control-label'
-                .col-xs-10
+                .col-xs-11
                   = f.text_field :rental_status, class: 'form-control', placeholder: 'rental_status'
                   .msg-rental_status.alert-danger{:role => "alert"}
               .form-group
-                = f.label :status, class: 'col-xs-2 control-label'
-                .col-xs-10
+                .col-xs-11
                   = f.text_field :status, class: 'form-control', placeholder: 'status'
                   .msg-status.alert-danger{:role => "alert"}
-
-              .modal-footer.custom-modal-footer
-                %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
-                = f.submit :class => "btn btn-primary"
+              .form-group
+                .col-xs-11
+                  .modal-footer.custom-modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+                    = f.submit :class => "btn btn-primary"
+          .col-lg-9
+            #map-block
         / - form_for block do |f|
         /   f.name
         / = simple_form_for farm, remote: true, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"} do |f|
