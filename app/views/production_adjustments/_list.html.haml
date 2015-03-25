@@ -1,12 +1,13 @@
 %table.table
   %thead
     %tr
-      %th.col-md-2= "Adjust Date"
+      %th.col-md-1= "Adjust Date"
       %th.col-md-2= "Warehouse"
-      %th.col-md-2= "Production"
+      %th.col-md-2= "Material"
       %th.col-md-2= "Old Qty"
       %th.col-md-2= "Adjust Qty"
-      %th.col-md-2= "Adjust By"
+      %th.col-md-1= "Adjust By"
+      %th.col-md-2= "Note"
   %tbody
     - @production_adjustments.each do |pj|
       %tr
@@ -24,5 +25,6 @@
           = pj.warehouse_production_amount.production.unit_of_measurement.name
           = ")"
         %td= pj.user_name
+        %td= pj.note
 .pull-right
   = paginate @production_adjustments

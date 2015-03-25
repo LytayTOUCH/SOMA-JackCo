@@ -6,7 +6,7 @@ class ProductionAdjustmentsController < ApplicationController
     
     if params[:warehouse] and params[:warehouse][:uuid] and params[:warehouse][:uuid] != "" and !params[:warehouse][:uuid].nil?
       @selected_warehouse = Warehouse.find_by_uuid(params[:warehouse][:uuid])
-      @production_adjustments = ProductionAdjustmentDecorator.new(ProductionAdjustment.find_by_warehouse(params[:warehouse][:uuid]).page(params[:page]).per(session[:item_per_page]))
+      @production_adjustments = ProductionAdjustmentDecorator.new(ProductionAdjustment.find_by_warehouse(params[:warehouse][:uuid]).order(created_at: :desc).page(params[:page]).per(session[:item_per_page]))
     else
       @selected_warehouse = Warehouse.new
       @production_adjustments = ProductionAdjustmentDecorator.new(ProductionAdjustment.order(created_at: :desc).page(params[:page]).per(session[:item_per_page]))
@@ -51,6 +51,6 @@ class ProductionAdjustmentsController < ApplicationController
 
   private
   def production_adjustment_params
-    params.require(:production_adjustment).permit(:adjust_date, :warehouse_production_amount_id, :old_amount, :new_amount, :user_id, :user_name)
+    params.require(:production_adjustment).permit(:adjust_date, :warehouse_production_amount_id, :old_amount, :new_amount, :user_id, :user_name, :note)
   end
 end
