@@ -1,20 +1,18 @@
 - @warehouses.each do |wh|
-  .received-header{style: "word-spacing: 0px;"}
-    = wh.name
+  .received-header{style: "word-spacing: 0px;font-weight:bolder;"}
+    = "Warehouse: " + wh.name
   %hr
   %table.list_data_table
     %thead
       %tr
         %th.col-md-4= "Material Name"
-        %th.col-md-2= "Warehouse"
-        %th.col-md-2= "Material Category"
-        %th.col-md-3= "Qty In Stock"
+        %th.col-md-3= "Material Category"
+        %th.col-md-4= "Qty In Stock"
         %th.col-md-1= "Action"
     %tbody
       - wh.warehouse_material_amounts.each do |wh_a|
         %tr
           %td= wh_a.material.name
-          %td= wh_a.warehouse.name
           %td= wh_a.material.material_category.name
           %td
             = wh_a.amount
@@ -23,10 +21,29 @@
             = ")"
           %td
             = link_to "Adjust", "material_adjustments/new/#{wh_a.uuid}"
+        
   %div{style: "height: 35px;"}
 :javascript
   $(document).ready(function() {
     $('.list_data_table').DataTable({
-      "bSort": false
+      "bSort": false,
+      "columnDefs": [{ "visible": false, "targets": 1 }],
+      "order": [[ 1, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="3">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
     });
   });
