@@ -1,0 +1,12 @@
+.row
+  %h3
+    = "Output Task"
+    .pull-right
+      - if can? :create, OutputTask
+        = link_to "New Output Task", new_output_task_path, class: "btn btn-primary"
+  %hr
+  = render partial: 'form_search'
+  %hr
+  = render partial: 'list'
+  
+    

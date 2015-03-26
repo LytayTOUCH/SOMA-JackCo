@@ -1,8 +1,9 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-4= "Production Type"
-      %th.col-md-4= "Status"
+      %th.col-md-2= "Status"
+      %th.col-md-2= "UOM"
       %th.col-md-2= "Note"
       %th.col-md-2= "Actions"
   - @productions.each do |production|
@@ -10,8 +11,7 @@
       %td= production.planting_project.name
       %td= production.status
       %td= production.unit_of_measurement.name
+      %td= production.note
       %td
         - if can? :update, production
           = link_to "Edit", edit_production_path(production)
-/ .pull-right
-/   = paginate @productions

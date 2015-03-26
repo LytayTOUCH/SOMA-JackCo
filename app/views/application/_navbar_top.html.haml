@@ -21,11 +21,11 @@
             %a{:href => "#", :tabindex => "-1"} Workforce
             %ul.dropdown-menu
               %li
-                - if can? :read, Labor
-                  = navbar_link "Labor", labors_path, "active"
-              %li
                 - if can? :read, Position
                   = navbar_link "Position", positions_path, "active"
+              %li
+                - if can? :read, Labor
+                  = navbar_link "Labor", labors_path, "active"
           
           /%li.dropdown-submenu
           /  %a{:href => "#", :tabindex => "-1"} Production
@@ -51,6 +51,9 @@
               /  - if can? :read, WarehouseType
               /    = navbar_link "Warehouse Type", warehouse_types_path, "active"
               %li.divider
+              %li
+                - if can? :read, PlantingProject
+                  = navbar_link "Planting Project", planting_projects_path, "active"
               /%li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white MATERIAL
               %li
                 - if can? :read, Material
@@ -66,9 +69,14 @@
               %li
                 - if can? :read, Production
                   = navbar_link "Production", productions_path, "active"
+          
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Machinery
+            %ul.dropdown-menu
               %li
-                - if can? :read, PlantingProject
-                  = navbar_link "Planting Project", planting_projects_path, "active"
+                = navbar_link "Machinery Types", machinery_types_path, "active"
+              %li
+                = navbar_link "Machineries", machineries_path, "active"
           
           %li.divider
           %li
@@ -84,12 +92,12 @@
             %a{:href => "#", :tabindex => "-1"} Materials
             %ul.dropdown-menu
               %li
-                = navbar_link "Remaining In Stock", warehouse_material_amounts_path, "active"
+                = navbar_link "In Stock", warehouse_material_amounts_path, "active"
               %li
                 = navbar_link "Adjustments", material_adjustments_path, "active"
               %li.divider
               %li
-                = navbar_link "Stock In", stock_ins_path, "active"
+                = navbar_link "Transfer In", stock_ins_path, "active"
               %li.divider
               %li
                 = navbar_link "Request", warehouse_item_requested_transactions_path, "active"
@@ -100,14 +108,17 @@
             %a{:href => "#", :tabindex => "-1"} Productions
             %ul.dropdown-menu
               %li
-                = navbar_link "Remaining In Stock", warehouse_production_amounts_path, "active"
+                = navbar_link "In Stock", warehouse_production_amounts_path, "active"
               %li
                 = navbar_link "Adjustments", production_adjustments_path, "active"
+              %li.divider
+              %li
+                = navbar_link "Distribution", "#", "active"
           %li.divider
           %li
             = navbar_link "Input Tasks", input_tasks_path, "active"
           %li
-            = navbar_link "Output Tasks", "#", "active"
+            = navbar_link "Output Tasks", output_tasks_path, "active"
           
       / %li.dropdown
       /   %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -194,7 +205,7 @@
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
           %li
-            %a{:href => "#"} Input Use Summary
+            %a{:href => input_uses_index_path} Input Use Summary
           %li
             %a{:href => "#"} Output Summary
           %li.divider

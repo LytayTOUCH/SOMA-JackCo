@@ -5,6 +5,7 @@ class InputTask < ActiveRecord::Base
 	belongs_to :labor, foreign_key: :labor_id
 	belongs_to :warehouse, foreign_key: :warehouse_id
 	belongs_to :material, foreign_key: :material_id
+	belongs_to :machinery, foreign_key: :machinery_id
 
 	validates :name, length: { maximum: 50 }, presence: true
 	validates :start_date, presence: true
@@ -20,6 +21,7 @@ class InputTask < ActiveRecord::Base
   	validates :created_by, length: {maximum: 36}, presence: true
 
   	scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
+  	scope :planting_project_id, -> uuid_f { joins(:block).where("blocks.planting_project_id=?", uuid_f) }
 
   	has_paper_trail
 end

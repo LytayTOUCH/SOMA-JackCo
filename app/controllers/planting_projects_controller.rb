@@ -5,17 +5,7 @@ class PlantingProjectsController < ApplicationController
   add_breadcrumb "All Planting Projects", :planting_projects_path
 
   def index
-  	begin
-      @planting_project = PlantingProject.new
-
-      if params[:planting_project] and params[:planting_project][:name] and !params[:planting_project][:name].nil?
-        @planting_projects = PlantingProject.find_by_project_name(params[:planting_project][:name]).page(params[:page]).per(session[:item_per_page])
-      else
-        @planting_projects = PlantingProject.page(params[:page]).order('updated_at DESC').per(session[:item_per_page])
-      end
-    rescue Exception => e
-      puts e
-    end
+    @planting_projects = PlantingProject.order('updated_at DESC')
   end
 
   def new
@@ -63,6 +53,7 @@ class PlantingProjectsController < ApplicationController
 
   def show
     @planting_project = PlantingProject.find(params[:id])
+    @blocks = Block.all.where(farm_id: params[:id])
     @my_farm_latlngs = @planting_project.farms.distinct
   end
 

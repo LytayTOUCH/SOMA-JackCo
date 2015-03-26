@@ -4,17 +4,8 @@ class StockInsController < ApplicationController
   add_breadcrumb "All Stock In", :stock_ins_path
 
   def index
-    begin
-      @stock_in = StockIn.new
-
-      if params[:stock_in] and params[:stock_in][:name] and !params[:stock_in][:name].nil?
-        @stock_ins = StockIn.find_by_stock_in_name(params[:stock_in][:name]).page(params[:page]).per(session[:item_per_page])
-      else
-        @stock_ins = StockIn.page(params[:page]).per(session[:item_per_page])
-      end
-    rescue Exception => e
-      puts e
-    end
+    @stock_in = StockIn.new
+    @stock_ins = StockIn.order(stock_in_date: :desc)
   end
 
   def new

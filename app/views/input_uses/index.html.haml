@@ -1,0 +1,35 @@
+%h2
+  = "Input Use Report"
+
+%hr
+  .row
+    = form_tag input_uses_index_path, :class => 'form-inline', :role => 'form', :method => 'get' do
+      .form-group
+        .col-xs-3
+          .input-group
+            .input-group-addon= "Start Date"
+            - @remember_start_date= params[:start_date] if params[:start_date].present?
+            = text_field_tag "start_date", @remember_start_date, :class => "form-control date_pick", :type => "text", data: { :date_format => 'YYYY-MM-DD' }, :placeholder => "YYYY-MM-DD"
+        .col-xs-3
+          .input-group
+            .input-group-addon= "End Date"
+            - @remember_end_date= params[:end_date] if params[:end_date].present?
+            = text_field_tag "end_date", @remember_end_date, :class => "form-control date_pick", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, :placeholder => "YYYY-MM-DD"
+        .col-xs-1
+          = submit_tag 'Filter', :class => 'btn btn-success', :name => nil
+
+  .form-group
+    - if params[:start_date].present? and params[:end_date].present?
+      - @input_tasks.each do |input_task|
+        %div= "Ref: " + input_task.reference_number
+        %div= "Labor: " + input_task.labor.name
+        %div
+        - if input_task.machinery_id.present?
+          = "Machinery: " + input_task.machinery.name
+
+
+
+
+
+:javascript
+  $('.date_pick').datetimepicker();

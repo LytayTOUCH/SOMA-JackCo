@@ -5,11 +5,14 @@
       %th Fields
       %th Information
     %tr
-      %th Name
-      %td= @input_task.name
+      %th Start date
+      %td= @input_task.start_date.to_s
     %tr
-      %th Date
-      %td= @input_task.start_date.to_s + " To " + @input_task.end_date.to_s
+      %th End date
+      %td= @input_task.end_date.to_s
+    %tr
+      %th Task
+      %td= @input_task.name
     %tr
       %th Block Name
       %td= @input_task.block.name
@@ -19,19 +22,26 @@
     %tr
       %th Labor name
       %td= @input_task.labor.name
-      %tr
-      %th Reference number
+    %tr
+      %th Machinery
+      %td
+        - if @input_task.machinery_id.present?
+          = @input_task.machinery.name
+        - else
+        
+    %tr
+      %th Reference
       %td= @input_task.reference_number 
-      %tr
+    %tr
       %th Warehouse name
       %td= @input_task.warehouse.name
-      %tr
+    %tr
       %th Material name
       %td= @input_task.material.name
-      %tr
-      %th Material amount
-      %td= @input_task.material_amount.to_s + " " + @input_task.material.unit_of_measurement.name
-      %tr
+    %tr
+      %th Quantity
+      %td= @input_task.material_amount.to_s + " ( " + @input_task.material.unit_of_measurement.name + " )"
+    %tr
       %th Note
       %td= @input_task.note   
 

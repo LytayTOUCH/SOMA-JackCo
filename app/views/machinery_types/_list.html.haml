@@ -1,0 +1,13 @@
+%table#list_data_table
+  %thead
+    %tr
+      %th.col-md-3= "Name"
+      %th.col-md-7= "Note"
+      %th.col-md-2= "Actions"
+  - @machinery_types.each do |mt|
+    %tr
+      %td= mt.name
+      %td= mt.note
+      %td
+        - if can? :update, mt
+          = link_to "Edit", edit_machinery_type_path(mt)

@@ -5,13 +5,7 @@ class UsersController < ApplicationController
 
   def index
     begin
-      @user = User.new
-
-      if params[:user] and params[:user][:email] and !params[:user][:email].nil?
-        @users = User.find_by_email(params[:user][:email]).page(params[:page]).per(session[:item_per_page])
-      else
-        @users = User.page(params[:page]).per(session[:item_per_page]).order("email ASC")
-      end
+      @users = User.order("email ASC")
     rescue Exception => e
       puts e
     end

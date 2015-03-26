@@ -1,12 +1,13 @@
-%table.table
+%table.list_data_table
   %thead
     %tr
       %th.col-md-2= "Adjust Date"
-      %th.col-md-2= "Warehouse"
+      %th.col-md-1= "Warehouse"
       %th.col-md-2= "Production"
       %th.col-md-2= "Old Qty"
       %th.col-md-2= "Adjust Qty"
-      %th.col-md-2= "Adjust By"
+      %th.col-md-1= "Adjust By"
+      %th.col-md-2= "Note"
   %tbody
     - @production_adjustments.each do |pj|
       %tr
@@ -24,5 +25,29 @@
           = pj.warehouse_production_amount.production.unit_of_measurement.name
           = ")"
         %td= pj.user_name
-.pull-right
-  = paginate @production_adjustments
+        %td= pj.note
+
+:javascript
+  $(document).ready(function() {
+    $('.list_data_table').DataTable({
+      "bSort": false,
+      "columnDefs": [{ "visible": false, "targets": 1 }],
+      "order": [[ 1, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="6">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    });
+  });

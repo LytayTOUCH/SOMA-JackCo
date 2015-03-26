@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-2= "Name"
@@ -18,5 +18,3 @@
         %td
           - if can? :update, material
             = link_to "Edit", edit_material_path(material)
-.pull-right
-  = paginate @materials

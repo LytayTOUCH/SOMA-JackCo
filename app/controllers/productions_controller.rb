@@ -4,18 +4,7 @@ class ProductionsController < ApplicationController
   add_breadcrumb "All Productions", :productions_path
 
   def index
-    begin
-      @production = Production.new
-
-      if params[:production] and params[:production][:name] and !params[:production][:name].nil?
-        @productions = Production.find_by_production_name(params[:production][:name]).page(params[:page]).per(5)
-      else
-        # @productions = Production.page(params[:page]).per(session[:item_per_page])
-        @productions = Production.page(params[:page]).per(5)
-      end
-    rescue Exception => e
-      puts e
-    end
+    @productions = Production.order(created_at: :desc)
   end
 
   def new
@@ -36,20 +25,20 @@ class ProductionsController < ApplicationController
   def create
     begin
       @production = Production.new(production_params)
-      @finished_warehouse = WarehouseType.find_by_name("Finished Goods Warehouse") 
-      @nursery_warehouse = WarehouseType.find_by_name("Nursery Warehouse") 
+      
+      finished_id = WarehouseType.find_by_name("Finished Goods Warehouse").uuid 
+      nursery_id = WarehouseType.find_by_name("Nursery Warehouse").uuid
 
-      @production_warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", @finished_warehouse.uuid, true, @nursery_warehouse.uuid, true) 
+      production_warehouses = Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ?", finished_id, nursery_id) 
 
       if @production.save
-        @production_warehouses.each do |warehouse|
+        production_warehouses.each do |warehouse|
           WarehouseProductionAmount.create(warehouse_id: warehouse.uuid, production_id: @production.uuid, amount: 0)
         end 
         flash[:notice] = "Production saved successfully"
         redirect_to productions_path
       else
         flash[:notice] = "Production can't be saved"
-        # redirect_to :back
         render 'new'
       end
     rescue Exception => e
@@ -71,7 +60,6 @@ class ProductionsController < ApplicationController
   def update
     begin
       @production = Production.find(params[:id])
-      @production.warehouse_ids = params[:production][:warehouse_ids]      
 
       if @production.update_attributes(production_params)
         flash[:notice] = "Production updated"

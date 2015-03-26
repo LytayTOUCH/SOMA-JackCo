@@ -1,16 +1,6 @@
 class ProductionAdjustmentsController < ApplicationController
   def index
-    finish_uuid = WarehouseType.find_by_name("Finished Goods Warehouse").uuid 
-    nursery_uuid = WarehouseType.find_by_name("Nursery Warehouse").uuid
-    @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", finish_uuid, true, nursery_uuid, true)
-    
-    if params[:warehouse] and params[:warehouse][:uuid] and params[:warehouse][:uuid] != "" and !params[:warehouse][:uuid].nil?
-      @selected_warehouse = Warehouse.find_by_uuid(params[:warehouse][:uuid])
-      @production_adjustments = ProductionAdjustmentDecorator.new(ProductionAdjustment.find_by_warehouse(params[:warehouse][:uuid]).page(params[:page]).per(session[:item_per_page]))
-    else
-      @selected_warehouse = Warehouse.new
-      @production_adjustments = ProductionAdjustmentDecorator.new(ProductionAdjustment.order(created_at: :desc).page(params[:page]).per(session[:item_per_page]))
-    end
+    @production_adjustments = ProductionAdjustment.joins(:warehouse_production_amount).order("warehouse_production_amounts.warehouse_id, production_adjustments.adjust_date desc")
   end
   
   def new
@@ -26,7 +16,6 @@ class ProductionAdjustmentsController < ApplicationController
     @production_adjustment.user_name = user.email
     
     @uom_name = warehouse_production_amount.production.unit_of_measurement.name
-    session[:return_to] ||= request.referer
   end
   
   def create
@@ -42,7 +31,7 @@ class ProductionAdjustmentsController < ApplicationController
         flash[:notice] = "Stock can't be adjusted"
       end
       
-      redirect_to session.delete(:return_to)
+      redirect_to warehouse_production_amounts_path
       
     rescue Exception => e
       puts e
@@ -51,6 +40,6 @@ class ProductionAdjustmentsController < ApplicationController
 
   private
   def production_adjustment_params
-    params.require(:production_adjustment).permit(:adjust_date, :warehouse_production_amount_id, :old_amount, :new_amount, :user_id, :user_name)
+    params.require(:production_adjustment).permit(:adjust_date, :warehouse_production_amount_id, :old_amount, :new_amount, :user_id, :user_name, :note)
   end
 end

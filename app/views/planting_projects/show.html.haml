@@ -1,28 +1,77 @@
 %h3= @planting_project.name
-/ - my_farms = @planting_project.farms.distinct.each do |my_farm|
-/   - my_farm_latlngs = my_farm.latlong_farm 
-
-
 %hr
   .col-lg-12.reset-map
     .img-rounded{id: "list-blocks-map", style: "height: 500px;"}
-    / 11.340924, 104.811314
-/ = @my_farm_latlngs.each do |my_farm_latlngs|    
-/ var farmlatlngs = ["#{my_farms.latlong_farm}"];
-/ var getcenterlatlongfarm = getCenterLatlngPolygon(farmlatlngs);
+  %div.weather-temp
+
+- objArray = Array.new    
+- @my_farm_latlngs.each do |my_farm_latlng|
+  - objArray << [my_farm_latlng.latlong_farm.split(",").first.to_f, my_farm_latlng.latlong_farm.split(",").last.to_f]
 
 :javascript
-  var latlongfarm = new google.maps.LatLng(11.340924, 104.811314);
+  var farmlatlngs = #{objArray};
+  var getcenterlatlongfarm = getCenterLatlngPolygon(getPolygonPoints(farmlatlngs));
   var map;
   mapOptions = {
         zoom: 15,
-        center: latlongfarm,
+        center: getcenterlatlongfarm,
         streetViewControl: false,
         panControl: false,
         mapTypeControl: false,
         mapTypeId: google.maps.MapTypeId.SATELLITE
       };
   map = new google.maps.Map(document.getElementById('list-blocks-map'), mapOptions);
+  console.log(map.getCenter().lat());
+
+  // A white color div for showing Block information
+  $("div.weather-temp").hide();
+  $("div.row.farm-box-infowindow").hide();
+  var contentbox = "Central location";
+  // var contentbox = $("div.row.farm-box-infowindow").get()[0].innerHTML;
+  var infowin = function(content){
+    var infowindow = new google.maps.InfoWindow({
+        content: content,
+        maxWidth: 1000,
+        zIndex: 10
+    });
+    return infowindow;
+  }
+
+  // A small dot on map
+  var marker = new google.maps.Marker({
+        position: getcenterlatlongfarm,
+        map: map,
+  });
+
+  // This function will call div information when clicking
+  var infobox = infowin(contentbox);
+  google.maps.event.addListener(map, 'click', function() {
+    infobox.close();
+  });
+
+  // Calling div information when clicking on the small dot
+  google.maps.event.addListener(marker, 'click', function() {
+    infobox.setContent(contentbox);
+    infobox.setPosition(this.getPosition());
+    infobox.open(map);
+  });
+
+  // Set position for div information when map already loaded
+  infobox.setPosition(getcenterlatlongfarm);
+  // Load div information
+  infobox.open(map);
+
+  // This Ajax will call for Weather
+  $.ajax({
+    url: 'http://api.openweathermap.org/data/2.5/weather?lat='+ map.getCenter().lat() +'&lon='+ map.getCenter().lng() +'&units=metric',
+    dataType: 'json',
+    success: function(data){
+      var icon = "<img src='http://openweathermap.org/img/w/"+data.weather[0].icon+".png' class='img-rounded' alt='Cinque Terre' width='48' height='48'>";
+      var description = data.weather[0].description
+      $('div.weather-temp').append("<div style='margin: -10px 0px -15px 0px;'>"+data.main.temp+" <sup>o</sup>C"+icon+"</div><div>"+description+"</div><div>Humidity: "+data.main.humidity+" %</div><div>Winds: "+data.wind.speed+" m/s</div><div>Pressure: "+data.main.pressure+" hPa</div>");
+    }
+  });
+ 
 %hr
 - @planting_project.farms.distinct.each do |farm|
   %span &nbsp;
@@ -30,29 +79,33 @@
   %h4.icon-green
     .fa.fa-tree
       = farm.name
-      / = farm.latlong_farm
 
   %hr
-  / %div= farm.name
   - farm.blocks.where(:planting_project_id => @planting_project.uuid).distinct.each do |block|
     .col-sm-3
-      .box-farm-info
-        .page-header.custom-page-header
-          %h4.custom-h4
-            = link_to block.name, "#", :class => "text-color-green"
-        .row
-          .col-lg-12.farm-info
-            %div
-              Planting Project:
-              - if block.planting_project.name.downcase.eql? 'coconut'
-                %span.label.label-success #{block.planting_project.name}
-              - else
-                %span.label.label-warning #{block.planting_project.name}
-            %div Surface: #{block.surface}
-            %div Tree Amount: #{block.tree_amount}
-            %div
-              %i.fa.fa-map-marker
-              = block.location_lat_long
+      %div{id:"#{block.uuid}"}
+        .box-farm-info
+          .page-header.custom-page-header
+            %h4.custom-h4
+              = link_to block.name, "#", :class => "text-color-green"
+              .pull-right
+                = link_to "#", id: "icon-input", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Input" do
+                  .fa.fa-arrow-down
+                = link_to "#", id: "icon-output", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Output" do
+                  .fa.fa-arrow-up
+          .row
+            .col-lg-12.farm-info
+              %div
+                Planting Project:
+                - if block.planting_project.name.downcase.eql? 'coconut'
+                  %span.label.label-success #{block.planting_project.name}
+                - else
+                  %span.label.label-warning #{block.planting_project.name}
+              %div Surface: #{block.surface}
+              %div Tree Amount: #{block.tree_amount}
+              %div
+                %i.fa.fa-map-marker
+                = block.location_lat_long
 
     :javascript
       show_blocks = function() {
@@ -63,23 +116,8 @@
         showBlock(block_name, block_shape, project_name);
         showBlockName(block_name, block_shape, block_id);
       };
-      show_blocks();     
+      show_blocks();   
 
-  
-
-    
-  //   var map;
-  //   function load_map(){
-  //     mapOptions = {
-  //       zoom: 17,
-  //       center: new google.maps.LatLng(11.546107, 104.847820),
-  //       streetViewControl: false,
-  //       panControl: false,
-  //       mapTypeControl: false,
-  //       mapTypeId: google.maps.MapTypeId.SATELLITE
-  //     };
-  //     map = new google.maps.Map(document.getElementById('list-blocks-map'), mapOptions);
-  //   }
-  // load_map();
-
-
+:javascript
+  $("#icon-input").tooltip();
+  $("#icon-output").tooltip();          

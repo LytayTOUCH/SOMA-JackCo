@@ -6,6 +6,7 @@ class Labor < ActiveRecord::Base
 
   has_many :labors
   has_many :stock_ins
+  has_many :output_tasks
 
   has_one :user
 

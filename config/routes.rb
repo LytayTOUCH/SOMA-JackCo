@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'input_uses/index'
+
   get 'log_tracking/index'
   
   # warehouse_material_amounts
@@ -61,13 +63,9 @@ Rails.application.routes.draw do
       get 'restore/:id', to: 'farms#restore_farm', as: 'restore_farms'
     end
   end
-  resources :machineries, only: [:index]
-  resources :tractors, except: [:index]
-  resources :implements, except: [:index]
-  resources :maintenances, except: [:index]
-  resources :implement_types, except: [:destroy]
-  resources :suppliers, except: [:destroy]
-  resources :jackfruits, except: [:destroy]
+  
+  resources :machinery_types, except: [:destroy]
+  resources :machineries, except: [:destroy]
 
   resources :materials, except: [:destroy] do
     collection do
@@ -150,14 +148,18 @@ Rails.application.routes.draw do
   resources :productions
   resources :stock_ins, only: [:index, :new, :create]
   resources :warehouse_material_receiveds
+  resources :output_tasks
 
   get 'get_material_data', to: 'materials#get_material_data'
 
   get 'get_unit_of_measurement_data', to: 'materials#get_material_uom_data'
 
+  get 'get_block_planting_project_data', to: 'blocks#get_block_planting_project_data'
+
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
   resources :input_tasks
+  get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

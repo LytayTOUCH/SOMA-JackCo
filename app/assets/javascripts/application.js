@@ -1,12 +1,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require dataTables/jquery.dataTables
 //= require nprogress
 //= require nprogress-turbolinks
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
-//= require_tree .
+
+$('.datatable').DataTable({
+  "sPaginationType": "bootstrap"
+});
 
 $(document).ready(function() {
   NProgress.configure({
