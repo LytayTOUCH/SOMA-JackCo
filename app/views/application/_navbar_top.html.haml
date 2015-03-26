@@ -92,12 +92,12 @@
             %a{:href => "#", :tabindex => "-1"} Materials
             %ul.dropdown-menu
               %li
-                = navbar_link "Remaining In Stock", warehouse_material_amounts_path, "active"
+                = navbar_link "In Stock", warehouse_material_amounts_path, "active"
               %li
                 = navbar_link "Adjustments", material_adjustments_path, "active"
               %li.divider
               %li
-                = navbar_link "Stock In", stock_ins_path, "active"
+                = navbar_link "Transfer In", stock_ins_path, "active"
               %li.divider
               %li
                 = navbar_link "Request", warehouse_item_requested_transactions_path, "active"
@@ -108,7 +108,7 @@
             %a{:href => "#", :tabindex => "-1"} Productions
             %ul.dropdown-menu
               %li
-                = navbar_link "Remaining In Stock", warehouse_production_amounts_path, "active"
+                = navbar_link "In Stock", warehouse_production_amounts_path, "active"
               %li
                 = navbar_link "Adjustments", production_adjustments_path, "active"
               %li.divider

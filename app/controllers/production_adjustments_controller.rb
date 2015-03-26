@@ -16,7 +16,6 @@ class ProductionAdjustmentsController < ApplicationController
     @production_adjustment.user_name = user.email
     
     @uom_name = warehouse_production_amount.production.unit_of_measurement.name
-    session[:return_to] ||= request.referer
   end
   
   def create
@@ -32,7 +31,7 @@ class ProductionAdjustmentsController < ApplicationController
         flash[:notice] = "Stock can't be adjusted"
       end
       
-      redirect_to session.delete(:return_to)
+      redirect_to warehouse_production_amounts_path
       
     rescue Exception => e
       puts e
