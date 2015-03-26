@@ -4,18 +4,7 @@ class ProductionsController < ApplicationController
   add_breadcrumb "All Productions", :productions_path
 
   def index
-    begin
-      @production = Production.new
-
-      if params[:production] and params[:production][:name] and !params[:production][:name].nil?
-        @productions = Production.find_by_production_name(params[:production][:name]).page(params[:page]).per(5)
-      else
-        # @productions = Production.page(params[:page]).per(session[:item_per_page])
-        @productions = Production.page(params[:page]).per(5)
-      end
-    rescue Exception => e
-      puts e
-    end
+    @productions = Production.order(created_at: :desc)
   end
 
   def new

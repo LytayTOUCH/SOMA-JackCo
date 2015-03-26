@@ -3,17 +3,7 @@ class MachineryTypesController < ApplicationController
   add_breadcrumb "All Machinery Types", :machinery_types_path
   
   def index
-    begin
-      @machinery_type = MachineryType.new
-
-      if params[:machinery_type] and params[:machinery_type][:name] and !params[:machinery_type][:name].nil?
-        @machinery_types = MachineryType.find_by_name(params[:machinery_type][:name]).page(params[:page]).per(session[:item_per_page])
-      else
-        @machinery_types = MachineryType.page(params[:page]).per(session[:item_per_page])
-      end
-    rescue Exception => e
-      puts e
-    end
+    @machinery_types = MachineryType.order(created_at: :desc)
   end
 
   def edit

@@ -1,16 +1,6 @@
 class ProductionAdjustmentsController < ApplicationController
   def index
-    finish_uuid = WarehouseType.find_by_name("Finished Goods Warehouse").uuid 
-    nursery_uuid = WarehouseType.find_by_name("Nursery Warehouse").uuid
-    @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", finish_uuid, true, nursery_uuid, true)
-    
-    if params[:warehouse] and params[:warehouse][:uuid] and params[:warehouse][:uuid] != "" and !params[:warehouse][:uuid].nil?
-      @selected_warehouse = Warehouse.find_by_uuid(params[:warehouse][:uuid])
-      @production_adjustments = ProductionAdjustmentDecorator.new(ProductionAdjustment.find_by_warehouse(params[:warehouse][:uuid]).order(created_at: :desc).page(params[:page]).per(session[:item_per_page]))
-    else
-      @selected_warehouse = Warehouse.new
-      @production_adjustments = ProductionAdjustmentDecorator.new(ProductionAdjustment.order(created_at: :desc).page(params[:page]).per(session[:item_per_page]))
-    end
+    @production_adjustments = ProductionAdjustment.order(created_at: :desc)
   end
   
   def new

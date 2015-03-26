@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-1= "Adjust Date"
@@ -26,5 +26,3 @@
           = ")"
         %td= aj.user_name
         %td= aj.note
-.pull-right
-  = paginate @material_adjustments

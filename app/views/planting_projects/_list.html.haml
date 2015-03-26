@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-4= "Name"
@@ -11,6 +11,3 @@
       %td
         - if can? :update, pp
           = link_to "Edit", edit_planting_project_path(pp)
-.pull-right
-  = paginate @planting_projects
-

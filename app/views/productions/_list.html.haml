@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-4= "Production Type"
@@ -13,5 +13,3 @@
       %td
         - if can? :update, production
           = link_to "Edit", edit_production_path(production)
-/ .pull-right
-/   = paginate @productions

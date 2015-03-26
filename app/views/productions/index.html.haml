@@ -4,8 +4,6 @@
     .pull-right
       - if can? :create, Production
         = link_to "New Production", new_production_path, class: "btn btn-primary"
-  / %hr
-  / = render partial: 'form_search'
   %hr
   = render partial: 'list'
   

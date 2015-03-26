@@ -21,11 +21,11 @@
             %a{:href => "#", :tabindex => "-1"} Workforce
             %ul.dropdown-menu
               %li
-                - if can? :read, Labor
-                  = navbar_link "Labor", labors_path, "active"
-              %li
                 - if can? :read, Position
                   = navbar_link "Position", positions_path, "active"
+              %li
+                - if can? :read, Labor
+                  = navbar_link "Labor", labors_path, "active"
           
           /%li.dropdown-submenu
           /  %a{:href => "#", :tabindex => "-1"} Production
@@ -51,6 +51,9 @@
               /  - if can? :read, WarehouseType
               /    = navbar_link "Warehouse Type", warehouse_types_path, "active"
               %li.divider
+              %li
+                - if can? :read, PlantingProject
+                  = navbar_link "Planting Project", planting_projects_path, "active"
               /%li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white MATERIAL
               %li
                 - if can? :read, Material
@@ -66,9 +69,6 @@
               %li
                 - if can? :read, Production
                   = navbar_link "Production", productions_path, "active"
-              %li
-                - if can? :read, PlantingProject
-                  = navbar_link "Planting Project", planting_projects_path, "active"
           
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Machinery

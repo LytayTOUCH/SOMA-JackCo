@@ -4,8 +4,5 @@
     .pull-right
       - if can? :create, PlantingProject
         = link_to "New Project", new_planting_project_path, class: "btn btn-primary"
-    
-  %hr
-  = render partial: 'form_search'
   %hr
   = render partial: 'list'

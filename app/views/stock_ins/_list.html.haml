@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th= "Stock In Date"
@@ -19,6 +19,3 @@
       %td= stock_in.reference_number
       %td= stock_in.item_desc
       %td= stock_in.note
-    
-/ .pull-right
-/   = paginate @productions
