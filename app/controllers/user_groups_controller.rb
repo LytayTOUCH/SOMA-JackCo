@@ -5,13 +5,7 @@ class UserGroupsController < ApplicationController
 
   def index
     begin
-      @user_group = UserGroup.new
-
-      if params[:user_group] and params[:user_group][:name] and !params[:user_group][:name].nil?
-        @user_groups = UserGroup.find_by_name(params[:user_group][:name]).page(params[:page]).per(session[:item_per_page])
-      else
-        @user_groups = UserGroup.page(params[:page]).per(session[:item_per_page])
-      end
+      @user_groups = UserGroup.all
     rescue Exception => e
       puts e
     end

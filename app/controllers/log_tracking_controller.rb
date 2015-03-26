@@ -1,5 +1,5 @@
 class LogTrackingController < ApplicationController
   def index
-  	@users = User.all
+  	@versions = Version.joins(:user).order("versions.whodunnit, versions.created_at desc")
   end
 end

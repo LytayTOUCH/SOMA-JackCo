@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-3 Labor
@@ -28,6 +28,3 @@
       %td
         - if can? :update, user
           = link_to "Edit", edit_user_path(user)
-          
-.pull-right
-  = paginate @users
