@@ -10,7 +10,7 @@
         %th.col-md-4= "Qty In Stock"
         %th.col-md-1= "Action"
     %tbody
-      - wh.warehouse_material_amounts.each do |wh_a|
+      - wh.warehouse_material_amounts.joins(:material).order("material_cate_uuid").each do |wh_a|
         %tr
           %td= wh_a.material.name
           %td= wh_a.material.material_category.name

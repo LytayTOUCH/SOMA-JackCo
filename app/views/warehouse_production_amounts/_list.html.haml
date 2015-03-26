@@ -10,7 +10,7 @@
         %th.col-md-4= "Qty In Stock"
         %th.col-md-1= "Action"
     %tbody
-      - wh.warehouse_production_amounts.each do |wh_a|
+      - wh.warehouse_production_amounts.joins(:production).order("planting_project_id").each do |wh_a|
         %tr
           %td= wh_a.production.status
           %td= wh_a.production.planting_project.name

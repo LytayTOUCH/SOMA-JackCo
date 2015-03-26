@@ -5,13 +5,28 @@
  *= require_tree .
  *= require_self
  */
+table.dataTable th{
+  background-color: #000;
+  color: #fff;
+}
+
+table.dataTable tr.even,table.dataTable tr.odd{
+  transition: all 0.3s linear 0s;
+}
+
 table.dataTable tr.odd {
-    background-color: #d0ffc6;
+    background-color: #eaffea;
+}
+
+table.dataTable tr.odd:hover,
+table.dataTable tr.even:hover {
+  background-color: #18af00;
+  color: white;
 }
 
 table.dataTable tr.group,
 table.dataTable tr.group:hover {
-    background-color: #999 !important;
+    background-color: #aaa !important;
     color: #fff;
     font-weight: bolder;
 }
