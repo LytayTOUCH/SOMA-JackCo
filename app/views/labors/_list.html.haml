@@ -36,7 +36,11 @@
 
 :javascript
   $(document).ready(function() {
-    $('#list').DataTable();
+    $('#list').DataTable({
+      "aoColumnDefs": [
+          { 'bSortable': false, 'aTargets': [ 3,4 ] }
+       ]  
+     });
 
   });
 
