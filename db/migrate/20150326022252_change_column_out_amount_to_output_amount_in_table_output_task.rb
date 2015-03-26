@@ -6,5 +6,8 @@ class ChangeColumnOutAmountToOutputAmountInTableOutputTask < ActiveRecord::Migra
     if column_exists? :output_tasks, :out_amount
       rename_column :output_tasks, :out_amount, :output_amount
     end 
+    if column_exists? :output_tasks, :spoiled_note
+      change_column :output_tasks, :spoiled_note, :text, null: true
+    end 
   end
 end

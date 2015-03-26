@@ -60,7 +60,6 @@ class ProductionsController < ApplicationController
   def update
     begin
       @production = Production.find(params[:id])
-      @production.warehouse_ids = params[:production][:warehouse_ids]      
 
       if @production.update_attributes(production_params)
         flash[:notice] = "Production updated"

@@ -24,9 +24,8 @@
   .form-group
     %label.col-xs-2.control-label.text-left Planting Project *
     .col-xs-5
-      = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project"}, error_html: {class: "err_msg"}
-      / %span.uom-name
-      / %span.uom-id
+      = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project_id"}, error_html: {class: "err_msg"}, as: :hidden
+      %input.form-control.planting_project_name{:type => "text", value: ""}
     %span.help-block= f.error :planting_project_id
   .form-group
     %label.col-xs-2.control-label.text-left Tree amount *
@@ -44,14 +43,14 @@
       = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :reference_number
   .form-group
-    %label.col-xs-2.control-label.text-left Output Quality *
+    %label.col-xs-2.control-label.text-left Output Quantity *
     .col-xs-5
-      = f.input :output_amount, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+      = f.input :output_amount, label: false, input_html: { class: "form-control", value: f.object.output_amount || '0.0' }, error_html: {class: "err_msg"}
     %span.help-block= f.error :output_amount  
   .form-group
     %label.col-xs-2.control-label.text-left Finish Production *
     .col-xs-5
-      = f.input :finish_production_id, label: false, collection: @finish_productions, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+      = f.input :finish_production_id, label: false, collection: @productions, input_html: { class: "form-control" }, error_html: {class: "err_msg"}, label_method: :status
     %span.help-block= f.error :finish_production_id  
   .form-group
     %label.col-xs-2.control-label.text-left Finish Warehouse *
@@ -59,14 +58,14 @@
       = f.input :finish_warehouse_id, label: false, collection: @finish_warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :finish_warehouse_id
   .form-group
-    %label.col-xs-2.control-label.text-left Finish Quality *
+    %label.col-xs-2.control-label.text-left Finish Quantity *
     .col-xs-5
-      = f.input :finish_amount, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+      = f.input :finish_amount, label: false, input_html: { class: "form-control", value: f.object.finish_amount || '0.0' }, error_html: {class: "err_msg"}
     %span.help-block= f.error :finish_amount    
   .form-group
     %label.col-xs-2.control-label.text-left Nursery Production *
     .col-xs-5
-      = f.input :nursery_production_id, label: false, collection: @nursery_productions, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+      = f.input :nursery_production_id, label: false, collection: @productions, input_html: { class: "form-control" }, error_html: {class: "err_msg"}, label_method: :status
     %span.help-block= f.error :nursery_production_id  
   .form-group
     %label.col-xs-2.control-label.text-left Nursery Warehouse *
@@ -74,14 +73,14 @@
       = f.input :nursery_warehouse_id, label: false, collection: @nursery_warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :nursery_warehouse_id
   .form-group
-    %label.col-xs-2.control-label.text-left Nursery Quality *
+    %label.col-xs-2.control-label.text-left Nursery Quantity *
     .col-xs-5
-      = f.input :nursery_amount, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+      = f.input :nursery_amount, label: false, input_html: { class: "form-control", value: f.object.nursery_amount || '0.0' }, error_html: {class: "err_msg"}
     %span.help-block= f.error :nursery_amount      
   .form-group
-    %label.col-xs-2.control-label.text-left Spoiled Quality *
+    %label.col-xs-2.control-label.text-left Spoiled Quantity *
     .col-xs-5
-      = f.input :spoiled_amount, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+      = f.input :spoiled_amount, label: false, input_html: { class: "form-control", value: f.object.spoiled_amount || '0.0' }, error_html: {class: "err_msg"}
     %span.help-block= f.error :spoiled_amount        
   .form-group
     %label.col-xs-2.control-label.text-left Spoiled Note
@@ -89,14 +88,14 @@
       = f.input :spoiled_note, label: false, input_html: { class: "form-control" }
     %span.help-block= f.error :spoiled_note
   .form-group
-    .col-xs-5
-      = f.input :created_by, :as => :hidden, input_html: { value: current_user.uuid }
-    %span.help-block= f.error :created_by
-  .form-group
     %label.col-xs-2.control-label.text-left Note
     .col-xs-5
       = f.input :note, label: false, input_html: { class: "form-control" }
     %span.help-block= f.error :note  
+  .form-group
+    .col-xs-5
+      = f.input :created_by, :as => :hidden, input_html: { value: current_user.uuid }
+    %span.help-block= f.error :created_by  
   .form-group
     .col-xs-7
       .pull-right

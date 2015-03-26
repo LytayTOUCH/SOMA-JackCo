@@ -11,7 +11,7 @@ class OutputTasksController < ApplicationController
       @output_task = OutputTask.new
 
       if params[:output_task] and params[:output_task][:name] and !params[:output_task][:name].nil?
-        @output_tasks = OutputTask.find_by_name(params[:output_task][:name]).page(params[:page]).order('created_at DESC').per(session[:item_per_page])
+        @output_tasks = OutputTask.find_by_output_task_name(params[:output_task][:name]).page(params[:page]).order('created_at DESC').per(session[:item_per_page])
       else
         @output_tasks = apply_scopes(OutputTask).page(params[:page]).order('created_at DESC').per(session[:item_per_page])
       end
@@ -25,6 +25,14 @@ class OutputTasksController < ApplicationController
       @output_task = OutputTask.new
       @blocks = Block.all
       @farms_name = Block.select("uuid, name, farm_id")
+      
+      @finish_warehouse_type = WarehouseType.find_by_name("Finished Goods Warehouse")
+      @nursery_warehouse_type = WarehouseType.find_by_name("Nursery Warehouse")
+      @finish_warehouses = Warehouse.where(warehouse_type_uuid: @finish_warehouse_type)
+      @nursery_warehouses = Warehouse.where(warehouse_type_uuid: @nursery_warehouse_type)
+
+      @productions = Production.all
+
     rescue Exception => e
       puts e
     end
@@ -34,31 +42,47 @@ class OutputTasksController < ApplicationController
     begin
       @output_task = OutputTask.new(output_task_params)
 
-      @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: @output_task.warehouse_id, material_uuid: @output_task.material_id)
-      remaining_material_amount_in_stock = @warehouse_material_amount.amount
+      puts "====================****========================"
+      puts "finish_production_id = " + @finish_production_id = @output_task.finish_production_id
+      puts "nursery_production_id = " + @nursery_production_id = @output_task.nursery_production_id
+      puts "finish_warehouse_id = " + @finish_warehouse_id = @output_task.finish_warehouse_id
+      puts "nursery_warehouse_id = " + @nursery_warehouse_id = @output_task.nursery_warehouse_id
+      puts "====================****========================"
 
-      @blocks = Block.find_by(uuid: @output_task.block_id)
-      block_tree_amounts = @blocks.tree_amount
+      @finish_production_id = @output_task.finish_production_id
+      @nursery_production_id = @output_task.nursery_production_id
+      @finish_warehouse_id = @output_task.finish_warehouse_id
+      @nursery_warehouse_id = @output_task.nursery_warehouse_id
 
-        # material_amount_in_stock must be greater than 0 and material_amount(input value) must be less than or equal to material_amount_in_stock
-        if remaining_material_amount_in_stock > 0 and @output_task.material_amount <= remaining_material_amount_in_stock and @output_task.tree_amount > 0 and @output_task.tree_amount <= block_tree_amounts
-          if @output_task.save
-            remaining_amount = remaining_material_amount_in_stock - @output_task.material_amount
+      @finish_warehouse_amount = WarehouseProductionAmount.find_by(warehouse_id: @finish_warehouse_id, production_id: @finish_production_id)
+      @nursery_warehouse_amount = WarehouseProductionAmount.find_by(warehouse_id: @nursery_warehouse_id, production_id: @nursery_production_id)
+      
+      total_output_amount = @output_task.output_amount
+      finish_amount = @output_task.finish_amount
+      nursery_amount = @output_task.nursery_amount
+      spoiled_amount = @output_task.spoiled_amount
+      sum_finish_nursery_spoil = finish_amount + nursery_amount + spoiled_amount
 
-            @warehouse_material_amount.update_attributes!(amount: remaining_amount)
+      if total_output_amount >= sum_finish_nursery_spoil
+        finish_warehouse_amount = @finish_warehouse_amount.amount
+        finish_warehouse_amount += finish_amount
 
-            flash[:notice] = "OutputTask saved successfully"
-            redirect_to output_tasks_path
-          else
-            flash[:notice] = "OutputTask can't save"
-            render 'new'
-          end
+        nursery_warehouse_amount = @nursery_warehouse_amount.amount
+        nursery_warehouse_amount += nursery_amount
 
+        if @output_task.save
+          @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
+          @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
+          flash[:notice] = "OutputTask saved successfully"
+          redirect_to output_tasks_path
         else
-          flash[:notice] = "Requested quantity exceeds stock quantity or remaining quantity. Please import stock in first."  
-          redirect_to :back
-          # render 'new'
+          flash[:notice] = "OutputTask can't save"
+          render 'new'
         end
+      else
+        flash[:notice] = "Finish, nursery, and spoiled quantity exceeds the total output task quantity. Please check the three quantities."  
+        render 'new'
+      end  
 
     rescue Exception => e
       puts e
@@ -71,6 +95,6 @@ class OutputTasksController < ApplicationController
 
   private
   def output_task_params
-    params.require(:output_task).permit(:name, :start_date, :end_date, :block_id, :planting_project, :tree_amount, :labor_id, :reference_number, :output_amount, :finish_production_id, :finish_warehouse_id, :finish_amount, :nursery_production_id, :nursery_warehouse_id, :nursery_amount, :spoiled_amount, :spoiled_note, :note, :created_by, :updated_by)
+    params.require(:output_task).permit(:name, :start_date, :end_date, :block_id, :planting_project_id, :tree_amount, :labor_id, :reference_number, :output_amount, :finish_production_id, :finish_warehouse_id, :finish_amount, :nursery_production_id, :nursery_warehouse_id, :nursery_amount, :spoiled_amount, :spoiled_note, :note, :created_by, :updated_by)
   end
 end

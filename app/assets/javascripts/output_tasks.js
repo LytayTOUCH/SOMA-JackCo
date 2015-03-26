@@ -27,10 +27,8 @@ $(document).on('ready page:load', function() {
         data: {"block_id" : block_id},
         dataType: "json",
         success: function(data){
-          $.each(data, function(i, value) {
-            $(".planting_project").val(value.uuid);
-            $(".planting_project").val(value.name);
-          });
+          $('input.planting_project_id').val(data.uuid);
+          $('input.planting_project_name').val(data.name);
         }
       });      
     }
