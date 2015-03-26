@@ -3,9 +3,22 @@
   $(".form-modal").html("#{escape_javascript(render 'form', block: @block, farm: @farm, planting_projects: @planting_projects)}");
   $('#myModalAdd').modal('show');
   $('#myModalAdd').on('shown.bs.modal', function () {
-    var stroke_color, fill_color;
+
+    var drawingManager = new google.maps.drawing.DrawingManager({
+        drawingControl: false,
+        polygonOptions: {
+          fillColor: '#FF0000',
+          strokeColor: '#FF0000',
+          fillOpacity: 0.35,
+          strokeWeight: 1.5,
+          strokeOpacity: 0.8
+        },
+        map: map
+    });
+    var overlayer;
     $('.loading').remove();
     $('#map-block').html(map.getDiv());
+    $('#block_name').focus();
 
     function getLatlong(polygon){
       var polygonPoints = [];
@@ -17,6 +30,7 @@
     }
 
     function polygonClick(polygon){
+      overlayer = polygon.overlay;
       google.maps.event.addListener(polygon.overlay,'click', function(event){
         infowindow.setContent('<div class ="btn btn-danger btn-xs btn-delete">Delete</div>&nbsp;<div class ="btn btn-warning btn-xs btn-edit">Edit</div>&nbsp;<div class ="btn btn-success btn-xs btn-done">Done</div>');
         if (event) {
@@ -32,11 +46,20 @@
           $(".btn-edit").click(function(){
             infowindow.close();
             polygon.overlay.setEditable(true);
+            polygon.overlay.setDraggable(true);
           });
           $(".btn-done").click(function(){
             infowindow.close();
             polygon.overlay.setEditable(false);
+            polygon.overlay.setDraggable(false);
+            getLatlong(polygon);
           });
+        });
+        google.maps.event.addListener(polygon.overlay, "dragend", function(event) {
+            infowindow.close();
+            polygon.overlay.setEditable(false);
+            polygon.overlay.setDraggable(false);
+            getLatlong(polygon);
         });
       });
     }
@@ -57,6 +80,8 @@
         drawingManager.setDrawingMode(null);
         polygonClick(polygon);
         getLatlong(polygon);
+        $("#block_planting_project_id").removeAttr("disabled");
+        $("#btn-draw-block").removeAttr("disabled");
       });
     }
     
@@ -65,47 +90,40 @@
       switch ($(this).find('option:selected').text().toLowerCase()){
         case "coconut":
             initDrawManager('#5EFF4A', map);
+            $("#btn-draw-block").removeAttr("disabled");
             break;
         case "jackfruit":
             initDrawManager('#FFCC00', map);
+            $("#btn-draw-block").removeAttr("disabled");
             break;
         case "lemon":
             initDrawManager('#99FF33', map);
+            $("#btn-draw-block").removeAttr("disabled");
             break;
         case "mango":
             initDrawManager('#FFFF00', map);
+            $("#btn-draw-block").removeAttr("disabled");
             break;
-        case "select planting type":
-          $('#btn-draw-block').hide();
+        default:
+            $("#btn-draw-block").prop('disabled', 'disabled');
       }
     });
     
     $('#btn-draw-block').click(function(){
       drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
+      $("#block_planting_project_id").prop('disabled', 'disabled')
+      $(this).prop('disabled', 'disabled')
     });
     infowindow = new google.maps.InfoWindow();
-    //Disable drawing mode when finishing polygon complete;
-    /*google.maps.event.addListener(drawingManager, 'overlaycomplete', function(polygon){
-      drawingManager.setDrawingMode(null);
-      var polygonPoints = [];
-      $.each(polygon.overlay.latLngs.j[0].j, function(key, latlng){
-        polygonPoints.push("["+latlng.k+","+latlng.D+"]");
-      });
-      $("#block_shape_lat_long").val("["+polygonPoints.toString()+"]");
-      $("#block_location_lat_long").val(getCenter(polygon.overlay).toString().slice(1,-1));
-      google.maps.event.addListener(polygon.overlay,'click', function(event){
-        infowindow.setContent('<div class ="btn btn-primary btn-xs btn-click">Click</div>');
-        if (event) {
-           point = getCenter(this)
-        }
-        infowindow.setPosition(point);
-        infowindow.open(map);
-      });
-    });*/
+    google.maps.event.addListener(map, 'click', function() {
+      infowindow.close();
+    });
 
     $('#myModalAdd').on('hidden.bs.modal', function () {
-      drawingManager.setDrawingMode(null);
       $(".form-modal").empty();
       $('.reset-map').html(map.getDiv());
+      drawingManager.setDrawingMode(null);
+      overlayer.setMap(null);
+      infowindow.close();
     });
   });

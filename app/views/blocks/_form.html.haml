@@ -27,24 +27,14 @@
                   .input-group
                     = f.select :planting_project_id, planting_projects.collect {|p| [ p.name, p.id ] }, {include_blank: "Select Planting Type"}, class: 'form-control'
                     %span.input-group-btn
-                      %button.btn.btn-default#btn-draw-block{:type => "button", style: "display: none;"} Draw Block
+                      %button.btn.btn-default#btn-draw-block{:type => "button", disabled: "disabled"} Draw Block
                     .msg-planting_project_id.alert-danger{:role => "alert"}
+              = f.hidden_field :shape_lat_long, class: 'form-control', placeholder: 'shape_lat_long'
+              .msg-shape_lat_long.alert-danger{:role => "alert"}
               .form-group
                 .col-xs-11
-                  = f.text_field :shape_lat_long, class: 'form-control', placeholder: 'shape_lat_long'
-                  .msg-shape_lat_long.alert-danger{:role => "alert"}
-              .form-group
-                .col-xs-11
-                  = f.text_field :location_lat_long, class: 'form-control', placeholder: 'location_lat_long'
+                  = f.text_field :location_lat_long, class: 'form-control', placeholder: 'Block Location', readonly: true
                   .msg-location_lat_long.alert-danger{:role => "alert"}
-              .form-group
-                .col-xs-11
-                  = f.text_field :rental_status, class: 'form-control', placeholder: 'rental_status'
-                  .msg-rental_status.alert-danger{:role => "alert"}
-              .form-group
-                .col-xs-11
-                  = f.text_field :status, class: 'form-control', placeholder: 'status'
-                  .msg-status.alert-danger{:role => "alert"}
               .form-group
                 .col-xs-11
                   .modal-footer.custom-modal-footer

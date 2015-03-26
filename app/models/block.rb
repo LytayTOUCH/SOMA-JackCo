@@ -8,7 +8,7 @@ class Block < ActiveRecord::Base
   validates :name, presence: true
   validates :surface, presence: true
   validates :tree_amount, presence: true
-  validates :shape_lat_long, presence: true
+  validates :location_lat_long, presence: true
 
   scope :farm_id, -> uuid_f { where(:farm_id => uuid_f) }
 
