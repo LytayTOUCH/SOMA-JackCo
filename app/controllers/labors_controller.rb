@@ -7,11 +7,7 @@ class LaborsController < ApplicationController
     begin
       @labor = Labor.new
       
-      if params[:labor] and params[:labor][:name] and !params[:labor][:name].nil?
-        @labors = LaborDecorator.new(Labor.find_by_labor_name(params[:labor][:name]).page(params[:page]).per(session[:item_per_page]))
-      else
-        @labors = LaborDecorator.new(Labor.page(params[:page]).per(session[:item_per_page]))
-      end
+      @labors = Labor.all
     rescue Exception => e
       puts e
     end

@@ -5,6 +5,4 @@
       - if can? :create, InputTask
         = link_to "New InputTask", new_input_task_path, class: "btn btn-primary"
   %hr
-  = render partial: 'form_search'
-  %hr
   = render partial: 'list'
