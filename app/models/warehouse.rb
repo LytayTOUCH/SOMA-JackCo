@@ -11,6 +11,8 @@ class Warehouse < ActiveRecord::Base
 
   has_many :warehouse_production_amounts, foreign_key: :warehouse_id
   has_many :productions, through: :warehouse_production_amounts
+  
+  has_many :machineries
 
   has_many :stock_ins
 
