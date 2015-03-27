@@ -3,7 +3,7 @@
     $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
 - else
   $('#myModalAdd').modal('hide');
-  $('.farm-board').append("#{escape_javascript(render 'farm_board', farm: @farm)}");
-  $(".nav_trigger").append("#{escape_javascript(render 'nav_farm', farm: @farm)}");
+  $("#active-farms").append("#{escape_javascript(render 'farm_board', farm: @farm)}");
+  $(".nav_trigger").append("#{escape_javascript(render 'nav_farm', farms: @farm)}");
   $(".farm_count").html("#{@farms_amount}");
   

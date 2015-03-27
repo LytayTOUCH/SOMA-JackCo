@@ -1,0 +1,105 @@
+= simple_form_for @output_task, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-2.control-label.text-left Name *
+    .col-xs-5
+      = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-2.control-label Start Date *
+    .col-xs-5
+      .controls
+        = f.text_field :start_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
+    %span.help-block= f.error :start_date
+  .form-group
+    %label.col-xs-2.control-label End Date *
+    .col-xs-5
+      .controls
+        = f.text_field :end_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
+    %span.help-block= f.error :end_date
+  .form-group
+    %label.col-xs-2.control-label.text-left Block *
+    .col-xs-5
+      = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name + " ; " + value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control block_id'}
+    %span.help-block= f.error :block_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Planting Project *
+    .col-xs-5
+      = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project_id"}, error_html: {class: "err_msg"}, as: :hidden
+      %input.form-control.planting_project_name{:type => "text", value: ""}
+    %span.help-block= f.error :planting_project_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Tree amount *
+    .col-xs-5
+      = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :tree_amount
+  .form-group
+    %label.col-xs-2.control-label.text-left Labor *
+    .col-xs-5
+      = f.association :labor, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :labor_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Reference Number *
+    .col-xs-5
+      = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :reference_number
+  .form-group
+    %label.col-xs-2.control-label.text-left Output Quantity *
+    .col-xs-5
+      = f.input :output_amount, label: false, input_html: { class: "form-control", value: f.object.output_amount || '0.0' }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :output_amount  
+  .form-group
+    %label.col-xs-2.control-label.text-left Finish Production *
+    .col-xs-5
+      = f.input :finish_production_id, label: false, collection: @productions, input_html: { class: "form-control" }, error_html: {class: "err_msg"}, label_method: :status
+    %span.help-block= f.error :finish_production_id  
+  .form-group
+    %label.col-xs-2.control-label.text-left Finish Warehouse *
+    .col-xs-5
+      = f.input :finish_warehouse_id, label: false, collection: @finish_warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :finish_warehouse_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Finish Quantity *
+    .col-xs-5
+      = f.input :finish_amount, label: false, input_html: { class: "form-control", value: f.object.finish_amount || '0.0' }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :finish_amount    
+  .form-group
+    %label.col-xs-2.control-label.text-left Nursery Production *
+    .col-xs-5
+      = f.input :nursery_production_id, label: false, collection: @productions, input_html: { class: "form-control" }, error_html: {class: "err_msg"}, label_method: :status
+    %span.help-block= f.error :nursery_production_id  
+  .form-group
+    %label.col-xs-2.control-label.text-left Nursery Warehouse *
+    .col-xs-5
+      = f.input :nursery_warehouse_id, label: false, collection: @nursery_warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :nursery_warehouse_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Nursery Quantity *
+    .col-xs-5
+      = f.input :nursery_amount, label: false, input_html: { class: "form-control", value: f.object.nursery_amount || '0.0' }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :nursery_amount      
+  .form-group
+    %label.col-xs-2.control-label.text-left Spoiled Quantity *
+    .col-xs-5
+      = f.input :spoiled_amount, label: false, input_html: { class: "form-control", value: f.object.spoiled_amount || '0.0' }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :spoiled_amount        
+  .form-group
+    %label.col-xs-2.control-label.text-left Spoiled Note
+    .col-xs-5
+      = f.input :spoiled_note, label: false, input_html: { class: "form-control" }
+    %span.help-block= f.error :spoiled_note
+  .form-group
+    %label.col-xs-2.control-label.text-left Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: { class: "form-control" }
+    %span.help-block= f.error :note  
+  .form-group
+    .col-xs-5
+      = f.input :created_by, :as => :hidden, input_html: { value: current_user.uuid }
+    %span.help-block= f.error :created_by  
+  .form-group
+    .col-xs-7
+      .pull-right
+        = render partial: 'form_button', locals: { f: f }
+
+:javascript
+  $('.date_pick').datetimepicker({});

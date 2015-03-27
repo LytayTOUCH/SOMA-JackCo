@@ -1,8 +1,8 @@
-%table#list_data_table
+%table.list_data_table
   %thead
     %tr
-      %th.col-md-1= "Adjust Date"
-      %th.col-md-2= "Warehouse"
+      %th.col-md-2= "Adjust Date"
+      %th.col-md-1= "Warehouse"
       %th.col-md-2= "Material"
       %th.col-md-2= "Old Qty"
       %th.col-md-2= "Adjust Qty"
@@ -26,3 +26,28 @@
           = ")"
         %td= aj.user_name
         %td= aj.note
+
+:javascript
+  $(document).ready(function() {
+    $('.list_data_table').DataTable({
+      "bSort": false,
+      "columnDefs": [{ "visible": false, "targets": 1 }],
+      "order": [[ 1, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="6">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    });
+  });

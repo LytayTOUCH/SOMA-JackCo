@@ -1,11 +1,35 @@
 /*
  *= require bootstrap
  *= require dataTables/jquery.dataTables
- *= require dataTables/jquery.dataTables.bootstrap3
  *= require bootstrap-datetimepicker
  *= require_tree .
  *= require_self
  */
+table.dataTable th{
+  background-color: #000;
+  color: #fff;
+}
+
+table.dataTable tr.even,table.dataTable tr.odd{
+  transition: all 0.3s linear 0s;
+}
+
+table.dataTable tr.odd {
+    background-color: #eaffea;
+}
+
+table.dataTable tr.odd:hover,
+table.dataTable tr.even:hover {
+  background-color: #18af00;
+  color: white;
+}
+
+table.dataTable tr.group,
+table.dataTable tr.group:hover {
+    background-color: #aaa !important;
+    color: #fff;
+    font-weight: bolder;
+}
 
 .received-header, .partially-received-received-header, .expired-received-header, .closed-received-header {
   height: 30px;

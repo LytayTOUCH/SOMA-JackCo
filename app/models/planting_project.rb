@@ -9,6 +9,7 @@ class PlantingProject < ActiveRecord::Base
   validates :name, length: { maximum: 50 }, presence: true
 
   has_many :production_stages
+  has_many :output_tasks, foreign_key: :planting_project_id
   
   has_many :warehouse_production_amounts, through: :productions
 

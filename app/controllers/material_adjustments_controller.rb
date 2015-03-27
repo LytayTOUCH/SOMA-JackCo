@@ -1,6 +1,6 @@
 class MaterialAdjustmentsController < ApplicationController
   def index
-    @material_adjustments = MaterialAdjustment.order(created_at: :desc)
+    @material_adjustments = MaterialAdjustment.joins(:warehouse_material_amount).order("warehouse_material_amounts.warehouse_uuid, material_adjustments.adjust_date desc")
   end
   
   def new
@@ -16,7 +16,6 @@ class MaterialAdjustmentsController < ApplicationController
     @material_adjustment.user_name = user.email
     
     @uom_name = warehouse_material_amount.material.unit_of_measurement.name
-    session[:return_to] ||= request.referer
   end
   
   def create
@@ -32,7 +31,7 @@ class MaterialAdjustmentsController < ApplicationController
         flash[:notice] = "Stock can't be adjusted"
       end
       
-      redirect_to session.delete(:return_to)
+      redirect_to warehouse_material_amounts_path
       
     rescue Exception => e
       puts e

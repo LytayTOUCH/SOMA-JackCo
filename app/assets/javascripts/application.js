@@ -2,13 +2,11 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap3
 //= require nprogress
 //= require nprogress-turbolinks
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
-//= require_tree .
 
 $('.datatable').DataTable({
   "sPaginationType": "bootstrap"
@@ -90,7 +88,7 @@ var showBlockName = function(block_name, block_shape, block_id){
       ,fontSize: "8pt"
       ,fontWeight: "bold"
       ,color: "white"
-      ,width: "50px"
+      ,width: "60px"
      }
     ,pixelOffset: new google.maps.Size(-25, -10)
     ,position: getCenterLatlngPolygon(getPolygonPoints(block_shape))

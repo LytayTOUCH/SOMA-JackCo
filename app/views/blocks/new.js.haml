@@ -3,60 +3,127 @@
   $(".form-modal").html("#{escape_javascript(render 'form', block: @block, farm: @farm, planting_projects: @planting_projects)}");
   $('#myModalAdd').modal('show');
   $('#myModalAdd').on('shown.bs.modal', function () {
+
+    var drawingManager = new google.maps.drawing.DrawingManager({
+        drawingControl: false,
+        polygonOptions: {
+          fillColor: '#FF0000',
+          strokeColor: '#FF0000',
+          fillOpacity: 0.35,
+          strokeWeight: 1.5,
+          strokeOpacity: 0.8
+        },
+        map: map
+    });
+    var overlayer;
     $('.loading').remove();
     $('#map-block').html(map.getDiv());
-    /*var farm_latlong = new google.maps.LatLng(#{@farm.latlong_farm});
-    var map;
-    var markers = [];
-    function initialize() {
-      var mapOptions = {
-        zoom: 16,
-        center: farm_latlong,
-        streetViewControl: false,
-        panControl: false,
-        mapTypeControl: false,
-        mapTypeId: google.maps.MapTypeId.SATELLITE
-      };
-      map = new google.maps.Map(document.getElementById('map-block'), mapOptions);
-    }
-    initialize();*/
+    $('#block_name').focus();
 
-    var polygonOptions = {
-      fillColor: '#4cae4c',
-      fillOpacity: 0.8,
-      strokeWeight: 1.5,
-      strokeColor: '#FF0000'
-    };
-    //Draw manager init
-    drawingManager = new google.maps.drawing.DrawingManager({
-      drawingControl: false,
-      polygonOptions: polygonOptions,
-      map: map
-    });
-    drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
-    infowindow = new google.maps.InfoWindow();
-    //Disable drawing mode when finishing polygon complete;
-    google.maps.event.addListener(drawingManager, 'overlaycomplete', function(polygon){
-      drawingManager.setDrawingMode(null);
+    function getLatlong(polygon){
       var polygonPoints = [];
       $.each(polygon.overlay.latLngs.j[0].j, function(key, latlng){
         polygonPoints.push("["+latlng.k+","+latlng.D+"]");
       });
       $("#block_shape_lat_long").val("["+polygonPoints.toString()+"]");
       $("#block_location_lat_long").val(getCenter(polygon.overlay).toString().slice(1,-1));
+    }
+
+    function polygonClick(polygon){
+      overlayer = polygon.overlay;
       google.maps.event.addListener(polygon.overlay,'click', function(event){
-        infowindow.setContent('Test');
+        infowindow.setContent('<div class ="btn btn-danger btn-xs btn-delete">Delete</div>&nbsp;<div class ="btn btn-warning btn-xs btn-edit">Edit</div>&nbsp;<div class ="btn btn-success btn-xs btn-done">Done</div>');
         if (event) {
-           point = getCenter(this)
+          point = getCenter(this)
         }
         infowindow.setPosition(point);
         infowindow.open(map);
+        google.maps.event.addListener(infowindow, 'domready', function(){ 
+          $(".btn-delete").click(function(){
+            polygon.overlay.setMap(null);
+            infowindow.close();
+          });
+          $(".btn-edit").click(function(){
+            infowindow.close();
+            polygon.overlay.setEditable(true);
+            polygon.overlay.setDraggable(true);
+          });
+          $(".btn-done").click(function(){
+            infowindow.close();
+            polygon.overlay.setEditable(false);
+            polygon.overlay.setDraggable(false);
+            getLatlong(polygon);
+          });
+        });
+        google.maps.event.addListener(polygon.overlay, "dragend", function(event) {
+            infowindow.close();
+            polygon.overlay.setEditable(false);
+            polygon.overlay.setDraggable(false);
+            getLatlong(polygon);
+        });
       });
+    }
+
+    function initDrawManager(color, mapObj){
+      drawingManager = new google.maps.drawing.DrawingManager({
+        drawingControl: false,
+        polygonOptions: {
+          fillColor: color,
+          strokeColor: color,
+          fillOpacity: 0.35,
+          strokeWeight: 1.5,
+          strokeOpacity: 0.8
+        },
+        map: mapObj
+      });
+      google.maps.event.addListener(drawingManager, 'overlaycomplete', function(polygon){
+        drawingManager.setDrawingMode(null);
+        polygonClick(polygon);
+        getLatlong(polygon);
+        $("#block_planting_project_id").removeAttr("disabled");
+        $("#btn-draw-block").removeAttr("disabled");
+      });
+    }
+    
+    $('#block_planting_project_id').change(function(){
+      $('#btn-draw-block').show();
+      switch ($(this).find('option:selected').text().toLowerCase()){
+        case "coconut":
+            initDrawManager('#5EFF4A', map);
+            $("#btn-draw-block").removeAttr("disabled");
+            break;
+        case "jackfruit":
+            initDrawManager('#FFCC00', map);
+            $("#btn-draw-block").removeAttr("disabled");
+            break;
+        case "lemon":
+            initDrawManager('#99FF33', map);
+            $("#btn-draw-block").removeAttr("disabled");
+            break;
+        case "mango":
+            initDrawManager('#FFFF00', map);
+            $("#btn-draw-block").removeAttr("disabled");
+            break;
+        default:
+            $("#btn-draw-block").prop('disabled', 'disabled');
+      }
     });
+    
+    $('#btn-draw-block').click(function(){
+      drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
+      $("#block_planting_project_id").prop('disabled', 'disabled')
+      $(this).prop('disabled', 'disabled')
+    });
+    infowindow = new google.maps.InfoWindow();
+    google.maps.event.addListener(map, 'click', function() {
+      infowindow.close();
+    });
+
     $('#myModalAdd').on('hidden.bs.modal', function () {
-      drawingManager.setDrawingMode(null);
       $(".form-modal").empty();
       $('.reset-map').html(map.getDiv());
+      drawingManager.setDrawingMode(null);
+      overlayer.setMap(null);
+      infowindow.close();
     });
-    $('#block_planting_project_id').select();
   });

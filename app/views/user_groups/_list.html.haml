@@ -1,4 +1,4 @@
-%table.table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-4= "Name"
@@ -24,5 +24,3 @@
       %td
         - if can? :update, UserGroup
           = link_to "Edit", edit_user_group_path(user_group)
-.pull-right
-  = paginate @user_groups

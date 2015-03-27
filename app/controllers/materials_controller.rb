@@ -22,22 +22,20 @@ class MaterialsController < ApplicationController
     begin
       @material = Material.new(material_params)
 
-      central_warehouse = WarehouseType.find_by(name: 'Central Warehouse')
-      fertilizer_warehouse = WarehouseType.find_by(name: 'Fertilizer Warehouse')
-      project_warehouse = WarehouseType.find_by(name: 'Project Warehouse')
+      central_id = WarehouseType.find_by(name: 'Central Warehouse').uuid
+      fertilizer_id = WarehouseType.find_by(name: 'Fertilizer Warehouse').uuid
+      project_id = WarehouseType.find_by(name: 'Project Warehouse').uuid
       
-      @material_warehouses = Warehouse.where("(warehouse_type_uuid = '" + central_warehouse.uuid + "' or warehouse_type_uuid = '" + fertilizer_warehouse.uuid + "' or warehouse_type_uuid = '" + project_warehouse.uuid + "') and active=1")
+      material_warehouses = Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_id, fertilizer_id, project_id)
 
       if @material.save
-        @material_warehouses.each do |warehouse|
+        material_warehouses.each do |warehouse|
           WarehouseMaterialAmount.create(warehouse_uuid: warehouse.uuid,  material_uuid: @material.uuid, amount: 0, returnable: false)
         end
         flash[:notice] = "Material saved successfully"
-        # redirect_to :back
         redirect_to materials_path
       else
         flash[:notice] = "Material can't save"
-        # redirect_to :back
         render 'new'
       end
     rescue Exception => e

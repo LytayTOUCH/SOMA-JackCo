@@ -5,6 +5,4 @@
       - if can? :create, UserGroup
         = link_to "New User Group", new_user_group_path, class: "btn btn-primary"
   %hr
-  = render partial: 'form_search'
-  %hr
   = render partial: 'list'
