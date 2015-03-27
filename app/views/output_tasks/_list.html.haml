@@ -11,18 +11,22 @@
       %th= "Finish Output"
       %th= "Nursery Output"
       %th= "Spoiled"
+      %th= "Action"
   - @output_tasks.each do |output_task|
     %tr
-      / %td= output_task.start_date
-      / %td= output_task.end_date
-      / %td= output_task.name
-      / %td= output_task.reference_number
-      / %td= output_task.block.farm.name.to_s + " - " + output_task.block.name
-      / %td= output_task.tree_amount
-      / %td= output_task.output_amount
-      / %td= output_task.production.planting_project.name + " " + output_task.production.status + " (" + output_task.finish_amount
-      / %td= output_task.production.planting_project.name + " " + output_task.production.status + " (" + output_task.finish_amount
-      / %td= link_to "View", output_task_path(output_task)
+      - finish_production = Production.find_by_uuid(output_task.finish_production_id)
+      - nursery_production = Production.find_by_uuid(output_task.nursery_production_id)
+      %td= output_task.start_date
+      %td= output_task.end_date
+      %td= output_task.name
+      %td= output_task.reference_number
+      %td= output_task.block.farm.name.to_s + " - " + output_task.block.name
+      %td= output_task.tree_amount
+      %td= output_task.output_amount
+      %td= finish_production.planting_project.name + " " + finish_production.status + " ( " + output_task.finish_amount.to_s + " )"
+      %td= nursery_production.planting_project.name + " " + nursery_production.status + " ( " + output_task.nursery_amount.to_s + " )"
+      %td= output_task.spoiled_amount 
+      %td= link_to "View", output_task_path(output_task)
 
 .pull-right
   = paginate @output_tasks
