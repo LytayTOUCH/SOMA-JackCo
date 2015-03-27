@@ -111,7 +111,9 @@
     $('#myModalAdd').on('hidden.bs.modal', function () {
       $(".form-modal").empty();
       $('.reset-map').html(map.getDiv());
-      drawingManager.setDrawingMode(null);
+      if(drawingManager){
+        drawingManager.setDrawingMode(null);
+      }
       overlayer.setMap(null);
       infowindow.close();
     });

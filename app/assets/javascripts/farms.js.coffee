@@ -6,8 +6,6 @@ ready = ->
           <div class="alert alert-success" role="alert">
             <div class= "row">
                 <p class = "text-center">
-                  <img class = "text-center" alt="Logo" src="/assets/loader.gif">
-                  <br>
                   Loading ...
                 </p>
             </div>
