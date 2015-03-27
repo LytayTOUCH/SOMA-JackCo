@@ -18,15 +18,53 @@
         .col-xs-1
           = submit_tag 'Filter', :class => 'btn btn-success', :name => nil
 
-  .form-group
-    - if params[:start_date].present? and params[:end_date].present?
-      - @input_tasks.each do |input_task|
-        %div= "Ref: " + input_task.reference_number
-        %div= "Labor: " + input_task.labor.name
-        %div
-        - if input_task.machinery_id.present?
-          = "Machinery: " + input_task.machinery.name
 
+- if params[:start_date] = @start_date and params[:end_date] = @end_date and params[:start_date].present? and params[:end_date].present?
+  .form-group{style: "margin-top: 20px;"}
+    .col-xs-4
+      %table#table-report.table-input-use
+        %thead
+          %tr
+            %div.table-header= "Farm Activities"
+          %tr
+            %th.table-input-use= "Ref."
+            %th.table-input-use= "Labor"
+            %th.table-input-use= "Machinery"     
+        - @input_tasks.each do |input_task|
+          %tr
+            %td.table-input-use= input_task.reference_number
+            %td.table-input-use= input_task.labor.name
+            %td.table-input-use
+              - if input_task.machinery_id.present?
+                = input_task.machinery.name
+
+    .col-xs-8
+      %table#table-report.table-input-use
+        %thead
+          %tr
+            %div.table-header= "Material Categories"
+          / %tr
+          - @material_category.each do |material_cate|
+            %th.table-input-use{colspan: "2"}= material_cate.name
+          %tr
+          - @material_category.each do |material_cate|
+            %th.table-input-use Item
+            %th.table-input-use Qty
+          - @input_tasks.each do |input_tas|
+            %tr
+              %td.table-input-use= input_tas.material.name
+              %td.table-input-use= input_tas.material_amount.to_s + " ( "+ input_tas.material.unit_of_measurement.name + " )"
+
+
+
+
+        / - @input_tasks.each do |input_task|
+        /   %tr
+        /     %td.table-input-use= input_task.reference_number
+        /     %td.table-input-use= input_task.labor.name
+        /     %td.table-input-use
+        /       - if input_task.machinery_id.present?
+        /         = input_task.machinery.name
 
 
 
