@@ -1,7 +1,7 @@
 #form-model-content-supplier
 = simple_form_for @machinery, html: {class: 'form-horizontal'} do |f|
   .form-group
-    %label.col-xs-2 Name *
+    %label.col-xs-2 Name / Code *
     .col-xs-5
       = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
     %span.help-block= f.error :name

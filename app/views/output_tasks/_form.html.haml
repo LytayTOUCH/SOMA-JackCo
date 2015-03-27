@@ -50,7 +50,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Finish Production *
     .col-xs-5
-      = f.input :finish_production_id, label: false, collection: @productions, input_html: { class: "form-control" }, error_html: {class: "err_msg"}, label_method: :status
+      = f.select :finish_production_id, options_for_select(@planting_project_names.map { |value| [ value.status + " - " + value.planting_project.name, value.uuid ]}, :selected => f.object.finish_production_id), {:include_blank => true}, {class: 'form-control'}
     %span.help-block= f.error :finish_production_id  
   .form-group
     %label.col-xs-2.control-label.text-left Finish Warehouse *
@@ -65,7 +65,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Nursery Production *
     .col-xs-5
-      = f.input :nursery_production_id, label: false, collection: @productions, input_html: { class: "form-control" }, error_html: {class: "err_msg"}, label_method: :status
+      = f.select :nursery_production_id, options_for_select(@planting_project_names.map { |value| [ value.status + " - " + value.planting_project.name, value.uuid ]}, :selected => f.object.nursery_production_id), {:include_blank => true}, {class: 'form-control'}
     %span.help-block= f.error :nursery_production_id  
   .form-group
     %label.col-xs-2.control-label.text-left Nursery Warehouse *
@@ -101,5 +101,7 @@
       .pull-right
         = render partial: 'form_button', locals: { f: f }
 
+- content_for :javascript_body do
+  = javascript_include_tag "output_tasks.js"
 :javascript
   $('.date_pick').datetimepicker({});
