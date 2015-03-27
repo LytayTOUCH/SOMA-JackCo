@@ -23,5 +23,19 @@ class InputTask < ActiveRecord::Base
   	scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
   	scope :planting_project_id, -> uuid_f { joins(:block).where("blocks.planting_project_id=?", uuid_f) }
 
+  	scope :start_date, -> start_date, end_date {
+		if start_date.present? || end_date.present?
+			if start_date.blank?
+				where("start_date <= ?", end_date ) 
+			elsif end_date.blank?
+				where("start_date >= ?", start_date ) 
+			elsif start_date.present? && end_date.present?
+				where("start_date >= ? AND start_date <= ?", start_date, end_date ) 
+			else
+			end
+		end
+
+	}
+
   	has_paper_trail
 end
