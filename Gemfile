@@ -13,7 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'nokogiri', '~> 1.6.4.1'
+gem 'nokogiri'
 gem 'therubyracer', platforms: :ruby
 gem 'spring', group: :development
 

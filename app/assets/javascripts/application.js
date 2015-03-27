@@ -7,6 +7,7 @@
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
+//= require infobox
 
 $('.datatable').DataTable({
   "sPaginationType": "bootstrap"

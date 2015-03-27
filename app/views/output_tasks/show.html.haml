@@ -1,0 +1,50 @@
+%h3 InputTask Information
+%div
+  %table.table
+    %tr.header
+      %th Fields
+      %th Information
+    %tr
+      %th Start date
+      %td= @output_task.start_date.to_s
+    %tr
+      %th End date
+      %td= @output_task.end_date.to_s
+    %tr
+      %th Task
+      %td= @output_task.name
+    %tr
+      %th Block Name
+      %td= @output_task.block.name
+    %tr
+      %th Planting Project
+      %td= @output_task.planting_project.name
+    %tr
+      %th Tree amount
+      %td= @output_task.tree_amount
+    %tr
+      %th Labor name
+      %td= @output_task.labor.name
+    %tr
+      %th Reference Number
+      %td= @output_task.reference_number
+    %tr
+      %th Total Output
+      %td= @output_task.output_amount
+    %tr
+      %th Finish Production
+      %td= @finish_production.planting_project.name + ", Quantity = " + @output_task.finish_amount.to_s
+    %tr
+      %th Nursery Production
+      %td= @nursery_production.planting_project.name + ", Quantity = " + @output_task.nursery_amount.to_s
+    %tr
+      %th Spoil Quantity
+      %td= @output_task.spoiled_amount
+    %tr
+      %th Spoiled Note
+      %td= @output_task.spoiled_note     
+    %tr
+      %th Note
+      %td= @output_task.note   
+
+= link_to "Cancel", :back, class: "btn btn-default"

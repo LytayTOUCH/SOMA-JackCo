@@ -13,8 +13,9 @@ class OutputTasksController < ApplicationController
       if params[:output_task] and params[:output_task][:name] and !params[:output_task][:name].nil?
         @output_tasks = OutputTask.find_by_output_task_name(params[:output_task][:name]).page(params[:page]).order('created_at DESC').per(session[:item_per_page])
       else
-        @output_tasks = apply_scopes(OutputTask).page(params[:page]).order('created_at DESC').per(session[:item_per_page])
+        @output_tasks = OutputTask.page(params[:page]).order('created_at DESC').per(session[:item_per_page])
       end
+
     rescue Exception => e
       puts e
     end
@@ -25,6 +26,7 @@ class OutputTasksController < ApplicationController
       @output_task = OutputTask.new
       @blocks = Block.all
       @farms_name = Block.select("uuid, name, farm_id")
+      @planting_project_names = Production.select("uuid, status, planting_project_id")
       
       @finish_warehouse_type = WarehouseType.find_by_name("Finished Goods Warehouse")
       @nursery_warehouse_type = WarehouseType.find_by_name("Nursery Warehouse")
@@ -83,7 +85,6 @@ class OutputTasksController < ApplicationController
         flash[:notice] = "Finish, nursery, and spoiled quantity exceeds the total output task quantity. Please check the three quantities."  
         render 'new'
       end  
-
     rescue Exception => e
       puts e
     end
@@ -91,6 +92,8 @@ class OutputTasksController < ApplicationController
 
   def show
     @output_task = OutputTask.find(params[:id])
+    @finish_production = Production.find_by_uuid(@output_task.finish_production_id) 
+    @nursery_production = Production.find_by_uuid(@output_task.nursery_production_id) 
   end
 
   private
