@@ -5,6 +5,8 @@
  *= require_tree .
  *= require_self
  */
+
+/* DATA TABLE */
 table.dataTable th{
   background-color: #000;
   color: #fff;
@@ -38,6 +40,7 @@ table.dataTable tr.group:hover {
     color: #fff;
     font-weight: bolder;
 }
+/* END: DATA TABLE */
 
 .received-header, .partially-received-received-header, .expired-received-header, .closed-received-header {
   height: 30px;
@@ -199,6 +202,14 @@ footer {
 }
 
 /* Sub-menu for Initial SetUp */
+ul.dropdown-menu a {
+  transition: all 300ms ease 0s;
+}
+
+ul.dropdown-menu a:hover {
+  text-indent:10px;
+  box-shadow:5px 5px 15px #888;
+}
 
 .dropdown-submenu {
   position:relative;
