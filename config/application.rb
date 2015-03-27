@@ -26,7 +26,7 @@ module Soma
     config.autoload_paths << "#{config.root}/lib"
     config.middleware.use PDFKit::Middleware, :print_media_type => true
 
-    config.assets.precompile += [/.*\.js/]
+    config.assets.precompile += [/.*\.js/, /.*\.js.coffee/]
 
     config.autoload_paths += %W(
       #{config.root}/app/controllers/concerns

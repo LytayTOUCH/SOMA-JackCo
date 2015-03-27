@@ -10,6 +10,14 @@ table.dataTable th{
   color: #fff;
 }
 
+table.dataTable tfoot td{
+  background-color: #000;
+  color: #fff;
+  height: 35px;
+  padding: 0 0 0 10px;
+  font-weight: bolder;
+}
+
 table.dataTable tr.even,table.dataTable tr.odd{
   transition: all 0.3s linear 0s;
 }
