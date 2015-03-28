@@ -35,6 +35,8 @@ class OutputTasksController < ApplicationController
 
       @productions = Production.all
 
+      @warehouses = Warehouse.all
+
     rescue Exception => e
       puts e
     end

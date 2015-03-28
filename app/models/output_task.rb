@@ -8,6 +8,9 @@ class OutputTask < ActiveRecord::Base
   belongs_to :production
   belongs_to :user
 
+  has_many :machineries, through: :output_use_machineries
+  has_many :output_use_machineries, foreign_key: :output_id
+
   validates :name, length: { maximum: 50 }, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true

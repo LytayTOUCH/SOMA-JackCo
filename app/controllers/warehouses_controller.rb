@@ -93,6 +93,11 @@ class WarehousesController < ApplicationController
     end
   end
 
+  def get_warehouses_data
+    @warehouses_data = Machinery.find(:all, :conditions => { :warehouse_id => params[:warehouse_id] })
+    render :json => @warehouses_data
+  end
+
   private
   def warehouse_params
     params.require(:warehouse).permit(:name, :labor_uuid, :warehouse_type_uuid, :address, :note, :active)

@@ -8,6 +8,9 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require infobox
+//= require output_tasks
+//= require warehouse_item_transactions
+//= require users
 
 $('.datatable').DataTable({
   "sPaginationType": "bootstrap"

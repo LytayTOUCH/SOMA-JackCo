@@ -34,4 +34,21 @@ $(document).on('ready page:load', function() {
     }
   );
 
+  $('.warehouse_id').change(
+    function() {
+      $('.warehoues').show();
+      var warehouse_id = $(".warehouse_id").val();
+      jQuery.ajax({
+        url: "/get_warehouses_data",
+        type: "GET",
+        data: {"warehouse_id" : warehouse_id},
+        dataType: "json",
+        success: function(data){
+          $('input.warehouse_id').val(data.uuid);
+          $('input.warehouse_name').val(data.name);
+        }
+      });      
+    }
+  );
+
 });

@@ -43,6 +43,14 @@
       = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :reference_number
   .form-group
+    %label.col-xs-2.control-label.text-left Machinery Warehouse *
+    .col-xs-5
+      = f.input :machineries, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+  .form-group
+    %label.col-xs-2.control-label.text-left Machineries *
+    .col-xs-5
+      = f.input :machineries, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}    
+  .form-group
     %label.col-xs-2.control-label.text-left Output Quantity *
     .col-xs-5
       = f.input :output_amount, label: false, input_html: { class: "form-control", value: f.object.output_amount || '0.0' }, error_html: {class: "err_msg"}
@@ -101,7 +109,5 @@
       .pull-right
         = render partial: 'form_button', locals: { f: f }
 
-- content_for :javascript_body do
-  = javascript_include_tag "output_tasks.js"
 :javascript
   $('.date_pick').datetimepicker({});
