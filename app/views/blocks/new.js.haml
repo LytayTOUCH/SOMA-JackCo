@@ -17,7 +17,6 @@
       $("#block_shape_lat_long").val("["+polygonPoints.toString()+"]");
       $("#block_location_lat_long").val(getCenter(polygon.overlay).toString().slice(1,-1));
     }
-
     function polygonClick(polygon){
       overlayer = polygon.overlay;
       google.maps.event.addListener(polygon.overlay,'click', function(event){
@@ -31,6 +30,7 @@
           $(".btn-delete").click(function(){
             polygon.overlay.setMap(null);
             infowindow.close();
+            $("#block_location_lat_long").val("");
           });
           $(".btn-edit").click(function(){
             infowindow.close();
@@ -46,13 +46,12 @@
         });
         google.maps.event.addListener(polygon.overlay, "dragend", function(event) {
             infowindow.close();
+            getLatlong(polygon);
             polygon.overlay.setEditable(false);
             polygon.overlay.setDraggable(false);
-            getLatlong(polygon);
         });
       });
     }
-
     function initDrawManager(color, mapObj){
       drawingManager = new google.maps.drawing.DrawingManager({
         drawingControl: false,
@@ -73,7 +72,6 @@
         $("#btn-draw-block").removeAttr("disabled");
       });
     }
-    
     $('#block_planting_project_id').change(function(){
       $('#btn-draw-block').show();
       switch ($(this).find('option:selected').text().toLowerCase()){
@@ -97,7 +95,6 @@
             $("#btn-draw-block").prop('disabled', 'disabled');
       }
     });
-    
     $('#btn-draw-block').click(function(){
       drawingManager.setDrawingMode(google.maps.drawing.OverlayType.POLYGON);
       $("#block_planting_project_id").prop('disabled', 'disabled')
@@ -111,10 +108,8 @@
     $('#myModalAdd').on('hidden.bs.modal', function () {
       $(".form-modal").empty();
       $('.reset-map').html(map.getDiv());
-      if(drawingManager){
-        drawingManager.setDrawingMode(null);
-      }
-      overlayer.setMap(null);
+      if(drawingManager){drawingManager.setDrawingMode(null);}
+      if(overlayer){overlayer.setMap(null);}
       infowindow.close();
     });
   });

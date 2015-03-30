@@ -25,9 +25,9 @@
               .form-group
                 .col-xs-11
                   .input-group
-                    = f.select :planting_project_id, planting_projects.collect {|p| [ p.name, p.id ] }, {include_blank: "Select Planting Type"}, class: 'form-control'
+                    = f.select :planting_project_id, planting_projects.collect {|p| [ p.name, p.id ] }, {prompt: "Select Planting Type"}, class: 'form-control'
                     %span.input-group-btn
-                      %button.btn.btn-default#btn-draw-block{:type => "button", disabled: "disabled"} Draw Block
+                      %button.btn.btn-success#btn-draw-block.fa.fa-pencil-square-o{:type => "button", disabled: "disabled"} Draw
                     .msg-planting_project_id.alert-danger{:role => "alert"}
               = f.hidden_field :shape_lat_long, class: 'form-control', placeholder: 'shape_lat_long'
               .msg-shape_lat_long.alert-danger{:role => "alert"}
@@ -42,38 +42,3 @@
                     = f.submit :class => "btn btn-primary"
           .col-lg-9
             #map-block
-        / - form_for block do |f|
-        /   f.name
-        / = simple_form_for farm, remote: true, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"} do |f|
-        /   .form-group
-        /     = f.input :name, label: 'Name', placeholder: 'Farm Name', input_html: { class: "form-controller" }
-        /   .form-group
-        /     = f.input :location, label: "Location", placeholder: 'Farm Address', input_html: { class: "form-controller" }
-        /   .form-group
-        /     = f.input :latlong_farm, label: "Coodornate", placeholder: 'Latitude - Longitude', input_html: { class: "form-controller" }
-        /   #map-farm
-        /   .modal-footer.custom-modal-footer
-        /     %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-        /     = f.button :submit, class: "btn btn-primary"
-        / = form_for(farm, remote: true, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"}) do |f|
-        /   .form-group
-        /     = f.label :name, class: 'col-xs-2 control-label'
-        /     .col-xs-10
-        /       = f.text_field :name, class: 'form-control', placeholder: 'Farm Name'
-        /       .msg-name.alert-danger{:role => "alert"}
-        /   .form-group
-        /     = f.label :location, class: 'col-xs-2 control-label'
-        /     .col-xs-10
-        /       = f.text_field :location, class: 'form-control', placeholder: 'Location Address'
-        /       .msg-location.alert-danger{:role => "alert"}
-        /   .form-group
-        /     %label.col-xs-2.control-label Coodornate
-        /     .col-xs-10
-        /       = f.text_field :latlong_farm, class: 'form-control', placeholder: 'Latitude - Longitude', :readonly => true
-        /       .msg-latlong_farm.alert-danger{:role => "alert"}
-        /   .form-group
-        /     .col-xs-12
-        /       #map-farm
-        /   .modal-footer.custom-modal-footer
-        /     %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
-        /     = f.submit :class => "btn btn-primary"

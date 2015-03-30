@@ -90,46 +90,5 @@
       $('div.weather-temp').append("<div style='margin: -10px 0px -15px 0px;'>"+data.main.temp+" <sup>o</sup>C"+icon+"</div><div>"+description+"</div><div>Humidity: "+data.main.humidity+" %</div><div>Winds: "+data.wind.speed+" m/s</div><div>Pressure: "+data.main.pressure+" hPa</div>");
     }
   });
-
-.page-header.custom-page-header
-  %h3.custom-h3
-    .fa.fa-cubes.icon-brown
-    All Blocks Information
-.row
-  - unless @blocks.blank?
-    - @blocks.each do |block|
-      .col-sm-3
-        %div{id:"#{block.uuid}"}
-          .box-farm-info
-            .page-header.custom-page-header
-              %h4.custom-h4
-                / = link_to block.name, farm_block_path(block.uuid), :class => "text-color-green"
-                = link_to block.name, {:action=>"show", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, :class => "text-color-green"
-            .row
-              .col-lg-12.farm-info
-                %div
-                  Planting Project:
-                  - if block.planting_project.name.downcase.eql? 'coconut'
-                    %span.label.label-success #{block.planting_project.name}
-                  - elsif block.planting_project.name.downcase.eql? 'jackfruit'
-                    %span.label.label-warning #{block.planting_project.name}
-                  - elsif block.planting_project.name.downcase.eql? 'mango'
-                    %span.label.custom-label-dark-yellow #{'Mango'}
-                  - elsif block.planting_project.name.downcase.eql? 'lemon'
-                    %span.label.custom-label-light-green #{'Lemon'}
-                %div Surface: #{block.surface}
-                %div Tree Amount: #{block.tree_amount}
-                %div
-                  %i.fa.fa-map-marker
-                  = block.location_lat_long
-      :javascript
-        show_blocks = function() {
-          var block_id = "#{block.uuid}";
-          var block_name = "#{block.name}";
-          var block_shape = #{block.shape_lat_long};
-          var project_name = "#{block.planting_project.name.downcase}";
-          showBlock(block_name, block_shape, project_name);
-          showBlockName(block_name, block_shape, block_id);
-        };
-        show_blocks();
+= render "blocks_board", blocks: @blocks
 .form-modal
