@@ -1,5 +1,5 @@
 ready = ->
-  $('.btn-add').click ->
+  $('.btn-add, .btn-edit').click ->
     loading_box = """
       <div aria-hidden="false" aria-labelledby="myModalLabel" class="modal fade in" data-backdrop="static" data-keyboard="false" id="myModalLoading" role="dialog" tabindex="-1" style="display: block;">
         <div class="modal-dialog modal-sm">
