@@ -1,0 +1,6 @@
+:plain
+  $(".form-modal").html("#{escape_javascript(render 'adjustment_modal', locals: @warehouse_material_amount)}");
+  $('#myModalAdd').modal('show');
+  $('#myModalAdd').on('shown.bs.modal', function () {
+    $('#new_amount').focus();
+  });
