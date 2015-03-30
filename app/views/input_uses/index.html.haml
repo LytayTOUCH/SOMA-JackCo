@@ -8,28 +8,84 @@
         .col-xs-3
           .input-group
             .input-group-addon= "Start Date"
-            - @remember_start_date= params[:start_date] if params[:start_date].present?
-            = text_field_tag "start_date", @remember_start_date, :class => "form-control date_pick", :type => "text", data: { :date_format => 'YYYY-MM-DD' }, :placeholder => "YYYY-MM-DD"
+            - @remember_start_date= params[:start_date]["started_at"] if params[:start_date].present?
+            = text_field_tag "start_date[started_at]", @remember_start_date, :class => "form-control date_pick", :type => "text", data: { :date_format => 'YYYY-MM-DD' }, :placeholder => "Year-Month-Date"
         .col-xs-3
           .input-group
             .input-group-addon= "End Date"
-            - @remember_end_date= params[:end_date] if params[:end_date].present?
-            = text_field_tag "end_date", @remember_end_date, :class => "form-control date_pick", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, :placeholder => "YYYY-MM-DD"
+            - @remember_end_date= params[:start_date]["ended_at"] if params[:start_date].present?
+            = text_field_tag "start_date[ended_at]", @remember_end_date, :class => "form-control date_pick", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, :placeholder => "Year-Month-Date"
         .col-xs-1
           = submit_tag 'Filter', :class => 'btn btn-success', :name => nil
 
-  .form-group
-    - if params[:start_date].present? and params[:end_date].present?
-      - @input_tasks.each do |input_task|
-        %div= "Ref: " + input_task.reference_number
-        %div= "Labor: " + input_task.labor.name
-        %div
-        - if input_task.machinery_id.present?
-          = "Machinery: " + input_task.machinery.name
 
+- if params[:start_date].present?
+  .form-group{style: "margin-top: 20px;"}
+    .col-xs-4
+      %table#data_table
+        %thead
+          %tr
+            %th= "Ref."
+            %th= "Labor"
+            %th= "Machinery"     
+        - @input_tasks.each do |input_task|
+          %tr
+            %td= input_task.reference_number
+            %td= input_task.labor.name
+            %td
+              - if input_task.machinery_id.present?
+                = input_task.machinery.name
 
-
+    .col-xs-8
+      %table.list_data_table
+        %thead
+          %tr
+            %th.col-md-2= "Material Name"
+            %th.col-md-3= "Material Category"
+            %th.col-md-3= "Qty"
+        %tbody
+          - @input_tasks.joins(:material).group("materials.name").order("material_cate_uuid").each do |input_task|
+            %tr
+              %td= input_task.material.name
+              %td= input_task.material.material_category.name
+              %td
+                = @input_tasks.where(:material_id => input_task.material_id).sum(:material_amount).to_s + "( " + input_task.material.unit_of_measurement.name + " )"
+    
 
 
 :javascript
   $('.date_pick').datetimepicker();
+
+  $('#data_table').DataTable({
+      "bSort": false,
+      "bFilter": false,
+      "bInfo": false,
+      "bPaginate": false
+    });
+
+  $(document).ready(function() {
+    $('.list_data_table').DataTable({
+      "bSort": false,
+      "bFilter": false,
+      "bInfo": false,
+      "bPaginate": false,
+      "columnDefs": [{ "visible": false, "targets": 1 }],
+      "order": [[ 1, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="2">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    });
+  });
