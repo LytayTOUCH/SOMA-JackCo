@@ -36,6 +36,7 @@ class OutputTasksController < ApplicationController
       @productions = Production.all
 
       @warehouses = Warehouse.all
+      @machineries = Machinery.select("uuid, name")
 
     rescue Exception => e
       puts e

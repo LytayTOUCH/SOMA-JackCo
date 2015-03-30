@@ -9,8 +9,10 @@
 //= require bootstrap-datetimepicker
 //= require infobox
 //= require output_tasks
+//= require chosen-jquery
 //= require warehouse_item_transactions
 //= require users
+//= require select2
 
 $('.datatable').DataTable({
   "sPaginationType": "bootstrap"

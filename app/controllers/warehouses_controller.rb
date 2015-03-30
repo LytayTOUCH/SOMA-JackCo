@@ -94,8 +94,8 @@ class WarehousesController < ApplicationController
   end
 
   def get_warehouses_data
-    @warehouses_data = Machinery.find(:all, :conditions => { :warehouse_id => params[:warehouse_id] })
-    render :json => @warehouses_data
+    @warehouse_datas = Machinery.where(:warehouse_id => params[:warehouse_id])
+    render :json => @warehouse_datas
   end
 
   private

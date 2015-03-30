@@ -45,11 +45,28 @@
   .form-group
     %label.col-xs-2.control-label.text-left Machinery Warehouse *
     .col-xs-5
-      = f.input :machineries, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+      = f.input :machineries, label: false, collection: @warehouses, input_html: { class: "form-control warehouse_id" }, error_html: {class: "err_msg"}
   .form-group
     %label.col-xs-2.control-label.text-left Machineries *
     .col-xs-5
-      = f.input :machineries, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}    
+      / = f.select :machineries, options_for_select(@warehouses, :selected => f.object.warehouse_id), {:include_blank => true}, {class: 'form-control'}
+      / = f.select :machineries, {}, multiple: true, selected: @warehouses, {:include_blank => true}, {class: 'form-control chosen-select'}
+      / = f.select :reference_number, [['Normal', 'Normal'], ['Air Conditioner', 'Air Conditioner'], ['Stall', 'Stall']], { include_blank: true }, { class: 'chosen-select form-control' }
+      / %select.chosen-select{"data-placeholder" => "Choose a country...", :multiple => "", :style => "width:350px;", :select => @warehouses}
+      / = f.select :machineries,{"data-placeholder" => "Choose a country...", :multiple => true, :style => "width:350px;"}, {:include_blank => true}, {class: 'chosen-select'}
+      / = f.input :machineries, label: false, collection: @warehouses
+      / = f.association :bankinst, :collection => Bankinst.order(:FinancialInstitutionName), :required => true, :autofocus => true, :label => 'Pick an Institution', :label_method=>:FinancialInstitutionName, :input_html => {:class => "chzn-select" }
+      = f.select :block_id, options_for_select(@warehouses.map { |value| [ value.name, value.uuid ]}, :selected => f.object.block_id), { include_blank: true }, { class: 'chosen-select form-control', multiple: true }
+
+
+
+
+
+
+
+
+
+    %span.help-block= f.error :machineries  
   .form-group
     %label.col-xs-2.control-label.text-left Output Quantity *
     .col-xs-5
@@ -111,3 +128,8 @@
 
 :javascript
   $('.date_pick').datetimepicker({});
+  $(".chosen-select").chosen(
+    {width: "200px"},
+    {allow_single_deselect: true},
+    {no_results_text: 'No results matched'}
+  );

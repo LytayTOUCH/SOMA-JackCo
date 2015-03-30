@@ -36,7 +36,7 @@ $(document).on('ready page:load', function() {
 
   $('.warehouse_id').change(
     function() {
-      $('.warehoues').show();
+      $('.warehouse').show();
       var warehouse_id = $(".warehouse_id").val();
       jQuery.ajax({
         url: "/get_warehouses_data",
@@ -44,8 +44,12 @@ $(document).on('ready page:load', function() {
         data: {"warehouse_id" : warehouse_id},
         dataType: "json",
         success: function(data){
-          $('input.warehouse_id').val(data.uuid);
-          $('input.warehouse_name').val(data.name);
+          $.each(data, function(i, value) {
+            console.log(i + ", " + value.uuid);
+            console.log(i + ", " + value.name);
+            // $('input.warehouse_id').val(data.uuid);
+            // $('input.warehouse_name').val(data.name);
+          });
         }
       });      
     }
