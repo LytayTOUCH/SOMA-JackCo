@@ -114,7 +114,15 @@
               %li.divider
               %li
                 = navbar_link "Distribution", "#", "active"
+          
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Machineries
+            %ul.dropdown-menu
+              %li
+                = navbar_link "In Warehouse", "#", "active"
+          
           %li.divider
+          
           %li
             = navbar_link "Input Tasks", input_tasks_path, "active"
           %li

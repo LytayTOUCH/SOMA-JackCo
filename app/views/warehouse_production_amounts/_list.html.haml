@@ -11,7 +11,7 @@
         %th.col-md-1= "Action"
     %tbody
       - wh.warehouse_production_amounts.joins(:production).order("planting_project_id").each do |wh_a|
-        %tr
+        %tr{:id => wh_a.uuid}
           %td= wh_a.production.status
           %td= wh_a.production.planting_project.name
           %td
@@ -20,16 +20,19 @@
             = wh_a.production.unit_of_measurement.name
             = ")"
           %td
-            = link_to "Adjust", "production_adjustments/new/#{wh_a.uuid}"
+            = link_to "Adjust", edit_warehouse_production_amount_path(wh_a), remote: true
         
   %div{style: "height: 35px;"}
+.form-modal
 :javascript
   $(document).ready(function() {
     $('.list_data_table').DataTable({
       "bSort": false,
+      "bFilter": false,
+      "bInfo": false,
+      "bPaginate": false,
       "columnDefs": [{ "visible": false, "targets": 1 }],
       "order": [[ 1, 'asc' ]],
-      "displayLength": 25,
       "drawCallback": function ( settings ) {
             var api = this.api();
             var rows = api.rows( {page:'current'} ).nodes();
@@ -46,4 +49,26 @@
             } );
         }
     });
+    
+    function getUrlParameter(sParam) {
+      var sPageURL = window.location.search.substring(1);
+      var sURLVariables = sPageURL.split('&');
+      for (var i = 0; i < sURLVariables.length; i++) 
+      {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+          return sParameterName[1];
+        }
+      }
+    }
+    
+    var wha_id = getUrlParameter('wha_id');
+    
+    if (typeof wha_id !== 'undefined') {
+      $("#"+wha_id).attr('class', 'modified');
+      $('html, body').animate({
+        scrollTop: $("#"+wha_id).offset().top - 50
+      }, 500);
+    }
   });

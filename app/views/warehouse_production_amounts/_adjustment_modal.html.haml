@@ -1,0 +1,10 @@
+#myModalAdd.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "data-backdrop"=>"static"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title.label-header Adjust Stock
+      .modal-body
+        .form-info
+          = render 'adjust_form', warehouse_production_amount: locals

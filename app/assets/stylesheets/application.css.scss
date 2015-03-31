@@ -29,8 +29,14 @@ table.dataTable tr.odd {
     background-color: #eaffea;
 }
 
+table.dataTable tr.modified {
+    background-color: #ffffaa;
+    font-weight: bold;
+}
+
 table.dataTable tr.odd:hover,
-table.dataTable tr.even:hover {
+table.dataTable tr.even:hover,
+table.dataTable tr.modified:hover {
   background-color: #18af00;
   color: white;
 }
@@ -209,7 +215,7 @@ ul.dropdown-menu a {
 
 ul.dropdown-menu a:hover {
   text-indent:10px;
-  box-shadow:5px 5px 15px #888;
+  box-shadow: 0 0 6px 2px #888;
 }
 
 .dropdown-submenu {

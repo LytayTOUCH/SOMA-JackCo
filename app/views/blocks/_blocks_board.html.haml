@@ -1,0 +1,9 @@
+.page-header.custom-page-header
+  %h3.custom-h3
+    .fa.fa-cubes.icon-brown
+    All Blocks Information
+.row
+  .blocks-board
+    - unless @blocks.blank?
+      - @blocks.each do |block|
+        = render "block_board", block: block
