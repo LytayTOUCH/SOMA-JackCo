@@ -1,4 +1,11 @@
-.table-input-use {
+a#print_preview {
+    cursor: pointer;
+    /*display: block;*/
+    margin: -42px 0 20px;
+    padding: 0 0 0 35px;
+    line-height: 20px;
+}
+/*.table-input-use {
     border: 1px solid black;
 }
 #table-report{
@@ -9,5 +16,17 @@
 	text-align: center;
 	border: 1px solid black;
 	border-bottom: none;
-}
+}*/
+
+/*a#print_preview {
+    cursor: pointer;
+    margin: -42px 0 20px;
+    padding: 0 0 0 35px;
+    line-height: 20px;
+}*/
+
+/*th{
+	color: #013ADF;
+    font-size: 16px;
+}*/
 

@@ -4,6 +4,9 @@
     %title= full_title(yield(:title))
     %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}
     = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "print-preview", :media => :screen, "data-turbolinks-track" => true
+    = stylesheet_link_tag "print", :media => :print, "data-turbolinks-track" => true
+    = stylesheet_link_tag "input_uses", :media => "all", "data-turbolinks-track" => true
     = google_map_api_drawing
     = google_chart_api
     = javascript_include_tag "application"
