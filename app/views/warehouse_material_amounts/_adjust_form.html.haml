@@ -1,0 +1,29 @@
+= form_for(warehouse_material_amount, html: {role: :form, :class => "form-horizontal"}) do |f|
+  .form-group
+    %label.col-xs-3.control-label Adjust Date:
+    .col-xs-6
+      %input#material_adjust_date{"data-date-format" => "YYYY-MM-DD", :class => "form-control", readonly: true, value: Date.today}
+  .form-group
+    %label.col-xs-3.control-label Warehouse:
+    .col-xs-6
+      %input.form-control{value: warehouse_material_amount.warehouse.name, readonly: true}
+  .form-group
+    %label.col-xs-3.control-label Material:
+    .col-xs-6
+      %input.form-control{value: warehouse_material_amount.material.name, readonly: true}
+  .form-group
+    %label.col-xs-3.control-label Quantity *
+    .col-xs-6
+      .input-group
+        = f.text_field :amount, label: false, :style => "width:100%;height:33px;", error_html: { class: "err_msg" }
+        %span.input-group-addon.uom-name
+          = warehouse_material_amount.material.unit_of_measurement.name
+  .form-group
+    %label.col-xs-3.control-label Note
+    .col-xs-6
+      %textarea#material_note{:name => "material_note", :style => "width:100%"}
+  .form-group.form-center
+    .col-xs-12
+      .pull-right
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+        = f.submit "OK", :class => "btn btn-primary"

@@ -12,15 +12,28 @@ class BlocksController < ApplicationController
     @block = Block.new
   end
 
+  def edit
+    @planting_projects=PlantingProject.all
+  end
+
+  def update
+    p "=============Block Params==================="
+    p block_params
+    p "================================"
+    p "=============Block Object==================="
+    p @block
+    p "================================"
+    # if @block.update(block_params)
+    #   @block
+    # end
+  end
+
   def show
     add_breadcrumb @block.farm.name, :farm_blocks_path
     add_breadcrumb @block.name, :farm_block_path
   end
 
   def create
-    # p "==============================="
-    # p block_params
-    # p "==============================="
     @block = Block.new(block_params)
     if @block.save
       @block

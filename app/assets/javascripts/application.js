@@ -7,6 +7,9 @@
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
+
+//= require blocks
+//= require farms
 //= require infobox
 //= require jquery.print-preview
 

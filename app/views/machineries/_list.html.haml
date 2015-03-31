@@ -2,11 +2,12 @@
   %thead
     %tr
       %th.col-md-2= "Name / Code"
-      %th.col-md-2= "Type"
+      %th.col-md-1= "Type"
       %th.col-md-2= "Manufacturer"
       %th.col-md-1= "Model"
       %th.col-md-1= "Regis. No"
       %th.col-md-1= "Year"
+      %th.col-md-1= "Avatar"
       %th.col-md-2= "Status"
       %th.col-md-1= "Action"
   %tbody
@@ -18,6 +19,7 @@
         %td= machinery.model
         %td= machinery.registration_number
         %td= machinery.year
+        %td= image_tag machinery.avatar.url(:thumb)
         %td
           = form_for(machinery) do |f|
             - if machinery.status

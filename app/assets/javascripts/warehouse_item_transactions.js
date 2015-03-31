@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).ready(function(){
   // $('.uom-name').hide();
   $('.material_uuid').change(
     function() {

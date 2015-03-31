@@ -2,23 +2,11 @@ Rails.application.routes.draw do
 
   get 'log_tracking/index'
   
-  # warehouse_material_amounts
-  get 'warehouse_material_amounts' => 'warehouse_material_amounts#index'
+  resources :warehouse_material_amounts, only: [:index, :edit, :update]
+  resources :material_adjustments, only: [:index]
   
-  # material_adjustments
-  get 'material_adjustments' => 'material_adjustments#index'
-  get 'material_adjustments/new/:id' => 'material_adjustments#new'
-  post 'material_adjustments' => 'material_adjustments#create'
-  post 'material_adjustments/create' => 'material_adjustments#create'
-  
-  # warehouse_production_amounts
-  get 'warehouse_production_amounts' => 'warehouse_production_amounts#index'
-  
-  # production_adjustments
-  get 'production_adjustments' => 'production_adjustments#index'
-  get 'production_adjustments/new/:id' => 'production_adjustments#new'
-  post 'production_adjustments' => 'production_adjustments#create'
-  post 'production_adjustments/create' => 'production_adjustments#create'
+  resources :warehouse_production_amounts, only: [:index, :edit, :update]
+  resources :production_adjustments, only: [:index]
 
   get 'settings' => 'settings#index'
   get 'settings/:code' => 'settings#show', :as => 'setting'

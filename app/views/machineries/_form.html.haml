@@ -30,6 +30,16 @@
     %label.col-xs-2 Note
     .col-xs-5
       = f.input :note, label: false, input_html: {class: "form-control"}
+      
+  .form-group
+    %label.col-xs-2 Avatar
+    .col-xs-5
+      = f.input :avatar, as: :file, label: false, input_html: {:onchange => "previewFile()"}
+  .form-group
+    .col-xs-2
+    .col-xs-5
+      =image_tag @machinery.avatar.url(:original)
+      
   .form-group
     %label.col-xs-2.control-label.text-left Active
     .col-xs-5
@@ -38,3 +48,20 @@
     .col-xs-7
       .pull-right
         = render partial: 'form_button', locals: { f: f }
+
+:javascript
+  function previewFile() {
+    var preview = document.querySelector('img');
+    var file    = document.querySelector('input[type=file]').files[0];
+    var reader  = new FileReader();
+  
+    reader.onloadend = function () {
+      preview.src = reader.result;
+    }
+  
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = "";
+    }
+  }
