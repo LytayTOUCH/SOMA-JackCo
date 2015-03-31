@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).ready(function(){
   $('.material_uuid').change(
     function() {
       $('.uom-name').show();
