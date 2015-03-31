@@ -94,7 +94,7 @@ class WarehousesController < ApplicationController
   end
 
   def get_warehouses_data
-    @warehouse_datas = Machinery.where(:warehouse_id => params[:warehouse_id])
+    @warehouse_datas = Machinery.select("DISTINCT name").where(:warehouse_id => params[:warehouse_id])
     render :json => @warehouse_datas
   end
 
