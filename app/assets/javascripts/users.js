@@ -1,4 +1,4 @@
-$(document).on('ready page:load', function() {
+$(document).ready(function(){
   $('.labor_uuid').change(
     function() {
       $('.labor-email').show();
