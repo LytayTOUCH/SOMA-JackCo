@@ -49,9 +49,8 @@
   .form-group
     %label.col-xs-2.control-label.text-left Machineries *
     .col-xs-5
-      / = f.select :reference_number, [['Normal', 'Normal'], ['Air Conditioner', 'Air Conditioner'], ['Stall', 'Stall']], { include_blank: true }, { class: 'chosen-select form-control' }
-      = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries', multiple: false }
-
+      / = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries', multiple: false }
+      
 
     %span.help-block= f.error :machineries  
   .form-group
@@ -113,11 +112,6 @@
       .pull-right
         = render partial: 'form_button', locals: { f: f }
 
-<<<<<<< HEAD
-=======
-- content_for :javascript_body do
-  = javascript_include_tag "output_tasks"
->>>>>>> 62b33c1345b66dba0903f732dce413c924b4ccd8
 :javascript
   $('.date_pick').datetimepicker({});
   $('select.item-select-machinaries').empty();
