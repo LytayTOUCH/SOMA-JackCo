@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'input_uses/index'
-
   get 'log_tracking/index'
   
   resources :warehouse_material_amounts, only: [:index, :edit, :update]
@@ -150,6 +148,13 @@ Rails.application.routes.draw do
 
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
+
+  # get 'input_uses/index'
+  resources :input_uses do
+    collection do
+      get 'downloadpdf'
+    end
+  end
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

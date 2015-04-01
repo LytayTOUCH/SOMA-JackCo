@@ -10,11 +10,15 @@
 //= require blocks
 //= require farms
 //= require infobox
+<<<<<<< HEAD
 //= require output_tasks
 //= require chosen-jquery
 //= require warehouse_item_transactions
 //= require users
 //= require select2
+=======
+//= require jquery.print-preview
+>>>>>>> 62b33c1345b66dba0903f732dce413c924b4ccd8
 
 $('.datatable').DataTable({
   "sPaginationType": "bootstrap"
@@ -118,3 +122,6 @@ var addListenersOnPolygon = function(polygon, block_name, center_latlong, block_
     infobox.open(map);
   });
 }
+
+$('#print_report').prepend('<a id="print_preview"><span class="glyphicon glyphicon-print"></span> Print this report</a>');
+$('a#print_preview').printPreview();

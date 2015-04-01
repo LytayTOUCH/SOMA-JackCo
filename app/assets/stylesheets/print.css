@@ -1,0 +1,19 @@
+/**
+ * Example Print Preview site
+ *
+ *	print.css
+ *	author: Tim Connell
+ */
+
+/* -- Hide screen specific elements -- */
+/*#print_preview {
+    display: none;
+}*/
+
+@media print {
+	.header{
+		color: blue;
+		font-size: 16px;
+		background-color: yellow
+	}
+}

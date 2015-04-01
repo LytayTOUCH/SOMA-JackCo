@@ -55,6 +55,11 @@
         = submit_tag "Create Material Request", class: "btn btn-primary", locals: { f: f }
         = link_to "Cancel", :back, class: "btn btn-default", locals: { f: f }
 
+<<<<<<< HEAD
+=======
+- content_for :javascript_body do
+  = javascript_include_tag "warehouse_item_transactions"
+>>>>>>> 62b33c1345b66dba0903f732dce413c924b4ccd8
 :javascript
   $('.date_pick').datetimepicker({});
      

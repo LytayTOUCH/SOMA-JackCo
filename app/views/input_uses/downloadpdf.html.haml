@@ -1,0 +1,100 @@
+:css
+  / @media print {
+  /   #title {
+  /     color: #2E2E2E;
+  /     font-size: 20px;
+  /     text-align: center;
+  /     font-weight: bold;
+  /     margin-bottom: 20px;
+  /   }
+  /   th {
+  /     color: #013ADF;
+  /     font-size: 16px;
+  /   }
+  /   td {
+  /     font-size: 14px;
+  /   }
+  /   #line_items {  
+  /     page-break-inside:avoid !important;
+  /   }  
+  / }
+
+/ Put Page Number
+%meta{:name => 'pdfkit-footer_right', :content => "[page]"}
+
+%div#title Input uses report
+
+.row
+  .form-group{style: "margin-top: 20px;"}
+    .col-xs-4
+      %table#data_table{:border => "1", :cellspacing => "0", :width => "40%"}
+        %thead
+          %tr
+            %th= "Ref."
+            %th= "Labor"
+            %th= "Machinery"     
+        - @input_tasks.each do |input_task|
+          %tr
+            %td= input_task.reference_number
+            %td= input_task.labor.name
+            %td
+              - if input_task.machinery_id.present?
+                = input_task.machinery.name
+
+    .col-xs-8
+      %table.list_data_table{:border => "1", :cellspacing => "0", :width => "50%"}
+        %thead
+          %tr
+            %th.col-md-2= "Material Name"
+            %th.col-md-3= "Material Category"
+            %th.col-md-3= "Qty"
+        %tbody
+          - @input_tasks.joins(:material).group("materials.name").order("material_cate_uuid").each do |input_task|
+            %tr
+              %td= input_task.material.name
+              %td= input_task.material.material_category.name
+              %td
+                = @input_tasks.where(:material_id => input_task.material_id).sum(:material_amount).to_s + "( " + input_task.material.unit_of_measurement.name + " )"
+
+
+
+/ - content_for :javascript_body do
+/   = javascript_include_tag "input_uses"
+
+
+:javascript
+  $('.date_pick').datetimepicker();
+  $(document).ready(function() {
+    $('.list_data_table').DataTable({
+      "bSort": false,
+      "bFilter": false,
+      "bInfo": false,
+      "bPaginate": false,
+      "columnDefs": [{ "visible": false, "targets": 1 }],
+      "order": [[ 1, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="2">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    });
+
+    $('#data_table').DataTable({
+      "bSort": false,
+      "bFilter": false,
+      "bInfo": false,
+      "bPaginate": false
+    });
+
+  });

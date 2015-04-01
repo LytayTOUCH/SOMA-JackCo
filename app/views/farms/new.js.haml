@@ -45,6 +45,9 @@
 			  marker.setPosition(results[0].geometry.location);
 			  marker.setMap(map);
 			  $("#farm_latlong_farm").val(results[0].geometry.location.toString().slice(1,-1));
+			  google.maps.event.addListener(marker, 'dragend', function(e) {
+			    $("#farm_latlong_farm").val(e.latLng.lat()+", "+e.latLng.lng());
+			  });
 			} else {
 			  alert('Geocode was not successful for the following reason: ' + status);
 			}
