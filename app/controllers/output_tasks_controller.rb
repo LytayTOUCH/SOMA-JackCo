@@ -46,13 +46,18 @@ class OutputTasksController < ApplicationController
   def create
     begin
       @output_task = OutputTask.new(output_task_params)
-
       puts "====================****========================"
       puts "finish_production_id = " + @finish_production_id = @output_task.finish_production_id
       puts "nursery_production_id = " + @nursery_production_id = @output_task.nursery_production_id
       puts "finish_warehouse_id = " + @finish_warehouse_id = @output_task.finish_warehouse_id
       puts "nursery_warehouse_id = " + @nursery_warehouse_id = @output_task.nursery_warehouse_id
       puts "====================****========================"
+
+      puts "=================================="
+      puts output_task_params
+      puts "=================================="
+
+
 
       @finish_production_id = @output_task.finish_production_id
       @nursery_production_id = @output_task.nursery_production_id
@@ -75,15 +80,21 @@ class OutputTasksController < ApplicationController
         nursery_warehouse_amount = @nursery_warehouse_amount.amount
         nursery_warehouse_amount += nursery_amount
 
-        if @output_task.save
-          @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
-          @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
-          flash[:notice] = "OutputTask saved successfully"
-          redirect_to output_tasks_path
-        else
-          flash[:notice] = "OutputTask can't save"
-          render 'new'
-        end
+        puts "=================================================***"
+        puts @output_task.machineries
+        puts "=================================================***"
+
+        # Output_use_machinery.create(output_id: @output_task.uuid, machinery_id: { machinery: [] } )
+
+        # if @output_task.save
+        #   @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
+        #   @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
+        #   flash[:notice] = "OutputTask saved successfully"
+        #   redirect_to output_tasks_path
+        # else
+        #   flash[:notice] = "OutputTask can't save"
+        #   render 'new'
+        # end
       else
         flash[:notice] = "Finish, nursery, and spoiled quantity exceeds the total output task quantity. Please check the three quantities."  
         render 'new'
@@ -101,6 +112,6 @@ class OutputTasksController < ApplicationController
 
   private
   def output_task_params
-    params.require(:output_task).permit(:name, :start_date, :end_date, :block_id, :planting_project_id, :tree_amount, :labor_id, :reference_number, :output_amount, :finish_production_id, :finish_warehouse_id, :finish_amount, :nursery_production_id, :nursery_warehouse_id, :nursery_amount, :spoiled_amount, :spoiled_note, :note, :created_by, :updated_by)
+    params.require(:output_task).permit(:name, :start_date, :end_date, :block_id, :planting_project_id, :tree_amount, :labor_id, :reference_number, :output_amount, :finish_production_id, :finish_warehouse_id, :finish_amount, :nursery_production_id, :nursery_warehouse_id, :nursery_amount, :spoiled_amount, :spoiled_note, :note, :created_by, :updated_by, :machineries)
   end
 end
