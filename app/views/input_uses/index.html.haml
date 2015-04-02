@@ -65,7 +65,7 @@
 - content_for :javascript_body do
   = stylesheet_link_tag "application"
   = stylesheet_link_tag "input_uses", :media => "all"
-  = stylesheet_link_tag "print", :media => :print, "data-turbolinks-track" => true
+  / = stylesheet_link_tag "print", :media => :print, "data-turbolinks-track" => true
   = stylesheet_link_tag "print-preview", :media => :screen, "data-turbolinks-track" => true
   = javascript_include_tag "application"
 
