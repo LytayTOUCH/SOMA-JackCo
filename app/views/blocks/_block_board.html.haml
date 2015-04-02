@@ -29,7 +29,7 @@
     var block_name = "#{block.name}";
     var block_shape = #{block.shape_lat_long};
     var project_name = "#{block.planting_project.name.downcase}";
-    showBlock(block_name, block_shape, project_name);
+    showBlock(block_id, block_shape, project_name);
     showBlockName(block_name, block_shape, block_id);
   };
   show_blocks();

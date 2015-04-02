@@ -50,8 +50,8 @@ var getCenterLatlngPolygon = function(polypoints){
   }
   return bounds.getCenter();
 }
-
-var showBlock = function(name, shape_latlong, project_name){
+var blocks = [];
+var showBlock = function(id, shape_latlong, project_name){
   var stroke_color =  "#126c00", fill_color;
   var poly_latlng_center = getCenterLatlngPolygon(getPolygonPoints(shape_latlong));
   var poly_latlng = getPolygonPoints(shape_latlong);
@@ -81,8 +81,11 @@ var showBlock = function(name, shape_latlong, project_name){
     fillColor: fill_color,
     fillOpacity: 0.35
   });
+  block.id = id;
+  blocks.push(block);
   block.setMap(map);
 }
+var labels=[];
 var showBlockName = function(block_name, block_shape, block_id){
   var myOptions = {
     content: block_name
@@ -103,6 +106,8 @@ var showBlockName = function(block_name, block_shape, block_id){
     ,enableEventPropagation: true
   };
   var ibLabel = new InfoBox(myOptions);
+  ibLabel.id = block_id;
+  labels.push(ibLabel);
   ibLabel.open(map);
   addListenersOnPolygon(block, block_name, getCenterLatlngPolygon(getPolygonPoints(block_shape)), block_id);
 }
