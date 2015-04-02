@@ -7,6 +7,4 @@ class UserGroup < ActiveRecord::Base
 
   scope :find_by_user_group_name, -> name { where("name like ?", "%#{name}%") }
 
-  has_paper_trail
-
 end

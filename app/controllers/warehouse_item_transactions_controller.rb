@@ -63,6 +63,8 @@ class WarehouseItemTransactionsController < ApplicationController
       @warehouse_item_transaction = WarehouseItemTransaction.new(warehouse_item_transaction_params)
 
       if @warehouse_item_transaction.save!
+        create_log_3 current_user.uuid, "Create Material Request", @warehouse_item_transaction, [:uuid, :requested_number, :amount, :requested_date]
+        
         @warehouse_item_transaction.remaining_amount = @warehouse_item_transaction.amount
         @warehouse_item_transaction.save
         flash[:notice] = "Warehouse Item Transaction saved successfully"
@@ -91,6 +93,8 @@ class WarehouseItemTransactionsController < ApplicationController
   def update
     @warehouse_item_transaction.transaction_status = "Closed" 
     if @warehouse_item_transaction.update(warehouse_item_transaction_params)
+      create_log_2 current_user.uuid, "Closed Material Request", "ID: "+@warehouse_item_transaction.uuid + ", Reason: " + @warehouse_item_transaction.reason_for_closing_transaction
+      
       @warehouse_item_transaction
     end
   end

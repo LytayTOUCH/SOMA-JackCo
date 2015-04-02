@@ -25,6 +25,4 @@ class WarehouseItemTransaction < ActiveRecord::Base
 
   scope :find_by_requested_number, -> requested_number { where("requested_number like ?", "%#{requested_number}%") }
 
-  has_paper_trail
-
 end 

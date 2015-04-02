@@ -8,6 +8,4 @@ class ProductionStatus < ActiveRecord::Base
 
   scope :find_by_production_status_name, -> name { where("name like ?", "%#{name}%") }
 
-  has_paper_trail
-
 end

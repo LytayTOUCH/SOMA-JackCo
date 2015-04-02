@@ -20,6 +20,4 @@ class Material < ActiveRecord::Base
 
   scope :find_by_material_name, -> name { where("name like ?", "%#{name}%") }
 
-  has_paper_trail
-
 end
