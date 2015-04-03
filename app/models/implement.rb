@@ -13,7 +13,5 @@ class Implement < ActiveRecord::Base
   validates :year, length: { maximum: 10 }
 
   has_one :maintenance
-
-  has_paper_trail
   
 end

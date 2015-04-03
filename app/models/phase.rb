@@ -7,6 +7,4 @@ class Phase < ActiveRecord::Base
 
   scope :find_by_phase_name, -> name { where("name like ?", "%#{name}%") }
 
-  has_paper_trail
-
 end

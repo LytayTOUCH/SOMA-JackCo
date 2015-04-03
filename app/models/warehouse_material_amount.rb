@@ -7,7 +7,5 @@ class WarehouseMaterialAmount < ActiveRecord::Base
 	has_many :material_adjustments
 
 	scope :find_by_warehouse, -> warehouse_uuid { where("warehouse_uuid = ?", "#{warehouse_uuid}") }
-	
-	has_paper_trail
-  
+
 end

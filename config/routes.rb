@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index]
   put '/dashboards', :to => 'dashboards#index'
   resources :dashboards
-  resources :warehouse_types
+  resources :warehouse_types, only: [:index]
   resources :warehouses
   resources :user_groups  
   

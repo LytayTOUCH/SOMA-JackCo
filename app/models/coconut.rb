@@ -11,6 +11,4 @@ class Coconut < ActiveRecord::Base
 
   scope :find_by_coconut_code, -> code { where("code like ?", "%#{code}%") }
 
-  has_paper_trail
-
 end

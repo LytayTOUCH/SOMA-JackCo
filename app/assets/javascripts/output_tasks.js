@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('ready page:load',function() {
   $('.block_id').change(
     function() {
       $('.tree_amount').show();
@@ -59,7 +59,14 @@ $(document).ready(function(){
             {width: "100%"},
             {allow_single_deselect: true},
             {no_results_text: 'No results matched'}
-          );  
+          ).change(function(event){
+            if(event.target == this){
+              console.log($(this).val());
+              $('#machineries').val($(this).val());
+              // var value = $(this).val();
+              // $("#result").text(value);
+            }
+          });  
         }
       });     
     }

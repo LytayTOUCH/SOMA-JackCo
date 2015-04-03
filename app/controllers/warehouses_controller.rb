@@ -33,6 +33,9 @@ class WarehousesController < ApplicationController
       @materials = Material.all     
 
       if @warehouse.save
+        
+        create_log current_user.uuid, "Create New Warehouse", @warehouse
+        
         if @warehouse.warehouse_type_uuid == @finishedGooduuid || @warehouse.warehouse_type_uuid == @nurseryuuid
           @productions.each do |production|
             WarehouseProductionAmount.create(warehouse_id: @warehouse.uuid, production_id: production.uuid, amount: 0)
@@ -71,6 +74,9 @@ class WarehousesController < ApplicationController
       @warehouse = Warehouse.find(params[:id])
 
       if @warehouse.update_attributes(warehouse_params)
+        
+        create_log current_user.uuid, "Update Warehouse", @warehouse
+        
         flash[:notice] = "Warehouse updated"
         redirect_to warehouses_path
       else

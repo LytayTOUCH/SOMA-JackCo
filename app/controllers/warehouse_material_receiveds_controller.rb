@@ -75,7 +75,9 @@ class WarehouseMaterialReceivedsController < ApplicationController
 
         @warehouse_item_transaction.update_attributes!(remaining_amount: remain_amount_request_partial, transaction_status: status)
 
-        if @warehouse_material_received.save!   
+        if @warehouse_material_received.save!
+          create_log_2 current_user.uuid, "Receive Material Request", "Request: " + @warehouse_item_transaction.requested_number + "(" + @warehouse_material_received.received_amount.to_s + " / " + @warehouse_item_transaction.amount.to_s + ")"
+             
           flash[:notice] = "Warehouse Material Received saved"
           redirect_to warehouse_item_requested_transactions_path
         else

@@ -15,7 +15,6 @@ class OutputTasksController < ApplicationController
       else
         @output_tasks = OutputTask.page(params[:page]).order('created_at DESC').per(session[:item_per_page])
       end
-
     rescue Exception => e
       puts e
     end
@@ -46,18 +45,15 @@ class OutputTasksController < ApplicationController
   def create
     begin
       @output_task = OutputTask.new(output_task_params)
+      output_task_end_date = @output_task.end_date.to_s
+
       puts "====================****========================"
       puts "finish_production_id = " + @finish_production_id = @output_task.finish_production_id
       puts "nursery_production_id = " + @nursery_production_id = @output_task.nursery_production_id
       puts "finish_warehouse_id = " + @finish_warehouse_id = @output_task.finish_warehouse_id
       puts "nursery_warehouse_id = " + @nursery_warehouse_id = @output_task.nursery_warehouse_id
+      puts "Output Task End Date = " + output_task_end_date
       puts "====================****========================"
-
-      puts "=================================="
-      puts output_task_params
-      puts "=================================="
-
-
 
       @finish_production_id = @output_task.finish_production_id
       @nursery_production_id = @output_task.nursery_production_id
@@ -72,6 +68,7 @@ class OutputTasksController < ApplicationController
       nursery_amount = @output_task.nursery_amount
       spoiled_amount = @output_task.spoiled_amount
       sum_finish_nursery_spoil = finish_amount + nursery_amount + spoiled_amount
+      output_task_end_date = @output_task.end_date
 
       if total_output_amount >= sum_finish_nursery_spoil
         finish_warehouse_amount = @finish_warehouse_amount.amount
@@ -80,21 +77,26 @@ class OutputTasksController < ApplicationController
         nursery_warehouse_amount = @nursery_warehouse_amount.amount
         nursery_warehouse_amount += nursery_amount
 
-        puts "=================================================***"
-        puts @output_task.machineries
-        puts "=================================================***"
+        if @output_task.save
+          @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
+          @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
 
-        # Output_use_machinery.create(output_id: @output_task.uuid, machinery_id: { machinery: [] } )
-
-        # if @output_task.save
-        #   @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
-        #   @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
-        #   flash[:notice] = "OutputTask saved successfully"
-        #   redirect_to output_tasks_path
-        # else
-        #   flash[:notice] = "OutputTask can't save"
-        #   render 'new'
-        # end
+          puts "=====================Machinery IDs========================"    
+          @machinery_ids = params[:machineries]
+          @machinery_ids.split(",").each do |machinery_id|
+            puts "=====================Machinery========================"      
+            @machinery = Machinery.find_by_uuid(machinery_id)
+            # @machinery.availabe_date = output_task_end_date
+            @machinery.update_attributes!(availabe_date: output_task_end_date)
+            OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
+          end
+          
+          flash[:notice] = "OutputTask saved successfully"
+          redirect_to output_tasks_path
+        else
+          flash[:notice] = "OutputTask can't save"
+          render 'new'
+        end
       else
         flash[:notice] = "Finish, nursery, and spoiled quantity exceeds the total output task quantity. Please check the three quantities."  
         render 'new'
@@ -112,6 +114,6 @@ class OutputTasksController < ApplicationController
 
   private
   def output_task_params
-    params.require(:output_task).permit(:name, :start_date, :end_date, :block_id, :planting_project_id, :tree_amount, :labor_id, :reference_number, :output_amount, :finish_production_id, :finish_warehouse_id, :finish_amount, :nursery_production_id, :nursery_warehouse_id, :nursery_amount, :spoiled_amount, :spoiled_note, :note, :created_by, :updated_by, :machineries)
+    params.require(:output_task).permit(:name, :start_date, :end_date, :block_id, :planting_project_id, :tree_amount, :labor_id, :reference_number, :output_amount, :finish_production_id, :finish_warehouse_id, :finish_amount, :nursery_production_id, :nursery_warehouse_id, :nursery_amount, :spoiled_amount, :spoiled_note, :note, :created_by, :updated_by)
   end
 end

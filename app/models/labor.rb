@@ -17,7 +17,5 @@ class Labor < ActiveRecord::Base
   has_many :input_tasks, foreign_key: :labor_id
 
   scope :find_by_labor_name, -> name { where("name like ?", "%#{name}%") }
-
-  has_paper_trail
   
 end

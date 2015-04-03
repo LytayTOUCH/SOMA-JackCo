@@ -15,6 +15,4 @@ class Production < ActiveRecord::Base
   validates :planting_project_id, length: {maximum: 36}, presence: true
   validates :uom_id, length: {maximum: 36}, presence: true
 
-  has_paper_trail
-
 end

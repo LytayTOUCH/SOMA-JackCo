@@ -10,6 +10,7 @@ class OutputTask < ActiveRecord::Base
 
   has_many :machineries, through: :output_use_machineries
   has_many :output_use_machineries, foreign_key: :output_id
+  accepts_nested_attributes_for :machineries
 
   validates :name, length: { maximum: 50 }, presence: true
   validates :start_date, presence: true
@@ -25,5 +26,4 @@ class OutputTask < ActiveRecord::Base
 
   scope :find_by_output_task_name, -> name { where("name like ?", "%#{name}%") }
 
-  has_paper_trail
 end
