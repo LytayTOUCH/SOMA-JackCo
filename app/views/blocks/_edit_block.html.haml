@@ -8,7 +8,7 @@
       .modal-body
         .row
           .col-lg-3
-            = form_for [:farm, block], :url => {:controller => 'blocks', :action => 'update'}, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"} do |f|
+            = form_for [:farm, block], remote: true, :url => {:controller => 'blocks', :action => 'update'}, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"} do |f|
               = f.hidden_field :farm_id, value: block.farm_id
               .form-group
                 .col-xs-11

@@ -90,7 +90,7 @@ var showBlockName = function(block_name, block_shape, block_id){
   var myOptions = {
     content: block_name
     ,boxStyle: {
-       border: "1px solid white"
+       border: "0px solid white"
       ,textAlign: "center"
       ,fontSize: "8pt"
       ,fontWeight: "bold"
