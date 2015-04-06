@@ -8,7 +8,6 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require chosen-jquery
-//= require output_tasks
 //= require blocks
 //= require farms
 //= require infobox

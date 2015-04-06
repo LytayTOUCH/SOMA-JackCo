@@ -112,6 +112,9 @@
       .pull-right
         = render partial: 'form_button', locals: { f: f }
 
+- content_for :javascript_body do
+  = javascript_include_tag "output_tasks"
+
 :javascript
   $('.date_pick').datetimepicker({});
   $('select.item-select-machinaries').empty();

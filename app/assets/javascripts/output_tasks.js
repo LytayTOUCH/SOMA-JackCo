@@ -1,4 +1,4 @@
-$(document).on('ready page:load',function() {
+$(document).ready(function() {
   $('.block_id').change(
     function() {
       $('.tree_amount').show();
