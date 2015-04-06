@@ -57,6 +57,11 @@ class PlantingProjectsController < ApplicationController
     @my_farm_latlngs = @planting_project.farms.distinct
   end
 
+  def get_production_data
+    @production_data = Production.where(planting_project_id: params[:planting_project_id])
+    render :json => @production_data
+  end
+
   private
   def set_title
     content_for :title, "Planting Project"

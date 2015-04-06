@@ -30,6 +30,23 @@ $(document).ready(function() {
     }
   );
 
+  $('.planting_project_id').change(
+    function() {
+      $('.production').show();
+      var planting_project_id = $(".planting_project_id").val();
+      jQuery.ajax({
+        url: "/get_production_data",
+        type: "GET",
+        data: {"planting_project_id" : planting_project_id},
+        dataType: "json",
+        success: function(data){
+          $('input.planting_project_id').val(data.uuid);
+          $('input.planting_project_name').val(data.status);
+        }
+      });  
+    }
+  );    
+
   $('.warehouse_id').change(
     function() {
       $('select.item-select-machinaries').html('');

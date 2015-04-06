@@ -146,6 +146,8 @@ Rails.application.routes.draw do
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
+  get 'get_production_data', to: 'planting_projects#get_production_data'
+
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
 
