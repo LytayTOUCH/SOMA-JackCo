@@ -24,52 +24,40 @@
     #print_report{style: "margin-left: -20px; margin-top: 10px;"}
   .row#report
     .form-group{style: "margin-top: 20px;"}
-      .col-xs-6
-        %table#data_table
-          %thead
-            %tr
-              %th.header= "Ref."
-              %th.header= "Task"
-              %th.header= "Labor"
-              %th.header= "Machinery"     
-          - @input_tasks.each do |input_task|
-            %tr
-              %td= input_task.reference_number
-              %td= input_task.name
-              %td= input_task.labor.name
-              %td
-                - if input_task.machinery_id.present?
-                  = input_task.machinery.name
-
-      .col-xs-6
+      .col-xs-12
         %table.list_data_table
           %thead
             %tr
-              %th.col-md-2.header= "Material Name"
-              %th.col-md-1.header= "Material Category"
-              %th.col-md-3.header= "Qty"
+              %th= "Material Name"
+              %th.header= "Material Category"
+              - @blocks.each do |block|
+                %th.col-md-1= block.area
+              / %th= "Total"
           %tbody
-            - @input_tasks.joins(:material).group("materials.name").order("material_cate_uuid").each do |input_task|
+            - @input_tasks.joins(:material).order("material_cate_uuid").each do |input_task|
               %tr
                 %td= input_task.material.name
                 %td= input_task.material.material_category.name
-                %td
-                  = @input_tasks.where(:material_id => input_task.material_id).sum(:material_amount).to_s + "( " + input_task.material.unit_of_measurement.name + " )"
+                - @blocks.each do |block| 
+                  - if block.area == input_task.block.area
+                    - @input_tasks.joins(:block).group("blocks.area").where("material_id =?", input_task.material_id).sum(:material_amount).each do |area|
+                      - if area[0] == block.area
+                        / %td=area[1].to_s + "(" + input_task.material.unit_of_measurement.name + ")" + area[0].to_s
+                        %td= @input_tasks.find_by("material_id =? and block_id =?", input_task.material_id, input_task.block_id).material_amount.to_s + "( " + input_task.material.unit_of_measurement.name + " )"
+                  - else
+                    %td
+                / %td
+                /   = @input_tasks.where("material_id =?", input_task.material_id).sum(:material_amount).to_s + "(" + input_task.material.unit_of_measurement.name + ")"
 
-  = link_to "PDF",  downloadpdf_input_uses_path, title: "Download Report as PDF",class: "btn btn-primary", style: "float: right; margin-top: 10px;"
-
-  
-    
+  / = link_to "PDF",  downloadpdf_input_uses_path, title: "Download Report as PDF",class: "btn btn-primary", style: "float: right; margin-top: 10px;"
 
 
 - content_for :javascript_body do
   = stylesheet_link_tag "application"
   = stylesheet_link_tag "input_uses", :media => "all"
-  = stylesheet_link_tag "print", :media => :print, "data-turbolinks-track" => true
+  / = stylesheet_link_tag "print", :media => :print, "data-turbolinks-track" => true
   = stylesheet_link_tag "print-preview", :media => :screen, "data-turbolinks-track" => true
   = javascript_include_tag "application"
-
-
 
 :javascript
   $('.date_pick').datetimepicker();
@@ -98,7 +86,7 @@
             api.column(1, {page:'current'} ).data().each( function ( group, i ) {
                 if ( last !== group ) {
                     $(rows).eq( i ).before(
-                        '<tr class="group"><td colspan="2">'+group+'</td></tr>'
+                        '<tr class="group"><td colspan="1">'+group+'</td></tr>'
                     );
  
                     last = group;
