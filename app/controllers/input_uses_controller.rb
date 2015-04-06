@@ -6,6 +6,8 @@ class InputUsesController < ApplicationController
 
   	@material_category = MaterialCategory.all
 
+    @blocks = Block.group(:area)
+
   end
 
   def downloadpdf
