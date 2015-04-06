@@ -119,6 +119,3 @@ var addListenersOnPolygon = function(polygon, block_name, center_latlong, block_
     infobox.open(map);
   });
 }
-
-$('#print_report').prepend('<a id="print_preview"><span class="glyphicon glyphicon-print"></span> Print this report</a>');
-$('a#print_preview').printPreview();
