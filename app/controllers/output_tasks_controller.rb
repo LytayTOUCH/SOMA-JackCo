@@ -15,7 +15,6 @@ class OutputTasksController < ApplicationController
       else
         @output_tasks = OutputTask.page(params[:page]).order('created_at DESC').per(session[:item_per_page])
       end
-
     rescue Exception => e
       puts e
     end
@@ -35,6 +34,9 @@ class OutputTasksController < ApplicationController
 
       @productions = Production.all
 
+      @warehouses = Warehouse.all
+      @machineries = Machinery.select("uuid, name")
+
     rescue Exception => e
       puts e
     end
@@ -43,12 +45,14 @@ class OutputTasksController < ApplicationController
   def create
     begin
       @output_task = OutputTask.new(output_task_params)
+      output_task_end_date = @output_task.end_date.to_s
 
       puts "====================****========================"
       puts "finish_production_id = " + @finish_production_id = @output_task.finish_production_id
       puts "nursery_production_id = " + @nursery_production_id = @output_task.nursery_production_id
       puts "finish_warehouse_id = " + @finish_warehouse_id = @output_task.finish_warehouse_id
       puts "nursery_warehouse_id = " + @nursery_warehouse_id = @output_task.nursery_warehouse_id
+      puts "Output Task End Date = " + output_task_end_date
       puts "====================****========================"
 
       @finish_production_id = @output_task.finish_production_id
@@ -64,6 +68,7 @@ class OutputTasksController < ApplicationController
       nursery_amount = @output_task.nursery_amount
       spoiled_amount = @output_task.spoiled_amount
       sum_finish_nursery_spoil = finish_amount + nursery_amount + spoiled_amount
+      output_task_end_date = @output_task.end_date
 
       if total_output_amount >= sum_finish_nursery_spoil
         finish_warehouse_amount = @finish_warehouse_amount.amount
@@ -75,6 +80,17 @@ class OutputTasksController < ApplicationController
         if @output_task.save
           @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
           @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
+
+          puts "=====================Machinery IDs========================"    
+          @machinery_ids = params[:machineries]
+          @machinery_ids.split(",").each do |machinery_id|
+            puts "=====================Machinery========================"      
+            @machinery = Machinery.find_by_uuid(machinery_id)
+            # @machinery.availabe_date = output_task_end_date
+            @machinery.update_attributes!(availabe_date: output_task_end_date)
+            OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
+          end
+          
           flash[:notice] = "OutputTask saved successfully"
           redirect_to output_tasks_path
         else

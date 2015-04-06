@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include ExceptionHandler
+  include LogHelper
   
   before_action :authenticate_user!, :count_farm, :farm_name_navigator
   before_filter :configure_permitted_parameters, if: :devise_controller?

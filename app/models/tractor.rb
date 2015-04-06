@@ -16,7 +16,5 @@ class Tractor < ActiveRecord::Base
 
   has_one :maintenance
 
-  has_paper_trail
-
 end
   

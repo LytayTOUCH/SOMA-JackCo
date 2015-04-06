@@ -82,7 +82,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index]
   put '/dashboards', :to => 'dashboards#index'
   resources :dashboards
-  resources :warehouse_types
+  resources :warehouse_types, only: [:index]
   resources :warehouses
   resources :user_groups  
   
@@ -141,6 +141,8 @@ Rails.application.routes.draw do
   get 'get_unit_of_measurement_data', to: 'materials#get_material_uom_data'
 
   get 'get_block_planting_project_data', to: 'blocks#get_block_planting_project_data'
+
+  get 'get_warehouses_data', to: 'warehouses#get_warehouses_data'  
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 

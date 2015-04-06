@@ -24,6 +24,4 @@ class Warehouse < ActiveRecord::Base
 
   scope :find_by_warehouse_name, -> name { where("name like ?", "%#{name}%") }
 
-  has_paper_trail
-
 end

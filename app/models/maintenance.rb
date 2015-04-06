@@ -13,6 +13,4 @@ class Maintenance < ActiveRecord::Base
 
   scope :find_limit_10, -> { limit(10) }
 
-  has_paper_trail
-
 end

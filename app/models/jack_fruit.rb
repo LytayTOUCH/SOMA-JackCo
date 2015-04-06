@@ -12,6 +12,4 @@ class JackFruit < ActiveRecord::Base
 
   scope :find_by_jack_fruit_code, -> code { where("code like ?", "%#{code}%") }
 
-  has_paper_trail
-
 end
