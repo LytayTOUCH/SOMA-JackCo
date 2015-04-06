@@ -7,11 +7,11 @@
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
+//= require chosen-jquery
+//= require output_tasks
 //= require blocks
 //= require farms
 //= require infobox
-//= require output_tasks
-//= require chosen-jquery
 //= require warehouse_item_transactions
 //= require users
 //= require select2
