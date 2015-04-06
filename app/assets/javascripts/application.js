@@ -8,12 +8,9 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require chosen-jquery
-//= require output_tasks
 //= require blocks
 //= require farms
 //= require infobox
-//= require warehouse_item_transactions
-//= require users
 //= require select2
 //= require jquery.print-preview
 
