@@ -53,6 +53,9 @@ Rails.application.routes.draw do
   resources :machinery_types, except: [:destroy]
   resources :machineries, except: [:destroy]
 
+  resources :equipment_types, except: [:destroy]
+  resources :equipment, except: [:destroy]
+
   resources :materials, except: [:destroy] do
     collection do
       get 'new_supplier'

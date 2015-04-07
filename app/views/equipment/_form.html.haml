@@ -1,0 +1,31 @@
+#form-model-content-supplier
+= simple_form_for @equipment, html: {class: 'form-horizontal'} do |f|
+  .form-group
+    %label.col-xs-2 Equipment Name
+    .col-xs-5
+      = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-2 Equipment Type *
+    .col-xs-5
+      = f.association :equipment_type, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :equipment_type_id
+  .form-group
+    %label.col-xs-2 Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: {class: "form-control"}
+
+  .form-group
+    %label.col-xs-2 Planting Project
+    .col-xs-5
+      = f.input :planting_project_id, label: false, collection: @planting_projects, input_html: {class: "form-control"}
+      %span.help-block= f.error :planting_project_id
+
+  .form-group
+    %label.col-xs-2.control-label.text-left Active
+    .col-xs-5
+      = f.input :status, label: false
+  .form-group
+    .col-xs-7
+      .pull-right
+        = render partial: 'form_button', locals: { f: f }
