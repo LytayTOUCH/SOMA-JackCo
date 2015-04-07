@@ -25,27 +25,24 @@ $(document).ready(function() {
         success: function(data){
           $('input.planting_project_id').val(data.uuid);
           $('input.planting_project_name').val(data.name);
+
+          jQuery.ajax({
+            url: "/get_production_by_planting_project",
+            type: "GET",
+            data: {"planting_project_id" : data.uuid},
+            dataType: "json",
+            success: function(data){
+              $.each(data, function(i, value) {
+                $('select.production_ids').append('<option value="'+value.uuid+'">'+value.status+'</option>');
+                // $('select.production_ids').clear();
+              });
+            }
+          }); 
         }
+
       });  
     }
   );
-
-  $('.planting_project_id').change(
-    function() {
-      $('.production').show();
-      var planting_project_id = $(".planting_project_id").val();
-      jQuery.ajax({
-        url: "/get_production_data",
-        type: "GET",
-        data: {"planting_project_id" : planting_project_id},
-        dataType: "json",
-        success: function(data){
-          $('input.planting_project_id').val(data.uuid);
-          $('input.planting_project_name').val(data.status);
-        }
-      });  
-    }
-  );    
 
   $('.warehouse_id').change(
     function() {

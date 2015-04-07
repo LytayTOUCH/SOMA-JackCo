@@ -94,6 +94,8 @@ Rails.application.routes.draw do
 
   get 'warehouse_material_received/:warehouse_item_requested_transaction_id', to: 'warehouse_material_receiveds#new', as: :new_warehouse_material_received
 
+  get 'new_output_task_from_map/:block_id', to: 'output_tasks#new_output_task_from_map', as: :new_output_task_from_map
+
   # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
   resources :roles do
@@ -146,7 +148,7 @@ Rails.application.routes.draw do
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
-  get 'get_production_data', to: 'planting_projects#get_production_data'
+  get 'get_production_by_planting_project', to: 'blocks#get_production_by_planting_project'
 
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'

@@ -31,15 +31,27 @@ class OutputTasksController < ApplicationController
       @nursery_warehouse_type = WarehouseType.find_by_name("Nursery Warehouse")
       @finish_warehouses = Warehouse.where(warehouse_type_uuid: @finish_warehouse_type)
       @nursery_warehouses = Warehouse.where(warehouse_type_uuid: @nursery_warehouse_type)
-
-      @productions = Production.all
-
       @warehouses = Warehouse.all
       @machineries = Machinery.select("uuid, name")
 
     rescue Exception => e
       puts e
     end
+  end
+
+  def new_output_task_from_map
+    @output_task = OutputTask.new
+    @block = Block.find_by(uuid: params[:block_id])
+    @farm_block = @block.farm.name
+    @planting_project = PlantingProject.find_by(uuid: @block.planting_project_id)
+    
+    @finish_warehouse_type = WarehouseType.find_by_name("Finished Goods Warehouse")
+    @nursery_warehouse_type = WarehouseType.find_by_name("Nursery Warehouse")
+    @finish_warehouses = Warehouse.where(warehouse_type_uuid: @finish_warehouse_type)
+    @nursery_warehouses = Warehouse.where(warehouse_type_uuid: @nursery_warehouse_type)
+    @productions = Production.where(planting_project_id: @block.planting_project_id)
+    @warehouses = Warehouse.all
+    @machineries = Machinery.select("uuid, name")
   end
 
   def create

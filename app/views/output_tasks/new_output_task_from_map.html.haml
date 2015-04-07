@@ -1,3 +1,5 @@
+%h2= "New #{yield :title}"
+%hr
 = simple_form_for @output_task, html: { class: "form-horizontal" } do |f|
   .form-group
     %label.col-xs-2.control-label.text-left Name *
@@ -19,18 +21,19 @@
   .form-group
     %label.col-xs-2.control-label.text-left Block *
     .col-xs-5
-      = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name + " - " + value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control block_id'}
+      = f.input :block_id, label: false, input_html: { class: "form-control block_id", value: @block.uuid }, error_html: { class: "err_msg" }, as: :hidden
+      %input.form-control{:type => "text", value: @block.name + " - " + @farm_block}
     %span.help-block= f.error :block_id
   .form-group
     %label.col-xs-2.control-label.text-left Planting Project *
     .col-xs-5
-      = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project_id"}, error_html: {class: "err_msg"}, as: :hidden
-      %input.form-control.planting_project_name{:type => "text", value: ""}
+      = f.input :planting_project_id, label: false, input_html: { class: "form-control", value: @planting_project.uuid }, error_html: { class: "err_msg" }, as: :hidden
+      %input.form-control{:type => "text", value: @planting_project.name }
     %span.help-block= f.error :planting_project_id
   .form-group
     %label.col-xs-2.control-label.text-left Tree amount *
     .col-xs-5
-      = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount" }, error_html: {class: "err_msg"}
+      = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount", value: @block.tree_amount }, error_html: {class: "err_msg"}
     %span.help-block= f.error :tree_amount
   .form-group
     %label.col-xs-2.control-label.text-left Labor *
@@ -51,7 +54,6 @@
     .col-xs-5
       = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries', multiple: false }
       = hidden_field_tag 'machineries', ''
-      / = f.select :machineries, options_for_select(@machineries.map { |value| [ value.name, value.uuid ]}), { include_blank: true }, { class: 'chosen-select form-control', multiple: true }
     %span.help-block= f.error :machineries  
   .form-group
     %label.col-xs-2.control-label.text-left Output Quantity *
@@ -61,7 +63,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Finish Production *
     .col-xs-5
-      = f.select :finish_production_id, options_for_select("Select status"), { include_blank: true }, {class: 'form-control production_ids'}
+      = f.input :finish_production_id, label: false, collection: @productions, input_html: {class: 'form-control'}, error_html: {class: "err_msg"}, label_method: :status
     %span.help-block= f.error :finish_production_id  
   .form-group
     %label.col-xs-2.control-label.text-left Finish Warehouse *
@@ -76,8 +78,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Nursery Production *
     .col-xs-5
-      / = f.select :nursery_production_id, options_for_select(@planting_project_names.map { |value| [ value.status + " - " + value.planting_project.name, value.uuid ]}, :selected => f.object.nursery_production_id), {:include_blank => true}, {class: 'form-control'}
-      = f.select :nursery_production_id, options_for_select("Select status"), { include_blank: true }, {class: 'form-control production_ids'}
+      = f.input :nursery_production_id, label: false, collection: @productions, input_html: {class: 'form-control'}, error_html: {class: "err_msg"}, label_method: :status
     %span.help-block= f.error :nursery_production_id  
   .form-group
     %label.col-xs-2.control-label.text-left Nursery Warehouse *

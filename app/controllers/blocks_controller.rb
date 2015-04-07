@@ -50,6 +50,11 @@ class BlocksController < ApplicationController
     render :json => @block_data
   end
 
+  def get_production_by_planting_project
+    @production_data = Production.where(planting_project_id: params[:planting_project_id])
+    render :json => @production_data
+  end  
+
   private
     def get_farm
       @farm = Farm.find_by(uuid: params[:farm_id])
