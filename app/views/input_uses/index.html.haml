@@ -1,5 +1,5 @@
 %h2
-  = "Input Use Report"
+  = "Input-Use Report"
 
 %hr
   .row
@@ -22,14 +22,16 @@
 - if params[:start_date].present?
   .row
     #print_report{style: "margin-left: -20px; margin-top: 10px;"}
+
   .row#report
+    #content
     .form-group{style: "margin-top: 20px;"}
       .col-xs-12
         %table.list_data_table
           %thead
             %tr
               %th= "Material Name"
-              %th.header= "Material Category"
+              %th= "Material Category"
               - @blocks.each do |block|
                 %th.col-md-1= block.area
               / %th= "Total"
@@ -52,12 +54,12 @@
   / = link_to "PDF",  downloadpdf_input_uses_path, title: "Download Report as PDF",class: "btn btn-primary", style: "float: right; margin-top: 10px;"
 
 
-- content_for :javascript_body do
-  = stylesheet_link_tag "application"
-  = stylesheet_link_tag "input_uses", :media => "all"
-  / = stylesheet_link_tag "print", :media => :print, "data-turbolinks-track" => true
+- content_for :javascript_head do
+  = stylesheet_link_tag "print", :media => :print, "data-turbolinks-track" => true
   = stylesheet_link_tag "print-preview", :media => :screen, "data-turbolinks-track" => true
-  = javascript_include_tag "application"
+
+- content_for :javascript_body do
+  = javascript_include_tag "input_uses"
 
 :javascript
   $('.date_pick').datetimepicker();
