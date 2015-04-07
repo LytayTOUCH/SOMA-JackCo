@@ -17,15 +17,9 @@ class BlocksController < ApplicationController
   end
 
   def update
-    p "=============Block Params==================="
-    p block_params
-    p "================================"
-    # p "=============Block Object==================="
-    # p @block
-    # p "================================"
-    # if @block.update(block_params)
-    #   @block
-    # end
+    if @block.update(block_params)
+      @block
+    end
   end
 
   def show
