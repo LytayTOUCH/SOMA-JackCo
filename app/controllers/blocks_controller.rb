@@ -34,6 +34,10 @@ class BlocksController < ApplicationController
     end
   end
 
+  def destroy
+    @block.destroy
+  end
+
   def get_tree_amounts
     @get_tree = Block.select("tree_amount").where("uuid=?",params[:block_id]).limit(1)
     render :json => @get_tree

@@ -114,7 +114,7 @@ var showBlockName = function(block_name, block_shape, block_id){
 var addListenersOnPolygon = function(polygon, block_name, center_latlong, block_id) {
   google.maps.event.addListener(polygon, 'click', function (event){
     infobox.close();
-    infobox.setContent("<div class = 'col-lg-12'><div class ='col-lg-7'>"+$("#"+block_id).get()[0].innerHTML+"</div><div class='col-lg-5'><div style='padding: 10px 0px 0px 0px;'>"+ $('div.weather-temp').get()[0].innerHTML+"</div></div></div>");
+    infobox.setContent("<div class = 'col-lg-12'><div class ='col-lg-7'>"+$("#block_"+block_id).get()[0].innerHTML+"</div><div class='col-lg-5'><div style='padding: 10px 0px 0px 0px;'>"+ $('div.weather-temp').get()[0].innerHTML+"</div></div></div>");
     infobox.setPosition(center_latlong);
     infobox.open(map);
   });
