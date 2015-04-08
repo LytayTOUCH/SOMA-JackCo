@@ -49,6 +49,6 @@ class EquipmentTypesController < ApplicationController
   
   private
   def equipment_type_params
-    params.require(:equipment_type).permit(:name, :note)
+    params.require(:equipment_type).permit(:name, :note, :status)
   end
 end

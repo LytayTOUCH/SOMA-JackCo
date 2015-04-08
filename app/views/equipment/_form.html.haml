@@ -8,7 +8,7 @@
   .form-group
     %label.col-xs-2 Equipment Type *
     .col-xs-5
-      = f.association :equipment_type, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+      = f.input :equipment_type_id, label: false, collection: @equipment_types, input_html: {class: "form-control"}
     %span.help-block= f.error :equipment_type_id
   .form-group
     %label.col-xs-2 Note

@@ -1,8 +1,9 @@
 %table#list_data_table
   %thead
     %tr
-      %th.col-md-2= "Name / Code"
+      %th.col-md-2= "Name"
       %th.col-md-1= "Type"
+      %th.col-md-2= "Planting Project"
       %th.col-md-2= "Status"
       %th.col-md-1= "Action"
   %tbody
@@ -10,6 +11,7 @@
       %tr
         %td= e.name
         %td= e.equipment_type.name
+        %td= @planting_projects.find(e.planting_project_id).name
         %td
           = form_for(e) do |f|
             - if e.status

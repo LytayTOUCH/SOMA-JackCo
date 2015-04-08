@@ -4,11 +4,13 @@ class EquipmentController < ApplicationController
   
   def index
     @equipment = Equipment.order(created_at: :desc)
+    @planting_projects = PlantingProject.all
   end
   
   def new
     begin
       @equipment = Equipment.new
+      @equipment_types = EquipmentType.where(status: true)
       @planting_projects = PlantingProject.all
     rescue Exception => e
       puts e

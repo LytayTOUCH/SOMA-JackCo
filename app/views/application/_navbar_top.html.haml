@@ -77,7 +77,14 @@
                 = navbar_link "Machinery Types", machinery_types_path, "active"
               %li
                 = navbar_link "Machineries", machineries_path, "active"
-          
+
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Equipment
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Equipment Types", equipment_types_path, "active"
+              %li
+                = navbar_link "Equipments", equipment_index_path, "active"
           %li.divider
           %li
             = navbar_link "Settings", settings_path, "active"
@@ -114,12 +121,6 @@
               %li.divider
               %li
                 = navbar_link "Distribution", "#", "active"
-          
-          %li.dropdown-submenu
-            %a{:href => "#", :tabindex => "-1"} Machineries
-            %ul.dropdown-menu
-              %li
-                = navbar_link "In Warehouse", "#", "active"
           
           %li.divider
           
