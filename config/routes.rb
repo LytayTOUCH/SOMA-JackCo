@@ -99,6 +99,8 @@ Rails.application.routes.draw do
 
   get 'new_output_task_from_map/:block_id', to: 'output_tasks#new_output_task_from_map', as: :new_output_task_from_map
 
+  get 'new_input_task_from_map/:block_id', to: 'input_tasks#new_input_task_from_map', as: :new_input_task_from_map
+
   # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
   resources :roles do
@@ -147,7 +149,7 @@ Rails.application.routes.draw do
 
   get 'get_block_planting_project_data', to: 'blocks#get_block_planting_project_data'
 
-  get 'get_warehouses_data', to: 'warehouses#get_warehouses_data'  
+  get 'get_machinery_data', to: 'planting_projects#get_machinery_data'  
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 

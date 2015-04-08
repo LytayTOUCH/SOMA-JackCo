@@ -46,14 +46,9 @@
       = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :reference_number
   .form-group
-    %label.col-xs-2.control-label.text-left Select a Warehouse *
-    .col-xs-5
-      = f.input :note, label: false, collection: @warehouses, input_html: { class: "form-control warehouse_id" }, error_html: {class: "err_msg"}
-  .form-group
     %label.col-xs-2.control-label.text-left Machineries *
     .col-xs-5
-      = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries', multiple: false }
-      = hidden_field_tag 'machineries', ''
+      = f.select :machineries, options_for_select(@machineries.map { |value| [ value.name, value.uuid ]}), { include_blank: true }, { class: 'chosen-select form-control', multiple: true }
     %span.help-block= f.error :machineries  
   .form-group
     %label.col-xs-2.control-label.text-left Output Quantity *
@@ -119,9 +114,8 @@
 
 :javascript
   $('.date_pick').datetimepicker({});
-  $('select.item-select-machinaries').empty();
-  //$(".chosen-select").chosen(
-  //  {width: "100%"},
-  //  {allow_single_deselect: true},
-  //  {no_results_text: 'No results matched'}
-  //);  
+  $(".chosen-select").chosen(
+   {width: "100%"},
+   {allow_single_deselect: true},
+   {no_results_text: 'No results matched'}
+  );  

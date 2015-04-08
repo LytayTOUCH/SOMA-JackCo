@@ -32,14 +32,49 @@ $(document).ready(function() {
             data: {"planting_project_id" : data.uuid},
             dataType: "json",
             success: function(data){
+              $('select.production_ids').empty();
               $.each(data, function(i, value) {
                 $('select.production_ids').append('<option value="'+value.uuid+'">'+value.status+'</option>');
-                // $('select.production_ids').clear();
               });
             }
           }); 
-        }
 
+          $('select.item-select-machinaries').html('');
+          $('.warehouse').show();
+          var planting_project_id = $(".planting_project_id").val();
+          jQuery.ajax({
+            url: "/get_machinery_data",
+            type: "GET",
+            data: {"planting_project_id" : planting_project_id},
+            dataType: "json",
+            success: function(data){
+              if(data.length){
+                $.each(data, function(i, value) {
+                  $('select.item-select-machinaries').append('<option value="'+value.uuid+'">'+value.name+'</option>');
+                });
+                $('select.item-select-machinaries').attr("multiple", "multiple");
+                $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
+              }
+              else{
+                $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+                $('select.item-select-machinaries').attr("multiple", "multiple");
+              }
+              $('select.item-select-machinaries').trigger('chosen:updated');
+            },
+            complete: function(data){
+              $("select.chosen-select").chosen(
+                {width: "100%"},
+                {allow_single_deselect: true},
+                {no_results_text: 'No results matched'}
+              ).change(function(event){
+                if(event.target == this){
+                  console.log($(this).val());
+                  $('#machineries').val($(this).val());
+                }
+              });  
+            }
+          });
+        }
       });  
     }
   );
@@ -48,11 +83,11 @@ $(document).ready(function() {
     function() {
       $('select.item-select-machinaries').html('');
       $('.warehouse').show();
-      var warehouse_id = $(".warehouse_id").val();
+      var planting_project_id = $(".planting_project_id").val();
       jQuery.ajax({
-        url: "/get_warehouses_data",
+        url: "/get_machinery_data",
         type: "GET",
-        data: {"warehouse_id" : warehouse_id},
+        data: {"planting_project_id" : planting_project_id},
         dataType: "json",
         success: function(data){
           if(data.length){
@@ -77,12 +112,10 @@ $(document).ready(function() {
             if(event.target == this){
               console.log($(this).val());
               $('#machineries').val($(this).val());
-              // var value = $(this).val();
-              // $("#result").text(value);
             }
           });  
         }
-      });     
+      });   
     }
   );
 

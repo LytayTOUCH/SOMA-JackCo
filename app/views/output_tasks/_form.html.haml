@@ -42,10 +42,10 @@
     .col-xs-5
       = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :reference_number
-  .form-group
-    %label.col-xs-2.control-label.text-left Select a Warehouse *
-    .col-xs-5
-      = f.input :note, label: false, collection: @warehouses, input_html: { class: "form-control warehouse_id" }, error_html: {class: "err_msg"}
+  / .form-group
+  /   %label.col-xs-2.control-label.text-left Select a Warehouse *
+  /   .col-xs-5
+  /     = f.input :note, label: false, collection: @warehouses, input_html: { class: "form-control warehouse_id" }, error_html: {class: "err_msg"}
   .form-group
     %label.col-xs-2.control-label.text-left Machineries *
     .col-xs-5

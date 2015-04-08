@@ -99,11 +99,6 @@ class WarehousesController < ApplicationController
     end
   end
 
-  def get_warehouses_data
-    @warehouse_datas = Machinery.where("warehouse_id = ? and status = ? and availabe_date < ?", params[:warehouse_id], true, Date.today).distinct(:name)
-    render :json => @warehouse_datas
-  end
-
   private
   def warehouse_params
     params.require(:warehouse).permit(:name, :labor_uuid, :warehouse_type_uuid, :address, :note, :active)

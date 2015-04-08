@@ -51,7 +51,7 @@ class OutputTasksController < ApplicationController
     @nursery_warehouses = Warehouse.where(warehouse_type_uuid: @nursery_warehouse_type)
     @productions = Production.where(planting_project_id: @block.planting_project_id)
     @warehouses = Warehouse.all
-    @machineries = Machinery.select("uuid, name")
+    @machineries = Machinery.select("uuid, name").where(planting_project_id: @planting_project.uuid)
   end
 
   def create
@@ -93,15 +93,25 @@ class OutputTasksController < ApplicationController
           @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
           @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
 
-          puts "=====================Machinery IDs========================"    
-          @machinery_ids = params[:machineries]
-          @machinery_ids.split(",").each do |machinery_id|
-            puts "=====================Machinery========================"      
-            @machinery = Machinery.find_by_uuid(machinery_id)
-            # @machinery.availabe_date = output_task_end_date
-            @machinery.update_attributes!(availabe_date: output_task_end_date)
-            OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
+          # puts "=====================Machinery IDs========================"  
+          if params[:output_task][:machineries].is_a?(Array)
+            params[:output_task][:machineries].each do |machinery_id|
+              unless machinery_id.empty?
+                @machinery = Machinery.find_by_uuid(machinery_id)
+                @machinery.update_attributes!(availabe_date: output_task_end_date)
+                OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
+              end
+            end
+          else
+            @machinery_ids = params[:machineries]
+            @machinery_ids.split(",").each do |machinery_id|
+              puts "=====================Machinery========================"      
+              @machinery = Machinery.find_by_uuid(machinery_id)
+              @machinery.update_attributes!(availabe_date: output_task_end_date)
+              OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
+            end
           end
+          # end  
           
           flash[:notice] = "OutputTask saved successfully"
           redirect_to output_tasks_path
