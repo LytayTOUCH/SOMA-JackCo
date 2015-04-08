@@ -1,0 +1,8 @@
+.row
+  %h1
+    = "Equipment Type"
+    .pull-right
+      = link_to "New Equipment Type", new_equipment_type_path, class: "btn btn-primary"
+    
+  %hr
+  = render partial: 'list'

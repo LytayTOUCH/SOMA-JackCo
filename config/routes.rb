@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'input_uses/index'
-
   get 'log_tracking/index'
   
   resources :warehouse_material_amounts, only: [:index, :edit, :update]
@@ -55,6 +53,9 @@ Rails.application.routes.draw do
   resources :machinery_types, except: [:destroy]
   resources :machineries, except: [:destroy]
 
+  resources :equipment_types, except: [:destroy]
+  resources :equipment, except: [:destroy]
+
   resources :materials, except: [:destroy] do
     collection do
       get 'new_supplier'
@@ -84,7 +85,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:index]
   put '/dashboards', :to => 'dashboards#index'
   resources :dashboards
-  resources :warehouse_types
+  resources :warehouse_types, only: [:index]
   resources :warehouses
   resources :user_groups  
   
@@ -95,6 +96,10 @@ Rails.application.routes.draw do
   # get ':user_group_id/permissions/new', to: 'permissions#new', as: :permissions_new
 
   get 'warehouse_material_received/:warehouse_item_requested_transaction_id', to: 'warehouse_material_receiveds#new', as: :new_warehouse_material_received
+
+  get 'new_output_task_from_map/:block_id', to: 'output_tasks#new_output_task_from_map', as: :new_output_task_from_map
+
+  get 'new_input_task_from_map/:block_id', to: 'input_tasks#new_input_task_from_map', as: :new_input_task_from_map
 
   # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
@@ -144,10 +149,21 @@ Rails.application.routes.draw do
 
   get 'get_block_planting_project_data', to: 'blocks#get_block_planting_project_data'
 
+  get 'get_machinery_data', to: 'planting_projects#get_machinery_data'  
+
   get 'get_labor_email_data', to: 'labors#get_labor_email'
+
+  get 'get_production_by_planting_project', to: 'blocks#get_production_by_planting_project'
 
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
+
+  # get 'input_uses/index'
+  resources :input_uses do
+    collection do
+      get 'downloadpdf'
+    end
+  end
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

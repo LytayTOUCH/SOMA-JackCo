@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
   $('.block_id').change(
     function() {
       $('.tree_amount').show();
@@ -14,11 +14,7 @@ $(document).ready(function(){
           });
         }
       });
-    }
-  );
 
-  $('.block_id').change(
-    function() {
       $('.planting_project').show();
       var block_id = $(".block_id").val();
       jQuery.ajax({
@@ -29,8 +25,97 @@ $(document).ready(function(){
         success: function(data){
           $('input.planting_project_id').val(data.uuid);
           $('input.planting_project_name').val(data.name);
+
+          jQuery.ajax({
+            url: "/get_production_by_planting_project",
+            type: "GET",
+            data: {"planting_project_id" : data.uuid},
+            dataType: "json",
+            success: function(data){
+              $('select.production_ids').empty();
+              $.each(data, function(i, value) {
+                $('select.production_ids').append('<option value="'+value.uuid+'">'+value.status+'</option>');
+              });
+            }
+          }); 
+
+          $('select.item-select-machinaries').html('');
+          $('.warehouse').show();
+          var planting_project_id = $(".planting_project_id").val();
+          jQuery.ajax({
+            url: "/get_machinery_data",
+            type: "GET",
+            data: {"planting_project_id" : planting_project_id},
+            dataType: "json",
+            success: function(data){
+              if(data.length){
+                $.each(data, function(i, value) {
+                  $('select.item-select-machinaries').append('<option value="'+value.uuid+'">'+value.name+'</option>');
+                });
+                $('select.item-select-machinaries').attr("multiple", "multiple");
+                $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
+              }
+              else{
+                $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+                $('select.item-select-machinaries').attr("multiple", "multiple");
+              }
+              $('select.item-select-machinaries').trigger('chosen:updated');
+            },
+            complete: function(data){
+              $("select.chosen-select").chosen(
+                {width: "100%"},
+                {allow_single_deselect: true},
+                {no_results_text: 'No results matched'}
+              ).change(function(event){
+                if(event.target == this){
+                  console.log($(this).val());
+                  $('#machineries').val($(this).val());
+                }
+              });  
+            }
+          });
         }
-      });      
+      });  
+    }
+  );
+
+  $('.warehouse_id').change(
+    function() {
+      $('select.item-select-machinaries').html('');
+      $('.warehouse').show();
+      var planting_project_id = $(".planting_project_id").val();
+      jQuery.ajax({
+        url: "/get_machinery_data",
+        type: "GET",
+        data: {"planting_project_id" : planting_project_id},
+        dataType: "json",
+        success: function(data){
+          if(data.length){
+            $.each(data, function(i, value) {
+              $('select.item-select-machinaries').append('<option value="'+value.uuid+'">'+value.name+'</option>');
+            });
+            $('select.item-select-machinaries').attr("multiple", "multiple");
+            $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
+          }
+          else{
+            $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+            $('select.item-select-machinaries').attr("multiple", "multiple");
+          }
+          $('select.item-select-machinaries').trigger('chosen:updated');
+        },
+        complete: function(data){
+          $("select.chosen-select").chosen(
+            {width: "100%"},
+            {allow_single_deselect: true},
+            {no_results_text: 'No results matched'}
+          ).change(function(event){
+            if(event.target == this){
+              console.log($(this).val());
+              $('#machineries').val($(this).val());
+            }
+          });  
+        }
+      });   
     }
   );
 

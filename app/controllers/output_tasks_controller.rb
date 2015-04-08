@@ -15,7 +15,6 @@ class OutputTasksController < ApplicationController
       else
         @output_tasks = OutputTask.page(params[:page]).order('created_at DESC').per(session[:item_per_page])
       end
-
     rescue Exception => e
       puts e
     end
@@ -32,23 +31,40 @@ class OutputTasksController < ApplicationController
       @nursery_warehouse_type = WarehouseType.find_by_name("Nursery Warehouse")
       @finish_warehouses = Warehouse.where(warehouse_type_uuid: @finish_warehouse_type)
       @nursery_warehouses = Warehouse.where(warehouse_type_uuid: @nursery_warehouse_type)
-
-      @productions = Production.all
+      @warehouses = Warehouse.all
+      @machineries = Machinery.select("uuid, name")
 
     rescue Exception => e
       puts e
     end
   end
 
+  def new_output_task_from_map
+    @output_task = OutputTask.new
+    @block = Block.find_by(uuid: params[:block_id])
+    @farm_block = @block.farm.name
+    @planting_project = PlantingProject.find_by(uuid: @block.planting_project_id)
+    
+    @finish_warehouse_type = WarehouseType.find_by_name("Finished Goods Warehouse")
+    @nursery_warehouse_type = WarehouseType.find_by_name("Nursery Warehouse")
+    @finish_warehouses = Warehouse.where(warehouse_type_uuid: @finish_warehouse_type)
+    @nursery_warehouses = Warehouse.where(warehouse_type_uuid: @nursery_warehouse_type)
+    @productions = Production.where(planting_project_id: @block.planting_project_id)
+    @warehouses = Warehouse.all
+    @machineries = Machinery.select("uuid, name").where(planting_project_id: @planting_project.uuid)
+  end
+
   def create
     begin
       @output_task = OutputTask.new(output_task_params)
+      output_task_end_date = @output_task.end_date.to_s
 
       puts "====================****========================"
       puts "finish_production_id = " + @finish_production_id = @output_task.finish_production_id
       puts "nursery_production_id = " + @nursery_production_id = @output_task.nursery_production_id
       puts "finish_warehouse_id = " + @finish_warehouse_id = @output_task.finish_warehouse_id
       puts "nursery_warehouse_id = " + @nursery_warehouse_id = @output_task.nursery_warehouse_id
+      puts "Output Task End Date = " + output_task_end_date
       puts "====================****========================"
 
       @finish_production_id = @output_task.finish_production_id
@@ -64,6 +80,7 @@ class OutputTasksController < ApplicationController
       nursery_amount = @output_task.nursery_amount
       spoiled_amount = @output_task.spoiled_amount
       sum_finish_nursery_spoil = finish_amount + nursery_amount + spoiled_amount
+      output_task_end_date = @output_task.end_date
 
       if total_output_amount >= sum_finish_nursery_spoil
         finish_warehouse_amount = @finish_warehouse_amount.amount
@@ -75,6 +92,27 @@ class OutputTasksController < ApplicationController
         if @output_task.save
           @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
           @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
+
+          # puts "=====================Machinery IDs========================"  
+          if params[:output_task][:machineries].is_a?(Array)
+            params[:output_task][:machineries].each do |machinery_id|
+              unless machinery_id.empty?
+                @machinery = Machinery.find_by_uuid(machinery_id)
+                @machinery.update_attributes!(availabe_date: output_task_end_date)
+                OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
+              end
+            end
+          else
+            @machinery_ids = params[:machineries]
+            @machinery_ids.split(",").each do |machinery_id|
+              puts "=====================Machinery========================"      
+              @machinery = Machinery.find_by_uuid(machinery_id)
+              @machinery.update_attributes!(availabe_date: output_task_end_date)
+              OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
+            end
+          end
+          # end  
+          
           flash[:notice] = "OutputTask saved successfully"
           redirect_to output_tasks_path
         else

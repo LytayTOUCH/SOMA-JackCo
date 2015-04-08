@@ -12,16 +12,20 @@ class InputTasksController < ApplicationController
   def new
     begin
       @input_task = InputTask.new
-
       project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
-      
       @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
-
       @farms_name = Block.select("uuid, name, farm_id")
-
     rescue Exception => e
       puts e
     end
+  end
+
+  def new_input_task_from_map
+    @input_task = InputTask.new
+    project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
+    @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
+    @block = Block.find_by(uuid: params[:block_id])
+    @farm_block = @block.farm.name
   end
 
   def create

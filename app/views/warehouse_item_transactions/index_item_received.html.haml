@@ -5,3 +5,6 @@
   = render partial: 'form_item_received_search'
   %hr
   = render partial: 'list_item_received'
+
+- content_for :javascript_head do
+  = javascript_include_tag "warehouse_item_transactions"

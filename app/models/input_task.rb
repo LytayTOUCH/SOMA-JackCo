@@ -36,6 +36,4 @@ class InputTask < ActiveRecord::Base
 		end
 
 	}
-
-  	has_paper_trail
 end

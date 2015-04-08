@@ -44,12 +44,14 @@ class BlocksController < ApplicationController
   end
 
   def get_block_planting_project_data
-    # @planting_project_id = Block.select("planting_project_id").find_by_uuid(params[:block_id])
-    # @block_data = PlantingProject.select("uuid, name").where("uuid = ?", @planting_project_id)
-    # @block_data = Block.joins(:planting_project).select("planting_project.uuid, planting_project.name").where("uuid = ?", params[:block_id])
     @block_data = Block.find_by_uuid(params[:block_id]).planting_project
     render :json => @block_data
   end
+
+  def get_production_by_planting_project
+    @production_data = Production.where(planting_project_id: params[:planting_project_id])
+    render :json => @production_data
+  end  
 
   private
     def get_farm

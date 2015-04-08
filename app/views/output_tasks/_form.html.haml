@@ -19,7 +19,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Block *
     .col-xs-5
-      = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name + " ; " + value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control block_id'}
+      = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name + " - " + value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control block_id'}
     %span.help-block= f.error :block_id
   .form-group
     %label.col-xs-2.control-label.text-left Planting Project *
@@ -42,6 +42,17 @@
     .col-xs-5
       = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :reference_number
+  / .form-group
+  /   %label.col-xs-2.control-label.text-left Select a Warehouse *
+  /   .col-xs-5
+  /     = f.input :note, label: false, collection: @warehouses, input_html: { class: "form-control warehouse_id" }, error_html: {class: "err_msg"}
+  .form-group
+    %label.col-xs-2.control-label.text-left Machineries *
+    .col-xs-5
+      = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries', multiple: false }
+      = hidden_field_tag 'machineries', ''
+      / = f.select :machineries, options_for_select(@machineries.map { |value| [ value.name, value.uuid ]}), { include_blank: true }, { class: 'chosen-select form-control', multiple: true }
+    %span.help-block= f.error :machineries  
   .form-group
     %label.col-xs-2.control-label.text-left Output Quantity *
     .col-xs-5
@@ -50,7 +61,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Finish Production *
     .col-xs-5
-      = f.select :finish_production_id, options_for_select(@planting_project_names.map { |value| [ value.status + " - " + value.planting_project.name, value.uuid ]}, :selected => f.object.finish_production_id), {:include_blank => true}, {class: 'form-control'}
+      = f.select :finish_production_id, options_for_select("Select status"), { include_blank: true }, {class: 'form-control production_ids'}
     %span.help-block= f.error :finish_production_id  
   .form-group
     %label.col-xs-2.control-label.text-left Finish Warehouse *
@@ -65,7 +76,8 @@
   .form-group
     %label.col-xs-2.control-label.text-left Nursery Production *
     .col-xs-5
-      = f.select :nursery_production_id, options_for_select(@planting_project_names.map { |value| [ value.status + " - " + value.planting_project.name, value.uuid ]}, :selected => f.object.nursery_production_id), {:include_blank => true}, {class: 'form-control'}
+      / = f.select :nursery_production_id, options_for_select(@planting_project_names.map { |value| [ value.status + " - " + value.planting_project.name, value.uuid ]}, :selected => f.object.nursery_production_id), {:include_blank => true}, {class: 'form-control'}
+      = f.select :nursery_production_id, options_for_select("Select status"), { include_blank: true }, {class: 'form-control production_ids'}
     %span.help-block= f.error :nursery_production_id  
   .form-group
     %label.col-xs-2.control-label.text-left Nursery Warehouse *
@@ -103,5 +115,12 @@
 
 - content_for :javascript_body do
   = javascript_include_tag "output_tasks"
+
 :javascript
   $('.date_pick').datetimepicker({});
+  $('select.item-select-machinaries').empty();
+  //$(".chosen-select").chosen(
+  //  {width: "100%"},
+  //  {allow_single_deselect: true},
+  //  {no_results_text: 'No results matched'}
+  //);  

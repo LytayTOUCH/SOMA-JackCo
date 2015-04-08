@@ -1,0 +1,52 @@
+/**
+ * Example Print Preview site
+ *
+ *	print.css
+ *	author: Tim Connell
+ */
+
+/* -- Hide screen specific elements -- */
+/*#print_preview {
+    display: none;
+}*/
+
+@media print {
+	.header{
+		color: blue;
+		font-size: 16px;
+		background-color: yellow;
+	}
+}
+/*@page {
+  size: landscape;
+}*/
+
+@media print {
+	/* -- Add message re print -- */
+	#content:before {
+		/*content: "Thank you for printing this page. Do come back to foo.tld, we are constantly adding new and interesting articles and tutorials. Note: To help the environment we have automatically removed navigaton and other unessessary elements from the page.";*/
+		content: "Input-Use Report";
+		display: block;
+		/*border: 1px solid #ccc;*/
+		/*font-style: italic;*/
+		font-size: 18px;
+		text-align: center;
+		font-weight: bold;
+		/*margin: 0 0 1em;*/
+		padding: 8px 10px;
+		color: green;
+	}
+	/*th{
+		background-color: blue;
+		font-size: 20px;
+		color: #F21B1B;
+	}*/
+	td{
+		/*font-size: 18px;*/
+		/*background-color: green;*/
+		/*color: #F21B1B;*/
+		/*font-size: 24px;*/
+		/*font-style: italic;*/
+		border: 1px solid #ccc;
+	}
+}

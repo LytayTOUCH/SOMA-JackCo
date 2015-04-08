@@ -7,10 +7,12 @@
 //= require turbolinks
 //= require moment
 //= require bootstrap-datetimepicker
-
+//= require chosen-jquery
 //= require blocks
 //= require farms
 //= require infobox
+//= require select2
+//= require jquery.print-preview
 
 $('.datatable').DataTable({
   "sPaginationType": "bootstrap"

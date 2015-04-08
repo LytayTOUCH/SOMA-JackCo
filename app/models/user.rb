@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   belongs_to :labor, foreign_key: :labor_id
 
-  has_many :versions, foreign_key: :whodunnit
+  has_many :logs
   has_many :output_tasks
 
   validates :email, length: { maximum: 60 }, presence: true
@@ -22,8 +22,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable#, :confirmable
 
   scope :find_by_email, -> email { where("email like ?", "%#{email}%") }
-
-  # has_paper_trail
-  has_paper_trail :versions => :paper_trail_versions
 
 end

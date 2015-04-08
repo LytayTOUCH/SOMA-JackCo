@@ -70,6 +70,7 @@ gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'paper_trail'
 gem 'jquery-datatables-rails', '~> 3.2.0'
+gem 'chosen-rails'
 
 # ruby '2.0.0'
 
