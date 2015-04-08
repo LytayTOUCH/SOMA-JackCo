@@ -11,7 +11,7 @@
       %tr
         %td= e.name
         %td= e.equipment_type.name
-        %td= @planting_projects.find(e.planting_project_id).name
+        %td= PlantingProject.find(e.planting_project_id).name
         %td
           = form_for(e) do |f|
             - if e.status
