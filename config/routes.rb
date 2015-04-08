@@ -96,6 +96,8 @@ Rails.application.routes.draw do
 
   get 'new_output_task_from_map/:block_id', to: 'output_tasks#new_output_task_from_map', as: :new_output_task_from_map
 
+  get 'new_input_task_from_map/:block_id', to: 'input_tasks#new_input_task_from_map', as: :new_input_task_from_map
+
   # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
   resources :roles do

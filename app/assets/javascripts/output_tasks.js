@@ -32,6 +32,7 @@ $(document).ready(function() {
             data: {"planting_project_id" : data.uuid},
             dataType: "json",
             success: function(data){
+              $('select.production_ids').empty();
               $.each(data, function(i, value) {
                 $('select.production_ids').append('<option value="'+value.uuid+'">'+value.status+'</option>');
                 // $('select.production_ids').clear();
@@ -77,8 +78,6 @@ $(document).ready(function() {
             if(event.target == this){
               console.log($(this).val());
               $('#machineries').val($(this).val());
-              // var value = $(this).val();
-              // $("#result").text(value);
             }
           });  
         }

@@ -1,0 +1,81 @@
+%h2= "New #{yield :title}"
+%hr
+= simple_form_for @input_task, html: { class: "form-horizontal" } do |f|
+  .form-group
+    %label.col-xs-2.control-label.text-left Name *
+    .col-xs-5
+      = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :name
+  .form-group
+    %label.col-xs-2.control-label Start Date *
+    .col-xs-5
+      .controls
+        = f.text_field :start_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
+    %span.help-block= f.error :start_date
+  .form-group
+    %label.col-xs-2.control-label End Date *
+    .col-xs-5
+      .controls
+        = f.text_field :end_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
+    %span.help-block= f.error :end_date
+  .form-group
+    %label.col-xs-2.control-label.text-left Block *
+    .col-xs-5
+      = f.input :block_id, label: false, input_html: { class: "form-control block_id", value: @block.uuid }, error_html: { class: "err_msg" }, as: :hidden
+      %input.form-control{:type => "text", value: @block.name + " - " + @farm_block}
+    %span.help-block= f.error :block_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Tree amount *
+    .col-xs-5
+      = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount", value: @block.tree_amount }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :tree_amount
+  .form-group
+    %label.col-xs-2.control-label.text-left Labor *
+    .col-xs-5
+      = f.association :labor, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :labor_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Machinery
+    .col-xs-5
+      = f.association :machinery, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :machinery_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Reference Number *
+    .col-xs-5
+      = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :reference_number
+  .form-group
+    %label.col-xs-2.control-label.text-left Warehouse *
+    .col-xs-5
+      = f.input :warehouse_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+    %span.help-block= f.error :warehouse_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Material *
+    .col-xs-5
+      = f.association :material, label: false, input_html: {class: "form-control material_uuid"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :material_id
+  .form-group
+    %label.col-xs-2.control-label.text-left Material amount *
+    .col-xs-5
+      .input-group
+        = f.input :material_amount, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+        %span.input-group-addon.uom-name
+    %span.help-block= f.error :material_amount
+  .form-group
+    %label.col-xs-2.control-label.text-left Note
+    .col-xs-5
+      = f.input :note, label: false, input_html: { class: "form-control" }
+    %span.help-block= f.error :note
+  .form-group
+    .col-xs-5
+      = f.input :created_by, :as => :hidden, input_html: { value: current_user.uuid }
+    %span.help-block= f.error :created_by
+  .form-group
+    .col-xs-7
+      .pull-right
+        = render partial: 'form_button', locals: { f: f }
+
+- content_for :javascript_body do
+  = javascript_include_tag "input_tasks"
+:javascript
+  $('.date_pick').datetimepicker({});
