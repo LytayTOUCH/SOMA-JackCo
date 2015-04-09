@@ -1,14 +1,19 @@
 = simple_form_for @machinery_type, html: {class: 'form-horizontal'} do |f|
-  .form-group
-    %label.col-xs-2.control-label Name *
-    .col-xs-5
-      = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
-    %span.help-block= f.error :name
-  .form-group
-    %label.col-xs-2.control-label Note
-    .col-xs-5
-      = f.input :note, label: false, input_html: {class: "form-control"}
-  .form-group
-    .col-xs-7
-      .pull-right
-        = render partial: 'form_button', locals: { f: f }
+  .container
+    .row
+      .col-md-7
+        .form-group
+          %label.col-xs-3.control-label Name *
+          .col-xs-9
+            = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+        .form-group
+          %label.col-xs-3.control-label Note
+          .col-xs-9
+            = f.input :note, label: false, input_html: {class: "form-control"}
+        .form-group
+          .col-xs-12
+            .pull-right
+              = render partial: 'form_button', locals: { f: f }
+      .col-md-4
+        = render "error", :obj => @machinery_type
+      .col-md-2
