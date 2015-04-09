@@ -16,7 +16,7 @@ class Machinery < ActiveRecord::Base
   has_many :output_tasks, foreign_key: :machinery_id
   
   def planting_project_can_not_be_null_if_source_is_own_project
-    if source.present? && source == "Own Project"
+    if source.present? && source == "Own Project" && planting_project_id==""
       errors.add(:planting_project_id, "can't be blank")
     end
   end
