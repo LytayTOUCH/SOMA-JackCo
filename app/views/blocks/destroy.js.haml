@@ -1,0 +1,14 @@
+:plain
+	$("#block_#{@block.uuid}").remove();
+	for (label of labels){
+	  if("#{@block.uuid}"==label.id){
+	    label_temp = labels.splice(labels.indexOf(label),1)[0];
+	    label_temp.setMap(null);
+	  }
+	}
+	for (each_block of blocks) {
+	  if("#{@block.uuid}"==each_block.id){
+	    block_temp = blocks.splice(blocks.indexOf(each_block),1)[0];
+	    block_temp.setMap(null);
+	  }
+	}

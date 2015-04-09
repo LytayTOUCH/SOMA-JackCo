@@ -52,8 +52,8 @@ var getCenterLatlngPolygon = function(polypoints){
   }
   return bounds.getCenter();
 }
-
-var showBlock = function(name, shape_latlong, project_name){
+var blocks = [];
+var showBlock = function(id, shape_latlong, project_name){
   var stroke_color =  "#126c00", fill_color;
   var poly_latlng_center = getCenterLatlngPolygon(getPolygonPoints(shape_latlong));
   var poly_latlng = getPolygonPoints(shape_latlong);
@@ -83,13 +83,16 @@ var showBlock = function(name, shape_latlong, project_name){
     fillColor: fill_color,
     fillOpacity: 0.35
   });
+  block.id = id;
+  blocks.push(block);
   block.setMap(map);
 }
+var labels=[];
 var showBlockName = function(block_name, block_shape, block_id){
   var myOptions = {
     content: block_name
     ,boxStyle: {
-       border: "1px solid white"
+       border: "0px solid white"
       ,textAlign: "center"
       ,fontSize: "8pt"
       ,fontWeight: "bold"
@@ -105,13 +108,15 @@ var showBlockName = function(block_name, block_shape, block_id){
     ,enableEventPropagation: true
   };
   var ibLabel = new InfoBox(myOptions);
+  ibLabel.id = block_id;
+  labels.push(ibLabel);
   ibLabel.open(map);
   addListenersOnPolygon(block, block_name, getCenterLatlngPolygon(getPolygonPoints(block_shape)), block_id);
 }
 var addListenersOnPolygon = function(polygon, block_name, center_latlong, block_id) {
   google.maps.event.addListener(polygon, 'click', function (event){
     infobox.close();
-    infobox.setContent("<div class = 'col-lg-12'><div class ='col-lg-7'>"+$("#"+block_id).get()[0].innerHTML+"</div><div class='col-lg-5'><div style='padding: 10px 0px 0px 0px;'>"+ $('div.weather-temp').get()[0].innerHTML+"</div></div></div>");
+    infobox.setContent("<div class = 'col-lg-12'><div class ='col-lg-7'>"+$("#block_"+block_id).get()[0].innerHTML+"</div><div class='col-lg-5'><div style='padding: 10px 0px 0px 0px;'>"+ $('div.weather-temp').get()[0].innerHTML+"</div></div></div>");
     infobox.setPosition(center_latlong);
     infobox.open(map);
   });

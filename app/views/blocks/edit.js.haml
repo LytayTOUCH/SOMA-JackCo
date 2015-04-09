@@ -1,12 +1,81 @@
 :plain
+  var block_temp, label_temp;
+  function getLatlong(polygon){
+    var polygonPoints = [];
+    $.each(polygon.latLngs.j[0].j, function(key, latlng){
+      polygonPoints.push("["+latlng.k+","+latlng.D+"]");
+    });
+    $("#block_shape_lat_long").val("["+polygonPoints.toString()+"]");
+    $("#block_location_lat_long").val(getCenter(polygon).toString().slice(1,-1));
+  }
   $('.modal-backdrop').first().remove(); //remove backdrop from the loading box
   $(".form-modal").html("#{escape_javascript(render 'edit_block', planting: @planting_projects, block: @block)}");
   $('#myModalAdd').modal('show');
   $('#myModalAdd').on('shown.bs.modal', function () {
     $('.loading').remove();
+    infobox.close();
+    marker.setMap(null);
+    map.setCenter(new google.maps.LatLng(#{@block.location_lat_long}));
     $('#map-block').html(map.getDiv());
+    for (label of labels){
+      if("#{@block.uuid}"==label.id){
+        label_temp = labels.splice(labels.indexOf(label),1)[0];
+      }
+    }
+    
+    for (each_block of blocks) {
+      if("#{@block.uuid}"==each_block.id){
+        block_temp = blocks.splice(blocks.indexOf(each_block),1)[0];
+      }
+    }
+    infobox.setContent('<div class ="btn btn-warning btn-xs btn-edit-block">Edit</div>&nbsp;<div class ="btn btn-success btn-xs btn-done-block">Done</div>');
+    infobox.setPosition(getCenter(block_temp));
+    infobox.open(map);
+    google.maps.event.addListener(block_temp, 'click', function() {
+      infobox.setContent('<div class ="btn btn-warning btn-xs btn-edit-block">Edit</div>&nbsp;<div class ="btn btn-success btn-xs btn-done-block">Done</div>');
+      infobox.setPosition(getCenter(block_temp));
+      infobox.open(map);
+    });
+    google.maps.event.addListener(infobox, 'domready', function(){
+      $(".btn-edit-block").click(function(){
+        console.log("Edit");
+        block_temp.setEditable(true);
+        block_temp.setDraggable(true);
+        label_temp.setMap(null);
+        infobox.close();
+      });
+      $(".btn-done-block").click(function(){
+        console.log("Done");
+        block_temp.setEditable(false);
+        block_temp.setDraggable(false);
+        label_temp.setMap(map);
+        infobox.setPosition(getCenter(block_temp));
+        label_temp.setPosition(getCenter(block_temp));
+        getLatlong(block_temp);
+      });
+    });
+    google.maps.event.addListener(block_temp, "dragend", function(event) {
+        block_temp.setEditable(false);
+        block_temp.setDraggable(false);
+        label_temp.setMap(map);
+        infobox.setPosition(getCenter(block_temp));
+        label_temp.setPosition(getCenter(block_temp));
+        getLatlong(block_temp);
+    });
+
     $('#myModalAdd').on('hidden.bs.modal', function () {
       $(".form-modal").empty();
+      infobox.setMap(null);
+      blocks.splice(blocks.indexOf(each_block), 0, block_temp);
+      marker.setMap(map);
+      google.maps.event.addListener(block_temp, 'click', function() {
+        infobox.setContent("<div class = 'col-lg-12'><div class ='col-lg-7'>"+$("#"+block_temp.id).get()[0].innerHTML+"</div><div class='col-lg-5'><div style='padding: 10px 0px 0px 0px;'>"+ $('div.weather-temp').get()[0].innerHTML+"</div></div></div>");
+        infobox.open(map);
+      });
       $('.reset-map').html(map.getDiv());
     });
+    $('.btn-cancel').click(function(){
+      location.reload();
+    });
   });
+  

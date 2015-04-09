@@ -89,9 +89,9 @@
             %h4.custom-h4
               = link_to block.name, "#", :class => "text-color-green"
               .pull-right
-                = link_to input_tasks_path, id: "icon-input", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Input" do
+                = link_to new_input_task_from_map_path(block.uuid), id: "icon-input", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Input" do
                   .fa.fa-arrow-down
-                = link_to output_tasks_path, id: "icon-output", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Output" do
+                = link_to new_output_task_from_map_path(block.uuid), id: "icon-output", :class => "icon-orangish", "data-placement" => "bottom", "data-toggle" => "tooltip", :title => "Output" do
                   .fa.fa-arrow-up
           .row
             .col-lg-12.farm-info
