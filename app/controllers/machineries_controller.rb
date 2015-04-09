@@ -7,12 +7,7 @@ class MachineriesController < ApplicationController
   end
   
   def new
-    begin
-      @machinery = Machinery.new
-      @machinery_types = MachineryType.all
-    rescue Exception => e
-      puts e
-    end
+    @machinery = Machinery.new
   end
   
   def create
@@ -32,13 +27,8 @@ class MachineriesController < ApplicationController
   end
   
   def edit
-    begin
-      @machinery = Machinery.find(params[:id])
-      @machinery_types = MachineryType.all
-      add_breadcrumb @machinery.name, :edit_machinery_path
-    rescue Exception => e
-      puts e
-    end
+    @machinery = Machinery.find(params[:id])
+    add_breadcrumb @machinery.name, :edit_machinery_path
   end
   
   def update
@@ -59,6 +49,6 @@ class MachineriesController < ApplicationController
   
   private
   def machinery_params
-    params.require(:machinery).permit(:name, :machinery_type_id, :status, :manufacturer, :model, :registration_number, :year, :note, :avatar)
+    params.require(:machinery).permit(:name, :machinery_type_id, :status, :manufacturer, :model, :registration_number, :year, :note,:source,:planting_project_id, :avatar)
   end
 end
