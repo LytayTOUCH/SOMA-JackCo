@@ -10,13 +10,6 @@
     display: none;
 }*/
 
-@media print {
-	.header{
-		color: blue;
-		font-size: 16px;
-		background-color: yellow;
-	}
-}
 /*@page {
   size: landscape;
 }*/

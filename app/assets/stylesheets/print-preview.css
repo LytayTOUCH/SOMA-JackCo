@@ -1,4 +1,5 @@
 #print-modal {
+    size: landscape;
     background: #FFF;
     position: absolute;
     left: 50%;
@@ -11,6 +12,7 @@
 }
 
 #print-modal-content {
+    size: landscape;
     margin: 68px 0;
     border: none;
     height: 100%;
@@ -20,6 +22,7 @@
 }
 
 #print-modal-controls {
+    size: landscape;
     border: 1px solid #ccc;
     border-radius: 8px;
         -webkit-border-radius: 8px;
@@ -33,6 +36,7 @@
 }
 
 #print-modal-controls a {
+    size: landscape;
     color: #FFF;
     display: block;
     float: left;
@@ -60,9 +64,19 @@
         background-color: yellow
     }
 }*/
+
+/*body { 
+    writing-mode: tb-rl;
+}
+
 @page { 
     size: landscape;
-}
+}*/
+
+/*#report{
+    -webkit-transform: rotate(-90deg); -moz-transform:rotate(-90deg);
+    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}*/
 
    
     
