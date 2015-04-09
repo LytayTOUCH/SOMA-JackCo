@@ -1,0 +1,10 @@
+- if obj.errors.any?
+  #error_explanation.panel.panel-danger.error_panel
+    .panel-heading
+      %h3.panel-title
+        = pluralize(obj.errors.count, "error")
+        prohibited this data from being saved:
+    .panel-body
+      %ul
+        - obj.errors.full_messages.each do |message|
+          %li= message

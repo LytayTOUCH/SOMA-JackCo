@@ -8,8 +8,18 @@
   .form-group
     %label.col-xs-2 Machinery Type *
     .col-xs-5
-      = f.association :machinery_type, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+      = f.input :machinery_type_id, collection: MachineryType.where(status: true).map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
     %span.help-block= f.error :machinery_type_id
+  .form-group
+    %label.col-xs-2 Source *
+    .col-xs-5
+      = f.input :source, label: false, collection: ["Own Project", "Service Supply"], input_html: {class: "form-control"}
+    %span.help-block= f.error :source
+  .form-group
+    %label.col-xs-2 Planting Project
+    .col-xs-5
+      = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+    %span.help-block= f.error :planting_project_id
   .form-group
     %label.col-xs-2 Manufacturer
     .col-xs-5
@@ -38,7 +48,7 @@
   .form-group
     .col-xs-2
     .col-xs-5
-      =image_tag @machinery.avatar.url(:original)
+      =image_tag @machinery.avatar.url(:thumb), size: "100"
       
   .form-group
     %label.col-xs-2.control-label.text-left Active
@@ -49,19 +59,5 @@
       .pull-right
         = render partial: 'form_button', locals: { f: f }
 
-:javascript
-  function previewFile() {
-    var preview = document.querySelector('img');
-    var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
-  
-    reader.onloadend = function () {
-      preview.src = reader.result;
-    }
-  
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      preview.src = "";
-    }
-  }
+- content_for :javascript_body do
+  = javascript_include_tag "machineries"
