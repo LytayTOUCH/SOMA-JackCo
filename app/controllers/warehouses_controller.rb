@@ -11,7 +11,6 @@ class WarehousesController < ApplicationController
     begin
       @warehouse = Warehouse.new
       @warehouse_types = WarehouseType.all
-      @workers = User.all
     rescue Exception => e
       puts e
     end
@@ -49,8 +48,6 @@ class WarehousesController < ApplicationController
         flash[:notice] = "Warehouse saved successfully"
         redirect_to warehouses_path
       else
-        flash[:notice] = "Warehouse can't be saved"
-        # redirect_to :back
         render 'new'
       end
     rescue Exception => e
@@ -62,7 +59,6 @@ class WarehousesController < ApplicationController
     begin
       @warehouse = Warehouse.find(params[:id])
       @warehouse_types = WarehouseType.all
-      @workers = User.all
       add_breadcrumb @warehouse.name, :edit_warehouse_path
     rescue Exception => e
       puts e
@@ -80,22 +76,10 @@ class WarehousesController < ApplicationController
         flash[:notice] = "Warehouse updated"
         redirect_to warehouses_path
       else
-        flash[:notice] = "Warehouse can't be updated"
-        # redirect_to :back
         render 'edit'
       end
     rescue Exception => e
       puts e
-    end
-  end
-
-  def destroy
-    @warehouse = Warehouse.find(params[:id])
-    @warehouse.destroy
-
-    respond_to do |format|
-      format.html { redirect_to warehouses_path, :notice => 'Warehouse was successfully deleted.' }
-      format.json { render json: @warehouse, status: :created, location: @warehouse }
     end
   end
 

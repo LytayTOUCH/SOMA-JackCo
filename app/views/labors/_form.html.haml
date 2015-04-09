@@ -1,60 +1,60 @@
 = simple_form_for @labor, html: {class: 'form-horizontal'} do |f|
-  .form-group
-    %label.col-xs-2.control-label{for: 'labor_name'} Name
-    .col-xs-5
-      = f.input :name, label: false, input_html: {class: "form-control"}
-      %span.help-block= f.error :name
-  .form-group
-    %label.col-xs-2.control-label{for: 'labor_position'} Position
-    .col-xs-5
-      = f.input :position_id, label: false, collection: @positions, input_html: {class: "form-control"}
-      %span.help-block= f.error :position_id
-  .form-group
-    %label.col-xs-2.control-label{for: 'labor_gender'} Gender
-    .col-xs-5
-      = f.input :gender, label: false, collection: ["M", "F"], input_html: {class: "form-control"}
-      %span.help-block= f.error :gender    
-  .form-group
-    %label.col-xs-2.control-label{for: 'labor_phone_number'} Phone Number
-    .col-xs-5
-      = f.input :phone, label: false, input_html: {class: "form-control"}
-      %span.help-block= f.error :phone
-  .form-group
-    %label.col-xs-2.control-label{for: 'labor_email'} Email
-    .col-xs-5
-      = f.input :email, label: false, input_html: {class: "form-control"}
-      %span.help-block= f.error :email
-  .form-group
-    %label.col-xs-2.control-label{for: 'labor_address'} Address
-    .col-xs-5
-      = f.input :address, label: false, input_html: {class: "form-control"}
-      %span.help-block= f.error :address  
-          
-  / .form-group
-  /   %label.col-xs-2.control-label{for: 'labor_project_tokens'} Invoke project
-  /   .col-xs-5
-  /     = f.input :project_tokens, label: false
-  /     %span.help-block= f.error :project_tokens
-
-  .form-group
-    %label.col-xs-2.control-label{for: 'labor_manager'} Manager
-    .col-xs-5
-      = f.input :manager_uuid, label: false, collection: @selected_labors, input_html: {class: "form-control"}
-      %span.help-block= f.error :manager_uuid
-  .form-group
-    %label.col-xs-2.control-label{for: 'labor_note'} Note
-    .col-xs-5
-      = f.input :note, label: false, input_html: {class: "form-control"}
-      %span.help-block= f.error :note
-  .form-group
-    %label.col-xs-2.control-label{for: 'labor_status'} Active
-    .col-xs-5
-      = f.input :active, label: false
-      %span.help-block= f.error :active
-  .form-group
-    .col-xs-7
-      .pull-right
-        = render partial: 'form_button', locals: { f: f }
+  .container
+    .row
+      .col-md-7
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_name'} Name
+          .col-xs-9
+            = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_position'} Position
+          .col-xs-9
+            = f.input :position_id, label: false, collection: Position.all.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_gender'} Gender
+          .col-xs-9
+            = f.input :gender, label: false, collection: ["M", "F"], input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+                
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_phone_number'} Phone Number
+          .col-xs-9
+            = f.input :phone, label: false, input_html: {class: "form-control"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_email'} Email
+          .col-xs-9
+            = f.input :email, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_address'} Address
+          .col-xs-9
+            = f.input :address, label: false, input_html: {class: "form-control"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_manager'} Manager
+          .col-xs-9
+            = f.input :manager_uuid, label: false, collection: Position.find_by_name("Manager").labors.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_note'} Note
+          .col-xs-9
+            = f.input :note, label: false, input_html: {class: "form-control"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_status'} Active
+          .col-xs-9
+            = f.input :active, label: false
+            
+        .form-group
+          .col-xs-12
+            .pull-right
+              = render partial: 'form_button', locals: { f: f }
+      .col-md-4
+        = render "error", :obj => @labor
+      .col-md-2
+  
 :javascript
   $("#labor_project_tokens").select2({
     width: 366,

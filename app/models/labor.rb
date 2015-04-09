@@ -3,6 +3,8 @@ class Labor < ActiveRecord::Base
 
   validates :name, length: { maximum: 50 }, presence: true
   validates :position_id, length: { maximum: 36 }, presence: true
+  validates :gender, presence: true
+  validates :email, presence: true
 
   has_many :labors
   has_many :stock_ins

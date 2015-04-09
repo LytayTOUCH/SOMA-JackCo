@@ -8,13 +8,7 @@ class ProductionsController < ApplicationController
   end
 
   def new
-    begin
-      @production = Production.new
-      @planting_projects = PlantingProject.all
-      @uom = UnitOfMeasurement.all
-    rescue Exception => e
-      puts e
-    end
+    @production = Production.new
   end
 
   def show
@@ -38,7 +32,6 @@ class ProductionsController < ApplicationController
         flash[:notice] = "Production saved successfully"
         redirect_to productions_path
       else
-        flash[:notice] = "Production can't be saved"
         render 'new'
       end
     rescue Exception => e
@@ -47,14 +40,7 @@ class ProductionsController < ApplicationController
   end
 
   def edit
-    begin
-      @production = Production.find(params[:id])
-      @planting_projects = PlantingProject.all
-      @uom = UnitOfMeasurement.all
-      add_breadcrumb @production.name, :edit_production_path
-    rescue Exception => e
-      puts e
-    end
+    @production = Production.find(params[:id])
   end
 
   def update
@@ -65,8 +51,6 @@ class ProductionsController < ApplicationController
         flash[:notice] = "Production updated"
         redirect_to productions_path
       else
-        flash[:notice] = "Production can't be updated"
-        # redirect_to :back
         render 'edit'
       end
     rescue Exception => e
