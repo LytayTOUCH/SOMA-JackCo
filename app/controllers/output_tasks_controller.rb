@@ -4,8 +4,6 @@ class OutputTasksController < ApplicationController
 
   add_breadcrumb "All Output Tasks", :output_tasks_path
 
-  # has_scope :planting_project_id
-
   def index
     begin
       @output_task = OutputTask.new
@@ -51,21 +49,13 @@ class OutputTasksController < ApplicationController
     @nursery_warehouses = Warehouse.where(warehouse_type_uuid: @nursery_warehouse_type)
     @productions = Production.where(planting_project_id: @block.planting_project_id)
     @warehouses = Warehouse.all
-    @machineries = Machinery.select("uuid, name").where(planting_project_id: @planting_project.uuid)
+    @machineries = Machinery.select("uuid, name").where("planting_project_id = ? and status = ? and availabe_date < ?", @planting_project.uuid, true, Date.today).distinct(:name)
   end
 
   def create
     begin
       @output_task = OutputTask.new(output_task_params)
       output_task_end_date = @output_task.end_date.to_s
-
-      puts "====================****========================"
-      puts "finish_production_id = " + @finish_production_id = @output_task.finish_production_id
-      puts "nursery_production_id = " + @nursery_production_id = @output_task.nursery_production_id
-      puts "finish_warehouse_id = " + @finish_warehouse_id = @output_task.finish_warehouse_id
-      puts "nursery_warehouse_id = " + @nursery_warehouse_id = @output_task.nursery_warehouse_id
-      puts "Output Task End Date = " + output_task_end_date
-      puts "====================****========================"
 
       @finish_production_id = @output_task.finish_production_id
       @nursery_production_id = @output_task.nursery_production_id
@@ -110,8 +100,7 @@ class OutputTasksController < ApplicationController
               @machinery.update_attributes!(availabe_date: output_task_end_date)
               OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
             end
-          end
-          # end  
+          end 
           
           flash[:notice] = "OutputTask saved successfully"
           redirect_to output_tasks_path
