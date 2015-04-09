@@ -8,8 +8,8 @@
   .form-group
     %label.col-xs-2 Equipment Type *
     .col-xs-5
-      = f.input :equipment_type_id, collection: EquipmentType.where(status: true).map{ |p| [p.name, p.uuid] }, :label => false, input_html: {class: "form-control"}
-      %span.help-block= f.error :equipment_type_id
+      = f.input :equipment_type_id, collection: EquipmentType.where(status: true).map{ |p| [p.name, p.uuid] }, label: false, error: false, input_html: {class: "form-control"}
+    %span.help-block= f.error :equipment_type_id
   .form-group
     %label.col-xs-2 Note
     .col-xs-5
@@ -18,8 +18,8 @@
   .form-group
     %label.col-xs-2 Planting Project
     .col-xs-5
-      = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, :label => false, input_html: {class: "form-control"}      
-      %span.help-block= f.error :planting_project_id
+      = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label: false, error: false, input_html: {class: "form-control"}      
+    %span.help-block= f.error :planting_project_id
   .form-group
     %label.col-xs-2.control-label.text-left Active
     .col-xs-5
