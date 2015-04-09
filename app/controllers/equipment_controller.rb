@@ -17,7 +17,6 @@ class EquipmentController < ApplicationController
       flash[:notice] = "Equipment saved successfully"
       redirect_to equipment_index_path
     else
-      flash[:notice] = "Equipment can't save"
       render "new"
     end
   end
