@@ -22,8 +22,6 @@ class UserGroupsController < ApplicationController
       flash[:notice] = "This user group is not active yet. Please contact us for activate this user group."
       redirect_to user_groups_path(@user_group)
     else
-      flash[:notice] = "User Group type can't save"
-      # redirect_to :back
       render 'new'
     end
   end
@@ -44,7 +42,6 @@ class UserGroupsController < ApplicationController
       flash[:notice] = "User Group updated"
       redirect_to user_groups_path
     else
-      # redirect_to :back
       render 'edit'
     end
   end

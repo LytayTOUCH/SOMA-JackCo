@@ -18,8 +18,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @user_groups = UserGroup.where(active: true)
-    @labors = Labor.where(selected: false, active: true)
   end
 
   def create
@@ -32,8 +30,6 @@ class UsersController < ApplicationController
       flash[:notice] = "User has been created successfully"
       redirect_to users_path
     else
-      flash[:notice] = "User can't be saved"
-      # redirect_to :back
       render 'new'
     end
   end
@@ -50,15 +46,12 @@ class UsersController < ApplicationController
       flash[:notice] = "User updated"
       redirect_to users_path
     else
-      # redirect_to :back
-      render 'edit'
+      render 'edit_profile'
     end
   end
 
   def edit
     @user = User.find(params[:id])
-    @user_groups = UserGroup.where(active: true)
-    @labors = Labor.where(selected: true, active: true)
     add_breadcrumb @user.email, :edit_user_path
   end
 
@@ -69,7 +62,6 @@ class UsersController < ApplicationController
       flash[:notice] = "User updated"
       redirect_to users_path
     else
-      # redirect_to :back
       render 'edit'
     end
   end
