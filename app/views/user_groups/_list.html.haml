@@ -2,9 +2,9 @@
   %thead
     %tr
       %th.col-md-4= "Name"
-      %th.col-md-4= "Note"
+      %th.col-md-5= "Note"
       %th.col-md-2= "Active"
-      %th.col-md-2= "Actions"
+      %th.col-md-1= "Actions"
   - @user_groups.each do |user_group|
     %tr
       %td= user_group.name
@@ -13,14 +13,8 @@
         = form_for(user_group) do |f|
           - if user_group.active
             %span{style: "color:green;"}= "active"
-            |
-            #{f.hidden_field :active, value: false}
-            #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
           - else
             %span{:style => "color:red;"}= "inactive"
-            |
-            #{f.hidden_field :active, value: true}
-            #{submit_tag "activate", :class => "btn btn-default btn-xs"}
       %td
         - if can? :update, UserGroup
           = link_to "Edit", edit_user_group_path(user_group)
