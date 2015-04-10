@@ -42,6 +42,11 @@ Rails.application.routes.draw do
     end
   end
   resources :farms do
+    collection do
+      get 'farms/:farm_id/active_blocks', to: 'blocks#all_active_blocks', as: 'active_blocks'
+      get 'farms/:farm_id/inactive_blocks', to: 'blocks#all_inactive_blocks', as: 'inactive_blocks'
+      get 'farms/:farm_id/restore_blocks/:id', to: 'blocks#restore_block', as: 'restore_blocks'
+    end
     resources :blocks
     collection do
       get 'inactive', to: 'farms#all_inactive_farms', as: 'inactive_farms'

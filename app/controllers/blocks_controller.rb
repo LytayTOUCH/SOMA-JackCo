@@ -3,7 +3,7 @@ class BlocksController < ApplicationController
   before_action :get_farm, only: [:index, :new]
   before_action :set_block, only: [:show, :edit, :update, :destroy]
   def index
-    @blocks = Block.all.where(farm_id: params[:farm_id])
+    @blocks = Block.all.where(farm_id: params[:farm_id], active: true)
     add_breadcrumb @farm.name, :farm_blocks_path
   end
 
@@ -29,13 +29,15 @@ class BlocksController < ApplicationController
 
   def create
     @block = Block.new(block_params)
+    @block.active = true
     if @block.save
       @block
     end
   end
 
   def destroy
-    @block.destroy
+    @block.active=false
+    @block.save
   end
 
   def get_tree_amounts
@@ -53,6 +55,20 @@ class BlocksController < ApplicationController
     render :json => @production_data
   end  
 
+  def all_active_blocks
+    @active_blocks = Block.all.where(farm_id: params[:farm_id], active: true)
+  end
+
+  def all_inactive_blocks
+    @inactive_blocks = Block.all.where(farm_id: params[:farm_id], active: false)
+  end
+
+  def restore_block
+    @inactive_blocks = Block.where(farm_id: params[:farm_id], uuid: params[:id])
+    @inactive_blocks[0].active = true
+    @inactive_blocks[0].save
+  end
+
   private
     def get_farm
       @farm = Farm.find_by(uuid: params[:farm_id])
@@ -61,7 +77,7 @@ class BlocksController < ApplicationController
       @block = Block.find(params[:id])
     end
     def block_params
-      params.require(:block).permit(:name, :surface, :shape_lat_long, :location_lat_long, :tree_amount, :farm_id, :planting_project_id, :rental_status, :status)
+      params.require(:block).permit(:name, :surface, :shape_lat_long, :location_lat_long, :tree_amount, :farm_id, :planting_project_id, :rental_status, :status, :fruitful_tree, :active)
     end
 
 end
