@@ -1,6 +1,5 @@
 class PlantingProject < ActiveRecord::Base
   include UuidHelper
-  has_paper_trail
   
   has_many :blocks, foreign_key: :planting_project_id
   has_many :input_tasks, through: :blocks

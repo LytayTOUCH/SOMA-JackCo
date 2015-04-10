@@ -8,23 +8,18 @@ class PositionsController < ApplicationController
   end
 
   def new
-    begin
-      @position = Position.new
-    rescue Exception => e
-      puts e
-    end
+    @position = Position.new
   end
 
   def create
     begin
       @position = Position.new(position_params)
 
-      if @position.save!
+      if @position.save
         flash[:notice] = "Production Status type saved successfully"
         redirect_to positions_path
       else
-        flash[:notice] = "Production Status type can't save"
-        redirect_to :back
+        render "new"
       end
     rescue Exception => e
       puts e
@@ -32,12 +27,8 @@ class PositionsController < ApplicationController
   end
 
   def edit
-    begin
-      @position = Position.find(params[:id])
-      add_breadcrumb @position.name, :edit_position_path
-    rescue Exception => e
-      puts e
-    end
+    @position = Position.find(params[:id])
+    add_breadcrumb @position.name, :edit_position_path
   end
 
   def update
@@ -48,8 +39,7 @@ class PositionsController < ApplicationController
         flash[:notice] = "Production Stage updated"
         redirect_to positions_path
       else
-        flash[:notice] = "Production Stage can't update"
-        redirect_to :back
+        render "edit"
       end
     rescue Exception => e
       puts e

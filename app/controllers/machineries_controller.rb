@@ -14,11 +14,10 @@ class MachineriesController < ApplicationController
     begin
       @machinery = Machinery.new(machinery_params)
 
-      if @machinery.save!
+      if @machinery.save
         flash[:notice] = "Machinery saved successfully"
         redirect_to machineries_path
       else
-        flash[:notice] = "Machinery can't save"
         render 'new'
       end
     rescue Exception => e
@@ -39,7 +38,6 @@ class MachineriesController < ApplicationController
         flash[:notice] = "Machinery updated successfully"
         redirect_to machineries_path
       else
-        flash[:notice] = "Machinery can't update"
         render 'edit'
       end
     rescue Exception => e
