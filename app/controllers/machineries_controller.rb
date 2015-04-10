@@ -44,6 +44,11 @@ class MachineriesController < ApplicationController
       puts e
     end
   end
+
+  def get_machinery_name
+    @machinery_name = Machinery.find_by_uuid(params[:machinery_id])
+    render :json => @machinery_name
+  end
   
   private
   def machinery_params

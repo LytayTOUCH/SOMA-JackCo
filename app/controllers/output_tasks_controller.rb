@@ -31,6 +31,9 @@ class OutputTasksController < ApplicationController
       @nursery_warehouses = Warehouse.where(warehouse_type_uuid: @nursery_warehouse_type)
       @warehouses = Warehouse.all
       @machineries = Machinery.select("uuid, name")
+      
+      @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse")
+      @project_warehouses = Warehouse.where(warehouse_type_uuid: @project_warehouse_type.uuid)
 
     rescue Exception => e
       puts e
