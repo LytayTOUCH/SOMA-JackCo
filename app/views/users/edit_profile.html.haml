@@ -26,7 +26,7 @@
             .col-xs-12
               .pull-right
                 = f.submit class: "btn btn-primary", "data-disable-with" => "Update"
-                = link_to 'Cancel', :back, class: "btn btn-default"
+                = link_to 'Cancel', labor_path(@user_account.labor), class: "btn btn-default"
         .col-md-4
           = render "error", :obj => @user_account
         .col-md-2
