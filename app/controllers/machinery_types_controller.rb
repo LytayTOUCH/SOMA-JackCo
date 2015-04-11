@@ -19,7 +19,6 @@ class MachineryTypesController < ApplicationController
         flash[:notice] = "Machinery Type updated successfully"
         redirect_to machinery_types_path
       else
-        flash[:notice] = "Machinery Type can't update"
         render 'edit'
       end
     rescue Exception => e
@@ -39,7 +38,6 @@ class MachineryTypesController < ApplicationController
         flash[:notice] = "Machinery Type saved successfully"
         redirect_to machinery_types_path
       else
-        flash[:notice] = "Machinery Type can't save"
         render 'new'
       end
     rescue Exception => e

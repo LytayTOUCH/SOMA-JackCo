@@ -1,67 +1,69 @@
 #form-model-content-supplier
 = simple_form_for @machinery, html: {class: 'form-horizontal'} do |f|
-  .form-group
-    %label.col-xs-2 Name / Code *
-    .col-xs-5
-      = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
-    %span.help-block= f.error :name
-  .form-group
-    %label.col-xs-2 Machinery Type *
-    .col-xs-5
-      = f.association :machinery_type, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
-    %span.help-block= f.error :machinery_type_id
-  .form-group
-    %label.col-xs-2 Manufacturer
-    .col-xs-5
-      = f.input :manufacturer, label: false, input_html: {class: "form-control"}
-  .form-group
-    %label.col-xs-2 Model
-    .col-xs-5
-      = f.input :model, label: false, input_html: {class: "form-control"}
-  .form-group
-    %label.col-xs-2 Registration No
-    .col-xs-5
-      = f.input :registration_number, label: false, input_html: {class: "form-control"}
-  .form-group
-    %label.col-xs-2 Year
-    .col-xs-5
-      = f.input :year, label: false, input_html: {class: "form-control"}
-  .form-group
-    %label.col-xs-2 Note
-    .col-xs-5
-      = f.input :note, label: false, input_html: {class: "form-control"}
-      
-  .form-group
-    %label.col-xs-2 Avatar
-    .col-xs-5
-      = f.input :avatar, as: :file, label: false, input_html: {:onchange => "previewFile()"}
-  .form-group
-    .col-xs-2
-    .col-xs-5
-      =image_tag @machinery.avatar.url(:original)
-      
-  .form-group
-    %label.col-xs-2.control-label.text-left Active
-    .col-xs-5
-      = f.input :status, label: false
-  .form-group
-    .col-xs-7
-      .pull-right
-        = render partial: 'form_button', locals: { f: f }
+  .container
+    .row
+      .col-md-7
+        .form-group
+          %label.col-xs-3 Name / Code *
+          .col-xs-9
+            = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+          
+        .form-group
+          %label.col-xs-3 Machinery Type *
+          .col-xs-9
+            = f.input :machinery_type_id, collection: MachineryType.all.map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+          
+        .form-group
+          %label.col-xs-3 Source *
+          .col-xs-9
+            = f.input :source, label: false, collection: ["Own Project", "Service Supply"], input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+          
+        .form-group
+          %label.col-xs-3 Planting Project
+          .col-xs-9
+            = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+          
+        .form-group
+          %label.col-xs-3 Manufacturer
+          .col-xs-9
+            = f.input :manufacturer, label: false, input_html: {class: "form-control"}
+        .form-group
+          %label.col-xs-3 Model
+          .col-xs-9
+            = f.input :model, label: false, input_html: {class: "form-control"}
+        .form-group
+          %label.col-xs-3 Registration No
+          .col-xs-9
+            = f.input :registration_number, label: false, input_html: {class: "form-control"}
+        .form-group
+          %label.col-xs-3 Year
+          .col-xs-9
+            = f.input :year, label: false, input_html: {class: "form-control"}
+        .form-group
+          %label.col-xs-3 Note
+          .col-xs-9
+            = f.input :note, label: false, input_html: {class: "form-control"}
+            
+        .form-group
+          %label.col-xs-3 Avatar
+          .col-xs-9
+            = f.input :avatar, as: :file, label: false, input_html: {:onchange => "previewFile()"}
+        .form-group
+          .col-xs-3
+          .col-xs-9
+            =image_tag @machinery.avatar.url(:thumb), size: "100"
+            
+        .form-group
+          %label.col-xs-3.control-label.text-left Active
+          .col-xs-9
+            = f.input :status, label: false
+        .form-group
+          .col-xs-12
+            .pull-right
+              = render partial: 'form_button', locals: { f: f }
+      .col-md-4
+        = render "error", :obj => @machinery
+      .col-md-2
 
-:javascript
-  function previewFile() {
-    var preview = document.querySelector('img');
-    var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
-  
-    reader.onloadend = function () {
-      preview.src = reader.result;
-    }
-  
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      preview.src = "";
-    }
-  }
+- content_for :javascript_body do
+  = javascript_include_tag "machineries"

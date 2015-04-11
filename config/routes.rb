@@ -160,6 +160,8 @@ Rails.application.routes.draw do
 
   get 'get_production_by_planting_project', to: 'blocks#get_production_by_planting_project'
 
+  get 'get_machinery_name', to: 'machineries#get_machinery_name'
+
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
 

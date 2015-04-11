@@ -10,17 +10,12 @@ class User < ActiveRecord::Base
   has_many :logs
   has_many :output_tasks
 
-  validates :email, length: { maximum: 60 }, presence: true
-
-  validates :user_group_id, length: { maximum: 36 }, presence: true  
-
+  validates :user_group_id, length: { maximum: 36 }, presence: true
   validates :labor_id, length: { maximum: 36 }, presence: true    
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable#, :confirmable
-
-  scope :find_by_email, -> email { where("email like ?", "%#{email}%") }
 
 end

@@ -12,18 +12,13 @@ class EquipmentTypesController < ApplicationController
   end
 
   def update
-    begin
-      @equipment_type = EquipmentType.find(params[:id])
+    @equipment_type = EquipmentType.find(params[:id])
 
-      if @equipment_type.update_attributes(equipment_type_params)
-        flash[:notice] = "Equipment Type updated successfully"
-        redirect_to equipment_types_path
-      else
-        flash[:notice] = "Equipment Type can't update"
-        render 'edit'
-      end
-    rescue Exception => e
-      puts e
+    if @equipment_type.update_attributes(equipment_type_params)
+      flash[:notice] = "Equipment Type updated successfully"
+      redirect_to equipment_types_path
+    else
+      render 'edit'
     end
   end
 
@@ -32,18 +27,13 @@ class EquipmentTypesController < ApplicationController
   end
 
   def create
-    begin
-      @equipment_type = EquipmentType.new(equipment_type_params)
+    @equipment_type = EquipmentType.new(equipment_type_params)
 
-      if @equipment_type.save
-        flash[:notice] = "Equipment Type saved successfully"
-        redirect_to equipment_types_path
-      else
-        flash[:notice] = "Equipment Type can't save"
-        render 'new'
-      end
-    rescue Exception => e
-      puts e
+    if @equipment_type.save
+      flash[:notice] = "Equipment Type saved successfully"
+      redirect_to equipment_types_path
+    else
+      render 'new'
     end
   end
   
