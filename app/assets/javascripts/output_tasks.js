@@ -3,6 +3,10 @@ $(document).ready(function() {
   // block_id is id for Block. When we select block 
   $('.block_id').change(function() {
       // Get data for Tree amount when selecting block
+      $('.machinery-name').empty();
+      $('.warehouse-select').empty();
+      $('.material-select').empty();
+
       $('.tree_amount').show();
       var block_id = $(".block_id").val();
       jQuery.ajax({
@@ -72,7 +76,7 @@ $(document).ready(function() {
                 {no_results_text: 'No results matched'}
               ).change(function(event){
                 $('.machinery-name').show();
-
+                
                 // Creating a row of Machinery when data from chosen
 
                 if(event.target == this){
@@ -82,7 +86,7 @@ $(document).ready(function() {
                   var machinery_id = $(this).val();
                   console.log(machinery_id);
                   if(machinery_id == null) {
-                    $(".machinery_name").empty();
+                    $(".machinery-name").empty();
                   }
                   
                   jQuery.ajax({
@@ -90,20 +94,25 @@ $(document).ready(function() {
                   type: "GET",
                   data: {"machinery_id" : machinery_id},
                   beforeSend: function(){
-                    //​​​​ $(".machinery_name").empty();
+                    $('.warehouse-select').empty();
+                    $('.material-select').empty();
                   },
                   dataType: "json",
                     success: function(data){
-                      $('div.machinery_name').append('<div lass="form-group"><label class="col-xs-2 control-label">' + data.machinery_name.name+'</label><label class="col-xs-1 control-label">Warehouse</label>');
-                      $('div.machinery_name').append('<div class="form-group">');
-                      $('div.machinery_name').append('<select class="warehouse-select form-control">');
+                      $('div.machinery-name').append('<div lass="form-group"><label class="col-xs-2 control-label">' + data.machinery_name.name+'</label><label class="col-xs-1 control-label">Warehouse</label>');
+                      $('div.machinery-name').append('<div class="col-xs-2"><select class="warehouse-select form-control">');
+                      
                       $.each(data.warehouse, function(i, value) {
                         $('select.warehouse-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
                       });
-                      $('div.machinery_name').append('</select>');
-                      $('div.machinery_name').append('</div><br/>');
+                      $('div.machinery-name').append('</select>');
 
-                      // $('div.machinery_name').append('<div class="form-group"><label class="col-xs-2 control-label">'+data.name+'</label><label class="col-xs-1 control-label">Warehouse</label><div class="col-xs-2"><select class="form-control"><option value="">Test</option><option value="">Test1</option><option value="">Test2</option></select></div>  <label class="col-xs-1 control-label">Material</label><div class="col-xs-2"><select class="form-control"><option value="">Test</option><option value="">Test1</option><option value="">Test2</option></select></div>  <label class="col-xs-1 control-label">Qty</label><div class="col-xs-1"><input class="form-control"></input></div></div><br/>');
+                      $('div.machinery-name').append('<label class="col-xs-1 control-label">Material</label><div class="col-xs-2"><select class="material-select form-control">');
+                      $.each(data.material, function(i, value) {
+                        $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
+                      });
+
+                      $('div.machinery-name').append('</select><label class="col-xs-1 control-label">Qty</label><div class="col-xs-1"> <input class="form-control material-qty"></input></div></div><br/><br/>');
                     }
                   }); 
                 }
