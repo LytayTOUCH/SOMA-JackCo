@@ -47,9 +47,10 @@ class MachineriesController < ApplicationController
 
   def get_machinery_name
     @machinery_name = Machinery.find_by_uuid(params[:machinery_id])
-    render :json => @machinery_name
+    @warehouse = Warehouse.all
+    render :json => {warehouse: @warehouse, machinery_name: @machinery_name}
   end
-  
+
   private
   def machinery_params
     params.require(:machinery).permit(:name, :machinery_type_id, :status, :manufacturer, :model, :registration_number, :year, :note,:source,:planting_project_id, :avatar)

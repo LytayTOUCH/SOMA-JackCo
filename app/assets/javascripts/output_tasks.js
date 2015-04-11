@@ -78,9 +78,7 @@ $(document).ready(function() {
                 if(event.target == this){
                   console.log($(this).val());
                   $('#machineries').val($(this).val());
-
                   // $('.machinery-name').empty();
-
                   var machinery_id = $(this).val();
                   console.log(machinery_id);
                   if(machinery_id == null) {
@@ -93,20 +91,21 @@ $(document).ready(function() {
                   data: {"machinery_id" : machinery_id},
                   beforeSend: function(){
                     //​​​​ $(".machinery_name").empty();
-                    
                   },
                   dataType: "json",
                     success: function(data){
-                      console.log(data);
-                      // $.each(data, function(i, value) {
-                      //   console.log(value.name);
-                      // });
-                      $('div.machinery_name').append('<div class="form-group"><label class="col-xs-2 control-label">'+data.name+'</label><label class="col-xs-1 control-label">Warehouse</label><div class="col-xs-2"><select class="form-control"><option value="">Test</option><option value="">Test1</option><option value="">Test2</option></select></div>  <label class="col-xs-1 control-label">Material</label><div class="col-xs-2"><select class="form-control"><option value="">Test</option><option value="">Test1</option><option value="">Test2</option></select></div>  <label class="col-xs-1 control-label">Qty</label><div class="col-xs-1"><input class="form-control"></input></div></div><br/>');
+                      $('div.machinery_name').append('<div lass="form-group"><label class="col-xs-2 control-label">' + data.machinery_name.name+'</label><label class="col-xs-1 control-label">Warehouse</label>');
+                      $('div.machinery_name').append('<div class="form-group">');
+                      $('div.machinery_name').append('<select class="warehouse-select form-control">');
+                      $.each(data.warehouse, function(i, value) {
+                        $('select.warehouse-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
+                      });
+                      $('div.machinery_name').append('</select>');
+                      $('div.machinery_name').append('</div><br/>');
+
+                      // $('div.machinery_name').append('<div class="form-group"><label class="col-xs-2 control-label">'+data.name+'</label><label class="col-xs-1 control-label">Warehouse</label><div class="col-xs-2"><select class="form-control"><option value="">Test</option><option value="">Test1</option><option value="">Test2</option></select></div>  <label class="col-xs-1 control-label">Material</label><div class="col-xs-2"><select class="form-control"><option value="">Test</option><option value="">Test1</option><option value="">Test2</option></select></div>  <label class="col-xs-1 control-label">Qty</label><div class="col-xs-1"><input class="form-control"></input></div></div><br/>');
                     }
-                  });  
-
-
-
+                  }); 
                 }
               });  
             }
