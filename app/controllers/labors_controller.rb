@@ -4,25 +4,16 @@ class LaborsController < ApplicationController
   add_breadcrumb "All Labors", :labors_path
 
   def index
-    begin
-      @labor = Labor.new
-      
-      @labors = Labor.all
-    rescue Exception => e
-      puts e
-    end
+    @labors = Labor.all
+  end
+  
+  def show
+    @labor = Labor.find(params[:id])
   end
 
   def new
     begin
       @labor = Labor.new
-      
-      @position = Position.find_by_name("Manager")
-      
-      @selected_labors = @position.labors
-        
-      @positions = Position.all
-
       @projects = Project.all
       respond_to do |format|
         format.html
@@ -37,12 +28,11 @@ class LaborsController < ApplicationController
     begin
       @labor = Labor.new(labor_params)
 
-      if @labor.save!
+      if @labor.save
         flash[:notice] = "Labor saved successfully"
         redirect_to labors_path
       else
-        flash[:notice] = "Labor can't save"
-        redirect_to :back
+        render "new"
       end
     rescue Exception => e
       puts e
@@ -52,9 +42,6 @@ class LaborsController < ApplicationController
   def edit
     @labor = Labor.find(params[:id])
     @labors = Labor.all
-    @positions = Position.all
-    @position = Position.find_by_name("Manager")
-    @selected_labors = @position.labors
     add_breadcrumb @labor.name, :edit_labor_path
   end
 
@@ -62,12 +49,11 @@ class LaborsController < ApplicationController
     begin
       @labor = Labor.find(params[:id])
 
-      if @labor.update_attributes!(labor_params)
+      if @labor.update_attributes(labor_params)
         flash[:notice] = "Labor updated successfully"
         redirect_to labors_path
       else
-        flash[:notice] = "Labor can't be updated"
-        redirect_to :back
+        render "edit"
       end
     rescue Exception => e
       puts e

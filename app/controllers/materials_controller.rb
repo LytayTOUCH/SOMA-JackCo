@@ -10,7 +10,6 @@ class MaterialsController < ApplicationController
   def new
     begin
       @material = Material.new
-      # @suppliers = Supplier.all
       @material_categories = MaterialCategory.all
       @unit_measurements = UnitOfMeasurement.all
     rescue Exception => e
@@ -35,7 +34,6 @@ class MaterialsController < ApplicationController
         flash[:notice] = "Material saved successfully"
         redirect_to materials_path
       else
-        flash[:notice] = "Material can't save"
         render 'new'
       end
     rescue Exception => e
@@ -43,28 +41,9 @@ class MaterialsController < ApplicationController
     end
   end
 
-  # def create
-  #   begin
-  #     @material = Material.new(material_params)
-
-  #     if @material.save
-  #       flash[:notice] = "Material saved successfully"
-  #       # redirect_to :back
-  #       redirect_to materials_path
-  #     else
-  #       flash[:notice] = "Material can't save"
-  #       # redirect_to :back
-  #       render 'new'
-  #     end
-  #   rescue Exception => e
-  #     puts e
-  #   end
-  # end
-
   def edit
     begin
       @material = Material.find(params[:id])
-      # @suppliers = Supplier.all
       @material_categories = MaterialCategory.all
       @unit_measurements = UnitOfMeasurement.all
       add_breadcrumb @material.name, :edit_material_path
@@ -81,8 +60,6 @@ class MaterialsController < ApplicationController
         flash[:notice] = "Material updated successfully"
         redirect_to materials_path
       else
-        flash[:notice] = "Material can't update"
-        # redirect_to :back
         render 'edit'
       end
     rescue Exception => e
@@ -99,14 +76,6 @@ class MaterialsController < ApplicationController
     @material_data = Material.find_by_uuid(params[:material_uuid]).unit_of_measurement
     render :json => @material_data
   end
-
-  # def new_supplier
-  #   begin
-  #     @supplier = Supplier.new
-  #   rescue Exception => e
-  #     puts e
-  #   end
-  # end
 
   private
   def material_params

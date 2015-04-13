@@ -1,9 +1,16 @@
-.page-header.custom-page-header
-  %h3.custom-h3
-    .fa.fa-cubes.icon-brown
-    All Blocks Information
-.row
-  .blocks-board
-    - unless @blocks.blank?
-      - @blocks.each do |block|
-        = render "block_board", block: block
+#active-blocks
+  .page-header.custom-page-header
+    %h3.custom-h3
+      .fa.fa-cubes.icon-brown
+      All Blocks Information
+  - if !blocks.blank?
+    .row
+      .blocks-board
+        - unless blocks.blank?
+          - blocks.each do |block|
+            - if block.active
+              = render "active_block_board", block: block
+            - else
+              = render "inactive_block_board", block: block
+  - else
+    .jumbotron.text-center No Active Block

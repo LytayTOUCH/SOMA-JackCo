@@ -1,18 +1,19 @@
 = simple_form_for @equipment_type, html: {class: 'form-horizontal'} do |f|
   .container
     .row
-      .col-md-5
+      .col-md-7
         .form-group
-          %label.col-xs-2.control-label Name *
+          %label.col-xs-3.control-label Name *
           .col-xs-9
             = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
         .form-group
-          %label.col-xs-2.control-label Note
+          %label.col-xs-3.control-label Note
           .col-xs-9
             = f.input :note, label: false, input_html: {class: "form-control"}
         .form-group
-          .col-xs-11
+          .col-xs-12
             .pull-right
               = render partial: 'form_button', locals: { f: f }
-      .col-md-5
+      .col-md-4
         = render "error", :obj => @equipment_type
+      .col-md-2

@@ -24,6 +24,10 @@
                   .msg-tree_amount.alert-danger{:role => "alert"}
               .form-group
                 .col-xs-11
+                  = f.text_field :fruitful_tree, class: 'form-control', placeholder: 'Productional Tree Amount'
+                  .msg-tree_amount.alert-danger{:role => "alert"}
+              .form-group
+                .col-xs-11
                   .input-group
                     = f.select :planting_project_id, planting_projects.collect {|p| [ p.name, p.id ] }, {prompt: "Select Planting Type"}, class: 'form-control'
                     %span.input-group-btn
