@@ -5,6 +5,7 @@ class Block < ActiveRecord::Base
 
   has_many :input_tasks, foreign_key: :block_id
   has_many :output_tasks, foreign_key: :block_id
+  has_many :plan_areas, foreign_key: :block_id
 
   validates :name, presence: true
   validates :surface, presence: true

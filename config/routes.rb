@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+
   get 'log_tracking/index'
   
   resources :warehouse_material_amounts, only: [:index, :edit, :update]
   resources :material_adjustments, only: [:index]
+  resources :locations
+  resources :plan_farms
   
   resources :warehouse_production_amounts, only: [:index, :edit, :update]
   resources :production_adjustments, only: [:index]

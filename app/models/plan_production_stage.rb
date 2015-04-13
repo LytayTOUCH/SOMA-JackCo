@@ -1,0 +1,10 @@
+class PlanProductionStage < ActiveRecord::Base
+  include UuidHelper
+
+  belongs_to :plan_phase, foreign_key: :plan_phase_id
+
+  has_many :plan_production_statuses, foreign_key: :plan_production_stage_id
+
+  accepts_nested_attributes_for :plan_production_statuses
+  
+end
