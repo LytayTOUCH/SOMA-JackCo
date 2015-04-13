@@ -1,0 +1,53 @@
+.row
+  %h1
+    = "User (" + @labor.user.email.split('@').first + ")"
+  %hr
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Name:
+    .custom-value.col-xs-8= @labor.name
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Position:
+    .custom-value.col-xs-8= @labor.position.name
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Gender:
+    .custom-value.col-xs-8= @labor.gender
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Phone Number:
+    .custom-value.col-xs-8= @labor.phone
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Email:
+    .custom-value.col-xs-8= @labor.email
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Address:
+    .custom-value.col-xs-8= @labor.address
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Note:
+    .custom-value.col-xs-8= @labor.note
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 System Group:
+    .custom-value.col-xs-8= @labor.user.user_group.name
+  .row{:style => "padding-top:20px;"}
+    .col-xs-12
+      .pull-right
+        = link_to "Edit", edit_labor_path(@labor), class: "btn btn-default"
+        = link_to "Settings", edit_profile_user_path(@labor.user), class: "btn btn-default"
+
+:css
+  .custom-value {
+    border-bottom: 1px solid black;
+    background-color: #f0f0f0;
+    padding-top: 15px;
+  }
+  .custom-label {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    padding-top: 15px;
+  }

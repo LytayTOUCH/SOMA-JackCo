@@ -11,17 +11,33 @@
             = form_for [:farm, block], remote: true, :url => {:controller => 'blocks', :action => 'update'}, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"} do |f|
               = f.hidden_field :farm_id, value: block.farm_id
               .form-group
-                .col-xs-11
-                  = f.text_field :name, class: 'form-control', placeholder: 'Block Name'
-                  .msg-name.alert-danger{:role => "alert"}
+                .col-lg-11
+                  .col-xs-5
+                    = f.label "Block Name"
+                  .col-xs-6
+                    = f.text_field :name, class: 'form-control', placeholder: 'Block Name'
+                    .msg-name.alert-danger{:role => "alert"}
               .form-group
                 .col-xs-11
-                  = f.text_field :surface, class: 'form-control', placeholder: 'Surface Area'
-                  .msg-surface.alert-danger{:role => "alert"}
+                  .col-xs-5
+                    = f.label "Surface Area"
+                  .col-xs-6
+                    = f.text_field :surface, class: 'form-control', placeholder: 'Surface Area'
+                    .msg-surface.alert-danger{:role => "alert"}
               .form-group
                 .col-xs-11
-                  = f.text_field :tree_amount, class: 'form-control', placeholder: 'Tree Amount'
-                  .msg-tree_amount.alert-danger{:role => "alert"}
+                  .col-xs-5
+                    = f.label "Tree Amount"
+                  .col-xs-6
+                    = f.text_field :tree_amount, class: 'form-control', placeholder: 'Tree Amount'
+                    .msg-tree_amount.alert-danger{:role => "alert"}
+              .form-group
+                .col-xs-11
+                  .col-xs-5
+                    = f.label "Fruitful Amount"
+                  .col-xs-6
+                    = f.text_field :fruitful_tree, class: 'form-control', placeholder: 'Fruitful Amount'
+                    .msg-tree_amount.alert-danger{:role => "alert"}
               .form-group
                 .col-xs-11
                   .input-group

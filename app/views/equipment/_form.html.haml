@@ -2,26 +2,26 @@
 = simple_form_for @equipment, html: {class: 'form-horizontal'} do |f|
   .container
     .row
-      .col-md-5
+      .col-md-7
         .form-group
-          %label.col-xs-4 Equipment Name *
-          .col-xs-8
+          %label.col-xs-3 Equipment Name *
+          .col-xs-9
             = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
         .form-group
-          %label.col-xs-4 Equipment Type *
-          .col-xs-8
+          %label.col-xs-3 Equipment Type *
+          .col-xs-9
             = f.input :equipment_type_id, collection: EquipmentType.where(status: true).map{ |p| [p.name, p.uuid] }, label: false, error: false, input_html: {class: "form-control"}
         .form-group
-          %label.col-xs-4 Note
-          .col-xs-8
+          %label.col-xs-3 Note
+          .col-xs-9
             = f.input :note, label: false, input_html: {class: "form-control"}
         .form-group
-          %label.col-xs-4 Planting Project *
-          .col-xs-8
+          %label.col-xs-3 Planting Project *
+          .col-xs-9
             = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label:false, error: false, input_html: {class: "form-control"}      
         .form-group
-          %label.col-xs-4.control-label.text-right Active
-          .col-xs-8
+          %label.col-xs-3.control-label.text-right Active
+          .col-xs-9
             = f.input :status, label: false
         .form-group
           .col-xs-12

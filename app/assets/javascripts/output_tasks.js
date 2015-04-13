@@ -1,13 +1,19 @@
 $(document).ready(function() {
-  $('.block_id').change(
-    function() {
+  $('.machinery-name').hide();
+  // block_id is id for Block. When we select block 
+  $('.block_id').change(function() {
+      // Get data for Tree amount when selecting block
+      $('.machinery-name').empty();
+      $('.warehouse-select').empty();
+      $('.material-select').empty();
+
       $('.tree_amount').show();
       var block_id = $(".block_id").val();
       jQuery.ajax({
         url: "/get_tree_amounts",
         type: "GET",
         data: {"block_id" : block_id},
-        dataType: "json",
+        dataType: "json",            
         success: function(data) {
           $.each(data, function(i, value) {
             $(".tree_amount").val(value.tree_amount);
@@ -15,8 +21,9 @@ $(document).ready(function() {
         }
       });
 
+      // Get data for Planting Project when selecting block
       $('.planting_project').show();
-      var block_id = $(".block_id").val();
+      //var block_id = $(".block_id").val();
       jQuery.ajax({
         url: "/get_block_planting_project_data",
         type: "GET",
@@ -39,6 +46,7 @@ $(document).ready(function() {
             }
           }); 
 
+          // Get data for Chosen when Planting project has data
           $('select.item-select-machinaries').html('');
           $('.warehouse').show();
           var planting_project_id = $(".planting_project_id").val();
@@ -67,9 +75,46 @@ $(document).ready(function() {
                 {allow_single_deselect: true},
                 {no_results_text: 'No results matched'}
               ).change(function(event){
+                $('.machinery-name').show();
+                
+                // Creating a row of Machinery when data from chosen
+
                 if(event.target == this){
                   console.log($(this).val());
                   $('#machineries').val($(this).val());
+                  // $('.machinery-name').empty();
+                  var machinery_id = $(this).val();
+                  console.log(machinery_id);
+                  if(machinery_id == null) {
+                    $(".machinery-name").empty();
+                  }
+                  
+                  jQuery.ajax({
+                  url: "/get_machinery_name",
+                  type: "GET",
+                  data: {"machinery_id" : machinery_id},
+                  beforeSend: function(){
+                    $('.warehouse-select').empty();
+                    $('.material-select').empty();
+                  },
+                  dataType: "json",
+                    success: function(data){
+                      $('div.machinery-name').append('<div lass="form-group"><label class="col-xs-2 control-label">' + data.machinery_name.name+'</label><label class="col-xs-1 control-label">Warehouse</label>');
+                      $('div.machinery-name').append('<div class="col-xs-2"><select class="warehouse-select form-control">');
+                      
+                      $.each(data.warehouse, function(i, value) {
+                        $('select.warehouse-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
+                      });
+                      $('div.machinery-name').append('</select>');
+
+                      $('div.machinery-name').append('<label class="col-xs-1 control-label">Material</label><div class="col-xs-2"><select class="material-select form-control">');
+                      $.each(data.material, function(i, value) {
+                        $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
+                      });
+
+                      $('div.machinery-name').append('</select><label class="col-xs-1 control-label">Qty</label><div class="col-xs-1"> <input class="form-control material-qty"></input></div></div><br/><br/>');
+                    }
+                  }); 
                 }
               });  
             }

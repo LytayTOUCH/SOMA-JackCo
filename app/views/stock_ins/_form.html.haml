@@ -1,56 +1,64 @@
 = simple_form_for @stock_in, html: { class: "form-horizontal" } do |f|
-  .form-group
-    %label.col-xs-2.control-label.text-left Warehouse *
-    .col-xs-5
-      = f.input :warehouse_id, label: false, collection: @warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
-    %span.help-block= f.error :warehouse_id
-  .form-group
-    %label.col-xs-2.control-label.text-left Material *
-    .col-xs-5
-      = f.input :material_id, label: false, collection: @materials, input_html: {class: "form-control material_uuid"}, error_html: {class: "err_msg"}
-    %span.help-block= f.error :material_id
-  .form-group
-    %label.col-xs-2.control-label.text-left User *
-    .col-xs-5
-      = f.input :labor_id, label: false, collection: @labors, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
-    %span.help-block= f.error :labor_id  
-  .form-group
-    %label.col-xs-2.control-label Stock In Date *
-    .col-xs-5
-      .controls
-        = f.text_field :stock_in_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
-      %span.help-block= f.error :stock_in_date
-        
-  .form-group
-    %label.col-xs-2.control-label Quantity *
-    .col-xs-5
-      .input-group
-        = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-        %span.input-group-addon.uom-name
-    %span.help-block= f.error :amount
+  .container
+    .row
+      .col-md-7
+        .form-group
+          %label.col-xs-3.control-label.text-left Warehouse *
+          .col-xs-9
+            - central_uuid = WarehouseType.find_by_name("Central Warehouse").uuid 
+            - project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
+            - fertilizer_uuid = WarehouseType.find_by_name("Fertilizer Warehouse").uuid
+            = f.input :warehouse_id, label: false, collection: Warehouse.where("warehouse_type_uuid = ? and active = 1 OR warehouse_type_uuid = ? and active = 1 OR warehouse_type_uuid = ? and active = 1", central_uuid, project_uuid, fertilizer_uuid).map{ |p| [p.name, p.uuid] }, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+          
+        .form-group
+          %label.col-xs-3.control-label.text-left Material *
+          .col-xs-9
+            = f.input :material_id, label: false, collection: Material.all.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control material_uuid"}, error_html: {class: "err_msg"}
+          
+        .form-group
+          %label.col-xs-3.control-label.text-left User *
+          .col-xs-9
+            = f.input :labor_id, label: false, collection: Labor.all.map{ |p| [p.name, p.uuid] }, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+            
+        .form-group
+          %label.col-xs-3.control-label Stock In Date *
+          .col-xs-9
+            .controls
+              = f.text_field :stock_in_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
 
-  .form-group
-    %label.col-xs-2.control-label Reference Number *
-    .col-xs-5
-      = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :reference_number
-      
-  .form-group
-    %label.col-xs-2.control-label Item Description
-    .col-xs-5
-      = f.input :item_desc, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :item_desc
+        .form-group
+          %label.col-xs-3.control-label Quantity *
+          .col-xs-9
+            .input-group
+              = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+              %span.input-group-addon.uom-name
+                - if params[:stock_in].nil? || Material.find_by_uuid(params[:stock_in][:material_id]).nil?
+                  = ""
+                - else
+                  = Material.find_by_uuid(params[:stock_in][:material_id]).unit_of_measurement.name
 
-  .form-group
-    %label.col-xs-2.control-label Note 
-    .col-xs-5
-      = f.input :note, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :note  
+        .form-group
+          %label.col-xs-3.control-label Reference Number *
+          .col-xs-9
+            = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
 
-  .form-group
-    .col-xs-7
-      .pull-right
-        = render partial: 'form_button', locals: { f: f }
+        .form-group
+          %label.col-xs-3.control-label Item Description
+          .col-xs-9
+            = f.input :item_desc, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+
+        .form-group
+          %label.col-xs-3.control-label Note 
+          .col-xs-9
+            = f.input :note, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+
+        .form-group
+          .col-xs-12
+            .pull-right
+              = render partial: 'form_button', locals: { f: f }
+      .col-md-4
+        = render "error", :obj => @stock_in
+      .col-md-2
 
 - content_for :javascript_body do
   = javascript_include_tag "stock_ins"

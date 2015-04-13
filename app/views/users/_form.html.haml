@@ -1,28 +1,34 @@
 = simple_form_for @user, html: { class: "form-horizontal" } do |f|
-  .form-group
-    %label.col-xs-2.control-label Labor *
-    .col-xs-5   
-      = f.input :labor_id, label: false, collection: @labors, input_html: { class: "form-control labor_uuid" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :labor_id   
-  .form-group
-    %label.col-xs-2.control-label.text-left Login Email *
-    .col-xs-5
-      = f.input :email, label: false, input_html: { class: "form-control labor-email" }, error_html: { class: "err_msg" } 
-    %span.help-block= f.error :email
-  .form-group
-    %label.col-xs-2.control-label User Group *
-    .col-xs-5   
-      = f.input :user_group_id, label: false, collection: @user_groups, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :user_group_id   
-  .form-group
-    %label.col-xs-2.control-label.text-left Active
-    .col-xs-5
-      = f.input :active, label: false
-    %span.help-block= f.error :active    
-  .form-group
-    .col-xs-7
-      .pull-right
-        = render partial: 'form_button', locals: { f: f }
+  .container
+    .row
+      .col-md-7
+        .form-group
+          %label.col-xs-3.control-label Labor *
+          .col-xs-9   
+            = f.input :labor_id, label: false, collection: Labor.where(selected: true, active: true).map{ |p| [p.name, p.uuid] }, input_html: { class: "form-control labor_uuid" }, error_html: { class: "err_msg" }
+          
+        .form-group
+          %label.col-xs-3.control-label.text-left Login Email *
+          .col-xs-9
+            = f.input :email, label: false, input_html: { class: "form-control labor-email" }, error_html: { class: "err_msg" } 
+          
+        .form-group
+          %label.col-xs-3.control-label User Group *
+          .col-xs-9   
+            = f.input :user_group_id, label: false, collection: UserGroup.where(active: true).map{ |p| [p.name, p.uuid] }, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
+          
+        .form-group
+          %label.col-xs-3.control-label.text-left Active
+          .col-xs-9
+            = f.input :active, label: false
+          
+        .form-group
+          .col-xs-12
+            .pull-right
+              = render partial: 'form_button', locals: { f: f }
+      .col-md-4
+        = render "error", :obj => @user
+      .col-md-2
 
 - content_for :javascript_body do
   = javascript_include_tag "users"
