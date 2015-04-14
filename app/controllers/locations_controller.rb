@@ -28,11 +28,14 @@ class LocationsController < ApplicationController
   private
   def location_params
     params.require(:plan_farm).permit(
-          :uuid, :farm_id, :for_year,
-          plan_phases_attributes: [:uuid, :phase_id, :plan_farm_id, :remark,
-            plan_production_stages_attributes: [:uuid, :production_stage_id,
-              plan_production_statuses_attributes: [:uuid, :production_status_id,
-               plan_areas_attributes: [:uuid, :block_id, :tree_amount]]]]
+      :uuid, :farm_id, :for_year,
+      plan_phases_attributes: [:uuid, :phase_id, :plan_farm_id, :remark,
+        plan_production_stages_attributes: [:uuid, :production_stage_id,
+          plan_production_statuses_attributes: [:uuid, :production_status_id,
+           plan_areas_attributes: [:uuid, :block_id, :tree_amount]
+           ]
+          ]
+        ]
       )
   end
 

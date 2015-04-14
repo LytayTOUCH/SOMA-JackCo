@@ -74,16 +74,16 @@ $(document).ready(function() {
                 {width: "100%"},
                 {allow_single_deselect: true},
                 {no_results_text: 'No results matched'}
-              ).change(function(event){
+              ).change(function(event, params){
                 $('.machinery-name').show();
-                
+
                 // Creating a row of Machinery when data from chosen
 
                 if(event.target == this){
                   console.log($(this).val());
                   $('#machineries').val($(this).val());
                   // $('.machinery-name').empty();
-                  var machinery_id = $(this).val();
+                  var machinery_id = params.selected;
                   console.log(machinery_id);
                   if(machinery_id == null) {
                     $(".machinery-name").empty();

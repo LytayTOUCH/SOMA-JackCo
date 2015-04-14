@@ -1,24 +1,43 @@
-%h2 Farm
-= simple_form_for @locations, :url => '/locations', :method => :post do |f|
-  = f.input :farm_id, collection: Farm.all.map{ |p| [p.name, p.uuid] }
-  = f.input :for_year, collection: 2010..2020
-  %h2 Phase
-  = f.simple_fields_for :plan_phases do |phase|
-    = phase.input :phase_id, collection: Phase.where(active: true).map{ |p| [p.name, p.uuid] }
-    = phase.input :plan_farm_id, collection: Farm.all.map{ |p| [p.name, p.uuid] }
-    = phase.input :remark
-    %h2 Stagep
-    = phase.simple_fields_for :plan_production_stages do |stage|
-      = stage.input :production_stage_id, collection: ProductionStage.where(active: true).map{ |p| [p.name, p.uuid] }
-      %h2 Status
-      = stage.simple_fields_for :plan_production_statuses do |status|
-        = status.input :production_status_id, collection: ProductionStatus.where(active: true).map{ |p| [p.name, p.uuid] }
-        %h2 Area
-        = status.simple_fields_for :plan_areas do |area|
-          = area.input :block_id, collection: Block.where(status: 0).map{ |p| [p.area, p.uuid] }
-          = area.input :tree_amount
-    %br/
+= simple_form_for @locations, :url => '/locations', :method => :post, html: {class: 'form-horizontal'} do |f|
+  .container
+    .row
+      .col-md-3
+        .form-group
+          %label.col-xs-3 Name
+          .col-xs-9
+            = f.input :farm_id, label: false,input_html: { class: "form-control" }, collection: Farm.all.map{ |p| [p.name, p.uuid] }
+      .col-md-2
+        .form-group
+          %label.col-xs-4 Year
+          .col-xs-8
+            = f.input :for_year, label: false, collection: 2010..2020, input_html: { class: "form-control" }
+      = f.simple_fields_for :plan_phases do |phase|
+        .col-md-4
+          .form-group
+            %label.col-xs-3 Phase
+            .col-xs-9
+              = phase.input :phase_id, label: false, collection: Phase.where(active: true).map{ |p| [p.name, p.uuid] }, input_html: { class: "form-control" }
+              = phase.input :plan_farm_id, as: :hidden, collection: Farm.all.map{ |p| [p.name, p.uuid] }
+        .col-md-3
+          .form-group
+            %label.col-xs-3 Remark
+            .col-xs-9
+              = phase.input :remark, label: false, input_html: { class: "form-control" }
+    .row
+      .col-md-3
+        .form-group
+          %label.col-xs-3 Stage
+          .col-xs-9
+            / = phase.simple_fields_for :plan_production_stages do |stage|
+            /   = stage.input :production_stage_id, collection: ProductionStage.where(active: true).map{ |p| [p.name, p.uuid] }
 
-  %br/
-  %br/
-  = render partial: 'form_button', locals: { f: f }
+            /   = stage.simple_fields_for :plan_production_statuses do |status|
+            /     = status.input :production_status_id, collection: ProductionStatus.where(active: true).map{ |p| [p.name, p.uuid] }
+            /     %h2 Area
+            /     = status.simple_fields_for :plan_areas do |area|
+            /       = area.input :block_id, collection: Block.where(status: 0).map{ |p| [p.area, p.uuid] }
+            /       = area.input :tree_amount
+      / = render partial: 'form_button', locals: { f: f }
+
+  - content_for :javascript_body do
+    = javascript_include_tag "locations"
