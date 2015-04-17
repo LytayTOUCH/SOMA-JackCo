@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
 
+
   get 'log_tracking/index'
   
   resources :warehouse_material_amounts, only: [:index, :edit, :update]
   resources :material_adjustments, only: [:index]
   
+  resources :locations
+  
+  get 'get_production_stages', to: 'locations#get_production_stages'
+  get 'get_production_statuses', to: 'locations#get_production_statuses'
+  get 'get_areas_by_farm', to: 'locations#get_areas_by_farm'
+  
+  resources :plan_farms
+  
+
   resources :warehouse_production_amounts, only: [:index, :edit, :update]
   resources :production_adjustments, only: [:index]
 
