@@ -6,6 +6,11 @@
       = link_to '(+) Add block', new_farm_block_path, :remote => true, class: 'btn btn-xs btn-primary btn-add'
       %span.btn-blocks-status
         = render 'blocks/buttons/show_inactive_blocks'
+      %span.btn-input-task-status
+        = render 'blocks/buttons/input_tasks'
+      %span.btn-output-task-status
+        = render 'blocks/buttons/output_tasks'
+
 .row
   .col-lg-12.reset-map
     #blocks-map.img-rounded
