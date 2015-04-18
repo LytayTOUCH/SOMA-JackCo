@@ -7,7 +7,7 @@ class LocationsController < ApplicationController
     @phase = @locations.plan_phases.build
     @stage = @phase.plan_production_stages.build
     @status = @stage.plan_production_statuses.build
-    5.times { @status.plan_areas.build }
+    5.times { @status.plan_blocks.build }
   end
 
   def create
@@ -32,12 +32,16 @@ class LocationsController < ApplicationController
     render :json => status
   end
 
-  def get_areas_by_farm
-    @blocks = Block.where(farm_id: params[:farm_id])
+  def get_areas_by_zone
+    @areas = Area.where(zone_id: params[:zone_id])
     @status_line = params[:status_line]
 
-    # binding.pry
     render partial: 'area'
+  end
+
+  def get_zone_by_farm
+    zone = Zone.where(farm_id: params[:farm_id])
+    render :json => zone
   end
 
   private
@@ -47,7 +51,7 @@ class LocationsController < ApplicationController
       plan_phases_attributes: [:uuid, :phase_id, :plan_farm_id,
         plan_production_stages_attributes: [:uuid, :production_stage_id,
           plan_production_statuses_attributes: [:uuid, :production_status_id, :remark,
-           plan_areas_attributes: [:uuid, :block_id, :tree_amount
+           plan_blocks_attributes: [:uuid, :block_id, :tree_amount
            ]
          ]
         ]

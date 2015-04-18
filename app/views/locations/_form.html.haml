@@ -1,18 +1,24 @@
 = simple_form_for @locations, :url => '/locations', :method => :post, html: {class: 'form-horizontal'} do |f|
   .container
     .row
-      .col-md-3
+      .col-md-2
         .form-group
           %label.col-xs-3 Name
           .col-xs-9
-            = f.input :farm_id, label: false,input_html: { class: "form-control block_id" }, collection: Farm.all.map{ |p| [p.name, p.uuid] }
+            = f.input :farm_id, label: false,input_html: { class: "form-control farm_id" }, collection: Farm.all.map{ |p| [p.name, p.uuid] }
       .col-md-2
         .form-group
           %label.col-xs-4 Year
           .col-xs-8
             = f.select(:for_year, 8.years.ago.year.. 8.years.from_now.year, {:selected => Date.today.year}, { class: "form-control" })
+      .col-md-2
+        .form-group
+          %label.col-xs-4 Zone
+          .col-xs-8
+            = select(:zone, :zone_id, [], { :include_blank => true }, { class: "form-control zone-list" })
+
       = f.simple_fields_for :plan_phases do |phase|
-        .col-md-4
+        .col-md-3
           .form-group
             %label.col-xs-3 Phase
             .col-xs-9
