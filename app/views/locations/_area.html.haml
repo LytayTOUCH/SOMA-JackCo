@@ -1,12 +1,15 @@
-- @blocks.each_with_index do |block, i|
-  .col-md-1
-    %input.hidden{ :id =>"plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_#{@status_line}_plan_areas_attributes_#{i}_block_id", :name =>"plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][plan_areas_attributes][#{i}][block_id]", :type =>"hidden", :value => block.uuid }
+- @areas.each_with_index do |area, i|
+  %label{:style => "padding-left: 30px"}
+    = area.name
+  - Block.find(area_id: area.uuid).each_with_index do |block, index|
+    .col-md-1
+      %input.hidden{ :id =>"plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_#{@status_line}_plan_blocks_attributes_#{i}_block_id", :name =>"plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][plan_blocks_attributes][#{i}][block_id]", :type =>"hidden", :value => block.uuid }
 
-      %label{:style => "padding-left: 30px"}
-        = block.area
-    %input.form-control{:id => "plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_#{@status_line}_plan_areas_attributes_#{i}_tree_amount", :name => "plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][plan_areas_attributes][#{i}][tree_amount]"}
+        %label{:style => "padding-left: 30px"}
+          = block.name
+      %input.form-control{:id => "plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_#{@status_line}_plan_blocks_attributes_#{i}_tree_amount", :name => "plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][plan_blocks_attributes][#{i}][tree_amount]"}
 
-  - if (i == @blocks.size - 1) 
+  - if (i == @areas.size - 1)
     .col-md-2
       %label{:style => "padding-left: 50px" }
         Remark

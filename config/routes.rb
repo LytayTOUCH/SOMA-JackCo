@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   
   get 'get_production_stages', to: 'locations#get_production_stages'
   get 'get_production_statuses', to: 'locations#get_production_statuses'
-  get 'get_areas_by_farm', to: 'locations#get_areas_by_farm'
+  get 'get_zone_by_farm', to: 'locations#get_zone_by_farm'
+  get 'get_areas_by_zone', to: 'locations#get_areas_by_zone'
   
   resources :plan_farms
   
