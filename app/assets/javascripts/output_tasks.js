@@ -78,15 +78,17 @@ $(document).ready(function() {
                 $('.machinery-name').show();
 
                 // Creating a row of Machinery when data from chosen
-
                 if(event.target == this){
                   console.log($(this).val());
                   $('#machineries').val($(this).val());
                   // $('.machinery-name').empty();
                   var machinery_id = params.selected;
+                  var sub_machinery_id = params.selected;
                   console.log(machinery_id);
+                  
                   if(machinery_id == null) {
-                    $(".machinery-name").empty();
+                    console.log("#machinery-" + sub_machinery_id);
+                    // $(".machinery-name").remove("#machinery-" + machinery_id);
                   }
                   
                   jQuery.ajax({
@@ -99,20 +101,40 @@ $(document).ready(function() {
                   },
                   dataType: "json",
                     success: function(data){
-                      $('div.machinery-name').append('<div lass="form-group"><label class="col-xs-2 control-label">' + data.machinery_name.name+'</label><label class="col-xs-1 control-label">Warehouse</label>');
-                      $('div.machinery-name').append('<div class="col-xs-2"><select class="warehouse-select form-control">');
+                      var str = "";
+                      str += '<div id="machinery-' + machinery_id + '">';
+                      str +=  '<div class="form-group">';                      
+                      str +=    '<label class="col-xs-2 control-label">';
+                      str +=      data.machinery_name.name;
+                      str +=    '</label>'
+                      str +=    '<label class="col-xs-1 control-label">Warehouse</label>';
+                      str +=    '<div class="col-xs-2">';
+                      str +=      '<select class="warehouse-select form-control">';
+                      str +=      '</select>';
+                      str +=    '</div>';
+                      str +=    '<label class="col-xs-1 control-label">Material</label>';
+                      str +=    '<div class="col-xs-2">';
+                      str +=      '<select name="materials[]" class="material-select form-control">';
+                      str +=      '</select>';
+                      str +=    '</div>';
                       
-                      $.each(data.warehouse, function(i, value) {
-                        $('select.warehouse-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
-                      });
-                      $('div.machinery-name').append('</select>');
 
-                      $('div.machinery-name').append('<label class="col-xs-1 control-label">Material</label><div class="col-xs-2"><select class="material-select form-control">');
+                      str +=    '<label class="col-xs-1 control-label">Qty</label>';
+                      str +=    '<div class="col-xs-1">';
+                      str +=      '<input class="form-control material-qty"></input>';
+                      str +=    '</div>';
+                      
+                      str +=  '</div>';
+                      str += '</div>';
+                      $('div.machinery-name').append(str);
+
+                      $.each(data.warehouse, function(i, value) {
+                        $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
+                      });
+
                       $.each(data.material, function(i, value) {
                         $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
                       });
-
-                      $('div.machinery-name').append('</select><label class="col-xs-1 control-label">Qty</label><div class="col-xs-1"> <input class="form-control material-qty"></input></div></div><br/><br/>');
                     }
                   }); 
                 }

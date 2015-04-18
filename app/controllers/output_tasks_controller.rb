@@ -57,6 +57,10 @@ class OutputTasksController < ApplicationController
 
   def create
     begin
+      puts "=====__++++++++++++++++++++++++++++++++++++++++"
+      puts params
+      puts "=====__++++++++++++++++++++++++++++++++++++++++"
+
       @output_task = OutputTask.new(output_task_params)
       output_task_end_date = @output_task.end_date.to_s
 
