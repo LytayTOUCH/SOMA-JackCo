@@ -147,7 +147,7 @@ end
 
 coconut_farm = Farm.find_by_name('Chamkar Doung Farm')
 oroung_farm= Farm.find_by_name('Oroung Farm')
-otaroit_farm= Farm.find_by_name('Otarath Farm')
+otaroit_farm= Farm.find_by_name('Otaroit Farm')
 kapaet_farm= Farm.find_by_name('Kapaet Farm')
 kampot_farm= Farm.find_by_name('Kampot Farm')
 coconut_planting_project=PlantingProject.find_by_name('Coconut')
@@ -163,7 +163,7 @@ jackfruit_planting_project=PlantingProject.find_by_name('Jackfruit')
   {name:'Zone-I', farm_id: kampot_farm.uuid},
   {name:'Zone-II', farm_id: kampot_farm.uuid}
 ].each do |zone|
-  Zone.create_with(name: zone[:name], farm_id: zone[:farm_id]).find_or_create_by_name_and_farm_id(name: zone[:name], farm_id: zone[:farm_id])
+  Zone.create_with(name: zone[:name], farm_id: zone[:farm_id]).find_or_create_by(name: zone[:name], farm_id: zone[:farm_id])
 end
 chamkar_doung_zone_i = Zone.find_by_name_and_farm_id('Zone-I', coconut_farm.uuid)
 chamkar_doung_zone_ii = Zone.find_by_name_and_farm_id('Zone-II', coconut_farm.uuid)
@@ -190,7 +190,7 @@ kampot_zone_ii = Zone.find_by_name_and_farm_id('Zone-II', kampot_farm.uuid)
   {name: 'C', zone_id: kampot_zone_ii.uuid},
   {name: 'D', zone_id: kampot_zone_ii.uuid}
 ].each do |area|
-  Area.create_with(name: area[:name], zone_id: area[:zone_id]).find_by_name_and_zone_id(name: zone[:name], zone_id: zone[:zone_id])
+  Area.create_with(name: area[:name], zone_id: area[:zone_id]).find_or_create_by(name: area[:name], zone_id: area[:zone_id])
 end
 
 chamkar_doung_area_a = Area.find_by_name_and_zone_id('A', chamkar_doung_zone_i.uuid)
