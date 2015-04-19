@@ -49,11 +49,13 @@ $(document).ready(function() {
             $(".production-status *").remove();
             $.each(data, function(i, value) {
               $(".production-status").append("<div style='padding-top: 10px;'" +
-               " class='row'><div class='status-" + i + "' >" +
+               " class='row'>" +
                " <input class='hidden' id='plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_" + i + "_production_status_id'" +
                " name='plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][" + i + "][production_status_id]' type='hidden' value=" + value.uuid + ">" +               
-               " <label class='col-md-1' " +
-               " style='padding-top: 20px;' value= " + value.uuid + ">" + value.name + "</label> </div></div>")
+               " <label class='col-md-4' " +
+               " value= " + value.uuid + ">" + (i + 1) + ". " + value.name + "</label></div>")
+
+              $(".production-status").append("<div class='status-" + i + "' style='padding-left: 10px'></div>")
 
               var zone_list = $(".zone-list").val();
               jQuery.ajax({
@@ -71,4 +73,8 @@ $(document).ready(function() {
       
       }
     );
+
+  $( ".stage-list" ).change();
+
+
 });

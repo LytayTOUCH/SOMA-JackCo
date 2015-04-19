@@ -1,16 +1,22 @@
-- @areas.each_with_index do |area, i|
-  %label{:style => "padding-left: 30px"}
-    = area.name
-  - Block.find(area_id: area.uuid).each_with_index do |block, index|
+- @index_block = -1
+- @areas.each_with_index do |area, index|
+  .row
     .col-md-1
-      %input.hidden{ :id =>"plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_#{@status_line}_plan_blocks_attributes_#{i}_block_id", :name =>"plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][plan_blocks_attributes][#{i}][block_id]", :type =>"hidden", :value => block.uuid }
+      %label{:style => "padding-left: 10px;padding-top: 37px;"}
+        = "Area: #{area.name}"
+    - Block.where(area_id: area.uuid).each do |block|
+      - @index_block += 1
+      .col-md-1
+        %input.hidden{ :id =>"plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_#{@status_line}_plan_blocks_attributes_#{@index_block}_block_id", :name =>"plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][plan_blocks_attributes][#{@index_block}][block_id]", :type =>"hidden", :value => block.uuid }
 
-        %label{:style => "padding-left: 30px"}
-          = block.name
-      %input.form-control{:id => "plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_#{@status_line}_plan_blocks_attributes_#{i}_tree_amount", :name => "plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][plan_blocks_attributes][#{i}][tree_amount]"}
+          %p{:style => "padding-left: 5px;padding-top: 10px;"}
+            = block.name
+        %input.form-control{:id => "plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_#{@status_line}_plan_blocks_attributes_#{@index_block}_tree_amount", :name => "plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][plan_blocks_attributes][#{@index_block}][tree_amount]"}
 
-  - if (i == @areas.size - 1)
-    .col-md-2
-      %label{:style => "padding-left: 50px" }
-        Remark
-      %input.form-control{:name => "plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][remark]"}
+  - if (index == @areas.size - 1)
+    .row{:style => "padding-bottom: 30px;"}
+      .col-md-1
+        %label{:style => "padding-left: 10px;padding-top: 37px;" }
+          Remark
+      .col-md-3{:style => "padding-top: 20px" }
+        %textarea.form-control{:name => "plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][#{@status_line}][remark]"}

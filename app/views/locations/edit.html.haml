@@ -10,12 +10,12 @@
         .form-group
           %label.col-xs-4.margin-year Year
           .col-xs-8
-            = f.select(:for_year, 8.years.ago.year.. 8.years.from_now.year, {:selected => Date.today.year}, { class: "form-control" })
+            = f.select(:for_year, 8.years.ago.year.. 8.years.from_now.year, {}, { class: "form-control" })
       .col-md-2
         .form-group
           %label.col-xs-4.margin-zone Zone
           .col-xs-8
-            = select(:zone, :zone_id, [], { :include_blank => true }, { class: "form-control zone-list" })
+            = select(:zone, :zone_id, Zone.where(farm_id: PlanFarm.first.farm_id).map { |f| [f.name, f.uuid] }, { :selected => Block.find(@locations.plan_blocks.first.block_id).area.zone.uuid, include_blank: true}, { class: "form-control zone-list" })
 
       = f.simple_fields_for :plan_phases do |phase|
         .col-md-3
@@ -29,16 +29,17 @@
             %label.col-xs-3.margin-stage Stage
             .col-xs-9
               = phase.simple_fields_for :plan_production_stages do |stage|
-                = stage.input :production_stage_id, collection: [], label: false, input_html: { class: "form-control stage-list" }
-              / = phase.input :remark, label: false, input_html: { class: "form-control" }
-    .production-status
-        
-      /   = stage.simple_fields_for :plan_production_statuses do |status|
-      /     = status.input :production_status_id, collection: ProductionStatus.where(active: true).map{ |p| [p.name, p.uuid] }
-      /     %h2 Area
-      /     = status.simple_fields_for :plan_areas do |area|
-      /       = area.input :block_id, collection: Block.where(status: 0).map{ |p| [p.area, p.uuid] }
-      /       = area.input :tree_amount
+                = stage.input :production_stage_id, collection: ProductionStage.where(active: true).map{ |p| [p.name, p.uuid] }, label: false, input_html: { class: "form-control stage-list" }
+                = content_tag "div", id: "products", data: {products: @locations} do
+                  %span
+      .production-status
+        / = stage.simple_fields_for :plan_production_statuses do |status|
+        /   = status.input :production_status_id, collection: ProductionStatus.where(active: true).map{ |p| [p.name, p.uuid] }
+        /   = status.input :remark, label: "remark", input_html: { class: "form-control" }
+        /   = status.simple_fields_for :plan_blocks do |block|
+
+        /     = Block.find(block.object.block_id).name
+        /     = block.input :tree_amount
     %br
     = render partial: 'form_button', locals: { f: f }
 
