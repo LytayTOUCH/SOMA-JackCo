@@ -87,8 +87,7 @@ $(document).ready(function() {
                   console.log(machinery_id);
                   
                   if(machinery_id == null) {
-                    console.log("#machinery-" + sub_machinery_id);
-                    // $(".machinery-name").remove("#machinery-" + machinery_id);
+                    
                   }
                   
                   jQuery.ajax({
@@ -109,7 +108,7 @@ $(document).ready(function() {
                       str +=    '</label>'
                       str +=    '<label class="col-xs-1 control-label">Warehouse</label>';
                       str +=    '<div class="col-xs-2">';
-                      str +=      '<select class="warehouse-select form-control">';
+                      str +=      '<select name="warehouses[]" class="warehouse-select form-control">';
                       str +=      '</select>';
                       str +=    '</div>';
                       str +=    '<label class="col-xs-1 control-label">Material</label>';
@@ -121,7 +120,7 @@ $(document).ready(function() {
 
                       str +=    '<label class="col-xs-1 control-label">Qty</label>';
                       str +=    '<div class="col-xs-1">';
-                      str +=      '<input class="form-control material-qty"></input>';
+                      str +=      '<input name="material_qtys[]" class="form-control material-qty"></input>';
                       str +=    '</div>';
                       
                       str +=  '</div>';

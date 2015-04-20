@@ -35,6 +35,8 @@ class OutputTasksController < ApplicationController
       @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse")
       @project_warehouses = Warehouse.where(warehouse_type_uuid: @project_warehouse_type.uuid)
 
+      session[:output_task_cookie_params] = output_task_params
+
     rescue Exception => e
       puts e
     end
@@ -90,22 +92,52 @@ class OutputTasksController < ApplicationController
           @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
           @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
 
-          # puts "=====================Machinery IDs========================"  
+          # puts "===================== Material, Warehouse, and Quantity ========================"  
+          # if params[:materials].is_a?(Array)
+          #   params[:materials].each do |material_id|
+          #     unless material_id.empty?
+          #       @material = Machinery.find_by_uuid(material_id)
+          #       @material.update_attributes!(availabe_date: output_task_end_date)
+          #       OutputUseMachinery.create(output_id: @output_task.uuid, material_id: material_id)
+          #     end
+          #   end
+          # end  
+
+          # puts "===================== Machinery IDs ========================"  
+
           if params[:output_task][:machineries].is_a?(Array)
+            index = 0
             params[:output_task][:machineries].each do |machinery_id|
               unless machinery_id.empty?
-                @machinery = Machinery.find_by_uuid(machinery_id)
-                @machinery.update_attributes!(availabe_date: output_task_end_date)
-                OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
+                warehouse = params[:warehouses][index]
+                material = params[:materials][index]
+                qty = params[:material_qtys][index]
+                index += 1
+
+                # @output_task_warehouse = Warehouse.find_by_uuid(warehouse)
+                # @output_task_material = Material.find_by_uuid(material)
+                @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse, material_uuid: material)
+                total_in_stock = @warehouse_material_amount.amount
+
+                if total_in_stock > qty
+                  remain_in_stock = total_in_stock - qty
+                  @machinery = Machinery.find_by_uuid(machinery_id)
+                  @machinery.update_attributes!(availabe_date: output_task_end_date)
+                  OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, warehouse_id: warehouse, material_id: material, material_amount: qty)
+                  WarehouseMaterialAmount.update_attributes!(amount: remain_in_stock)
+                else
+                  flash[:notice] = "Suggested quantity exceeds the stock quantity"
+                  render 'new' 
+                end  
               end
             end
           else
             @machinery_ids = params[:machineries]
             @machinery_ids.split(",").each do |machinery_id|
-              puts "=====================Machinery========================"      
+              puts "=====================Machinery========================"    
               @machinery = Machinery.find_by_uuid(machinery_id)
               @machinery.update_attributes!(availabe_date: output_task_end_date)
-              OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id)
+              OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, material_amount: qty)
             end
           end 
           
