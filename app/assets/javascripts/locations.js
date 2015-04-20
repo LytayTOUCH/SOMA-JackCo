@@ -1,7 +1,21 @@
 $(document).ready(function() {
-  $('.block_id').change(function(){
-    block = $(".block_id").val();
-    $('#plan_farm_plan_phases_attributes_0_plan_farm_id').attr('value', block);
+  $('.farm_id').change(function(){
+    var farm_id = $(".farm_id").val();
+    $('#plan_farm_plan_phases_attributes_0_plan_farm_id').attr('value', farm_id);
+
+    jQuery.ajax({
+      url: "/get_zone_by_farm",
+      type: "GET",
+      data: { "farm_id" : farm_id },
+      dataType: "json",
+      success: function(data) {
+        $(".zone-list").find("option:gt(0)").remove();
+
+        $.each(data, function(i, value) {
+          $(".zone-list").append("<option value=" + value.uuid + ">" + value.name + "</option>");
+        });
+      }
+    });
   });
 
   $('.phase_id').change(
@@ -41,11 +55,11 @@ $(document).ready(function() {
                " <label class='col-md-1' " +
                " style='padding-top: 20px;' value= " + value.uuid + ">" + value.name + "</label> </div></div>")
 
-              var block_id = $(".block_id").val();
+              var zone_list = $(".zone-list").val();
               jQuery.ajax({
-              url: "/get_areas_by_farm",
+              url: "/get_areas_by_zone",
               type: "GET",
-              data: { "farm_id" : block_id, "status_line" : i },
+              data: { "zone_id" : zone_list, "status_line" : i },
               dataType: "html",
               success: function(data) {
                 jQuery(".status-" + i).append(data)

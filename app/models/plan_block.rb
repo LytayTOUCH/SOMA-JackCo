@@ -1,4 +1,4 @@
-class PlanArea < ActiveRecord::Base
+class PlanBlock < ActiveRecord::Base
   include UuidHelper
 
   belongs_to :plan_production_status, foreign_key: :plan_production_status_uuid
