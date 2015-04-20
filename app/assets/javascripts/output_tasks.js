@@ -126,6 +126,7 @@ $(document).ready(function() {
                       
                       str +=  '</div>';
                       str += '</div>';
+                      
                       $('div.machinery-name').append(str);
 
                       $.each(data.warehouse, function(i, value) {
