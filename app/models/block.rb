@@ -1,11 +1,12 @@
 class Block < ActiveRecord::Base
   include UuidHelper
-  belongs_to :area, foreign_key: :zone_id
-  belongs_to :zone, foreign_key: :farm_id
-  belongs_to :farm
   
-  belongs_to :planting_project, foreign_key: :planting_project_id
+  belongs_to :area
+  belongs_to :zone
+  belongs_to :farm
 
+  belongs_to :planting_project, foreign_key: :planting_project_id
+  
   has_many :input_tasks, foreign_key: :block_id
   has_many :output_tasks, foreign_key: :block_id
   has_many :plan_areas, foreign_key: :block_id
