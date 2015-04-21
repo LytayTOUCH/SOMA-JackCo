@@ -28,4 +28,4 @@
               #{submit_tag "activate", :class => "btn btn-default btn-xs"}
         %td
           - if can? :update, farm
-            = link_to "Edit", edit_location_path(farm)
+            = link_to "Edit", edit_plan_farm_path(farm)

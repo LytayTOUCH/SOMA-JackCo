@@ -13,7 +13,6 @@ class PlansController < ApplicationController
       else
         @plans = Plan.page(params[:page]).order('updated_at DESC').per(5)
         @plans_pdf = Plan.page(params[:page]).order('updated_at DESC')
-
       end
     rescue Exception => e
       puts e

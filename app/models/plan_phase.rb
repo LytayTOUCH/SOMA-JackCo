@@ -1,7 +1,7 @@
 class PlanPhase < ActiveRecord::Base
   include UuidHelper
 
-  belongs_to :plan_farm, foreign_key: :plan_phase_id
+  belongs_to :plan_farm
 
   has_many :plan_production_stages, foreign_key: :plan_phase_id, dependent: :destroy
   

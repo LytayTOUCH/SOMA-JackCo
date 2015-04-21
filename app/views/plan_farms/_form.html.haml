@@ -1,0 +1,34 @@
+.plan_locations
+  = simple_form_for @locations, html: {class: 'form-horizontal'} do |f|
+    .container
+      .row
+        .col-md-3
+          .form-group
+            %label.col-xs-3 Name
+            .col-xs-9
+              = f.input :farm_id, label: false, input_html: { class: "form-control farm_id" }, collection: Farm.all.map{ |p| [p.name, p.uuid] }
+        .col-md-2
+          .form-group
+            %label.col-xs-4 Year
+            .col-xs-8
+              = f.select(:for_year, 8.years.ago.year.. 8.years.from_now.year, { :include_blank => true}, { class: "form-control" })
+
+        = f.simple_fields_for :plan_phases do |phase|
+          .col-md-4
+            .form-group
+              %label.col-xs-3 Phase
+              .col-xs-9
+                = phase.input :phase_id, label: false, collection: Phase.where(active: true).map{ |p| [p.name, p.uuid] }, input_html: { class: "form-control phase_id" }
+          .col-md-3
+            .form-group
+              %label.col-xs-3 Stage
+              .col-xs-9
+                = phase.simple_fields_for :plan_production_stages do |stage|
+                  = stage.input :production_stage_id, collection: ProductionStage.where(:phase_id => @locations.plan_phases.first.phase_id).map{ |p| [p.name, p.uuid] } , label: false, input_html: { class: "form-control stage-list" }
+                  .render-block
+                    = render partial: 'blocks', locals: { stage: stage }
+      %br
+      = render partial: 'form_button', locals: { f: f }
+
+    - content_for :javascript_body do
+      = javascript_include_tag "plan_farms"

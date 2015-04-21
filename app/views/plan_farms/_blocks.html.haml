@@ -1,0 +1,24 @@
+= stage.simple_fields_for :plan_production_statuses do |status|
+  = status.input :plan_production_stage_id, as: :hidden
+  = status.input :production_status_id, collection: ProductionStatus.where(active: true).map{ |p| [p.name, p.uuid] }
+  = status.input :remark, label: false, input_html: { class: "form-control" }
+  
+  = status.simple_fields_for :plan_zones do |zone|
+    %h4 Zone
+    = zone.input :zone_id, collection: Zone.all.map{ |p| [p.name, p.uuid] }
+    = zone.input :plan_production_status_id, as: :hidden
+    
+    = zone.simple_fields_for :plan_areas do |area|
+      %h4 Area
+      = area.input :plan_zone_id, as: :hidden
+      = area.input :area_id, as: :hidden
+      %p
+        = area.object.area_id.nil? ? nil : Area.where(uuid: area.object.area_id).first.name
+
+      = area.simple_fields_for :plan_blocks do |block|
+        %h4 Block
+        = block.input :plan_area_id, as: :hidden
+        %p
+          = block.object.block_id.nil? ? nil : Block.where(uuid: block.object.block_id).first.name
+        = block.input :block_id, as: :hidden
+        = block.input :tree_amount

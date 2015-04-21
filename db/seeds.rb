@@ -291,3 +291,15 @@ phase.production_stages << production_stage
 
 # ========== Production Status ==========
 ProductionStatus.create_with(name: 'New Planting', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')
+
+# ========== Plan Location Seed data ====
+PlanFarm.create(farm_id: Farm.second.uuid, for_year: 2018)
+PlanPhase.create(plan_farm_id: PlanFarm.first.uuid, phase_id: Phase.first.uuid)
+PlanProductionStage.create(plan_phase_id: PlanPhase.first.uuid, production_stage_id: ProductionStage.first.uuid)
+PlanProductionStatus.create(plan_production_stage_id: PlanProductionStage.first.uuid, production_status_id: ProductionStatus.first.uuid, remark: 'Seed data remark')
+PlanZone.create(zone_id: Farm.second.zones.first.uuid, plan_production_status_id: PlanProductionStatus.first.uuid)
+PlanArea.create(area_id: Farm.second.zones.first.areas.first, plan_zone_id: PlanZone.first.uuid)
+
+Farm.second.areas.first.blocks.each do |f|
+  PlanBlock.create(plan_area_id: PlanArea.first.uuid, block_id: f.uuid, tree_amount: 10)
+end
