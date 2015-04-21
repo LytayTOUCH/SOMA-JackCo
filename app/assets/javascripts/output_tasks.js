@@ -81,14 +81,15 @@ $(document).ready(function() {
                 if(event.target == this){
                   console.log($(this).val());
                   $('#machineries').val($(this).val());
-                  // $('.machinery-name').empty();
                   var machinery_id = params.selected;
-                  var sub_machinery_id = params.selected;
+                  var machinery_id_deselected = params.deselected;
                   console.log(machinery_id);
+                  console.log(machinery_id_deselected);
                   
-                  if(machinery_id == null) {
-                    
+                  if (params.deselected != 0){
+                    $('.machinery-name').remove();  
                   }
+                  
                   
                   jQuery.ajax({
                   url: "/get_machinery_name",
@@ -99,52 +100,48 @@ $(document).ready(function() {
                     $('.material-select').empty();
                   },
                   dataType: "json",
-                    success: function(data){
-                      var str = "";
-                      str += '<div id="machinery-' + machinery_id + '">';
-                      str +=  '<div class="form-group">';                      
-                      str +=    '<label class="col-xs-2 control-label">';
-                      str +=      data.machinery_name.name;
-                      str +=    '</label>'
-                      str +=    '<label class="col-xs-1 control-label">Warehouse</label>';
-                      str +=    '<div class="col-xs-2">';
-                      str +=      '<select name="warehouses[]" class="warehouse-select form-control">';
-                      str +=      '</select>';
-                      str +=    '</div>';
-                      str +=    '<label class="col-xs-1 control-label">Material</label>';
-                      str +=    '<div class="col-xs-2">';
-                      str +=      '<select name="materials[]" class="material-select form-control">';
-                      str +=      '</select>';
-                      str +=    '</div>';
-                      
+                  success: function(data){
+                    var str = "";
+                    str += '<div id="machinery-' + machinery_id + '">';
+                    str +=  '<div class="form-group">';
+                    str +=    '<label class="col-xs-2 control-label">';
+                    str +=      data.machinery_name.name;
+                    str +=    '</label>';
+                    str +=    '<label class="col-xs-1 control-label">Warehouse</label>';
+                    str +=    '<div class="col-xs-2">';
+                    str +=      '<select name="warehouses[]" class="warehouse-select form-control">';
+                    str +=      '</select>';
+                    str +=    '</div>';
+                    str +=    '<label class="col-xs-1 control-label">Material</label>';
+                    str +=    '<div class="col-xs-2">';
+                    str +=      '<select name="materials[]" class="material-select form-control">';
+                    str +=      '</select>';
+                    str +=    '</div>';
+                    str +=    '<label class="col-xs-1 control-label">Qty</label>';
+                    str +=    '<div class="col-xs-1">';
+                    str +=      '<input name="material_qtys[]" class="form-control material-qty"></input>';
+                    str +=    '</div>';
+                    str +=  '</div>';
+                    str += '</div>';
+                    
+                    $('div.machinery-name').append(str);
 
-                      str +=    '<label class="col-xs-1 control-label">Qty</label>';
-                      str +=    '<div class="col-xs-1">';
-                      str +=      '<input name="material_qtys[]" class="form-control material-qty"></input>';
-                      str +=    '</div>';
-                      
-                      str +=  '</div>';
-                      str += '</div>';
-                      
-                      $('div.machinery-name').append(str);
+                    $.each(data.warehouse, function(i, value) {
+                      $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
+                    });
 
-                      $.each(data.warehouse, function(i, value) {
-                        $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
-                      });
-
-                      $.each(data.material, function(i, value) {
-                        $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
-                      });
-                    }
-                  }); 
-                }
-              });  
-            }
-          });
-        }
-      });  
-    }
-  );
+                    $.each(data.material, function(i, value) {
+                      $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
+                    });
+                  }
+                }); 
+              }
+            });  
+          }
+        });
+      }
+    });  
+  });
 
   $('.warehouse_id').change(
     function() {
@@ -183,7 +180,5 @@ $(document).ready(function() {
           });  
         }
       });   
-    }
-  );
-
-});
+    });
+  });

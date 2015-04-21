@@ -92,39 +92,33 @@ class OutputTasksController < ApplicationController
           @finish_warehouse_amount.update_attributes!(amount: finish_warehouse_amount)
           @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
 
-          # puts "===================== Material, Warehouse, and Quantity ========================"  
-          # if params[:materials].is_a?(Array)
-          #   params[:materials].each do |material_id|
-          #     unless material_id.empty?
-          #       @material = Machinery.find_by_uuid(material_id)
-          #       @material.update_attributes!(availabe_date: output_task_end_date)
-          #       OutputUseMachinery.create(output_id: @output_task.uuid, material_id: material_id)
-          #     end
-          #   end
-          # end  
-
           # puts "===================== Machinery IDs ========================"  
 
           if params[:output_task][:machineries].is_a?(Array)
             index = 0
             params[:output_task][:machineries].each do |machinery_id|
               unless machinery_id.empty?
-                warehouse = params[:warehouses][index]
-                material = params[:materials][index]
-                qty = params[:material_qtys][index]
-                index += 1
+                puts "===============++++++==============="
+                puts warehouse = params[:warehouses][index]
+                puts "===============++++++==============="
+                puts material = params[:materials][index]
+                puts "===============++++++==============="
+                puts qty = params[:material_qtys][index]
+                puts "===============++++++==============="
+                index++
 
-                # @output_task_warehouse = Warehouse.find_by_uuid(warehouse)
-                # @output_task_material = Material.find_by_uuid(material)
-                @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse, material_uuid: material)
+                puts "===============++++++==============="
+                puts @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse, material_uuid: material)
+                puts "===============++++++==============="
                 total_in_stock = @warehouse_material_amount.amount
+                puts "===============++++++==============="
 
                 if total_in_stock > qty
                   remain_in_stock = total_in_stock - qty
                   @machinery = Machinery.find_by_uuid(machinery_id)
                   @machinery.update_attributes!(availabe_date: output_task_end_date)
-                  OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, warehouse_id: warehouse, material_id: material, material_amount: qty)
-                  WarehouseMaterialAmount.update_attributes!(amount: remain_in_stock)
+                  # OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, warehouse_id: warehouse, material_id: material, material_amount: qty)
+                  # WarehouseMaterialAmount.update_attributes!(amount: remain_in_stock)
                 else
                   flash[:notice] = "Suggested quantity exceeds the stock quantity"
                   render 'new' 
@@ -137,14 +131,14 @@ class OutputTasksController < ApplicationController
               puts "=====================Machinery========================"    
               @machinery = Machinery.find_by_uuid(machinery_id)
               @machinery.update_attributes!(availabe_date: output_task_end_date)
-              OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, material_amount: qty)
+              # OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, material_amount: qty)
             end
           end 
           
-          flash[:notice] = "OutputTask saved successfully"
-          redirect_to output_tasks_path
+          # flash[:notice] = "Output Task saved successfully"
+          # redirect_to output_tasks_path
         else
-          flash[:notice] = "OutputTask can't save"
+          flash[:notice] = "Output Task can't save"
           render 'new'
         end
       else
