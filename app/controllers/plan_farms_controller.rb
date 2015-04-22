@@ -1,4 +1,5 @@
 class PlanFarmsController < ApplicationController
+
   def index
     @plan_farms = PlanFarm.all
   end
@@ -11,10 +12,8 @@ class PlanFarmsController < ApplicationController
     # 5.times { @status.plan_blocks.build }
   end
 
-  def create
+  def create    
     @plan_farm = PlanFarm.new(location_params)
-
-    # binding.pry
 
     if @plan_farm.save
       redirect_to plan_farms_path
@@ -31,8 +30,6 @@ class PlanFarmsController < ApplicationController
 
   def update
     @locations = PlanFarm.find(params[:id])
-    
-    # binding.pry
 
     if @locations.update_attributes(location_params)
       flash[:notice] = "Plan farm updated successfully"
@@ -50,40 +47,38 @@ class PlanFarmsController < ApplicationController
 
   def get_render_block
     @production_status = ProductionStatus.where(stage_id: params[:stage_id])
-    @zones = Farm.where(uuid: params[:farm_id]).first.zones
-    @areas = Farm.where(uuid: params[:farm_id]).first.areas
-    @blocks = Farm.where(uuid: params[:farm_id]).first.blocks
+    
+    @farm = Farm.find(params[:farm_id])
 
     @locations = PlanFarm.new
+
     @locations.farm_id = params[:farm_id]
     @locations.for_year = params[:for_year]
-
     @phase = @locations.plan_phases.build
     @phase.phase_id = params[:phase_id]
-
     @stage = @phase.plan_production_stages.build
     @stage.production_stage_id = params[:stage_id]
 
-    @production_status.each do |p|
+    @production_status.each do |ps|
       @status = @stage.plan_production_statuses.build
-      @status.production_status_id = p.uuid
-    end
+      @status.production_status_id = ps.uuid
 
-    @zones.each do |z|
-      @zone = @status.plan_zones.build
-      @zone.zone_id = z.uuid
-    end
+      @farm.zones.each do |zn|
+        @zone = @status.plan_zones.build
+        @zone.zone_id = zn.uuid
 
-    @areas.each do |a|
-      @area = @zone.plan_areas.build
-      @area.area_id = a.uuid 
-    end
+        zn.areas.each do |ar|
+          @area = @zone.plan_areas.build
+          @area.area_id = ar.uuid
 
-    @blocks.each do |b| 
-      @block = @area.plan_blocks.build
-      @block.block_id = b.uuid
+          ar.blocks.each do |block|
+             @block = @area.plan_blocks.build
+             @block.block_id = block.uuid
+          end
+        end
+      end
     end
-
+    
     render partial: 'form'
   end
 
