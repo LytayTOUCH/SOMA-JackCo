@@ -5,7 +5,7 @@
         .text-color-green
           #{block.name}
           .pull-right
-            = link_to raw("<div class='fa fa-recycle'></div>"), {:action=>"restore_block", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, remote:true, method: :get, :class => "icon-green", data: { confirm: 'Are you sure to active this?', ok: 'Deactive', cancel: 'Back'}
+            = link_to raw("<div class='fa fa-recycle'></div>"), {:action=>"restore_block", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, remote:true, method: :get, :class => "icon-green", data: { confirm: 'Are you sure to active this?', ok: 'Active', cancel: 'Back'}
     .row
       .col-lg-12.farm-info
         %div

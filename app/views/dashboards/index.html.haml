@@ -30,15 +30,15 @@
             %div
               - @planting_projects.each do |planting_project|
                 = link_to planting_project.name, planting_project_path(planting_project), :class => "", :style => "font-size: 16px; font-weight: bold;"
-                %br
-                - planting_project.farms.distinct.each do |farm|
-                  / = link_to farm.name, farms_path, :class => "", :style => "padding-left: 15px"
-                  %div{style: "font-size: 14px; padding-left: 15px"}=farm.name
-                  %div{style: "padding-bottom: 10px; padding-left: 30px"}
-                    Total Surface:
-                    %span{style: "font-weight: bold"}=farm.blocks.where(:planting_project_id => planting_project.uuid).sum(:surface)
-                    ; Total Tree:
-                    %span{style: "font-weight: bold"}=farm.blocks.where(:planting_project_id => planting_project.uuid).sum(:tree_amount)
+                / %br
+                / - planting_project.farms.distinct.each do |farm|
+                /   / = link_to farm.name, farms_path, :class => "", :style => "padding-left: 15px"
+                /   %div{style: "font-size: 14px; padding-left: 15px"}=farm.name
+                /   %div{style: "padding-bottom: 10px; padding-left: 30px"}
+                /     Total Surface:
+                /     %span{style: "font-weight: bold"}=farm.blocks.where(:planting_project_id => planting_project.uuid).sum(:surface)
+                /     ; Total Tree:
+                /     %span{style: "font-weight: bold"}=farm.blocks.where(:planting_project_id => planting_project.uuid).sum(:tree_amount)
 
 .row
   .col-xs-6

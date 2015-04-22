@@ -8,6 +8,7 @@ class CreateBlocks < ActiveRecord::Migration
       t.string :location_lat_long
       t.integer :tree_amount
       t.string :farm_id
+      t.string :area_id
       t.integer :planting_project_id
       t.integer :rental_status
       t.integer :status

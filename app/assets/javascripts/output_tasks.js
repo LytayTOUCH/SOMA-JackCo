@@ -67,12 +67,20 @@ $(document).ready(function() {
             $('select.item-select-machinaries').trigger('chosen:updated');
           },
           complete: function(data){
-              $("select.chosen-select").chosen(
-                {width: "100%"},
-                {allow_single_deselect: true},
-                {no_results_text: 'No results matched'}
-              ).change(function(event, params){
-                $('.machinery-name').show();
+            $("select.chosen-select").chosen(
+              {width: "100%"},
+              {allow_single_deselect: true},
+              {no_results_text: 'No results matched'}
+            ).change(function(event, params){
+              
+              // Creating a row of Machinery when data from chosen
+              if(event.target == this){
+                $('#machineries').val($(this).val());
+                machinery_id = params.selected;
+                $('.warehouse-select').empty();
+                $('.material-select').empty();
+                
+                console.log($('#machineries').val($(this).val()));
 
                 // Creating a row of Machinery when data from chosen
                 if(event.target == this){
@@ -127,14 +135,22 @@ $(document).ready(function() {
                       $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
                     });
 
+                    $('div.machinery-name').append('<label class="col-xs-1 control-label">Material</label><div class="col-xs-2"><select class="material-select form-control">');
                     $.each(data.material, function(i, value) {
-                      $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
+                      $('select.material-select').append('<option value=' + value.uuid + '>' + value.name + '</option>');
                     });
+
+                    $('div.machinery-name').append('</select><label class="col-xs-1 control-label">Qty</label><div class="col-xs-1"> <input class="form-control material-qty"></input></div></div><br/><br/>');
                   }
-                }); 
+                });
+                $('.machinery-name').show(); 
               }
             });  
           }
+        });
+        
+
+      }
     });  
   });
 
