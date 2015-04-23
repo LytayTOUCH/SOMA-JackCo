@@ -257,14 +257,16 @@ $(document).ready(function() {
   function move_dom_style(){
     $('.row.plan-status-new-row').append($('.plan-production-status-tag'));
     
-    // $('.row.tab-zone-block .nav-tabs').append($('div.tab-pane li'));
-    $('.remark#0').append($('.tab-content.0'));
-    $('.remark#0 .tab-content.0').append($('div.tab-pane#tab-zone-0'));    
+    $('.row.tab-zone-block .nav-tabs').append($('div.tablist-li li'));
+    $('.row.tab-zone-block .tab-content').append($('div.tab-pane'));
 
-    $('.remark#1').append($('.tab-content.1'));
-    $('.remark#1 .tab-content.1').append($('div.tab-pane#tab-zone-1'));
+    // $('.remark#0').append($('.tab-content.0'));
+    // $('.remark#0 .tab-content.0').append($('div.tab-pane#tab-zone-0'));    
 
-    $('.row.plan-status-remark').append($('.remark'));
+    // $('.remark#1').append($('.tab-content.1'));
+    // $('.remark#1 .tab-content.1').append($('div.tab-pane#tab-zone-1'));
+
+    $('.row.plan-status-remark').append($('.remark#0'));
   }
 
 });
