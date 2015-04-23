@@ -1,35 +1,40 @@
+
 = stage.simple_fields_for :plan_production_statuses do |status|
   .plan-production-status-tag
     = status.input :plan_production_stage_id, as: :hidden
     = status.input :production_status_id, as: :hidden
     %label
       = "#{status.index + 1}. #{ProductionStatus.find(status.object.production_status_id).name}"
-  .plan-production-status-remark-tag
-    = status.input :remark, label: false, input_html: { class: "form-control" }
-  
-    = status.simple_fields_for :plan_zones do |zone|
-      .list-zones
+  .remark{id: "#{status.index}"}
+    .row
+      .col-md-1
+        %h4{style: "margin-top: -25px"} Remark
+      .col-md-3
+        = status.text_area :remark, label: true, class: 'form-control', :style => "margin-top: -15px"
+    
+    %ul.nav.nav-tabs{:role=>'tablist'}
+    .tab-content{class: "#{status.index}"}
+      = status.simple_fields_for :plan_zones do |zone|
         %li{ class: "#{zone.index == 0 ? 'active' : ''}"}
-          = link_to "#{Zone.find(zone.object.zone_id).name}", "#tab-zone-#{zone.index}", data: {toggle: 'tab'}
+          = link_to "#{Zone.find(zone.object.zone_id).name}", "#tab-zone-#{zone.index}", data: {toggle: 'tab'}, style: 'font-weight: bold;'
           = zone.input :zone_id, as: :hidden
           = zone.input :plan_production_status_id, as: :hidden
-            
-        = zone.simple_fields_for :plan_areas do |area|
-          .plan-production-area-tag
-            %h4 Area
-            = area.input :plan_zone_id, as: :hidden
-            = area.input :area_id, as: :hidden
-            %p
-              = area.object.area_id.nil? ? nil : Area.where(uuid: area.object.area_id).first.name
+          .tab-pane{class: "#{zone.index == 0 ? 'active' : ''}", id: "tab-zone-#{zone.index}", role: 'tabpanel', style: 'height: 100%'}
+            = zone.simple_fields_for :plan_areas do |area|
+              .plan-production-area-tag{style: 'padding-top: 10px;'}
+                .row
+                  .col-md-1
+                    = area.input :plan_zone_id, as: :hidden
+                    = area.input :area_id, as: :hidden
+                    %h4
+                      = "Area: #{area.object.area_id.nil? ? nil : Area.where(uuid: area.object.area_id).first.name}"
+                  .no-error-indent
+                    = area.simple_fields_for :plan_blocks do |block|
+                      .col-md-1
+                        = block.input :plan_area_id, as: :hidden
+                        %p{style: "text-align: center"}
+                          = Block.find(block.object.block_id).name
 
-            = area.simple_fields_for :plan_blocks do |block|
-              .plan-production-block-tag
-                %p
-                / = block.object.block_id
-                = block.input :plan_area_id, as: :hidden
-                %p
-                  / = block.object.block_id.nil? ? nil : Block.where(uuid: block.object.block_id).first.name
-                  = Block.find(block.object.block_id).name
-
-                = block.input :block_id, as: :hidden
-                = block.input :tree_amount
+                        = block.input :block_id, as: :hidden
+                        = block.input :tree_amount, label: false, input_html: {class: 'form-control'}          
+    }

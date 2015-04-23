@@ -24,6 +24,7 @@ $(document).ready(function() {
       dataType: "json",
       success: function(data) {
         $(".stage-list").find("option:gt(0)").remove();
+        $(".render-block *").remove();
 
         $.each(data, function(i, value) {
           $(".stage-list").append("<option value=" + value.uuid + ">" + value.name + "</option>");
@@ -33,7 +34,7 @@ $(document).ready(function() {
   });
 
   $('.stage-list').change(function() {
-    if ($('.farm_id').data('old_farm_id') == ""){
+    // if ($('.farm_id').data('old_farm_id') == ""){
       var stage_id = $(".stage-list").val();
       
       if (stage_id == "") {
@@ -54,41 +55,44 @@ $(document).ready(function() {
                 "for_year" : for_year },
         dataType: "html",
         success: function(data) {
-          var edit_farm_id = "";
+          // var edit_farm_id = "";
           
-          if ($('.farm_id').data('old_farm_id') == ""){
-            edit_farm_id = $('.farm_id').data('old_farm_id');
-          }
+          // if ($('.farm_id').data('old_farm_id') == ""){
+          //   edit_farm_id = $('.farm_id').data('old_farm_id');
+          // }
 
           $(".plan_locations *").remove();
           $(".plan_locations").html(data);
 
-          if (edit_farm_id == ""){
-            $('.farm_id').data('old_farm_id', edit_farm_id);
-            // $('form div').append("<input name='_method' type='hidden' value='patch'>");
-            // $('form').removeAttr("action");
-            // $('form').attr("action", "/plan_farms" + edit_farm_id);
-            // $('input.btn.btn-primary').removeAttr("value");
-            // $('input.btn.btn-primary').attr("value", "Update Plan farm");
-          }
+          // if (edit_farm_id == ""){
+          //   $('.farm_id').data('old_farm_id', edit_farm_id);
+          //   // $('form div').append("<input name='_method' type='hidden' value='patch'>");
+          //   // $('form').removeAttr("action");
+          //   // $('form').attr("action", "/plan_farms" + edit_farm_id);
+          //   // $('input.btn.btn-primary').removeAttr("value");
+          //   // $('input.btn.btn-primary').attr("value", "Update Plan farm");
+          // }
 
           stage1();
           phase1();
           farm1();
+          move_dom_style();
         }
       });
-    }
+    // }
   });
+
+  move_dom_style();
 
   function stage1(){
     $('.stage-list').change(function() {
-      if ($('.farm_id').data('old_farm_id') == ""){
+      // if ($('.farm_id').data('old_farm_id') == ""){
         var stage_id = $(".stage-list").val();
         
         if (stage_id == "") {
           $(".render-block *").remove();
           return;
-        } 
+        }
         
         var farm_id = $(".farm_id").val();
         var phase_id = $(".phase_id").val();
@@ -103,41 +107,42 @@ $(document).ready(function() {
                   "for_year" : for_year },
           dataType: "html",
           success: function(data) {
-            var edit_farm_id = "";
+            // var edit_farm_id = "";
             
-            if ($('.farm_id').data('old_farm_id') == ""){
-              edit_farm_id = $('.farm_id').data('old_farm_id');
-            }
+            // if ($('.farm_id').data('old_farm_id') == ""){
+            //   edit_farm_id = $('.farm_id').data('old_farm_id');
+            // }
 
             $(".plan_locations *").remove();
             $(".plan_locations").html(data);
 
-            if (edit_farm_id == ""){
-              $('.farm_id').data('old_farm_id', edit_farm_id);
-              // $('form div').append("<input name='_method' type='hidden' value='patch'>");
-              // $('form').removeAttr("action");
-              // $('form').attr("action", "/plan_farms/" + $('.farm_id').data('old_farm_id'));
-              // $('input.btn.btn-primary').removeAttr("value");
-              // $('input.btn.btn-primary').attr("value", "Update Plan farm");
-            }
+            // if (edit_farm_id == ""){
+            //   $('.farm_id').data('old_farm_id', edit_farm_id);
+            //   // $('form div').append("<input name='_method' type='hidden' value='patch'>");
+            //   // $('form').removeAttr("action");
+            //   // $('form').attr("action", "/plan_farms/" + $('.farm_id').data('old_farm_id'));
+            //   // $('input.btn.btn-primary').removeAttr("value");
+            //   // $('input.btn.btn-primary').attr("value", "Update Plan farm");
+            // }
             stage2();
             phase2();
             farm2();
+            move_dom_style();
           }
         });
-      }
+      // }
     });
   }
 
   function stage2(){
     $('.stage-list').change(function() {
-      if ($('.farm_id').data('old_farm_id') == ""){
+      // if ($('.farm_id').data('old_farm_id') == ""){
         var stage_id = $(".stage-list").val();
         
         if (stage_id == "") {
           $(".render-block *").remove();
           return;
-        } 
+        }
 
         var farm_id = $(".farm_id").val();
         var phase_id = $(".phase_id").val();
@@ -152,29 +157,30 @@ $(document).ready(function() {
                   "for_year" : for_year },
           dataType: "html",
           success: function(data) {
-            var edit_farm_id = "";
+            // var edit_farm_id = "";
             
-            if ($('.farm_id').data('old_farm_id') == ""){
-              edit_farm_id = $('.farm_id').data('old_farm_id');
-            }
+            // if ($('.farm_id').data('old_farm_id') == ""){
+            //   edit_farm_id = $('.farm_id').data('old_farm_id');
+            // }
 
             $(".plan_locations *").remove();
             $(".plan_locations").html(data);
 
-            if (edit_farm_id == ""){
-              $('.farm_id').data('old_farm_id', edit_farm_id);
-              // $('form div').append("<input name='_method' type='hidden' value='patch'>");
-              // $('form').removeAttr("action");
-              // $('form').attr("action", "/plan_farms/" + $('.farm_id').data('old_farm_id'));
-              // $('input.btn.btn-primary').removeAttr("value");
-              // $('input.btn.btn-primary').attr("value", "Update Plan farm");
-            }
+            // if (edit_farm_id == ""){
+            //   $('.farm_id').data('old_farm_id', edit_farm_id);
+            //   // $('form div').append("<input name='_method' type='hidden' value='patch'>");
+            //   // $('form').removeAttr("action");
+            //   // $('form').attr("action", "/plan_farms/" + $('.farm_id').data('old_farm_id'));
+            //   // $('input.btn.btn-primary').removeAttr("value");
+            //   // $('input.btn.btn-primary').attr("value", "Update Plan farm");
+            // }
             stage1();
             phase1();
             farm1();
+            move_dom_style();
           }
         });
-      }
+      // }
     });
   }
 
@@ -188,6 +194,7 @@ $(document).ready(function() {
         dataType: "json",
         success: function(data) {
           $(".stage-list").find("option:gt(0)").remove();
+          $(".render-block *").remove();
 
           $.each(data, function(i, value) {
             $(".stage-list").append("<option value=" + value.uuid + ">" + value.name + "</option>");
@@ -207,6 +214,7 @@ $(document).ready(function() {
         dataType: "json",
         success: function(data) {
           $(".stage-list").find("option:gt(0)").remove();
+          $(".render-block *").remove();
 
           $.each(data, function(i, value) {
             $(".stage-list").append("<option value=" + value.uuid + ">" + value.name + "</option>");
@@ -246,7 +254,17 @@ $(document).ready(function() {
     });
   }
 
-  $('.row.plan-status-new-row').append($('.plan-production-status-tag'));
-  $('.row.tab-zone-block .nav-tabs').append($('div.list-zones li'));
-  $('.row.plan-status-remark').append($('.plan-production-status-remark-tag'));
+  function move_dom_style(){
+    $('.row.plan-status-new-row').append($('.plan-production-status-tag'));
+    
+    // $('.row.tab-zone-block .nav-tabs').append($('div.tab-pane li'));
+    $('.remark#0').append($('.tab-content.0'));
+    $('.remark#0 .tab-content.0').append($('div.tab-pane#tab-zone-0'));    
+
+    $('.remark#1').append($('.tab-content.1'));
+    $('.remark#1 .tab-content.1').append($('div.tab-pane#tab-zone-1'));
+
+    $('.row.plan-status-remark').append($('.remark'));
+  }
+
 });

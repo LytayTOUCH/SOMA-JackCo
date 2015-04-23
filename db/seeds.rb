@@ -291,6 +291,7 @@ phase.production_stages << production_stage
 
 # ========== Production Status ==========
 ProductionStatus.create_with(name: 'New Planting', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')
+ProductionStatus.create_with(name: 'Seed Replace', stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true).find_or_create_by(name: 'Seed Replace')
 
 # ========== Plan Location Seed data ====
 PlanFarm.create(farm_id: Farm.second.uuid, for_year: 2018)
@@ -346,4 +347,5 @@ area5.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.33358243
 area6.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
 area6.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
 area6.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+
 # =========== End Mondolkiri test farm ==============
