@@ -140,8 +140,8 @@ end
   {name: 'Chamkar Doung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.341900, 104.822941', active: true},
   {name: 'Otaroit Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336964, 104.830418', active: true},
   {name: 'Kapet Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336681, 104.858414', active: true},
-  {name: 'Kbalsen Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336839, 104.858196', active: true},
-  {name: 'Kampot Farm', location: 'Beurng Chhouk District, Kampot Province', latlong_farm: '10.572342, 104.132600', active: true}
+  {name: 'Kbalsen Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336839, 104.858196', active: true}
+  # {name: 'Kampot Farm', location: 'Beurng Chhouk District, Kampot Province', latlong_farm: '10.572342, 104.132600', active: true}
 ].each do |farm|
   Farm.create_with(location: farm[:location], latlong_farm: farm[:latlong_farm], active: farm[:active]).find_or_create_by(name: farm[:name])
 end
@@ -151,7 +151,7 @@ oroung_farm= Farm.find_by_name('Oroung Farm')
 otaroit_farm= Farm.find_by_name('Otaroit Farm')
 kapet_farm= Farm.find_by_name('Kapet Farm')
 kbalsen_farm= Farm.find_by_name('Kbalsen Farm')
-kampot_farm= Farm.find_by_name('Kampot Farm')
+# kampot_farm= Farm.find_by_name('Kampot Farm')
 coconut_planting_project=PlantingProject.find_by_name('Coconut')
 jackfruit_planting_project=PlantingProject.find_by_name('Jackfruit')
 
@@ -165,11 +165,11 @@ jackfruit_planting_project=PlantingProject.find_by_name('Jackfruit')
   {name:'Zone-IV', farm_id: otaroit_farm.uuid},
   {name:'Zone-II', farm_id: kapet_farm.uuid},
   {name:'Zone-III', farm_id: kbalsen_farm.uuid},
-  {name:'Zone-I', farm_id: kampot_farm.uuid},
-  {name:'Zone-II', farm_id: kampot_farm.uuid},
+  # {name:'Zone-I', farm_id: kampot_farm.uuid},
+  # {name:'Zone-II', farm_id: kampot_farm.uuid},
   {name:'Zone-I', farm_id: oroung_farm.uuid},
-  {name:'Zone-II', farm_id: kapet_farm.uuid},
-  {name:'Zone-III', farm_id: kampot_farm.uuid},
+  {name:'Zone-II', farm_id: kapet_farm.uuid}
+  # {name:'Zone-III', farm_id: kampot_farm.uuid},
 ].each do |zone|
   Zone.create_with(name: zone[:name], farm_id: zone[:farm_id]).find_or_create_by(name: zone[:name], farm_id: zone[:farm_id])
 end
@@ -182,8 +182,8 @@ otaroit_zone_iv = Zone.find_by_name_and_farm_id('Zone-IV', otaroit_farm.uuid)
 kapet_zone_ii = Zone.find_by_name_and_farm_id('Zone-II', kapet_farm.uuid)
 kbalsen_zone_iii= Zone.find_by_name_and_farm_id('Zone-III', kbalsen_farm.uuid)
 oroung_zone_i = Zone.find_by_name_and_farm_id('Zone-I', oroung_farm.uuid)
-kampot_zone_i = Zone.find_by_name_and_farm_id('Zone-I', kampot_farm.uuid)
-kampot_zone_ii = Zone.find_by_name_and_farm_id('Zone-II', kampot_farm.uuid)
+# kampot_zone_i = Zone.find_by_name_and_farm_id('Zone-I', kampot_farm.uuid)
+# kampot_zone_ii = Zone.find_by_name_and_farm_id('Zone-II', kampot_farm.uuid)
 
 #=========== Area ===============
 [
@@ -203,11 +203,11 @@ kampot_zone_ii = Zone.find_by_name_and_farm_id('Zone-II', kampot_farm.uuid)
   {name: 'B', zone_id: kapet_zone_ii.uuid},
   {name: 'A', zone_id: oroung_zone_i.uuid},
   {name: 'B', zone_id: oroung_zone_i.uuid},
-  {name: 'C', zone_id: oroung_zone_i.uuid},
-  {name: 'A', zone_id: kampot_zone_i.uuid},
-  {name: 'B', zone_id: kampot_zone_i.uuid},
-  {name: 'C', zone_id: kampot_zone_ii.uuid},
-  {name: 'D', zone_id: kampot_zone_ii.uuid}
+  {name: 'C', zone_id: oroung_zone_i.uuid}
+  # {name: 'A', zone_id: kampot_zone_i.uuid},
+  # {name: 'B', zone_id: kampot_zone_i.uuid},
+  # {name: 'C', zone_id: kampot_zone_ii.uuid},
+  # {name: 'D', zone_id: kampot_zone_ii.uuid}
 ].each do |area|
   Area.create_with(name: area[:name], zone_id: area[:zone_id]).find_or_create_by(name: area[:name], zone_id: area[:zone_id])
 end
