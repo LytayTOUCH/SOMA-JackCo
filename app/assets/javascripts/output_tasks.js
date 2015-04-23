@@ -4,8 +4,8 @@ $(document).ready(function() {
   $('.block_id').change(function() {
     // Get data for Tree amount when selecting block
     $('.machinery-name').empty();
-    $('.warehouse-select').empty();
-    $('.material-select').empty();
+    // $('.warehouse-select').empty();
+    // $('.material-select').empty();
 
     $('.tree_amount').show();
     var block_id = $(".block_id").val();
@@ -79,17 +79,11 @@ $(document).ready(function() {
 
               // Creating a row of Machinery when data from chosen
               if(event.target == this){
-                // console.log($(this).val());
-                
                 $('#machineries').val($(this).val());
-                // $('.machinery-name').empty();
                 var machinery_id = params.selected;
                 
-                // console.log(machinery_id);
-                
                 if(!params.selected) {
-                  $('.machinery-name').remove(params.selected);
-                  // console.log("machinery");
+                  $('#machinery-' + params.deselected).remove();
                 }
                 
                 jQuery.ajax({
@@ -97,8 +91,10 @@ $(document).ready(function() {
                 type: "GET",
                 data: {"machinery_id" : machinery_id},
                 beforeSend: function(){
-                  $('.warehouse-select').empty();
-                  $('.material-select').empty();
+                  if (params.selected) {
+                    $('.warehouse-select').empty();
+                    $('.material-select').empty();
+                  }
                 },
                 dataType: "json",
                   success: function(data){
