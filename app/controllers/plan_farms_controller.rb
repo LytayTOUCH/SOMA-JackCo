@@ -12,7 +12,7 @@ class PlanFarmsController < ApplicationController
     # 5.times { @status.plan_blocks.build }
   end
 
-  def create    
+  def create
     @plan_farm = PlanFarm.new(location_params)
 
     if @plan_farm.save

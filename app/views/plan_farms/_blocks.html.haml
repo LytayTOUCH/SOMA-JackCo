@@ -2,9 +2,11 @@
   .plan-production-status-tag
     = status.input :plan_production_stage_id, as: :hidden
     = status.input :production_status_id, as: :hidden
-    %label
+    %label{:class => "text-status-#{status.index}"}
       = "#{status.index + 1}. #{ProductionStatus.find(status.object.production_status_id).name}"
-  .remark{id: "#{status.index}"}
+    .max-status-count{style: "display: none;"}
+      = @locations.plan_phases.first.plan_production_stages.first.plan_production_statuses.each.size
+  .remark{class: "remark-#{status.index}"}
     .row
       .col-md-1
         %h4{style: "margin-top: -25px"} Remark
@@ -13,10 +15,11 @@
       = status.simple_fields_for :plan_zones do |zone|
         .tablist-li
           %li{ class: "#{zone.index == 0 ? 'active' : ''}"}
-            = link_to "#{Zone.find(zone.object.zone_id).name}", "#tab-zone-#{zone.index}", data: {toggle: 'tab'}, style: 'font-weight: bold;'
-        = zone.input :zone_id, as: :hidden
-        = zone.input :plan_production_status_id, as: :hidden
-        .tab-pane{class: "#{zone.index == 0 ? 'active' : ''}", id: "tab-zone-#{zone.index}", role: 'tabpanel', style: 'height: 100%'}
+            = link_to "#{Zone.find(zone.object.zone_id).name}", "#tab-zone-#{status.index}-#{zone.index}", data: {toggle: 'tab'}, style: 'font-weight: bold;'
+        
+          = zone.input :zone_id, as: :hidden
+          = zone.input :plan_production_status_id, as: :hidden
+        .tab-pane{class: "#{zone.index == 0 ? 'active' : ''}", id: "tab-zone-#{status.index}-#{zone.index}", role: 'tabpanel', style: 'height: 100%'}
           = zone.simple_fields_for :plan_areas do |area|
             .plan-production-area-tag{style: 'padding-top: 10px;'}
               .row
@@ -31,6 +34,5 @@
                       = block.input :plan_area_id, as: :hidden
                       %p{style: "text-align: center"}
                         = Block.find(block.object.block_id).name
-
                       = block.input :block_id, as: :hidden
                       = block.input :tree_amount, label: false, input_html: {class: 'form-control'}

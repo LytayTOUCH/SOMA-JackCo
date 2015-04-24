@@ -27,19 +27,19 @@
                 = phase.simple_fields_for :plan_production_stages do |stage|
                   = stage.input :production_stage_id, collection: ProductionStage.where(:phase_id => @locations.plan_phases.first.phase_id).map{ |p| [p.name, p.uuid] } , label: false, input_html: { class: "form-control stage-list" }, :disabled => params[:action] == "edit"
                   = render partial: 'blocks', locals: { stage: stage }
-
-    - if request.xhr? || (params[:action] == "edit")
-      .render-block{style: 'padding-left: 15px;'}
-        %br
-        .row.plan-status-new-row
-        
-        %br
-        .row.tab-zone-block
-          %ul.nav.nav-tabs{:role=>'tablist'}
-          .tab-content
-        %br
-        %br
-        .row.plan-status-remark
+        - if (request.xhr? || (params[:action] == "edit"))
+          - @locations.plan_phases.first.plan_production_stages.first.plan_production_statuses.each_with_index do |f, index|
+            .render-block{class: "block-status-#{index}", style: 'padding-left: 30px;'}
+              %br
+              .row.plan-status-new-row
+              
+              %br
+              .row.tab-zone-block
+                %ul.nav.nav-tabs{:role=>'tablist'}
+                .tab-content
+              %br
+              %br
+              .row.plan-status-remark
 
     %br
     = render partial: 'form_button', locals: { f: f }
