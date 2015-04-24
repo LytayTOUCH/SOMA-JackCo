@@ -26,10 +26,18 @@
 
 .page-header.custom-page-header
   %h3.custom-h3.icon-green
-    All Tasks
+    All Input Tasks
+
+%div
+  / = render '/views/input_tasks/index'
+  = @block.input_tasks.inspect
 
 .page-header.custom-page-header
   %h3.custom-h3.icon-green
-    Complete Activities
+    Complete Output Activities
+
+%div
+  / = render '/views/input_tasks/index'
+  = @block.output_tasks.inspect
 
 .form-modal

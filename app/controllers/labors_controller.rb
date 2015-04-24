@@ -6,6 +6,10 @@ class LaborsController < ApplicationController
   def index
     @labors = Labor.all
   end
+  
+  def show
+    @labor = Labor.find(params[:id])
+  end
 
   def new
     begin

@@ -49,7 +49,7 @@
     %label.col-xs-2.control-label.text-left Machineries *
     .col-xs-7
       = f.select :machineries, options_for_select(@machineries.map { |value| [ value.name, value.uuid ]}), { include_blank: true }, { class: 'chosen-select form-control machinery-chosen', multiple: true }
-    %span.help-block= f.error :machineries  
+    %span.help-block= f.error :machineries
   .form-group
     %label.col-xs-2.control-label.text-left Output Quantity *
     .col-xs-7

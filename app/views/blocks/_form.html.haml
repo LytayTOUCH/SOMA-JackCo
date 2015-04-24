@@ -24,6 +24,25 @@
                   .msg-tree_amount.alert-danger{:role => "alert"}
               .form-group
                 .col-xs-11
+                  = f.text_field :fruitful_tree, class: 'form-control', placeholder: 'Productional Tree Amount'
+                  .msg-tree_amount.alert-danger{:role => "alert"}
+              .form-group
+                .col-xs-6
+                  .input-group
+                    %select.zone-options.form-control
+                      %option{:value => ""} Select Zone
+                      - zones.each do |zone|  
+                        %option{:value => "#{zone.uuid}"} #{zone.name}
+                    .msg-zone_id.alert-danger{:role => "alert"}
+                .col-xs-6
+                  .input-group.area-selection{:style => "margin-left: -10px;"}
+                    / = f.select :area_id, areas.collect {|area| [ area.name, area.id ] }, {style: "width: 40px", prompt: "Select Area"}, class: 'form-control'
+                    %select.area-options.form-control{name: "block[area_id]"}
+                      %option{:value => ""} Select Area
+                    .msg-area_id.alert-danger{:role => "alert"}
+                    
+              .form-group
+                .col-xs-11
                   .input-group
                     = f.select :planting_project_id, planting_projects.collect {|p| [ p.name, p.id ] }, {prompt: "Select Planting Type"}, class: 'form-control'
                     %span.input-group-btn

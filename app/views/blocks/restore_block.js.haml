@@ -1,0 +1,13 @@
+:plain
+  infobox.close();
+  for (label of labels){
+    if('#{@inactive_blocks[0].uuid}' == label.id){
+      label.setMap(null);
+    }
+  }
+  for (block of blocks) {
+    if('#{@inactive_blocks[0].uuid}' == block.id){
+      block.setMap(null);
+    }
+  }
+  $('#block_#{@inactive_blocks[0].uuid}').remove();

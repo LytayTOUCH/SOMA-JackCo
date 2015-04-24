@@ -1,0 +1,12 @@
+$("#active-blocks").empty();
+$('#active-blocks').attr("id", "inactive-blocks");
+$("span.btn-blocks-status").empty();
+$("span.btn-blocks-status").html("#{escape_javascript(render 'blocks/buttons/show_active_blocks')}");
+for (label of labels){
+label.setMap(null);
+}
+for (each_block of blocks) {
+each_block.setMap(null)
+}
+infobox.close();
+$('#inactive-blocks').append("#{escape_javascript(render 'blocks_board', blocks: @inactive_blocks)}");

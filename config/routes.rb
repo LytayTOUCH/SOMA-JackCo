@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
 
+
   get 'log_tracking/index'
   
   resources :warehouse_material_amounts, only: [:index, :edit, :update]
   resources :material_adjustments, only: [:index]
   
+  resources :locations
+  
+  get 'get_production_stages', to: 'locations#get_production_stages'
+  get 'get_production_statuses', to: 'locations#get_production_statuses'
+  get 'get_zone_by_farm', to: 'locations#get_zone_by_farm'
+  get 'get_areas_by_zone', to: 'blocks#get_areas_by_zone'
+  
+  resources :plan_farms
+  
+
   resources :warehouse_production_amounts, only: [:index, :edit, :update]
   resources :production_adjustments, only: [:index]
 
@@ -42,6 +53,11 @@ Rails.application.routes.draw do
     end
   end
   resources :farms do
+    collection do
+      get 'farms/:farm_id/active_blocks', to: 'blocks#all_active_blocks', as: 'active_blocks'
+      get 'farms/:farm_id/inactive_blocks', to: 'blocks#all_inactive_blocks', as: 'inactive_blocks'
+      get 'farms/:farm_id/restore_blocks/:id', to: 'blocks#restore_block', as: 'restore_blocks'
+    end
     resources :blocks
     collection do
       get 'inactive', to: 'farms#all_inactive_farms', as: 'inactive_farms'
@@ -154,6 +170,8 @@ Rails.application.routes.draw do
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
   get 'get_production_by_planting_project', to: 'blocks#get_production_by_planting_project'
+
+  get 'get_machinery_name', to: 'machineries#get_machinery_name'
 
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'

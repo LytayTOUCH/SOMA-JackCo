@@ -1,0 +1,37 @@
+.col-sm-3{id:"block_#{block.uuid}"}
+  .box-farm-info
+    .page-header.custom-page-header
+      %h4.custom-h4
+        = link_to block.name, {:action=>"show", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, :class => "text-color-green"
+        .pull-right
+          = link_to raw("<div class='fa fa-pencil'></div>"), {:action=>"edit", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, remote:true, :class => "icon-orangish btn-edit"
+          = link_to raw("<div class='fa fa-ban'></div>"), {:action=>"destroy", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, remote:true, method: :delete, :class => "icon-red", data: { confirm: 'Are you sure to deactive this?', ok: 'Deactive', cancel: 'Back'}
+    .row
+      .col-lg-12.farm-info
+        %div
+          Planting Project:
+          - if block.planting_project.name.downcase.eql? 'coconut'
+            %span.label.label-success #{block.planting_project.name}
+          - elsif block.planting_project.name.downcase.eql? 'jackfruit'
+            %span.label.label-warning #{block.planting_project.name}
+          - elsif block.planting_project.name.downcase.eql? 'mango'
+            %span.label.custom-label-dark-yellow #{'Mango'}
+          - elsif block.planting_project.name.downcase.eql? 'lemon'
+            %span.label.custom-label-light-green #{'Lemon'}
+        %div Surface: #{block.surface}
+        %div Area: #{block.area.name}, Zone: #{block.area.zone.name}
+        %div Tree Amount: #{block.tree_amount}
+        %div Fruitful Tree Amount: #{block.fruitful_tree}
+        %div
+          %i.fa.fa-map-marker
+          = block.location_lat_long
+  :javascript
+    show_blocks = function() {
+      var block_id = "#{block.uuid}";
+      var block_name = "#{block.name}";
+      var block_shape = #{block.shape_lat_long};
+      var project_name = "#{block.planting_project.name.downcase}";
+      showBlock(block_id, block_shape, project_name);
+      showBlockName(block_name, block_shape, block_id);
+    };
+    show_blocks();

@@ -16,12 +16,9 @@ class InputTask < ActiveRecord::Base
 	validates :end_date, presence: true
 	validates :tree_amount, presence: true
 	validates :reference_number, presence: true
-	# validates :material_amount, presence: true
 
   	validates :block_id, length: {maximum: 36}, presence: true
   	validates :labor_id, length: {maximum: 36}, presence: true
-  	# validates :warehouse_id, length: {maximum: 36}, presence: true
-  	# validates :material_id, length: {maximum: 36}, presence: true
   	validates :created_by, length: {maximum: 36}, presence: true
 
   	scope :find_by_name, -> name { where("name like ?", "%#{name}%") }

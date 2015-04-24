@@ -25,7 +25,7 @@ class InputUsesController < ApplicationController
     kit.stylesheets << "#{Rails.root}/public/styles.css.scss"
     # Save the html to a PDF file
     send_file kit.to_file("#{Rails.root}/public/input_uses_report.pdf")
-  
+
   end
 
 end
