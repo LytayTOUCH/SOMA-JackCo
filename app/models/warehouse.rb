@@ -20,7 +20,7 @@ class Warehouse < ActiveRecord::Base
 
   has_many :stock_ins
 
-  has_many :input_tasks, foreign_key: :warehouse_id
+  # has_many :input_tasks, foreign_key: :warehouse_id
 
   scope :find_by_warehouse_name, -> name { where("name like ?", "%#{name}%") }
 

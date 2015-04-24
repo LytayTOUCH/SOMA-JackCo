@@ -158,6 +158,9 @@ Rails.application.routes.draw do
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
 
+  get 'get_machinery_name', to: 'machineries#get_machinery_name'
+  get 'get_material_name', to: 'materials#get_material_name'
+
   # get 'input_uses/index'
   resources :input_uses do
     collection do
