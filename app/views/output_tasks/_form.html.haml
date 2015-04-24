@@ -42,22 +42,14 @@
     .col-xs-7
       = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :reference_number
-  / .form-group
-  /   %label.col-xs-2.control-label.text-left Select a Warehouse *
-  /   .col-xs-7
-  /     = f.input :note, label: false, collection: @warehouses, input_html: { class: "form-control warehouse_id" }, error_html: {class: "err_msg"}
   .form-group
     %label.col-xs-2.control-label.text-left Machineries *
     .col-xs-7
       = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries', multiple: false }
       = hidden_field_tag 'machineries', ''
-      / = f.select :machineries, options_for_select(@machineries.map { |value| [ value.name, value.uuid ]}), { include_blank: true }, { class: 'chosen-select form-control', multiple: true }
     %span.help-block= f.error :machineries
-
   .form-group.machinery-name
     
-    
-
   .form-group
     %label.col-xs-2.control-label.text-left Output Quantity *
     .col-xs-7
@@ -79,7 +71,6 @@
   .form-group
     %label.col-xs-2.control-label.text-left Nursery Production *
     .col-xs-2
-      / = f.select :nursery_production_id, options_for_select(@planting_project_names.map { |value| [ value.status + " - " + value.planting_project.name, value.uuid ]}, :selected => f.object.nursery_production_id), {:include_blank => true}, {class: 'form-control'}
       = f.select :nursery_production_id, options_for_select("Select status"), { include_blank: true }, {class: 'form-control production_ids'}
     / %span.help-block= f.error :nursery_production_id  
     %label.col-xs-1.control-label.text-left To *
