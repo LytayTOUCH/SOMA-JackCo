@@ -139,7 +139,7 @@ end
   {name: 'Oroung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.333019, 104.864575', active: true},
   {name: 'Chamkar Doung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.341900, 104.822941', active: true},
   {name: 'Otaroit Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336964, 104.830418', active: true},
-  {name: 'Kapet Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336681, 104.858414', active: true},
+  {name: 'Kapet Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.337731842924741, 104.86478090286255', active: true},
   {name: 'Kbalsen Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336839, 104.858196', active: true}
   # {name: 'Kampot Farm', location: 'Beurng Chhouk District, Kampot Province', latlong_farm: '10.572342, 104.132600', active: true}
 ].each do |farm|
