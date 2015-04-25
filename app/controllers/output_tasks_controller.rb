@@ -35,8 +35,6 @@ class OutputTasksController < ApplicationController
       @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse")
       @project_warehouses = Warehouse.where(warehouse_type_uuid: @project_warehouse_type.uuid)
 
-      session[:output_task_cookie_params] = output_task_params
-
     rescue Exception => e
       puts e
     end
@@ -59,10 +57,6 @@ class OutputTasksController < ApplicationController
 
   def create
     begin
-      puts "=====__++++++++++++++++++++++++++++++++++++++++"
-      puts params
-      puts "=====__++++++++++++++++++++++++++++++++++++++++"
-
       @output_task = OutputTask.new(output_task_params)
       output_task_end_date = @output_task.end_date.to_s
 
@@ -93,32 +87,47 @@ class OutputTasksController < ApplicationController
           @nursery_warehouse_amount.update_attributes!(amount: nursery_warehouse_amount)
 
           # puts "===================== Machinery IDs ========================"  
+          # puts "===============++++++==============="
+          # puts "Warehouses"
+          # puts params[:warehouses]
+          # puts "Materials" 
+          # puts params[:materials]
+          # puts "Quantities"
+          # puts params[:material_qtys]
+          # puts "===============++++++==============="
+
+          # binding.pry
+          index = 0
+          @warehouses = params[:warehouses]
+          @materials = params[:materials]
+          @qty = params[:material_qtys]
 
           if params[:output_task][:machineries].is_a?(Array)
-            index = 0
             params[:output_task][:machineries].each do |machinery_id|
               unless machinery_id.empty?
-                puts "===============++++++==============="
-                puts warehouse = params[:warehouses][index]
-                puts "===============++++++==============="
-                puts material = params[:materials][index]
-                puts "===============++++++==============="
-                puts qty = params[:material_qtys][index]
-                puts "===============++++++==============="
-                index++
+                puts "================= Output task UUID =============="
+                puts @output_task.uuid
+                puts "================= Warehouse '" + index.to_s + "'==========="
+                warehouse = @warehouses[index]
+                puts "================= Materials '" + index.to_s + "'==========="
+                material = @materials[index]
+                puts "================= Quantity '" + index.to_s + "'==========="
+                qty = @qty[index]
+                puts "============================================"
+                index += 1
 
-                puts "===============++++++==============="
-                puts @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse, material_uuid: material)
-                puts "===============++++++==============="
+                @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse, material_uuid: material)
+                puts "====================== Amount =========================="
                 total_in_stock = @warehouse_material_amount.amount
-                puts "===============++++++==============="
-
-                if total_in_stock > qty
-                  remain_in_stock = total_in_stock - qty
+                
+                if total_in_stock > qty.to_f
+                  puts "============ Remain In Stock ============"
+                  remain_in_stock = total_in_stock - qty.to_f
+                  puts "========================================="
                   @machinery = Machinery.find_by_uuid(machinery_id)
                   @machinery.update_attributes!(availabe_date: output_task_end_date)
-                  # OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, warehouse_id: warehouse, material_id: material, material_amount: qty)
-                  # WarehouseMaterialAmount.update_attributes!(amount: remain_in_stock)
+                  OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, warehouse_id: warehouse, material_id: material, material_amount: qty.to_f)
+                  @warehouse_material_amount.update_attributes!(amount: remain_in_stock)
                 else
                   flash[:notice] = "Suggested quantity exceeds the stock quantity"
                   render 'new' 
@@ -127,16 +136,41 @@ class OutputTasksController < ApplicationController
             end
           else
             @machinery_ids = params[:machineries]
+            index = 0
             @machinery_ids.split(",").each do |machinery_id|
-              puts "=====================Machinery========================"    
-              @machinery = Machinery.find_by_uuid(machinery_id)
-              @machinery.update_attributes!(availabe_date: output_task_end_date)
-              # OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, material_amount: qty)
+              unless machinery_id.empty?
+                puts "================= Output task UUID =============="
+                puts @output_task.uuid
+                puts "================= Warehouse " + index.to_s + "==========="
+                warehouse = @warehouses[index]
+                puts "================= Materials " + index.to_s + "==========="
+                material = @materials[index]
+                puts "================= Quantity " + index.to_s + "==========="
+                qty = @qty[index]
+                puts "============================================"
+                index += 1
+
+                @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse, material_uuid: material)
+                puts "====================== Amount =========================="
+                total_in_stock = @warehouse_material_amount.amount
+                
+                if total_in_stock > qty.to_f
+                  puts "============ Remain In Stock ============"
+                  remain_in_stock = total_in_stock - qty.to_f
+                  puts "========================================="
+                  @machinery = Machinery.find_by_uuid(machinery_id)
+                  @machinery.update_attributes!(availabe_date: output_task_end_date)
+                  OutputUseMachinery.create(output_id: @output_task.uuid, machinery_id: machinery_id, warehouse_id: warehouse, material_id: material, material_amount: qty.to_f)
+                  @warehouse_material_amount.update_attributes!(amount: remain_in_stock)
+                else
+                  flash[:notice] = "Suggested quantity exceeds the stock quantity"
+                  render 'new' 
+                end  
+              end
             end
           end 
-          
-          # flash[:notice] = "Output Task saved successfully"
-          # redirect_to output_tasks_path
+          flash[:notice] = "Output Task saved successfully"
+          redirect_to output_tasks_path
         else
           flash[:notice] = "Output Task can't save"
           render 'new'
