@@ -50,12 +50,12 @@
   .form-group
     %label.col-xs-2.control-label.text-left Machineries *
     .col-xs-7
-      = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control select-machinaries', multiple: false }
-      = hidden_field_tag 'machineries', ''
+      / = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control select-machinaries', multiple: false }
+      / = hidden_field_tag 'machineries', ''
 
-      / = f.select :machineries, options_for_select(@machineries.map { |value| [ value.name, value.uuid ]}), { include_blank: true }, { class: 'chosen-select form-control machinery-chosen', multiple: true }
+      = f.select :machineries, options_for_select(@machineries.map { |value| [ value.name, value.uuid ]}), { include_blank: true }, { class: 'chosen-select form-control machinery-chosen', multiple: true }
     %span.help-block= f.error :machineries
-  .form-group.machinery-name
+  .form-group.machinery-from-map
 
   .form-group
     %label.col-xs-2.control-label.text-left Output Quantity *
@@ -119,9 +119,9 @@
 
 :javascript
   $('.date_pick').datetimepicker({});
-  $('select.select-machinaries').empty();
-  // $(".chosen-select").chosen(
-  //  {width: "100%"},
-  //  {allow_single_deselect: true},
-  //  {no_results_text: 'No results matched'}
-  // );  
+  // $('select.select-machinaries').empty();
+  $(".chosen-select").chosen(
+   {width: "100%"},
+   {allow_single_deselect: true},
+   {no_results_text: 'No results matched'}
+  );  
