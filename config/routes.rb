@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'get_production_stages', to: 'locations#get_production_stages'
   get 'get_production_statuses', to: 'locations#get_production_statuses'
   get 'get_zone_by_farm', to: 'locations#get_zone_by_farm'
-  get 'get_areas_by_zone', to: 'locations#get_areas_by_zone'
+  get 'get_areas_by_zone', to: 'blocks#get_areas_by_zone'
   
   resources :plan_farms
   
@@ -175,6 +175,9 @@ Rails.application.routes.draw do
 
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
+
+  get 'get_machinery_name', to: 'machineries#get_machinery_name'
+  get 'get_material_name', to: 'materials#get_material_name'
 
   # get 'input_uses/index'
   resources :input_uses do

@@ -53,7 +53,8 @@
               - @planting_projects.each do |planting_project|
                 %div{:style => "font-size: 16px; font-weight: bold;"}= planting_project.name
                 - planting_project.input_tasks.order('updated_at DESC').limit(5).each do |input_task|
-                  %div{style: "font-size: 12px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name + " - " + input_task.material.name + " - " + input_task.material_amount.to_s
+                  / %div{style: "font-size: 12px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name + " - " + input_task.material.name + " - " + input_task.material_amount.to_s
+                  %div{style: "font-size: 12px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name
 
                 - if planting_project.input_tasks.length > 5
                   %div{style: "font-size: 12px; padding-left: 15px"}

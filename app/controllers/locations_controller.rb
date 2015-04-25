@@ -32,13 +32,6 @@ class LocationsController < ApplicationController
     render :json => status
   end
 
-  def get_areas_by_zone
-    @areas = Area.where(zone_id: params[:zone_id])
-    @status_line = params[:status_line]
-
-    render partial: 'area'
-  end
-
   def get_zone_by_farm
     zone = Zone.where(farm_id: params[:farm_id])
     render :json => zone
