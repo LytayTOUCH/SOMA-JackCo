@@ -16,7 +16,7 @@
         .tablist-li
           %li{ class: "#{zone.index == 0 ? 'active' : ''}"}
             = link_to "#{Zone.find(zone.object.zone_id).name}", "#tab-zone-#{status.index}-#{zone.index}", data: {toggle: 'tab'}, style: 'font-weight: bold;'
-        
+
           = zone.input :zone_id, as: :hidden
           = zone.input :plan_production_status_id, as: :hidden
         .tab-pane{class: "#{zone.index == 0 ? 'active' : ''}", id: "tab-zone-#{status.index}-#{zone.index}", role: 'tabpanel', style: 'height: 100%'}
@@ -35,4 +35,4 @@
                       %p{style: "text-align: center"}
                         = Block.find(block.object.block_id).name
                       = block.input :block_id, as: :hidden
-                      = block.input :tree_amount, label: false, input_html: {class: 'form-control'}
+                      = block.input :tree_amount, as: :integer, label: false, input_html: {class: 'form-control'}

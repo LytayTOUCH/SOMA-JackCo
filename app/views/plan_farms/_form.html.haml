@@ -8,6 +8,7 @@
             .col-xs-9
               = f.input :uuid, as: :hidden
               = f.input :farm_id, label: false, input_html: { class: "form-control farm_id" }, collection: Farm.all.map{ |p| [p.name, p.uuid] }, :disabled => params[:action] == "edit"
+              
         .col-md-2
           .form-group
             %label.col-xs-4{style: 'padding-top: 5px'} Year

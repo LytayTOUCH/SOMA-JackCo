@@ -10,12 +10,13 @@ class PlanFarmsController < ApplicationController
     @stage = @phase.plan_production_stages.build
     # @status = @stage.plan_production_statuses.build
     # 5.times { @status.plan_blocks.build }
+
   end
 
   def create
-    @plan_farm = PlanFarm.new(location_params)
+    @locations = PlanFarm.new(location_params)
 
-    if @plan_farm.save
+    if @locations.save
       redirect_to plan_farms_path
     else
       render 'new'

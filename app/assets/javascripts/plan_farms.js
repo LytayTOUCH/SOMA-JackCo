@@ -254,10 +254,29 @@ $(document).ready(function() {
     });
   }
 
+  // $("#new_plan_farm").click(function(event){
+  //   var error_free = true;
+    
+  //   var element = $("#plan_farm_farm_id");
+  //   var valid = element.hasClass("error");
+  //   if (!valid){element.removeClass("error").addClass("error_show"); error_free=false;}
+  //   else{element.removeClass("error_show").addClass("error");}
+  //   if (!error_free){ event.preventDefault();}
+
+  // });
+
+  // $('#new_plan_farm select').on('input', function() {
+  //   var input=$(this);
+  //   var is_name=input.val();
+  //   if(is_name){input.removeClass("error_show").addClass("error");}
+  //   else{input.removeClass("error").addClass("error_show");}
+  // });
+
+
   function move_dom_style(){
     var max_status = parseInt($('.max-status-count').first().text());
     console.log(max_status);
-    
+
     for ( var i = 0; i < max_status; i++ ) {
       $(".block-status-" + i + " .row.tab-zone-block ul.nav.nav-tabs").append($(".remark-" + i + " li"));
       $(".block-status-" + i + " .row.plan-status-new-row").append($(".plan-production-status-tag label.text-status-" + i));
