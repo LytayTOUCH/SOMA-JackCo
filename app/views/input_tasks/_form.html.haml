@@ -1,46 +1,46 @@
 = simple_form_for @input_task, html: { class: "form-horizontal" } do |f|
   .form-group
     %label.col-xs-2.control-label.text-left Name *
-    .col-xs-8
+    .col-xs-8.input-task
       = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :name
   .form-group
     %label.col-xs-2.control-label Start Date *
-    .col-xs-8
+    .col-xs-8.input-task
       .controls
         = f.text_field :start_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
     %span.help-block= f.error :start_date
   .form-group
     %label.col-xs-2.control-label End Date *
-    .col-xs-8
+    .col-xs-8.input-task
       .controls
         = f.text_field :end_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
     %span.help-block= f.error :end_date
   .form-group
     %label.col-xs-2.control-label.text-left Block *
-    .col-xs-8
+    .col-xs-8.input-task
       = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name+" ; "+value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control block_id'}
 
     %span.help-block= f.error :block_id
   .form-group
     %label.col-xs-2.control-label.text-left Planting Project *
-    .col-xs-8
+    .col-xs-8.input-task
       = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project_id"}, error_html: {class: "err_msg"}, as: :hidden
       %input.form-control.planting_project_name{:type => "text", value: "", readonly: true }
     %span.help-block= f.error :planting_project_id
   .form-group
     %label.col-xs-2.control-label.text-left Tree amount *
-    .col-xs-8
+    .col-xs-8.input-task
       = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :tree_amount
   .form-group
     %label.col-xs-2.control-label.text-left Labor *
-    .col-xs-8
+    .col-xs-8.input-task
       = f.association :labor, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
     %span.help-block= f.error :labor_id
   .form-group
     %label.col-xs-2.control-label.text-left Machineries *
-    .col-xs-8
+    .col-xs-8.input-task
       = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries', multiple: false }
       = hidden_field_tag 'machineries', ''
     %span.help-block= f.error :machineries
@@ -49,12 +49,12 @@
 
   .form-group
     %label.col-xs-2.control-label.text-left Reference Number *
-    .col-xs-8
+    .col-xs-8.input-task
       = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
     %span.help-block= f.error :reference_number
   .form-group
     %label.col-xs-2.control-label.text-left Materials *
-    .col-xs-8
+    .col-xs-8.input-task
       = f.select :materials, options_for_select(@materials.map { |value| [ value.name, value.uuid ]}), { include_blank: true }, { class: 'form-control material_uuid', multiple: true }
       = hidden_field_tag 'materials', ''
     %span.help-block= f.error :materials
@@ -63,11 +63,11 @@
 
   .form-group
     %label.col-xs-2.control-label.text-left Note
-    .col-xs-8
+    .col-xs-8.input-task
       = f.input :note, label: false, input_html: { class: "form-control" }
     %span.help-block= f.error :note
   .form-group
-    .col-xs-8
+    .col-xs-8.input-task
       = f.input :created_by, :as => :hidden, input_html: { value: current_user.uuid }
     %span.help-block= f.error :created_by
   .form-group
