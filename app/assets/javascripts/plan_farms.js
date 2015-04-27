@@ -1,11 +1,10 @@
-
 $(document).ready(function() {
 
   $('.farm_id').data('old_farm_id', $('input.hidden#plan_farm_uuid').val());
 
   $('.farm_id').change(function() {
-    $('#plan_farm_for_year > option').removeAttr('selected');
-    $('#plan_farm_for_year > option:first').attr('selected', true);
+    // $('#plan_farm_for_year > option').removeAttr('selected');
+    // $('#plan_farm_for_year > option:first').attr('selected', true);
 
     $('.phase_id > option').removeAttr('selected');
     $('.phase_id > option:first').attr('selected', true);
@@ -76,13 +75,13 @@ $(document).ready(function() {
           stage1();
           phase1();
           farm1();
-          move_dom_style();
+          // move_dom_style();
         }
       });
     // }
   });
 
-  move_dom_style();
+  // move_dom_style();
 
   function stage1(){
     $('.stage-list').change(function() {
@@ -127,7 +126,7 @@ $(document).ready(function() {
             stage2();
             phase2();
             farm2();
-            move_dom_style();
+            // move_dom_style();
           }
         });
       // }
@@ -177,7 +176,7 @@ $(document).ready(function() {
             stage1();
             phase1();
             farm1();
-            move_dom_style();
+            // move_dom_style();
           }
         });
       // }
@@ -226,8 +225,8 @@ $(document).ready(function() {
 
   function farm1(){
     $('.farm_id').change(function() {
-      $('#plan_farm_for_year > option').removeAttr('selected');
-      $('#plan_farm_for_year > option:first').attr('selected', true);
+      // $('#plan_farm_for_year > option').removeAttr('selected');
+      // $('#plan_farm_for_year > option:first').attr('selected', true);
 
       $('.phase_id > option').removeAttr('selected');
       $('.phase_id > option:first').attr('selected', true);
@@ -241,8 +240,8 @@ $(document).ready(function() {
 
   function farm2(){
     $('.farm_id').change(function() {
-      $('#plan_farm_for_year > option').removeAttr('selected');
-      $('#plan_farm_for_year > option:first').attr('selected', true);
+      // $('#plan_farm_for_year > option').removeAttr('selected');
+      // $('#plan_farm_for_year > option:first').attr('selected', true);
 
       $('.phase_id > option').removeAttr('selected');
       $('.phase_id > option:first').attr('selected', true);
@@ -256,7 +255,7 @@ $(document).ready(function() {
 
   // $("#new_plan_farm").click(function(event){
   //   var error_free = true;
-    
+
   //   var element = $("#plan_farm_farm_id");
   //   var valid = element.hasClass("error");
   //   if (!valid){element.removeClass("error").addClass("error_show"); error_free=false;}

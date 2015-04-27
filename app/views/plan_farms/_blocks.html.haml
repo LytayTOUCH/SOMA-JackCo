@@ -1,38 +1,10 @@
 = stage.simple_fields_for :plan_production_statuses do |status|
-  .plan-production-status-tag
-    = status.input :plan_production_stage_id, as: :hidden
-    = status.input :production_status_id, as: :hidden
-    %label{:class => "text-status-#{status.index}"}
-      = "#{status.index + 1}. #{ProductionStatus.find(status.object.production_status_id).name}"
-    .max-status-count{style: "display: none;"}
-      = @locations.plan_phases.first.plan_production_stages.first.plan_production_statuses.each.size
-  .remark{class: "remark-#{status.index}"}
-    .row
-      .col-md-1
-        %h4{style: "margin-top: -25px"} Remark
-      .col-md-3
-        = status.text_area :remark, label: true, class: 'form-control', :style => "margin-top: -15px"
-      = status.simple_fields_for :plan_zones do |zone|
-        .tablist-li
-          %li{ class: "#{zone.index == 0 ? 'active' : ''}"}
-            = link_to "#{Zone.find(zone.object.zone_id).name}", "#tab-zone-#{status.index}-#{zone.index}", data: {toggle: 'tab'}, style: 'font-weight: bold;'
-
-          = zone.input :zone_id, as: :hidden
-          = zone.input :plan_production_status_id, as: :hidden
-        .tab-pane{class: "#{zone.index == 0 ? 'active' : ''}", id: "tab-zone-#{status.index}-#{zone.index}", role: 'tabpanel', style: 'height: 100%'}
-          = zone.simple_fields_for :plan_areas do |area|
-            .plan-production-area-tag{style: 'padding-top: 10px;'}
-              .row
-                .col-md-1
-                  = area.input :plan_zone_id, as: :hidden
-                  = area.input :area_id, as: :hidden
-                  %h4
-                    = "Area: #{area.object.area_id.nil? ? nil : Area.where(uuid: area.object.area_id).first.name}"
-                .no-error-indent
-                  = area.simple_fields_for :plan_blocks do |block|
-                    .col-md-1
-                      = block.input :plan_area_id, as: :hidden
-                      %p{style: "text-align: center"}
-                        = Block.find(block.object.block_id).name
-                      = block.input :block_id, as: :hidden
-                      = block.input :tree_amount, as: :integer, label: false, input_html: {class: 'form-control'}
+  = status.input :plan_production_stage_id, as: :hidden
+  = status.input :production_status_id, as: :hidden
+  %label{:class => "text-status-#{status.index}", :style => "padding-left: 30px; padding-top: 20px; padding-bottom: 20px"}
+    = "#{status.index + 1}. #{ProductionStatus.find(status.object.production_status_id).name}"
+  .status{class: "each-#{status.index}", style: "margin-left: 30px;"}
+    %ul.nav.nav-tabs{:role=>'tablist'}
+      = render partial: 'navtabs', locals: { status: status }
+    .tab-content
+      = render partial: 'area_block', locals: { status: status }

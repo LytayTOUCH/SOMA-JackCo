@@ -294,22 +294,22 @@ ProductionStatus.create_with(name: 'New Planting', stage_id: production_stage.uu
 ProductionStatus.create_with(name: 'Seed Replace', stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true).find_or_create_by(name: 'Seed Replace')
 
 # ========== Plan Location Seed data ====
-PlanFarm.create(farm_id: Farm.second.uuid, for_year: 2018)
-PlanPhase.create(plan_farm_id: PlanFarm.first.uuid, phase_id: Phase.first.uuid)
-PlanProductionStage.create(plan_phase_id: PlanPhase.first.uuid, production_stage_id: ProductionStage.first.uuid)
-PlanProductionStatus.create(plan_production_stage_id: PlanProductionStage.first.uuid, production_status_id: ProductionStatus.first.uuid, remark: 'Seed data remark')
-PlanZone.create(zone_id: Farm.second.zones.first.uuid, plan_production_status_id: PlanProductionStatus.first.uuid)
-PlanArea.create(area_id: Farm.second.zones.first.areas.first, plan_zone_id: PlanZone.first.uuid)
+# PlanFarm.create(farm_id: Farm.second.uuid, for_year: 2018)
+# PlanPhase.create(plan_farm_id: PlanFarm.first.uuid, phase_id: Phase.first.uuid)
+# PlanProductionStage.create(plan_phase_id: PlanPhase.first.uuid, production_stage_id: ProductionStage.first.uuid)
+# PlanProductionStatus.create(plan_production_stage_id: PlanProductionStage.first.uuid, production_status_id: ProductionStatus.first.uuid, remark: 'Seed data remark')
+# PlanZone.create(zone_id: Farm.second.zones.first.uuid, plan_production_status_id: PlanProductionStatus.first.uuid)
+# PlanArea.create(area_id: Farm.second.zones.first.areas.first, plan_zone_id: PlanZone.first.uuid)
 
-Farm.second.areas.first.blocks.each do |f|
-  PlanBlock.create(plan_area_id: PlanArea.first.uuid, block_id: f.uuid, tree_amount: 10)
-end
+# Farm.second.areas.first.blocks.each do |f|
+#   PlanBlock.create(plan_area_id: PlanArea.first.uuid, block_id: f.uuid, tree_amount: 10)
+# end
 
 # ===== clear other farm ====
-Farm.destroy_all
-Zone.destroy_all
-Area.destroy_all
-Block.destroy_all
+# Farm.destroy_all
+# Zone.destroy_all
+# Area.destroy_all
+# Block.destroy_all
 
 # ========== Mondolkiri Farm (For plan location testing only) ==============
 farm = Farm.create(name: 'Mondolkiri Farm', location: 'Banlung District, Mondolkiri Province', latlong_farm: '11.333019, 104.864575', active: true)

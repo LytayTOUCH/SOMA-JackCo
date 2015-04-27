@@ -1,4 +1,0 @@
-= simple_form_for @locations do |f|
-  = f.simple_fields_for :plan_phases do |phase|
-    = phase.simple_fields_for :plan_production_stages do |stage|
-      = render partial: 'blocks', locals: { stage: stage }

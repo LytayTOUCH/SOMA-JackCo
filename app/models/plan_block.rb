@@ -5,5 +5,5 @@ class PlanBlock < ActiveRecord::Base
   belongs_to :block
 
   validates_numericality_of :tree_amount, :only_integer => true, :allow_nil => true, 
-    :greater_than => 0
+    :message => "Tree amount can only be number.", :greater_than => 0
 end

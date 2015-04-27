@@ -1,50 +1,45 @@
 .plan_locations
-  = simple_form_for @locations, html: {class: 'form-horizontal'} do |f|
-    .container
-      .row{style: "margin-left: -30px;"}
+  .container
+    .row{style: "margin-left: -30px;"}
+      = simple_form_for @locations, html: {class: 'form-horizontal'} do |f|
+        .error-locations
+          = render "error", :obj => @locations
         .col-md-3
           .form-group
             %label.col-xs-3{style: 'padding-top: 5px'} Name
             .col-xs-9
               = f.input :uuid, as: :hidden
-              = f.input :farm_id, label: false, input_html: { class: "form-control farm_id" }, collection: Farm.all.map{ |p| [p.name, p.uuid] }, :disabled => params[:action] == "edit"
-              
+              = f.input :farm_id, label: false, error: false, input_html: { class: "form-control farm_id" }, collection: Farm.all.map{ |p| [p.name, p.uuid] }, :disabled => params[:action] == "edit" || params[:action] == "update"
+
         .col-md-2
           .form-group
             %label.col-xs-4{style: 'padding-top: 5px'} Year
             .col-xs-8
-              = f.select(:for_year, 8.years.ago.year.. 8.years.from_now.year, { :include_blank => true}, { class: "form-control" })
+              = f.select(:for_year, 8.years.ago.year.. 8.years.from_now.year,  { error: false, selected: Date.today.year }, { class: "form-control" })
 
         = f.simple_fields_for :plan_phases do |phase|
           .col-md-4
             .form-group
               %label.col-xs-3{style: 'padding-top: 5px'} Phase
               .col-xs-9
-                = phase.input :phase_id, label: false, collection: Phase.where(active: true).map{ |p| [p.name, p.uuid] }, input_html: { class: "form-control phase_id" }, :disabled => params[:action] == "edit"
-          .col-md-3
-            .form-group
-              %label.col-xs-3{style: 'padding-top: 5px'} Stage
-              .col-xs-9
-                = phase.simple_fields_for :plan_production_stages do |stage|
-                  = stage.input :production_stage_id, collection: ProductionStage.where(:phase_id => @locations.plan_phases.first.phase_id).map{ |p| [p.name, p.uuid] } , label: false, input_html: { class: "form-control stage-list" }, :disabled => params[:action] == "edit"
-                  = render partial: 'blocks', locals: { stage: stage }
-        - if (request.xhr? || (params[:action] == "edit"))
-          - @locations.plan_phases.first.plan_production_stages.first.plan_production_statuses.each_with_index do |f, index|
-            .render-block{class: "block-status-#{index}", style: 'padding-left: 30px;'}
-              %br
-              .row.plan-status-new-row
-              
-              %br
-              .row.tab-zone-block
-                %ul.nav.nav-tabs{:role=>'tablist'}
-                .tab-content
-              %br
-              %br
-              .row.plan-status-remark
+                = phase.input :phase_id, label: false, error: false, collection: Phase.where(active: true).map{ |p| [p.name, p.uuid] }, input_html: { class: "form-control phase_id" }, :disabled => params[:action] == "edit" || params[:action] == "update"
 
-    %br
-    = render partial: 'form_button', locals: { f: f }
-    .p{style: 'padding-top: 10px;'}
+          = phase.simple_fields_for :plan_production_stages do |stage|
+            .col-md-3
+              .form-group
+                %label.col-xs-3{style: 'padding-top: 5px'} Stage
+                .col-xs-9
+                  = stage.input :production_stage_id, error: false, collection: ProductionStage.where(:phase_id => @locations.plan_phases.first.phase_id).map{ |p| [p.name, p.uuid] } , label: false, input_html: { class: "form-control stage-list" }, :disabled => params[:action] == "edit" || params[:action] == "update"
+            .row
+              = render partial: 'blocks', locals: { stage: stage }
+              / %ul.nav.nav-tabs{:role=>'tablist'}
+              /   = render partial: 'navtabs', locals: { stage: stage }
+              / .tab-content
+              /   = render partial: 'blocks', locals: { stage: stage }
 
-  - content_for :javascript_body do
-    = javascript_include_tag "plan_farms"
+          %br
+          = render partial: 'form_button', locals: { f: f }
+          .p{style: 'padding-top: 10px;'}
+
+        - content_for :javascript_body do
+          = javascript_include_tag "plan_farms"
