@@ -30,7 +30,7 @@
                 %label.col-xs-3{style: 'padding-top: 5px'} Stage
                 .col-xs-9
                   = stage.input :production_stage_id, error: false, collection: ProductionStage.where(:phase_id => @locations.plan_phases.first.phase_id).map{ |p| [p.name, p.uuid] } , label: false, input_html: { class: "form-control stage-list" }, :disabled => params[:action] == "edit" || params[:action] == "update"
-            .row
+            .row{class: "render-block"}
               = render partial: 'blocks', locals: { stage: stage }
               / %ul.nav.nav-tabs{:role=>'tablist'}
               /   = render partial: 'navtabs', locals: { stage: stage }
