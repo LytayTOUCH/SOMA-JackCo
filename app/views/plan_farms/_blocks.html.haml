@@ -1,0 +1,10 @@
+= stage.simple_fields_for :plan_production_statuses do |status|
+  = status.input :plan_production_stage_id, as: :hidden
+  = status.input :production_status_id, as: :hidden
+  %label{:class => "text-status-#{status.index}", :style => "padding-left: 30px; padding-top: 20px; padding-bottom: 20px"}
+    = "#{status.index + 1}. #{ProductionStatus.find(status.object.production_status_id).name}"
+  .status{class: "each-#{status.index}", style: "margin-left: 30px;"}
+    %ul.nav.nav-tabs{:role=>'tablist'}
+      = render partial: 'navtabs', locals: { status: status }
+    .tab-content
+      = render partial: 'area_block', locals: { status: status }

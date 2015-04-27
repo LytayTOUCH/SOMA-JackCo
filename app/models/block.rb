@@ -6,7 +6,8 @@ class Block < ActiveRecord::Base
   belongs_to :planting_project, foreign_key: :planting_project_id
   has_many :input_tasks, foreign_key: :block_id
   has_many :output_tasks, foreign_key: :block_id
-  has_many :plan_areas, foreign_key: :block_id
+  has_many :plan_blocks, foreign_key: :block_id
+
   validates :name, presence: true
   validates :surface, presence: true
   validates :tree_amount, presence: true

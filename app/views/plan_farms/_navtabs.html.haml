@@ -1,0 +1,3 @@
+= status.simple_fields_for :plan_zones do |zone|
+  %li{ class: "#{zone.index == 0 ? 'active' : ''}"}
+    = link_to "#{Zone.find(zone.object.zone_id).name}", "#tab-zone-#{status.index}-#{zone.index}", data: {toggle: 'tab'}, style: 'font-weight: bold;'
