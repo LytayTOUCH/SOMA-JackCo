@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $('.machinery-name').hide();
   $('.machinery-from-map').hide();
+
   // block_id is id for Block. When we select block 
   $('.block_id').change(function() {
     // Get data for Tree amount when selecting block
@@ -203,7 +204,6 @@ $(document).ready(function() {
       }); 
     }
   });  
-
 
   $('.warehouse_id').change(function() {
       $('select.item-select-machinaries').html('');
