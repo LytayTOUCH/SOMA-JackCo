@@ -3,7 +3,7 @@ class ProductionStatus < ActiveRecord::Base
 
   belongs_to :production_stage, foreign_key: :stage_id
 
-  has_many :plan_production_statuses, foreign_key: :production_status_id
+  has_many :plan_production_statuses, foreign_key: :stage_id
 
   validates :name, length: { maximum: 50 }, presence: true
   validates :stage_id, length: { maximum: 36 }, presence: true
