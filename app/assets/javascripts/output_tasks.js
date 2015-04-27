@@ -46,7 +46,7 @@ $(document).ready(function() {
         }); 
 
         // Get data for Chosen when Planting project has data
-        // $('select.item-select-machinaries').html('');
+        $('select.item-select-machinaries').html('');
         // $('.warehouse').show();
         var planting_project_id = $(".planting_project_id").val();
         jQuery.ajax({
@@ -128,7 +128,7 @@ $(document).ready(function() {
           str +=  '</div>';
           str += '</div>';
           
-          $('div.machinery-from-map').append(str);
+          $('div.machinery-name').append(str);
 
           $.each(data.warehouse, function(i, value) {
             $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
