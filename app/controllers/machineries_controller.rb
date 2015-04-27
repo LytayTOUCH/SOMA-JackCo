@@ -53,7 +53,7 @@ class MachineriesController < ApplicationController
     @materials = Material.where(material_cate_uuid: @material_type.uuid)
     render :json => {warehouse: @project_warehouses, machinery_name: @machinery_name, material: @materials}
   end
-
+  
   private
   def machinery_params
     params.require(:machinery).permit(:name, :machinery_type_id, :status, :manufacturer, :model, :registration_number, :year, :note,:source,:planting_project_id, :avatar)

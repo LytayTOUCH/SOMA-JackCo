@@ -1,6 +1,29 @@
 :plain
   $('.modal-backdrop').first().remove(); //remove backdrop from the loading box
-  $(".form-modal").html("#{escape_javascript(render 'form', block: @block, farm: @farm, planting_projects: @planting_projects)}");
+  $(".form-modal").html("#{escape_javascript(render 'form', block: @block, farm: @farm, planting_projects: @planting_projects, zones: @zones, areas: @areas)}");
+  $('.zone-options').change(function(params){
+    if(params.target.value){
+      $.ajax({
+        url: '/get_areas_by_zone',
+        data:{zone_id: params.target.value},
+        beforeSend: function(){
+          $('.area-options').empty().append('<option value="">Select Area</option>');
+        },
+        success: function(data){
+          $.each(data, function(index, element){
+            $('.area-options').append('<option value="'+element.uuid+'" id = "area_id_'+index+'">'+element.name+'</option>');
+          });
+        },
+        error: function(data){
+          console.log(data);
+        }
+      });
+      console.log(params.target.value);
+    }
+    else{
+      $('.area-options').empty().append('<option value="">Select Area</option>');
+    }
+  });
   $('#myModalAdd').modal('show');
   $('#myModalAdd').on('shown.bs.modal', function () {
     var drawingManager;

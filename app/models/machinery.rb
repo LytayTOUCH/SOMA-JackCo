@@ -10,7 +10,8 @@ class Machinery < ActiveRecord::Base
   belongs_to :machinery_type, foreign_key: :machinery_type_id
   belongs_to :planting_project, foreign_key: :planting_project_id
   
-  has_many :input_tasks, foreign_key: :machinery_id
+  has_many :input_use_machineries, foreign_key: :input_id
+  has_many :input_tasks, through: :input_use_machineries
 
   has_many :output_tasks, through: :output_use_machineries
   has_many :output_tasks, foreign_key: :machinery_id

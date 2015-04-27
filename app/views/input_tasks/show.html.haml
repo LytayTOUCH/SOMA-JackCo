@@ -22,25 +22,25 @@
     %tr
       %th Labor name
       %td= @input_task.labor.name
-    %tr
-      %th Machinery
-      %td
-        - if @input_task.machinery_id.present?
-          = @input_task.machinery.name
-        - else
+    / %tr
+    /   %th Machinery
+    /   %td
+    /     - if @input_task.machinery_id.present?
+    /       = @input_task.machinery.name
+    /     - else
         
     %tr
       %th Reference
       %td= @input_task.reference_number 
-    %tr
-      %th Warehouse name
-      %td= @input_task.warehouse.name
-    %tr
-      %th Material name
-      %td= @input_task.material.name
-    %tr
-      %th Quantity
-      %td= @input_task.material_amount.to_s + " ( " + @input_task.material.unit_of_measurement.name + " )"
+    / %tr
+    /   %th Warehouse name
+    /   %td= @input_task.warehouse.name
+    / %tr
+    /   %th Material name
+    /   %td= @input_task.material.name
+    / %tr
+    /   %th Quantity
+    /   %td= @input_task.material_amount.to_s + " ( " + @input_task.material.unit_of_measurement.name + " )"
     %tr
       %th Note
       %td= @input_task.note   

@@ -67,6 +67,14 @@ class MaterialsController < ApplicationController
     end
   end
 
+  def get_material_name
+    @material_name = Material.find_by_uuid(params[:material_uuid])
+    @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse")
+    @project_warehouses = Warehouse.where(warehouse_type_uuid: @project_warehouse_type.uuid)
+    @material_uom = Material.find_by_uuid(params[:material_uuid]).unit_of_measurement
+    render :json => {warehouse: @project_warehouses,material_name: @material_name, material_uom: @material_uom}
+  end
+
   def get_material_data
     @material_data = Material.where(material_cate_uuid: params[:material_cate_uuid])
     render :json => @material_data

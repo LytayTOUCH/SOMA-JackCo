@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :warehouse_material_amounts, only: [:index, :edit, :update]
   resources :material_adjustments, only: [:index]
   
+  get 'get_areas_by_zone', to: 'blocks#get_areas_by_zone'
+  
   resources :plan_farms
   get 'get_production_stages', to: 'plan_farms#get_production_stages'
   get 'get_production_statuses', to: 'plan_farms#get_production_statuses'
@@ -170,6 +172,9 @@ Rails.application.routes.draw do
 
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
+
+  get 'get_machinery_name', to: 'machineries#get_machinery_name'
+  get 'get_material_name', to: 'materials#get_material_name'
 
   # get 'input_uses/index'
   resources :input_uses do
