@@ -1,8 +1,9 @@
 $(document).ready(function(){
 	$('.machinery-name').hide();
 	$('.material-name').hide();
-	$('.block_id').change(
-		function() {
+	$('.block_id').change(function() {
+
+    $('.machinery-name').empty();
 
 			$('.tree_amount').show();
 			var block_id = $(".block_id").val();
@@ -59,71 +60,7 @@ $(document).ready(function(){
                 {width: "100%"},
                 {allow_single_deselect: true},
                 {no_results_text: 'No results matched'}
-              ).change(function(event, params){
-                $('.machinery-name').show();
-      
-                if(!params.selected) {    
-                    console.log("machinery-" + params.deselected);               
-                    $('#machinery-'+params.deselected).remove();
-                }                
-
-                // Creating a row of Machinery when data from chosen
-                if(event.target == this){
-                  console.log($(this).val());
-                  $('#machineries').val($(this).val());
-                  var machinery_id = params.selected;
-                  var sub_machinery_id = params.selected;
-                  console.log(machinery_id);
-                  
-                  jQuery.ajax({
-                  url: "/get_machinery_name",
-                  type: "GET",
-                  data: {"machinery_id" : machinery_id},
-                  beforeSend: function(){
-                    if(params.selected) {
-                      $('.warehouse-select').empty();
-                      $('.material-select').empty();
-                    }
-                  },
-                  dataType: "json",
-                    success: function(data){
-                      var str = "";
-                      str += '<div id="machinery-' + machinery_id + '">';
-                      str +=  '<div class="form-group">';                      
-                      str +=    '<label class="col-xs-2 control-label">';
-                      str +=      data.machinery_name.name;
-                      str +=    '</label>'
-                      str +=    '<label class="col-xs-1 control-label">Warehouse</label>';
-                      str +=    '<div class="col-xs-2">';
-                      str +=      '<select name="warehouses_of_machinery[]" class="warehouse-select form-control">';
-                      str +=      '</select>';
-                      str +=    '</div>';
-                      str +=    '<label class="col-xs-1 control-label">Material</label>';
-                      str +=    '<div class="col-xs-2">';
-                      str +=      '<select name="materials_of_machinery[]" class="material-select form-control">';
-                      str +=      '</select>';
-                      str +=    '</div>';
-                      str +=    '<label class="col-xs-1 control-label">Qty</label>';
-                      str +=    '<div class="col-xs-1">';
-                      str +=      '<input name="material_qtys_of_machinery[]" class="form-control material-qty"></input>';
-                      str +=    '</div>';
-                      
-                      str +=  '</div>';
-                      str += '</div>';
-                      
-                      $('div.machinery-name').append(str);
-
-                      $.each(data.warehouse, function(i, value) {
-                        $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
-                      });
-
-                      $.each(data.material, function(i, value) {
-                        $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
-                      });
-                    }
-                  }); 
-                }
-              });  
+              )  
             }
           });
         }
@@ -133,6 +70,72 @@ $(document).ready(function(){
 
 		}
 	);
+
+  $('select.item-select-machinaries').change(function(event, params){
+    $('.machinery-name').show();
+
+    if(!params.selected) {    
+        console.log("machinery-" + params.deselected);               
+        $('#machinery-'+params.deselected).remove();
+    }                
+
+    // Creating a row of Machinery when data from chosen
+    if(event.target == this){
+      console.log($(this).val());
+      $('#machineries').val($(this).val());
+      var machinery_id = params.selected;
+      var sub_machinery_id = params.selected;
+      console.log(machinery_id);
+      
+      jQuery.ajax({
+      url: "/get_machinery_name",
+      type: "GET",
+      data: {"machinery_id" : machinery_id},
+      beforeSend: function(){
+        if(params.selected) {
+          $('.warehouse-select').empty();
+          $('.material-select').empty();
+        }
+      },
+      dataType: "json",
+        success: function(data){
+          var str = "";
+          str += '<div id="machinery-' + machinery_id + '">';
+          str +=  '<div class="form-group">';                      
+          str +=    '<label class="col-xs-2 control-label">';
+          str +=      data.machinery_name.name;
+          str +=    '</label>'
+          str +=    '<label class="col-xs-1 control-label">Warehouse</label>';
+          str +=    '<div class="col-xs-2">';
+          str +=      '<select name="warehouses_of_machinery[]" class="warehouse-select form-control">';
+          str +=      '</select>';
+          str +=    '</div>';
+          str +=    '<label class="col-xs-1 control-label">Material</label>';
+          str +=    '<div class="col-xs-2">';
+          str +=      '<select name="materials_of_machinery[]" class="material-select form-control">';
+          str +=      '</select>';
+          str +=    '</div>';
+          str +=    '<label class="col-xs-1 control-label">Qty</label>';
+          str +=    '<div class="col-xs-1">';
+          str +=      '<input name="material_qtys_of_machinery[]" class="form-control material-qty"></input>';
+          str +=    '</div>';
+          
+          str +=  '</div>';
+          str += '</div>';
+          
+          $('div.machinery-name').append(str);
+
+          $.each(data.warehouse, function(i, value) {
+            $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
+          });
+
+          $.each(data.material, function(i, value) {
+            $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
+          });
+        }
+      }); 
+    }
+  });
 
 	$('.material_uuid').change(
 		function(event, params) {
