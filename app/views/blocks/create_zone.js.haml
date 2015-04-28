@@ -6,6 +6,5 @@
   - @zone.errors.messages.each do |key, msg|
     $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
 - else
-  $('tbody').append('<tr><td>#{@zone.name}</td><td>x</td></tr>');
+  $('tbody').append("#{escape_javascript(render 'blocks/buttons/delete_zone_link', local: @zone)}");
   $('input#zone_name').val('');
-  //$('.blocks-board').append("#{escape_javascript(render 'block_board', block: @block)}");

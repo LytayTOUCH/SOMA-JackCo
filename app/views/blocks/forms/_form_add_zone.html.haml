@@ -30,8 +30,4 @@
                   %tbody.zone-data
                 - else
                 - zones.each do |each_zone|
-                  %tr
-                    %td=each_zone.name
-                    %td
-                      = link_to destroy_zone_farms_path(each_zone), remote: true, class: 'btn btn-xs btn-danger' do
-                        %i.fa.fa-trash
+                  = render 'blocks/buttons/delete_zone_link', local: each_zone

@@ -58,7 +58,7 @@ Rails.application.routes.draw do
       get 'farms/:farm_id/restore_blocks/:id', to: 'blocks#restore_block', as: 'restore_blocks'
       get ':farm_id/new_zone', to: 'blocks#new_zone', as: 'new_zone'
       post ':farm_id/create_zone', to: 'blocks#create_zone', as: 'create_zone'
-      delete ':farm_id/zone', to: 'blocks#destroy_zone', as: 'destroy_zone'
+      delete ':farm_id/zone/:zone_id', to: 'blocks#destroy_zone', as: 'destroy_zone'
       get 'farms/:farm_id/new_area', to: 'blocks#new_area', as: 'new_area'
 
     end

@@ -55,9 +55,8 @@ class BlocksController < ApplicationController
   end
 
   def destroy_zone
-    @farm
-    @zone.inspect
-    # @zone.destroy
+    @zone = Zone.find_by(uuid: params[:zone_id])
+    @zone.destroy
   end
 
   def new_area

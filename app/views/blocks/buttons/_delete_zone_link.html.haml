@@ -1,0 +1,5 @@
+%tr{id:"zone_#{local.uuid}"}
+  %td=local.name
+  %td
+    = link_to destroy_zone_farms_path(local.farm, local), remote: true, method: :delete, class: 'btn btn-xs btn-danger' do
+      %i.fa.fa-trash
