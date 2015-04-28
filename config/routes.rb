@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get 'get_production_statuses', to: 'locations#get_production_statuses'
   get 'get_zone_by_farm', to: 'locations#get_zone_by_farm'
   get 'get_areas_by_zone', to: 'blocks#get_areas_by_zone'
-  
   resources :plan_farms
   
 
@@ -57,6 +56,11 @@ Rails.application.routes.draw do
       get 'farms/:farm_id/active_blocks', to: 'blocks#all_active_blocks', as: 'active_blocks'
       get 'farms/:farm_id/inactive_blocks', to: 'blocks#all_inactive_blocks', as: 'inactive_blocks'
       get 'farms/:farm_id/restore_blocks/:id', to: 'blocks#restore_block', as: 'restore_blocks'
+      get ':farm_id/new_zone', to: 'blocks#new_zone', as: 'new_zone'
+      post ':farm_id/create_zone', to: 'blocks#create_zone', as: 'create_zone'
+      delete ':farm_id/zone', to: 'blocks#destroy_zone', as: 'destroy_zone'
+      get 'farms/:farm_id/new_area', to: 'blocks#new_area', as: 'new_area'
+
     end
     resources :blocks
     collection do

@@ -1,0 +1,11 @@
+:plain
+  $('input#zone_name').focus(function(){
+    $('.msg-name').removeClass('alert custom-alert-msg').empty();
+  });
+- if @zone.errors.any?
+  - @zone.errors.messages.each do |key, msg|
+    $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
+- else
+  $('tbody').append('<tr><td>#{@zone.name}</td><td>x</td></tr>');
+  $('input#zone_name').val('');
+  //$('.blocks-board').append("#{escape_javascript(render 'block_board', block: @block)}");

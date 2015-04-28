@@ -9,8 +9,8 @@
         - unless blocks.blank?
           - blocks.each do |block|
             - if block.active
-              = render "active_block_board", block: block
+              = render "blocks/forms/active_block_board", block: block
             - else
-              = render "inactive_block_board", block: block
+              = render "blocks/forms/inactive_block_board", block: block
   - else
     .jumbotron.text-center No Block

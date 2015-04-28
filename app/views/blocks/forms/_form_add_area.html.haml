@@ -1,0 +1,17 @@
+#myModalAddArea.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "data-backdrop"=>"static"}
+  .modal-dialog.custom-modal-lg
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title Area List
+      .modal-body
+        .row
+          .col-lg-6
+            Area Form
+            %br
+            #{area.inspect}
+            %br
+          .col-lg-6
+            Area Table
+            #{areas.inspect}

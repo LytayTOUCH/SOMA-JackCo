@@ -10,7 +10,6 @@ class BlocksController < ApplicationController
   def new
     @planting_projects=PlantingProject.all
     @zones = Zone.where(farm_id: params[:farm_id])
-    @areas = Area.all
     @block = Block.new
   end
 
@@ -40,6 +39,30 @@ class BlocksController < ApplicationController
   def destroy
     @block.active=false
     @block.save
+  end
+
+  def new_zone
+    @zone = Zone.new
+    @zones = Zone.where(farm_id: params[:farm_id])
+  end
+
+  def create_zone
+    @zone = Zone.new(zone_params)
+    @zone.farm_id = params[:farm_id]
+    if @zone.save
+      @zone
+    end
+  end
+
+  def destroy_zone
+    @farm
+    @zone.inspect
+    # @zone.destroy
+  end
+
+  def new_area
+    @area = Area.new
+    @areas = Area.all
   end
 
   def get_tree_amounts
@@ -83,8 +106,17 @@ class BlocksController < ApplicationController
     def set_block
       @block = Block.find(params[:id])
     end
+
     def block_params
       params.require(:block).permit(:name, :surface, :shape_lat_long, :location_lat_long, :tree_amount, :area_id, :farm_id, :planting_project_id, :rental_status, :status, :fruitful_tree, :active)
+    end
+
+    def zone_params
+      params.require(:zone).permit(:name, :farm_id)
+    end
+
+    def area_params
+      params.require(:area).permit(:name, :zone_id)
     end
 
 end
