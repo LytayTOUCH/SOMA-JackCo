@@ -3,7 +3,7 @@
   - zone_index_number = zone_index_number + 1
   = zone.input :zone_id, as: :hidden
   = zone.input :plan_production_status_id, as: :hidden
-  .tab-pane{class: "#{zone_index_number == 0 ? 'active' : ''}", id: "tab-zone-#{status.index}-#{zone_index_number}", role: 'tabpanel', style: 'height: 100%'}
+  .tab-pane.tab-location{class: "#{zone_index_number == 0 ? 'active' : ''}", id: "tab-zone-#{status.index}-#{zone_index_number}", role: 'tabpanel', style: 'height: 100%'}
     = zone.simple_fields_for :plan_areas do |area|
       .row{style: "padding-top: 10px;"}
         .col-md-1
