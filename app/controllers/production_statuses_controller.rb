@@ -33,7 +33,7 @@ class ProductionStatusesController < ApplicationController
         flash[:notice] = "Production Status type saved successfully"
         redirect_to production_statuses_path
       else
-        # flash[:notice] = "Production Status type can't save"
+        flash[:notice] = "Production Status type can't save"
         # redirect_to :back
         render 'new'
       end
@@ -56,10 +56,10 @@ class ProductionStatusesController < ApplicationController
       @production_status = ProductionStatus.find(params[:id])
 
       if @production_status.update_attributes(production_status_params)
-        flash[:notice] = "ProductionStatus updated"
+        flash[:notice] = "Production Status updated"
         redirect_to production_statuses_path
       else
-        # flash[:notice] = "ProductionStatus can't update"
+        flash[:notice] = "Production Status can't update"
         # redirect_to :back
         render 'edit'
       end

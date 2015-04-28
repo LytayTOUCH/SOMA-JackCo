@@ -1,25 +1,26 @@
 = simple_form_for @production_status, html: { class: "form-horizontal" } do |f|
-  .form-group
-    %label.col-xs-2.control-label Name *
-    .col-xs-5
-      = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
-    %span.help-block= f.error :name
-  .form-group
-    %label.col-xs-2.control-label.text-left Production Stage *
-    .col-xs-5
-      = f.association :production_stage, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
-    %span.help-block= f.error :stage_id      
-  .form-group
-    %label.col-xs-2.control-label Note
-    .col-xs-5
-      = f.input :note, label: false, input_html: { class: "form-control" }
-      %span.help-block= f.error :note
-  .form-group
-    %label.col-xs-2.control-label Active
-    .col-xs-5
-      = f.input :active, label: false
-      %span.help-block= f.error :active
-  .form-group
-    .col-xs-7
-      .pull-right
-        = render partial: 'form_button', locals: { f: f }
+  .container
+    .row
+      .col-md-8
+        .form-group
+          %label.col-xs-2.control-label Name *
+          .col-xs-9
+            = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+        .form-group
+          %label.col-xs-2.control-label.text-left Product Stage *
+          .col-xs-9
+            = f.association :production_stage, label: false, error: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+        .form-group
+          %label.col-xs-2.control-label Note
+          .col-xs-9
+            = f.input :note, label: false, error: false, input_html: { class: "form-control" }
+        .form-group
+          %label.col-xs-2.control-label Active
+          .col-xs-9
+            = f.input :active, label: false
+        .form-group
+          .col-xs-11
+            .pull-right
+              = render partial: 'form_button', locals: { f: f }
+      .col-md-4
+        = render "error", :obj => @production_status        

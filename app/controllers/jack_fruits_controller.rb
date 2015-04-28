@@ -24,19 +24,19 @@ class JackFruitsController < ApplicationController
 
   def new
     @jack_fruit = JackFruit.new
-    # @stages = Stage.where(fruit_type: 'jackfruit')
+    @stages = ProductionStage.all
     @fields = Field.all
   end
 
   def create
     @jack_fruit = JackFruit.new(jack_fruit_params)
 
-    if @jack_fruit.save!
+    if @jack_fruit.save
       flash[:notice] = "JackFruit saved successfully"
       redirect_to jack_fruits_path
     else
       flash[:notice] = "JackFruit can't be saved"
-      redirect_to :back
+      render 'new'
     end
   end
 
@@ -49,11 +49,11 @@ class JackFruitsController < ApplicationController
 
   def update
     @jack_fruit = JackFruit.find(params[:id])
-    if @jack_fruit.update_attributes!(jack_fruit_params)
+    if @jack_fruit.update_attributes(jack_fruit_params)
       flash[:notice] = "JackFruit updated"
       redirect_to jack_fruits_path
     else
-      redirect_to :back
+      render 'edit'
     end
   end
 

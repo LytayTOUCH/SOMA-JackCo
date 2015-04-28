@@ -19,7 +19,7 @@ class CoconutsController < ApplicationController
 
   def new
     @coconut = Coconut.new
-    @stages = Stage.where(fruit_type: 'coconut')
+    @stages = ProductionStage.all
     @fields = Field.all
   end
 
@@ -27,12 +27,11 @@ class CoconutsController < ApplicationController
     begin
       @coconut = Coconut.new(coconut_params)
 
-      if @coconut.save!
-        flash[:notice] = "coconut saved successfully"
+      if @coconut.save
+        flash[:notice] = "Coconut saved successfully"
         redirect_to coconuts_path
       else
-        flash[:notice] = "coconut can't be saved"
-        redirect_to :back
+        render 'new'
       end
     rescue Exception => e
       puts e
@@ -41,7 +40,6 @@ class CoconutsController < ApplicationController
 
   def edit
     @coconut = Coconut.find(params[:id])
-    @stages = Stage.where(fruit_type: 'coconut')
     @fields = Field.all
     add_breadcrumb @coconut.code, :edit_coconut_path
   end
@@ -50,12 +48,12 @@ class CoconutsController < ApplicationController
     begin
       @coconut = Coconut.find(params[:id])
 
-      if @coconut.update_attributes!(coconut_params)
-        flash[:notice] = "coconut updated"
+      if @coconut.update_attributes(coconut_params)
+        flash[:notice] = "Coconut updated"
         redirect_to coconuts_path
       else
-        flash[:notice] = "coconut can't update"
-        redirect_to :back
+        flash[:notice] = "Coconut can't update"
+        render 'edit'
       end
     rescue Exception => e
       puts e

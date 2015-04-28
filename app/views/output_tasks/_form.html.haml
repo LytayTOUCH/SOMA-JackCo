@@ -3,19 +3,16 @@
     %label.col-xs-2.control-label.text-left Name *
     .col-xs-7
       = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
-    %span.help-block= f.error :name
   .form-group
     %label.col-xs-2.control-label Start Date *
     .col-xs-7
       .controls
         = f.text_field :start_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
-    %span.help-block= f.error :start_date
   .form-group
     %label.col-xs-2.control-label End Date *
     .col-xs-7
       .controls
         = f.text_field :end_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
-    %span.help-block= f.error :end_date
   .form-group
     %label.col-xs-2.control-label.text-left Block *
     .col-xs-7
