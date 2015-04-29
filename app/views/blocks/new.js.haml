@@ -1,6 +1,6 @@
 :plain
   $('.modal-backdrop').first().remove(); //remove backdrop from the loading box
-  $(".form-modal").html("#{escape_javascript(render 'form', block: @block, farm: @farm, planting_projects: @planting_projects, zones: @zones, areas: @areas)}");
+  $(".form-modal").html("#{escape_javascript(render 'blocks/forms/form', block: @block, farm: @farm, planting_projects: @planting_projects, zones: @zones, areas: @areas)}");
   $('.zone-options').change(function(params){
     if(params.target.value){
       $.ajax({

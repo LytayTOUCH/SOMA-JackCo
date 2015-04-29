@@ -1,10 +1,34 @@
 :plain
-$('.modal-backdrop').first().remove(); //remove backdrop from the loading box
-$(".form-modal").html("#{escape_javascript(render 'blocks/forms/form_add_area', area: @area, areas: @areas, zones: @zones)}");
-$('#myModalAddArea').modal('show');
-$('#myModalAddArea').on('shown.bs.modal', function () {
+  $('.modal-backdrop').first().remove(); //remove backdrop from the loading box
+  $(".form-modal").html("#{escape_javascript(render 'blocks/forms/form_add_area', area: @area, areas: @areas, zones: @zones)}");
+  $('.zone-options').change(function(params){
+    if(params.target.value){
+      $.ajax({
+        url: '/get_areas_by_zone',
+        data:{zone_id: params.target.value},
+        beforeSend: function(){
+          //$('.area-options').empty().append('<option value="">Select Area</option>');
+          console.log("Before Send Action!");
+        },
+        success: function(data){
+          console.log(data);
+          //$.each(data, function(index, element){
+            //$('.area-options').append('<option value="'+element.uuid+'" id = "area_id_'+index+'">'+element.name+'</option>');
+          //});
+        },
+        error: function(data){
+          console.log(data);
+        }
+      });
+    }
+    else{
+      $('.area-options').empty().append('<option value="">Select Area</option>');
+    }
+  });
+  $('#myModalAddArea').modal('show');
+  $('#myModalAddArea').on('shown.bs.modal', function () {
 
-});
-$('#myModalAddArea').on('hidden.bs.modal', function () {
+  });
+  $('#myModalAddArea').on('hidden.bs.modal', function () {
 
-});
+  });

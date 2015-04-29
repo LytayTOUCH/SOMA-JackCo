@@ -15,7 +15,7 @@
                   .col-sm-3.control-label
                     = f.label :zone
                   .col-sm-9
-                    %select.zone-options.form-control
+                    %select.area-options.form-control{name: "zone_id"}
                       %option{:value => ""} Select Zone
                       - zones.each do |zone|
                         %option{:value => "#{zone.uuid}"} #{zone.name}
@@ -38,7 +38,7 @@
               %h4 Area List
               %table.table
                 - if areas.blank?
-                  %tbody.zone-data
+                  %tbody.area-data
                 - else
-                - areas.each do |each_area|
-                  = render 'blocks/buttons/delete_area_link', local: each_area
+                  - areas.each do |each_area|
+                    = render 'blocks/buttons/delete_area_link', local: each_area

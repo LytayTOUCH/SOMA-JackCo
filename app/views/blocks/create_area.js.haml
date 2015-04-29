@@ -1,0 +1,10 @@
+:plain
+  $('input#area_name').focus(function(){
+    $('.msg-name').removeClass('alert custom-alert-msg').empty();
+  });
+- if @area.errors.any?
+  - @area.errors.messages.each do |key, msg|
+    $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
+- else
+  //$('tbody').append("#{escape_javascript(render 'blocks/buttons/delete_area_link', local: @zone)}");
+  $('input#zone_name').val('');

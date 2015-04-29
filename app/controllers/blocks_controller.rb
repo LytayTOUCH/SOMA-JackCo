@@ -66,7 +66,11 @@ class BlocksController < ApplicationController
   end
 
   def create_area
-
+    @area = Area.new(area_params)
+    @area.zone_id = params[:zone_id]
+    if @area.save
+      @area
+    end
   end
 
   def destroy_area

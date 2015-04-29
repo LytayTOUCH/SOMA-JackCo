@@ -4,4 +4,6 @@ class Area < ActiveRecord::Base
   has_many :planting_projects, through: :blocks
   belongs_to :zone
   belongs_to :farm
+
+  validates :name, presence: true
 end
