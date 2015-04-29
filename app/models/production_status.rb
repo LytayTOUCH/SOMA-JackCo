@@ -2,6 +2,7 @@ class ProductionStatus < ActiveRecord::Base
   include UuidHelper
 
   belongs_to :production_stage, foreign_key: :stage_id
+  belongs_to :phase
 
   has_many :plan_production_statuses, foreign_key: :stage_id
 

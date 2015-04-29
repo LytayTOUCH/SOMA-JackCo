@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :production_list
+
   get 'log_tracking/index'
   
   resources :warehouse_material_amounts, only: [:index, :edit, :update]

@@ -1,0 +1,76 @@
+.container
+  .row
+    = form_tag production_list_index_path, method: 'get', enforce_utf8: false do
+      .col-md-2
+        .input-group#production-list-picker
+          %input.form-control{:type => "text", name: "year", :value => @year }
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+
+      = submit_tag 'Filter', name: nil, :class => 'btn btn-success'
+
+- one_time_area = 0
+- if params[:year].present?
+  .report-plan-location{style: "margin-top: 30px;"}
+    %table.table.table-bordered
+      - @products = Phase.includes(:production_stages).includes(:production_statuses)
+      - @farms = Farm.includes(:zones).includes(:areas)
+      %tr
+        %th{rowspan: 4, style: "white-space: nowrap; vertical-align: middle; height: 100%; text-align: center;"}
+          Classification
+        %th{rowspan: 4, style: "white-space: nowrap; vertical-align: middle; height: 100%; text-align: center;"}
+          Status
+        %th{rowspan: 4, style: "vertical-align: middle; height: 100%; text-align: center;"}
+          UOM
+        %th{colspan: Area.count, style: "text-align: center; vertical-align: middle; height: 100%"}
+          Location
+      %tr
+        - @farms.each do |farm|
+          %th{colspan: farm.areas.count, style: "white-space: nowrap; text-align: center;"}
+            = farm.name
+          
+      %tr
+        - @farms.each_with_index do |farm, i|
+          - farm.zones.each do |zone|
+            - if (i == 0)
+
+              %th{ style: "white-space: nowrap; text-align: center;", colspan: zone.areas.count }
+                = zone.name
+            - else
+              %th{ style: "white-space: nowrap; text-align: center;", colspan: zone.areas.count }
+                = zone.name
+      %tr
+        - @farms.each do |farm|
+          - farm.zones.each do |zone|
+            - zone.areas.each do |area|
+              - if (one_time_area == 0)
+                - one_time_area = 1
+
+                %th{ style: "white-space: nowrap; text-align: center;" }
+                  = area.name
+              - else
+                %th{ style: "white-space: nowrap; text-align: center;" }
+                  = area.name
+
+      - @products.each_with_index do |phase, i|
+        %tr
+          %td{colspan: 2}
+            = phase.name
+        
+        - phase.production_stages.each do |stage|
+          %tr
+            %td{rowspan: stage.production_statuses.count, style: "white-space: nowrap; padding-left:30px; vertical-align: middle; height: 100%"}
+              = stage.name
+            - stage.production_statuses.each_with_index do |status, i|
+              - if (i == 0)
+                %td{style: "white-space: nowrap; text-align: center;"}
+                  = status.name
+              - else
+                %tr
+                  %td{style: "white-space: nowrap; text-align: center;"}
+                    = status.name
+
+
+
+- content_for :javascript_body do
+  = javascript_include_tag "production_list"

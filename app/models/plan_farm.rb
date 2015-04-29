@@ -9,4 +9,5 @@ class PlanFarm < ActiveRecord::Base
   validates_presence_of :for_year, :message => "Year can not empty."
 
   accepts_nested_attributes_for :plan_phases
+
 end
