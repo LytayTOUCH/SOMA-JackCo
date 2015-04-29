@@ -1,6 +1,20 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
 en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Email is required."
+              taken: "Please use a different Email"
+              invalid: "Email is invalid."
+            password:
+              blank: "Password is required."
+              confirmation: "Password does not match"
+            password_confirmation:
+              blank: "Please Specify a Password Confirmation"
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."

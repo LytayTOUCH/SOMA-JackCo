@@ -4,14 +4,14 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
 
   belongs_to :user_group, foreign_key: :user_group_id
-
   belongs_to :labor, foreign_key: :labor_id
 
   has_many :logs
   has_many :output_tasks
 
-  validates :user_group_id, length: { maximum: 36 }, presence: true
-  validates :labor_id, length: { maximum: 36 }, presence: true    
+  validates :labor_id, length: { maximum: 36 }, :presence => { message: "Labor is required." }
+  validates :user_group_id, length: { maximum: 36 }, :presence => { message: "User group is required." }
+  validates :password_confirmation, length: { maximum: 36 }, presence: true
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

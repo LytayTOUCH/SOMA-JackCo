@@ -3,6 +3,6 @@ class WarehouseType < ActiveRecord::Base
 
   has_many :warehouses, foreign_key: :warehouse_type_uuid
 
-  validates :name, length: { maximum: 50 }, presence: true
+  validates :name, length: { maximum: 50 }, :presence => { message: "Warheouse type is required."}
   scope :find_by_warehouse_type_name, -> name { where("name like ?", "%#{name}%") }
 end
