@@ -20,7 +20,8 @@ class InputTask < ActiveRecord::Base
   	validates :block_id, length: {maximum: 36}, presence: true
   	validates :labor_id, length: {maximum: 36}, presence: true
   	validates :created_by, length: {maximum: 36}, presence: true
-
+  	validates :planting_project_id, length: {maximum: 36}, presence: true
+  	
   	scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
   	scope :planting_project_id, -> uuid_f { joins(:block).where("blocks.planting_project_id=?", uuid_f) }
 
