@@ -52,21 +52,23 @@ Rails.application.routes.draw do
     end
   end
   resources :farms do
+    resources :blocks
     collection do
       get 'farms/:farm_id/active_blocks', to: 'blocks#all_active_blocks', as: 'active_blocks'
       get 'farms/:farm_id/inactive_blocks', to: 'blocks#all_inactive_blocks', as: 'inactive_blocks'
       get 'farms/:farm_id/restore_blocks/:id', to: 'blocks#restore_block', as: 'restore_blocks'
-      get ':farm_id/new_zone', to: 'blocks#new_zone', as: 'new_zone'
-      post ':farm_id/create_zone', to: 'blocks#create_zone', as: 'create_zone'
-      delete ':farm_id/zone/:zone_id', to: 'blocks#destroy_zone', as: 'destroy_zone'
-      get 'farms/:farm_id/new_area', to: 'blocks#new_area', as: 'new_area'
 
-    end
-    resources :blocks
-    collection do
       get 'inactive', to: 'farms#all_inactive_farms', as: 'inactive_farms'
       get 'active', to: 'farms#all_active_farms', as: 'active_farms'
       get 'restore/:id', to: 'farms#restore_farm', as: 'restore_farms'
+
+      get ':farm_id/new_zone', to: 'blocks#new_zone', as: 'new_zone'
+      post ':farm_id/create_zone', to: 'blocks#create_zone', as: 'create_zone'
+      delete ':farm_id/zone/:zone_id', to: 'blocks#destroy_zone', as: 'destroy_zone'
+
+      get ':farm_id/new_area', to: 'blocks#new_area', as: 'new_area'
+      post ':farm_id/create_area', to: 'blocks#create_area', as: 'create_area'
+      delete ':farm_id/area/:area_id', to: 'blocks#destroy_area', as: 'destroy_area'
     end
   end
   

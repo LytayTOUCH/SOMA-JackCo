@@ -61,7 +61,16 @@ class BlocksController < ApplicationController
 
   def new_area
     @area = Area.new
-    @areas = Area.all
+    @zones = Zone.where(farm_id: params[:farm_id])
+    @areas = Area.where(zone_id: params[:zone_id])
+  end
+
+  def create_area
+
+  end
+
+  def destroy_area
+
   end
 
   def get_tree_amounts

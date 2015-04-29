@@ -1,5 +1,5 @@
 #myModalAddArea.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "data-backdrop"=>"static"}
-  .modal-dialog.custom-modal-lg
+  .modal-dialog
     .modal-content
       .modal-header
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
@@ -8,10 +8,37 @@
       .modal-body
         .row
           .col-lg-6
-            Area Form
-            %br
-            #{area.inspect}
-            %br
+            %h4 Add Area Detail
+            = form_for [:farm, area], remote: true, :url => {:controller => 'blocks', :action => 'create_area'}, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"} do |f|
+              .col-xs-12
+                .form-group
+                  .col-sm-3.control-label
+                    = f.label :zone
+                  .col-sm-9
+                    %select.zone-options.form-control
+                      %option{:value => ""} Select Zone
+                      - zones.each do |zone|
+                        %option{:value => "#{zone.uuid}"} #{zone.name}
+                    .msg-zone_id.alert-danger{:role => "alert"}
+
+              .col-xs-12
+                .form-group
+                  .col-sm-3.control-label
+                    = f.label :name
+                  .col-sm-9
+                    = f.text_field :name, class: 'form-control', placeholder: 'Area Name'
+                    .msg-name.alert-danger{:role => "alert"}
+              .form-group
+                .col-xs-12
+                  .modal-footer.custom-modal-footer
+                    %button.btn.btn-default.btn-cancel{"data-dismiss" => "modal", :type => "button"} Cancel
+                    = f.submit :class => "btn btn-primary"
           .col-lg-6
-            Area Table
-            #{areas.inspect}
+            .col-xs-12
+              %h4 Area List
+              %table.table
+                - if areas.blank?
+                  %tbody.zone-data
+                - else
+                - areas.each do |each_area|
+                  = render 'blocks/buttons/delete_area_link', local: each_area

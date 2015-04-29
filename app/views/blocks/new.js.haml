@@ -14,11 +14,8 @@
             $('.area-options').append('<option value="'+element.uuid+'" id = "area_id_'+index+'">'+element.name+'</option>');
           });
         },
-        error: function(data){
-          console.log(data);
-        }
+        error: function(data){}
       });
-      console.log(params.target.value);
     }
     else{
       $('.area-options').empty().append('<option value="">Select Area</option>');
