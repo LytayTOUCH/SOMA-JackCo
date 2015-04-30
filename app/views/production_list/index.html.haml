@@ -14,7 +14,7 @@
   .report-plan-location{style: "margin-top: 30px;"}
     %table.table.table-bordered
       - @products = Phase.includes(:production_stages).includes(:production_statuses)
-      - @farms = Farm.includes(:zones).includes(:areas)
+      - @farms = PlanFarm.get_farm_with_zone_area
       %tr
         %th{rowspan: 4, style: "white-space: nowrap; vertical-align: middle; height: 100%; text-align: center;"}
           Classification
@@ -22,8 +22,12 @@
           Status
         %th{rowspan: 4, style: "vertical-align: middle; height: 100%; text-align: center;"}
           UOM
-        %th{colspan: Area.count, style: "text-align: center; vertical-align: middle; height: 100%"}
+        %th{colspan: PlanFarm.sum_area, style: "text-align: center; vertical-align: middle; height: 100%"}
           Location
+        %th{rowspan: 4, style: "text-align: center; vertical-align: middle;"}
+          Total
+        %th{rowspan: 4, style: "text-align: center; vertical-align: middle;"}
+          Remark
       %tr
         - @farms.each do |farm|
           %th{colspan: farm.areas.count, style: "white-space: nowrap; text-align: center;"}
@@ -33,7 +37,6 @@
         - @farms.each_with_index do |farm, i|
           - farm.zones.each do |zone|
             - if (i == 0)
-
               %th{ style: "white-space: nowrap; text-align: center;", colspan: zone.areas.count }
                 = zone.name
             - else
@@ -45,7 +48,6 @@
             - zone.areas.each do |area|
               - if (one_time_area == 0)
                 - one_time_area = 1
-
                 %th{ style: "white-space: nowrap; text-align: center;" }
                   = area.name
               - else
@@ -62,15 +64,44 @@
             %td{rowspan: stage.production_statuses.count, style: "white-space: nowrap; padding-left:30px; vertical-align: middle; height: 100%"}
               = stage.name
             - stage.production_statuses.each_with_index do |status, i|
+              - @total = 0
+              - @tree_sum = 0
               - if (i == 0)
                 %td{style: "white-space: nowrap; text-align: center;"}
                   = status.name
+                %td{style: "white-space: nowrap; text-align: center;"}
+                  Unit
+                - @farm_uuid = ""
+                - @farms.each do |farm|
+                  - @farm_uuid = farm.uuid
+                  - farm.zones.each do |zone|
+                    - zone.areas.each do |area|
+                      - @tree_sum = PlanFarm.sum_tree_amount(params[:year], farm.uuid, status.uuid, area.uuid)
+                      - @total = @total + (@tree_sum.nil? ? 0 : @tree_sum)
+                      %td{style: "white-space: nowrap; text-align: center;"}
+                        = @tree_sum
+                %td{style: "white-space: nowrap; text-align: center;"}
+                  = @total
+                %td{style: "white-space: nowrap; text-align: center;"}
+                  = PlanFarm.get_status_remark(@farm_uuid, status.uuid, params[:year])
               - else
                 %tr
                   %td{style: "white-space: nowrap; text-align: center;"}
                     = status.name
-
-
+                  %td{style: "white-space: nowrap; text-align: center;"}
+                    Unit
+                  - @farms.each do |farm|
+                    - @farm_uuid = farm.uuid
+                    - farm.zones.each do |zone|
+                      - zone.areas.each do |area|
+                        - @tree_sum = PlanFarm.sum_tree_amount(params[:year], farm.uuid, status.uuid, area.uuid)
+                        - @total = @total + (@tree_sum.nil? ? 0 : @tree_sum)
+                        %td{style: "white-space: nowrap; text-align: center;"}
+                          = @tree_sum
+                  %td{style: "white-space: nowrap; text-align: center;"}
+                    = @total
+                  %td{style: "white-space: nowrap; text-align: center;"}
+                    = PlanFarm.get_status_remark(@farm_uuid, status.uuid, params[:year])
 
 - content_for :javascript_body do
   = javascript_include_tag "production_list"

@@ -311,28 +311,27 @@ end
 phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 1: Nursery Seed')
 production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Seed Amount')
 phase.production_stages << production_stage
-ProductionStatus.create_with(name: 'New Planting', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')
-ProductionStatus.create_with(name: 'Seed Replace', stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true).find_or_create_by(name: 'Seed Replace')
+ProductionStatus.create_with(name: 'New Planting', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')
+ProductionStatus.create_with(name: 'Seed Replace', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true).find_or_create_by(name: 'Seed Replace')
 
 # ========== Production Stage (Stage1: Age 1-2 Years) ==========
 phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 2: Plant Growing & Protection')
 production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 1-2 Years')
 phase.production_stages << production_stage
-ProductionStatus.create_with(name: 'Non-Fruit', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'Non-Fruit')
+ProductionStatus.create_with(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid, stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'Non-Fruit')
 
 production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 3-4 Years')
 phase.production_stages << production_stage
-ProductionStatus.create(name: 'Non-Fruit', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true)
-ProductionStatus.create_with(name: 'Blossoming Tree', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'Blossoming Tree')
+ProductionStatus.create(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true)
+ProductionStatus.create_with(name: 'Blossoming Tree', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'Blossoming Tree')
 
 # ========== Production Stage (Stage1: 5-15 Years) ==========
 phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 3: Harvesting')
 production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: 5-15 Years')
 phase.production_stages << production_stage
-ProductionStatus.create(name: 'Non-Fruit', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true)
-ProductionStatus.create(name: 'Blossoming Tree', stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true)
 
-
+ProductionStatus.create(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true)
+ProductionStatus.create(name: 'Blossoming Tree', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true)
 
 # ========== Plan Location Seed data ====
 # PlanFarm.create(farm_id: Farm.second.uuid, for_year: 2018)
