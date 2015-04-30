@@ -40,6 +40,11 @@ class EquipmentController < ApplicationController
       render 'edit'
     end
   end
+
+  def get_equipment_data
+    @equipment_datas = Equipment.where("planting_project_id = ? and status = ?", params[:planting_project_id], true).distinct(:name)
+    render :json => @equipment_datas
+  end
   
   private
   def equipment_params
