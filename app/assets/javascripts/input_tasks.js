@@ -63,13 +63,62 @@ $(document).ready(function(){
               )  
             }
           });
+
+          //Start Get Equipment and select Equipment
+          // Get data for Chosen Equipment when Planting project has data
+          $('select.item-select-equipments').html('');
+          // $('.warehouse').show();
+          var planting_project_id = $(".planting_project_id").val();
+          jQuery.ajax({
+            url: "/get_equipment_data",
+            type: "GET",
+            data: {"planting_project_id" : planting_project_id},
+            dataType: "json",
+            success: function(data){
+              if(data.length){
+                $.each(data, function(i, value) {
+                  $('select.item-select-equipments').append('<option value="'+value.uuid+'">'+value.name+'</option>');
+                });
+                $('select.item-select-equipments').attr("multiple", "multiple");
+                $('select.item-select-equipments').attr("data-placeholder", "Select some items");
+              }
+              else{
+                $('select.item-select-equipments').attr("data-placeholder", "No Items");
+                $('select.item-select-equipments').attr("multiple", "multiple");
+              }
+              $('select.item-select-equipments').trigger('chosen:updated');
+            },
+            complete: function(data){
+              $("select.chosen-select-equipment").chosen(
+                {width: "100%"},
+                {allow_single_deselect: true},
+                {no_results_text: 'No results matched'}
+              )  
+            }
+          });
+
+          
+
         }
-		    //Finish
 
 			});
 
 		}
 	);
+
+  //Equipment
+  $('select.item-select-equipments').change(function(event, params){              
+
+    // Creating a row of Machinery when data from chosen
+    if(event.target == this){
+      console.log($(this).val());
+      $('#equipments').val($(this).val());
+      var equipment_id = params.selected;
+      console.log(equipment_id);
+      
+    }
+  });
+  // End Equipment
 
   $('select.item-select-machinaries').change(function(event, params){
     $('.machinery-name').show();

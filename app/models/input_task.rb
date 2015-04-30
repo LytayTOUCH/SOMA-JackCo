@@ -11,6 +11,9 @@ class InputTask < ActiveRecord::Base
   	has_many :input_use_machineries, foreign_key: :input_id
   	has_many :machineries, through: :input_use_machineries
 
+  	has_many :input_use_equipments, foreign_key: :input_id
+  	has_many :equipments, through: :input_use_equipments
+
 	validates :name, length: { maximum: 50 }, presence: true
 	validates :start_date, presence: true
 	validates :end_date, presence: true

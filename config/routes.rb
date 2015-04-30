@@ -162,7 +162,8 @@ Rails.application.routes.draw do
 
   get 'get_block_planting_project_data', to: 'blocks#get_block_planting_project_data'
 
-  get 'get_machinery_data', to: 'planting_projects#get_machinery_data'  
+  get 'get_machinery_data', to: 'planting_projects#get_machinery_data'
+  get 'get_equipment_data', to: 'equipment#get_equipment_data'  
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
