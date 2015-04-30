@@ -34,7 +34,7 @@ class ProductionStagesController < ApplicationController
         flash[:notice] = "Production Status saved successfully"
         redirect_to production_stages_path
       else
-        # flash[:notice] = "Production Status can't be saved"
+        flash[:notice] = "Production Status can't be saved"
         # redirect_to :back
         render 'new'
       end
@@ -61,7 +61,7 @@ class ProductionStagesController < ApplicationController
         flash[:notice] = "Production Stage updated"
         redirect_to production_stages_path
       else
-        # flash[:notice] = "Production Stage can't be updated"
+        flash[:notice] = "Production Stage can't be updated"
         # redirect_to :back
         render 'edit'
       end

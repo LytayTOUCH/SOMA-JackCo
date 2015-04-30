@@ -3,19 +3,16 @@
     %label.col-xs-2.control-label.text-left Name *
     .col-xs-7
       = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
-    %span.help-block= f.error :name
   .form-group
     %label.col-xs-2.control-label Start Date *
     .col-xs-7
       .controls
         = f.text_field :start_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
-    %span.help-block= f.error :start_date
   .form-group
     %label.col-xs-2.control-label End Date *
     .col-xs-7
       .controls
         = f.text_field :end_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
-    %span.help-block= f.error :end_date
   .form-group
     %label.col-xs-2.control-label.text-left Block *
     .col-xs-7
@@ -30,7 +27,7 @@
   .form-group
     %label.col-xs-2.control-label.text-left Tree amount *
     .col-xs-7
-      = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount" }, error_html: {class: "err_msg"}
+      = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount" }, error_html: {class: "err_msg"}, readonly: true
     %span.help-block= f.error :tree_amount
   .form-group
     %label.col-xs-2.control-label.text-left Labor *
@@ -59,11 +56,9 @@
     %label.col-xs-2.control-label.text-left Finish Production *
     .col-xs-2
       = f.select :finish_production_id, options_for_select("Select status"), { include_blank: true }, {class: 'form-control production_ids'}
-    / %span.help-block= f.error :finish_production_id  
     %label.col-xs-1.control-label.text-left To *
     .col-xs-2
       = f.input :finish_warehouse_id, label: false, collection: @finish_warehouses, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
-    / %span.help-block= f.error :finish_warehouse_id
     %label.col-xs-1.control-label.text-left Qty *
     .col-xs-1
       = f.input :finish_amount, label: false, input_html: { class: "form-control", value: f.object.finish_amount || '0.0' }, error_html: {class: "err_msg"}
@@ -109,4 +104,3 @@
 :javascript
   $('.date_pick').datetimepicker({});
   $('select.item-select-machinaries').empty();
-  

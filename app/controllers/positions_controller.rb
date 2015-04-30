@@ -35,7 +35,7 @@ class PositionsController < ApplicationController
     begin
       @position = Position.find(params[:id])
 
-      if @position.update_attributes!(position_params)
+      if @position.update_attributes(position_params)
         flash[:notice] = "Production Stage updated"
         redirect_to positions_path
       else
