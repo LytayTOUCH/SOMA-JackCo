@@ -2,6 +2,7 @@ class BlocksController < ApplicationController
   add_breadcrumb "All Farms", :farms_path
   before_action :get_farm, only: [:index, :new]
   before_action :set_block, only: [:show, :edit, :update, :destroy]
+
   def index
     @blocks = Block.where(farm_id: params[:farm_id], active: true)
     add_breadcrumb @farm.name, :farm_blocks_path
@@ -74,7 +75,8 @@ class BlocksController < ApplicationController
   end
 
   def destroy_area
-
+    @area = Area.find_by(uuid: params[:area_id])
+    @area.destroy
   end
 
   def get_tree_amounts

@@ -15,7 +15,7 @@
                   .col-sm-3.control-label
                     = f.label :zone
                   .col-sm-9
-                    %select.area-options.form-control{name: "zone_id"}
+                    %select.zone-options.form-control{name: "zone_id"}
                       %option{:value => ""} Select Zone
                       - zones.each do |zone|
                         %option{:value => "#{zone.uuid}"} #{zone.name}
@@ -32,7 +32,7 @@
                 .col-xs-12
                   .modal-footer.custom-modal-footer
                     %button.btn.btn-default.btn-cancel{"data-dismiss" => "modal", :type => "button"} Cancel
-                    = f.submit :class => "btn btn-primary"
+                    = f.submit :class => "btn btn-primary btn-create-area"
           .col-lg-6
             .col-xs-12
               %h4 Area List
