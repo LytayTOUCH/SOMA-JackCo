@@ -28,12 +28,13 @@ class PhasesController < ApplicationController
   def create
     begin
       @phase = Phase.new(phase_params)
+      create_log current_user.uuid, "Created New Phase", @phase
 
       if @phase.save!
         flash[:notice] = "Phase saved successfully"
         redirect_to phases_path
       else
-        flash[:notice] = "Phase can't save"
+        flash[:notice] = "Phase can't be saved"
         redirect_to :back
       end
     rescue Exception => e
@@ -53,6 +54,7 @@ class PhasesController < ApplicationController
   def update
     begin
       @phase = Phase.find(params[:id])
+      create_log current_user.uuid, "Updated Output Task", @phase
 
       if @phase.update_attributes!(phase_params)
         flash[:notice] = "Phase updated"

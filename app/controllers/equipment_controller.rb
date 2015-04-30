@@ -12,11 +12,13 @@ class EquipmentController < ApplicationController
   
   def create
     @equipment = Equipment.new(equipment_params)
+    create_log current_user.uuid, "Created New Equipment", @equipment
 
     if @equipment.save
       flash[:notice] = "Equipment saved successfully"
       redirect_to equipment_index_path
     else
+      flash[:notice] = "Equipment can't be saved"
       render "new"
     end
   end
@@ -28,12 +30,13 @@ class EquipmentController < ApplicationController
   
   def update
     @equipment = Equipment.find(params[:id])
+    create_log current_user.uuid, "Updated Equipment", @equipment
 
     if @equipment.update_attributes(equipment_params)
       flash[:notice] = "Equipment updated successfully"
       redirect_to equipment_index_path
     else
-      flash[:notice] = "Equipment can't update"
+      flash[:notice] = "Equipment can't be updated"
       render 'edit'
     end
   end

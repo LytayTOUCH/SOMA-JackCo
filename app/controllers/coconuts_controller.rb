@@ -26,6 +26,7 @@ class CoconutsController < ApplicationController
   def create
     begin
       @coconut = Coconut.new(coconut_params)
+      create_log current_user.uuid, "Created New Coconut", @coconut
 
       if @coconut.save
         flash[:notice] = "Coconut saved successfully"
@@ -47,12 +48,13 @@ class CoconutsController < ApplicationController
   def update
     begin
       @coconut = Coconut.find(params[:id])
+      create_log current_user.uuid, "Updated Coconut", @coconut
 
       if @coconut.update_attributes(coconut_params)
         flash[:notice] = "Coconut updated"
         redirect_to coconuts_path
       else
-        flash[:notice] = "Coconut can't update"
+        flash[:notice] = "Coconut can't be updated"
         render 'edit'
       end
     rescue Exception => e

@@ -36,6 +36,7 @@ class InputTasksController < ApplicationController
     begin
       @input_task = InputTask.new(input_task_params)
       input_task_end_date = @input_task.end_date
+      create_log current_user.uuid, "Created New Input Task", @input_task
 
       if @input_task.save
         # Start Select Machinery               
@@ -117,18 +118,12 @@ class InputTasksController < ApplicationController
             end  
           end
         end
-        #End Select Material
-      
-
         flash[:notice] = "Input Task saved successfully"
         redirect_to input_tasks_path
       else
         flash[:notice] = "Input Task can't save"
         render 'new'
       end
-
-      
-
     rescue Exception => e
       puts e
     end

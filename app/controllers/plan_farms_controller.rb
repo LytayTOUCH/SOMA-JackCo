@@ -10,11 +10,11 @@ class PlanFarmsController < ApplicationController
     @stage = @phase.plan_production_stages.build
     # @status = @stage.plan_production_statuses.build
     # 5.times { @status.plan_blocks.build }
-
   end
 
   def create
     @locations = PlanFarm.new(location_params)
+    create_log current_user.uuid, "Created New Plan Farm", @locations
 
     if @locations.save
       redirect_to plan_farms_path
@@ -31,12 +31,13 @@ class PlanFarmsController < ApplicationController
 
   def update
     @locations = PlanFarm.find(params[:id])
+    create_log current_user.uuid, "Updated Plan Farm", @locations
 
     if @locations.update_attributes(location_params)
       flash[:notice] = "Plan farm updated successfully"
       redirect_to plan_farms_path
     else
-      flash[:notice] = "Plan farm can't update"
+      flash[:notice] = "Plan farm can't be updated"
       render 'edit'
     end
   end

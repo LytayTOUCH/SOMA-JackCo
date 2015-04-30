@@ -13,11 +13,13 @@ class MachineriesController < ApplicationController
   def create
     begin
       @machinery = Machinery.new(machinery_params)
+      create_log current_user.uuid, "Created New Machinery", @machinery
 
       if @machinery.save
         flash[:notice] = "Machinery saved successfully"
         redirect_to machineries_path
       else
+        flash[:notice] = "Machinery can't be saved."
         render 'new'
       end
     rescue Exception => e
@@ -33,11 +35,13 @@ class MachineriesController < ApplicationController
   def update
     begin
       @machinery = Machinery.find(params[:id])
+      create_log current_user.uuid, "Updated Machinery", @machinery
 
       if @machinery.update_attributes(machinery_params)
         flash[:notice] = "Machinery updated successfully"
         redirect_to machineries_path
       else
+        flash[:notice] = "Machinery can't be saved"
         render 'edit'
       end
     rescue Exception => e

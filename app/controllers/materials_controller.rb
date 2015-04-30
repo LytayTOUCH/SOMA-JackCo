@@ -20,6 +20,7 @@ class MaterialsController < ApplicationController
   def create
     begin
       @material = Material.new(material_params)
+      create_log current_user.uuid, "Created New Material", @material
 
       central_id = WarehouseType.find_by(name: 'Central Warehouse').uuid
       fertilizer_id = WarehouseType.find_by(name: 'Fertilizer Warehouse').uuid
@@ -34,6 +35,7 @@ class MaterialsController < ApplicationController
         flash[:notice] = "Material saved successfully"
         redirect_to materials_path
       else
+        flash[:notice] = "Material can't be saved"
         render 'new'
       end
     rescue Exception => e
@@ -55,11 +57,13 @@ class MaterialsController < ApplicationController
   def update
     begin
       @material = Material.find(params[:id])
+      create_log current_user.uuid, "Updated Material", @material
 
       if @material.update_attributes(material_params)
         flash[:notice] = "Material updated successfully"
         redirect_to materials_path
       else
+        flash[:notice] = "Material can't be updated"
         render 'edit'
       end
     rescue Exception => e

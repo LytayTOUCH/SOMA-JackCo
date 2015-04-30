@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include UuidHelper
 
   attr_accessor :current_password
+  # attr_accessor :email
 
   belongs_to :user_group, foreign_key: :user_group_id
   belongs_to :labor, foreign_key: :labor_id
