@@ -6,6 +6,8 @@
           %input.form-control{:type => "text", name: "year", :value => @year }
             %span.input-group-addon
               %span.glyphicon.glyphicon-calendar
+      .col-md-2
+        = collection_select(:farm, :farm_id, Farm.all, :uuid, :name,{:include_blank => "All Farms"}, {:class => 'form-control'})
 
       = submit_tag 'Filter', name: nil, :class => 'btn btn-success'
 
@@ -79,7 +81,7 @@
                       - @tree_sum = PlanFarm.sum_tree_amount(params[:year], farm.uuid, status.uuid, area.uuid)
                       - @total = @total + (@tree_sum.nil? ? 0 : @tree_sum)
                       %td{style: "white-space: nowrap; text-align: center;"}
-                        = @tree_sum
+                        = @tree_sum == 0 ? "" : @tree_sum
                 %td{style: "white-space: nowrap; text-align: center;"}
                   = @total
                 %td{style: "white-space: nowrap; text-align: center;"}
@@ -97,7 +99,7 @@
                         - @tree_sum = PlanFarm.sum_tree_amount(params[:year], farm.uuid, status.uuid, area.uuid)
                         - @total = @total + (@tree_sum.nil? ? 0 : @tree_sum)
                         %td{style: "white-space: nowrap; text-align: center;"}
-                          = @tree_sum
+                          = @tree_sum == 0 ? "" : @tree_sum
                   %td{style: "white-space: nowrap; text-align: center;"}
                     = @total
                   %td{style: "white-space: nowrap; text-align: center;"}

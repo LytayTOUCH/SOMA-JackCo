@@ -25,7 +25,7 @@ class PlanFarm < ActiveRecord::Base
   end
 
   def self.get_farm_with_zone_area
-    Farm.limit(2).includes(:zones).includes(:areas)
+    Farm.limit(3).includes(:zones).includes(:areas)
   end
 
   def self.sum_area
