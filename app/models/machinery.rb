@@ -1,8 +1,9 @@
 class Machinery < ActiveRecord::Base
   include UuidHelper
   
-  validates :name, :machinery_type_id, :source, presence: true
-  validate :planting_project_can_not_be_null_if_source_is_own_project
+  validates :name, :presence => { message: "Machinery Name is required." }
+  validates :machinery_type_id, :presence => { message: "Machinery Type is required." }
+  validates :planting_project_id, :presence => { message: "Planting Project is required." }
  
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/

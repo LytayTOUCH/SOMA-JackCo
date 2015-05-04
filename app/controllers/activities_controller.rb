@@ -47,10 +47,9 @@ class ActivitiesController < ApplicationController
     begin
       @activity = Activity.new(activity_params)
 
-      create_log current_user.uuid, "Created New Activity", @activity
-
       respond_to do |format|
         if @activity.save!
+          create_log current_user.uuid, "Created New Activity", @activity
           format.html { redirect_to calendars_path, :notice => 'Activity was successfully created.' }
           format.json { render :json => @activity, :status => :created, :location => @activity }
         else
@@ -74,10 +73,9 @@ class ActivitiesController < ApplicationController
     begin
       @activity = Activity.find(params[:id])
 
-      create_log current_user.uuid, "Updated Activity", @activity
-
       respond_to do |format|
         if @activity.update_attributes!(activity_params)
+          create_log current_user.uuid, "Updated Activity", @activity
           format.html { redirect_to calendars_path, :notice => 'Activity was successfully edited.' }
           format.json { render json: @activity, status: :created, location: @activity }
         else

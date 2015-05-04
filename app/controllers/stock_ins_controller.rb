@@ -20,9 +20,9 @@ class StockInsController < ApplicationController
   def create
     begin
       @stock_in = StockIn.new(stock_in_params)
-      create_log current_user.uuid, "Created New Stock In", @stock_in
 
       if @stock_in.save
+        create_log current_user.uuid, "Created New Stock In", @stock_in
         @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: @stock_in.warehouse.uuid, material_uuid: @stock_in.material.uuid)
 
         stock_in_amount = @stock_in.amount

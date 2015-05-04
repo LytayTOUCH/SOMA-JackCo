@@ -35,6 +35,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save!
+        create_log current_user.uuid, "Created New Event", @event
         format.html { redirect_to calendars_path, :notice => 'Event was successfully created.' }
         format.json { render :json => @event, :status => :created, :location => @event }
         puts "==========================================================="
@@ -52,6 +53,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(event_params)
+        create_log current_user.uuid, "Updated Event", @event
         format.html { redirect_to calendars_path, :notice => 'Event was successfully updated.' }
         format.json { head :no_content }
       else

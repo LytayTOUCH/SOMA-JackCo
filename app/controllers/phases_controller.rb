@@ -28,9 +28,9 @@ class PhasesController < ApplicationController
   def create
     begin
       @phase = Phase.new(phase_params)
-      create_log current_user.uuid, "Created New Phase", @phase
 
       if @phase.save!
+        create_log current_user.uuid, "Created New Phase", @phase
         flash[:notice] = "Phase saved successfully"
         redirect_to phases_path
       else
@@ -54,9 +54,17 @@ class PhasesController < ApplicationController
   def update
     begin
       @phase = Phase.find(params[:id])
-      create_log current_user.uuid, "Updated Output Task", @phase
 
       if @phase.update_attributes!(phase_params)
+        if params[:phase][:active] == "false"
+          create_log current_user.uuid, "Deactivated Phase", @phase
+        elsif params[:phase][:active] == "true"
+          create_log current_user.uuid, "Activated Phase", @phase
+        end
+
+        if params[:phase][:active] == "1" or params[:phase][:active] == "0"
+          create_log current_user.uuid, "Updated Phase", @phase  
+        end 
         flash[:notice] = "Phase updated"
         redirect_to phases_path
       else

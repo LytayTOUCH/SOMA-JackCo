@@ -33,6 +33,7 @@ class BlocksController < ApplicationController
     @block = Block.new(block_params)
     @block.active = true
     if @block.save
+      create_log current_user.uuid, "Created New Block", @block
       @block
     end
   end

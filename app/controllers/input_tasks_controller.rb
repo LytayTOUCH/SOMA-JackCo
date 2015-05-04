@@ -45,7 +45,7 @@ class InputTasksController < ApplicationController
         @materials_of_machinery = params[:materials_of_machinery]
         @qty_of_machinery = params[:material_qtys_of_machinery]
         index = 0
-
+        
         if params[:machineries].present?
           @machinery_ids.split(",").each do |machinery_id|
             unless machinery_id.empty?

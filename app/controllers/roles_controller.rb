@@ -32,9 +32,9 @@ class RolesController < ApplicationController
 
   def create
     @role = Role.new(role_params)
-    create_log current_user.uuid, "Created New Role", @role
     
     if @role.save!
+      create_log current_user.uuid, "Created New Role", @role
       flash[:notice] = "Role saved successfully"
       redirect_to roles_path
     else
@@ -50,9 +50,9 @@ class RolesController < ApplicationController
 
   def update
     @role = Role.find(params[:id])
-    create_log current_user.uuid, "Updated Role", @role
 
     if @role.update_attributes!(role_params)
+      create_log current_user.uuid, "Updated Role", @role
       flash[:notice] = "Role updated"
       redirect_to roles_path
     else

@@ -59,8 +59,7 @@ class OutputTasksController < ApplicationController
     begin
       @output_task = OutputTask.new(output_task_params)
       output_task_end_date = @output_task.end_date.to_s
-      create_log current_user.uuid, "Created New Output Task", @output_task
-
+      
       @finish_production_id = @output_task.finish_production_id
       @nursery_production_id = @output_task.nursery_production_id
       @finish_warehouse_id = @output_task.finish_warehouse_id

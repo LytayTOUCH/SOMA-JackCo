@@ -12,9 +12,9 @@ class EquipmentController < ApplicationController
   
   def create
     @equipment = Equipment.new(equipment_params)
-    create_log current_user.uuid, "Created New Equipment", @equipment
 
     if @equipment.save
+      create_log current_user.uuid, "Created New Equipment", @equipment
       flash[:notice] = "Equipment saved successfully"
       redirect_to equipment_index_path
     else
@@ -30,9 +30,17 @@ class EquipmentController < ApplicationController
   
   def update
     @equipment = Equipment.find(params[:id])
-    create_log current_user.uuid, "Updated Equipment", @equipment
 
     if @equipment.update_attributes(equipment_params)
+      if params[:equipment][:status] == "false"
+          create_log current_user.uuid, "Deactivated Equipment", @equipment
+        elsif params[:equipment][:status] == "true"
+          create_log current_user.uuid, "Activated Equipment", @equipment
+        end
+
+        if params[:equipment][:status] == "1" or params[:equipment][:status] == "0"
+          create_log current_user.uuid, "Updated Equipment", @equipment  
+        end 
       flash[:notice] = "Equipment updated successfully"
       redirect_to equipment_index_path
     else

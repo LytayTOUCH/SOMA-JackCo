@@ -22,8 +22,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
-    create_log current_user.uuid, "Create New Warehouse", @user
+    create_log current_user.uuid, "Create New User", @user
     
     if @user.save
       @labor = Labor.find_by_uuid(@user.labor_id)
@@ -43,6 +42,7 @@ class UsersController < ApplicationController
 
   def update_profile
     @user_account = User.find(params[:id])
+    create_log current_user.uuid, "Updated User Profile", @user_account
 
     if @user_account.update_attributes(account_update_params)
       flash[:notice] = "User updated"
@@ -59,11 +59,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
-    create_log current_user.uuid, "Update Warehouse", @user
     
     if @user.update_attributes(user_params)
-      
+      create_log current_user.uuid, "Updated User", @user
       flash[:notice] = "User updated"
       redirect_to users_path
     else

@@ -53,9 +53,9 @@ class PlansController < ApplicationController
 
   def create
       @plan = Plan.new(plan_params)
-      create_log current_user.uuid, "Created New Plan", @plan
 
       if @plan.save!
+        create_log current_user.uuid, "Created New Plan", @plan
         flash[:notice] = "Plan saved successfully"
         redirect_to plans_path
       else
@@ -72,9 +72,9 @@ class PlansController < ApplicationController
   def update
     begin
       @plan = Plan.find(params[:id])
-      create_log current_user.uuid, "Updated Plan", @plan
 
       if @plan.update_attributes!(plan_params)
+        create_log current_user.uuid, "Updated Plan", @plan
         flash[:notice] = "Plan updated successfully"
         redirect_to plans_path
       else

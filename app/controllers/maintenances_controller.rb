@@ -14,9 +14,9 @@ class MaintenancesController < ApplicationController
   def create
     begin
       @maintenance = Maintenance.new(maintenance_params)
-      create_log current_user.uuid, "Created New Maintenance", @maintenance
 
       if @maintenance.save!
+        create_log current_user.uuid, "Created New Maintenance", @maintenance
         flash[:notice] = "Maintenance saved successfully"
         redirect_to :back
       else

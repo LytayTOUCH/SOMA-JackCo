@@ -14,9 +14,9 @@ class PositionsController < ApplicationController
   def create
     begin
       @position = Position.new(position_params)
-      create_log current_user.uuid, "Created New Position", @position
 
       if @position.save
+        create_log current_user.uuid, "Created New Position", @position
         flash[:notice] = "Position saved successfully"
         redirect_to positions_path
       else
@@ -36,9 +36,9 @@ class PositionsController < ApplicationController
   def update
     begin
       @position = Position.find(params[:id])
-      create_log current_user.uuid, "Updated Position", @position
 
       if @position.update_attributes(position_params)
+        create_log current_user.uuid, "Updated Position", @position
         flash[:notice] = "Production Stage updated"
         redirect_to positions_path
       else

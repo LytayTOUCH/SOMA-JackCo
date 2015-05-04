@@ -19,7 +19,6 @@ class ProductionsController < ApplicationController
   def create
     begin
       @production = Production.new(production_params)
-      create_log current_user.uuid, "Created New Production", @production
       
       finished_id = WarehouseType.find_by_name("Finished Goods Warehouse").uuid 
       nursery_id = WarehouseType.find_by_name("Nursery Warehouse").uuid
@@ -30,6 +29,7 @@ class ProductionsController < ApplicationController
         production_warehouses.each do |warehouse|
           WarehouseProductionAmount.create(warehouse_id: warehouse.uuid, production_id: @production.uuid, amount: 0)
         end 
+        create_log current_user.uuid, "Created New Production", @production
         flash[:notice] = "Production saved successfully"
         redirect_to productions_path
       else
@@ -48,9 +48,9 @@ class ProductionsController < ApplicationController
   def update
     begin
       @production = Production.find(params[:id])
-      create_log current_user.uuid, "Updated Production", @production
 
       if @production.update_attributes(production_params)
+        create_log current_user.uuid, "Updated Production", @production
         flash[:notice] = "Production updated"
         redirect_to productions_path
       else

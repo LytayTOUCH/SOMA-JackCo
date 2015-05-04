@@ -38,7 +38,7 @@ class WarehouseMaterialReceivedsController < ApplicationController
   def create
     begin
       @warehouse_material_received = WarehouseMaterialReceived.new(warehouse_material_received_params)
-
+      
       # "============== Cutting Stock ============="  
       @warehouse_item_transaction = WarehouseItemTransaction.find_by(uuid: @warehouse_material_received.warehouse_item_transaction_id)
       
@@ -92,8 +92,6 @@ class WarehouseMaterialReceivedsController < ApplicationController
       puts e
     end
   end
-
-
 
   private
   def warehouse_material_received_params

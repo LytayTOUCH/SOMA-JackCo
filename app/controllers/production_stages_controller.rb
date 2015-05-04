@@ -29,9 +29,9 @@ class ProductionStagesController < ApplicationController
   def create
     begin
       @production_stage = ProductionStage.new(production_stage_params)
-      create_log current_user.uuid, "Created New Production Stage", @production_stage
 
       if @production_stage.save
+        create_log current_user.uuid, "Created New Production Stage", @production_stage
         flash[:notice] = "Production Status saved successfully"
         redirect_to production_stages_path
       else
@@ -56,9 +56,9 @@ class ProductionStagesController < ApplicationController
   def update
     begin
       @production_stage = ProductionStage.find(params[:id])
-      create_log current_user.uuid, "Updated Production Stage", @production_stage
 
       if @production_stage.update_attributes(production_stage_params)
+        create_log current_user.uuid, "Updated Production Stage", @production_stage
         flash[:notice] = "Production Stage updated"
         redirect_to production_stages_path
       else
