@@ -176,6 +176,7 @@ Rails.application.routes.draw do
 
   get 'get_machinery_name', to: 'machineries#get_machinery_name'
   get 'get_material_name', to: 'materials#get_material_name'
+  get 'find_amount', to: 'input_tasks#find_amount'
 
   # get 'input_uses/index'
   resources :input_uses do
