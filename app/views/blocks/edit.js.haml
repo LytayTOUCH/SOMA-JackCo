@@ -2,8 +2,8 @@
   var block_temp, label_temp;
   function getLatlong(polygon){
     var polygonPoints = [];
-    $.each(polygon.latLngs.j[0].j, function(key, latlng){
-      polygonPoints.push("["+latlng.k+","+latlng.D+"]");
+    $.each(polygon.getPaths().getArray()[0].j, function(key, latlng){
+      polygonPoints.push("["+latlng.A+","+latlng.F+"]");
     });
     $("#block_shape_lat_long").val("["+polygonPoints.toString()+"]");
     $("#block_location_lat_long").val(getCenter(polygon).toString().slice(1,-1));
