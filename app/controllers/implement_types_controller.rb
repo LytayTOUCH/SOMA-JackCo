@@ -27,10 +27,11 @@ class ImplementTypesController < ApplicationController
       @implement_type = ImplementType.new(implement_type_params)
 
       if @implement_type.save!
+        create_log current_user.uuid, "Created New Implement Type", @implement_type
         flash[:notice] = "ImplementType saved successfully"
         redirect_to :back
       else
-        flash[:notice] = "ImplementType can't save"
+        flash[:notice] = "ImplementType can't be saved"
         redirect_to :back
       end
     rescue Exception => e
@@ -48,10 +49,11 @@ class ImplementTypesController < ApplicationController
       @implement_type = ImplementType.find(params[:id])
 
       if @implement_type.update_attributes!(implement_type_params)
-        flash[:notice] = "ImplementType updated successfully"
+        create_log current_user.uuid, "Updated Implement Type", @implement_type
+        flash[:notice] = "Implement Type updated successfully"
         redirect_to implement_types_path
       else
-        flash[:notice] = "ImplementType category can't update"
+        flash[:notice] = "Implement Type category can't be updated"
         redirect_to :back
       end
     rescue Exception => e

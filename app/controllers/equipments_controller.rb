@@ -20,10 +20,11 @@ class EquipmentsController < ApplicationController
       @equipment = Equipment.new(equipment_params)
 
       if @equipment.save!
+        create_log current_user.uuid, "Created New Equipment", @equipment
         flash[:notice] = "Equipment saved successfully"
         redirect_to equipments_path
       else
-        flash[:notice] = "Equipment can't save"
+        flash[:notice] = "Equipment can't be saved"
         render 'new'
       end
     rescue Exception => e
@@ -46,10 +47,11 @@ class EquipmentsController < ApplicationController
       @equipment = Equipment.find(params[:id])
 
       if @equipment.update_attributes(equipment_params)
+        create_log current_user.uuid, "Updated Equipment", @equipment
         flash[:notice] = "Equipment updated successfully"
         redirect_to equipments_path
       else
-        flash[:notice] = "Equipment can't update"
+        flash[:notice] = "Equipment can't be updated"
         render 'edit'
       end
     rescue Exception => e

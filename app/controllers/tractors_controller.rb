@@ -26,6 +26,7 @@ class TractorsController < ApplicationController
       @tractor = Tractor.new(tractor_params)
 
       if @tractor.save!
+        create_log current_user.uuid, "Created New Tractor", @tractor
         flash[:notice] = "Tractor saved successfully"
         redirect_to :back
       else
@@ -51,6 +52,7 @@ class TractorsController < ApplicationController
       @tractor = Tractor.find(params[:id])
 
       if @tractor.update_attributes!(tractor_params)
+        create_log current_user.uuid, "Updated Tractor", @tractor
         flash[:notice] = "Tractor updated successfully"
         redirect_to tractor_path
       else

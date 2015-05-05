@@ -29,9 +29,11 @@ class LaborsController < ApplicationController
       @labor = Labor.new(labor_params)
 
       if @labor.save
-        flash[:notice] = "Labor saved successfully"
+        create_log current_user.uuid, "Created New Labor", @labor
+        flash[:notice] = "Labor saved successfully."
         redirect_to labors_path
       else
+        flash[:notice] = "Labor can't be saved."
         render "new"
       end
     rescue Exception => e
@@ -50,9 +52,19 @@ class LaborsController < ApplicationController
       @labor = Labor.find(params[:id])
 
       if @labor.update_attributes(labor_params)
+        if params[:labor][:active] == "false"
+          create_log current_user.uuid, "Deactivated Labor", @labor
+        elsif params[:labor][:active] == "true"
+          create_log current_user.uuid, "Activated Labor", @labor
+        end
+
+        if params[:labor][:active] == "1" or params[:labor][:active] == "0"
+          create_log current_user.uuid, "Updated Labor", @labor  
+        end 
         flash[:notice] = "Labor updated successfully"
         redirect_to labors_path
       else
+        flash[:notice] = "Labor can't be saved"
         render "edit"
       end
     rescue Exception => e

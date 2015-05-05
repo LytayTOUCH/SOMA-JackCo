@@ -8,7 +8,6 @@
   - @warehouses.each do |warehouse|
     %tr
       %td= warehouse.name
-      / %td= warehouse.labor_uuid
       %td= warehouse.warehouse_type.name
       %td
         = form_for(warehouse) do |f|

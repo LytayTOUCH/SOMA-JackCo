@@ -16,9 +16,11 @@ class PositionsController < ApplicationController
       @position = Position.new(position_params)
 
       if @position.save
-        flash[:notice] = "Production Status type saved successfully"
+        create_log current_user.uuid, "Created New Position", @position
+        flash[:notice] = "Position saved successfully"
         redirect_to positions_path
       else
+        flash[:notice] = "Position can't be saved."
         render "new"
       end
     rescue Exception => e
@@ -36,9 +38,11 @@ class PositionsController < ApplicationController
       @position = Position.find(params[:id])
 
       if @position.update_attributes(position_params)
+        create_log current_user.uuid, "Updated Position", @position
         flash[:notice] = "Production Stage updated"
         redirect_to positions_path
       else
+        flash[:notice] = "Position can't be updated"
         render "edit"
       end
     rescue Exception => e

@@ -16,9 +16,11 @@ class MachineryTypesController < ApplicationController
       @machinery_type = MachineryType.find(params[:id])
 
       if @machinery_type.update_attributes(machinery_type_params)
+        create_log current_user.uuid, "Updated Machinery Type", @machinery_type
         flash[:notice] = "Machinery Type updated successfully"
         redirect_to machinery_types_path
       else
+        flash[:notice] = "Machinery Type can't be updated"
         render 'edit'
       end
     rescue Exception => e
@@ -35,9 +37,11 @@ class MachineryTypesController < ApplicationController
       @machinery_type = MachineryType.new(machinery_type_params)
 
       if @machinery_type.save
+        create_log current_user.uuid, "Created New Machinery Type", @machinery_type
         flash[:notice] = "Machinery Type saved successfully"
         redirect_to machinery_types_path
       else
+        flash[:notice] = "Machinery Type can't be saved."
         render 'new'
       end
     rescue Exception => e

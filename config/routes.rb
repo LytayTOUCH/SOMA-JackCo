@@ -116,6 +116,7 @@ Rails.application.routes.draw do
 
   # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
+
   resources :roles do
     collection do
       get 'resources'
@@ -126,6 +127,7 @@ Rails.application.routes.draw do
   resources :stages
   resources :coconuts
   resources :jack_fruits
+  resources :suppliers
 
   resources :fields, except: [:destroy] do
     collection do 

@@ -8,7 +8,7 @@
           .form-group
             %label.col-xs-3.control-label.text-left Email
             .col-xs-9
-              = f.input :email, label: false, input_html: { class: "form-control" }
+              = f.input :email, label: false, input_html: { class: "form-control" }, readonly: true
               %span.help-block= f.error :name
           .form-group
             %label.col-xs-3.control-label.text-left Current password
