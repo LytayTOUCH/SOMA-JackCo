@@ -59,9 +59,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    
+  
     if @user.update_attributes(user_params)
-      create_log current_user.uuid, "Updated User", @user
+      if params[:user][:active] == "false"
+          create_log current_user.uuid, "Deactivated User", @user
+      elsif params[:user][:active] == "true"
+        create_log current_user.uuid, "Activated User", @user
+      end
+
+      if params[:user][:active] == "1" or params[:user][:status] == "0"
+        create_log current_user.uuid, "Updated User", @user  
+      end
       flash[:notice] = "User updated"
       redirect_to users_path
     else

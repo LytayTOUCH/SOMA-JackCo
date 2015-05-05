@@ -127,6 +127,7 @@ Rails.application.routes.draw do
   resources :stages
   resources :coconuts
   resources :jack_fruits
+  resources :suppliers
 
   resources :fields, except: [:destroy] do
     collection do 

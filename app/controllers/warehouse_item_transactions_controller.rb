@@ -96,11 +96,9 @@ class WarehouseItemTransactionsController < ApplicationController
 
   def update
     @warehouse_item_transaction.transaction_status = "Closed" 
-    create_log current_user.uuid, "Closed Warehouse Material Transction Request", @warehouse_item_transaction
 
     if @warehouse_item_transaction.update(warehouse_item_transaction_params)
       create_log_2 current_user.uuid, "Closed Material Request", "ID: "+@warehouse_item_transaction.uuid + ", Reason: " + @warehouse_item_transaction.reason_for_closing_transaction
-      
       @warehouse_item_transaction
     end
   end

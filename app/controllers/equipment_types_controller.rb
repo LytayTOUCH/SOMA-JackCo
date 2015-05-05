@@ -16,14 +16,14 @@ class EquipmentTypesController < ApplicationController
 
     if @equipment_type.update_attributes(equipment_type_params)
       if params[:equipment_type][:status] == "false"
-          create_log current_user.uuid, "Deactivated Equipment Type", @equipment_type
-        elsif params[:equipment_type][:status] == "true"
-          create_log current_user.uuid, "Activated Equipment Type", @equipment_type
-        end
+        create_log current_user.uuid, "Deactivated Equipment Type", @equipment_type
+      elsif params[:equipment_type][:status] == "true"
+        create_log current_user.uuid, "Activated Equipment Type", @equipment_type
+      end
 
-        if params[:equipment_type][:status] == "1" or params[:equipment_type][:status] == "0"
-          create_log current_user.uuid, "Updated Equipment Type", @equipment_type  
-        end 
+      if params[:equipment_type][:status] == "1" or params[:equipment_type][:status] == "0"
+        create_log current_user.uuid, "Updated Equipment Type", @equipment_type  
+      end 
       flash[:notice] = "Equipment Type updated successfully"
       redirect_to equipment_types_path
     else

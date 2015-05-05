@@ -58,7 +58,15 @@ class ProductionStagesController < ApplicationController
       @production_stage = ProductionStage.find(params[:id])
 
       if @production_stage.update_attributes(production_stage_params)
-        create_log current_user.uuid, "Updated Production Stage", @production_stage
+        if params[:production_stage][:active] == "false"
+          create_log current_user.uuid, "Deactivated Production Stage", @production_stage
+        elsif params[:production_stage][:active] == "true"
+          create_log current_user.uuid, "Activated Production Stage", @production_stage
+        end
+
+        if params[:production_stage][:active] == "1" or params[:production_stage][:status] == "0"
+          create_log current_user.uuid, "Updated Production Stage", @production_stage  
+        end 
         flash[:notice] = "Production Stage updated"
         redirect_to production_stages_path
       else

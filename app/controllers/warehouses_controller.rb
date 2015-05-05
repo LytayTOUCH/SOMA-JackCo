@@ -68,7 +68,15 @@ class WarehousesController < ApplicationController
       @warehouse = Warehouse.find(params[:id])
 
       if @warehouse.update_attributes(warehouse_params)  
-        create_log current_user.uuid, "Updated Warehouse", @warehouse
+        if params[:warehouse][:active] == "false"
+          create_log current_user.uuid, "Deactivated Warehouse", @warehouse
+        elsif params[:warehouse][:active] == "true"
+          create_log current_user.uuid, "Activated Warehouse", @warehouse
+        end
+
+        if params[:warehouse][:active] == "1" or params[:warehouse][:active] == "0"
+          create_log current_user.uuid, "Updated Warehouse", @warehouse  
+        end
         flash[:notice] = "Warehouse updated"
         redirect_to warehouses_path
       else

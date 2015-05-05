@@ -34,13 +34,13 @@ class EquipmentController < ApplicationController
     if @equipment.update_attributes(equipment_params)
       if params[:equipment][:status] == "false"
           create_log current_user.uuid, "Deactivated Equipment", @equipment
-        elsif params[:equipment][:status] == "true"
-          create_log current_user.uuid, "Activated Equipment", @equipment
-        end
+      elsif params[:equipment][:status] == "true"
+        create_log current_user.uuid, "Activated Equipment", @equipment
+      end
 
-        if params[:equipment][:status] == "1" or params[:equipment][:status] == "0"
-          create_log current_user.uuid, "Updated Equipment", @equipment  
-        end 
+      if params[:equipment][:status] == "1" or params[:equipment][:status] == "0"
+        create_log current_user.uuid, "Updated Equipment", @equipment  
+      end 
       flash[:notice] = "Equipment updated successfully"
       redirect_to equipment_index_path
     else
