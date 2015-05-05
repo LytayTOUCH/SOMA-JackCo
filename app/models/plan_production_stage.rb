@@ -5,7 +5,7 @@ class PlanProductionStage < ActiveRecord::Base
 
   has_many :plan_production_statuses, foreign_key: :plan_production_stage_id, dependent: :destroy
   
-  validates_presence_of :production_stage_id, :message => "Production stage can not empty."
+  validates_presence_of :production_stage_id, :message => "Production stage is required."
 
   accepts_nested_attributes_for :plan_production_statuses
   

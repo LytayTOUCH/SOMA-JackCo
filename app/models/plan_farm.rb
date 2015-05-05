@@ -5,8 +5,8 @@ class PlanFarm < ActiveRecord::Base
 
   has_many :plan_phases, foreign_key: :plan_farm_id, dependent: :destroy
   
-  validates_presence_of :farm_id, :message => "Farm can not empty."
-  validates_presence_of :for_year, :message => "Year can not empty."
+  validates_presence_of :farm_id, :message => "Farm is required."
+  validates_presence_of :for_year, :message => "Year is required."
 
   accepts_nested_attributes_for :plan_phases
 end

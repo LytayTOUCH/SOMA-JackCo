@@ -5,6 +5,6 @@ class UnitOfMeasurement < ActiveRecord::Base
 
   has_many :productions
 
-  validates :name, length: { maximum: 50 }, presence: true
+  validates :name, length: { maximum: 50 }, :presence => { message: "Unit of Measurement name is required." }
   scope :find_by_unit_of_measurement_name, -> name { where("name like ?", "%#{name}%") }
 end

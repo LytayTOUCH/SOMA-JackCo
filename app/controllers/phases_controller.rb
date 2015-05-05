@@ -29,13 +29,13 @@ class PhasesController < ApplicationController
     begin
       @phase = Phase.new(phase_params)
 
-      if @phase.save!
+      if @phase.save
         create_log current_user.uuid, "Created New Phase", @phase
         flash[:notice] = "Phase saved successfully"
         redirect_to phases_path
       else
         flash[:notice] = "Phase can't be saved"
-        redirect_to :back
+        render 'new'
       end
     rescue Exception => e
       puts e
@@ -55,7 +55,7 @@ class PhasesController < ApplicationController
     begin
       @phase = Phase.find(params[:id])
 
-      if @phase.update_attributes!(phase_params)
+      if @phase.update_attributes(phase_params)
         if params[:phase][:active] == "false"
           create_log current_user.uuid, "Deactivated Phase", @phase
         elsif params[:phase][:active] == "true"
@@ -69,7 +69,7 @@ class PhasesController < ApplicationController
         redirect_to phases_path
       else
         flash[:notice] = "Phase can't be updated"
-        redirect_to :back
+        render 'edit'
       end
     rescue Exception => e
       puts e

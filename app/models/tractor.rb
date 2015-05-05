@@ -8,7 +8,7 @@ class Tractor < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-  validates :name, length: { maximum: 50 }, presence: true
+  validates :name, length: { maximum: 50 }, :presence => { message: "Tractor name is required." }
   validates :horse_power, numericality: true
   validates :fuel_capacity, numericality: true
   validates :value, numericality: true
