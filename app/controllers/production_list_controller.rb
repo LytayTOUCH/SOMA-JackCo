@@ -1,6 +1,5 @@
 class ProductionListController < ApplicationController
   def index
-    # binding.pry
-    @year = params[:year]
+    @year = params[:y]
   end
 end

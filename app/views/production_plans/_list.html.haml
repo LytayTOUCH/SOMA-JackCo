@@ -1,0 +1,19 @@
+%table#list_data_table
+  %thead
+    %tr
+      %th.col-md-4= "Planting Project Type"
+      %th.col-md-2= "Year"
+      %th.col-md-2= "Jan"
+      %th.col-md-2= "Feb"
+      %th.col-md-2= "Mar"
+      %th.col-md-2= "Action"
+  - @production_plans.each do |plan|
+    %tr
+      %td= PlantingProject.find(plan.planting_project_id).name
+      %td= plan.for_year
+      %td= plan.jan
+      %td= plan.feb
+      %td= plan.mar
+      %td
+        - if can? :update, plan
+          = link_to "Edit", edit_production_plan_path(plan)

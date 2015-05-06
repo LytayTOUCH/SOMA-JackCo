@@ -8,9 +8,6 @@ class PlanFarmsController < ApplicationController
     @locations = PlanFarm.new
     @phase = @locations.plan_phases.build
     @stage = @phase.plan_production_stages.build
-    # @status = @stage.plan_production_statuses.build
-    # 5.times { @status.plan_blocks.build }
-
   end
 
   def create
@@ -24,9 +21,7 @@ class PlanFarmsController < ApplicationController
   end
 
   def edit
-    # binding.pry
     @locations = PlanFarm.find(params[:id])
-    # @selected_zone = Block.find(@locations.plan_blocks.first.block_id).area.zone
   end
 
   def update
@@ -55,6 +50,8 @@ class PlanFarmsController < ApplicationController
 
     @locations.farm_id = params[:farm_id]
     @locations.for_year = params[:for_year]
+    @locations.planting_project_id = params[:planting_project_id]
+    
     @phase = @locations.plan_phases.build
     @phase.phase_id = params[:phase_id]
     @stage = @phase.plan_production_stages.build
@@ -91,7 +88,7 @@ class PlanFarmsController < ApplicationController
   private
   def location_params
     params.require(:plan_farm).permit(
-      :id, :farm_id, :for_year, :status,
+      :id, :farm_id, :planting_project_id, :for_year, :status,
       plan_phases_attributes: [:id, :phase_id, :plan_farm_id,
         plan_production_stages_attributes: [:id, :plan_phase_id, :production_stage_id,
           plan_production_statuses_attributes: [:id, :plan_production_stage_id, :production_status_id, :remark,

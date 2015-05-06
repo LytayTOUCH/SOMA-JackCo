@@ -1,21 +1,23 @@
 %table#list_data_table
   %thead
     %tr
-      %th.col-md-3= "Name"
+      %th.col-md-2= "Name"
+      %th.col-md-1= "Project"
       %th.col-md-1= "Year"
-      %th.col-md-2= "Phase"
-      %th.col-md-3= "Stage"
+      %th.col-md-3= "Phase"
+      %th.col-md-2= "Stage"
       %th.col-md-2= "Active"
       %th.col-md-1= "Action"
   %tbody
     - @plan_farms.each do |farm|
       %tr
         %td= Farm.where(uuid: farm.farm_id).first.name
+        %td= PlantingProject.where(uuid: farm.planting_project_id).first.name
         %td= farm.for_year
         %td= Phase.where(uuid: farm.plan_phases.first.phase_id).first.name
         %td= ProductionStage.where(uuid: farm.plan_phases.first.plan_production_stages.first.production_stage_id).first.name
         %td 
-          = form_for(farm, :url => "/locations/#{farm.uuid}") do |f|
+          = form_for(farm, :url => "/plan_farms/#{farm.uuid}") do |f|
             - if farm.status
               %span{style: "color:green;"}= "active"
               |

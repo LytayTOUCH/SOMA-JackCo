@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :production_plans
+  resources :production_plan_report
+  get 'get_production_plan_tree', to: 'production_plan_report#get_production_plan_tree'
+
   resources :production_list
 
   get 'log_tracking/index'
