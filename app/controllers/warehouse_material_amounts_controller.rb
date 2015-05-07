@@ -38,4 +38,8 @@ class WarehouseMaterialAmountsController < ApplicationController
       flash[:notice] = "Stock can not be adjusted"
     end
   end
+  
+  def get_warehouse_material_amount_data
+    render json: WarehouseMaterialAmount.find_by(warehouse_uuid: params[:warehouse_id], material_uuid: params[:material_id])
+  end
 end
