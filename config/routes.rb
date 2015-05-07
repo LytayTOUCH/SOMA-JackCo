@@ -127,6 +127,7 @@ Rails.application.routes.draw do
   resources :stages
   resources :coconuts
   resources :jack_fruits
+  resources :suppliers
 
   resources :fields, except: [:destroy] do
     collection do 
@@ -182,6 +183,7 @@ Rails.application.routes.draw do
   get 'get_distributions_by_planting_project', to: 'output_tasks#get_distributions_by_planting_project'
   
   get 'get_warehouse_material_amount_data', to: 'warehouse_material_amounts#get_warehouse_material_amount_data'
+  get 'find_amount', to: 'input_tasks#find_amount'
 
   # get 'input_uses/index'
   resources :input_uses do

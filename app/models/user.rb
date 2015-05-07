@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   validates :labor_id, length: { maximum: 36 }, :presence => { message: "Labor is required." }
   validates :user_group_id, length: { maximum: 36 }, :presence => { message: "User group is required." }
-  validates :password_confirmation, length: { maximum: 36 }, presence: true
+  # validates :password_confirmation, length: { maximum: 36 }, presence: true
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

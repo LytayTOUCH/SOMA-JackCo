@@ -22,9 +22,9 @@ class ImplementsController < ApplicationController
   def create
     begin
       @implement = Implement.new(implement_params)
-      create_log current_user.uuid, "Created New Implement", @implement
 
       if @implement.save!
+        create_log current_user.uuid, "Created New Implement", @implement
         flash[:notice] = "Implement saved successfully"
         redirect_to :back
       else
@@ -49,9 +49,9 @@ class ImplementsController < ApplicationController
   def update
     begin
       @implement = Implement.find(params[:id])
-      create_log current_user.uuid, "Updated Implement", @implement
 
       if @implement.update_attributes!(implement_params)
+        create_log current_user.uuid, "Updated Implement", @implement
         flash[:notice] = "Implement updated successfully"
         redirect_to implement_path
       else

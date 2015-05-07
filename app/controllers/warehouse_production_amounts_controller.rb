@@ -21,7 +21,7 @@ class WarehouseProductionAmountsController < ApplicationController
     end
   end
 
-  def update
+  def update    
     adjust_date = Date.today
     wha_id = @warehouse_production_amount.uuid
     old_amount = @warehouse_production_amount.amount
@@ -31,12 +31,13 @@ class WarehouseProductionAmountsController < ApplicationController
     note = params[:production_note]
     
     if @warehouse_production_amount.update(amount: params[:warehouse_production_amount][:amount])
-      create_log current_user.uuid, "Edit Stock Production", @warehouse_production_amount
+      create_log current_user.uuid, "Updated Warehouse Production Quantity", @warehouse_production_amount
       
       ProductionAdjustment.create(adjust_date: adjust_date,  warehouse_production_amount_id: wha_id, old_amount: old_amount, new_amount: new_amount, user_id: user_id, user_name: user_name, note: note)
       redirect_to warehouse_production_amounts_path+"?wha_id="+wha_id
     else
       flash[:notice] = "Stock can not be adjusted"
+      render 'edit'
     end
   end
 end

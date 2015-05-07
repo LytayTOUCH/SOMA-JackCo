@@ -30,9 +30,9 @@ class JackFruitsController < ApplicationController
 
   def create
     @jack_fruit = JackFruit.new(jack_fruit_params)
-    create_log current_user.uuid, "Created New JackFruit", @jack_fruit
 
     if @jack_fruit.save
+      create_log current_user.uuid, "Created New JackFruit", @jack_fruit
       flash[:notice] = "JackFruit saved successfully"
       redirect_to jack_fruits_path
     else
@@ -50,9 +50,17 @@ class JackFruitsController < ApplicationController
 
   def update
     @jack_fruit = JackFruit.find(params[:id])
-    create_log current_user.uuid, "Updated JackFruit", @jack_fruit
 
     if @jack_fruit.update_attributes(jack_fruit_params)
+      if params[:jackfruit][:active] == "false"
+          create_log current_user.uuid, "Deactivated JackFruit", @jackfruit
+        elsif params[:jackfruit][:active] == "true"
+          create_log current_user.uuid, "Activated JackFruit", @jackfruit
+        end
+
+        if params[:jackfruit][:active] == "1" or params[:jackfruit][:active] == "0"
+          create_log current_user.uuid, "Updated JackFruit", @jackfruit  
+        end 
       flash[:notice] = "JackFruit updated"
       redirect_to jack_fruits_path
     else

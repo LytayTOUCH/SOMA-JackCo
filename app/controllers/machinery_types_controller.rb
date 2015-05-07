@@ -14,9 +14,9 @@ class MachineryTypesController < ApplicationController
   def update
     begin
       @machinery_type = MachineryType.find(params[:id])
-      create_log current_user.uuid, "Updated Machinery Type", @machinery_type
 
       if @machinery_type.update_attributes(machinery_type_params)
+        create_log current_user.uuid, "Updated Machinery Type", @machinery_type
         flash[:notice] = "Machinery Type updated successfully"
         redirect_to machinery_types_path
       else
@@ -35,9 +35,9 @@ class MachineryTypesController < ApplicationController
   def create
     begin
       @machinery_type = MachineryType.new(machinery_type_params)
-      create_log current_user.uuid, "Created New Machinery Type", @machinery_type
 
       if @machinery_type.save
+        create_log current_user.uuid, "Created New Machinery Type", @machinery_type
         flash[:notice] = "Machinery Type saved successfully"
         redirect_to machinery_types_path
       else

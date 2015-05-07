@@ -35,10 +35,11 @@ class FieldsController < ApplicationController
       @field.lat_long = JSON.parse(field_params["lat_long"])
 
       if @field.save!
+        create_log current_user.uuid, "Created New Field", @field
         flash[:notice] = "Field saved successfully"
         redirect_to fields_path
       else
-        flash[:notice] = "Field can't save"
+        flash[:notice] = "Field can't be saved"
         redirect_to :back
       end
     rescue Exception => e
@@ -63,10 +64,11 @@ class FieldsController < ApplicationController
       temp_field_params[:lat_long] = JSON.parse(field_params["lat_long"])
 
       if @field.update_attributes!(temp_field_params)
+        create_log current_user.uuid, "Updated Field", @field
         flash[:notice] = "Field updated successfully"
         redirect_to fields_path
       else
-        flash[:notice] = "Field can't update"
+        flash[:notice] = "Field can't be updated"
         redirect_to :back
       end
     rescue Exception => e

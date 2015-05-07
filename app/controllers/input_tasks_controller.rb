@@ -37,6 +37,14 @@ class InputTasksController < ApplicationController
     begin
       @input_task = InputTask.new(input_task_params)
       input_task_end_date = @input_task.end_date
+      
+      project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
+      @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
+      @farms_name = Block.select("uuid, name, farm_id")
+
+      @machineries = Machinery.select("uuid, name")
+      @materials = Material.select("uuid, name")
+
 
       if @input_task.save
         # Start Select Machinery               
@@ -45,7 +53,7 @@ class InputTasksController < ApplicationController
         @materials_of_machinery = params[:materials_of_machinery]
         @qty_of_machinery = params[:material_qtys_of_machinery]
         index = 0
-
+        
         if params[:machineries].present?
           @machinery_ids.split(",").each do |machinery_id|
             unless machinery_id.empty?
@@ -69,7 +77,7 @@ class InputTasksController < ApplicationController
               puts "========================================="
               @machinery = Machinery.find_by_uuid(machinery_id)
               
-              if total_in_stock > qty.to_f               
+              if total_in_stock >= qty.to_f               
                   @machinery.update_attributes!(availabe_date: input_task_end_date)
                   InputUseMachinery.create(input_id: @input_task.uuid, machinery_id: machinery_id, warehouse_id: warehouse, material_id: material, material_amount: qty.to_f)
                   @warehouse_material_amount.update_attributes!(amount: remain_in_stock)
@@ -114,7 +122,7 @@ class InputTasksController < ApplicationController
               puts "============ Remain In Stock1 ============"
               puts remain_in_stock = total_in_stock - qty_of_material.to_f
               
-              if total_in_stock > qty_of_material.to_f
+              if total_in_stock >= qty_of_material.to_f
                   InputUseMaterial.create(input_id: @input_task.uuid, material_id: material_id, warehouse_id: warehouse_of_material, material_amount: qty_of_material.to_f)
                   @warehouse_material_amount.update_attributes!(amount: remain_in_stock)
               
@@ -173,6 +181,11 @@ class InputTasksController < ApplicationController
 
   def show
     @input_task = InputTask.find(params[:id])
+  end
+
+  def find_amount
+    @material_amounts = WarehouseMaterialAmount.where(warehouse_uuid: params[:warehouse_id], material_uuid: params[:material_id]).first.amount
+    render :json => @material_amounts
   end
 
   private
