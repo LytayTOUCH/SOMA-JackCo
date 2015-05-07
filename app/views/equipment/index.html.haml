@@ -2,6 +2,7 @@
   %h1
     = "Equipments"
     .pull-right
-      = link_to "New Equipment", new_equipment_path, class: "btn btn-primary"
+      - if can? :create, Equipment
+        = link_to "New Equipment", new_equipment_path, class: "btn btn-primary"
   %hr
   = render partial: 'list'

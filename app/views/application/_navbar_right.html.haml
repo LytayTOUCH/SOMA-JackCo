@@ -10,6 +10,7 @@
       %span.caret
     %ul.dropdown-menu{:role => "menu"}
       %li
+        / - if can? :update, User 
         = link_to labor_path(current_user.labor) do
           %i.fa.fa-info-circle.fa-lg
           My Profile

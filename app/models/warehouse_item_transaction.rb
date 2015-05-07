@@ -7,7 +7,7 @@ class WarehouseItemTransaction < ActiveRecord::Base
   validates :receiver_id, length: { maximum: 36 }, :presence => { message: "Receving warehouse is required." }
   validates :material_id, length: { maximum: 36 }, :presence => { message: "Material is required." }
   validates :requested_number, length: { maximum: 40 }, :presence => { message: "Requested number is required." }
-  validates :requested_date, presence: true
+  validates :requested_date, :presence => { message: "Requested date is required" }
   validates :amount, :presence => { message: "Material quantity is required." }
   validates :due_date, :presence => { message: "Due date is required." }
 

@@ -48,7 +48,6 @@ $(document).ready(function() {
 
         // Get data for Chosen when Planting project has data
         $('select.item-select-machinaries').html('');
-        // $('.warehouse').show();
         var planting_project_id = $(".planting_project_id").val();
         jQuery.ajax({
           url: "/get_machinery_data",

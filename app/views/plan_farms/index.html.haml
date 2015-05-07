@@ -2,6 +2,7 @@
   %h1
     = "Locations Plan"
     .pull-right
-      = link_to "New Location Plan", new_plan_farm_path, class: "btn btn-primary"
+      - if can? :create, Plan Farm
+        = link_to "New Location Plan", new_plan_farm_path, class: "btn btn-primary"
   %hr
   = render partial: 'list'

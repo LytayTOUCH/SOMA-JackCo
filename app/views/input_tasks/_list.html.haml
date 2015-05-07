@@ -30,4 +30,6 @@
       / %td= input_task.warehouse.name
       / %td= input_task.material.name
       / %td= input_task.material_amount.to_s + " ( "+ input_task.material.unit_of_measurement.name + " )"
-      %td= link_to "View", input_task_path(input_task)
+      %td
+        - if can? :read, input_task
+          = link_to "View", input_task_path(input_task)

@@ -8,7 +8,7 @@
       %tr
         %td= implement_type.name
         %td
-          - if can? :update, ImplementType
+          - if can? :update, implement_type
             = link_to "Edit", edit_implement_type_path(implement_type)
 .pull-right
   = paginate @implement_types
