@@ -37,6 +37,14 @@ class InputTasksController < ApplicationController
     begin
       @input_task = InputTask.new(input_task_params)
       input_task_end_date = @input_task.end_date
+      
+      project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
+      @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
+      @farms_name = Block.select("uuid, name, farm_id")
+
+      @machineries = Machinery.select("uuid, name")
+      @materials = Material.select("uuid, name")
+
 
       if @input_task.save
         # Start Select Machinery               
