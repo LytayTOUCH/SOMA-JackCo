@@ -1,5 +1,7 @@
 $(document).ready(function() {
   $('#production-plan-report-picker').datetimepicker({viewMode: 'years', format: 'YYYY'});
+
+  $('#print-plan-report a#print_preview').click(function() { window.print(); });
 });
 
 google.load("visualization", "1.1", {packages:["bar"]});
@@ -36,7 +38,7 @@ function drawStuff() {
 
         var options = {
           title: planting_project_name + '-Production Forecast-' + for_year,
-          width: 1130,
+          width: 1050,
           legend: { position: 'none' },
           chart: { subtitle: 'Forecast-' + for_year },
           axes: {
@@ -44,7 +46,7 @@ function drawStuff() {
               0: { side: 'bottom', label: 'Forecast-' + for_year }
             }
           },
-          bar: { groupWidth: "50%" }
+          bar: { groupWidth: "60%" }
         };
 
         var chart = new google.charts.Bar(document.getElementById('columnchart_values'));

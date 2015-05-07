@@ -10,15 +10,59 @@
 }
 
 .other-col-table{
-  padding: 0;
+  // padding: 0;
   white-space: nowrap;
   text-align: center;
   background-color: #8496b0;
 }
 
 .td-value-table{
-  padding: 0;
+  // padding: 0;
   white-space: nowrap; 
   text-align: center;
 }
 
+#table-container{
+  width: 1050px;
+}
+
+table.table-bordered.table-width{
+  width: 1050px;
+}
+
+@media print {
+  * { margin: 0 !important; padding: 0 !important; }
+
+  @page {
+    margin: 0;
+    size: A4 landscape;
+  }
+
+  .row div.col-lg-12 ol.breadcrumb{ display: none; }
+  footer{ display: none; }
+  #form_filter{ display: none; }
+  #print-plan-report{ display: none; }
+
+  table.table-bordered.table-width{
+    width: 1050px;
+  }
+
+  #table-container{
+    width: 1050px;
+  }
+
+  .report-title{
+    position: absolute;
+    left: 70px;
+  }
+
+  #report{
+    position: absolute;
+    left: 70px;
+    width: 1050px;
+  }
+
+  div svg{
+    width: 100%;
+  }
+}

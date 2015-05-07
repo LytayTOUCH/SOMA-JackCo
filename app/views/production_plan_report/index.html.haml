@@ -1,9 +1,9 @@
 .container
   %br
-  %label Production Plan Report
+  %label.report-title Production Plan Report
   %br
   %br
-  .row
+  .row#form_filter
     = form_tag nil, method: 'get', enforce_utf8: false do
       .col-md-3
         %label.col-xs-3.middle-label Project
@@ -22,40 +22,48 @@
 %br
 
 - if @production_plan.exists?
-  #columnchart_values{:style => "width: 100%; height: 290px"}
-  %br
-  %table.table-bordered
-    %thead
-      %tr
-        %th{style: "background-color: #8496b0"} Period
-        %th.col-md-1{class: "first-col-table"} Jan-15
-        %th.col-md-1{class: "other-col-table"} Feb-15
-        %th.col-md-1{class: "other-col-table"} Mar-15
-        %th.col-md-1{class: "other-col-table"} Apr-15
-        %th.col-md-1{class: "other-col-table"} May-15
-        %th.col-md-1{class: "other-col-table"} Jun-15
-        %th.col-md-1{class: "other-col-table"} Jul-15
-        %th.col-md-1{class: "other-col-table"} Aug-15
-        %th.col-md-1{class: "other-col-table"} Sep-15
-        %th.col-md-1{class: "other-col-table"} Oct-15
-        %th.col-md-1{class: "other-col-table"} Nov-15
-        %th.col-md-1{class: "other-col-table"} Dec-15
+  #report
+    #columnchart_values{:style => "width: 1130px; height: 290px"}
+    %br
+    #table-container
+      %table.table-bordered.table-width
+        %thead
+          %tr
+            %th{style: "background-color: #8496b0"} Period
+            %th.col-md-1{class: "first-col-table"} Jan-15
+            %th.col-md-1{class: "other-col-table"} Feb-15
+            %th.col-md-1{class: "other-col-table"} Mar-15
+            %th.col-md-1{class: "other-col-table"} Apr-15
+            %th.col-md-1{class: "other-col-table"} May-15
+            %th.col-md-1{class: "other-col-table"} Jun-15
+            %th.col-md-1{class: "other-col-table"} Jul-15
+            %th.col-md-1{class: "other-col-table"} Aug-15
+            %th.col-md-1{class: "other-col-table"} Sep-15
+            %th.col-md-1{class: "other-col-table"} Oct-15
+            %th.col-md-1{class: "other-col-table"} Nov-15
+            %th.col-md-1{class: "other-col-table"} Dec-15
 
-    - @production_plan.each do |production|
-      %tr
-        %td Monthly
-        %td{class: "td-value-table"}= production.jan
-        %td{class: "td-value-table"}= production.feb
-        %td{class: "td-value-table"}= production.mar
-        %td{class: "td-value-table"}= production.apr
-        %td{class: "td-value-table"}= production.may
-        %td{class: "td-value-table"}= production.jun
-        %td{class: "td-value-table"}= production.jul
-        %td{class: "td-value-table"}= production.aug
-        %td{class: "td-value-table"}= production.sep
-        %td{class: "td-value-table"}= production.oct
-        %td{class: "td-value-table"}= production.nov
-        %td{class: "td-value-table"}= production.dec
+        - @production_plan.each do |production|
+          %tr
+            %td Monthly
+            %td{class: "td-value-table"}= production.jan
+            %td{class: "td-value-table"}= production.feb
+            %td{class: "td-value-table"}= production.mar
+            %td{class: "td-value-table"}= production.apr
+            %td{class: "td-value-table"}= production.may
+            %td{class: "td-value-table"}= production.jun
+            %td{class: "td-value-table"}= production.jul
+            %td{class: "td-value-table"}= production.aug
+            %td{class: "td-value-table"}= production.sep
+            %td{class: "td-value-table"}= production.oct
+            %td{class: "td-value-table"}= production.nov
+            %td{class: "td-value-table"}= production.dec
+    
+  %br
+  %br
+  #print-plan-report
+    %span.glyphicon.glyphicon-print{style: "color: #428bca;"}
+    %a#print_preview{style: "padding: 0"} Print
 
 - content_for :javascript_body do
   = javascript_include_tag "production_plan_report"
