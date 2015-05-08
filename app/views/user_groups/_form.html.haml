@@ -5,18 +5,15 @@
         .form-group
           %label.col-xs-3.control-label Name *
           .col-xs-9
-            = f.input :name, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-          
+            = f.input :name, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }        
         .form-group
           %label.col-xs-3.control-label Note
           .col-xs-9
-            = f.input :note, label: false, input_html: { class: "form-control" }
-            
+            = f.input :note, label: false, input_html: { class: "form-control" }      
         .form-group
           %label.col-xs-3.control-label Active
           .col-xs-9
             = f.input :active, label: false, disabled: true
-                
         .form-group
           .col-xs-12
             .pull-right

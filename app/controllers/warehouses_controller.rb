@@ -33,7 +33,7 @@ class WarehousesController < ApplicationController
 
       if @warehouse.save
         
-        create_log current_user.uuid, "Create New Warehouse", @warehouse
+        create_log current_user.uuid, "Created New Warehouse", @warehouse
         
         if @warehouse.warehouse_type_uuid == @finishedGooduuid || @warehouse.warehouse_type_uuid == @nurseryuuid
           @productions.each do |production|
@@ -71,7 +71,7 @@ class WarehousesController < ApplicationController
 
       if @warehouse.update_attributes(warehouse_params)
         
-        create_log current_user.uuid, "Update Warehouse", @warehouse
+        create_log current_user.uuid, "Updated Warehouse", @warehouse
         
         flash[:notice] = "Warehouse updated"
         redirect_to warehouses_path

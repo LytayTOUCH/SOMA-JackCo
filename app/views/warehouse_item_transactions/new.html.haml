@@ -1,59 +1,55 @@
 %h2= "New Material Request"
 %hr
 = simple_form_for @warehouse_item_transaction, html: { class: "form-horizontal" } do |f|
-  .form-group
-    %label.col-xs-2.control-label Request By *
-    .col-xs-5
-      = f.input :receiver_id, label: false, collection: @central_project_fertilizer_warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :receiver_id
-  .form-group
-    %label.col-xs-2.control-label Request To *
-    .col-xs-5
-      = f.input :sender_id, label: false, collection: @central_project_fertilizer_warehouses, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :sender_id
-  .form-group
-    %label.col-xs-2.control-label Material *
-    .col-xs-5
-      = f.input :material_id, label: false, collection: @materials, input_html: { class: "form-control material_uuid" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :material_id         
-  .form-group
-    %label.col-xs-2.control-label Requested Quantity *
-    .col-xs-5
-      .input-group
-        = f.input :amount, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-        %span.input-group-addon.uom-name
-    %span.help-block= f.error :amount
+  .container
+    .row
+      .col-md-8
+        .form-group
+          %label.col-xs-2.control-label Request By *
+          .col-xs-9
+            = f.input :receiver_id, label: false, collection: @central_project_fertilizer_warehouses, input_html: { class: "form-control" }, error: false
+        .form-group
+          %label.col-xs-2.control-label Request To *
+          .col-xs-9
+            = f.input :sender_id, label: false, collection: @central_project_fertilizer_warehouses, input_html: { class: "form-control" }, error: false
+        .form-group
+          %label.col-xs-2.control-label Material *
+          .col-xs-9
+            = f.input :material_id, label: false, collection: Material.all.map { |p| [p.name, p.uuid] }, input_html: { class: "form-control material_uuid" }, error: false
+        .form-group
+          %label.col-xs-2.control-label Requested Qty*
+          .col-xs-9
+            .input-group
+              = f.input :amount, label: false, input_html: { class: "form-control" }, error: false
+              %span.input-group-addon.uom-name
 
-  .form-group
-    %label.col-xs-2.control-label Request Date
-    .col-xs-5
-      = f.text_field :requested_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
-    %span.help-block= f.error :requested_date
-  .form-group
-    %label.col-xs-2.control-label Due Date *
-    .col-xs-5
-      .controls
-        = f.text_field :due_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error_html: { class: "err_msg" }
-      %span.help-block= f.error :due_date
-  .form-group
-    %label.col-xs-2.control-label Request Number *
-    .col-xs-5
-      = f.input :requested_number, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :requested_number
-  .form-group
-    %label.col-xs-2.control-label Note
-    .col-xs-5
-      = f.input :note, label: false, input_html: { class: "form-control" }, error_html: { class: "err_msg" }
-    %span.help-block= f.error :note   
-  .form-group
-    .col-xs-5
-      = f.input :created_by, :as => :hidden, :input_html => { :value => @current_user.uuid }
-    %span.help-block= f.error :created_by
-  .form-group
-    .col-xs-7
-      .pull-right
-        = submit_tag "Create Material Request", class: "btn btn-primary", locals: { f: f }
-        = link_to "Cancel", :back, class: "btn btn-default", locals: { f: f }
+        .form-group
+          %label.col-xs-2.control-label Request Date
+          .col-xs-9
+            = f.text_field :requested_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error: false
+        .form-group
+          %label.col-xs-2.control-label Due Date *
+          .col-xs-9
+            .controls
+              = f.text_field :due_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day', error: false
+        .form-group
+          %label.col-xs-2.control-label Request No *
+          .col-xs-9
+            = f.input :requested_number, label: false, input_html: { class: "form-control" }, error: false
+        .form-group
+          %label.col-xs-2.control-label Note
+          .col-xs-9
+            = f.input :note, label: false, input_html: { class: "form-control" }, error: false
+        .form-group
+          .col-xs-9
+            = f.input :created_by, :as => :hidden, :input_html => { :value => @current_user.uuid }
+        .form-group
+          .col-xs-11
+            .pull-right
+              = submit_tag "Create Material Request", class: "btn btn-primary", locals: { f: f }
+              = link_to "Cancel", :back, class: "btn btn-default", locals: { f: f }
+      .col-md-4
+        = render "error", :obj => @warehouse_item_transaction        
 
 - content_for :javascript_body do
   = javascript_include_tag "warehouse_item_transactions"

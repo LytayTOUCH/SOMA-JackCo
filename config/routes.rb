@@ -1,19 +1,16 @@
 Rails.application.routes.draw do
 
-
   get 'log_tracking/index'
   
   resources :warehouse_material_amounts, only: [:index, :edit, :update]
   resources :material_adjustments, only: [:index]
   
-  resources :locations
-  
-  get 'get_production_stages', to: 'locations#get_production_stages'
-  get 'get_production_statuses', to: 'locations#get_production_statuses'
-  get 'get_zone_by_farm', to: 'locations#get_zone_by_farm'
   get 'get_areas_by_zone', to: 'blocks#get_areas_by_zone'
   resources :plan_farms
-  
+  get 'get_production_stages', to: 'plan_farms#get_production_stages'
+  get 'get_production_statuses', to: 'plan_farms#get_production_statuses'
+  get 'get_zone_by_farm', to: 'plan_farms#get_zone_by_farm'
+  get 'get_render_block', to: 'plan_farms#get_render_block'
 
   resources :warehouse_production_amounts, only: [:index, :edit, :update]
   resources :production_adjustments, only: [:index]
@@ -125,6 +122,7 @@ Rails.application.routes.draw do
 
   # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
+
   resources :roles do
     collection do
       get 'resources'
@@ -171,7 +169,8 @@ Rails.application.routes.draw do
 
   get 'get_block_planting_project_data', to: 'blocks#get_block_planting_project_data'
 
-  get 'get_machinery_data', to: 'planting_projects#get_machinery_data'  
+  get 'get_machinery_data', to: 'planting_projects#get_machinery_data'
+  get 'get_equipment_data', to: 'equipment#get_equipment_data'  
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
@@ -181,6 +180,9 @@ Rails.application.routes.draw do
 
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
+
+  get 'get_machinery_name', to: 'machineries#get_machinery_name'
+  get 'get_material_name', to: 'materials#get_material_name'
 
   # get 'input_uses/index'
   resources :input_uses do

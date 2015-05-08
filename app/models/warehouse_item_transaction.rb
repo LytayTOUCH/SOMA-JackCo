@@ -3,13 +3,13 @@ class WarehouseItemTransaction < ActiveRecord::Base
 
   has_many :warehouse_material_receiveds
 
-  validates :sender_id, length: { maximum: 36 }, presence: true
-  validates :receiver_id, length: { maximum: 36 }, presence: true
-  validates :material_id, length: { maximum: 36 }, presence: true
-  validates :requested_number, length: { maximum: 40 }, presence: true
+  validates :sender_id, length: { maximum: 36 }, :presence => { message: "Sending warehouse is required." }
+  validates :receiver_id, length: { maximum: 36 }, :presence => { message: "Receving warehouse is required." }
+  validates :material_id, length: { maximum: 36 }, :presence => { message: "Material is required." }
+  validates :requested_number, length: { maximum: 40 }, :presence => { message: "Requested number is required." }
   validates :requested_date, presence: true
-  validates :amount, presence: true
-  validates :due_date, presence: true
+  validates :amount, :presence => { message: "Material quantity is required." }
+  validates :due_date, :presence => { message: "Due date is required." }
 
   scope :find_by_requested_transaction_date, -> requested_date {
     if requested_date.present?

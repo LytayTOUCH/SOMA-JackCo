@@ -20,6 +20,7 @@ class SettingsController < ApplicationController
   
   def update
     @setting = Setting.find(params[:code])
+    create_log current_user.uuid, "Updated Setting", @setting
 
     if @setting.update_attributes(setting_params)
       

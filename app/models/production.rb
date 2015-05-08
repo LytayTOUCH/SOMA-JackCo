@@ -10,9 +10,9 @@ class Production < ActiveRecord::Base
   has_many :warehouse_production_amounts, foreign_key: :production_id 
   has_many :warehouses, through: :warehouse_production_amounts
   has_many :output_tasks
-
-  validates :status, length: { maximum: 20 }, presence: true
-  validates :planting_project_id, length: {maximum: 36}, presence: true
-  validates :uom_id, length: {maximum: 36}, presence: true
+ 
+  validates :status, length: { maximum: 20 }, :presence => { message: "Production Status is required."}
+  validates :planting_project_id, length: {maximum: 36}, :presence => { message: "Planting Project is required."}
+  validates :uom_id, length: {maximum: 36}, :presence => { message: "UOM is required."}
 
 end

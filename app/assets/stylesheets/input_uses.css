@@ -6,6 +6,10 @@ a#print_preview {
     line-height: 20px;
 }
 
+@page { 
+    size: landscape;
+}
+
 /*.table-input-use {
     border: 1px solid black;
 }

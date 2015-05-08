@@ -46,13 +46,11 @@ class WarehouseItemTransactionsController < ApplicationController
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.new
       
-      @materials = Material.all
-
       @central_warehouse_type = WarehouseType.find_by_name("Central Warehouse") 
       @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse")
       @fertilizer_warehouse_type = WarehouseType.find_by_name("Fertilizer Warehouse") 
 
-      @central_project_fertilizer_warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", @central_warehouse_type.uuid, true, @project_warehouse_type.uuid, true, @fertilizer_warehouse_type, true)
+      @central_project_fertilizer_warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", @central_warehouse_type.uuid, true, @project_warehouse_type.uuid, true, @fertilizer_warehouse_type.uuid, true)
     rescue Exception => e
       puts e
     end
@@ -62,7 +60,13 @@ class WarehouseItemTransactionsController < ApplicationController
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.new(warehouse_item_transaction_params)
 
-      if @warehouse_item_transaction.save!
+      @central_warehouse_type = WarehouseType.find_by_name("Central Warehouse") 
+      @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse")
+      @fertilizer_warehouse_type = WarehouseType.find_by_name("Fertilizer Warehouse") 
+
+      @central_project_fertilizer_warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", @central_warehouse_type.uuid, true, @project_warehouse_type.uuid, true, @fertilizer_warehouse_type.uuid, true)
+
+      if @warehouse_item_transaction.save
         create_log_3 current_user.uuid, "Create Material Request", @warehouse_item_transaction, [:uuid, :requested_number, :amount, :requested_date]
         
         @warehouse_item_transaction.remaining_amount = @warehouse_item_transaction.amount
@@ -71,8 +75,7 @@ class WarehouseItemTransactionsController < ApplicationController
         redirect_to warehouse_item_requested_transactions_path
       else
         flash[:notice] = "Warehouse Item Transaction can't be saved"
-        redirect_to :back
-        # render 'new'
+        render 'new'
       end
     rescue Exception => e
       puts e

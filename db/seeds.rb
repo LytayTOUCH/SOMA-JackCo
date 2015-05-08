@@ -314,3 +314,61 @@ phase.production_stages << production_stage
 
 # ========== Production Status ==========
 ProductionStatus.create_with(name: 'New Planting', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')
+ProductionStatus.create_with(name: 'Seed Replace', stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true).find_or_create_by(name: 'Seed Replace')
+
+# ========== Plan Location Seed data ====
+# PlanFarm.create(farm_id: Farm.second.uuid, for_year: 2018)
+# PlanPhase.create(plan_farm_id: PlanFarm.first.uuid, phase_id: Phase.first.uuid)
+# PlanProductionStage.create(plan_phase_id: PlanPhase.first.uuid, production_stage_id: ProductionStage.first.uuid)
+# PlanProductionStatus.create(plan_production_stage_id: PlanProductionStage.first.uuid, production_status_id: ProductionStatus.first.uuid, remark: 'Seed data remark')
+# PlanZone.create(zone_id: Farm.second.zones.first.uuid, plan_production_status_id: PlanProductionStatus.first.uuid)
+# PlanArea.create(area_id: Farm.second.zones.first.areas.first, plan_zone_id: PlanZone.first.uuid)
+
+# Farm.second.areas.first.blocks.each do |f|
+#   PlanBlock.create(plan_area_id: PlanArea.first.uuid, block_id: f.uuid, tree_amount: 10)
+# end
+
+# ===== clear other farm ====
+# Farm.destroy_all
+# Zone.destroy_all
+# Area.destroy_all
+# Block.destroy_all
+
+# ========== Mondolkiri Farm (For plan location testing only) ==============
+# farm = Farm.create(name: 'Mondolkiri Farm', location: 'Banlung District, Mondolkiri Province', latlong_farm: '11.333019, 104.864575', active: true)
+# zone1 = farm.zones.create(name: 'Zone I')
+# zone2 = farm.zones.create(name: 'Zone II')
+
+# area1 = zone1.areas.create(name: 'A')
+# area2 = zone1.areas.create(name: 'B')
+# area3 = zone1.areas.create(name: 'C')
+
+# area4 = zone2.areas.create(name: 'D')
+# area5 = zone2.areas.create(name: 'E')
+# area6 = zone2.areas.create(name: 'F')
+
+# area1.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area1.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area1.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+
+# area2.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area2.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area2.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+
+# area3.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area3.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area3.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+
+# area4.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area4.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area4.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+
+# area5.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area5.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area5.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+
+# area6.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area6.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+# area6.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
+
+# =========== End Mondolkiri test farm ==============

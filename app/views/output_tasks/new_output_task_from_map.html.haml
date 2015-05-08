@@ -22,18 +22,18 @@
     %label.col-xs-2.control-label.text-left Block *
     .col-xs-7
       = f.input :block_id, label: false, input_html: { class: "form-control block_id", value: @block.uuid }, error_html: { class: "err_msg" }, as: :hidden
-      %input.form-control{:type => "text", value: @block.name + " - " + @farm_block}
+      %input.form-control{:type => "text", value: @block.name + " - " + @farm_block, readonly: true }
     %span.help-block= f.error :block_id
   .form-group
     %label.col-xs-2.control-label.text-left Planting Project *
     .col-xs-7
-      = f.input :planting_project_id, label: false, input_html: { class: "form-control", value: @planting_project.uuid }, error_html: { class: "err_msg" }, as: :hidden
+      = f.input :planting_project_id, label: false, input_html: { class: "form-control planting_pro_id", value: @planting_project.uuid }, error_html: { class: "err_msg" }, as: :hidden, readonly: true
       %input.form-control{:type => "text", value: @planting_project.name, readonly: true }
     %span.help-block= f.error :planting_project_id
   .form-group
     %label.col-xs-2.control-label.text-left Tree amount *
     .col-xs-7
-      = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount", value: @block.tree_amount }, error_html: {class: "err_msg"}
+      = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount", value: @block.tree_amount }, error_html: {class: "err_msg"}, readonly: true
     %span.help-block= f.error :tree_amount
   .form-group
     %label.col-xs-2.control-label.text-left Labor *
@@ -50,6 +50,8 @@
     .col-xs-7
       = f.select :machineries, options_for_select(@machineries.map { |value| [ value.name, value.uuid ]}), { include_blank: true }, { class: 'chosen-select form-control machinery-chosen', multiple: true }
     %span.help-block= f.error :machineries
+  .form-group.machinery-from-map
+
   .form-group
     %label.col-xs-2.control-label.text-left Output Quantity *
     .col-xs-7
@@ -112,9 +114,9 @@
 
 :javascript
   $('.date_pick').datetimepicker({});
+  // $('select.select-machinaries').empty();
   $(".chosen-select").chosen(
    {width: "100%"},
    {allow_single_deselect: true},
    {no_results_text: 'No results matched'}
-   
   );  

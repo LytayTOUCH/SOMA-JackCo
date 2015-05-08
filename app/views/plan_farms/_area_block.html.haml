@@ -1,0 +1,27 @@
+- zone_index_number = -1
+= status.simple_fields_for :plan_zones do |zone|
+  - zone_index_number = zone_index_number + 1
+  = zone.input :zone_id, as: :hidden
+  = zone.input :plan_production_status_id, as: :hidden
+  .tab-pane.tab-location{class: "#{zone_index_number == 0 ? 'active' : ''}", id: "tab-zone-#{status.index}-#{zone_index_number}", role: 'tabpanel', style: 'height: 100%'}
+    = zone.simple_fields_for :plan_areas do |area|
+      .row{style: "padding-top: 10px;"}
+        .col-md-1
+          = area.input :plan_zone_id, as: :hidden
+          = area.input :area_id, as: :hidden
+          %h4
+            = "Area: #{area.object.area_id.nil? ? nil : Area.where(uuid: area.object.area_id).first.name}"
+        .no-error-indent
+          = area.simple_fields_for :plan_blocks do |block|
+            .col-md-1
+              = block.input :plan_area_id, as: :hidden
+              %p{style: "text-align: center"}
+                = Block.find(block.object.block_id).name
+              = block.input :block_id, as: :hidden
+              = block.input :tree_amount, as: :string, label: false, error: false, input_html: {class: 'form-control'}
+.row
+  .col-md-1
+    %h4
+      Remark
+  .col-md-3{ style: 'padding-top: 20px;'}
+    = status.input :remark, as: :text, label: false, input_html: { class: 'form-control' }

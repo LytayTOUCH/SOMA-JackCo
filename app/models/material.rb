@@ -8,7 +8,8 @@ class Material < ActiveRecord::Base
   has_many :warehouses, through: :warehouse_material_amounts 
   has_many :stock_ins
 
-  has_many :input_tasks
+  has_many :input_use_materials, foreign_key: :input_id
+  has_many :input_tasks, through: :input_use_materials
 
   validates :name, length: { maximum: 50 }, presence: true
   validates :material_cate_uuid, length: { maximum: 36 }, presence: true

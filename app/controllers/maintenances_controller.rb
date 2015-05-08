@@ -14,12 +14,13 @@ class MaintenancesController < ApplicationController
   def create
     begin
       @maintenance = Maintenance.new(maintenance_params)
+      create_log current_user.uuid, "Created New Maintenance", @maintenance
 
       if @maintenance.save!
         flash[:notice] = "Maintenance saved successfully"
         redirect_to :back
       else
-        flash[:notice] = "Maintenance can't save"
+        flash[:notice] = "Maintenance can't be saved"
         redirect_to :back
       end
     rescue Exception => e

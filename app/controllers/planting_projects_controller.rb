@@ -15,11 +15,13 @@ class PlantingProjectsController < ApplicationController
   def create
     begin
       @planting_project = PlantingProject.new(planting_project_params)
+      create_log current_user.uuid, "Created New Planting Project", @planting_project
 
       if @planting_project.save
         flash[:notice] = "Planting Project saved successfully"
         redirect_to planting_projects_path
       else
+        flash[:notice] = "Planting Project can't be saved"
         render 'new'
       end
     rescue Exception => e
@@ -35,11 +37,13 @@ class PlantingProjectsController < ApplicationController
   def update
     begin
       @planting_project = PlantingProject.find(params[:id])
+      create_log current_user.uuid, "Updated Planting Project", @planting_project
 
       if @planting_project.update_attributes(planting_project_params)
         flash[:notice] = "Planting Project updated successfully"
         redirect_to planting_projects_path
       else
+        flash[:notice] = "Planting Project can't be updated"
         render 'edit'
       end
     rescue Exception => e

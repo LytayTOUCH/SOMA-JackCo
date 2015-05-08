@@ -22,6 +22,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
+    create_log current_user.uuid, "Create New Warehouse", @user
     
     if @user.save
       @labor = Labor.find_by_uuid(@user.labor_id)
@@ -57,8 +59,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
+    create_log current_user.uuid, "Update Warehouse", @user
     
     if @user.update_attributes(user_params)
+      
       flash[:notice] = "User updated"
       redirect_to users_path
     else

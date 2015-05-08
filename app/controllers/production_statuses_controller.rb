@@ -28,13 +28,13 @@ class ProductionStatusesController < ApplicationController
   def create
     begin
       @production_status = ProductionStatus.new(production_status_params)
+      create_log current_user.uuid, "Created New Production Status", @production_status
 
       if @production_status.save
         flash[:notice] = "Production Status type saved successfully"
         redirect_to production_statuses_path
       else
-        # flash[:notice] = "Production Status type can't save"
-        # redirect_to :back
+        flash[:notice] = "Production Status type can't be saved"
         render 'new'
       end
     rescue Exception => e
@@ -54,13 +54,13 @@ class ProductionStatusesController < ApplicationController
   def update
     begin
       @production_status = ProductionStatus.find(params[:id])
+      create_log current_user.uuid, "Created New Production Status", @production_status
 
       if @production_status.update_attributes(production_status_params)
-        flash[:notice] = "ProductionStatus updated"
+        flash[:notice] = "Production Status updated"
         redirect_to production_statuses_path
       else
-        # flash[:notice] = "ProductionStatus can't update"
-        # redirect_to :back
+        flash[:notice] = "Production Status can't be updated"
         render 'edit'
       end
     rescue Exception => e

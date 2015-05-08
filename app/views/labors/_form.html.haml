@@ -3,44 +3,44 @@
     .row
       .col-md-7
         .form-group
-          %label.col-xs-3.control-label{for: 'labor_name'} Name
+          %label.col-xs-3.control-label{for: 'labor_name'} Name *
           .col-xs-9
-            = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            = f.input :name, label: false, error: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
             
         .form-group
-          %label.col-xs-3.control-label{for: 'labor_position'} Position
+          %label.col-xs-3.control-label{for: 'labor_position'} Position *
           .col-xs-9
-            = f.input :position_id, label: false, collection: Position.all.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            = f.input :position_id, label: false, error: false, collection: Position.all.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
             
         .form-group
-          %label.col-xs-3.control-label{for: 'labor_gender'} Gender
+          %label.col-xs-3.control-label{for: 'labor_gender'} Gender *
           .col-xs-9
-            = f.input :gender, label: false, collection: ["M", "F"], input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            = f.input :gender, label: false, error: false, collection: ["M", "F"], input_html: {class: "form-control"}, error_html: {class: "err_msg"}
                 
         .form-group
           %label.col-xs-3.control-label{for: 'labor_phone_number'} Phone Number
           .col-xs-9
-            = f.input :phone, label: false, input_html: {class: "form-control"}
+            = f.input :phone, label: false, error: false, input_html: {class: "form-control"}
             
         .form-group
-          %label.col-xs-3.control-label{for: 'labor_email'} Email
+          %label.col-xs-3.control-label{for: 'labor_email'} Email *
           .col-xs-9
-            = f.input :email, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            = f.input :email, label: false, error: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
             
         .form-group
           %label.col-xs-3.control-label{for: 'labor_address'} Address
           .col-xs-9
-            = f.input :address, label: false, input_html: {class: "form-control"}
+            = f.input :address, label: false, error: false, input_html: {class: "form-control"}
             
         .form-group
           %label.col-xs-3.control-label{for: 'labor_manager'} Manager
           .col-xs-9
-            = f.input :manager_uuid, label: false, collection: Position.find_by_name("Manager").labors.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control"}
+            = f.input :manager_uuid, label: false, error: false, collection: Position.find_by_name("Manager").labors.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control"}
             
         .form-group
           %label.col-xs-3.control-label{for: 'labor_note'} Note
           .col-xs-9
-            = f.input :note, label: false, input_html: {class: "form-control"}
+            = f.input :note, label: false, error: false, input_html: {class: "form-control"}
             
         .form-group
           %label.col-xs-3.control-label{for: 'labor_status'} Active

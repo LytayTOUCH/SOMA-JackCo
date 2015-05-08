@@ -38,37 +38,20 @@ $(document).ready(function() {
     );
 
   $('.stage-list').change(
-      function() {
-        var stage_id = $(".stage-list").val();
-        jQuery.ajax({
-          url: "/get_production_statuses",
-          type: "GET",
-          data: { "stage_id" : stage_id },
-          dataType: "json",
-          success: function(data) {
-            $(".production-status *").remove();
-            $.each(data, function(i, value) {
-              $(".production-status").append("<div style='padding-top: 10px;'" +
-               " class='row'><div class='status-" + i + "' >" +
-               " <input class='hidden' id='plan_farm_plan_phases_attributes_0_plan_production_stages_attributes_0_plan_production_statuses_attributes_" + i + "_production_status_id'" +
-               " name='plan_farm[plan_phases_attributes][0][plan_production_stages_attributes][0][plan_production_statuses_attributes][" + i + "][production_status_id]' type='hidden' value=" + value.uuid + ">" +               
-               " <label class='col-md-1' " +
-               " style='padding-top: 20px;' value= " + value.uuid + ">" + value.name + "</label> </div></div>")
+    function() {
+      var stage_id = $(".stage-list").val();
+      var farm_id = $(".farm_id").val();
 
-              var zone_list = $(".zone-list").val();
-              jQuery.ajax({
-              url: "/get_areas_by_zone",
-              type: "GET",
-              data: { "zone_id" : zone_list, "status_line" : i },
-              dataType: "html",
-              success: function(data) {
-                jQuery(".status-" + i).append(data)
-                }
-              });
-            });
-          }
-        });
-      
-      }
-    );
+      jQuery.ajax({
+        url: "/get_render_child",
+        type: "GET",
+        data: { "stage_id" : stage_id, "farm_id" : farm_id },
+        dataType: "html",
+        success: function(data) {
+          $(".production-status *").remove();
+          $(".production-status").append(data)
+        }
+      });
+    }
+  );
 });

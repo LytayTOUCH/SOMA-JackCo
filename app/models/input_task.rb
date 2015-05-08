@@ -3,23 +3,28 @@ class InputTask < ActiveRecord::Base
 
 	belongs_to :block, foreign_key: :block_id
 	belongs_to :labor, foreign_key: :labor_id
-	belongs_to :warehouse, foreign_key: :warehouse_id
-	belongs_to :material, foreign_key: :material_id
-	belongs_to :machinery, foreign_key: :machinery_id
+	belongs_to :planting_project
+
+	has_many :input_use_materials, foreign_key: :input_id
+	has_many :materials, through: :input_use_materials
+
+  	has_many :input_use_machineries, foreign_key: :input_id
+  	has_many :machineries, through: :input_use_machineries
+
+  	has_many :input_use_equipments, foreign_key: :input_id
+  	has_many :equipments, through: :input_use_equipments
 
 	validates :name, length: { maximum: 50 }, presence: true
 	validates :start_date, presence: true
 	validates :end_date, presence: true
 	validates :tree_amount, presence: true
 	validates :reference_number, presence: true
-	validates :material_amount, presence: true
 
   	validates :block_id, length: {maximum: 36}, presence: true
   	validates :labor_id, length: {maximum: 36}, presence: true
-  	validates :warehouse_id, length: {maximum: 36}, presence: true
-  	validates :material_id, length: {maximum: 36}, presence: true
   	validates :created_by, length: {maximum: 36}, presence: true
-
+  	validates :planting_project_id, length: {maximum: 36}, presence: true
+  	
   	scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
   	scope :planting_project_id, -> uuid_f { joins(:block).where("blocks.planting_project_id=?", uuid_f) }
 
