@@ -2,7 +2,11 @@ $(document).ready(function() {
   $('.machinery-name').hide();
   $('.machinery-from-map').hide();
   $('.date_pick').datetimepicker({});
-  $('select.item-select-machinaries').html("");
+  
+  var planting_project_id = $(".planting_project_id").val();
+  if(planting_project_id!="") {
+  	renderMachinery();
+  }
   
   // WHEN USER CHANGE THE FARM
   $("#output_task_farm_id").change(function(){
@@ -10,6 +14,21 @@ $(document).ready(function() {
   	$('#output_task_tree_amount').val("");
   	$('#output_task_planting_project_id').val("");
   	$('.planting_project_name').val("");
+  	
+  	// START -- MACHINERY SECTION
+    $('#machineries').val("");
+    $('.machinery-name').empty();
+    
+    $('select.item-select-machinaries').html('');
+    $('select.item-select-machinaries').attr("multiple", "multiple");
+  	$("select.chosen-select").chosen(
+      {width: "100%"},
+      {no_results_text: 'No results matched'}
+    );
+    
+    $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+    $('select.item-select-machinaries').trigger('chosen:updated');
+    // END -- MACHINERY SECTION
   	
   	if($("#output_task_farm_id").val() == "") {
       $("#output_task_zone_id").val("");
@@ -47,6 +66,21 @@ $(document).ready(function() {
   	$('#output_task_planting_project_id').val("");
   	$('.planting_project_name').val("");
   	
+  	// START -- MACHINERY SECTION
+    $('#machineries').val("");
+    $('.machinery-name').empty();
+    
+    $('select.item-select-machinaries').html('');
+    $('select.item-select-machinaries').attr("multiple", "multiple");
+  	$("select.chosen-select").chosen(
+      {width: "100%"},
+      {no_results_text: 'No results matched'}
+    );
+    
+    $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+    $('select.item-select-machinaries').trigger('chosen:updated');
+    // END -- MACHINERY SECTION
+  	
   	if($("#output_task_zone_id").val() == "") {
       $("#output_task_area_id").val("");
       $('#output_task_area_id').prop('disabled', 'disabled');
@@ -80,6 +114,21 @@ $(document).ready(function() {
   	$('#output_task_planting_project_id').val("");
   	$('.planting_project_name').val("");
   	
+  	// START -- MACHINERY SECTION
+    $('#machineries').val("");
+    $('.machinery-name').empty();
+    
+    $('select.item-select-machinaries').html('');
+    $('select.item-select-machinaries').attr("multiple", "multiple");
+  	$("select.chosen-select").chosen(
+      {width: "100%"},
+      {no_results_text: 'No results matched'}
+    );
+    
+    $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+    $('select.item-select-machinaries').trigger('chosen:updated');
+    // END -- MACHINERY SECTION
+  	
   	if($("#output_task_area_id").val() == "") {
       $("#output_task_block_id").val("");
       $('#output_task_block_id').prop('disabled', 'disabled');
@@ -110,6 +159,21 @@ $(document).ready(function() {
   	  $('#output_task_tree_amount').val("");
   	  $('#output_task_planting_project_id').val("");
   	  $('.planting_project_name').val("");
+  	  
+  	  // START -- MACHINERY SECTION
+      $('#machineries').val("");
+      $('.machinery-name').empty();
+      
+      $('select.item-select-machinaries').html('');
+      $('select.item-select-machinaries').attr("multiple", "multiple");
+  	  $("select.chosen-select").chosen(
+        {width: "100%"},
+        {no_results_text: 'No results matched'}
+      );
+      
+      $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+      $('select.item-select-machinaries').trigger('chosen:updated');
+      // END -- MACHINERY SECTION
   	  
   	  return;
   	}
@@ -179,36 +243,7 @@ $(document).ready(function() {
 	      }
 	    });
 
-        // Get data for Chosen when Planting project has data
-        $('select.item-select-machinaries').html('');
-        // $('.warehouse').show();
-        var planting_project_id = $(".planting_project_id").val();
-        jQuery.ajax({
-          url: "/get_machinery_data",
-          type: "GET",
-          data: {"planting_project_id" : planting_project_id},
-          dataType: "json",
-          success: function(data){
-            if(data.length){
-              $.each(data, function(i, value) {
-                $('select.item-select-machinaries').append('<option value="' + value.uuid + '">' + value.name + '</option>');
-              });
-              $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
-            }
-            else{
-              $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-            }
-            $('select.item-select-machinaries').attr("multiple", "multiple");
-            $('select.item-select-machinaries').trigger('chosen:updated');
-          },
-          complete: function(data){
-            $("select.chosen-select").chosen(
-              {width: "100%"},
-              {allow_single_deselect: true},
-              {no_results_text: 'No results matched'}
-            );
-          }
-        });
+        renderMachinery();
       }
     });  
   });
@@ -221,6 +256,7 @@ $(document).ready(function() {
     if(event.target == this){
       if(!params.selected) {
         $('#machinery-' + params.deselected).remove();
+        $('#machineries').val($(this).val());
       } else {
       	$('#machineries').val($(this).val());
         var machinery_id = params.selected;
@@ -408,4 +444,37 @@ $(document).ready(function() {
     }
   });
   
+  function renderMachinery() {
+  	// Get data for Chosen when Planting project has data
+    $('select.item-select-machinaries').html('');
+    $('#machineries').val("");
+        
+  	var planting_project_id = $(".planting_project_id").val();
+    jQuery.ajax({
+      url: "/get_machinery_data",
+      type: "GET",
+      data: {"planting_project_id" : planting_project_id},
+      dataType: "json",
+      success: function(data){
+      	
+      	$('select.item-select-machinaries').attr("multiple", "multiple");
+      	$("select.chosen-select").chosen(
+          {width: "100%"},
+          {no_results_text: 'No results matched'}
+        );
+      	
+        if(data.length){
+          $('select.item-select-machinaries').append('<option value=""></option>');
+          $.each(data, function(i, value) {
+            $('select.item-select-machinaries').append('<option value="' + value.uuid + '">' + value.name + '</option>');
+          });
+          $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
+        }
+        else{
+          $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+        }
+        $('select.item-select-machinaries').trigger('chosen:updated');
+      }
+    });
+  }
 });
