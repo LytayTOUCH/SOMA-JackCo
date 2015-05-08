@@ -59,6 +59,7 @@ class WarehouseItemTransactionsController < ApplicationController
   def create
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.new(warehouse_item_transaction_params)
+      create_log current_user.uuid, "Created New Warehouse Material Transaction Request", @warehouse_item_transaction
 
       @central_warehouse_type = WarehouseType.find_by_name("Central Warehouse") 
       @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse")
@@ -95,9 +96,9 @@ class WarehouseItemTransactionsController < ApplicationController
 
   def update
     @warehouse_item_transaction.transaction_status = "Closed" 
+
     if @warehouse_item_transaction.update(warehouse_item_transaction_params)
       create_log_2 current_user.uuid, "Closed Material Request", "ID: "+@warehouse_item_transaction.uuid + ", Reason: " + @warehouse_item_transaction.reason_for_closing_transaction
-      
       @warehouse_item_transaction
     end
   end

@@ -32,10 +32,15 @@ class WarehouseMaterialAmountsController < ApplicationController
     note = params[:material_note]
     
     if @warehouse_material_amount.update(amount: params[:warehouse_material_amount][:amount])
+      create_log current_user.uuid, "Updated Warehouse Material Quantity", @warehouse_material_amount
       MaterialAdjustment.create(adjust_date: adjust_date,  warehouse_material_amount_id: wha_id, old_amount: old_amount, new_amount: new_amount, user_id: user_id, user_name: user_name, note: note)
       redirect_to warehouse_material_amounts_path+"?wha_id="+wha_id
     else
       flash[:notice] = "Stock can not be adjusted"
     end
+  end
+  
+  def get_warehouse_material_amount_data
+    render json: WarehouseMaterialAmount.find_by(warehouse_uuid: params[:warehouse_id], material_uuid: params[:material_id])
   end
 end

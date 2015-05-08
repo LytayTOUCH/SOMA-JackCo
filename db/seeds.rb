@@ -123,6 +123,37 @@ end
   UnitOfMeasurement.create_with(note: unit_measure[:note]).find_or_create_by(name: unit_measure[:name])
 end
 
+# ========== Create Distributions ==========
+unit = UnitOfMeasurement.find_by_name('Unit')
+kg = UnitOfMeasurement.find_by_name('Kg')
+coconut = PlantingProject.find_by_name('Coconut')
+jk = PlantingProject.find_by_name('Jackfruit')
+[
+  {uuid: '00000000-0000-0000-0000-000000000001', label: 'Total Production',         uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 1,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000002', label: 'Young Fruit',              uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 2,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000003', label: 'Good Young Fruit',         uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 3,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000004', label: 'Spoiled Young Fruit',      uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 4,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000005', label: 'Ripe Fruit',               uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 5,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000006', label: 'Good Ripe Fruit',          uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 6,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000007', label: 'Spoiled Ripe Fruit',       uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 7,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000008', label: 'To Finish Good Warehouse', uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 8,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000009', label: 'Free at Farm',             uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 9,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000010', label: 'Spoiled Waste',            uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 10, note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000011', label: 'To Nursery Warehouse',     uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 11, note: ''},
+  
+  {uuid: '00000000-0000-0000-0000-000000000012', label: 'Total Production',         uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 1,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000013', label: 'Ripe Fruit',               uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 2,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000014', label: 'Good Ripe Fruit',          uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 3,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000015', label: 'Damaged Ripe Fruit',       uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 4,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000016', label: 'Spoiled Ripe Fruit',       uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 5,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000017', label: 'Young Fruit',              uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 6,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000018', label: 'To Nursery Warehouse',     uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 7,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000019', label: 'To Finish Good Warehouse', uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 8,  note: ''},
+  {uuid: '00000000-0000-0000-0000-000000000020', label: 'Spoiled Waste',            uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 9,  note: ''}
+].each do |d|
+  Distribution.create_with(label: d[:label], uoms: d[:uoms], planting_project_id: d[:planting_project_id], order_of_display: d[:order_of_display], note: d[:note]).find_or_create_by(uuid: d[:uuid])
+end
+
 # ========== Create Material Categories ========== 
 [
   {name: 'Fertilizers', kh_name: 'ជីបំប៉នដំណាំ', note: 'Fertilizer note'},

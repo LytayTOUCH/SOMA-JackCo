@@ -133,6 +133,7 @@ Rails.application.routes.draw do
   resources :stages
   resources :coconuts
   resources :jack_fruits
+  resources :suppliers
 
   resources :fields, except: [:destroy] do
     collection do 
@@ -176,13 +177,19 @@ Rails.application.routes.draw do
 
   get 'get_production_by_planting_project', to: 'blocks#get_production_by_planting_project'
 
-  get 'get_machinery_name', to: 'machineries#get_machinery_name'
-
   resources :input_tasks
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
 
   get 'get_machinery_name', to: 'machineries#get_machinery_name'
   get 'get_material_name', to: 'materials#get_material_name'
+  
+  get 'get_zones_by_farm', to: 'output_tasks#get_zones_by_farm'
+  get 'get_areas_by_zone', to: 'output_tasks#get_areas_by_zone'
+  get 'get_blocks_by_area', to: 'output_tasks#get_blocks_by_area'
+  get 'get_distributions_by_planting_project', to: 'output_tasks#get_distributions_by_planting_project'
+  
+  get 'get_warehouse_material_amount_data', to: 'warehouse_material_amounts#get_warehouse_material_amount_data'
+  get 'find_amount', to: 'input_tasks#find_amount'
 
   # get 'input_uses/index'
   resources :input_uses do

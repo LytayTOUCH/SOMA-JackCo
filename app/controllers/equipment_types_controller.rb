@@ -13,9 +13,17 @@ class EquipmentTypesController < ApplicationController
 
   def update
     @equipment_type = EquipmentType.find(params[:id])
-    create_log current_user.uuid, "Updated Equipment Type", @equipment_type
 
     if @equipment_type.update_attributes(equipment_type_params)
+      if params[:equipment_type][:status] == "false"
+        create_log current_user.uuid, "Deactivated Equipment Type", @equipment_type
+      elsif params[:equipment_type][:status] == "true"
+        create_log current_user.uuid, "Activated Equipment Type", @equipment_type
+      end
+
+      if params[:equipment_type][:status] == "1" or params[:equipment_type][:status] == "0"
+        create_log current_user.uuid, "Updated Equipment Type", @equipment_type  
+      end 
       flash[:notice] = "Equipment Type updated successfully"
       redirect_to equipment_types_path
     else
@@ -30,9 +38,9 @@ class EquipmentTypesController < ApplicationController
 
   def create
     @equipment_type = EquipmentType.new(equipment_type_params)
-    create_log current_user.uuid, "Created New Equipment Type", @equipment_type
 
     if @equipment_type.save
+      create_log current_user.uuid, "Created New Equipment Type", @equipment_type
       flash[:notice] = "Equipment Type saved successfully"
       redirect_to equipment_types_path
     else

@@ -25,9 +25,9 @@ class ImplementTypesController < ApplicationController
   def create
     begin
       @implement_type = ImplementType.new(implement_type_params)
-      create_log current_user.uuid, "Created New Implement Type", @implement_type
 
       if @implement_type.save!
+        create_log current_user.uuid, "Created New Implement Type", @implement_type
         flash[:notice] = "ImplementType saved successfully"
         redirect_to :back
       else
@@ -47,9 +47,9 @@ class ImplementTypesController < ApplicationController
   def update
     begin
       @implement_type = ImplementType.find(params[:id])
-      create_log current_user.uuid, "Updated Implement Type", @implement_type
 
       if @implement_type.update_attributes!(implement_type_params)
+        create_log current_user.uuid, "Updated Implement Type", @implement_type
         flash[:notice] = "Implement Type updated successfully"
         redirect_to implement_types_path
       else

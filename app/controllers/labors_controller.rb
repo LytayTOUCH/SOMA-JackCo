@@ -28,9 +28,8 @@ class LaborsController < ApplicationController
     begin
       @labor = Labor.new(labor_params)
 
-      create_log current_user.uuid, "Created New Labor", @labor
-
       if @labor.save
+        create_log current_user.uuid, "Created New Labor", @labor
         flash[:notice] = "Labor saved successfully."
         redirect_to labors_path
       else
@@ -52,10 +51,16 @@ class LaborsController < ApplicationController
     begin
       @labor = Labor.find(params[:id])
 
-      create_log current_user.uuid, "Updated Labor", @labor
-
       if @labor.update_attributes(labor_params)
+        if params[:labor][:active] == "false"
+          create_log current_user.uuid, "Deactivated Labor", @labor
+        elsif params[:labor][:active] == "true"
+          create_log current_user.uuid, "Activated Labor", @labor
+        end
 
+        if params[:labor][:active] == "1" or params[:labor][:active] == "0"
+          create_log current_user.uuid, "Updated Labor", @labor  
+        end 
         flash[:notice] = "Labor updated successfully"
         redirect_to labors_path
       else
