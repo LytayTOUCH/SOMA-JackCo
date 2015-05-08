@@ -9,7 +9,27 @@
     $("#block_location_lat_long").val(getCenter(polygon).toString().slice(1,-1));
   }
   $('.modal-backdrop').first().remove(); //remove backdrop from the loading box
-  $(".form-modal").html("#{escape_javascript(render 'blocks/forms/edit_block', planting: @planting_projects, block: @block)}");
+  $(".form-modal").html("#{escape_javascript(render 'blocks/forms/edit_block', planting: @planting_projects, block: @block, zones: @zones, single_area: @area)}");
+  $('select.zone-options').change(function(params){
+    if(params.target.value){
+      $.ajax({
+        url: '/get_areas_by_zone',
+        data:{zone_id: params.target.value},
+        beforeSend: function(){
+          $('.area-options').empty().append('<option value="">Select Area</option>');
+        },
+        success: function(data){
+          $.each(data, function(index, element){
+            $('.area-options').append('<option value="'+element.uuid+'" id = "area_id_'+index+'">'+element.name+'</option>');
+          });
+        },
+        error: function(data){}
+      });
+    }
+    else{
+      $('.area-options').empty().append('<option value="">Select Area</option>');
+    }
+  });
   $('#myModalAdd').modal('show');
   $('#myModalAdd').on('shown.bs.modal', function () {
     $('.loading').remove();

@@ -16,6 +16,8 @@ class BlocksController < ApplicationController
 
   def edit
     @planting_projects=PlantingProject.all
+    @zones = Zone.where(farm_id: params[:farm_id])
+    @area = @block.area
   end
 
   def update

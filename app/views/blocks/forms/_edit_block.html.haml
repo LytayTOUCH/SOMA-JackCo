@@ -39,6 +39,28 @@
                     = f.text_field :fruitful_tree, class: 'form-control', placeholder: 'Fruitful Amount'
                     .msg-tree_amount.alert-danger{:role => "alert"}
               .form-group
+                .col-xs-6
+                  %select.zone-options.form-control
+                    %option{:value => ""} Select Zone
+                    - if single_area.blank?
+                      - zones.each do |zone|
+                        %option{:value => "#{zone.uuid}"} #{zone.name}
+                    - else
+                      - zones.each do |zone|
+                        - if single_area.zone.name==zone.name
+                          %option{:selected => "selected", :value => "#{single_area.zone.uuid}"} #{single_area.zone.name}
+                        - else
+                          %option{:value => "#{zone.uuid}"} #{zone.name}
+                  .msg-zone_id.alert-danger{:role => "alert"}
+                .col-xs-5
+                  .area-selection{:style => "margin-left: -10px;"}
+                    %select.area-options.form-control{name: "block[area_id]"}
+                      - if !single_area.blank?
+                        %option{:selected => "selected", :value => "#{single_area.uuid}"} #{single_area.name}
+                      - else
+                        %option{:value => ""} Select Area
+                    .msg-area_id.alert-danger{:role => "alert"}
+              .form-group
                 .col-xs-8
                   = f.select :planting_project_id, planting.collect {|p| [ p.name, p.id ] }, {prompt: "Select Planting Type"}, class: 'form-control'
                 .col-xs-3
