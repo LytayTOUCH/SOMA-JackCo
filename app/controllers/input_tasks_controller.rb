@@ -93,10 +93,10 @@ class InputTasksController < ApplicationController
                 render 'new'
               end
 
-                
             end
+
           end
-          #End Select Machinery
+
         else
           puts "No machinery_id"
         end
@@ -178,15 +178,12 @@ class InputTasksController < ApplicationController
           # render 'new'
         end
       
-
         flash[:notice] = "Input Task saved successfully"
         redirect_to input_tasks_path
       else
         flash[:notice] = "Input Task can't save"
         render 'new'
-      end
-
-      
+      end    
 
     rescue Exception => e
       puts e
