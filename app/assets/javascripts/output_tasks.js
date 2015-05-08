@@ -2,8 +2,7 @@ $(document).ready(function() {
   $('.machinery-name').hide();
   $('.machinery-from-map').hide();
   $('.date_pick').datetimepicker({});
-  $('select.item-select-machinaries').empty();
-  $('#distribution').hide();
+  $('select.item-select-machinaries').html("");
   
   // WHEN USER CHANGE THE FARM
   $("#output_task_farm_id").change(function(){
@@ -194,13 +193,12 @@ $(document).ready(function() {
               $.each(data, function(i, value) {
                 $('select.item-select-machinaries').append('<option value="' + value.uuid + '">' + value.name + '</option>');
               });
-              $('select.item-select-machinaries').attr("multiple", "multiple");
               $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
             }
             else{
               $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-              $('select.item-select-machinaries').attr("multiple", "multiple");
             }
+            $('select.item-select-machinaries').attr("multiple", "multiple");
             $('select.item-select-machinaries').trigger('chosen:updated');
           },
           complete: function(data){

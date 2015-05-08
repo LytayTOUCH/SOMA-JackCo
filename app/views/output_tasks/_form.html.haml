@@ -21,20 +21,20 @@
             = f.input :farm_id, collection: Farm.all.map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           %label.col-xs-2.control-label.text-left Zone *
           .col-xs-4
-            - if params[:output_task].nil? || params[:output_task][:farm_id].nil?
+            - if params[:output_task].nil? || params[:output_task][:farm_id].nil? || params[:output_task][:farm_id]==""
               = f.input :zone_id, collection: Zone.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
             - else
               = f.input :zone_id, collection: Zone.where(farm_id: params[:output_task][:farm_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
         .form-group
           %label.col-xs-2.control-label.text-left Area *
           .col-xs-4
-            - if params[:output_task].nil? || params[:output_task][:zone_id].nil?
+            - if params[:output_task].nil? || params[:output_task][:zone_id].nil? || params[:output_task][:zone_id]==""
               = f.input :area_id, collection: Area.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
             - else
               = f.input :area_id, collection: Area.where(zone_id: params[:output_task][:zone_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           %label.col-xs-2.control-label.text-left Block *
           .col-xs-4
-            - if params[:output_task].nil? || params[:output_task][:area_id].nil?
+            - if params[:output_task].nil? || params[:output_task][:area_id].nil? || params[:output_task][:area_id]==""
               = f.input :block_id, collection: Block.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
             - else
               = f.input :block_id, collection: Block.where(area_id: params[:output_task][:area_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
@@ -42,7 +42,7 @@
           %label.col-xs-2.control-label.text-left Project *
           .col-xs-4
             = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project_id"}, error_html: {class: "err_msg"}, as: :hidden
-            - if params[:output_task].nil? || params[:output_task][:planting_project_id].nil?
+            - if params[:output_task].nil? || params[:output_task][:planting_project_id].nil? || params[:output_task][:planting_project_id]==""
               %input.form-control.planting_project_name{:type => "text", readonly: true }
             - else
               %input.form-control.planting_project_name{:readonly => "true", :type => "text", :value => PlantingProject.find_by_uuid(params[:output_task][:planting_project_id]).name}/
@@ -63,7 +63,7 @@
         .form-group
           %label.col-xs-2.control-label.text-left Machineries
           .col-xs-10
-            = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries', multiple: false }
+            = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries' }
             = hidden_field_tag 'machineries', ''
           
         
@@ -76,6 +76,22 @@
           %span.help-block= f.error :note  
         
         .form-group#distribution
+          - if !params[:output_task].nil? && !params[:output_task][:block_id].nil? && params[:output_task][:block_id]!="" && !params[:output_task][:planting_project_id].nil? && params[:output_task][:planting_project_id]!=""
+            %h3= "Distribution - "+PlantingProject.find_by_uuid(params[:output_task][:planting_project_id]).name
+            %hr
+            - @dis_index = 0
+            - Distribution.where(planting_project_id: params[:output_task][:planting_project_id]).order("order_of_display ASC").each do |d|
+              .form-group
+                %label.col-xs-3.control-label.text-left= d.label
+                - d.uoms.split(",").each do |uom|
+                  .col-xs-4
+                    .input-group
+                      .input.float.required
+                        %input.numeric.float.required.form-control{type: "number", step: "any", name: "distribution_amounts[]", value: params[:distribution_amounts][@dis_index]}/
+                        %input{type: "hidden", name: "distribution_ids[]", :value => d.uuid}/
+                        %input{type: "hidden", name: "uom_ids[]", :value => uom.split("|").first}/
+                      %span.input-group-addon= uom.split("|").second
+                  - @dis_index += 1
         
         .form-group
           .col-xs-7

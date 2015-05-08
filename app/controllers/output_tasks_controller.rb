@@ -11,17 +11,17 @@ class OutputTasksController < ApplicationController
   def new
     @output_task = OutputTask.new
     if !params[:output_task].nil?
-      if !params[:output_task][:farm_id].nil?
+      if !params[:output_task][:farm_id].nil? && params[:output_task][:farm_id] != "" 
         @output_task.farm_id = params[:output_task][:farm_id]
       end
-      if !params[:output_task][:zone_id].nil?
+      if !params[:output_task][:zone_id].nil? && params[:output_task][:zone_id] != ""
         @output_task.zone_id = params[:output_task][:zone_id]
       end
-      if !params[:output_task][:area_id].nil?
-        @output_task.zone_id = params[:output_task][:area_id]
+      if !params[:output_task][:area_id].nil? && params[:output_task][:area_id] != ""
+        @output_task.area_id = params[:output_task][:area_id]
       end
-      if !params[:output_task][:block_id].nil?
-        @output_task.zone_id = params[:output_task][:block_id]
+      if !params[:output_task][:block_id].nil? && params[:output_task][:block_id] != ""
+        @output_task.block_id = params[:output_task][:block_id]
       end
       if !params[:output_task][:planting_project_id].nil?
         @output_task.planting_project_id = params[:output_task][:planting_project_id]
@@ -124,7 +124,7 @@ class OutputTasksController < ApplicationController
         # START -- DISTRIBUTION SECTION
         dis_index = 0
         params[:distribution_amounts].each do |amount|
-          OutputDistribution.create(output_task_id: @output_task.uuid, distribution_id: params[:distribution_ids][dis_index], unit_measure_id: params[:uom_ids][dis_index], amount: amount)
+          OutputDistribution.create(output_task_id: @output_task.uuid, distribution_id: params[:distribution_ids][dis_index], unit_measure_id: params[:uom_ids][dis_index], amount: amount==""?"0":amount)
           dis_index += 1
         end
         # END -- DISTRIBUTION SECTION
