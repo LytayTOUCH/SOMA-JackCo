@@ -151,7 +151,7 @@ $(document).ready(function(){
           str +=    '<label class="col-xs-2 control-label">';
           str +=      data.machinery_name.name;
           str +=    '</label>'
-          str +=    '<label class="col-xs-1 control-label">Warehouse*</label>';
+          str +=    '<label class="col-xs-1 control-label" style="width: 10%;">Warehouse*</label>';
           str +=    '<div class="col-xs-2">';
           str +=      '<select name="warehouses_of_machinery[]" class="warehouse-select-'+params.selected+' form-control" id="warehouse_select-'+params.selected+'">';
           str +=      '</select>';
@@ -164,9 +164,9 @@ $(document).ready(function(){
           str +=      '<span id="material_select_msg-'+params.selected+'" style="color: red;"></span>';
           str +=    '</div>';
           str +=    '<label class="col-xs-1 control-label">Qty*</label>';
-          str +=    '<div class="col-xs-2">';
+          str +=    '<div class="col-xs-2 material-qtys">';
           str +=      '<div class="input-group">';
-          str +=        '<input name="material_qtys_of_machinery[]" class="form-control material-qty" id="material_qty_request-'+params.selected+'" value="0"></input>';
+          str +=        '<input type="number" name="material_qtys_of_machinery[]" class="form-control material-qty" id="material_qty_request-'+params.selected+'" value="0.0"></input>';
           str +=        '<span class="input-group-addon uom-name-' + params.selected + '">';
           str +=        '</span>';
           str +=      '</div>';
@@ -305,7 +305,7 @@ $(document).ready(function(){
               str +=    '<label class="col-xs-2 control-label">';
               str +=      data.material_name.name;
               str +=    '</label>'
-              str +=    '<label class="col-xs-1 control-label">Warehouse*</label>';
+              str +=    '<label class="col-xs-1 control-label" style="width: 10%;">Warehouse*</label>';
               str +=    '<div class="col-xs-2">';
               str +=      '<select name="warehouses_of_material[]" class="warehouse-select-material-'+params.selected+' form-control" id="warehouse_select_material-'+params.selected+'">';
               str +=      '</select>';
@@ -313,9 +313,9 @@ $(document).ready(function(){
               str +=    '</div>';
               
               str +=    '<label class="col-xs-1 control-label">Qty*</label>';
-              str +=    '<div class="col-xs-2">';
+              str +=    '<div class="col-xs-2 material-qtys">';
               str +=      '<div class="input-group">';
-              str +=        '<input name="material_qtys_of_material[]" class="form-control material-qty" id="materials_qty_request-'+params.selected+'" value="0"></input>';
+              str +=        '<input type="number" name="material_qtys_of_material[]" class="form-control material-qty" id="materials_qty_request-'+params.selected+'" value="0.0"></input>';
               str +=        '<span class="input-group-addon uom-name">';
               str +=          data.material_uom.name;
               str +=        '</span>';

@@ -14,18 +14,25 @@ class InputTask < ActiveRecord::Base
   has_many :input_use_equipments, foreign_key: :input_id
   has_many :equipments, through: :input_use_equipments
 
-  validates :name, length: { maximum: 50 }, presence: true
-  validates :start_date, presence: true
-  validates :end_date, presence: true
-  validates :tree_amount, presence: true
-  validates :reference_number, presence: true
+  # validates :name, length: { maximum: 50 }, presence: true
+  # validates :start_date, presence: true
+  # validates :end_date, presence: true
+  # validates :tree_amount, presence: true
+  # validates :reference_number, presence: true
 
-  validates :block_id, length: {maximum: 36}, presence: true
-  validates :labor_id, length: {maximum: 36}, presence: true
-  validates :created_by, length: {maximum: 36}, presence: true
-  validates :planting_project_id, length: {maximum: 36}, presence: true
+  # validates :block_id, length: {maximum: 36}, presence: true
+  # validates :labor_id, length: {maximum: 36}, presence: true
+  # validates :created_by, length: {maximum: 36}, presence: true
+  # validates :planting_project_id, length: {maximum: 36}, presence: true
+
+  validates :name, length: {maximum: 50}, :presence => { message: "Input Task Name can't be blank." }
+  validates :start_date, :presence => { message: "Start Date can't be blank." }
+  validates :end_date, :presence => { message: "End Date can't be blank." }
+  validates :block_id, length: {maximum: 36}, :presence => { message: "Block is required." }
+  validates :tree_amount, :presence => { message: "Tree amount is required." }
+  validates :labor_id, length: {maximum: 36}, :presence => { message: "Labor is required." }
+  validates :reference_number, :presence => { message: "Reference Number can't be blank." }
   
-  scope :find_by_name, -> name { where("name like ?", "%#{name}%") }
   scope :planting_project_id, -> uuid_f { joins(:block).where("blocks.planting_project_id=?", uuid_f) }
 
   scope :start_date, -> start_date, end_date {
