@@ -2,7 +2,7 @@
   %h3
     = "Production Plans"
     .pull-right
-      - if can? :create, Production
+      - if can? :create, ProductionPlan
         = link_to "New Production Plans", new_production_plan_path, class: "btn btn-primary"
   %hr
   = render partial: 'list'

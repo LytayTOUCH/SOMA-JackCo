@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :production_standards
 
   resources :production_plans
   get 'get_production_classification', to: 'production_plans#get_production_classification'

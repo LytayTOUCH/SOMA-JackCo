@@ -1,0 +1,8 @@
+.row
+  %h3
+    = "Production Standards"
+    .pull-right
+      - if can? :create, ProductionStandard
+        = link_to "New Production Standard", new_production_standard_path, class: "btn btn-primary"
+  %hr
+  = render partial: 'list'
