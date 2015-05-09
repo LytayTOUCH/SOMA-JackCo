@@ -21,7 +21,7 @@
           .form-group
             %label.col-xs-4{style: 'padding-top: 5px; padding-left: 35px;'} Year
             .col-xs-8
-              = f.select(:for_year, 8.years.ago.year.. 8.years.from_now.year,  { error: false, selected: Date.today.year }, { class: "form-control" })
+              = f.select(:for_year, 8.years.ago.year.. 8.years.from_now.year,  { error: false, selected: Date.today.year, :disabled => params[:action] == "edit" || params[:action] == "update" }, { class: "form-control" })
 
         = f.simple_fields_for :plan_phases do |phase|
           .col-md-3

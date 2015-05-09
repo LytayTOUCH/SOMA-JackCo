@@ -4,16 +4,22 @@
 
 .first-col-table{
   margin-left: 20px;
-  white-space: nowrap; 
+  white-space: nowrap;
   text-align: center;
-  background-color: #8496b0;
+  // background-color: #8496b0 !important;
 }
 
 .other-col-table{
   // padding: 0;
   white-space: nowrap;
   text-align: center;
-  background-color: #8496b0;
+  // background-color: #8496b0 !important;
+}
+
+.td-center-n-color{
+  white-space: nowrap;
+  text-align: center;
+  // background-color: #8496b0 !important;
 }
 
 .td-value-table{
@@ -30,6 +36,30 @@ table.table-bordered.table-width{
   width: 1050px;
 }
 
+#report{
+  margin-left: 30px;
+}
+
+#print-plan-report{
+  margin-left: 15px;
+}
+
+.production-classification-top{
+  margin-top: 30px !important;
+}
+
+.sign-area-space{
+  margin-bottom: 5px !important;
+}
+
+.align-left{
+  padding: 0 !important;
+}
+
+.display-on-print{
+  display: none;
+}
+
 @media print {
   * { margin: 0 !important; padding: 0 !important; }
 
@@ -43,6 +73,8 @@ table.table-bordered.table-width{
   #form_filter{ display: none; }
   #print-plan-report{ display: none; }
 
+  .display-on-print{ display: block; }
+  
   table.table-bordered.table-width{
     width: 1050px;
   }

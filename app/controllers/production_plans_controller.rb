@@ -30,10 +30,25 @@ class ProductionPlansController < ApplicationController
       render 'edit', :notice => "Production plan can't update"
     end
   end
-  
+
+  def get_production_classification
+    @production_plans = ProductionPlan.new
+    @production_plans.planting_project_id = params[:pid]
+    @production_plans.for_year = params[:y]
+    
+    @production_classifications = ProductionClassification.where(planting_project_id: params[:pid])
+    @production_classifications.each do |production_classification|
+      @amount = @production_plans.production_classification_amounts.build
+      @amount.production_classification_id = production_classification.uuid
+    end
+
+    render partial: 'form'
+  end
+
   private
   def production_plans_params
     params.require(:production_plan).permit(:id, :planting_project_id, :for_year, 
-      :jan, :feb, :mar, :apr, :may, :jun, :jul, :aug, :sep, :oct, :nov, :dec)
+      :jan, :feb, :mar, :apr, :may, :jun, :jul, :aug, :sep, :oct, :nov, :dec, 
+      production_classification_amounts_attributes: [:id, :production_plan_id, :production_classification_id, :amount])
   end  
 end

@@ -3,7 +3,9 @@ class ProductionPlanReportController < ApplicationController
   def index
     @project_name = params[:id]
     @year = params[:year]
+    
     @production_plan = ProductionPlan.where(planting_project_id: params[:id], for_year: params[:year])
+    @planting_name = PlantingProject.find(params[:id]).name
   end
 
   def get_production_plan_tree

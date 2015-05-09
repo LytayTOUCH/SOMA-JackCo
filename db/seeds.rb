@@ -389,3 +389,13 @@ ProductionStatus.create(name: 'Blossoming Tree', unit_of_measurement_id: UnitOfM
 # area6.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
 
 # =========== End Mondolkiri test farm ==============
+
+ProductionClassification.create(name: "Coconut for Sale", planting_project_id: PlantingProject.first.uuid)
+ProductionClassification.create(name: "Coconut for Free", planting_project_id: PlantingProject.first.uuid)
+ProductionClassification.create(name: "Coconut for Seed", planting_project_id: PlantingProject.first.uuid)
+ProductionClassification.create(name: "Waste (Young and Ripe Fruit)", planting_project_id: PlantingProject.first.uuid)
+
+ProductionClassification.create(name: "Jackfruit for Sale", planting_project_id: PlantingProject.second.uuid)
+ProductionClassification.create(name: "Jackfruit for Free", planting_project_id: PlantingProject.second.uuid)
+ProductionClassification.create(name: "Jackfruit for Seed", planting_project_id: PlantingProject.second.uuid)
+ProductionClassification.create(name: "Waste (Young and Ripe Fruit)", planting_project_id: PlantingProject.second.uuid)
