@@ -2,8 +2,8 @@
   %h3
     = "Warehouse Item Request"
     .pull-right
-      / - if can? :create, WarehouseItemTransaction
-      = link_to "New Material Request", new_warehouse_item_transaction_path, class: "btn btn-primary"
+      - if can? :create, WarehouseItemTransaction
+        = link_to "New Material Request", new_warehouse_item_transaction_path, class: "btn btn-primary"
   %hr
   = render partial: 'form_item_requested_search'
   %hr

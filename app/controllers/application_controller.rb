@@ -35,4 +35,9 @@ class ApplicationController < ActionController::Base
     @farm_nav=Farm.where(active: true).all
   end
 
+  rescue_from CanCan::AccessDenied do |exception|  
+    flash[:error] = "Access denied!"  
+    redirect_to dashboards_path  
+  end  
+
 end

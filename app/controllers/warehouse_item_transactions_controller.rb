@@ -2,9 +2,9 @@ class WarehouseItemTransactionsController < ApplicationController
   load_and_authorize_resource except: :create
   respond_to :html, :json
 
-  add_breadcrumb "All Warehouse Item Transactions", :warehouse_item_requested_transactions_path
+  add_breadcrumb "All Warehouse Item Transactions", :warehouse_item_transactions_path
 
-  def index_item_requested
+  def index
     begin
       @warehouse_item_transaction = WarehouseItemTransaction.new
 
@@ -14,9 +14,9 @@ class WarehouseItemTransactionsController < ApplicationController
       end
 
       if params[:warehouse_item_transaction] and params[:warehouse_item_transaction][:requested_number] and !params[:warehouse_item_transaction][:requested_number].nil?
-        @warehouse_item_requested_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_transaction][:requested_number]).page(params[:page]).per(7)
+        @warehouse_item_transactions = WarehouseItemTransaction.find_by_requested_number(params[:warehouse_item_transaction][:requested_number]).page(params[:page]).per(7)
       else
-        @warehouse_item_requested_transactions = WarehouseItemTransaction.page(params[:page]).per(7).order("created_at desc")
+        @warehouse_item_transactions = WarehouseItemTransaction.page(params[:page]).per(7).order("created_at desc")
       end
 
       puts "======================================================"
@@ -72,7 +72,7 @@ class WarehouseItemTransactionsController < ApplicationController
         @warehouse_item_transaction.remaining_amount = @warehouse_item_transaction.amount
         @warehouse_item_transaction.save
         flash[:notice] = "Warehouse Item Transaction saved successfully"
-        redirect_to warehouse_item_requested_transactions_path
+        redirect_to warehouse_item_transactions_path
       else
         flash[:notice] = "Warehouse Item Transaction can't be saved"
         render 'new'
