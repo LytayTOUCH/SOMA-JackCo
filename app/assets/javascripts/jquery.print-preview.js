@@ -22,18 +22,18 @@
     }
     //Finished Add
     
-	// Initialization
-	$.fn.printPreview = function() {
-		this.each(function() {
-			$(this).bind('click', function(e) {
-			    e.preventDefault();
-			    if (!$('#print-modal').length) {
-			        $.printPreview.loadPrintPreview();
-			    }
-			});
-		});
-		return this;
-	};
+    // Initialization
+    $.fn.printPreview = function() {
+        this.each(function() {
+            $(this).bind('click', function(e) {
+                e.preventDefault();
+                if (!$('#print-modal').length) {
+                    $.printPreview.loadPrintPreview();
+                }
+            });
+        });
+        return this;
+    };
     // Private functions
     var mask, size, print_modal, print_controls, print_content, bodyCSS, print_frame_ref;
     $.printPreview = {
@@ -144,75 +144,75 @@
                 else { $.printPreview.distroyPrintPreview(); }
             });
             print_content.trigger('printPreview.ready');
-    	},
-    	
-    	distroyPrintPreview: function() {
+        },
+        
+        distroyPrintPreview: function() {
             print_content.trigger('printPreview.unloading');
-    	    print_controls.fadeOut(100);
-    	    print_modal.animate({ top: $(window).scrollTop() - $(window).height(), opacity: 1}, 400, 'linear', function(){
-    	        print_modal.remove();
-    	        // $('body').css({overflowY: 'auto', height: 'auto'});
+            print_controls.fadeOut(100);
+            print_modal.animate({ top: $(window).scrollTop() - $(window).height(), opacity: 1}, 400, 'linear', function(){
+                print_modal.remove();
+                // $('body').css({overflowY: 'auto', height: 'auto'});
                 $('body').css(bodyCSS);
                 print_content.trigger('printPreview.content.removed');
-    	    });
-    	    mask.fadeOut('slow', function()  {
-    			mask.remove();
+            });
+            mask.fadeOut('slow', function()  {
+                mask.remove();
                 print_content.trigger('printPreview.mask.removed');
-    		});				
+            });             
 
-    		$(document).unbind("keydown.printPreview.mask");
-    		mask.unbind("click.printPreview.mask");
-    		$(window).unbind("resize.printPreview.mask");
+            $(document).unbind("keydown.printPreview.mask");
+            mask.unbind("click.printPreview.mask");
+            $(window).unbind("resize.printPreview.mask");
             print_content.trigger('printPreview.complete');
-	    },
-	    
-    	/* -- Mask Functions --*/
-	    loadMask: function() {
-	        size = $.printPreview.sizeUpMask();
+        },
+        
+        /* -- Mask Functions --*/
+        loadMask: function() {
+            size = $.printPreview.sizeUpMask();
             mask = $('<div id="print-modal-mask" />').appendTo($('body'));
-    	    mask.css({				
-    			position:           'absolute', 
-    			top:                0, 
-    			left:               0,
-    			width:              size[0],
-    			height:             size[1],
-    			display:            'none',
-    			opacity:            0,					 		
-    			zIndex:             9999,
-    			backgroundColor:    '#000'
-    		});
-	
-    		mask.css({display: 'block'}).fadeTo('400', 0.75);
-    		
+            mask.css({              
+                position:           'absolute', 
+                top:                0, 
+                left:               0,
+                width:              size[0],
+                height:             size[1],
+                display:            'none',
+                opacity:            0,                          
+                zIndex:             9999,
+                backgroundColor:    '#000'
+            });
+    
+            mask.css({display: 'block'}).fadeTo('400', 0.75);
+            
             $(window).bind("resize..printPreview.mask", function() {
-				$.printPreview.updateMaskSize();
-			});
-			
-			mask.bind("click.printPreview.mask", function(e)  {
-				$.printPreview.distroyPrintPreview();
-			});
-			
-			$(document).bind("keydown.printPreview.mask", function(e) {
-			    if (e.keyCode == 27) {  $.printPreview.distroyPrintPreview(); }
-			});
+                $.printPreview.updateMaskSize();
+            });
+            
+            mask.bind("click.printPreview.mask", function(e)  {
+                $.printPreview.distroyPrintPreview();
+            });
+            
+            $(document).bind("keydown.printPreview.mask", function(e) {
+                if (e.keyCode == 27) {  $.printPreview.distroyPrintPreview(); }
+            });
         },
     
         sizeUpMask: function() {
             if ($.browser.msie) {
-            	// if there are no scrollbars then use window.height
-            	var d = $(document).height(), w = $(window).height();
-            	return [
-            		window.innerWidth || 						// ie7+
-            		document.documentElement.clientWidth || 	// ie6  
-            		document.body.clientWidth, 					// ie6 quirks mode
-            		d - w < 20 ? w : d
-            	];
+                // if there are no scrollbars then use window.height
+                var d = $(document).height(), w = $(window).height();
+                return [
+                    window.innerWidth ||                        // ie7+
+                    document.documentElement.clientWidth ||     // ie6  
+                    document.body.clientWidth,                  // ie6 quirks mode
+                    d - w < 20 ? w : d
+                ];
             } else { return [$(document).width(), $(document).height()]; }
         },
     
         updateMaskSize: function() {
-    		var size = $.printPreview.sizeUpMask();
-    		mask.css({width: size[0], height: size[1]});
+            var size = $.printPreview.sizeUpMask();
+            mask.css({width: size[0], height: size[1]});
         }
     }
 })(jQuery);

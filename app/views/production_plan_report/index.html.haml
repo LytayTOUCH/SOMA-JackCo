@@ -1,0 +1,112 @@
+.container
+  %br
+  %label.report-title Production Plan Report
+  %br
+  %br
+  .row#form_filter
+    = form_tag nil, method: 'get', enforce_utf8: false do
+      .col-md-3
+        %label.col-xs-3.middle-label Project
+        .col-xs-9
+          = select_tag(:id, options_from_collection_for_select(PlantingProject.all, 'uuid', 'name', selected: params[:id]), {class: "form-control", include_blank: true})
+      .col-md-3
+        %label.col-xs-3.middle-label Year
+        .col-xs-9
+          .input-group#production-plan-report-picker
+            %input.form-control{:type => "text", id: "for_year", name: "year", :value => @year }
+              %span.input-group-addon
+                %span.glyphicon.glyphicon-calendar
+
+      = submit_tag 'Filter', name: nil, :class => 'btn btn-success'
+%br
+%br
+
+- if @production_plan.exists?
+  #report
+    .row
+      #columnchart_values{:style => "width: 1130px; height: 290px"}
+      %br
+      #table-container
+        %table.table-bordered.table-width
+          %thead
+            %tr
+              %th{style: "text-align: center;"} Period
+              %th.col-md-1{class: "first-col-table"} Jan-15
+              %th.col-md-1{class: "other-col-table"} Feb-15
+              %th.col-md-1{class: "other-col-table"} Mar-15
+              %th.col-md-1{class: "other-col-table"} Apr-15
+              %th.col-md-1{class: "other-col-table"} May-15
+              %th.col-md-1{class: "other-col-table"} Jun-15
+              %th.col-md-1{class: "other-col-table"} Jul-15
+              %th.col-md-1{class: "other-col-table"} Aug-15
+              %th.col-md-1{class: "other-col-table"} Sep-15
+              %th.col-md-1{class: "other-col-table"} Oct-15
+              %th.col-md-1{class: "other-col-table"} Nov-15
+              %th.col-md-1{class: "other-col-table"} Dec-15
+
+          - @production_plan.each do |production|
+            %tr
+              %td{style: "text-align: center;"} Monthly
+              %td{class: "td-value-table"}= production.jan
+              %td{class: "td-value-table"}= production.feb
+              %td{class: "td-value-table"}= production.mar
+              %td{class: "td-value-table"}= production.apr
+              %td{class: "td-value-table"}= production.may
+              %td{class: "td-value-table"}= production.jun
+              %td{class: "td-value-table"}= production.jul
+              %td{class: "td-value-table"}= production.aug
+              %td{class: "td-value-table"}= production.sep
+              %td{class: "td-value-table"}= production.oct
+              %td{class: "td-value-table"}= production.nov
+              %td{class: "td-value-table"}= production.dec
+    
+    .row.production-classification-top
+      %table.table-bordered.table-width
+        %thead
+          %tr
+            %th.col-md-10{class: "align-left"} Production Classification
+            %th.col-md-2{class: "td-center-n-color"} Total
+          - total_amount = 0
+          - @production_classification = ProductionClassificationAmount.where(production_plan_id:  @production_plan.first.uuid)
+          - @production_classification.each do |p|
+            - total_amount = total_amount + (p.amount.nil? ? 0 : p.amount)
+            %tr
+              %td= ProductionClassification.find(p.production_classification_id).name
+              %td.td-value-table= p.amount
+            - if (p == @production_classification.last)
+              %tr
+                %td Total Production
+                %td.td-value-table= total_amount
+    - if (@planting_name == "Coconut")
+      .row.production-classification-top.display-on-print
+        %table.table-bordered.table-width
+          %thead
+            %tr
+              %th{colspan: 3}
+                Operation Monitoring Level:
+            %tr
+            %td= "Date: #{Date.today} <div class='sign-area-space'></div> Prepared by: <br><br><br> Signature: <div class='sign-area-space'></div> Project Leader <br><br>".html_safe
+            %td= "Date: #{Date.today} <div class='sign-area-space'></div> Check by: <br><br><br> Signature: <div class='sign-area-space'></div> Deputy Farm Manager <br><br>".html_safe
+            %td= "Date: #{Date.today} <div class='sign-area-space'></div> Acknowledged by: <br><br><br> Signature: <div class='sign-area-space'></div> Inspector <br> Comment".html_safe
+    - else
+      .row.production-classification-top.display-on-print
+        %table.table-bordered.table-width
+          %thead
+            %tr
+              %th{colspan: 3}
+                Operation Monitoring Level:
+            %tr
+              %td= "Date: #{Date.today} <div class='sign-area-space'></div> Prepared by: <br> <div class='sign-area-space'></div>Signature Supervisor (Zone I+IV): <div class='sign-area-space'></div> Singature Supervisor (Zone II): <br><div class='sign-area-space'></div> Singature Supervisor (Zone III): <br><div class='sign-area-space'></div> Singature Supervisor (Zone V):".html_safe
+              %td= "Date: #{Date.today} <div class='sign-area-space'></div><br> Reviewed by: <br><br><br> Signature: <div class='sign-area-space'></div><br>".html_safe
+              %td= "Date: #{Date.today} <div class='sign-area-space'></div><br> Acknowledged by:  <br><br> Signature: <div class='sign-area-space'></div>  Comment <br> <br>".html_safe
+    
+  %br
+  %br
+  #print-plan-report
+    %span.glyphicon.glyphicon-print{style: "color: #428bca;"}
+    %a#print_preview{style: "padding: 0"} Print
+
+- content_for :javascript_body do
+  = javascript_include_tag "production_plan_report"
+%br
+%br

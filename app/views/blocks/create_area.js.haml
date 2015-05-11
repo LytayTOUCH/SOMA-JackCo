@@ -1,0 +1,10 @@
+:plain
+  $('input#area_name').focus(function(){
+    $('.msg-name').removeClass('alert custom-alert-msg').empty();
+  });
+- if @area.errors.any?
+  - @area.errors.messages.each do |key, msg|
+    $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
+- else
+  $('.area-data').append('<tr id="area_id_#{@area.uuid}"><td>#{@area.name}</td><td><a class="btn btn-xs btn-danger" href="#" id="#{@area.uuid}" title="Remove"><i class="fa fa-times"></i></a></td></tr>');
+  $('input#area_name').val('');

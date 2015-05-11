@@ -27,14 +27,14 @@ $(document).ready(function() {
 
 function getCenter(shape){
   var polygonCoords = [];
-  $.each(shape.latLngs.j[0].j, function(key, latlng){
-      polygonCoords.push(new google.maps.LatLng(latlng.k, latlng.D));
+  $.each(shape.getPaths().getArray()[0].j, function(key, latlng){
+      polygonCoords.push(new google.maps.LatLng(latlng.A, latlng.F));
   });
   var bounds = new google.maps.LatLngBounds(), i;
   for (i = 0; i < polygonCoords.length; i++) {
     bounds.extend(polygonCoords[i]);
   }
-  return centerlatlong = new google.maps.LatLng(bounds.getCenter().k,bounds.getCenter().D);
+  return centerlatlong = new google.maps.LatLng(bounds.getCenter().A,bounds.getCenter().F);
 }
 
 var getPolygonPoints = function (shape_latlong){

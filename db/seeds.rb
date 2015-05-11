@@ -20,16 +20,25 @@ end
 # ========== Position ==========
 [
   {name: 'Manager', note: 'Controlling a labor in field', active: true},
-  {name: 'Worker', note: 'Doing farming in the field', active: true}
+  {name: 'Worker', note: 'Doing farming in the field', active: true},
+  {name: 'Hong Channda', note: 'Project Supervisor (ZoneI)', active: true}
 ].each do |position|
   Position.create_with(note: position[:note]).find_or_create_by(name: position[:name])
 end
 
 # ========== Labor ==========
 position = Position.create_with(note: 'Controlling a labor in field', active: true).find_or_create_by(name: 'Manager')
-labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "admin@cltag.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true, selected: true).find_or_create_by(name: "Default Manager")
-position.labors << labor
-
+[
+  {name: "Default Manager", gender: "M", phone: "012 345 678", email: "admin@cltag.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true, selected: true},
+  {name: "Keven", gender: "M", phone: "012 345 6789", email: "ngok@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
+  {name: "Piseth", gender: "M", phone: "098 765 4321", email: "peap@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
+  {name: "Pheth", gender: "M", phone: "089 765 4321", email: "nhekp@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
+  {}
+].each do |each_labor|
+  labor = Labor.create_with(gender: each_labor[:gender], phone: each_labor[:phone], email: each_labor[:email], address: each_labor[:address], manager_uuid: each_labor[:manager_uuid], note: each_labor[:note], active: each_labor[:active], selected: each_labor[:selected]).find_or_create_by(name: each_labor[:name])
+  position.labors << labor
+end
+labor = Labor.find_by_name("Default Manager")
 # ========== Create Setting ========== 
 [
   {code: 'item_per_page', note: 'Amount of item show in a list per page', valueType: 'INT', valueInteger: 10, valueString: nil, valueFloat: nil}
@@ -50,9 +59,15 @@ end
 # ========== Create a User ========== 
 user_group = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
 # labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "admin@gmail.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true)
-user = User.create_with(password: "admin1234567890", password_confirmation: "admin1234567890", user_group_id: user_group.uuid, labor_id: labor.uuid).find_or_create_by(email: "admin@cltag.com")
-
-user_group.users << user
+[
+  {email: "admin@cltag.com", password: "admin1234567890", password_confirmation: "admin1234567890", user_group_id: user_group.uuid, labor_id: labor.uuid},
+  {email: "ngok@somagroup.com.kh", password: "keven@12345", password_confirmation: "keven@12345", user_group_id: user_group.uuid, labor_id: labor.uuid},
+  {email: "peap@somagroup.com.kh", password: "piseth@12345", password_confirmation: "piseth@12345", user_group_id: user_group.uuid, labor_id: labor.uuid},
+  {email: "nhekp@somagroup.com.kh", password: "pheth@12345", password_confirmation: "pheth@12345", user_group_id: user_group.uuid, labor_id: labor.uuid}
+].each do |each_user|
+  user = User.create_with(password: each_user[:password], password_confirmation: each_user[:password_confirmation], user_group_id: user_group.uuid, labor_id: labor.uuid).find_or_create_by(email: each_user[:email])
+  user_group.users << user
+end
 
 # ========== Create Projects ========== 
 [ 
@@ -101,6 +116,19 @@ end
 ].each do |warehouse_type|
   WarehouseType.create_with(note: warehouse_type[:note]).find_or_create_by(name: warehouse_type[:name])
 end
+# ========== Create Warehouse ==================
+central_warehouse = WarehouseType.find_by_name("Central Warehouse")
+fertilizer_warehouse = WarehouseType.find_by_name("Fertilizer Warehouse")
+project_warehouse = WarehouseType.find_by_name("Project Warehouse")
+finished_goods_warehouse = WarehouseType.find_by_name("Finished Goods Warehouse")
+nursery__warehouse = WarehouseType.find_by_name("Nursery Warehouse")
+
+[
+  {name: "Oroung Finished Goods WH", warehouse_type_uuid: finished_goods_warehouse.uuid, address:"Oroung Farm", note:"", active: true},
+  {name: "Coconut Project WH", warehouse_type_uuid: project_warehouse.uuid, address:"Chamkar Dong", note:"", active: true}
+].each do |each_warehouse|
+  Warehouse.create_with(warehouse_type_uuid: each_warehouse[:warehouse_type_uuid], address: each_warehouse[:address], note: each_warehouse[:note], active: each_warehouse[:active]).find_or_create_by(name: each_warehouse[:name])
+end
 
 # ========== Create Planting Projects ========== 
 [
@@ -122,7 +150,11 @@ end
 ].each do |unit_measure|
   UnitOfMeasurement.create_with(note: unit_measure[:note]).find_or_create_by(name: unit_measure[:name])
 end
-
+unit = UnitOfMeasurement.find_by_name('Unit')
+kg = UnitOfMeasurement.find_by_name('Kg')
+g = UnitOfMeasurement.find_by_name('g')
+l = UnitOfMeasurement.find_by_name('L')
+ml = UnitOfMeasurement.find_by_name('mL')
 # ========== Create Distributions ==========
 unit = UnitOfMeasurement.find_by_name('Unit')
 kg = UnitOfMeasurement.find_by_name('Kg')
@@ -165,6 +197,53 @@ end
 ].each do |material_category|
   MaterialCategory.create_with(note: material_category[:note], kh_name: material_category[:kh_name]).find_or_create_by(name: material_category[:name])
 end
+fertilizer = MaterialCategory.find_by_name('Fertilizers')
+pest_insecticide = MaterialCategory.find_by_name('Pest & Insecticides')
+fungicide = MaterialCategory.find_by_name('Fungicides')
+herbicide = MaterialCategory.find_by_name('Herbicides')
+indirect_material = MaterialCategory.find_by_name('Indirect Materials')
+other = MaterialCategory.find_by_name('Other')
+
+#=========== Create Material ============
+
+[
+  {name: "Diesel", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Engine Oil No. 40", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Engine Oil No. 50", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Hydraulic Oil No. 68", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Gear Oil No. 90", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Lubricant No. 140", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Brake Oil", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Gasoline", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Compost", material_cate_uuid: fertilizer.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Chicken Dung", material_cate_uuid: fertilizer.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Cow Dung", material_cate_uuid: fertilizer.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "8.24.24", material_cate_uuid: fertilizer.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Salt", material_cate_uuid: fertilizer.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "15-15-15", material_cate_uuid: fertilizer.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Antracol", material_cate_uuid: fungicide.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Magnesium", material_cate_uuid: fertilizer.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Ask (ផេះ)", material_cate_uuid: fertilizer.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Urea", material_cate_uuid: fertilizer.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Mancozeb", material_cate_uuid: fungicide.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Zineb", material_cate_uuid: fungicide.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Copper Fungicide", material_cate_uuid: fungicide.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Cyperan", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Monocrothophos", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Monotophos", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Mevinphos", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Furadan", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Vifuran", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: kg.uuid, supplier: "", note: ""},
+  {name: "Abamectin", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Niphosate", material_cate_uuid: herbicide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Newsate", material_cate_uuid: herbicide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Glyphosan", material_cate_uuid: herbicide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Seed", material_cate_uuid: other.uuid, unit_measure_uuid: unit.uuid, supplier: "", note: ""},
+  {name: "Chlorpyrifos", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: ml.uuid, supplier: "", note: ""}
+].each do |each_material|
+  Material.create_with(material_cate_uuid: each_material[:material_cate_uuid], unit_measure_uuid: each_material[:unit_measure_uuid], supplier: each_material[:supplier], note: each_material[:note]).find_or_create_by(name: each_material[:name])
+end
+
 # ========== Create Farms ==========
 [
   {name: 'Oroung Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.333019, 104.864575', active: true},
@@ -322,7 +401,7 @@ oroung_area_c = Area.find_by_name_and_zone_id('C', oroung_zone_i.uuid)
   {uuid: '00000000-0000-0000-0000-000000000052', name: 'Block A3', area_id: oroung_area_a.uuid, surface: 4, shape_lat_long: '[[11.33259193166157,104.864971260675],[11.33255103799581,104.8653026157271],[11.33242918270696,104.8653124252415],[11.33241636992461,104.8656656733321],[11.33254475167357,104.8657207093244],[11.33256256387976,104.8659044565683],[11.33293397308591,104.865911430465],[11.33298004181689,104.8650429908266],[11.33259193166157,104.864971260675]]', location_lat_long: '11.33269820587075, 104.86544134557005', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 93, fruitful_tree: 15, active: true},
   {uuid: '00000000-0000-0000-0000-000000000053', name: 'Block B1', area_id: oroung_area_b.uuid, surface: 4, shape_lat_long: '[[11.33360091727752,104.8648150209845],[11.33354905571442,104.8654192999268],[11.3334329480574,104.8653970369069],[11.33344462261639,104.8651619590034],[11.33304147819797,104.8650389585108],[11.33295439699371,104.8665397635701],[11.33419145854843,104.8669987532221],[11.33419096118103,104.8650500301504],[11.33360091727752,104.8648150209845]]', location_lat_long: '11.333572927771069, 104.86590688710328', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 425, fruitful_tree: 132, active: true},
   {uuid: '00000000-0000-0000-0000-000000000054', name: 'Block B2', area_id: oroung_area_b.uuid, surface: 4, shape_lat_long: '[[11.33297236650325,104.8665889012607],[11.33290609918916,104.8681085700067],[11.33318887235587,104.8681464909949],[11.33319890176019,104.8682790524576],[11.33418809491344,104.8682950611748],[11.334192036974,104.8670305625423],[11.33297236650325,104.8665889012607]]', location_lat_long: '11.333549068081581, 104.86744198121778', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 401, fruitful_tree: 18, active: true},
-  {uuid: '00000000-0000-0000-0000-000000000055', name: 'Block C1', area_id: oroung_area_c.uuid, surface: 4, shape_lat_long: '[[11.33286716554191,104.8683328834296],[11.33281790971606,104.8710704750993],[11.33378832634235,104.8710829491849],[11.33378833233909,104.8709496668367],[11.33371753280396,104.870900716156],[11.33378844867719,104.868480493603],[11.33414409924556,104.8684593112575],[11.33414926227775,104.8683328873223],[11.33286716554191,104.8683328834296]]', location_lat_long: '11.333483585996905, 104.86970791630733', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 407, fruitful_tree: 17, active: true, fruitful_tree: 12, active: true},
+  {uuid: '00000000-0000-0000-0000-000000000055', name: 'Block C1', area_id: oroung_area_c.uuid, surface: 4, shape_lat_long: '[[11.33286716554191,104.8683328834296],[11.33281790971606,104.8710704750993],[11.33378832634235,104.8710829491849],[11.33378833233909,104.8709496668367],[11.33371753280396,104.870900716156],[11.33378844867719,104.868480493603],[11.33414409924556,104.8684593112575],[11.33414926227775,104.8683328873223],[11.33286716554191,104.8683328834296]]', location_lat_long: '11.333483585996905, 104.86970791630733', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 407, fruitful_tree: 17, active: true},
   {uuid: '00000000-0000-0000-0000-000000000056', name: 'Block C2', area_id: oroung_area_c.uuid, surface: 4, shape_lat_long: '[[11.3322750761453,104.8693063700752],[11.33222632314401,104.8708299466653],[11.33250555605274,104.8708585729013],[11.33257165108565,104.8693194724903],[11.3322750761453,104.8693063700752]]', location_lat_long: '11.332398987114829, 104.87008247148833', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 116, fruitful_tree: 13, active: true},
   {uuid: '00000000-0000-0000-0000-000000000057', name: 'Block C3', area_id: oroung_area_c.uuid, surface: 4, shape_lat_long: '[[11.33327767462742,104.8714486012229],[11.33326530072757,104.8722167315754],[11.33389699046733,104.8722127064837],[11.33389957250136,104.871824944219],[11.33373153189838,104.8717984056386],[11.33375157922602,104.8714607584913],[11.33327767462742,104.8714486012229]]', location_lat_long: '11.333582436614465, 104.8718326663992', rental_status: 0, status: 0, planting_project_id: jackfruit_planting_project.uuid, farm_id: oroung_farm.uuid, tree_amount: 54, fruitful_tree: 14, active: true}
 ].each do |block|
@@ -332,20 +411,37 @@ end
 # ========== Phase ==========
 [
   {name: 'Phase 1: Nursery Seed', note: 'The first phase of planting', active: true},
-  {name: 'Phase 2: Plant Growing & Protection', note: 'The second phase of planting', active: true}
+  {name: 'Phase 2: Plant Growing & Protection', note: 'The second phase of planting', active: true},
+  {name: 'Phase 3: Harvesting', note: 'Harvesting note', active: true}
 ].each do |phase|
   Phase.create_with(note: phase[:note]).find_or_create_by(name: phase[:name])
 end
 
-# ========== Production Stage ==========
+# ========== Production Stage (Seed Amount) ==========
 phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 1: Nursery Seed')
-production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 1-2 Years')
+production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Seed Amount')
+phase.production_stages << production_stage
+ProductionStatus.create_with(name: 'New Planting', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')
+ProductionStatus.create_with(name: 'Seed Replace', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true).find_or_create_by(name: 'Seed Replace')
 
+# ========== Production Stage (Stage1: Age 1-2 Years) ==========
+phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 2: Plant Growing & Protection')
+production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 1-2 Years')
+phase.production_stages << production_stage
+ProductionStatus.create_with(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid, stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'Non-Fruit')
+
+production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 3-4 Years')
+phase.production_stages << production_stage
+ProductionStatus.create(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true)
+ProductionStatus.create_with(name: 'Blossoming Tree', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'Blossoming Tree')
+
+# ========== Production Stage (Stage1: 5-15 Years) ==========
+phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 3: Harvesting')
+production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: 5-15 Years')
 phase.production_stages << production_stage
 
-# ========== Production Status ==========
-ProductionStatus.create_with(name: 'New Planting', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')
-ProductionStatus.create_with(name: 'Seed Replace', stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true).find_or_create_by(name: 'Seed Replace')
+ProductionStatus.create(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true)
+ProductionStatus.create(name: 'Blossoming Tree', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true)
 
 # ========== Plan Location Seed data ====
 # PlanFarm.create(farm_id: Farm.second.uuid, for_year: 2018)
@@ -403,3 +499,13 @@ ProductionStatus.create_with(name: 'Seed Replace', stage_id: production_stage.uu
 # area6.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
 
 # =========== End Mondolkiri test farm ==============
+
+ProductionClassification.create(name: "Coconut for Sale", planting_project_id: PlantingProject.first.uuid)
+ProductionClassification.create(name: "Coconut for Free", planting_project_id: PlantingProject.first.uuid)
+ProductionClassification.create(name: "Coconut for Seed", planting_project_id: PlantingProject.first.uuid)
+ProductionClassification.create(name: "Waste (Young and Ripe Fruit)", planting_project_id: PlantingProject.first.uuid)
+
+ProductionClassification.create(name: "Jackfruit for Sale", planting_project_id: PlantingProject.second.uuid)
+ProductionClassification.create(name: "Jackfruit for Free", planting_project_id: PlantingProject.second.uuid)
+ProductionClassification.create(name: "Jackfruit for Seed", planting_project_id: PlantingProject.second.uuid)
+ProductionClassification.create(name: "Waste (Young and Ripe Fruit)", planting_project_id: PlantingProject.second.uuid)

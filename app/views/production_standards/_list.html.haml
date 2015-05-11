@@ -1,0 +1,19 @@
+%table#list_data_table
+  %thead
+    %tr
+      %th.col-md-4= "Planting Project Type"
+      %th.col-md-2= "Year"
+      %th.col-md-2= "Jan"
+      %th.col-md-2= "Feb"
+      %th.col-md-2= "Mar"
+      %th.col-md-2= "Action"
+  - @production_standards.each do |standard|
+    %tr
+      %td= PlantingProject.find(standard.planting_project_id).name
+      %td= standard.for_year
+      %td= standard.jan
+      %td= standard.feb
+      %td= standard.mar
+      %td
+        - if can? :update, standard
+          = link_to "Edit", edit_production_standard_path(standard)
