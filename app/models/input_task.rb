@@ -25,27 +25,34 @@ class InputTask < ActiveRecord::Base
   # validates :created_by, length: {maximum: 36}, presence: true
   # validates :planting_project_id, length: {maximum: 36}, presence: true
 
-  validates :name, length: {maximum: 50}, :presence => { message: "Input Task Name can't be blank." }
+  validates :name, length: {maximum: 50}, :presence => { message: "Name can't be blank." }
   validates :start_date, :presence => { message: "Start Date can't be blank." }
   validates :end_date, :presence => { message: "End Date can't be blank." }
   validates :block_id, length: {maximum: 36}, :presence => { message: "Block is required." }
   validates :tree_amount, :presence => { message: "Tree amount is required." }
   validates :labor_id, length: {maximum: 36}, :presence => { message: "Labor is required." }
   validates :reference_number, :presence => { message: "Reference Number can't be blank." }
+  validate :end_date_greater_than_start_date
   
   scope :planting_project_id, -> uuid_f { joins(:block).where("blocks.planting_project_id=?", uuid_f) }
 
-  scope :start_date, -> start_date, end_date {
-    if start_date.present? || end_date.present?
-      if start_date.blank?
-        where("start_date <= ?", end_date ) 
-      elsif end_date.blank?
-        where("start_date >= ?", start_date ) 
-      elsif start_date.present? && end_date.present?
-        where("start_date >= ? AND start_date <= ?", start_date, end_date ) 
+  scope :start_date, -> start_dat, end_dat {
+    if start_dat.present? || end_dat.present?
+      if start_dat.blank?
+        where("start_date <= ?", end_dat) 
+      elsif end_dat.blank?
+        where("start_date >= ?", start_dat)
+      elsif start_dat.present? && end_dat.present?
+        where("start_date >= ? AND start_date <= ?", start_dat, end_dat) 
       else
       end
     end
   }
+
+  def end_date_greater_than_start_date
+    if (self.start_date.present? && self.end_date.present?)
+      errors.add(:end_date, "End date must be greater than Start date") if start_date > end_date
+    end
+  end
   
 end

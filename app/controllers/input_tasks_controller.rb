@@ -18,7 +18,6 @@ class InputTasksController < ApplicationController
 
       @machineries = Machinery.select("uuid, name")
       @materials = Material.select("uuid, name")
-      # @equipments = Equipment.select("uuid, name")
 
     rescue Exception => e
       puts e
@@ -45,8 +44,91 @@ class InputTasksController < ApplicationController
       @machineries = Machinery.select("uuid, name")
       @materials = Material.select("uuid, name")
 
+        # Start Select Material 
+        if params[:materials].present?              
+          @material_ids = params[:materials]
+          @warehouses_of_material = params[:warehouses_of_material]
+          @qty_of_material = params[:material_qtys_of_material]
+          indexs = 0
+          puts "+++++++++++++++++++++++++++ material_ids ++++++++++++++++++++++++++++++"
+          puts @material_ids
 
-      if @input_task.save
+          @material_ids.split(",").each do |material_id|
+            unless material_id.empty?
+              puts material_id
+              puts "================= Input task UUID =============="
+              puts @input_task.uuid
+              puts "================= Warehouse_of_material '" + indexs.to_s + "'==========="
+              puts warehouse_of_material = @warehouses_of_material[indexs]
+              puts "================= Quantity_of_material '" + indexs.to_s + "'==========="
+              puts qty_of_material = @qty_of_material[indexs]
+              puts "============================================"
+              indexs += 1
+
+              if warehouse_of_material.present?
+                @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse_of_material, material_uuid: material_id)
+                puts "====================== Amount1 =========================="
+                puts total_in_stock = @warehouse_material_amount.amount
+
+                puts "============ Remain In Stock1 ============"
+                puts remain_in_stock = total_in_stock - qty_of_material.to_f
+                
+                if total_in_stock >= qty_of_material.to_f
+
+                  if @input_task.save
+
+                    InputUseMaterial.create(input_id: @input_task.uuid, material_id: material_id, warehouse_id: warehouse_of_material, material_amount: qty_of_material.to_f)
+                    @warehouse_material_amount.update_attributes!(amount: remain_in_stock)
+
+                  else
+                    flash[:notice] = "Input Task can't save"
+                    render 'new'
+                  end
+
+                
+                else
+                  flash[:notice] = "Suggested quantity exceeds the stock quantity"
+                  render 'new' 
+                end
+              else
+                flash[:notice] = "Make sure warehouse is selected!"
+                render 'new'
+              end
+  
+            end
+          end
+        else
+          flash[:notice] = "Material is required"
+          puts "No material_id"
+          render 'new'
+        end
+        #End Select Material
+
+        # Start Select Equipment
+        if params[:equipments].present?               
+          @equipment_ids = params[:equipments]
+          index_equipment = 0
+          puts "+++++++++++++++++++++++++++ equipment_ids ++++++++++++++++++++++++++++++"
+          puts @equipment_ids
+
+          @equipment_ids.split(",").each do |equipment_id|
+            unless equipment_id.empty?
+              puts equipment_id
+              puts "================= Input task UUID =============="
+              puts @input_task.uuid
+              puts "============================================"
+              index_equipment += 1
+
+                InputUseEquipment.create(input_id: @input_task.uuid, equipment_id: equipment_id)             
+               
+            end
+          end
+        else
+          puts "No equipment_id"
+          # render 'new'
+        end
+        #End Select Equipment
+
         # Start Select Machinery               
         @machinery_ids = params[:machineries]
         @warehouses_of_machinery = params[:warehouses_of_machinery]
@@ -79,10 +161,11 @@ class InputTasksController < ApplicationController
                 puts "========================================="
                 @machinery = Machinery.find_by_uuid(machinery_id)
                 
-                if total_in_stock >= qty.to_f               
+                if total_in_stock >= qty.to_f
+
                     @machinery.update_attributes!(availabe_date: input_task_end_date)
                     InputUseMachinery.create(input_id: @input_task.uuid, machinery_id: machinery_id, warehouse_id: warehouse, material_id: material, material_amount: qty.to_f)
-                    @warehouse_material_amount.update_attributes!(amount: remain_in_stock)
+                    @warehouse_material_amount.update_attributes!(amount: remain_in_stock)             
                 
                 else
                   flash[:notice] = "Suggested quantity exceeds the stock quantity"
@@ -102,88 +185,8 @@ class InputTasksController < ApplicationController
         end
         #End Select Machinery
 
-        if params[:materials].present?
-          # Start Select Material               
-          @material_ids = params[:materials]
-          @warehouses_of_material = params[:warehouses_of_material]
-          @qty_of_material = params[:material_qtys_of_material]
-          indexs = 0
-          puts "+++++++++++++++++++++++++++ material_ids ++++++++++++++++++++++++++++++"
-          puts @material_ids
-
-          @material_ids.split(",").each do |material_id|
-            unless material_id.empty?
-              puts material_id
-              puts "================= Input task UUID =============="
-              puts @input_task.uuid
-              puts "================= Warehouse_of_material '" + indexs.to_s + "'==========="
-              puts warehouse_of_material = @warehouses_of_material[indexs]
-              puts "================= Quantity_of_material '" + indexs.to_s + "'==========="
-              puts qty_of_material = @qty_of_material[indexs]
-              puts "============================================"
-              indexs += 1
-
-              if warehouse_of_material.present?
-                @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse_of_material, material_uuid: material_id)
-                puts "====================== Amount1 =========================="
-                puts total_in_stock = @warehouse_material_amount.amount
-
-                puts "============ Remain In Stock1 ============"
-                puts remain_in_stock = total_in_stock - qty_of_material.to_f
-                
-                if total_in_stock >= qty_of_material.to_f
-                    InputUseMaterial.create(input_id: @input_task.uuid, material_id: material_id, warehouse_id: warehouse_of_material, material_amount: qty_of_material.to_f)
-                    @warehouse_material_amount.update_attributes!(amount: remain_in_stock)
-                
-                else
-                  flash[:notice] = "Suggested quantity exceeds the stock quantity"
-                  render 'new' 
-                end
-              else
-                flash[:notice] = "Make sure warehouse is selected!"
-                render 'new'
-              end
-  
-            end
-          end
-          #End Select Material
-        else
-          flash[:notice] = "Material is required"
-          puts "No material_id"
-          render 'new'
-        end
-
-        if params[:equipments].present?
-          # Start Select Equipment               
-          @equipment_ids = params[:equipments]
-          index_equipment = 0
-          puts "+++++++++++++++++++++++++++ equipment_ids ++++++++++++++++++++++++++++++"
-          puts @equipment_ids
-
-          @equipment_ids.split(",").each do |equipment_id|
-            unless equipment_id.empty?
-              puts equipment_id
-              puts "================= Input task UUID =============="
-              puts @input_task.uuid
-              puts "============================================"
-              index_equipment += 1
-           
-              InputUseEquipment.create(input_id: @input_task.uuid, equipment_id: equipment_id)                 
-               
-            end
-          end
-          #End Select Equipment
-        else
-          puts "No equipment_id"
-          # render 'new'
-        end
-      
-        flash[:notice] = "Input Task saved successfully"
-        redirect_to input_tasks_path
-      else
-        flash[:notice] = "Input Task can't save"
-        render 'new'
-      end    
+      flash[:notice] = "Input Task saved successfully"
+      redirect_to input_tasks_path   
 
     rescue Exception => e
       puts e

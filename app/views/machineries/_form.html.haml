@@ -19,7 +19,7 @@
             = f.input :source, label: false, collection: ["Own Project", "Service Supply"], input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           
         .form-group
-          %label.col-xs-3 Planting Project
+          %label.col-xs-3 Planting Project *
           .col-xs-9
             = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           
