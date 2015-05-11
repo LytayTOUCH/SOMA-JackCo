@@ -215,8 +215,13 @@
         %ul.dropdown-menu{:role => "menu"}
           %li
             %a{:href => input_uses_path} Input Use Summary
-          %li
-            %a{:href => "#"} Output Summary
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Productivity
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Coconut", report_productivities_coconut_index_path, "active"
+              %li
+                = navbar_link "Jackfruit", report_productivities_jackfruit_index_path, "active"
           %li.divider
           %li
             %a{:href => "#"} Products Classification
