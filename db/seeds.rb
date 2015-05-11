@@ -411,20 +411,37 @@ end
 # ========== Phase ==========
 [
   {name: 'Phase 1: Nursery Seed', note: 'The first phase of planting', active: true},
-  {name: 'Phase 2: Plant Growing & Protection', note: 'The second phase of planting', active: true}
+  {name: 'Phase 2: Plant Growing & Protection', note: 'The second phase of planting', active: true},
+  {name: 'Phase 3: Harvesting', note: 'Harvesting note', active: true}
 ].each do |phase|
   Phase.create_with(note: phase[:note]).find_or_create_by(name: phase[:name])
 end
 
-# ========== Production Stage ==========
+# ========== Production Stage (Seed Amount) ==========
 phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 1: Nursery Seed')
-production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 1-2 Years')
+production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Seed Amount')
+phase.production_stages << production_stage
+ProductionStatus.create_with(name: 'New Planting', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')
+ProductionStatus.create_with(name: 'Seed Replace', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true).find_or_create_by(name: 'Seed Replace')
 
+# ========== Production Stage (Stage1: Age 1-2 Years) ==========
+phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 2: Plant Growing & Protection')
+production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 1-2 Years')
+phase.production_stages << production_stage
+ProductionStatus.create_with(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid, stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'Non-Fruit')
+
+production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: Age 3-4 Years')
+phase.production_stages << production_stage
+ProductionStatus.create(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true)
+ProductionStatus.create_with(name: 'Blossoming Tree', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'Blossoming Tree')
+
+# ========== Production Stage (Stage1: 5-15 Years) ==========
+phase = Phase.create_with(note: 'The first phase of planting', active: true).find_or_create_by(name: 'Phase 3: Harvesting')
+production_stage = ProductionStage.create_with(note: 'The first Stage of planting Coconut', active: true).find_or_create_by(name: 'Stage1: 5-15 Years')
 phase.production_stages << production_stage
 
-# ========== Production Status ==========
-ProductionStatus.create_with(name: 'New Planting', stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true).find_or_create_by(name: 'New Planting')
-ProductionStatus.create_with(name: 'Seed Replace', stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true).find_or_create_by(name: 'Seed Replace')
+ProductionStatus.create(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true)
+ProductionStatus.create(name: 'Blossoming Tree', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true)
 
 # ========== Plan Location Seed data ====
 # PlanFarm.create(farm_id: Farm.second.uuid, for_year: 2018)
@@ -482,3 +499,13 @@ ProductionStatus.create_with(name: 'Seed Replace', stage_id: production_stage.uu
 # area6.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
 
 # =========== End Mondolkiri test farm ==============
+
+ProductionClassification.create(name: "Coconut for Sale", planting_project_id: PlantingProject.first.uuid)
+ProductionClassification.create(name: "Coconut for Free", planting_project_id: PlantingProject.first.uuid)
+ProductionClassification.create(name: "Coconut for Seed", planting_project_id: PlantingProject.first.uuid)
+ProductionClassification.create(name: "Waste (Young and Ripe Fruit)", planting_project_id: PlantingProject.first.uuid)
+
+ProductionClassification.create(name: "Jackfruit for Sale", planting_project_id: PlantingProject.second.uuid)
+ProductionClassification.create(name: "Jackfruit for Free", planting_project_id: PlantingProject.second.uuid)
+ProductionClassification.create(name: "Jackfruit for Seed", planting_project_id: PlantingProject.second.uuid)
+ProductionClassification.create(name: "Waste (Young and Ripe Fruit)", planting_project_id: PlantingProject.second.uuid)

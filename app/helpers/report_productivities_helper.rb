@@ -1,0 +1,2 @@
+module ReportProductivitiesHelper
+end

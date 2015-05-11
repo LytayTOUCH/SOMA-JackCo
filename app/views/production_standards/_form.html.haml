@@ -1,0 +1,87 @@
+.container
+  .row.production-classification
+    = simple_form_for @production_standards, html: {class: 'form-horizontal'} do |f|
+      .row
+        .error-position
+          = render "error", :obj => @production_standards
+        .col-md-4
+          .form-group
+            %label.col-xs-4{style: 'padding-top: 5px'} Project Name
+            .col-xs-7
+              = f.input :planting_project_id, label: false, error: false, input_html: { class: "form-control planting_project_id" }, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, :prompt => 'Please select an item'
+        .col-md-2
+          .form-group
+            %label.col-xs-3{style: 'padding-top: 5px'} Year
+            .col-xs-9
+              = f.select(:for_year, 8.years.ago.year.. 8.years.from_now.year,  { error: false, include_blank: true }, { class: "form-control" })
+      %br
+      
+      .row
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} January
+            .col-xs-7
+              = f.input :jan, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} February
+            .col-xs-7
+              = f.input :feb, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} March
+            .col-xs-7
+              = f.input :mar, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} April
+            .col-xs-7
+              = f.input :apr, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} May
+            .col-xs-7
+              = f.input :may, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} June
+            .col-xs-7
+              = f.input :jun, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} July
+            .col-xs-7
+              = f.input :jul, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} Auguest
+            .col-xs-7
+              = f.input :aug, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} September
+            .col-xs-7
+              = f.input :sep, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} October
+            .col-xs-7
+              = f.input :oct, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} November
+            .col-xs-7
+              = f.input :nov, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+        .col-md-2
+          .form-group
+            %p.col-xs-5{style: 'padding-top: 5px'} December
+            .col-xs-7
+              = f.input :dec, as: :string, label: false, error: false, input_html: { class: "form-control", placeholder: 'Amount' }
+
+      %br
+      .row{style: "padding-left: 10px;"}
+        = render partial: 'form_button', locals: { f: f }
+        .p{style: 'padding-top: 10px;'}
+
+- content_for :javascript_body do
+  = javascript_include_tag "production_standards"

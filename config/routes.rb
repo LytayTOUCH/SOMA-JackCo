@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  resources :production_standards
+
+  resources :production_plans
+  get 'get_production_classification', to: 'production_plans#get_production_classification'
+
+  resources :production_plan_report
+  get 'get_production_plan_tree', to: 'production_plan_report#get_production_plan_tree'
+
+  resources :production_list
+
+  get 'report_productivities/coconut_index'
+  get 'report_productivities/jackfruit_index'
 
   get 'log_tracking/index'
   
@@ -184,7 +196,6 @@ Rails.application.routes.draw do
   get 'get_material_name', to: 'materials#get_material_name'
   
   get 'get_zones_by_farm', to: 'output_tasks#get_zones_by_farm'
-  get 'get_areas_by_zone', to: 'output_tasks#get_areas_by_zone'
   get 'get_blocks_by_area', to: 'output_tasks#get_blocks_by_area'
   get 'get_distributions_by_planting_project', to: 'output_tasks#get_distributions_by_planting_project'
   

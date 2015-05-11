@@ -1,0 +1,100 @@
+// Place all the styles related to the production_plan_report controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.first-col-table{
+  margin-left: 20px;
+  white-space: nowrap;
+  text-align: center;
+  // background-color: #8496b0 !important;
+}
+
+.other-col-table{
+  // padding: 0;
+  white-space: nowrap;
+  text-align: center;
+  // background-color: #8496b0 !important;
+}
+
+.td-center-n-color{
+  white-space: nowrap;
+  text-align: center;
+  // background-color: #8496b0 !important;
+}
+
+.td-value-table{
+  // padding: 0;
+  white-space: nowrap; 
+  text-align: center;
+}
+
+#table-container{
+  width: 1050px;
+}
+
+table.table-bordered.table-width{
+  width: 1050px;
+}
+
+#report{
+  margin-left: 30px;
+}
+
+#print-plan-report{
+  margin-left: 15px;
+}
+
+.production-classification-top{
+  margin-top: 30px !important;
+}
+
+.sign-area-space{
+  margin-bottom: 5px !important;
+}
+
+.align-left{
+  padding: 0 !important;
+}
+
+.display-on-print{
+  display: none;
+}
+
+@media print {
+  * { margin: 0 !important; padding: 0 !important; }
+
+  @page {
+    margin: 0;
+    size: A4 landscape;
+  }
+
+  .row div.col-lg-12 ol.breadcrumb{ display: none; }
+  footer{ display: none; }
+  #form_filter{ display: none; }
+  #print-plan-report{ display: none; }
+
+  .display-on-print{ display: block; }
+  
+  table.table-bordered.table-width{
+    width: 1050px;
+  }
+
+  #table-container{
+    width: 1050px;
+  }
+
+  .report-title{
+    position: absolute;
+    left: 70px;
+  }
+
+  #report{
+    position: absolute;
+    left: 70px;
+    width: 1050px;
+  }
+
+  div svg{
+    width: 100%;
+  }
+}
