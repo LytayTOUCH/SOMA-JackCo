@@ -1,0 +1,122 @@
+.row
+  %h1
+    = "Productivity Report - Coconut"
+  %hr
+  = render partial: 'report_filter', path: report_productivities_coconut_index_path
+  
+  - if !params[:filter].nil? && params[:filter][:farm_id]!="g_total"
+    %br
+    .row
+      .col-xs-12
+        %table{border: "1px", width: "100%", cellpadding: "10px"}
+          %tr
+            %th{rowspan: "3", style: "text-align:center"} Farm
+            %th{rowspan: "3", style: "text-align:center"} Zone
+            %th{rowspan: "3", style: "text-align:center"} Area
+            %th{colspan: "5", style: "text-align:center"} Total Production
+            %th{colspan: "6", style: "text-align:center"} Production Distribution
+          %tr
+            %th{colspan: "2", style: "text-align:center"} Young Fruit
+            %th{colspan: "2", style: "text-align:center"} Ripe Fruit
+            %th{rowspan: "2", style: "text-align:center"} Total
+            %th{rowspan: "2", style: "text-align:center"} To Finish goods Warehouse
+            %th{rowspan: "2", style: "text-align:center"} Free at Farm
+            %th{rowspan: "2", style: "text-align:center"} Spoiled Waste
+            %th{rowspan: "2", style: "text-align:center"} To Nursery Warehouse
+            %th{rowspan: "2", style: "text-align:center"} Total Distribution
+            %th{rowspan: "2", style: "text-align:center"} Loss
+          %tr
+            %th{style: "text-align:center"} Good
+            %th{style: "text-align:center"} Spoiled
+            %th{style: "text-align:center"} Good
+            %th{style: "text-align:center"} Spoiled
+
+          %tr
+            %td{rowspan: @farm.areas.count, style: "text-align:center"}= @farm.name
+            - @farm.zones.each_with_index do |zone, z_index|
+              - if z_index == 0 && zone.areas.count > 0
+                %td{rowspan: zone.areas.count, style: "text-align:center"}= zone.name
+                - zone.areas.each_with_index do |area, a_index|
+                  - if a_index == 0
+                    %td{style: "text-align:center"}= area.name
+                    %td -
+                    %td -
+                    %td -
+                    %td -
+                    %td -
+                    %td -
+                    %td -
+                    %td -
+                    %td -
+                    %td -
+                    %td -
+                  - else
+                    %tr
+                      %td{style: "text-align:center"}= area.name
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+              - elsif zone.areas.count > 0
+                %tr
+                  %td{rowspan: zone.areas.count, style: "text-align:center"}= zone.name
+                  - zone.areas.each_with_index do |area, a_index|
+                    - if a_index == 0
+                      %td{style: "text-align:center"}= area.name
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                      %td -
+                    - else
+                      %tr
+                        %td{style: "text-align:center"}= area.name
+                        %td -
+                        %td -
+                        %td -
+                        %td -
+                        %td -
+                        %td -
+                        %td -
+                        %td -
+                        %td -
+                        %td -
+                        %td -
+
+  - elsif !params[:filter].nil? && params[:filter][:farm_id]=="g_total"
+    %br
+    .row
+      .col-xs-12
+        %table{border: "1px", width: "100%", cellpadding: "10px"}
+          %tr
+            %th{rowspan: "3", style: "text-align:center"} Grand Total Production
+            %th{colspan: "5", style: "text-align:center"} Total Production
+            %th{colspan: "6", style: "text-align:center"} Production Distribution
+          %tr
+            %th{colspan: "2", style: "text-align:center"} Young Fruit
+            %th{colspan: "2", style: "text-align:center"} Ripe Fruit
+            %th{rowspan: "2", style: "text-align:center"} Total
+            %th{rowspan: "2", style: "text-align:center"} To Finish goods Warehouse
+            %th{rowspan: "2", style: "text-align:center"} Free at Farm
+            %th{rowspan: "2", style: "text-align:center"} Spoiled Waste
+            %th{rowspan: "2", style: "text-align:center"} To Nursery Warehouse
+            %th{rowspan: "2", style: "text-align:center"} Total Distribution
+            %th{rowspan: "2", style: "text-align:center"} Loss
+          %tr
+            %th{style: "text-align:center"} Good
+            %th{style: "text-align:center"} Spoiled
+            %th{style: "text-align:center"} Good
+            %th{style: "text-align:center"} Spoiled

@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   resources :production_list
 
+  get 'report_productivities/coconut_index'
+  get 'report_productivities/jackfruit_index'
+
   get 'log_tracking/index'
   
   resources :warehouse_material_amounts, only: [:index, :edit, :update]
@@ -193,7 +196,6 @@ Rails.application.routes.draw do
   get 'get_material_name', to: 'materials#get_material_name'
   
   get 'get_zones_by_farm', to: 'output_tasks#get_zones_by_farm'
-  get 'get_areas_by_zone', to: 'output_tasks#get_areas_by_zone'
   get 'get_blocks_by_area', to: 'output_tasks#get_blocks_by_area'
   get 'get_distributions_by_planting_project', to: 'output_tasks#get_distributions_by_planting_project'
   
