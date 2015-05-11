@@ -4,3 +4,16 @@
   height: 25px;
   display: inline;
 }
+
+.tab-location {
+  overflow: visible;
+}
+
+.col-md-1 h4 {
+  padding-top: 25px;
+}
+
+.error-locations{
+  width: 400px;
+  margin: 0 auto;
+}

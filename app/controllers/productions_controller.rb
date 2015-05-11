@@ -29,9 +29,11 @@ class ProductionsController < ApplicationController
         production_warehouses.each do |warehouse|
           WarehouseProductionAmount.create(warehouse_id: warehouse.uuid, production_id: @production.uuid, amount: 0)
         end 
+        create_log current_user.uuid, "Created New Production", @production
         flash[:notice] = "Production saved successfully"
         redirect_to productions_path
       else
+        flash[:notice] = "Production can't be saved"
         render 'new'
       end
     rescue Exception => e
@@ -48,9 +50,11 @@ class ProductionsController < ApplicationController
       @production = Production.find(params[:id])
 
       if @production.update_attributes(production_params)
+        create_log current_user.uuid, "Updated Production", @production
         flash[:notice] = "Production updated"
         redirect_to productions_path
       else
+        flash[:notice] = "Production can't be updated"
         render 'edit'
       end
     rescue Exception => e

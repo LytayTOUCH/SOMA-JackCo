@@ -24,10 +24,11 @@ class ImplementsController < ApplicationController
       @implement = Implement.new(implement_params)
 
       if @implement.save!
+        create_log current_user.uuid, "Created New Implement", @implement
         flash[:notice] = "Implement saved successfully"
         redirect_to :back
       else
-        flash[:notice] = "Implement can't save"
+        flash[:notice] = "Implement can't be saved"
         redirect_to :back
       end
     rescue Exception => e
@@ -50,10 +51,11 @@ class ImplementsController < ApplicationController
       @implement = Implement.find(params[:id])
 
       if @implement.update_attributes!(implement_params)
+        create_log current_user.uuid, "Updated Implement", @implement
         flash[:notice] = "Implement updated successfully"
         redirect_to implement_path
       else
-        flash[:notice] = "Implement category can't update"
+        flash[:notice] = "Implement can't be updated"
         redirect_to :back
       end
     rescue Exception => e

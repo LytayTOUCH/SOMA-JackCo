@@ -22,11 +22,10 @@ class SettingsController < ApplicationController
     @setting = Setting.find(params[:code])
 
     if @setting.update_attributes(setting_params)
-      
       if params[:code] == "item_per_page"
         session[:item_per_page] = @setting.valueInteger
       end
-      
+      create_log current_user.uuid, "Updated Setting", @setting
       flash[:notice] = "Setting updated"
       redirect_to settings_path
     else

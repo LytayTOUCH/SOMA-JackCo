@@ -1,6 +1,6 @@
 :plain
   $('.modal-backdrop').first().remove(); //remove backdrop from the loading box
-  $(".form-modal").html("#{escape_javascript(render 'form', block: @block, farm: @farm, planting_projects: @planting_projects, zones: @zones, areas: @areas)}");
+  $(".form-modal").html("#{escape_javascript(render 'blocks/forms/form', block: @block, farm: @farm, planting_projects: @planting_projects, zones: @zones, areas: @areas)}");
   $('.zone-options').change(function(params){
     if(params.target.value){
       $.ajax({
@@ -14,11 +14,8 @@
             $('.area-options').append('<option value="'+element.uuid+'" id = "area_id_'+index+'">'+element.name+'</option>');
           });
         },
-        error: function(data){
-          console.log(data);
-        }
+        error: function(data){}
       });
-      console.log(params.target.value);
     }
     else{
       $('.area-options').empty().append('<option value="">Select Area</option>');
@@ -34,8 +31,8 @@
 
     function getLatlong(polygon){
       var polygonPoints = [];
-      $.each(polygon.overlay.latLngs.j[0].j, function(key, latlng){
-        polygonPoints.push("["+latlng.k+","+latlng.D+"]");
+      $.each(polygon.overlay.getPaths().getArray()[0].j, function(key, latlng_point){
+        polygonPoints.push("["+latlng_point.A+","+latlng_point.F+"]");
       });
       $("#block_shape_lat_long").val("["+polygonPoints.toString()+"]");
       $("#block_location_lat_long").val(getCenter(polygon.overlay).toString().slice(1,-1));

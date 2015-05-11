@@ -3,4 +3,5 @@ class InputUseMachinery < ActiveRecord::Base
 	
 	belongs_to :machinery
   	belongs_to :input_task
+
 end

@@ -55,10 +55,11 @@ class PlansController < ApplicationController
       @plan = Plan.new(plan_params)
 
       if @plan.save!
+        create_log current_user.uuid, "Created New Plan", @plan
         flash[:notice] = "Plan saved successfully"
         redirect_to plans_path
       else
-        flash[:notice] = "Plan can't save"
+        flash[:notice] = "Plan can't be saved"
         redirect_to :back
       end
   end
@@ -73,10 +74,11 @@ class PlansController < ApplicationController
       @plan = Plan.find(params[:id])
 
       if @plan.update_attributes!(plan_params)
+        create_log current_user.uuid, "Updated Plan", @plan
         flash[:notice] = "Plan updated successfully"
         redirect_to plans_path
       else
-        flash[:notice] = "Plan can't update"
+        flash[:notice] = "Plan can't be updated"
         redirect_to :back
       end
     rescue Exception => e

@@ -1,0 +1,104 @@
+%h1= "Edit"
+%hr
+= simple_form_for @labor, html: {class: 'form-horizontal'} do |f|
+  .container
+    .row
+      .col-md-7
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_name'} Name
+          .col-xs-9
+            = f.input :name, label: false, error: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_position'} Position
+          .col-xs-9
+            = f.input :position_id, label: false, error: false, collection: Position.all.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_gender'} Gender
+          .col-xs-9
+            = f.input :gender, label: false, error: false, collection: ["M", "F"], input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+                
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_phone_number'} Phone Number
+          .col-xs-9
+            = f.input :phone, label: false, error: false, input_html: {class: "form-control"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_email'} Email
+          .col-xs-9
+            = f.input :email, label: false, error: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}, readonly: true
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_address'} Address
+          .col-xs-9
+            = f.input :address, label: false, error: false, input_html: {class: "form-control"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_manager'} Manager
+          .col-xs-9
+            = f.input :manager_uuid, label: false, error: false, collection: Position.find_by_name("Manager").labors.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_note'} Note
+          .col-xs-9
+            = f.input :note, label: false, error: false, input_html: {class: "form-control"}
+            
+        .form-group
+          %label.col-xs-3.control-label{for: 'labor_status'} Active
+          .col-xs-9
+            = f.input :active, label: false
+            
+        .form-group
+          .col-xs-12
+            .pull-right
+              = render partial: 'form_button', locals: { f: f }
+      .col-md-4
+        = render "error", :obj => @labor
+      .col-md-2
+  
+:javascript
+  $("#labor_project_tokens").select2({
+    width: 366,
+    multiple: true,
+    ajax: {
+      url: '/labors/projects.json',
+      dataType: 'json',
+      quietMillis: 100,
+      data: function (term) {
+        return { term: term };
+      },
+      results: function (data) {
+        var myResults = [];
+        $.each(data, function (index, item) {
+          myResults.push({
+            'id': item.id,
+            'text': item.text
+          });
+        });
+        return { results: myResults };
+      }
+    }
+  });
+
+  $("#labor_subordinate_uuid").select2({
+    width: 366,
+    ajax: {
+      url: '/labors/labors.json',
+      dataType: 'json',
+      quietMillis: 100,
+      data: function (term) {
+        return { term: term };
+      },
+      results: function (data) {
+        var myResults = [];
+        $.each(data, function (index, item) {
+          myResults.push({
+            'id': item.id,
+            'text': item.text
+          });
+        });
+        return { results: myResults };
+      }
+    }
+  });

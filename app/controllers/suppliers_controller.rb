@@ -30,6 +30,7 @@ class SuppliersController < ApplicationController
       @supplier = Supplier.new(supplier_params)
 
       if @supplier.save!
+        create_log current_user.uuid, "Created New Supplier", @supplier
         flash[:notice] = "Supplier saved successfully"
         redirect_to :back
       else
@@ -55,6 +56,15 @@ class SuppliersController < ApplicationController
       @supplier = Supplier.find(params[:id])
 
       if @supplier.update_attributes!(supplier_params)
+        if params[:supplier][:active] == "false"
+          create_log current_user.uuid, "Deactivated Supplier", @supplier
+        elsif params[:supplier][:active] == "true"
+          create_log current_user.uuid, "Activated Supplier", @supplier
+        end
+
+        if params[:supplier][:active] == "1" or params[:supplier][:status] == "0"
+          create_log current_user.uuid, "Updated Supplier", @supplier  
+        end
         flash[:notice] = "Supplier updated successfully"
         redirect_to suppliers_path
       else

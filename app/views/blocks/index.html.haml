@@ -11,7 +11,7 @@
       %span.btn-output-task-status
         = render 'blocks/buttons/output_tasks'
       %span.btn-output-task-status
-        = render 'blocks/buttons/add_zone'
+        = render 'blocks/buttons/add_zone', farm: @farm
       %span.btn-output-task-status
         = render 'blocks/buttons/add_area'
 
@@ -100,5 +100,5 @@
       $('div.weather-temp').append("<div style='margin: -10px 0px -15px 0px;'>"+data.main.temp+" <sup>o</sup>C"+icon+"</div><div>"+description+"</div><div>Humidity: "+data.main.humidity+" %</div><div>Winds: "+data.wind.speed+" m/s</div><div>Pressure: "+data.main.pressure+" hPa</div>");
     }
   });
-= render "blocks_board", blocks: @blocks
+= render "blocks/forms/blocks_board", blocks: @blocks
 .form-modal

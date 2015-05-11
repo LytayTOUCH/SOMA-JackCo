@@ -22,6 +22,7 @@ class StockInsController < ApplicationController
       @stock_in = StockIn.new(stock_in_params)
 
       if @stock_in.save
+        create_log current_user.uuid, "Created New Stock In", @stock_in
         @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: @stock_in.warehouse.uuid, material_uuid: @stock_in.material.uuid)
 
         stock_in_amount = @stock_in.amount
@@ -32,6 +33,7 @@ class StockInsController < ApplicationController
         flash[:notice] = "Stock In saved successfully"
         redirect_to stock_ins_path
       else
+        flash[:notice] = "Stock In can't be saved."
         render 'new'
       end
     rescue Exception => e

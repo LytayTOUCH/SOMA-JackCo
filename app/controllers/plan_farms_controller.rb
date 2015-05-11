@@ -14,6 +14,8 @@ class PlanFarmsController < ApplicationController
     @locations = PlanFarm.new(location_params)
 
     if @locations.save
+      create_log current_user.uuid, "Created New Plan Farm", @locations
+      flash[:notice] = "Plan Form saved successfully"
       redirect_to plan_farms_path
     else
       render 'new'
@@ -28,10 +30,19 @@ class PlanFarmsController < ApplicationController
     @locations = PlanFarm.find(params[:id])
 
     if @locations.update_attributes(location_params)
+      if params[:farm][:status] == "false"
+          create_log current_user.uuid, "Deactivated Plan Farm", @farm
+      elsif params[:farm][:status] == "true"
+        create_log current_user.uuid, "Activated Plan Farm", @farm
+      end
+
+      if params[:farm][:status] == "1" or params[:farm][:status] == "0"
+        create_log current_user.uuid, "Updated Plan Farm", @farm  
+      end 
       flash[:notice] = "Plan farm updated successfully"
       redirect_to plan_farms_path
     else
-      flash[:notice] = "Plan farm can't update"
+      flash[:notice] = "Plan farm can't be updated"
       render 'edit'
     end
   end

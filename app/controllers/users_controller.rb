@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    create_log current_user.uuid, "Create New User", @user
     
     if @user.save
       @labor = Labor.find_by_uuid(@user.labor_id)
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
 
   def update_profile
     @user_account = User.find(params[:id])
+    create_log current_user.uuid, "Updated User Profile", @user_account
 
     if @user_account.update_attributes(account_update_params)
       flash[:notice] = "User updated"
@@ -57,8 +59,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    
+  
     if @user.update_attributes(user_params)
+      if params[:user][:active] == "false"
+          create_log current_user.uuid, "Deactivated User", @user
+      elsif params[:user][:active] == "true"
+        create_log current_user.uuid, "Activated User", @user
+      end
+
+      if params[:user][:active] == "1" or params[:user][:status] == "0"
+        create_log current_user.uuid, "Updated User", @user  
+      end
       flash[:notice] = "User updated"
       redirect_to users_path
     else

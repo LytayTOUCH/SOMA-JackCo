@@ -49,10 +49,11 @@ class ActivitiesController < ApplicationController
 
       respond_to do |format|
         if @activity.save!
+          create_log current_user.uuid, "Created New Activity", @activity
           format.html { redirect_to calendars_path, :notice => 'Activity was successfully created.' }
           format.json { render :json => @activity, :status => :created, :location => @activity }
         else
-          flash[:notice] = "Activity type can't save"
+          flash[:notice] = "Activity type can't be saved"
           format.html { render action: "new" }
           format.json { render json: @activity.errors, status: :unprocessable_entity }
         end
@@ -74,6 +75,7 @@ class ActivitiesController < ApplicationController
 
       respond_to do |format|
         if @activity.update_attributes!(activity_params)
+          create_log current_user.uuid, "Updated Activity", @activity
           format.html { redirect_to calendars_path, :notice => 'Activity was successfully edited.' }
           format.json { render json: @activity, status: :created, location: @activity }
         else
@@ -93,6 +95,8 @@ class ActivitiesController < ApplicationController
     puts "======================================"
     puts URI(request.referer).path.split('/')[1]
     puts "======================================"
+
+    create_log current_user.uuid, "Deleted Activity", @activity
 
     respond_to do |format|
       format.html { redirect_to calendars_path, :notice => 'Activity was successfully deleted.' }

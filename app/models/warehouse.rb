@@ -1,10 +1,10 @@
 class Warehouse < ActiveRecord::Base
   include UuidHelper
   
-  validates :name, length: { maximum: 50 }, presence: true
-  validates :warehouse_type_uuid, length: {maximum: 36}, presence: true
-  validates :address, presence: true
-  
+  validates :name, length: { maximum: 50 }, :presence => { message: "Warehouse Name can't be blank." }
+  validates :warehouse_type_uuid, length: {maximum: 36}, :presence => { message: "Warehouse Type can't be blank." }
+  validates :address, :presence => { message: "Address can't be blank." }
+
   belongs_to :warehouse_type, foreign_key: :warehouse_type_uuid
 
   has_many :warehouse_material_amounts, foreign_key: :warehouse_uuid

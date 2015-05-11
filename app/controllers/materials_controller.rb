@@ -28,12 +28,14 @@ class MaterialsController < ApplicationController
       material_warehouses = Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_id, fertilizer_id, project_id)
 
       if @material.save
+        create_log current_user.uuid, "Created New Material", @material
         material_warehouses.each do |warehouse|
           WarehouseMaterialAmount.create(warehouse_uuid: warehouse.uuid,  material_uuid: @material.uuid, amount: 0, returnable: false)
         end
         flash[:notice] = "Material saved successfully"
         redirect_to materials_path
       else
+        flash[:notice] = "Material can't be saved"
         render 'new'
       end
     rescue Exception => e
@@ -57,9 +59,11 @@ class MaterialsController < ApplicationController
       @material = Material.find(params[:id])
 
       if @material.update_attributes(material_params)
+        create_log current_user.uuid, "Updated Material", @material
         flash[:notice] = "Material updated successfully"
         redirect_to materials_path
       else
+        flash[:notice] = "Material can't be updated."
         render 'edit'
       end
     rescue Exception => e
