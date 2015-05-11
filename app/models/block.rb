@@ -14,5 +14,4 @@ class Block < ActiveRecord::Base
   validates :tree_amount, :presence => { message: "Tree Quantity is required" }
   validates :location_lat_long, :presence => { message: "Location - Lat, long is required" }
   scope :farm_id, -> uuid_f { where(:farm_id => uuid_f) }
-  
 end

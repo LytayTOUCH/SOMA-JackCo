@@ -3,4 +3,5 @@
     $(".msg-#{key}").addClass("alert custom-alert-msg").html("#{key.to_s.camelize} #{msg[0]}");
 - else
   $('#myModalAdd').modal('hide');
-  $('.blocks-board').append("#{escape_javascript(render 'block_board', block: @block)}");
+  $('.no-block').remove();
+  $('.blocks-board').append("#{escape_javascript(render 'blocks/forms/block_board', block: @block)}");

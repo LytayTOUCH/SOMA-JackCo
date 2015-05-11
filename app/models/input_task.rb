@@ -40,5 +40,5 @@ class InputTask < ActiveRecord::Base
   		end
   	end
 	}
-  
+
 end

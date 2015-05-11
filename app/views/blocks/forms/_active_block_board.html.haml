@@ -2,10 +2,12 @@
   .box-farm-info
     .page-header.custom-page-header
       %h4.custom-h4
-        = link_to block.name, {:action=>"show", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, :class => "text-color-green"
-        .pull-right
-          = link_to raw("<div class='fa fa-pencil'></div>"), {:action=>"edit", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, remote:true, :class => "icon-orangish btn-edit"
-          = link_to raw("<div class='fa fa-ban'></div>"), {:action=>"destroy", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, remote:true, method: :delete, :class => "icon-red", data: { confirm: 'Are you sure to deactive this?', ok: 'Deactive', cancel: 'Back'}
+        / = link_to block.name, {:action=>"show", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, :class => "text-color-green"
+        .text-color-green
+          #{block.name}
+          .pull-right
+            = link_to raw("<div class='fa fa-pencil'></div>"), {:action=>"edit", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, remote:true, :class => "icon-orangish btn-edit"
+            = link_to raw("<div class='fa fa-ban'></div>"), {:action=>"destroy", :controller=>"blocks", :farm_id=>"#{block.farm_id}", :id=>"#{block.uuid}"}, remote:true, method: :delete, :class => "icon-red", data: { confirm: 'Are you sure to deactive this?', ok: 'Deactive', cancel: 'Back'}
     .row
       .col-lg-12.farm-info
         %div
@@ -19,7 +21,7 @@
           - elsif block.planting_project.name.downcase.eql? 'lemon'
             %span.label.custom-label-light-green #{'Lemon'}
         %div Surface: #{block.surface}
-        %div Area: #{block.area.name}, Zone: #{block.area.zone.name}
+        %div Area: #{block.area.blank? ? 'N/A, Zone: N/A' : block.area.name+', Zone: '+block.area.zone.name}
         %div Tree Amount: #{block.tree_amount}
         %div Fruitful Tree Amount: #{block.fruitful_tree}
         %div

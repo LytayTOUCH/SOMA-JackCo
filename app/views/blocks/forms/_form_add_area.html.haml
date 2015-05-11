@@ -1,0 +1,44 @@
+#myModalAddArea.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "data-backdrop"=>"static"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title Area List
+      .modal-body
+        .row
+          .col-lg-6
+            %h4 Add Area Detail
+            = form_for [:farm, area], remote: true, :url => {:controller => 'blocks', :action => 'create_area'}, html: {role: :form, 'data-model' => 'farm', :class => "form-horizontal"} do |f|
+              .col-xs-12
+                .form-group
+                  .col-sm-3.control-label
+                    = f.label :zone
+                  .col-sm-9
+                    %select.zone-options.form-control{name: "zone_id"}
+                      %option{:value => ""} Select Zone
+                      - zones.each do |zone|
+                        %option{:value => "#{zone.uuid}"} #{zone.name}
+                    .msg-zone_id.alert-danger{:role => "alert"}
+
+              .col-xs-12
+                .form-group
+                  .col-sm-3.control-label
+                    = f.label :name
+                  .col-sm-9
+                    = f.text_field :name, class: 'form-control', placeholder: 'Area Name'
+                    .msg-name.alert-danger{:role => "alert"}
+              .form-group
+                .col-xs-12
+                  .modal-footer.custom-modal-footer
+                    %button.btn.btn-default.btn-cancel{"data-dismiss" => "modal", :type => "button"} Cancel
+                    = f.submit :class => "btn btn-primary btn-create-area"
+          .col-lg-6
+            .col-xs-12
+              %h4 Area List
+              %table.table
+                - if areas.blank?
+                  %tbody.area-data
+                - else
+                  - areas.each do |each_area|
+                    = render 'blocks/buttons/delete_area_link', local: each_area

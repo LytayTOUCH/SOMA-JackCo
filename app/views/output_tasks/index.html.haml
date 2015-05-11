@@ -1,14 +1,8 @@
 .row
-  %h3
+  %h1
     = "Output Task"
     .pull-right
       - if can? :create, OutputTask
         = link_to "New Output Task", new_output_task_path, class: "btn btn-primary"
   %hr
-  = render partial: 'form_search'
-  %hr
   = render partial: 'list'
- 
-- content_for :javascript_head do
-  = javascript_include_tag "output_tasks"  
-    

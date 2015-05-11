@@ -1,50 +1,75 @@
-%h3 InputTask Information
-%div
-  %table.table
-    %tr.header
-      %th Fields
-      %th Information
-    %tr
-      %th Start date
-      %td= @output_task.start_date.to_s
-    %tr
-      %th End date
-      %td= @output_task.end_date.to_s
-    %tr
-      %th Task
-      %td= @output_task.name
-    %tr
-      %th Block Name
-      %td= @output_task.block.name
-    %tr
-      %th Planting Project
-      %td= @output_task.planting_project.name
-    %tr
-      %th Tree amount
-      %td= @output_task.tree_amount
-    %tr
-      %th Labor name
-      %td= @output_task.labor.name
-    %tr
-      %th Reference Number
-      %td= @output_task.reference_number
-    %tr
-      %th Total Output
-      %td= @output_task.output_amount
-    %tr
-      %th Finish Production
-      %td= @finish_production.planting_project.name + ", Quantity = " + @output_task.finish_amount.to_s
-    %tr
-      %th Nursery Production
-      %td= @nursery_production.planting_project.name + ", Quantity = " + @output_task.nursery_amount.to_s
-    %tr
-      %th Spoil Quantity
-      %td= @output_task.spoiled_amount
-    %tr
-      %th Spoiled Note
-      %td= @output_task.spoiled_note     
-    %tr
-      %th Note
-      %td= @output_task.note   
+.row
+  %h1 Output Task Information
+  %hr
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Start Date
+    .custom-value.col-xs-8= @output_task.start_date.to_s
+  .row
+    .col-xs-1  
+    %span.custom-label.col-xs-2 End date
+    .custom-value.col-xs-8= @output_task.end_date.to_s
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Task
+    .custom-value.col-xs-8= @output_task.name
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Block Name
+    .custom-value.col-xs-8= @output_task.block.name
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Planting Project
+    .custom-value.col-xs-8= @output_task.planting_project.name
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Tree amount
+    .custom-value.col-xs-8= @output_task.tree_amount
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Labor name
+    .custom-value.col-xs-8= @output_task.labor.name
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Reference Number
+    .custom-value.col-xs-8= @output_task.reference_number
+  .row
+    .col-xs-1
+    %span.custom-label.col-xs-2 Note
+    .custom-value.col-xs-8= @output_task.note=""?"...":@output_task.note
+  %br
+  %h3
+    = "Distribution - " + @output_task.planting_project.name
+  %hr
+  - @temp = ""
+  - @output_task.output_distributions.each do |od|
+    - if @temp != od.distribution.label
+      .row
+        .col-xs-1
+        %span.custom-label.col-xs-2= od.distribution.label
+        .custom-value.col-xs-4
+          = od.amount.to_s + " ( " + od.unit_of_measurement.name + " )"
+    - else
+      .row
+        .col-xs-1
+        .col-xs-2
+        .custom-value.col-xs-4
+          = od.amount.to_s + " ( " + od.unit_of_measurement.name + " )"
+    - @temp = od.distribution.label
+    
+  .row{:style => "padding-top:20px;"}
+    .col-xs-12
+      .pull-right
+        = link_to "Cancel", :back, class: "btn btn-default"
 
-= link_to "Cancel", :back, class: "btn btn-default"
+:css
+  .custom-value {
+    border-bottom: 1px solid black;
+    background-color: #f0f0f0;
+    padding-top: 15px;
+  }
+  .custom-label {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    padding-top: 15px;
+  }

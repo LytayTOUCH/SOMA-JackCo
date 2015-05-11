@@ -9,4 +9,4 @@ for (each_block of blocks) {
 each_block.setMap(null)
 }
 infobox.close();
-$('#inactive-blocks').append("#{escape_javascript(render 'blocks_board', blocks: @inactive_blocks)}");
+$('#inactive-blocks').append("#{escape_javascript(render 'blocks/forms/blocks_board', blocks: @inactive_blocks)}");

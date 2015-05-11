@@ -1,0 +1,10 @@
+:plain
+$('.modal-backdrop').first().remove(); //remove backdrop from the loading box
+$(".form-modal").html("#{escape_javascript(render 'blocks/forms/form_add_zone')}");
+$('#myModalAddArea').modal('show');
+$('#myModalAddArea').on('shown.bs.modal', function () {
+
+});
+$('#myModalAddArea').on('hidden.bs.modal', function () {
+
+});
