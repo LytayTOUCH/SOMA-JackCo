@@ -8,7 +8,7 @@ class Ability
       can :manage, :all
     else
       # =================== Manager =======================
-      can :read, [Labor, Position, PlantingProject, MachineryType, Machinery, EquipmentType, Equipment, ProductionAdjustment, WarehouseProductionAmount, StockIn, WarehouseItemTransaction] if user.user_group.name == "Manager"
+      can :read, [Labor, Position, PlantingProject, MachineryType, Machinery, EquipmentType, Equipment, ProductionAdjustment, WarehouseProductionAmount, StockIn, WarehouseItemTransaction, InputTask] if user.user_group.name == "Manager"
       can :manage, [Warehouse, Material, WarehouseMaterialReceived] if user.user_group.name == "Manager"
 
 
