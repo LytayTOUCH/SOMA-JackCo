@@ -1,10 +1,10 @@
 class InputUsesController < ApplicationController
-	has_scope :start_date, :using => [:started_at, :ended_at] , :type => :hash
+  has_scope :start_date, :using => [:started_at, :ended_at] , :type => :hash
 
   def index
-  	@input_tasks = apply_scopes(InputTask).all
+    @input_tasks = apply_scopes(InputTask).all
 
-  	@material_category = MaterialCategory.all
+    @material_category = MaterialCategory.all
 
     @blocks = Block.group(:area)
 
@@ -13,7 +13,7 @@ class InputUsesController < ApplicationController
   def downloadpdf
     @input_tasks = apply_scopes(InputTask).all
 
-  	@material_category = MaterialCategory.all
+    @material_category = MaterialCategory.all
 
     # Load the html to convert to PDF
     html = render_to_string(:layout => false , :action => "downloadpdf", :formats => :html)

@@ -7,7 +7,7 @@
       %span.icon-bar
     = link_to dashboards_path, method: :put, :class => "navbar-brand" do
       %i.fa.fa-dashboard.fa-lg.icon-yellowish
-      Agriculture System
+      SOMA
   #navbar.navbar-collapse.collapse
     %ul.nav.navbar-nav
 
@@ -181,32 +181,22 @@
               = link_to 'All Farms', farms_path
           %li.divider
           = render "farm_names_navigator"
-      /%li.dropdown
-      /  %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-      /    %i.fa.fa-area-chart.fa-lg.icon-greenish
-      /    Plans
-      /    %span.caret
-      /  %ul.dropdown-menu{:role => "menu"}
-      /    %li
-      /      %a{:href => "#"} Labors
-      /    %li
-      /      %a{:href => "#"} Application
-      /    %li
-      /      %a{:href => "#"} Phase
-      /    %li
-      /      %a{:href => "#"} Plant Types
-      /   %li
-      /      %a{:href => "#"} Production Stage
-      /    %li.divider
-      /    %li.dropdown-header.dropdown-header-custom-font.bg-color-red.text-color-white Material
-      /    %li
-      /      %a{:href => "#"} Fertilizer
-      /    %li
-      /      %a{:href => "#"} Pesticide
-      /    %li
-      /      %a{:href => "#"} Machinery
-      /    %li
-      /      %a{:href => "#"} Hand Tools
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-area-chart.fa-lg.icon-greenish
+          Plans
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            %a{:href => plan_farms_path} Location Plan
+          %li
+            %a{:href => production_plans_path} Production Plan
+          %li
+            %a{:href => production_plan_report_index_path} Production Plan Report
+          %li
+            %a{:href => production_list_index_path} Location Plan Report
+          %li
+            %a{:href => production_standards_path} Production Standard
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %i.fa.fa-bar-chart-o.fa-lg.icon-greenish

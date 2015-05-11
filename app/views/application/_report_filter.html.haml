@@ -1,0 +1,35 @@
+.row{:style => "background-color: #ccc;padding-top: 10px;padding-bottom: 10px;"}
+  .col-xs-5
+    .btn-group{"data-toggle" => "buttons"}
+      %label.btn.btn-primary.active
+        %input#option1{:autocomplete => "off", :checked => "", :name => "filter[today]", :type => "radio"}
+          Today
+      %label.btn.btn-primary
+        %input#option2{:autocomplete => "off", :name => "filter[week]", :type => "radio"}
+          This Week
+      %label.btn.btn-primary
+        %input#option3{:autocomplete => "off", :name => "filter[month]", :type => "radio"}
+          This Month
+      %label.btn.btn-primary
+        %input#option4{:autocomplete => "off", :name => "filter[year]", :type => "radio"}
+          This Year
+      %label.btn.btn-primary
+        %input#option5{:autocomplete => "off", :name => "filter[custom]", :type => "radio"}
+          Custom Period
+  .col-xs-2
+    %input#filter_start_date.form-control.date_pick{"data-date-format" => "YYYY-MM-DD", :name => "filter[start_date]", :placeholder => "Year-Month-Day", :type => "text"}/
+  .col-xs-2
+    %input#filter_end_date.form-control.date_pick{"data-date-format" => "YYYY-MM-DD", :name => "filter[end_date]", :placeholder => "Year-Month-Day", :type => "text"}/
+  .col-xs-2
+    %select#filter_farm_id.select.required.form-control{:name => "filter[farm_id]"}
+      %option{:value => ""}
+      %option{:value => "g_total"} GRAND TOTAL
+      - Farm.all.each do |farm|
+        %option{:value => farm.uuid}= farm.name
+  .col-xs-1
+    %a.btn.btn-primary{:onclick => "javascript:location.reload();", :style => "width:100%;"} OK
+
+:javascript
+  $(document).ready(function() {
+    $('.date_pick').datetimepicker({});
+  });

@@ -1,0 +1,40 @@
+:plain
+  $('.modal-backdrop').first().remove(); //remove backdrop from the loading box
+  $('.form-modal').html("#{escape_javascript(render 'blocks/forms/form_add_area', area: @area, areas: @areas, zones: @zones)}");
+  $('.btn-create-area').attr('disabled','disabled');
+  $('.zone-options').change(function(params){
+    if(params.target.value){
+      $('.btn-create-area').removeAttr('disabled');
+      $.ajax({
+        url: '/get_areas_by_zone',
+        data:{zone_id: params.target.value},
+        beforeSend: function(){
+          $('.area-data').empty();
+          $('input#area_name').val('');
+        },
+        success: function(data){
+          $.each(data, function(index, element){
+            $('.area-data').append('<tr id="area_id_'+element.uuid+'"><td>'+element.name+'</td><td><a class="btn btn-xs btn-danger" href="#" id="'+element.uuid+'" title="Remove"><i class="fa fa-times"></i></a></td></tr>');
+            $('a#'+element.uuid).click(function(params){
+              $.ajax({
+                url: 'area/'+params.currentTarget.id,
+                type: 'delete'
+              });
+            });
+          });
+        }
+      });
+    }
+    else{
+      $('.btn-create-area').attr('disabled','disabled');
+      $('.area-data').empty();
+      $('input#area_name').val('');
+    }
+  });
+  $('#myModalAddArea').modal('show');
+  $('#myModalAddArea').on('shown.bs.modal', function () {
+
+  });
+  $('#myModalAddArea').on('hidden.bs.modal', function () {
+
+  });
