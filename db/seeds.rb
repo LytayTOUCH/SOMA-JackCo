@@ -511,23 +511,23 @@ ProductionClassification.create(name: "Jackfruit for Seed", planting_project_id:
 ProductionClassification.create(name: "Waste (Young and Ripe Fruit)", planting_project_id: PlantingProject.second.uuid)
 
 # ========== Input Task =============
-Farm.fourth.zones.each do |zone|
-  zone.areas.each do |area|
-    area.blocks.each_with_index do |b, i|
-      @input_task = InputTask.create(name: "Task #{i}", start_date: 1.month.ago, end_date: Date.today, 
-        block_id: b.uuid, tree_amount: 1, labor_id: User.first, reference_number: "0001", 
-        created_by: "Me", planting_project_id: PlantingProject.first, 
-        farm_id: Farm.second.uuid, zone_id: zone.uuid, area_id: area.uuid)
+# Farm.fourth.zones.each do |zone|
+#   zone.areas.each do |area|
+#     area.blocks.each_with_index do |b, i|
+#       @input_task = InputTask.create(name: "Task #{i}", start_date: 1.month.ago, end_date: Date.today, 
+#         block_id: b.uuid, tree_amount: 1, labor_id: User.first, reference_number: "0001", 
+#         created_by: "Me", planting_project_id: PlantingProject.first, 
+#         farm_id: Farm.second.uuid, zone_id: zone.uuid, area_id: area.uuid)
 
-      InputUseMaterial.create(input_id: @input_task.uuid, material_id: Material.first.uuid, 
-        warehouse_id: Warehouse.first.uuid, material_amount: 10)
-    end
-  end
-end
+#       InputUseMaterial.create(input_id: @input_task.uuid, material_id: Material.first.uuid, 
+#         warehouse_id: Warehouse.first.uuid, material_amount: 10)
+#     end
+#   end
+# end
 
-Machinery.create(name: "Tractor A", machinery_type_id: MachineryType.second.uuid, source: "Own Project",
-                planting_project_id: PlantingProject.first.uuid)
+# Machinery.create(name: "Tractor A", machinery_type_id: MachineryType.second.uuid, source: "Own Project",
+#                 planting_project_id: PlantingProject.first.uuid)
 
-InputUseMachinery.create(input_id: InputTask.first.uuid, machinery_id: Machinery.first.uuid,
-                          warehouse_id: Warehouse.first.uuid, material_id: Material.first.uuid,
-                          material_amount: 20)
+# InputUseMachinery.create(input_id: InputTask.first.uuid, machinery_id: Machinery.first.uuid,
+#                           warehouse_id: Warehouse.first.uuid, material_id: Material.first.uuid,
+#                           material_amount: 20)
