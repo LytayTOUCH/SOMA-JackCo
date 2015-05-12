@@ -194,7 +194,8 @@
           %li
             %a{:href => production_plan_report_index_path} Production Plan Report
           %li
-            %a{:href => production_list_index_path} Location Plan Report
+            - if can? :index, :production_list
+              %a{:href => production_list_index_path} Location Plan Report
           %li
             %a{:href => production_standards_path} Production Standard
       %li.dropdown
