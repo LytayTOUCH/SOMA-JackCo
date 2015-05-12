@@ -1,99 +1,47 @@
-%h2
-  = "Input-Use Report"
+%h1 Input Use Report
+%h1.filter-bar-input-use
+  = render partial: "report_filter", path: input_uses_path
 
-%hr
-  .row
-    = form_tag input_uses_path, :class => 'form-inline', :role => 'form', :method => 'get' do
-      .form-group
-        .col-xs-5
-          .input-group
-            .input-group-addon= "Start Date"
-            - @remember_start_date= params[:start_date]["started_at"] if params[:start_date].present?
-            = text_field_tag "start_date[started_at]", @remember_start_date, :class => "form-control date_pick", :type => "text", data: { :date_format => 'YYYY-MM-DD' }, :placeholder => "Year-Month-Date"
-        .col-xs-5
-          .input-group
-            .input-group-addon= "End Date"
-            - @remember_end_date= params[:start_date]["ended_at"] if params[:start_date].present?
-            = text_field_tag "start_date[ended_at]", @remember_end_date, :class => "form-control date_pick", :type => "text", :data => {:date_format => "YYYY-MM-DD"}, :placeholder => "Year-Month-Date"
-        .col-xs-1
-          = submit_tag 'Filter', :class => 'btn btn-success', :name => nil
-
-
-- if params[:start_date].present?
-  .row
-    #print_report{style: "margin-left: -20px; margin-top: 10px;"}
-
-  .row#report
-    #content
-    .form-group{style: "margin-top: 20px;"}
-      .col-xs-12
-        %table.list_data_table
-          %thead
-            %tr
-              %th= "Material Name"
-              %th= "Material Category"
-              - @blocks.each do |block|
-                %th.col-md-1= block.area
-              / %th= "Total"
-          %tbody
-            - @input_tasks.joins(:material).order("material_cate_uuid").each do |input_task|
-              %tr
-                %td= input_task.material.name
-                %td= input_task.material.material_category.name
-                - @blocks.each do |block| 
-                  - if block.area == input_task.block.area
-                    - @input_tasks.joins(:block).group("blocks.area").where("material_id =?", input_task.material_id).sum(:material_amount).each do |area|
-                      - if area[0] == block.area
-                        / %td=area[1].to_s + "(" + input_task.material.unit_of_measurement.name + ")" + area[0].to_s
-                        %td= @input_tasks.find_by("material_id =? and block_id =?", input_task.material_id, input_task.block_id).material_amount.to_s + "( " + input_task.material.unit_of_measurement.name + " )"
-                  - else
-                    %td
-                / %td
-                /   = @input_tasks.where("material_id =?", input_task.material_id).sum(:material_amount).to_s + "(" + input_task.material.unit_of_measurement.name + ")"
-
-  / = link_to "PDF",  downloadpdf_input_uses_path, title: "Download Report as PDF",class: "btn btn-primary", style: "float: right; margin-top: 10px;"
-
-
-- content_for :javascript_head do
-  = stylesheet_link_tag "print", :media => :print, "data-turbolinks-track" => true
-  = stylesheet_link_tag "print-preview", :media => :screen, "data-turbolinks-track" => true
+- if params[:filter].present?
+  .report-material
+    %table.table.table-bordered
+      %tr
+        %th{rowspan: params[:filter][:farm_id] == "g_total" ? 1 : 3, style: "vertical-align: middle; white-space: nowrap; text-align: center;"}
+          Materials
+        %th{rowspan: params[:filter][:farm_id] == "g_total" ? 1 : 3, style: "vertical-align: middle; white-space: nowrap; text-align: center;"}
+          UOM
+        %th{style: "white-space: nowrap; text-align: center;", colspan: params[:filter][:farm_id] == "g_total" ? PlanFarm.sum_area("All") : PlanFarm.sum_area(params[:filter][:farm_id])}
+          = params[:filter][:farm_id] == "g_total" ? "Total" : Farm.find(params[:filter][:farm_id]).name
+      - unless params[:filter][:farm_id] == "g_total"
+        %tr
+          - Farm.find(params[:filter][:farm_id]).zones.each_with_index do |zone, i|
+            %th{ style: "white-space: nowrap; text-align: center;", colspan: zone.areas.count }
+              = zone.name
+      - unless params[:filter][:farm_id] == "g_total"
+        %tr
+          - Farm.where(uuid: params[:filter][:farm_id]).each do |farm|
+            - farm.zones.each do |zone|
+              - zone.areas.each do |area|
+                %th{ style: "white-space: nowrap; text-align: center;" }
+                  = area.name
+      - MaterialCategory.all.each do |mc|
+        %tr
+          %th{colspan: params[:filter][:farm_id] == "g_total" ? PlanFarm.sum_area("All") : PlanFarm.sum_area(params[:filter][:farm_id]) + 2}= mc.name
+        - mc.materials.each do |m|
+          %tr
+            %td{class: "sub-category-space-left"}= m.name
+            %td{style: "white-space: nowrap; text-align: center;"}= UnitOfMeasurement.find(m.unit_measure_uuid).name
+            - unless params[:filter][:farm_id] == "g_total"
+              - Farm.where(uuid: params[:filter][:farm_id]).each do |farm|
+                - farm.zones.each do |zone|
+                  - zone.areas.each do |area|
+                    %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_by_area(params[:filter][:start_date], params[:filter][:end_date], area.uuid, m.uuid) + InputTask.get_total_amount_by_area_machinery(params[:filter][:start_date], params[:filter][:end_date], area.uuid, m.uuid)
+            - else
+              %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_group_by_material(params[:filter][:start_date], params[:filter][:end_date], m.uuid) + InputTask.get_total_amount_group_by_machinary(params[:filter][:start_date], params[:filter][:end_date], m.uuid)
+  %br
+  #print-input-use-report
+    %span.glyphicon.glyphicon-print{style: "color: #428bca;"}
+    %a#print_preview{style: "padding: 0"} Print
 
 - content_for :javascript_body do
   = javascript_include_tag "input_uses"
-
-:javascript
-  $('.date_pick').datetimepicker();
-
-  $('#data_table').DataTable({
-      "bSort": false,
-      "bFilter": false,
-      "bInfo": false,
-      "bPaginate": false
-    });
-
-  $(document).ready(function() {
-    $('.list_data_table').DataTable({
-      "bSort": false,
-      "bFilter": false,
-      "bInfo": false,
-      "bPaginate": false,
-      "columnDefs": [{ "visible": false, "targets": 1 }],
-      "order": [[ 1, 'asc' ]],
-      "displayLength": 25,
-      "drawCallback": function ( settings ) {
-            var api = this.api();
-            var rows = api.rows( {page:'current'} ).nodes();
-            var last=null;
- 
-            api.column(1, {page:'current'} ).data().each( function ( group, i ) {
-                if ( last !== group ) {
-                    $(rows).eq( i ).before(
-                        '<tr class="group"><td colspan="1">'+group+'</td></tr>'
-                    );
- 
-                    last = group;
-                }
-            } );
-        }
-    });
-  });

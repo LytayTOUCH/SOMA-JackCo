@@ -203,11 +203,7 @@ Rails.application.routes.draw do
   get 'find_amount', to: 'input_tasks#find_amount'
 
   # get 'input_uses/index'
-  resources :input_uses do
-    collection do
-      get 'downloadpdf'
-    end
-  end
+  resources :input_uses
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

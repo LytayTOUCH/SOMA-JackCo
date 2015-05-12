@@ -1,2 +1,5 @@
-$('#print_report').prepend('<a id="print_preview"><span class="glyphicon glyphicon-print"></span> Print this report</a>');
-$('a#print_preview').printPreview();
+$(document).ready(function() {
+  $('.date_pick').datetimepicker();
+
+  $('#print-input-use-report a#print_preview').click(function() { window.print(); });
+});

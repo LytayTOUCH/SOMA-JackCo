@@ -1,7 +1,8 @@
 class Farm < ActiveRecord::Base
   include UuidHelper
-  has_many :areas, through: :zones, foreign_key: :zone_id
+
   has_many :zones
+  has_many :areas, through: :zones, foreign_key: :zone_id
   has_many :blocks
   has_many :plan_farms
 

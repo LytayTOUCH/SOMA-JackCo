@@ -36,17 +36,12 @@ class InputTask < ActiveRecord::Base
   
   scope :planting_project_id, -> uuid_f { joins(:block).where("blocks.planting_project_id=?", uuid_f) }
 
-  scope :start_date, -> start_dat, end_dat {
-    if start_dat.present? || end_dat.present?
-      if start_dat.blank?
-        where("start_date <= ?", end_dat) 
-      elsif end_dat.blank?
-        where("start_date >= ?", start_dat)
-      elsif start_dat.present? && end_dat.present?
-        where("start_date >= ? AND start_date <= ?", start_dat, end_dat) 
-      else
-      end
-    end
+  scope :get_period_and_area, -> start_dat, end_dat, area_id {
+    where("start_date >= ? AND start_date <= ? AND area_id = ?", start_dat, end_dat, area_id)
+  }  
+
+  scope :get_total_amount, -> start_dat, end_dat {
+    where("start_date >= ? AND start_date <= ?", start_dat, end_dat)
   }
 
   def end_date_greater_than_start_date
@@ -55,4 +50,51 @@ class InputTask < ActiveRecord::Base
     end
   end
   
+  def self.get_total_amount_by_area(start_date, end_date, area_id, material_id)
+    begin
+      get_period_and_area(start_date, end_date, area_id).
+        joins(:input_use_materials).
+        where("input_use_materials.material_id = ?", material_id).
+        group(:area_id, :material_id).
+        sum(:material_amount).first[1]
+    rescue
+      0
+    end
+  end
+
+  def self.get_total_amount_by_area_machinery(start_date, end_date, area_id, material_id)
+    begin
+      get_period_and_area(start_date, end_date, area_id).
+        joins(:input_use_machineries).
+        where("input_use_machineries.material_id = ?", material_id).
+        group(:area_id, :material_id).
+        sum(:material_amount).first[1]
+    rescue
+      0
+    end
+  end
+
+  def self.get_total_amount_group_by_material(start_date, end_date, material_id)
+    begin
+      get_total_amount(start_date, end_date).
+        joins(:input_use_materials).
+        where("input_use_materials.material_id = ?", material_id).
+        group(:material_id).
+        sum(:material_amount).first[1]
+    rescue
+      0
+    end
+  end
+
+  def self.get_total_amount_group_by_machinary(start_date, end_date, material_id)
+    begin
+      get_total_amount(start_date, end_date).
+        joins(:input_use_machineries).
+        where("input_use_machineries.material_id = ?", material_id).
+        group(:material_id).
+        sum(:material_amount).first[1]
+    rescue
+      0
+    end
+  end
 end
