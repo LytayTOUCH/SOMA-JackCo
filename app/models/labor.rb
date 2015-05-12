@@ -1,10 +1,10 @@
 class Labor < ActiveRecord::Base
   include UuidHelper
 
-  validates :name, length: { maximum: 50 }, :presence => { message: "Labor Name can't be blank." }
-  validates :position_id, length: { maximum: 36 }, :presence => { message: "Positon can't be blank." }
-  validates :gender, :presence => { message: "Gender can't be blank." }
-  validates :email, :presence => { message: "Email can't be blank." }
+  validates :name, length: { maximum: 50 }, :presence => { message: "Labor Name is required." }
+  validates :position_id, length: { maximum: 36 }, :presence => { message: "Positon is required." }
+  validates :gender, :presence => { message: "Gender is required." }
+  validates :email, :presence => { message: "Email is required." }
 
   has_many :labors
   has_many :stock_ins

@@ -1,5 +1,6 @@
 class ProductionPlanReportController < ApplicationController
-
+  authorize_resource :class => false
+    
   def index
     @project_name = params[:id]
     @year = params[:year]

@@ -6,8 +6,8 @@ class Farm < ActiveRecord::Base
   has_many :blocks
   has_many :plan_farms
 
-  validates :name, presence: true
-  validates :location, presence: true
-  validates :latlong_farm, presence: true
+  validates :name, :presence => { message: "Farm name is required" }
+  validates :location, :presence => { message: "Location is required" }
+  validates :latlong_farm, :presence => { message: "Latitude & longitude are required" }
   
 end

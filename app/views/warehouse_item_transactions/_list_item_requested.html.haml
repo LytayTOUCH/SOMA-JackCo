@@ -12,24 +12,24 @@
       %th= "Status"
       %th= "Action"
 
-  - @warehouse_item_requested_transactions.each do |warehouse_item_requested_transaction|
-    - material = Material.find_by_uuid(warehouse_item_requested_transaction.material_id)
-    - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_requested_transaction.sender_id)
-    - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_requested_transaction.receiver_id)
+  - @warehouse_item_transactions.each do |warehouse_item_transaction|
+    - material = Material.find_by_uuid(warehouse_item_transaction.material_id)
+    - sender_warehouse = Warehouse.find_by_uuid(warehouse_item_transaction.sender_id)
+    - receiver_warehouse = Warehouse.find_by_uuid(warehouse_item_transaction.receiver_id)
 
-    - if warehouse_item_requested_transaction.transaction_status == "Received"
+    - if warehouse_item_transaction.transaction_status == "Received"
       %tr.requested-row-color
         %td= receiver_warehouse.name
         %td= sender_warehouse.name
-        %td= warehouse_item_requested_transaction.requested_date
-        %td= warehouse_item_requested_transaction.due_date
-        %td= warehouse_item_requested_transaction.requested_number
+        %td= warehouse_item_transaction.requested_date
+        %td= warehouse_item_transaction.due_date
+        %td= warehouse_item_transaction.requested_number
         %td
           = material.name
         %td
           = material.material_category.name
         %td
-          = warehouse_item_requested_transaction.amount
+          = warehouse_item_transaction.amount
           = '('
           = material.unit_of_measurement.name
           = ')'
@@ -37,19 +37,19 @@
           = "Received"
         %td  
 
-    - elsif warehouse_item_requested_transaction.transaction_status == "Closed"
+    - elsif warehouse_item_transaction.transaction_status == "Closed"
       %tr.requested-closed-row-color
         %td= receiver_warehouse.name
         %td= sender_warehouse.name
-        %td= warehouse_item_requested_transaction.requested_date
-        %td= warehouse_item_requested_transaction.due_date
-        %td= warehouse_item_requested_transaction.requested_number
+        %td= warehouse_item_transaction.requested_date
+        %td= warehouse_item_transaction.due_date
+        %td= warehouse_item_transaction.requested_number
         %td
           = material.name
         %td
           = material.material_category.name
         %td
-          = warehouse_item_requested_transaction.amount
+          = warehouse_item_transaction.amount
           = '('
           = material.unit_of_measurement.name
           = ')'
@@ -57,73 +57,79 @@
           = "Closed"
         %td    
           
-    - elsif warehouse_item_requested_transaction.due_date.past?
+    - elsif warehouse_item_transaction.due_date.past?
       %tr.requested-expired-row-color
         %td= receiver_warehouse.name
         %td= sender_warehouse.name
-        %td= warehouse_item_requested_transaction.requested_date
-        %td= warehouse_item_requested_transaction.due_date
-        %td= warehouse_item_requested_transaction.requested_number
+        %td= warehouse_item_transaction.requested_date
+        %td= warehouse_item_transaction.due_date
+        %td= warehouse_item_transaction.requested_number
         %td
           = material.name
         %td
           = material.material_category.name
         %td
-          = warehouse_item_requested_transaction.amount
+          = warehouse_item_transaction.amount
           = '('
           = material.unit_of_measurement.name
           = ')'
         %td 
           = "Expired"  
         %td
-          = link_to "View", new_warehouse_material_received_path(warehouse_item_requested_transaction)
-          = " | "
-          = link_to "Close", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction), remote: true
+          - if can? :create, warehouse_item_transaction
+            = link_to "View", new_warehouse_material_received_path(warehouse_item_transaction)
+            = " | "
+          - if can? :update, warehouse_item_transaction
+            = link_to "Close", edit_warehouse_item_transaction_path(warehouse_item_transaction), remote: true
 
-    - elsif warehouse_item_requested_transaction.transaction_status == "Partially Received"
+    - elsif warehouse_item_transaction.transaction_status == "Partially Received"
       %tr.requested-partial-received-row-color
         %td= receiver_warehouse.name
         %td= sender_warehouse.name
-        %td= warehouse_item_requested_transaction.requested_date
-        %td= warehouse_item_requested_transaction.due_date
-        %td= warehouse_item_requested_transaction.requested_number
+        %td= warehouse_item_transaction.requested_date
+        %td= warehouse_item_transaction.due_date
+        %td= warehouse_item_transaction.requested_number
         %td
           = material.name
         %td
           = material.material_category.name
         %td
-          = warehouse_item_requested_transaction.amount
+          = warehouse_item_transaction.amount
           = '('
           = material.unit_of_measurement.name
           = ')'
         %td 
           = "Partially Received"  
         %td
-          = link_to "View", new_warehouse_material_received_path(warehouse_item_requested_transaction)
-          = " | "
-          = link_to "Close", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction), remote: true
+          - if can? :create, warehouse_item_transaction
+            = link_to "View", new_warehouse_material_received_path(warehouse_item_transaction)
+            = " | "
+          - if can? :update, warehouse_item_transaction
+            = link_to "Close", edit_warehouse_item_transaction_path(warehouse_item_transaction), remote: true
 
-    - elsif warehouse_item_requested_transaction.transaction_status == "Requested"        
+    - elsif warehouse_item_transaction.transaction_status == "Requested"        
       %tr
         %td= receiver_warehouse.name
         %td= sender_warehouse.name
-        %td= warehouse_item_requested_transaction.requested_date
-        %td= warehouse_item_requested_transaction.due_date
-        %td= warehouse_item_requested_transaction.requested_number
+        %td= warehouse_item_transaction.requested_date
+        %td= warehouse_item_transaction.due_date
+        %td= warehouse_item_transaction.requested_number
         %td
           = material.name
         %td
           = material.material_category.name
         %td
-          = warehouse_item_requested_transaction.amount
+          = warehouse_item_transaction.amount
           = '('
           = material.unit_of_measurement.name
           = ')'
         %td
           = "Not Received"  
         %td
-          = link_to "View", new_warehouse_material_received_path(warehouse_item_requested_transaction)
-          = " | "
-          = link_to "Close", edit_warehouse_item_transaction_path(warehouse_item_requested_transaction), remote: true
+          - if can? :create, warehouse_item_transaction
+            = link_to "View", new_warehouse_material_received_path(warehouse_item_transaction)
+            = " | "
+          - if can? :update, warehouse_item_transaction
+            = link_to "Close", edit_warehouse_item_transaction_path(warehouse_item_transaction), remote: true
 .pull-right
-  = paginate @warehouse_item_requested_transactions
+  = paginate @warehouse_item_transactions

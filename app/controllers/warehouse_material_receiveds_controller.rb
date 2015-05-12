@@ -79,7 +79,7 @@ class WarehouseMaterialReceivedsController < ApplicationController
           create_log_2 current_user.uuid, "Receive Material Request", "Request: " + @warehouse_item_transaction.requested_number + "(" + @warehouse_material_received.received_amount.to_s + " / " + @warehouse_item_transaction.amount.to_s + ")"
              
           flash[:notice] = "Warehouse Material Received saved"
-          redirect_to warehouse_item_requested_transactions_path
+          redirect_to warehouse_item_transactions_path
         else
           flash[:notice] = "Warehouse Material Received can't be saved"
           redirect_to :back

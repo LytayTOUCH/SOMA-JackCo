@@ -8,8 +8,8 @@ class Implement < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
-  validates :name, length: { maximum: 50 }, presence: true
-  validates :implement_type_uuid, length: { maximum: 36 }, presence: true
+  validates :name, length: { maximum: 50 }, :presence => { message: "Implement name is required." }
+  validates :implement_type_uuid, length: { maximum: 36 }, :presence => { message: "Implement Type is required." }
   validates :year, length: { maximum: 10 }
 
   has_one :maintenance

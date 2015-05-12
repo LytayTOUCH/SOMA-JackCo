@@ -4,7 +4,7 @@
       %th.col-md-4= "Name"
       %th.col-md-5= "Note"
       %th.col-md-2= "Active"
-      %th.col-md-1= "Actions"
+      / %th.col-md-1= "Actions"
   - @user_groups.each do |user_group|
     %tr
       %td= user_group.name
@@ -15,6 +15,6 @@
             %span{style: "color:green;"}= "active"
           - else
             %span{:style => "color:red;"}= "inactive"
-      %td
-        - if can? :update, UserGroup
-          = link_to "Edit", edit_user_group_path(user_group)
+      / %td
+      /   - if can? :update, UserGroup
+      /     = link_to "Edit", edit_user_group_path(user_group)

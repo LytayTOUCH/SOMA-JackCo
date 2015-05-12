@@ -11,9 +11,9 @@ class Material < ActiveRecord::Base
   has_many :input_use_materials, foreign_key: :input_id
   has_many :input_tasks, through: :input_use_materials
 
-  validates :name, length: { maximum: 50 }, presence: true
-  validates :material_cate_uuid, length: { maximum: 36 }, presence: true
-  validates :unit_measure_uuid, length: { maximum: 36 }, presence: true
+  validates :name, length: { maximum: 50 }, :presence => { message: "Material Name is required." }
+  validates :material_cate_uuid, length: { maximum: 36 }, :presence => { message: "Material Category is required." }
+  validates :unit_measure_uuid, length: { maximum: 36 }, :presence => { message: "Unit of Measurement is required." }
 
   scope :find_by_material_name, -> name { where("name like ?", "%#{name}%") }
 

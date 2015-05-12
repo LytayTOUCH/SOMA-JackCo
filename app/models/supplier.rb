@@ -1,7 +1,7 @@
 class Supplier < ActiveRecord::Base
   include UuidHelper
 
-  validates :name, length: { maximum: 50 }, presence: true
+  validates :name, length: { maximum: 50 }, :presence => { message: "Supplier name is required" }
   validates :contact_person, length: { maximum: 100 }
   validates :phone, length: { maximum: 20 }
   validates :email, length: { maximum: 100 }

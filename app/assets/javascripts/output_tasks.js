@@ -243,7 +243,36 @@ $(document).ready(function() {
 	      }
 	    });
 
-        renderMachinery();
+        // Get data for Chosen when Planting project has data
+        $('select.item-select-machinaries').html('');
+        var planting_project_id = $(".planting_project_id").val();
+        jQuery.ajax({
+          url: "/get_machinery_data",
+          type: "GET",
+          data: {"planting_project_id" : planting_project_id},
+          dataType: "json",
+          success: function(data){
+            if(data.length){
+              $.each(data, function(i, value) {
+                $('select.item-select-machinaries').append('<option value="' + value.uuid + '">' + value.name + '</option>');
+              });
+              $('select.item-select-machinaries').attr("multiple", "multiple");
+              $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
+            }
+            else{
+              $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+              $('select.item-select-machinaries').attr("multiple", "multiple");
+            }
+            $('select.item-select-machinaries').trigger('chosen:updated');
+          },
+          complete: function(data){
+            $("select.chosen-select").chosen(
+              {width: "100%"},
+              {allow_single_deselect: true},
+              {no_results_text: 'No results matched'}
+            )  
+          }
+        });
       }
     });  
   });

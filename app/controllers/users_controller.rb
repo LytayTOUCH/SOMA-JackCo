@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: :create
+  skip_authorize_resource :update_profile, :edit_profile
 
   add_breadcrumb "All Users", :users_path
 
@@ -22,9 +23,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    create_log current_user.uuid, "Create New User", @user
     
     if @user.save
+      create_log current_user.uuid, "Create New User", @user
       @labor = Labor.find_by_uuid(@user.labor_id)
       @labor.update_attributes!(selected: true)
 

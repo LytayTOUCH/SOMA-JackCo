@@ -7,22 +7,25 @@
       %th.col-md-2= "Status"
       %th.col-md-1= "Action"
   %tbody
-    - @equipment.each do |e|
+    - @equipment.each do |equipment|
       %tr
-        %td= e.name
-        %td= e.equipment_type.name
-        %td= PlantingProject.find(e.planting_project_id).name
+        %td= equipment.name
+        %td= equipment.equipment_type.name
+        %td= PlantingProject.find(equipment.planting_project_id).name
         %td
-          = form_for(e) do |f|
-            - if e.status
+          = form_for(equipment) do |f|
+            - if equipment.status
               %span{style: "color:green;"}= "active"
-              |
-              #{f.hidden_field :status, value: false}
-              #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
+              - if can? :update, equipment
+                |
+                #{f.hidden_field :status, value: false}
+                #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
             - else
               %span{style: "color:red;"}= "inactive"
-              |
-              #{f.hidden_field :status, value: true}
-              #{submit_tag "activate", :class => "btn btn-default btn-xs"}
+              - if can? :update, equipment
+                |
+                #{f.hidden_field :status, value: true}
+                #{submit_tag "activate", :class => "btn btn-default btn-xs"}
         %td
-          = link_to "Edit", edit_equipment_path(e)
+          - if can? :update, equipment
+            = link_to "Edit", edit_equipment_path(equipment)

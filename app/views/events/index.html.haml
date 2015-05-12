@@ -18,10 +18,14 @@
       %td= event.ends_at
       %td= event.all_day
       %td= event.description
-      %td= link_to 'Show', event
-      %td= link_to 'Edit', edit_event_path(event)
+      %td
+        - if can? :read, event
+          = link_to 'Show', event
+      %td
+        - if can? :update, event
+          = link_to 'Edit', edit_event_path(event)
       %td= link_to 'Destroy', event, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
-
-= link_to 'New Event', new_event_path
+- if can? :create, Event
+  = link_to 'New Event', new_event_path
