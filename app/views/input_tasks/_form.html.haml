@@ -9,36 +9,77 @@
 
         .form-group
           %label.col-xs-2.control-label Start Date *
-          .col-xs-10
+          .col-xs-4
             .controls
               = f.text_field :start_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day'
-
-        .form-group
           %label.col-xs-2.control-label End Date *
-          .col-xs-10
+          .col-xs-4
             .controls
               = f.text_field :end_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control date_pick', placeholder: 'Year-Month-Day'
 
         .form-group
+          %label.col-xs-2.control-label.text-left Farm *
+          .col-xs-4
+            = f.input :farm_id, collection: Farm.all.map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+          %label.col-xs-2.control-label.text-left Zone *
+          .col-xs-4
+            - if params[:input_task].nil? || params[:input_task][:farm_id].nil? || params[:input_task][:farm_id]==""
+              = f.input :zone_id, collection: Zone.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
+            - else
+              = f.input :zone_id, collection: Zone.where(farm_id: params[:input_task][:farm_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+
+        .form-group
+          %label.col-xs-2.control-label.text-left Area *
+          .col-xs-4
+            - if params[:input_task].nil? || params[:input_task][:zone_id].nil? || params[:input_task][:zone_id]==""
+              = f.input :area_id, collection: Area.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
+            - else
+              = f.input :area_id, collection: Area.where(zone_id: params[:input_task][:zone_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           %label.col-xs-2.control-label.text-left Block *
-          .col-xs-10
-            = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name+" ; "+value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control block_id'}
+          .col-xs-4
+            - if params[:input_task].nil? || params[:input_task][:area_id].nil? || params[:input_task][:area_id]==""
+              = f.input :block_id, collection: Block.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
+            - else
+              = f.input :block_id, collection: Block.where(area_id: params[:input_task][:area_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
 
         .form-group
           %label.col-xs-2.control-label.text-left Planting Project *
-          .col-xs-10
-            = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project_id"}, as: :hidden
-            %input.form-control.planting_project_name{:type => "text", value: "", readonly: true }
-
-        .form-group
+          .col-xs-4
+            = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project_id"}, error_html: {class: "err_msg"}, as: :hidden
+            - if params[:input_task].nil? || params[:input_task][:planting_project_id].nil? || params[:input_task][:planting_project_id]==""
+              %input.form-control.planting_project_name{:type => "text", readonly: true }
+            - else
+              %input.form-control.planting_project_name{:readonly => "true", :type => "text", :value => PlantingProject.find_by_uuid(params[:input_task][:planting_project_id]).name}/
           %label.col-xs-2.control-label.text-left Tree amount *
-          .col-xs-10
+          .col-xs-4
             = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount" }, error_html: {class: "err_msg"}
+        
+
+        / .form-group
+        /   %label.col-xs-2.control-label.text-left Block *
+        /   .col-xs-10
+        /     = f.select :block_id, options_for_select(@farms_name.map { |value| [ value.name+" ; "+value.farm.name, value.uuid ]}, :selected => f.object.block_id), {:include_blank => true}, {class: 'form-control block_id'}
+
+        / .form-group
+        /   %label.col-xs-2.control-label.text-left Planting Project *
+        /   .col-xs-10
+        /     = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project_id"}, as: :hidden
+        /     %input.form-control.planting_project_name{:type => "text", value: "", readonly: true }
+
+        / .form-group
+        /   %label.col-xs-2.control-label.text-left Tree amount *
+        /   .col-xs-10
+        /     = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount" }, error_html: {class: "err_msg"}
 
         .form-group
           %label.col-xs-2.control-label.text-left Labor *
           .col-xs-10
             = f.association :labor, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+
+        .form-group
+          %label.col-xs-2.control-label.text-left Reference Number *
+          .col-xs-10
+            = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
 
         .form-group
           %label.col-xs-2.control-label.text-left Equipments
@@ -54,11 +95,6 @@
 
         .form-group
           .machinery-name
-
-        .form-group
-          %label.col-xs-2.control-label.text-left Reference Number *
-          .col-xs-10
-            = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
 
         .form-group
           %label.col-xs-2.control-label.text-left Materials *

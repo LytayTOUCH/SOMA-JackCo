@@ -197,15 +197,9 @@ class InputTasksController < ApplicationController
     @input_task = InputTask.find(params[:id])
   end
 
-  def find_amount
-    @material_amounts = WarehouseMaterialAmount.where(warehouse_uuid: params[:warehouse_id], material_uuid: params[:material_id]).first.amount
-    render :json => @material_amounts
-  end
-
   private
   def input_task_params
-    # params.require(:input_task).permit(:name, :start_date, :end_date, :block_id, :tree_amount, :labor_id, :machinery_id, :reference_number, :warehouse_id, :material_id, :material_amount, :note, :created_by)
-    params.require(:input_task).permit(:name, :start_date, :end_date, :block_id, :planting_project_id, :tree_amount, :labor_id, :reference_number, :note, :created_by)
+    params.require(:input_task).permit(:name, :start_date, :end_date, :farm_id, :zone_id, :area_id, :block_id, :planting_project_id, :tree_amount, :labor_id, :reference_number, :note, :created_by)
   end
 
 end
