@@ -116,6 +116,7 @@ end
 ].each do |warehouse_type|
   WarehouseType.create_with(note: warehouse_type[:note]).find_or_create_by(name: warehouse_type[:name])
 end
+
 # ========== Create Warehouse ==================
 central_warehouse = WarehouseType.find_by_name("Central Warehouse")
 fertilizer_warehouse = WarehouseType.find_by_name("Fertilizer Warehouse")
@@ -129,6 +130,12 @@ nursery__warehouse = WarehouseType.find_by_name("Nursery Warehouse")
 ].each do |each_warehouse|
   Warehouse.create_with(warehouse_type_uuid: each_warehouse[:warehouse_type_uuid], address: each_warehouse[:address], note: each_warehouse[:note], active: each_warehouse[:active]).find_or_create_by(name: each_warehouse[:name])
 end
+
+# Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_warehouse.uuid, fertilizer_warehouse.uuid, project_warehouse.uuid).each do |wh|
+#   Material.all.each do |m|
+#     WarehouseMaterialAmount.create(warehouse_uuid: wh.uuid,  material_uuid: m.uuid, amount: 0, returnable: false)
+#   end
+# end
 
 # ========== Create Planting Projects ========== 
 [
@@ -241,8 +248,18 @@ other = MaterialCategory.find_by_name('Other')
   {name: "Seed", material_cate_uuid: other.uuid, unit_measure_uuid: unit.uuid, supplier: "", note: ""},
   {name: "Chlorpyrifos", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: ml.uuid, supplier: "", note: ""}
 ].each do |each_material|
-  Material.create_with(material_cate_uuid: each_material[:material_cate_uuid], unit_measure_uuid: each_material[:unit_measure_uuid], supplier: each_material[:supplier], note: each_material[:note]).find_or_create_by(name: each_material[:name])
+  material_to_warehouse = Material.create_with(material_cate_uuid: each_material[:material_cate_uuid], unit_measure_uuid: each_material[:unit_measure_uuid], supplier: each_material[:supplier], note: each_material[:note]).find_or_create_by(name: each_material[:name])
+
+  Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_warehouse.uuid, fertilizer_warehouse.uuid, project_warehouse.uuid).each do |warehouse|
+      WarehouseMaterialAmount.create(warehouse_uuid: warehouse.uuid,  material_uuid: material_to_warehouse.uuid, amount: 0, returnable: false)
+  end  
 end
+
+# Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_warehouse.uuid, fertilizer_warehouse.uuid, project_warehouse.uuid).each do |wh|
+#   Material.all.each do |m|
+#     WarehouseMaterialAmount.create(warehouse_uuid: wh.uuid,  material_uuid: m.uuid, amount: 0, returnable: false)
+#   end
+# end
 
 # ========== Create Farms ==========
 [

@@ -13,14 +13,16 @@
         = form_for(phase) do |f|
           - if phase.active
             %span{style: "color:green;"}= "active"
-            |
-            #{f.hidden_field :active, value: false}
-            #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
+            - if can? :update, phase
+              |
+              #{f.hidden_field :active, value: false}
+              #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
           - else
             %span{:style => "color:red;"}= "inactive"
-            |
-            #{f.hidden_field :active, value: true}
-            #{submit_tag "activate", :class => "btn btn-default btn-xs"}
+            - if can? :update, phase
+              |
+              #{f.hidden_field :active, value: true}
+              #{submit_tag "activate", :class => "btn btn-default btn-xs"}
       %td
         - if can? :update, phase
           = link_to "Edit", edit_phase_path(phase)      

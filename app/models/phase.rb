@@ -1,7 +1,7 @@
 class Phase < ActiveRecord::Base
   include UuidHelper
 
-  validates :name, length: { maximum: 50 }, presence: true
+  validates :name, length: { maximum: 50 }, :presence => { message: "Phase Name is required." }
 
   has_many :production_stages
   has_many :production_statuses, through: :production_stages

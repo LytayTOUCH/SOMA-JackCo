@@ -1,7 +1,9 @@
 class Equipment < ActiveRecord::Base
   include UuidHelper
   
-  validates :name, :planting_project_id, :equipment_type_id, presence: true
+  validates :name, :presence => { message: "Equipment name is required." }
+  validates :planting_project_id, :presence => { message: "Planting Project is required." }
+  validates :equipment_type_id, :presence => { message: "Equipment Type is required." }
 
   belongs_to :equipment_type, foreign_key: :equipment_type_id
 

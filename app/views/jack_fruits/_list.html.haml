@@ -20,14 +20,16 @@
           = form_for(jack_fruit) do |f|
             - if jack_fruit.active
               %span{style: "color:auto;"}= "active"
-              |
-              #{f.hidden_field :active, value: false}
-              #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
+              - if can? :update, jack_fruit
+                |
+                #{f.hidden_field :active, value: false}
+                #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
             - else
               %span{:style => "color:red;"}= "inactive"
-              |
-              #{f.hidden_field :active, value: true}
-              #{submit_tag "activate", :class => "btn btn-default btn-xs"}
+              - if can? :update, jack_fruit
+                |
+                #{f.hidden_field :active, value: true}
+                #{submit_tag "activate", :class => "btn btn-default btn-xs"}
         %td
           - if can? :update, jack_fruit
             = link_to "Edit", edit_jack_fruit_path(jack_fruit)

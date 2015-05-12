@@ -107,7 +107,7 @@
                 = navbar_link "Transfer In", stock_ins_path, "active"
               %li.divider
               %li
-                = navbar_link "Request", warehouse_item_requested_transactions_path, "active"
+                = navbar_link "Request", warehouse_item_transactions_path, "active"
               %li
                 = navbar_link "Receive", warehouse_material_receiveds_path, "active"
               
@@ -194,7 +194,8 @@
           %li
             %a{:href => production_plan_report_index_path} Production Plan Report
           %li
-            %a{:href => production_list_index_path} Location Plan Report
+            - if can? :index, :production_list
+              %a{:href => production_list_index_path} Location Plan Report
           %li
             %a{:href => production_standards_path} Production Standard
       %li.dropdown

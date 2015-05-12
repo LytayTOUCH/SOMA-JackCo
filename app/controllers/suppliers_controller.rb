@@ -32,7 +32,7 @@ class SuppliersController < ApplicationController
       if @supplier.save!
         create_log current_user.uuid, "Created New Supplier", @supplier
         flash[:notice] = "Supplier saved successfully"
-        redirect_to :back
+        redirect_to :suppliers_path
       else
         flash[:notice] = "Supplier can't save"
         redirect_to :back

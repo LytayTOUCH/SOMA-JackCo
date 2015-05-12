@@ -4,6 +4,10 @@ class PlanFarm < ActiveRecord::Base
   belongs_to :farm, foreign_key: :farm_id
 
   has_many :plan_phases, foreign_key: :plan_farm_id, dependent: :destroy
+  
+  validates_presence_of :farm_id, :message => "Farm is required."
+  validates_presence_of :for_year, :message => "Year is required."
+
   has_many :plan_production_stages, through: :plan_phases
   has_many :plan_production_statuses, through: :plan_production_stages
   has_many :plan_zones, through: :plan_production_statuses
@@ -11,6 +15,7 @@ class PlanFarm < ActiveRecord::Base
 
   validates_presence_of :farm_id, :message => "Farm can not empty."
   validates_presence_of :for_year, :message => "Year can not empty."
+
 
   accepts_nested_attributes_for :plan_phases
 

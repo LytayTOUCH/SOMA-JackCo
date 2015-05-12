@@ -24,8 +24,6 @@ class WarehousesController < ApplicationController
   def create
     begin
       @warehouse = Warehouse.new(warehouse_params)
-      create_log current_user.uuid, "Created New Warehouse", @warehouse
-
       @finishedGooduuid = WarehouseType.find_by_name("Finished Goods Warehouse").uuid
       @nurseryuuid = WarehouseType.find_by_name("Nursery Warehouse").uuid
 

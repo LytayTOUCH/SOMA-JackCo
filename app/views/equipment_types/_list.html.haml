@@ -5,22 +5,24 @@
       %th.col-md-5= "Note"
       %th.col-md-3= "Status"
       %th.col-md-1= "Actions"
-  - @equipment_types.each do |mt|
+  - @equipment_types.each do |equipment_type|
     %tr
-      %td= mt.name
-      %td= mt.note
+      %td= equipment_type.name
+      %td= equipment_type.note
       %td
-        = form_for(mt) do |f|
-          - if mt.status
+        = form_for(equipment_type) do |f|
+          - if equipment_type.status
             %span{style: "color:green;"}= "active"
-            |
-            #{f.hidden_field :status, value: false}
-            #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
+            - if can? :update, equipment_type
+              |
+              #{f.hidden_field :status, value: false}
+              #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
           - else
             %span{style: "color:red;"}= "inactive"
-            |
-            #{f.hidden_field :status, value: true}
-            #{submit_tag "activate", :class => "btn btn-default btn-xs"}
+            - if can? :update, equipment_type
+              |
+              #{f.hidden_field :status, value: true}
+              #{submit_tag "activate", :class => "btn btn-default btn-xs"}
       %td
-        - if can? :update, mt
-          = link_to "Edit", edit_equipment_type_path(mt)
+        - if can? :update, equipment_type
+          = link_to "Edit", edit_equipment_type_path(equipment_type)
