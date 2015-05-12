@@ -4,11 +4,12 @@
   %hr
   = render partial: 'report_filter', path: report_productivities_coconut_index_path
   
+  - @unit = UnitOfMeasurement.find_by_name("Unit")
   - if !params[:filter].nil? && params[:filter][:farm_id]!="g_total"
     %br
     .row
       .col-xs-12
-        %table{border: "1px", width: "100%", cellpadding: "10px"}
+        %table.table-bordered{cellpadding: "10px"}
           %tr
             %th{rowspan: "3", style: "text-align:center"} Farm
             %th{rowspan: "3", style: "text-align:center"} Zone
@@ -30,6 +31,33 @@
             %th{style: "text-align:center"} Spoiled
             %th{style: "text-align:center"} Good
             %th{style: "text-align:center"} Spoiled
+          %tfoot{style: "background-color: #eee;"}
+            %tr
+              %th{colspan: "3", style: "text-align:center"}= "Total: (" + @unit.name + ")"
+              
+              - @good_young = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
+              - @spoil_young = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
+              - @good_ripe = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
+              - @spoil_ripe = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000007", @unit.uuid)
+              - @total_production = @good_young + @spoil_young + @good_ripe + @spoil_ripe
+              - @to_finish_wh = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000008", @unit.uuid)
+              - @free_at_farm = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000009", @unit.uuid)
+              - @spoil_waste = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000010", @unit.uuid)
+              - @to_nursery_wh = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
+              - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
+              - @loss = @total_production - @total_distribution
+              
+              %td= @good_young ==0 ? "-" : @good_young.to_s
+              %td= @spoil_young ==0 ? "-" : @spoil_young.to_s
+              %td= @good_ripe ==0 ? "-" : @good_ripe.to_s
+              %td= @spoil_ripe ==0 ? "-" : @spoil_ripe.to_s
+              %td= @total_production ==0 ? "-" : @total_production.to_s
+              %td= @to_finish_wh ==0 ? "-" : @to_finish_wh.to_s
+              %td= @free_at_farm ==0 ? "-" : @free_at_farm.to_s
+              %td= @spoil_waste ==0 ? "-" : @spoil_waste.to_s
+              %td= @to_nursery_wh ==0 ? "-" : @to_nursery_wh.to_s
+              %td= @total_distribution ==0 ? "-" : @total_distribution.to_s
+              %td= @loss ==0 ? "-" : @loss.to_s
 
           %tr
             %td{rowspan: @farm.areas.count, style: "text-align:center"}= @farm.name
@@ -39,68 +67,128 @@
                 - zone.areas.each_with_index do |area, a_index|
                   - if a_index == 0
                     %td{style: "text-align:center"}= area.name
-                    %td -
-                    %td -
-                    %td -
-                    %td -
-                    %td -
-                    %td -
-                    %td -
-                    %td -
-                    %td -
-                    %td -
-                    %td -
+                    
+                    - @good_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
+                    - @spoil_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
+                    - @good_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
+                    - @spoil_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000007", @unit.uuid)
+                    - @total_production = @good_young + @spoil_young + @good_ripe + @spoil_ripe
+                    - @to_finish_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000008", @unit.uuid)
+                    - @free_at_farm = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000009", @unit.uuid)
+                    - @spoil_waste = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000010", @unit.uuid)
+                    - @to_nursery_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
+                    - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
+                    - @loss = @total_production - @total_distribution
+                    %td= @good_young ==0 ? "-" : @good_young.to_s
+                    %td= @spoil_young ==0 ? "-" : @spoil_young.to_s
+                    %td= @good_ripe ==0 ? "-" : @good_ripe.to_s
+                    %td= @spoil_ripe ==0 ? "-" : @spoil_ripe.to_s
+                    %td= @total_production ==0 ? "-" : @total_production.to_s
+                    %td= @to_finish_wh ==0 ? "-" : @to_finish_wh.to_s
+                    %td= @free_at_farm ==0 ? "-" : @free_at_farm.to_s
+                    %td= @spoil_waste ==0 ? "-" : @spoil_waste.to_s
+                    %td= @to_nursery_wh ==0 ? "-" : @to_nursery_wh.to_s
+                    %td= @total_distribution ==0 ? "-" : @total_distribution.to_s
+                    %td= @loss ==0 ? "-" : @loss.to_s
+                    
                   - else
                     %tr
                       %td{style: "text-align:center"}= area.name
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
+                      
+                      - @good_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
+                      - @spoil_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
+                      - @good_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
+                      - @spoil_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000007", @unit.uuid)
+                      - @total_production = @good_young + @spoil_young + @good_ripe + @spoil_ripe
+                      - @to_finish_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000008", @unit.uuid)
+                      - @free_at_farm = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000009", @unit.uuid)
+                      - @spoil_waste = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000010", @unit.uuid)
+                      - @to_nursery_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
+                      - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
+                      - @loss = @total_production - @total_distribution
+                      %td= @good_young ==0 ? "-" : @good_young.to_s
+                      %td= @spoil_young ==0 ? "-" : @spoil_young.to_s
+                      %td= @good_ripe ==0 ? "-" : @good_ripe.to_s
+                      %td= @spoil_ripe ==0 ? "-" : @spoil_ripe.to_s
+                      %td= @total_production ==0 ? "-" : @total_production.to_s
+                      %td= @to_finish_wh ==0 ? "-" : @to_finish_wh.to_s
+                      %td= @free_at_farm ==0 ? "-" : @free_at_farm.to_s
+                      %td= @spoil_waste ==0 ? "-" : @spoil_waste.to_s
+                      %td= @to_nursery_wh ==0 ? "-" : @to_nursery_wh.to_s
+                      %td= @total_distribution ==0 ? "-" : @total_distribution.to_s
+                      %td= @loss ==0 ? "-" : @loss.to_s
+                      
               - elsif zone.areas.count > 0
                 %tr
                   %td{rowspan: zone.areas.count, style: "text-align:center"}= zone.name
                   - zone.areas.each_with_index do |area, a_index|
                     - if a_index == 0
                       %td{style: "text-align:center"}= area.name
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
-                      %td -
+                      
+                      - @good_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
+                      - @spoil_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
+                      - @good_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
+                      - @spoil_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000007", @unit.uuid)
+                      - @total_production = @good_young + @spoil_young + @good_ripe + @spoil_ripe
+                      - @to_finish_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000008", @unit.uuid)
+                      - @free_at_farm = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000009", @unit.uuid)
+                      - @spoil_waste = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000010", @unit.uuid)
+                      - @to_nursery_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
+                      - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
+                      - @loss = @total_production - @total_distribution
+                      %td= @good_young ==0 ? "-" : @good_young.to_s
+                      %td= @spoil_young ==0 ? "-" : @spoil_young.to_s
+                      %td= @good_ripe ==0 ? "-" : @good_ripe.to_s
+                      %td= @spoil_ripe ==0 ? "-" : @spoil_ripe.to_s
+                      %td= @total_production ==0 ? "-" : @total_production.to_s
+                      %td= @to_finish_wh ==0 ? "-" : @to_finish_wh.to_s
+                      %td= @free_at_farm ==0 ? "-" : @free_at_farm.to_s
+                      %td= @spoil_waste ==0 ? "-" : @spoil_waste.to_s
+                      %td= @to_nursery_wh ==0 ? "-" : @to_nursery_wh.to_s
+                      %td= @total_distribution ==0 ? "-" : @total_distribution.to_s
+                      %td= @loss ==0 ? "-" : @loss.to_s
+                      
                     - else
                       %tr
                         %td{style: "text-align:center"}= area.name
-                        %td -
-                        %td -
-                        %td -
-                        %td -
-                        %td -
-                        %td -
-                        %td -
-                        %td -
-                        %td -
-                        %td -
-                        %td -
+                        
+                        - @good_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
+                        - @spoil_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
+                        - @good_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
+                        - @spoil_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000007", @unit.uuid)
+                        - @total_production = @good_young + @spoil_young + @good_ripe + @spoil_ripe
+                        - @to_finish_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000008", @unit.uuid)
+                        - @free_at_farm = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000009", @unit.uuid)
+                        - @spoil_waste = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000010", @unit.uuid)
+                        - @to_nursery_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
+                        - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
+                        - @loss = @total_production - @total_distribution
+                        %td= @good_young ==0 ? "-" : @good_young.to_s
+                        %td= @spoil_young ==0 ? "-" : @spoil_young.to_s
+                        %td= @good_ripe ==0 ? "-" : @good_ripe.to_s
+                        %td= @spoil_ripe ==0 ? "-" : @spoil_ripe.to_s
+                        %td= @total_production ==0 ? "-" : @total_production.to_s
+                        %td= @to_finish_wh ==0 ? "-" : @to_finish_wh.to_s
+                        %td= @free_at_farm ==0 ? "-" : @free_at_farm.to_s
+                        %td= @spoil_waste ==0 ? "-" : @spoil_waste.to_s
+                        %td= @to_nursery_wh ==0 ? "-" : @to_nursery_wh.to_s
+                        %td= @total_distribution ==0 ? "-" : @total_distribution.to_s
+                        %td= @loss ==0 ? "-" : @loss.to_s
+
+    %br
+    .row
+      .col-xs-12
+        .pull-right
+          %a.btn.btn-primary.print_button#print_button
+            %span.glyphicon.glyphicon-print
+            Print Report
+
 
   - elsif !params[:filter].nil? && params[:filter][:farm_id]=="g_total"
     %br
     .row
       .col-xs-12
-        %table{border: "1px", width: "100%", cellpadding: "10px"}
+        %table.table-bordered{cellpadding: "10px"}
           %tr
             %th{rowspan: "3", style: "text-align:center"} Grand Total Production
             %th{colspan: "5", style: "text-align:center"} Total Production
@@ -120,3 +208,41 @@
             %th{style: "text-align:center"} Spoiled
             %th{style: "text-align:center"} Good
             %th{style: "text-align:center"} Spoiled
+          %tfoot{style: "background-color: #eee;"}
+            %tr
+              %th{style: "text-align:center"}= "Total: (" + @unit.name + ")"
+              
+              - @good_young = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
+              - @spoil_young = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
+              - @good_ripe = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
+              - @spoil_ripe = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000007", @unit.uuid)
+              - @total_production = @good_young + @spoil_young + @good_ripe + @spoil_ripe
+              - @to_finish_wh = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000008", @unit.uuid)
+              - @free_at_farm = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000009", @unit.uuid)
+              - @spoil_waste = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000010", @unit.uuid)
+              - @to_nursery_wh = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
+              - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
+              - @loss = @total_production - @total_distribution
+              
+              %td= @good_young ==0 ? "-" : @good_young.to_s
+              %td= @spoil_young ==0 ? "-" : @spoil_young.to_s
+              %td= @good_ripe ==0 ? "-" : @good_ripe.to_s
+              %td= @spoil_ripe ==0 ? "-" : @spoil_ripe.to_s
+              %td= @total_production ==0 ? "-" : @total_production.to_s
+              %td= @to_finish_wh ==0 ? "-" : @to_finish_wh.to_s
+              %td= @free_at_farm ==0 ? "-" : @free_at_farm.to_s
+              %td= @spoil_waste ==0 ? "-" : @spoil_waste.to_s
+              %td= @to_nursery_wh ==0 ? "-" : @to_nursery_wh.to_s
+              %td= @total_distribution ==0 ? "-" : @total_distribution.to_s
+              %td= @loss ==0 ? "-" : @loss.to_s
+
+    %br
+    .row
+      .col-xs-12
+        .pull-right
+          %a.btn.btn-primary.print_button#print_button
+            %span.glyphicon.glyphicon-print
+            Print Report
+
+- content_for :javascript_body do
+  = javascript_include_tag "report_productivities"

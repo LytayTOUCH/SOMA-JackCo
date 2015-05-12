@@ -1,5 +1,5 @@
 = form_tag @path, :class => 'form-inline', :role => 'form', :method => 'get' do
-  .row{:style => "background-color: #ccc;padding-top: 10px;padding-bottom: 10px;"}
+  .row.report_filter{:style => "background-color: #ccc;padding-top: 10px;padding-bottom: 10px;"}
     .col-xs-5
       - if params[:filter].nil?
         - @day = "today"

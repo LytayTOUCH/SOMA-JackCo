@@ -28,5 +28,38 @@ class OutputTask < ActiveRecord::Base
   validates :created_by, length: {maximum: 36}, presence: true
 
   scope :find_by_output_task_name, -> name { where("name like ?", "%#{name}%") }
+  
+  def self.sum_output_amount(planting_project_id, area_id, start_date, end_date, distribution_id, uom_id)
+    begin
+      ret_val = 0
+      where(:planting_project_id => planting_project_id, :area_id => area_id, :start_date => start_date.beginning_of_day..end_date.end_of_day).each do |o|
+        ret_val += o.output_distributions.where(:distribution_id => distribution_id, :unit_measure_id => uom_id).sum(:amount)
+      end
+      ret_val
+    rescue
+    end
+  end
+  
+  def self.sum_output_amount_by_farm(planting_project_id, farm_id, start_date, end_date, distribution_id, uom_id)
+    begin
+      ret_val = 0
+      where(:planting_project_id => planting_project_id, :farm_id => farm_id, :start_date => start_date.beginning_of_day..end_date.end_of_day).each do |o|
+        ret_val += o.output_distributions.where(:distribution_id => distribution_id, :unit_measure_id => uom_id).sum(:amount)
+      end
+      ret_val
+    rescue
+    end
+  end
+  
+  def self.grand_total_output_amount(planting_project_id, start_date, end_date, distribution_id, uom_id)
+    begin
+      ret_val = 0
+      where(:planting_project_id => planting_project_id, :start_date => start_date.beginning_of_day..end_date.end_of_day).each do |o|
+        ret_val += o.output_distributions.where(:distribution_id => distribution_id, :unit_measure_id => uom_id).sum(:amount)
+      end
+      ret_val
+    rescue
+    end
+  end
 
 end
