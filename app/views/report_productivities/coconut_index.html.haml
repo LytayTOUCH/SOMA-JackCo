@@ -4,7 +4,6 @@
   %hr
   = render partial: 'report_filter', path: report_productivities_coconut_index_path
   
-  - @unit = UnitOfMeasurement.find_by_name("Unit")
   - if !params[:filter].nil? && params[:filter][:farm_id]!="g_total"
     %br
     .row
@@ -33,7 +32,7 @@
             %th{style: "text-align:center"} Spoiled
           %tfoot{style: "background-color: #eee;"}
             %tr
-              %th{colspan: "3", style: "text-align:center"}= "Total: (" + @unit.name + ")"
+              %th{colspan: "3", style: "text-align:center"}= "Total: (Unit)"
               
               - @good_young = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
               - @spoil_young = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
@@ -210,7 +209,7 @@
             %th{style: "text-align:center"} Spoiled
           %tfoot{style: "background-color: #eee;"}
             %tr
-              %th{style: "text-align:center"}= "Total: (" + @unit.name + ")"
+              %th{style: "text-align:center"}= "Total: (Unit)"
               
               - @good_young = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
               - @spoil_young = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)

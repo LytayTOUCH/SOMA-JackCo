@@ -3,6 +3,7 @@ require 'date'
 class ReportProductivitiesController < ApplicationController
   def coconut_index
     @coconut = PlantingProject.find_by_name("Coconut")
+    @unit = UnitOfMeasurement.find_by_name("Unit")
     
     if !params[:filter].nil? && params[:filter][:farm_id]!="g_total"
       @farm = Farm.find_by_uuid(params[:filter][:farm_id])
@@ -30,6 +31,8 @@ class ReportProductivitiesController < ApplicationController
 
   def jackfruit_index
     @jackfruit = PlantingProject.find_by_name("Jackfruit")
+    @unit = UnitOfMeasurement.find_by_name("Unit")
+    @kg = UnitOfMeasurement.find_by_name("Kg")
     
     if !params[:filter].nil? && params[:filter][:farm_id]!="g_total"
       @farm = Farm.find_by_uuid(params[:filter][:farm_id])
