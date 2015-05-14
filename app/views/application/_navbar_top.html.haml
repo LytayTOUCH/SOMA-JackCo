@@ -26,49 +26,20 @@
               %li
                 - if can? :read, Labor
                   = navbar_link "Labor", labors_path, "active"
-          
-          /%li.dropdown-submenu
-          /  %a{:href => "#", :tabindex => "-1"} Production
-          /  %ul.dropdown-menu
-          /    %li
-          /      - if can? :read, Phase
-          /        = navbar_link "Phase", phases_path, "active"
-          /    %li
-          /      - if can? :read, ProductionStage
-          /        = navbar_link "Stage", production_stages_path, "active"    
-          /    %li
-          /      - if can? :read, ProductionStatus
-          /        = navbar_link "Tree Status", production_statuses_path, "active"
 
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Inventory
             %ul.dropdown-menu
-              /%li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white WAREHOUSE
               %li
                 - if can? :read, Warehouse
                   = navbar_link "Warehouses", warehouses_path, "active"
-              /%li
-              /  - if can? :read, WarehouseType
-              /    = navbar_link "Warehouse Type", warehouse_types_path, "active"
               %li.divider
               %li
                 - if can? :read, PlantingProject
                   = navbar_link "Planting Project", planting_projects_path, "active"
-              /%li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white MATERIAL
               %li
                 - if can? :read, Material
                   = navbar_link "Materials", materials_path, "active"
-              /%li
-              /  - if can? :read, MaterialCategory
-              /    = navbar_link "Material Category", material_categories_path, "active"
-              /%li
-              /  - if can? :read, UnitOfMeasurement
-              /    = navbar_link "Unit of Measurement", unit_of_measurement_index_path, "active"
-              /%li.divider
-              /%li.dropdown-header.dropdown-header-custom-font.bg-color-blue.text-color-white OUTPUT
-              %li
-                - if can? :read, Production
-                  = navbar_link "Production", productions_path, "active"
           
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Machinery
@@ -85,9 +56,6 @@
                 = navbar_link "Equipment Types", equipment_types_path, "active"
               %li
                 = navbar_link "Equipments", equipment_index_path, "active"
-          %li.divider
-          %li
-            = navbar_link "Settings", settings_path, "active"
 
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -110,17 +78,6 @@
                 = navbar_link "Request", warehouse_item_transactions_path, "active"
               %li
                 = navbar_link "Receive", warehouse_material_receiveds_path, "active"
-              
-          %li.dropdown-submenu
-            %a{:href => "#", :tabindex => "-1"} Productions
-            %ul.dropdown-menu
-              %li
-                = navbar_link "In Stock", warehouse_production_amounts_path, "active"
-              %li
-                = navbar_link "Adjustments", production_adjustments_path, "active"
-              %li.divider
-              %li
-                = navbar_link "Distribution", "#", "active"
           
           %li.divider
           
@@ -128,29 +85,6 @@
             = navbar_link "Input Tasks", input_tasks_path, "active"
           %li
             = navbar_link "Output Tasks", output_tasks_path, "active"
-          
-      / %li.dropdown
-      /   %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-      /     %i.fa.fa-cog.fa-lg.icon-greenish
-      /     Pre-Setup
-      /     %span.caret
-      /   %ul.dropdown-menu{:role => "menu"}
-      /     %li
-      /       - if can? :read, ImplementType
-      /         = navbar_link "Implement Type", implement_types_path, "active"
-      /     %li
-      /       - if can? :read, Supplier
-      /         = navbar_link "Supplier", suppliers_path, "active"
-      /     %li.divider
-      /     %li
-      /       - if can? :read, Plan
-      /         = navbar_link "Plans", plans_path, "active"
-      /     %li
-      /       - if can? :read, Coconut
-      /         = navbar_link "Coconut", coconuts_path, "active"
-      /     %li
-      /       - if can? :read, JackFruit
-      /         = navbar_link "Jackfruit", jack_fruits_path, "active"
             
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -213,9 +147,13 @@
                 = navbar_link "Coconut", report_productivities_coconut_index_path, "active"
               %li
                 = navbar_link "Jackfruit", report_productivities_jackfruit_index_path, "active"
-          %li.divider
-          %li
-            %a{:href => "#"} Products Classification
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Classification
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Coconut", report_classifications_coconut_index_path, "active"
+              %li
+                = navbar_link "Jackfruit", report_classifications_jackfruit_index_path, "active"
           %li
             %a{:href => "#"} Stock / Inventory Summery
 
