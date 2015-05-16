@@ -1,5 +1,5 @@
 = form_tag @path, :class => 'form-inline', :role => 'form', :method => 'get' do
-  .row{:style => "background-color: #ccc;padding-top: 10px;padding-bottom: 10px;"}
+  .row.report_filter{:style => "background-color: #ccc;padding-top: 10px;padding-bottom: 10px;"}
     .col-xs-5
       - if params[:filter].nil?
         - @day = "today"
@@ -53,15 +53,27 @@
               Custom Period
     .col-xs-2
       - if !params[:filter].nil? && !params[:filter][:start_date].nil?
-        %input#filter_start_date.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[start_date]", :placeholder => "Year-Month-Day", :type => "text", value: params[:filter][:start_date]}
+        .input-group#filter_start_date
+          %input.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[start_date]", :placeholder => "Year-Month-Day", :type => "text", value: params[:filter][:start_date]}
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
       - else
-        %input#filter_start_date.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[start_date]", :placeholder => "Year-Month-Day", :type => "text", "disabled" => "disabled"}
+        .input-group#filter_start_date
+          %input.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[start_date]", :placeholder => "Year-Month-Day", :type => "text", "disabled" => "disabled"}
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
       
     .col-xs-2
       - if !params[:filter].nil? && !params[:filter][:end_date].nil?
-        %input#filter_end_date.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[end_date]", :placeholder => "Year-Month-Day", :type => "text", value: params[:filter][:end_date]}
+        .input-group#filter_end_date
+          %input.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[end_date]", :placeholder => "Year-Month-Day", :type => "text", value: params[:filter][:end_date]}
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
       - else
-        %input#filter_end_date.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[end_date]", :placeholder => "Year-Month-Day", :type => "text", "disabled" => "disabled"}
+        .input-group#filter_end_date
+          %input.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[end_date]", :placeholder => "Year-Month-Day", :type => "text", "disabled" => "disabled"}
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
         
     .col-xs-2
       - if params[:filter].nil?
@@ -90,27 +102,27 @@
       $("#filterDayHidden").val($(this).attr("id"));
       
       if($(this).attr("id") == "custom"){
-        $("#filter_start_date").removeAttr('disabled');
-        $("#filter_end_date").removeAttr('disabled');
+        $("#filter_start_date input").removeAttr('disabled');
+        $("#filter_end_date input").removeAttr('disabled');
       } else {
-        $("#filter_start_date").attr("disabled", "disabled");
-        $("#filter_end_date").attr("disabled", "disabled");
-        $("#filter_start_date").val("");
-        $("#filter_end_date").val("");
+        $("#filter_start_date input").attr("disabled", "disabled");
+        $("#filter_end_date input").attr("disabled", "disabled");
+        $("#filter_start_date input").val("");
+        $("#filter_end_date input").val("");
       }
       
       validateFilter();
     });
     
     $('#filter_farm_id').change(function() {validateFilter();});
-    $('#filter_start_date').blur(function() {validateFilter();});
-    $('#filter_end_date').blur(function() {validateFilter();});
+    $('#filter_start_date input').blur(function() {validateFilter();});
+    $('#filter_end_date input').blur(function() {validateFilter();});
     
     function validateFilter() {
       $("#btnSubmit").removeAttr('disabled');
       
       if($("#filterDayHidden").val() == "custom") {
-        if($("#filter_start_date").val() == "" || $("#filter_end_date").val() == "" || $("#filter_farm_id").val() == "") {
+        if($("#filter_start_date input").val() == "" || $("#filter_end_date input").val() == "" || $("#filter_farm_id").val() == "") {
           $("#btnSubmit").attr("disabled", "disabled");
         }
       } else {

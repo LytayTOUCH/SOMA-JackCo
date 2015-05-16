@@ -1,0 +1,563 @@
+.row
+  %h1
+    = "Classification Report - Jackfruit"
+  %hr
+  = render partial: 'report_classification_filter', path: report_classifications_jackfruit_index_path
+  
+  - unless params[:filter].nil?
+    %br
+    .row
+      .col-xs-12
+        %table.table-bordered{cellpadding: "10px", width: "100%"}
+          %tr{style: "background-color: #eee"}
+            %th{style: "padding-left:10px"} Period
+            %th{style: "text-align:center"}= "Jan-" + @year
+            %th{style: "text-align:center"}= "Feb-" + @year
+            %th{style: "text-align:center"}= "Mar-" + @year
+            %th{style: "text-align:center"}= "Apr-" + @year
+            %th{style: "text-align:center"}= "May-" + @year
+            %th{style: "text-align:center"}= "Jun-" + @year
+            %th{style: "text-align:center"}= "Jul-" + @year
+            %th{style: "text-align:center"}= "Aug-" + @year
+            %th{style: "text-align:center"}= "Sep-" + @year
+            %th{style: "text-align:center"}= "Oct-" + @year
+            %th{style: "text-align:center"}= "Nov-" + @year
+            %th{style: "text-align:center"}= "Dec-" + @year
+            %th{style: "text-align:center"} Total
+          %tr{style: "color:#3333FF;"}
+            %th{style: "padding-left:10px"} Standard PDT
+            %td{style: "text-align:center"}
+              = @production_standard[0]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[1]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[2]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[3]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[4]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[5]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[6]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[7]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[8]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[9]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[10]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[11]
+              %sup Unit
+            %th{style: "text-align:center"}
+              = @production_standard[12]
+              %sup Unit
+          %tr{style: "color:#852314;"}
+            %th{style: "padding-left:10px"} Forecast PDT
+            %td{style: "text-align:center"}
+              = @production_plan[0]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[1]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[2]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[3]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[4]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[5]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[6]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[7]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[8]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[9]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[10]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[11]
+              %sup Unit
+            %th{style: "text-align:center"}
+              = @production_plan[12]
+              %sup Unit
+    
+          %tr{style: "color:#55DD33;"}
+            %th{style: "padding-left:10px"} Actual PDT
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[0]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[1]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[2]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[3]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[4]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[5]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[6]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[7]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[8]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[9]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[10]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[11]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[11]
+              %sup Kg
+            %th{style: "text-align:center"}
+              = @actual_pdt_unit[12]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[12]
+              %sup Kg
+            
+          %tr{style: "color:#5A287D;"}
+            %th{style: "padding-left:10px"} To Finish WH
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[0]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[1]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[2]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[3]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[4]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[5]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[6]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[7]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[8]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[9]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[10]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[11]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[11]
+              %sup Kg
+            %th{style: "text-align:center"}
+              = @to_finish_wh_unit[12]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[12]
+              %sup Kg
+            
+          %tr{style: "color:#FF9600;"}
+            %th{style: "padding-left:10px"} To Nursery WH
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[0]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[1]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[2]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[3]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[4]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[5]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[6]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[7]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[8]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[9]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[10]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[11]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[11]
+              %sup Kg
+            %th{style: "text-align:center"}
+              = @to_nursery_wh_unit[12]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[12]
+              %sup Kg
+            
+          %tr{style: "color:#1EA6A3;"}
+            %th{style: "padding-left:10px"} Young Fruit
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[0]
+              %sup Unit
+              %br
+              = @young_fruit_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[1]
+              %sup Unit
+              %br
+              = @young_fruit_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[2]
+              %sup Unit
+              %br
+              = @young_fruit_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[3]
+              %sup Unit
+              %br
+              = @young_fruit_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[4]
+              %sup Unit
+              %br
+              = @young_fruit_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[5]
+              
+              %sup Unit
+              %br
+              = @young_fruit_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[6]
+              %sup Unit
+              %br
+              = @young_fruit_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[7]
+              %sup Unit
+              %br
+              = @young_fruit_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[8]
+              %sup Unit
+              %br
+              = @young_fruit_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[9]
+              %sup Unit
+              %br
+              = @young_fruit_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[10]
+              %sup Unit
+              %br
+              = @young_fruit_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[11]
+              %sup Unit
+              %br
+              = @young_fruit_kg[11]
+              %sup Kg
+            %th{style: "text-align:center"}
+              = @young_fruit_unit[12]
+              %sup Unit
+              %br
+              = @young_fruit_kg[12]
+              %sup Kg
+            
+          %tr{style: "color:#FF0055;"}
+            %th{style: "padding-left:10px"} Spoiled Ripe
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[0]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[1]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[2]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[3]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[4]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[5]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[6]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[7]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[8]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[9]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[10]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[11]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[11]
+              %sup Kg
+            %th{style: "text-align:center"}
+              = @spoiled_ripe_unit[12]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[12]
+              %sup Kg
+
+    %br
+    .row
+      #jackfruit_classification_chart{:style => "height: 350px"}
+
+:javascript
+  google.load('visualization', '1', {packages: ['corechart', 'line']});
+  google.setOnLoadCallback(drawBasic);
+  
+  function drawBasic() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'X');
+    data.addColumn('number', 'Standard PDT');
+    data.addColumn('number', 'Forecast PDT');
+    data.addColumn('number', 'Actual PDT');
+    data.addColumn('number', 'To Finish WH');
+    data.addColumn('number', 'To Nursery WH');
+    data.addColumn('number', 'Young Fruit');
+    data.addColumn('number', 'Spoiled Ripe');
+  
+    data.addRows([
+      ["Jan-15",  5, 15,  2, 12,  9,  3,  6],
+      ["Feb-15", 10,  3,  8,  3,  7, 10,  4],
+      ["Mar-15", 23, 13,  6,  3, 17, 10, 24],
+      ["Apr-15", 17,  3, 18, 13,  7, 10, 14],
+      ["May-15", 18, 13,  8, 23, 27, 10, 14],
+      ["Jun-15",  9,  3, 18, 13, 17, 10,  4],
+      ["Jul-15", 11, 23,  8, 33, 27, 10,  4],
+      ["Aug-15", 27,  3, 18,  3,  7, 10,  4],
+      ["Sep-15", 33,  3, 28, 13,  7, 10,  4],
+      ["Oct-15", 40,  3,  8, 23, 17, 10,  4],
+      ["Nov-15", 32,  3,  8,  3,  7, 10, 24],
+      ["Dec-15", 35,  3,  8,  3,  7, 10, 14]
+    ]);
+  
+    var options = {
+      hAxis: {
+        title: 'Period'
+      },
+      vAxis: {
+        title: 'Production'
+      },
+      colors:['#3333FF','#852314', '#55DD33', '#5A287D', '#FF9600', '#1EA6A3', '#FF0055']
+    };
+  
+    var chart = new google.visualization.LineChart(document.getElementById('jackfruit_classification_chart'));
+  
+    chart.draw(data, options);
+  }

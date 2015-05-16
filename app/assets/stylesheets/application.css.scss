@@ -157,10 +157,13 @@ table.dataTable tr.group:hover {
 }
 
 footer {
+  position:fixed;
+  bottom:0;
+  width:100%;
   padding-top: 5px;
   padding-bottom: 5px;
-  margin-top: 10px;
   color: #777;
+  background-color: #eee;
   border-top: 1px solid #E5E5E5;
 }
 

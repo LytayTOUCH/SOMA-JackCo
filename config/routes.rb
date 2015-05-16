@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :production_standards
 
   resources :production_plans
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
 
   get 'report_productivities/coconut_index'
   get 'report_productivities/jackfruit_index'
+  
+  get 'report_classifications/coconut_index'
+  get 'report_classifications/jackfruit_index'
 
   get 'log_tracking/index'
   
