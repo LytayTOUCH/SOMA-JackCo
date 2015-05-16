@@ -25,6 +25,7 @@
             %th{style: "text-align:center"}= "Dec-" + @year
             %th{style: "text-align:center"} Total
           %tr{style: "color:#3333FF;"}
+            %input#standard_pdt{type: "hidden", value: @production_standard}
             %th{style: "padding-left:10px"} Standard PDT
             %td{style: "text-align:center"}
               = @production_standard[0]
@@ -66,6 +67,7 @@
               = @production_standard[12]
               %sup Unit
           %tr{style: "color:#852314;"}
+            %input#forecast_pdt{type: "hidden", value: @production_plan}
             %th{style: "padding-left:10px"} Forecast PDT
             %td{style: "text-align:center"}
               = @production_plan[0]
@@ -108,6 +110,7 @@
               %sup Unit
     
           %tr{style: "color:#55DD33;"}
+            %input#actual_pdt{type: "hidden", value: @actual_pdts}
             %th{style: "padding-left:10px"} Actual PDT
             %td{style: "text-align:center"}
               = @actual_pdts[0]
@@ -150,6 +153,7 @@
               %sup Unit
             
           %tr{style: "color:#5A287D;"}
+            %input#to_finish_wh{type: "hidden", value: @to_finish_whs}
             %th{style: "padding-left:10px"} To Finish WH
             %td{style: "text-align:center"}
               = @to_finish_whs[0]
@@ -192,6 +196,7 @@
               %sup Unit
             
           %tr{style: "color:#FF9600;"}
+            %input#to_nursery_wh{type: "hidden", value: @to_nursery_whs}
             %th{style: "padding-left:10px"} To Nursery WH
             %td{style: "text-align:center"}
               = @to_nursery_whs[0]
@@ -234,6 +239,7 @@
               %sup Unit
             
           %tr{style: "color:#1EA6A3;"}
+            %input#spoiled{type: "hidden", value: @spoiled}
             %th{style: "padding-left:10px"} Spoiled
             %td{style: "text-align:center"}
               = @spoiled[0]
@@ -276,6 +282,7 @@
               %sup Unit
             
           %tr{style: "color:#FF0055;"}
+            %input#free_at_farm{type: "hidden", value: @free_at_farm}
             %th{style: "padding-left:10px"} Free at Farm
             %td{style: "text-align:center"}
               = @free_at_farm[0]
@@ -319,49 +326,7 @@
 
     %br
     .row
-      #coconut_classification_chart{:style => "height: 350px"}
+      #coconut_classification_chart{:style => "height: 450px"}
 
-:javascript
-  google.load('visualization', '1', {packages: ['corechart', 'line']});
-  google.setOnLoadCallback(drawBasic);
-  
-  function drawBasic() {
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'X');
-    data.addColumn('number', 'Standard PDT');
-    data.addColumn('number', 'Forecast PDT');
-    data.addColumn('number', 'Actual PDT');
-    data.addColumn('number', 'To Finish WH');
-    data.addColumn('number', 'To Nursery WH');
-    data.addColumn('number', 'Spoiled');
-    data.addColumn('number', 'Free at Farm');
-  
-    data.addRows([
-      ["Jan-15",  5, 15,  2, 12,  9,  3,  6],
-      ["Feb-15", 10,  3,  8,  3,  7, 10,  4],
-      ["Mar-15", 23, 13,  6,  3, 17, 10, 24],
-      ["Apr-15", 17,  3, 18, 13,  7, 10, 14],
-      ["May-15", 18, 13,  8, 23, 27, 10, 14],
-      ["Jun-15",  9,  3, 18, 13, 17, 10,  4],
-      ["Jul-15", 11, 23,  8, 33, 27, 10,  4],
-      ["Aug-15", 27,  3, 18,  3,  7, 10,  4],
-      ["Sep-15", 33,  3, 28, 13,  7, 10,  4],
-      ["Oct-15", 40,  3,  8, 23, 17, 10,  4],
-      ["Nov-15", 32,  3,  8,  3,  7, 10, 24],
-      ["Dec-15", 35,  3,  8,  3,  7, 10, 14]
-    ]);
-  
-    var options = {
-      hAxis: {
-        title: 'Period'
-      },
-      vAxis: {
-        title: 'Production'
-      },
-      colors:['#3333FF','#852314', '#55DD33', '#5A287D', '#FF9600', '#1EA6A3', '#FF0055']
-    };
-  
-    var chart = new google.visualization.LineChart(document.getElementById('coconut_classification_chart'));
-  
-    chart.draw(data, options);
-  }
+- content_for :javascript_body do
+  = javascript_include_tag "report_classifications_coconut"
