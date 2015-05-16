@@ -100,7 +100,7 @@
               = navbar_link "User Groups", user_groups_path, "active"
           %li.divider
           %li
-            - if can? :read, Version
+            - if can? :read, Log
               = navbar_link "Log Tracking", log_tracking_index_path, "active"
               
           
@@ -126,7 +126,8 @@
           %li
             %a{:href => production_plans_path} Production Plan
           %li
-            %a{:href => production_plan_report_index_path} Production Plan Report
+            - if can? :index, :production_plan_report
+              %a{:href => production_plan_report_index_path} Production Plan Report
           %li
             - if can? :index, :production_list
               %a{:href => production_list_index_path} Location Plan Report
