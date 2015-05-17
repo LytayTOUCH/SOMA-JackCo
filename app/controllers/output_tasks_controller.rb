@@ -124,7 +124,7 @@ class OutputTasksController < ApplicationController
         # START -- DISTRIBUTION SECTION
         dis_index = 0
         params[:distribution_amounts].each do |amount|
-          OutputDistribution.create(output_task_id: @output_task.uuid, distribution_id: params[:distribution_ids][dis_index], unit_measure_id: params[:uom_ids][dis_index], amount: amount==""?"0":amount)
+          OutputDistribution.create(output_task_id: @output_task.uuid, distribution_id: params[:distribution_ids][dis_index], unit_measure_id: params[:uom_ids][dis_index], amount: amount == "" ? "0":amount)
           dis_index += 1
         end
         # END -- DISTRIBUTION SECTION
