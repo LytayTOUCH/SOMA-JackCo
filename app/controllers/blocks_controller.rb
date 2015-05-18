@@ -22,6 +22,7 @@ class BlocksController < ApplicationController
 
   def update
     if @block.update(block_params)
+      create_log current_user.uuid, "Updated Block", @block
       @block
     end
   end

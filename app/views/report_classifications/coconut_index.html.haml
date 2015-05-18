@@ -5,11 +5,12 @@
   = render partial: 'report_classification_filter', path: report_classifications_coconut_index_path
   
   - unless params[:filter].nil?
+    %input#year{type: "hidden", value: @year}
     %br
     .row
       .col-xs-12
-        %table.table-bordered{cellpadding: "10px", width: "100%"}
-          %tr{style: "background-color: #eee"}
+        %table.table-bordered#main_table{cellpadding: "5px", width: "100%"}
+          %tr#table_header{style: "background-color: #eee"}
             %th{style: "padding-left:10px"} Period
             %th{style: "text-align:center"}= "Jan-" + @year
             %th{style: "text-align:center"}= "Feb-" + @year
@@ -24,8 +25,9 @@
             %th{style: "text-align:center"}= "Nov-" + @year
             %th{style: "text-align:center"}= "Dec-" + @year
             %th{style: "text-align:center"} Total
-          %tr{style: "color:#3333FF;"}
-            %th{style: "padding-left:10px"} Standard PDT
+          %tr.row_1{style: "color:#fff;background-color:#3333FF;"}
+            %input#standard_pdt{type: "hidden", value: @production_standard}
+            %th{style: "padding-left:10px;color:#3333FF;background-color:#fff;"} Standard PDT
             %td{style: "text-align:center"}
               = @production_standard[0]
               %sup Unit
@@ -62,11 +64,12 @@
             %td{style: "text-align:center"}
               = @production_standard[11]
               %sup Unit
-            %th{style: "text-align:center"}
+            %th{style: "text-align:center;color:#3333FF;background-color:#fff;"}
               = @production_standard[12]
               %sup Unit
-          %tr{style: "color:#852314;"}
-            %th{style: "padding-left:10px"} Forecast PDT
+          %tr.row_2{style: "color:#fff;background-color:#852314;"}
+            %input#forecast_pdt{type: "hidden", value: @production_plan}
+            %th{style: "padding-left:10px;color:#852314;background-color:#fff;"} Forecast PDT
             %td{style: "text-align:center"}
               = @production_plan[0]
               %sup Unit
@@ -103,12 +106,13 @@
             %td{style: "text-align:center"}
               = @production_plan[11]
               %sup Unit
-            %th{style: "text-align:center"}
+            %th{style: "text-align:center;color:#852314;background-color:#fff;"}
               = @production_plan[12]
               %sup Unit
     
-          %tr{style: "color:#55DD33;"}
-            %th{style: "padding-left:10px"} Actual PDT
+          %tr.row_3{style: "color:#fff;background-color:#55DD33;"}
+            %input#actual_pdt{type: "hidden", value: @actual_pdts}
+            %th{style: "padding-left:10px;color:#55DD33;background-color:#fff;"} Actual PDT
             %td{style: "text-align:center"}
               = @actual_pdts[0]
               %sup Unit
@@ -145,12 +149,13 @@
             %td{style: "text-align:center"}
               = @actual_pdts[11]
               %sup Unit
-            %th{style: "text-align:center"}
+            %th{style: "text-align:center;color:#55DD33;background-color:#fff;"}
               = @actual_pdts[12]
               %sup Unit
             
-          %tr{style: "color:#5A287D;"}
-            %th{style: "padding-left:10px"} To Finish WH
+          %tr.row_4{style: "color:#fff;background-color:#5A287D;"}
+            %input#to_finish_wh{type: "hidden", value: @to_finish_whs}
+            %th{style: "padding-left:10px;color:#5A287D;background-color:#fff;"} To Finish WH
             %td{style: "text-align:center"}
               = @to_finish_whs[0]
               %sup Unit
@@ -187,12 +192,13 @@
             %td{style: "text-align:center"}
               = @to_finish_whs[11]
               %sup Unit
-            %th{style: "text-align:center"}
+            %th{style: "text-align:center;color:#5A287D;background-color:#fff;"}
               = @to_finish_whs[12]
               %sup Unit
             
-          %tr{style: "color:#FF9600;"}
-            %th{style: "padding-left:10px"} To Nursery WH
+          %tr.row_5{style: "color:#fff;background-color:#FF9600;"}
+            %input#to_nursery_wh{type: "hidden", value: @to_nursery_whs}
+            %th{style: "padding-left:10px;color:#FF9600;background-color:#fff;"} To Nursery WH
             %td{style: "text-align:center"}
               = @to_nursery_whs[0]
               %sup Unit
@@ -229,12 +235,13 @@
             %td{style: "text-align:center"}
               = @to_nursery_whs[11]
               %sup Unit
-            %th{style: "text-align:center"}
+            %th{style: "text-align:center;color:#FF9600;background-color:#fff;"}
               = @to_nursery_whs[12]
               %sup Unit
             
-          %tr{style: "color:#1EA6A3;"}
-            %th{style: "padding-left:10px"} Spoiled
+          %tr.row_6{style: "color:#fff;background-color:#1EA6A3;"}
+            %input#spoiled{type: "hidden", value: @spoiled}
+            %th{style: "padding-left:10px;color:#1EA6A3;background-color:#fff;"} Spoiled
             %td{style: "text-align:center"}
               = @spoiled[0]
               %sup Unit
@@ -271,12 +278,13 @@
             %td{style: "text-align:center"}
               = @spoiled[11]
               %sup Unit
-            %th{style: "text-align:center"}
+            %th{style: "text-align:center;color:#1EA6A3;background-color:#fff;"}
               = @spoiled[12]
               %sup Unit
             
-          %tr{style: "color:#FF0055;"}
-            %th{style: "padding-left:10px"} Free at Farm
+          %tr.row_7{style: "color:#fff;background-color:#FF0055;"}
+            %input#free_at_farm{type: "hidden", value: @free_at_farm}
+            %th{style: "padding-left:10px;color:#FF0055;background-color:#fff;"} Free at Farm
             %td{style: "text-align:center"}
               = @free_at_farm[0]
               %sup Unit
@@ -313,55 +321,66 @@
             %td{style: "text-align:center"}
               = @free_at_farm[11]
               %sup Unit
-            %th{style: "text-align:center"}
+            %th{style: "text-align:center;color:#FF0055;background-color:#fff;"}
               = @free_at_farm[12]
               %sup Unit
 
     %br
     .row
-      #coconut_classification_chart{:style => "height: 350px"}
+      #coconut_classification_chart{:style => "height: 450px"}
+    
+    %br
+    .row
+      .col-xs-12
+        .pull-right
+          %a.btn.btn-primary.print_button#print_button
+            %span.glyphicon.glyphicon-print
+            Print Report
 
-:javascript
-  google.load('visualization', '1', {packages: ['corechart', 'line']});
-  google.setOnLoadCallback(drawBasic);
+- content_for :javascript_body do
+  = javascript_include_tag "report_classifications_coconut"
+
+:css
+  @media print {
+    @page {
+      margin: 0;
+      size: A4 landscape;
+    }
+    
+    body { background: white; }
   
-  function drawBasic() {
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'X');
-    data.addColumn('number', 'Standard PDT');
-    data.addColumn('number', 'Forecast PDT');
-    data.addColumn('number', 'Actual PDT');
-    data.addColumn('number', 'To Finish WH');
-    data.addColumn('number', 'To Nursery WH');
-    data.addColumn('number', 'Spoiled');
-    data.addColumn('number', 'Free at Farm');
-  
-    data.addRows([
-      ["Jan-15",  5, 15,  2, 12,  9,  3,  6],
-      ["Feb-15", 10,  3,  8,  3,  7, 10,  4],
-      ["Mar-15", 23, 13,  6,  3, 17, 10, 24],
-      ["Apr-15", 17,  3, 18, 13,  7, 10, 14],
-      ["May-15", 18, 13,  8, 23, 27, 10, 14],
-      ["Jun-15",  9,  3, 18, 13, 17, 10,  4],
-      ["Jul-15", 11, 23,  8, 33, 27, 10,  4],
-      ["Aug-15", 27,  3, 18,  3,  7, 10,  4],
-      ["Sep-15", 33,  3, 28, 13,  7, 10,  4],
-      ["Oct-15", 40,  3,  8, 23, 17, 10,  4],
-      ["Nov-15", 32,  3,  8,  3,  7, 10, 24],
-      ["Dec-15", 35,  3,  8,  3,  7, 10, 14]
-    ]);
-  
-    var options = {
-      hAxis: {
-        title: 'Period'
-      },
-      vAxis: {
-        title: 'Production'
-      },
-      colors:['#3333FF','#852314', '#55DD33', '#5A287D', '#FF9600', '#1EA6A3', '#FF0055']
-    };
-  
-    var chart = new google.visualization.LineChart(document.getElementById('coconut_classification_chart'));
-  
-    chart.draw(data, options);
+    .report_filter, .print_button, hr{ display: none; }
+    
+    .container {
+      width: 90%;
+      border: 0;
+      padding: 0;
+      float: none !important;
+    }
+    
+    #main_table{
+      position: absolute;
+      left: 50px;
+    }
+    
+    #main_table td, #main_table th{
+      padding: 5px !important;
+    }
+    
+    #table_header{
+      background-color: #eee !important;
+    }
+    
+    .row_1 *{color: #3333FF !important;}
+    .row_2 *{color: #852314 !important;}
+    .row_3 *{color: #55DD33 !important;}
+    .row_4 *{color: #5A287D !important;}
+    .row_5 *{color: #FF9600 !important;}
+    .row_6 *{color: #1EA6A3 !important;}
+    .row_7 *{color: #FF0055 !important;}
+    
+    #coconut_classification_chart{
+      position: absolute;
+      top: 350px;
+    }
   }

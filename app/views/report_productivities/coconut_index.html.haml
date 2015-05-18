@@ -8,7 +8,7 @@
     %br
     .row
       .col-xs-12
-        %table.table-bordered{cellpadding: "5px", style: "width:100%"}
+        %table.table-bordered#main_table{cellpadding: "5px", style: "width:100%"}
           %tr
             %th{rowspan: "3", style: "text-align:center"} Farm
             %th{rowspan: "3", style: "text-align:center"} Zone
@@ -297,7 +297,7 @@
     %br
     .row
       .col-xs-12
-        %table.table-bordered{cellpadding: "5px", style: "width:100%"}
+        %table.table-bordered#main_table{cellpadding: "5px", style: "width:100%"}
           %tr
             %th{rowspan: "3", style: "text-align:center"} Grand Total Production
             %th{colspan: "5", style: "text-align:center"} Total Production
@@ -377,3 +377,35 @@
 
 - content_for :javascript_body do
   = javascript_include_tag "report_productivities"
+
+:css
+  @media print {
+    @page {
+      margin: 0;
+      size: A4 landscape;
+    }
+    
+    body { background: white; }
+  
+    .report_filter, .print_button, hr{ display: none; }
+    
+    .container {
+      width: 90%;
+      border: 0;
+      padding: 0;
+      float: none !important;
+    }
+    
+    #main_table{
+      position: absolute;
+      left: 50px;
+    }
+    
+    #main_table td, #main_table th{
+      padding: 5px !important;
+    }
+    
+    #main_table tfoot{
+      background-color: #eee !important;
+    }
+  }

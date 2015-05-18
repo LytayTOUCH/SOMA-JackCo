@@ -22,18 +22,18 @@ function drawStuff() {
       if (data){
         var data = new google.visualization.arrayToDataTable([
           ['Move', 'Amount'],
-          ["Jan-15", data.jan],
-          ["Feb-15", data.feb],
-          ["Mar-15", data.mar],
-          ["Apr-15", data.apr],
-          ["May-15", data.may],
-          ["Jun-15", data.jun],
-          ["Jul-15", data.jul],
-          ["Aug-15", data.aug],
-          ["Sep-15", data.sep],
-          ["Oct-15", data.oct],
-          ["Nov-15", data.nov],
-          ["Dec-15", data.dec]
+          ["Jan-" + for_year.substring(2, 4), data.jan],
+          ["Feb-" + for_year.substring(2, 4), data.feb],
+          ["Mar-" + for_year.substring(2, 4), data.mar],
+          ["Apr-" + for_year.substring(2, 4), data.apr],
+          ["May-" + for_year.substring(2, 4), data.may],
+          ["Jun-" + for_year.substring(2, 4), data.jun],
+          ["Jul-" + for_year.substring(2, 4), data.jul],
+          ["Aug-" + for_year.substring(2, 4), data.aug],
+          ["Sep-" + for_year.substring(2, 4), data.sep],
+          ["Oct-" + for_year.substring(2, 4), data.oct],
+          ["Nov-" + for_year.substring(2, 4), data.nov],
+          ["Dec-" + for_year.substring(2, 4), data.dec]
         ]);
 
         var options = {

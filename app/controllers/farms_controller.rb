@@ -16,6 +16,7 @@ class FarmsController < ApplicationController
     @farm = Farm.new(farm_params)
     @farm.active = true
     if @farm.save
+      create_log current_user.uuid, "Created New Farm", @farm
       @farm
       @farms_amount=@farms.count
     end
@@ -26,6 +27,7 @@ class FarmsController < ApplicationController
 
   def update
     if @farm.update(farm_params)
+      create_log current_user.uuid, "Updated Farm", @farm
       @farm
     end
   end  
