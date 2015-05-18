@@ -11,6 +11,7 @@ class ProductionPlansController < ApplicationController
     @production_plans = ProductionPlan.new(production_plans_params)
 
     if @production_plans.save
+      create_log current_user.uuid, "Created New Production Plan", @production_plans
       redirect_to production_plans_path, :notice => "Production plan saved successfully"
     else
       render "new"
@@ -25,9 +26,10 @@ class ProductionPlansController < ApplicationController
     @production_plans = ProductionPlan.find(params[:id])
 
     if @production_plans.update_attributes(production_plans_params)
+      create_log current_user.uuid, "Updated Production Plan", @production_plans
       redirect_to production_plans_path, :notice => "Production plan updated successfully"
     else
-      render 'edit', :notice => "Production plan can't update"
+      render 'edit', :notice => "Production plan can't be updated"
     end
   end
 

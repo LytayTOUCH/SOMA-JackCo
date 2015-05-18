@@ -31,18 +31,18 @@
           %thead
             %tr
               %th{style: "text-align: center;"} Period
-              %th.col-md-1{class: "first-col-table"} Jan-15
-              %th.col-md-1{class: "other-col-table"} Feb-15
-              %th.col-md-1{class: "other-col-table"} Mar-15
-              %th.col-md-1{class: "other-col-table"} Apr-15
-              %th.col-md-1{class: "other-col-table"} May-15
-              %th.col-md-1{class: "other-col-table"} Jun-15
-              %th.col-md-1{class: "other-col-table"} Jul-15
-              %th.col-md-1{class: "other-col-table"} Aug-15
-              %th.col-md-1{class: "other-col-table"} Sep-15
-              %th.col-md-1{class: "other-col-table"} Oct-15
-              %th.col-md-1{class: "other-col-table"} Nov-15
-              %th.col-md-1{class: "other-col-table"} Dec-15
+              %th.col-md-1{class: "first-col-table"}= "Jan-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Feb-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Mar-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Apr-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "May-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Jun-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Jul-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Aug-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Sep-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Oct-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Nov-#{@year[2..3]}"
+              %th.col-md-1{class: "other-col-table"}= "Dec-#{@year[2..3]}"
 
           - @production_plan.each do |production|
             %tr

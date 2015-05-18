@@ -77,11 +77,13 @@ class InputTasksController < ApplicationController
 
                   if @input_task.save
 
+                    create_log current_user.uuid, "Created New Input Task", @input_task
+
                     InputUseMaterial.create(input_id: @input_task.uuid, material_id: material_id, warehouse_id: warehouse_of_material, material_amount: qty_of_material.to_f)
                     @warehouse_material_amount.update_attributes!(amount: remain_in_stock)
 
                   else
-                    flash[:notice] = "Input Task can't save"
+                    flash[:notice] = "Input Task can't be saved"
                     render 'new'
                   end
 
