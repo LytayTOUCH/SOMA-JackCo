@@ -12,11 +12,11 @@ class InputTasksController < ApplicationController
   def new
     begin
       @input_task = InputTask.new
-      project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
-      @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
-      @farms_name = Block.select("uuid, name, farm_id")
+      # project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
+      # @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
+      # @farms_name = Block.select("uuid, name, farm_id")
 
-      @machineries = Machinery.select("uuid, name")
+      # @machineries = Machinery.select("uuid, name")
       @materials = Material.select("uuid, name")
 
     rescue Exception => e
@@ -37,11 +37,11 @@ class InputTasksController < ApplicationController
       @input_task = InputTask.new(input_task_params)
       input_task_end_date = @input_task.end_date
       
-      project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
-      @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
-      @farms_name = Block.select("uuid, name, farm_id")
+      # project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
+      # @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
+      # @farms_name = Block.select("uuid, name, farm_id")
 
-      @machineries = Machinery.select("uuid, name")
+      # @machineries = Machinery.select("uuid, name")
       @materials = Material.select("uuid, name")
 
         # Start Select Material 
@@ -91,7 +91,7 @@ class InputTasksController < ApplicationController
                   render 'new' 
                 end
               else
-                flash[:notice] = "Make sure warehouse is selected!"
+                flash[:notice] = "Make sure warehouse of material is selected!"
                 render 'new'
               end
   
@@ -151,7 +151,7 @@ class InputTasksController < ApplicationController
               index += 1
 
               # Make sure Warehouse and Material of each machineries are selected
-              if warehouse.present? and material.present? 
+              if material.present? 
                 @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse, material_uuid: material)
                 puts "====================== Amount =========================="
                 puts total_in_stock = @warehouse_material_amount.amount
@@ -171,9 +171,9 @@ class InputTasksController < ApplicationController
                   flash[:notice] = "Suggested quantity exceeds the stock quantity"
                   render 'new' 
                 end
-              else
-                flash[:notice] = "Make sure warehouse and material are selected!"
-                render 'new'
+              # else
+              #   flash[:notice] = "Make sure warehouse and material are selected!"
+              #   render 'new'
               end
 
             end

@@ -330,7 +330,7 @@ $(document).ready(function(){
           str +=    '<div class="col-xs-2">';
           str +=      '<select name="materials_of_machinery[]" class="material-select-'+params.selected+' form-control" id="material_select-'+params.selected+'">';
           str +=      '</select>';
-          str +=      '<span id="material_select_msg-'+params.selected+'" style="color: red;"></span>';
+          // str +=      '<span id="material_select_msg-'+params.selected+'" style="color: red;"></span>';
           str +=    '</div>';
           str +=    '<label class="col-xs-1 control-label">Qty*</label>';
           str +=    '<div class="col-xs-2 material-qtys">';
@@ -341,7 +341,6 @@ $(document).ready(function(){
           str +=      '</div>';
           str +=    '</div>';
 
-          
           str +=  '</div>';
           str += '</div>';
           
@@ -354,6 +353,10 @@ $(document).ready(function(){
           $.each(data.material, function(i, value) {
             $('select.material-select-'+params.selected).append('<option value='+ value.uuid +'>' + value.name + '</option>');
           });
+
+          if(data.material == ""){
+            $('select.material-select-'+params.selected).append('<option value=""></option>');
+          }
 
           //Start--Auto select UOM when select machinery
           var mat_id = $('select.material-select-'+params.selected).val();
@@ -459,7 +462,7 @@ $(document).ready(function(){
               str +=    '<div class="col-xs-2">';
               str +=      '<select name="warehouses_of_material[]" class="warehouse-select-material-'+params.selected+' form-control" id="warehouse_select_material-'+params.selected+'">';
               str +=      '</select>';
-              str +=      '<span id="warehouse_select_material_msg-'+params.selected+'" style="color: red;"></span>';
+              // str +=      '<span id="warehouse_select_material_msg-'+params.selected+'" style="color: red;"></span>';
               str +=    '</div>';
               
               str +=    '<label class="col-xs-1 control-label">Qty*</label>';
@@ -480,6 +483,10 @@ $(document).ready(function(){
               $.each(data.warehouse, function(i, value) {
                 $('select.warehouse-select-material-'+params.selected).append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
               });
+
+              if (data.warehouse == ""){
+                $('select.warehouse-select-material-'+params.selected).append('<option value=""></option></select>');
+              }
 
               //INPUT MATERIAL QTY SECTION (Material choosen)
               $("#materials_qty_request-"+params.selected).blur(function() {

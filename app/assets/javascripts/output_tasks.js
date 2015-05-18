@@ -339,7 +339,7 @@ $(document).ready(function() {
 	          $('div.machinery-name').append(str);
 			  
 			  //SELECT WAREHOUSE SECTION
-			  $('select.warehouse-select').append('<option value=""></option>');
+			  // $('select.warehouse-select').append('<option value=""></option>');
 	          $.each(data.warehouse, function(i, value) {
 	            $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option>');
 	          });
@@ -352,10 +352,25 @@ $(document).ready(function() {
 			  });
 	
 			  //SELECT MATERIAL SECTION
-			  $('select.material-select').append('<option value=""></option>');
+			  // $('select.material-select').append('<option value=""></option>');
 	          $.each(data.material, function(i, value) {
 	            $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
 	          });
+
+            //Start--Auto select UOM when select machinery
+            var mat_id = $('select.material-select').val();
+            jQuery.ajax({
+              url: "/get_unit_of_measurement_data",
+              type: "GET",
+              data: {"material_uuid" : mat_id},
+              dataType: "json",
+              success: function(data){
+                // $("span.uom-name-"+params.selected).html(data.name);
+                $("#span_"+machinery_id).html(data.name);
+              }
+            }); 
+            //End--Auto select UOM when select machinery
+
 	          $('select.material-select').change(
 			    function() {
 			      var machinery_id = $(this).attr("id").split("_")[1];
