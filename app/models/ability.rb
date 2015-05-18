@@ -14,11 +14,11 @@ class Ability
       
       can [:edit_profile, :update_profile], User if user.user_group.name == "Manager"
 
-      can :index, :production_plan_report if user.user_group.name == "Manager"
+      can :index, [:production_plan_report, :production_list, :input_uses, :report_productivities] if user.user_group.name == "Manager"
       
-      cannot :index, :production_list if user.user_group.name == "Manager"
+      can :coconut_index, :report_productivities if user.user_group.name == "Manager"
 
-
+      can :jackfruit_index, :report_productivities if user.user_group.name == "Manager"
         
         
       # =================== Project Leader =======================
@@ -30,10 +30,11 @@ class Ability
       
       can [:read, :create], [PlanFarm, ProductionPlan, ProductionStandard] if user.user_group.name == "Project Leader"
 
-      can :index, :production_plan_report if user.user_group.name == "Project Leader"
+      can :index, [:production_plan_report, :production_list, :input_uses] if user.user_group.name == "Project Leader"
 
-      cannot :index, :production_list if user.user_group.name == "Project Leader"
+      can :coconut_index, :report_productivities if user.user_group.name == "Project Leader"
 
+      can :jackfruit_index, :report_productivities if user.user_group.name == "Project Leader"
 
 
 
@@ -46,11 +47,11 @@ class Ability
 
       can [:edit_profile, :update_profile], User if user.user_group.name == "Data Entry"
 
-      cannot :index, [:production_list, :production_plan_report] if user.user_group.name == "Data Entry"
+      cannot :index, [:production_list, :production_plan_report, :input_uses] if user.user_group.name == "Data Entry"
 
+      cannot :coconut_index, :report_productivities if user.user_group.name == "Data Entry"
 
-
-      
+      cannot :jackfruit_index, :report_productivities if user.user_group.name == "Data Entry"
 
       
     end
