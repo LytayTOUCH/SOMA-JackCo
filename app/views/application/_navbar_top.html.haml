@@ -115,24 +115,34 @@
               = link_to 'All Farms', farms_path
           %li.divider
           = render "farm_names_navigator"
+      
+      
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %i.fa.fa-area-chart.fa-lg.icon-greenish
           Plans
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
-          %li
-            %a{:href => plan_farms_path} Location Plan
-          %li
-            %a{:href => production_plans_path} Production Plan
-          %li
-            - if can? :index, :production_plan_report
-              %a{:href => production_plan_report_index_path} Production Plan Report
-          %li
-            - if can? :index, :production_list
-              %a{:href => production_list_index_path} Location Plan Report
-          %li
-            %a{:href => production_standards_path} Production Standard
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Location
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Plan", plan_farms_path, "active"
+              %li
+                - if can? :index, :production_list
+                  = navbar_link "Report", production_list_index_path, "active"
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Production
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Standard", production_standards_path, "active"
+              %li
+                = navbar_link "Plan", production_plans_path, "active"
+              %li
+                - if can? :index, :production_plan_report
+                  = navbar_link "Report", production_plan_report_index_path, "active"
+      
+      
       %li.dropdown
         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           %i.fa.fa-bar-chart-o.fa-lg.icon-greenish
@@ -140,7 +150,7 @@
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
           %li
-            %a{:href => input_uses_path} Input Use Summary
+            %a{:href => input_uses_path} Input Use
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Productivity
             %ul.dropdown-menu
@@ -155,8 +165,6 @@
                 = navbar_link "Coconut", report_classifications_coconut_index_path, "active"
               %li
                 = navbar_link "Jackfruit", report_classifications_jackfruit_index_path, "active"
-          %li
-            %a{:href => "#"} Stock / Inventory Summery
 
     / Right Navigator Menu
     = render 'navbar_right'
