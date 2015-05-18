@@ -141,7 +141,8 @@ class OutputTasksController < ApplicationController
   end
 
   def show
-    @output_task = OutputTask.find(params[:id]) 
+    @output_task = OutputTask.find(params[:id])
+    @output_use_machineries = OutputUseMachinery.where(output_id: params[:id])
   end
   
   def get_zones_by_farm

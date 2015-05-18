@@ -1,9 +1,12 @@
 %h3 InputTask Information
 %div
   %table.table
-    %tr.header
-      %th Fields
-      %th Information
+    %tr
+      %th.col-xs-3.header-title Fields
+      %th.col-xs-9.header-title Informations
+    %tr
+      %th Task Name
+      %td= @input_task.name
     %tr
       %th Start date
       %td= @input_task.start_date.to_s
@@ -11,38 +14,59 @@
       %th End date
       %td= @input_task.end_date.to_s
     %tr
-      %th Task
-      %td= @input_task.name
+      %th Farm - Zone - Area - Block
+      %td= @input_task.block.farm.name + " - " + @input_task.zone.name + " - " + @input_task.block.area.name + " - " + @input_task.block.name
     %tr
-      %th Block Name
-      %td= @input_task.block.name
+      %th Planting Project
+      %td= @input_task.planting_project.name
     %tr
       %th Tree amount
       %td= @input_task.tree_amount
     %tr
-      %th Labor name
+      %th Labor
       %td= @input_task.labor.name
-    / %tr
-    /   %th Machinery
-    /   %td
-    /     - if @input_task.machinery_id.present?
-    /       = @input_task.machinery.name
-    /     - else
-        
     %tr
-      %th Reference
-      %td= @input_task.reference_number 
-    / %tr
-    /   %th Warehouse name
-    /   %td= @input_task.warehouse.name
-    / %tr
-    /   %th Material name
-    /   %td= @input_task.material.name
-    / %tr
-    /   %th Quantity
-    /   %td= @input_task.material_amount.to_s + " ( " + @input_task.material.unit_of_measurement.name + " )"
+      %th Reference Number
+      %td= @input_task.reference_number
+    %tr
+      %th Equipments
+      %td
+        - @input_use_equipments.each do |input_use_equip|
+          = Equipment.where(uuid: input_use_equip.equipment_id).first.name
+          %br
+    %tr
+      %th Machineries
+      %td
+        - @input_use_machineries.each do |input_use_machinery|
+          %span{style: "padding-right: 10%"}= Machinery.where(uuid: input_use_machinery.machinery_id).first.name
+          %span{style: "font-weight: bold;"} Warehouse:
+          %span{style: "padding-right: 5%"}= Warehouse.where(uuid: input_use_machinery.warehouse_id).first.name
+          %span{style: "font-weight: bold;"} Material:
+          %span{style: "padding-right: 5%"}= Material.where(uuid: input_use_machinery.material_id).first.name
+          %span{style: "font-weight: bold;"} Material Qty:
+          %span{style: ""}= input_use_machinery.material_amount
+          %br
+    %tr
+      %th Materials
+      %td
+        - @input_use_materials.each do |input_use_material|
+          %span{style: "padding-right: 10%"}= Material.where(uuid: input_use_material.material_id).first.name
+          %span{style: "font-weight: bold;"} Warehouse:
+          %span{style: "padding-right: 5%"}= Warehouse.where(uuid: input_use_material.warehouse_id).first.name
+          %span{style: "font-weight: bold;"} Material Qty:
+          %span{style: ""}= input_use_material.material_amount
+          %br
     %tr
       %th Note
-      %td= @input_task.note   
+      %td= @input_task.note
 
-= link_to "Cancel", :back, class: "btn btn-default"
+.row{:style => "padding-top:20px;"}
+  .col-xs-12
+    .pull-right
+      = link_to "Cancel", :back, class: "btn btn-default"
+
+:css
+  .header-title{
+    font-size: 16px;
+  }
+  

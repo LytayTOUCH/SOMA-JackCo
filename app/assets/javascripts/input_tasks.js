@@ -186,9 +186,12 @@ $(document).ready(function(){
       success: function(data) {
         $.each(data, function(i, value) {
           $(".tree_amount").val(value.tree_amount);
-        });
+        });   
+
       }
     });
+
+     
 
     // Get data for Planting Project when selecting block
     $('.planting_project').show();
@@ -239,6 +242,35 @@ $(document).ready(function(){
       }
     });  
   });
+
+    //INPUT TREE AMOUNT SECTION
+    $(".tree_amount").blur(function() {
+      var tree_amount_input = $(".tree_amount").val();
+      var block_ids = $('#input_task_block_id').val();
+      if(tree_amount_input != "") {
+        jQuery.ajax({
+            url: "/get_tree_amounts",
+            type: "GET",
+            data: {"block_id" : block_ids},
+            dataType: "json",
+            success: function(data){
+              $.each(data, function(i, value) {
+                input = parseFloat(tree_amount_input);
+                remain = parseFloat(value.tree_amount);
+
+                if(input > remain) {
+                  alert("Input tree amount cannot over than block's tree amount."+
+                        "\nBlock's tree amount: "+ remain);
+                  $('.tree_amount').focus();
+                  $('.tree_amount').val(value.tree_amount);
+                }
+
+              });
+            }
+          });
+      }
+    });
+    //END--INPUT TREE AMOUNT SECTION
 
   function renderMachinery() {
     // Get data for Chosen when Planting project has data

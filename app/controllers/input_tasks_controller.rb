@@ -195,6 +195,10 @@ class InputTasksController < ApplicationController
 
   def show
     @input_task = InputTask.find(params[:id])
+    @input_use_equipments = InputUseEquipment.where(input_id: params[:id])
+    @input_use_machineries = InputUseMachinery.where(input_id: params[:id])
+    @input_use_materials = InputUseMaterial.where(input_id: params[:id])
+
   end
 
   private
