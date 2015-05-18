@@ -10,7 +10,7 @@
 }
 
 .error-locations{
-  width: 400px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -19,3 +19,16 @@
   left: 500px;
   top: 120px;
  }
+
+.plan_farm_farm_id.field_with_errors {
+  background-color: transparent !important;
+  padding: 0 !important;
+
+  .farm_id {
+    border: 1px solid red;
+  }
+
+  #plan_farm_for_year {
+    border: 1px solid red;
+  }
+}

@@ -1,0 +1,45 @@
+= form_tag @path, :class => 'form-inline', :role => 'form', :method => 'get' do
+  .row.report_filter{:style => "background-color: #ccc;padding-top: 10px;padding-bottom: 10px;"}
+    .col-md-3
+      %label.col-xs-3.middle-label Filter Year
+      .col-xs-9
+        .input-group#filter_year
+          %input.form-control{:type => "text", name: "filter[year]", :value => @year }
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+    .col-md-2
+      - if params[:filter].nil?
+        - @farm_id = ""
+      - else
+        - @farm_id = params[:filter][:farm_id]
+      %select#filter_farm_id.select.required.form-control{:name => "filter[farm_id]"}
+        %option{:value => ""}
+        %option{:value => "g_total", selected: "selected"} GRAND TOTAL
+        - Farm.all.each do |farm|
+          - if farm.uuid == @farm_id
+            %option{:value => farm.uuid, selected: "selected"}= farm.name
+          - else
+            %option{:value => farm.uuid}= farm.name
+    .col-md-1
+      = submit_tag 'OK', :class => 'btn btn-primary', :style => "width:100%;", :name => nil, id: "btnSubmit"
+      
+:javascript
+  $(document).ready(function() {
+    validateFilter();
+    
+    $('#filter_year').datetimepicker({
+      viewMode: 'years',
+      format: 'YYYY'
+    });
+    
+    $("#filter_farm_id").change(function() {validateFilter();});
+    $("#filter_year input").blur(function() {validateFilter();});
+    
+    function validateFilter() {
+      $("#btnSubmit").removeAttr('disabled');
+      
+      if($("#filter_year input").val() == "" || $("#filter_farm_id").val() == "") {
+        $("#btnSubmit").attr("disabled", "disabled");
+      }
+    }
+  });

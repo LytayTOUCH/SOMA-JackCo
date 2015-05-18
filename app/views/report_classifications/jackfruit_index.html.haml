@@ -1,0 +1,582 @@
+.row
+  %h1
+    = "Classification Report - Jackfruit"
+  %hr
+  = render partial: 'report_classification_filter', path: report_classifications_jackfruit_index_path
+  
+  - unless params[:filter].nil?
+    %input#year{type: "hidden", value: @year}
+    %br
+    .row
+      .col-xs-12
+        %table.table-bordered#main_table{cellpadding: "5px", width: "100%"}
+          %tr#table_header{style: "background-color: #eee"}
+            %th{style: "padding-left:10px"} Period
+            %th{style: "text-align:center"}= "Jan-" + @year
+            %th{style: "text-align:center"}= "Feb-" + @year
+            %th{style: "text-align:center"}= "Mar-" + @year
+            %th{style: "text-align:center"}= "Apr-" + @year
+            %th{style: "text-align:center"}= "May-" + @year
+            %th{style: "text-align:center"}= "Jun-" + @year
+            %th{style: "text-align:center"}= "Jul-" + @year
+            %th{style: "text-align:center"}= "Aug-" + @year
+            %th{style: "text-align:center"}= "Sep-" + @year
+            %th{style: "text-align:center"}= "Oct-" + @year
+            %th{style: "text-align:center"}= "Nov-" + @year
+            %th{style: "text-align:center"}= "Dec-" + @year
+            %th{style: "text-align:center"} Total
+          %tr.row_1{style: "color:#fff;background-color:#3333FF;"}
+            %input#standard_pdt{type: "hidden", value: @production_standard}
+            %th{style: "padding-left:10px;color:#3333FF;background-color:#fff;"} Standard PDT
+            %td{style: "text-align:center"}
+              = @production_standard[0]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[1]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[2]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[3]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[4]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[5]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[6]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[7]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[8]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[9]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[10]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_standard[11]
+              %sup Unit
+            %th{style: "text-align:center;color:#3333FF;background-color:#fff;"}
+              = @production_standard[12]
+              %sup Unit
+          %tr.row_2{style: "color:#fff;background-color:#852314;"}
+            %input#forecast_pdt{type: "hidden", value: @production_plan}
+            %th{style: "padding-left:10px;color:#852314;background-color:#fff;"} Forecast PDT
+            %td{style: "text-align:center"}
+              = @production_plan[0]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[1]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[2]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[3]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[4]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[5]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[6]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[7]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[8]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[9]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[10]
+              %sup Unit
+            %td{style: "text-align:center"}
+              = @production_plan[11]
+              %sup Unit
+            %th{style: "text-align:center;color:#852314;background-color:#fff;"}
+              = @production_plan[12]
+              %sup Unit
+    
+          %tr.row_3{style: "color:#fff;background-color:#55DD33;"}
+            %input#actual_pdt{type: "hidden", value: @actual_pdt_unit}
+            %th{style: "padding-left:10px;color:#55DD33;background-color:#fff;"} Actual PDT
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[0]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[1]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[2]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[3]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[4]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[5]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[6]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[7]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[8]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[9]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[10]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @actual_pdt_unit[11]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[11]
+              %sup Kg
+            %th{style: "text-align:center;color:#55DD33;background-color:#fff;"}
+              = @actual_pdt_unit[12]
+              %sup Unit
+              %br
+              = @actual_pdt_kg[12]
+              %sup Kg
+            
+          %tr.row_4{style: "color:#fff;background-color:#5A287D;"}
+            %input#to_finish_wh{type: "hidden", value: @to_finish_wh_unit}
+            %th{style: "padding-left:10px;color:#5A287D;background-color:#fff;"} To Finish WH
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[0]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[1]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[2]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[3]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[4]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[5]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[6]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[7]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[8]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[9]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[10]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_finish_wh_unit[11]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[11]
+              %sup Kg
+            %th{style: "text-align:center;color:#5A287D;background-color:#fff;"}
+              = @to_finish_wh_unit[12]
+              %sup Unit
+              %br
+              = @to_finish_wh_kg[12]
+              %sup Kg
+            
+          %tr.row_5{style: "color:#fff;background-color:#FF9600;"}
+            %input#to_nursery_wh{type: "hidden", value: @to_nursery_wh_unit}
+            %th{style: "padding-left:10px;color:#FF9600;background-color:#fff;"} To Nursery WH
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[0]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[1]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[2]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[3]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[4]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[5]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[6]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[7]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[8]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[9]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[10]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @to_nursery_wh_unit[11]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[11]
+              %sup Kg
+            %th{style: "text-align:center;color:#FF9600;background-color:#fff;"}
+              = @to_nursery_wh_unit[12]
+              %sup Unit
+              %br
+              = @to_nursery_wh_kg[12]
+              %sup Kg
+            
+          %tr.row_6{style: "color:#fff;background-color:#1EA6A3;"}
+            %input#young_fruit{type: "hidden", value: @young_fruit_unit}
+            %th{style: "padding-left:10px;color:#1EA6A3;background-color:#fff;"} Young Fruit
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[0]
+              %sup Unit
+              %br
+              = @young_fruit_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[1]
+              %sup Unit
+              %br
+              = @young_fruit_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[2]
+              %sup Unit
+              %br
+              = @young_fruit_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[3]
+              %sup Unit
+              %br
+              = @young_fruit_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[4]
+              %sup Unit
+              %br
+              = @young_fruit_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[5]
+              
+              %sup Unit
+              %br
+              = @young_fruit_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[6]
+              %sup Unit
+              %br
+              = @young_fruit_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[7]
+              %sup Unit
+              %br
+              = @young_fruit_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[8]
+              %sup Unit
+              %br
+              = @young_fruit_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[9]
+              %sup Unit
+              %br
+              = @young_fruit_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[10]
+              %sup Unit
+              %br
+              = @young_fruit_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @young_fruit_unit[11]
+              %sup Unit
+              %br
+              = @young_fruit_kg[11]
+              %sup Kg
+            %th{style: "text-align:center;color:#1EA6A3;background-color:#fff;"}
+              = @young_fruit_unit[12]
+              %sup Unit
+              %br
+              = @young_fruit_kg[12]
+              %sup Kg
+            
+          %tr.row_7{style: "color:#fff;background-color:#FF0055;"}
+            %input#spoiled_ripe{type: "hidden", value: @spoiled_ripe_unit}
+            %th{style: "padding-left:10px;color:#FF0055;background-color:#fff;"} Spoiled Ripe
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[0]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[0]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[1]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[1]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[2]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[2]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[3]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[3]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[4]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[4]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[5]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[5]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[6]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[6]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[7]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[7]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[8]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[8]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[9]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[9]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[10]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[10]
+              %sup Kg
+            %td{style: "text-align:center"}
+              = @spoiled_ripe_unit[11]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[11]
+              %sup Kg
+            %th{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              = @spoiled_ripe_unit[12]
+              %sup Unit
+              %br
+              = @spoiled_ripe_kg[12]
+              %sup Kg
+
+    %br
+    .row
+      #jackfruit_classification_chart{:style => "height: 400px"}
+    
+    %br
+    .row
+      .col-xs-12
+        .pull-right
+          %a.btn.btn-primary.print_button#print_button
+            %span.glyphicon.glyphicon-print
+            Print Report
+
+- content_for :javascript_body do
+  = javascript_include_tag "report_classifications_jackfruit"
+
+:css
+  @media print {
+    @page {
+      margin: 0;
+      size: A4 landscape;
+    }
+    
+    body { background: white; }
+  
+    .report_filter, .print_button, hr{ display: none; }
+    
+    .container {
+      width: 90%;
+      border: 0;
+      padding: 0;
+      float: none !important;
+    }
+    
+    #main_table{
+      position: absolute;
+      left: 50px;
+    }
+    
+    #main_table td, #main_table th{
+      padding: 5px !important;
+    }
+    
+    #table_header{
+      background-color: #eee !important;
+    }
+    
+    .row_1 *{color: #3333FF !important;}
+    .row_2 *{color: #852314 !important;}
+    .row_3 *{color: #55DD33 !important;}
+    .row_4 *{color: #5A287D !important;}
+    .row_5 *{color: #FF9600 !important;}
+    .row_6 *{color: #1EA6A3 !important;}
+    .row_7 *{color: #FF0055 !important;}
+    
+    #jackfruit_classification_chart{
+      position: absolute;
+      top: 405px;
+    }
+  }
