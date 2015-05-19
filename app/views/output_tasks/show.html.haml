@@ -55,13 +55,13 @@
   - if @temp != od.distribution.label
     .row
       .col-xs-1
-      %span.custom-label.col-xs-2= od.distribution.label
+      %span.custom-label.col-xs-3= od.distribution.label
       .custom-value.col-xs-4
         = od.amount.to_s + " ( " + od.unit_of_measurement.name + " )"
   - else
     .row
       .col-xs-1
-      .col-xs-2
+      .col-xs-3
       .custom-value.col-xs-4
         = od.amount.to_s + " ( " + od.unit_of_measurement.name + " )"
   - @temp = od.distribution.label
