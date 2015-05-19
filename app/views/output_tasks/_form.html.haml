@@ -61,6 +61,12 @@
             = f.input :reference_number, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
           
         .form-group
+          %label.col-xs-2.control-label.text-left Equipments
+          .col-xs-10
+            = f.select :equipments, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-equipments' }
+            = hidden_field_tag 'equipments', ''
+        
+        .form-group
           %label.col-xs-2.control-label.text-left Machineries
           .col-xs-10
             = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries' }

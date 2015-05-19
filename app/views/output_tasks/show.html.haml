@@ -29,6 +29,13 @@
       %th Reference Number
       %td= @output_task.reference_number
     %tr
+      %th Equipments
+      %td
+        - @output_use_equipments.each do |e|
+          = Equipment.find_by_uuid(e.equipment_id).name
+          %br
+    
+    %tr
       %th Machineries
       %td
         - @output_use_machineries.each do |output_use_machinery|

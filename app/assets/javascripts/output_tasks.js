@@ -15,6 +15,21 @@ $(document).ready(function() {
   	$('#output_task_planting_project_id').val("");
   	$('.planting_project_name').val("");
   	
+  	// START -- EQUIPMENT SECTION
+    $('#equipments').val("");
+    $('select.item-select-equipments').html('');
+    
+    $('select.item-select-equipments').html('');
+    $('select.item-select-equipments').attr("multiple", "multiple");
+    $("select.chosen-select-equipment").chosen(
+      {width: "100%"},
+      {no_results_text: 'No results matched'}
+    );
+    
+    $('select.item-select-equipments').attr("data-placeholder", "No Items");
+    $('select.item-select-equipments').trigger('chosen:updated');
+    // END -- EQUIPMENT SECTION
+  	
   	// START -- MACHINERY SECTION
     $('#machineries').val("");
     $('.machinery-name').empty();
@@ -66,6 +81,21 @@ $(document).ready(function() {
   	$('#output_task_planting_project_id').val("");
   	$('.planting_project_name').val("");
   	
+  	// START -- EQUIPMENT SECTION
+    $('#equipments').val("");
+    $('select.item-select-equipments').html('');
+    
+    $('select.item-select-equipments').html('');
+    $('select.item-select-equipments').attr("multiple", "multiple");
+    $("select.chosen-select-equipment").chosen(
+      {width: "100%"},
+      {no_results_text: 'No results matched'}
+    );
+    
+    $('select.item-select-equipments').attr("data-placeholder", "No Items");
+    $('select.item-select-equipments').trigger('chosen:updated');
+    // END -- EQUIPMENT SECTION
+  	
   	// START -- MACHINERY SECTION
     $('#machineries').val("");
     $('.machinery-name').empty();
@@ -114,6 +144,21 @@ $(document).ready(function() {
   	$('#output_task_planting_project_id').val("");
   	$('.planting_project_name').val("");
   	
+  	// START -- EQUIPMENT SECTION
+    $('#equipments').val("");
+    $('select.item-select-equipments').html('');
+    
+    $('select.item-select-equipments').html('');
+    $('select.item-select-equipments').attr("multiple", "multiple");
+    $("select.chosen-select-equipment").chosen(
+      {width: "100%"},
+      {no_results_text: 'No results matched'}
+    );
+    
+    $('select.item-select-equipments').attr("data-placeholder", "No Items");
+    $('select.item-select-equipments').trigger('chosen:updated');
+    // END -- EQUIPMENT SECTION
+  	
   	// START -- MACHINERY SECTION
     $('#machineries').val("");
     $('.machinery-name').empty();
@@ -159,6 +204,21 @@ $(document).ready(function() {
   	  $('#output_task_tree_amount').val("");
   	  $('#output_task_planting_project_id').val("");
   	  $('.planting_project_name').val("");
+  	  
+  	  // START -- EQUIPMENT SECTION
+      $('#equipments').val("");
+      $('select.item-select-equipments').html('');
+      
+      $('select.item-select-equipments').html('');
+      $('select.item-select-equipments').attr("multiple", "multiple");
+      $("select.chosen-select-equipment").chosen(
+        {width: "100%"},
+        {no_results_text: 'No results matched'}
+      );
+      
+      $('select.item-select-equipments').attr("data-placeholder", "No Items");
+      $('select.item-select-equipments').trigger('chosen:updated');
+      // END -- EQUIPMENT SECTION
   	  
   	  // START -- MACHINERY SECTION
       $('#machineries').val("");
@@ -206,6 +266,39 @@ $(document).ready(function() {
       success: function(data){
         $('input.planting_project_id').val(data.uuid);
         $('input.planting_project_name').val(data.name);
+
+		//Start Get Equipment and select Equipment
+        // Get data for Chosen Equipment when Planting project has data
+        $('select.item-select-equipments').html('');
+        var planting_project_id = $(".planting_project_id").val();
+        jQuery.ajax({
+          url: "/get_equipment_data",
+          type: "GET",
+          data: {"planting_project_id" : planting_project_id},
+          dataType: "json",
+          success: function(data){
+            if(data.length){
+              $.each(data, function(i, value) {
+                $('select.item-select-equipments').append('<option value="'+value.uuid+'">'+value.name+'</option>');
+              });
+              $('select.item-select-equipments').attr("multiple", "multiple");
+              $('select.item-select-equipments').attr("data-placeholder", "Select some items");
+            }
+            else{
+              $('select.item-select-equipments').attr("data-placeholder", "No Items");
+              $('select.item-select-equipments').attr("multiple", "multiple");
+            }
+            $('select.item-select-equipments').trigger('chosen:updated');
+          },
+          complete: function(data){
+            $("select.chosen-select-equipment").chosen(
+              {width: "100%"},
+              {allow_single_deselect: true},
+              {no_results_text: 'No results matched'}
+            );
+          }
+        });
+        //Start Get Equipment and select Equipment
 
         // DISTRIBUTION SECTION
         $('#distribution').empty();
@@ -270,7 +363,7 @@ $(document).ready(function() {
               {width: "100%"},
               {allow_single_deselect: true},
               {no_results_text: 'No results matched'}
-            )  
+            );
           }
         });
       }
@@ -492,6 +585,8 @@ $(document).ready(function() {
   	// Get data for Chosen when Planting project has data
     $('select.item-select-machinaries').html('');
     $('#machineries').val("");
+    $('select.item-select-equipments').html('');
+    $('#equipments').val("");
         
   	var planting_project_id = $(".planting_project_id").val();
     jQuery.ajax({
@@ -521,4 +616,18 @@ $(document).ready(function() {
       }
     });
   }
+  
+  //Equipment
+  $('select.item-select-equipments').change(function(event, params){              
+
+    // Creating a row of Equipment when data from chosen
+    if(event.target == this){
+      console.log($(this).val());
+      $('#equipments').val($(this).val());
+      var equipment_id = params.selected;
+      console.log(equipment_id);
+      
+    }
+  });
+  // End Equipment
 });
