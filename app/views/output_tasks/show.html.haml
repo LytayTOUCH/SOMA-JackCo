@@ -39,6 +39,7 @@
           %span{style: "padding-right: 5%"}= Material.where(uuid: output_use_machinery.material_id).first.name
           %span{style: "font-weight: bold;"} Material Qty:
           %span{style: ""}= output_use_machinery.material_amount
+          %span= " " + Material.find_by_uuid(output_use_machinery.material_id).unit_of_measurement.name
           %br
 
     %tr

@@ -44,7 +44,8 @@
           %span{style: "font-weight: bold;"} Material:
           %span{style: "padding-right: 5%"}= Material.where(uuid: input_use_machinery.material_id).first.name
           %span{style: "font-weight: bold;"} Material Qty:
-          %span{style: ""}= input_use_machinery.material_amount
+          %span= input_use_machinery.material_amount
+          %span= " " + Material.find_by_uuid(input_use_machinery.material_id).unit_of_measurement.name
           %br
     %tr
       %th Materials
@@ -54,7 +55,8 @@
           %span{style: "font-weight: bold;"} Warehouse:
           %span{style: "padding-right: 5%"}= Warehouse.where(uuid: input_use_material.warehouse_id).first.name
           %span{style: "font-weight: bold;"} Material Qty:
-          %span{style: ""}= input_use_material.material_amount
+          %span= input_use_material.material_amount
+          %span= " " + Material.find_by_uuid(input_use_material.material_id).unit_of_measurement.name
           %br
     %tr
       %th Note
