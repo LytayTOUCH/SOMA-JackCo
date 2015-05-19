@@ -39,12 +39,6 @@ position = Position.create_with(note: 'Controlling a labor in field', active: tr
   position.labors << labor
 end
 labor = Labor.find_by_name("Default Manager")
-# ========== Create Setting ========== 
-[
-  {code: 'item_per_page', note: 'Amount of item show in a list per page', valueType: 'INT', valueInteger: 10, valueString: nil, valueFloat: nil}
-].each do |setting|
-  Setting.create_with(note: setting[:note], valueType: setting[:valueType], valueInteger: setting[:valueInteger], valueString: setting[:valueString], valueFloat: setting[:valueFloat]).find_or_create_by(code: setting[:code])
-end
 
 # ==========  Create UserGroup ========== 
 [ 

@@ -32,7 +32,7 @@
                 = link_to planting_project.name, planting_project_path(planting_project), :class => "", :style => "font-size: 16px; font-weight: bold;"
                 %br
                 - planting_project.farms.distinct.each do |farm|
-                  / = link_to farm.name, farms_path, :class => "", :style => "padding-left: 15px"
+                  
                   %div{style: "font-size: 14px; padding-left: 15px"}=farm.name
                   %div{style: "padding-bottom: 10px; padding-left: 30px"}
                     Total Surface:
@@ -53,7 +53,7 @@
               - @planting_projects.each do |planting_project|
                 %div{:style => "font-size: 16px; font-weight: bold;"}= planting_project.name
                 - planting_project.input_tasks.order('updated_at DESC').limit(5).each do |input_task|
-                  / %div{style: "font-size: 12px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name + " - " + input_task.material.name + " - " + input_task.material_amount.to_s
+                  
                   %div{style: "font-size: 12px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name
 
                 - if planting_project.input_tasks.length > 5
@@ -70,37 +70,5 @@
           %div.tab-pane.active
             #columnchart_values{:style => "width: 65%; height: 190px"}
 
-/ .row
-/   .col-xs-6
-/     .panel.panel-default
-/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Resource in stock
-/         = link_to '<i class="fa fa-file-excel-o fa-2x" style="float: right; margin-top: -20px; color: black; padding-left: 5px" title="Download Graph as Excel"></i>'.html_safe, download_piechart_excel_dashboards_path
-/         = link_to '<i class="fa fa-file-pdf-o fa-2x" style="float: right; margin-top: -20px; color: black" title="Download Graph as PDF"></i>'.html_safe, downloadpdf_dashboards_path     
-/       .panel-body
-/         #chart_div{:style => "width: 100%; height: 190px"}
-
-/   .col-xs-6
-/     .panel.panel-default
-/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Projects
-/       .panel-body
-
-/ .row
-/   .col-xs-6
-/     .panel.panel-default
-/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Production rate
-/         = link_to '<i class="fa fa-file-excel-o fa-2x" style="float: right; margin-top: -20px; color: black; padding-left: 5px" title="Download Graph as Excel"></i>'.html_safe, download_barchart_excel_dashboards_path
-/         = link_to '<i class="fa fa-file-pdf-o fa-2x" style="float: right; margin-top: -20px; color: black" title="Download Graph as PDF"></i>'.html_safe, downloadpdf_dashboards_path
-/       .panel-body     
-/         #columnchart_values{:style => "width: 100%; height: 190px"}
-
-/   .col-xs-6
-/     .panel.panel-default
-/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Production rate
-/       .panel-body
-/         #curve_line_chart{:style => "width: 100%; height: 190px"}
 - content_for :javascript_body do
   = javascript_include_tag "dashboards.js"
