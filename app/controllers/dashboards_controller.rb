@@ -14,7 +14,8 @@ class DashboardsController < ApplicationController
       [coconut.uuid,"00000000-0000-0000-0000-000000000001","Coconut"],
       [jackfruit.uuid,"00000000-0000-0000-0000-000000000012","Jackfruit"]
     ]
-     
     @unit = UnitOfMeasurement.find_by_name("Unit")
+    
+    @input_tasks = InputTask.order('created_at DESC')
   end
 end

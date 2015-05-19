@@ -1,5 +1,5 @@
 %br
-.row
+.row{style: "margin-top: 1%"}
   .col-xs-6
     .panel.panel-default
       .panel-heading{:style => "background-color:PaleGreen; font-weight: bold;"}
@@ -31,11 +31,11 @@
             %div
               - @planting_projects.each do |planting_project|
                 = link_to planting_project.name, planting_project_path(planting_project), :class => "", :style => "font-size: 16px; font-weight: bold;"
-                %br
+                %hr{style: "margin: 5px;"}
                 - planting_project.farms.distinct.each do |farm|
                   
                   %div{style: "font-size: 14px; padding-left: 15px"}=farm.name
-                  %div{style: "padding-bottom: 10px; padding-left: 30px"}
+                  %div{style: "padding-bottom: 15px; padding-left: 30px"}
                     Total Surface:
                     %span{style: "font-weight: bold"}=farm.blocks.where(:planting_project_id => planting_project.uuid).sum(:surface)
                     ; Total Tree:
@@ -53,13 +53,33 @@
             %div
               - @planting_projects.each do |planting_project|
                 %div{:style => "font-size: 16px; font-weight: bold;"}= planting_project.name
+                / Input Task
                 - planting_project.input_tasks.order('updated_at DESC').limit(5).each do |input_task|
+                  = link_to input_task_path(input_task.uuid) do
+                    %div{style: "padding-left: 15px; padding-bottom: 15px;"}
+                      %span{style: "font-weight: bold;"}= input_task.start_date.to_s 
+                      %span=" : " + "InputTask Name:"
+                      %span{style: "font-weight: bold;"}= input_task.name
+                      ; Block:
+                      %span{style: "font-weight: bold;"}= input_task.block.name
                   
-                  %div{style: "font-size: 12px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name
+                / - if planting_project.input_tasks.length > 3
+                /   %div{style: "font-size: 12px; padding-left: 15px"}
+                /     = link_to "More...", "input_tasks?planting_project_id=#{planting_project.uuid}"
 
-                - if planting_project.input_tasks.length > 5
-                  %div{style: "font-size: 12px; padding-left: 15px"}
-                    = link_to "More...", "input_tasks?planting_project_id=#{planting_project.uuid}"
+                / Output Task
+                - planting_project.output_tasks.order('updated_at DESC').limit(5).each do |output_task|
+                  = link_to output_task_path(output_task.uuid) do
+                    %div{style: "padding-left: 15px; padding-bottom: 15px;"} 
+                      %span{style: "font-weight: bold;"}= output_task.start_date.to_s 
+                      %span=" : " + "OutputTask Name:"
+                      %span{style: "font-weight: bold;"}= output_task.name
+                      ; Block:
+                      %span{style: "font-weight: bold; padding-bottom: 15px;"}= output_task.block.name
+
+                / - if planting_project.output_tasks.length > 3
+                /   %div{style: "font-size: 12px; padding-left: 15px"}
+                /     = link_to "More...", "input_tasks?planting_project_id=#{planting_project.uuid}"
 
   .col-xs-6
     .panel.panel-default
