@@ -1,12 +1,5 @@
 $(document).ready(function() {
-  $('.machinery-name').hide();
-  $('.machinery-from-map').hide();
   $('.date_pick').datetimepicker({});
-  
-  var planting_project_id = $(".planting_project_id").val();
-  if(planting_project_id!="") {
-  	renderMachinery();
-  }
   
   // WHEN USER CHANGE THE FARM
   $("#output_task_farm_id").change(function(){

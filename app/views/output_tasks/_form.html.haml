@@ -67,14 +67,6 @@
             = hidden_field_tag 'equipments', ''
         
         .form-group
-          %label.col-xs-2.control-label.text-left Machineries
-          .col-xs-10
-            = f.select :machineries, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-machinaries' }
-            = hidden_field_tag 'machineries', ''
-        
-        .form-group.machinery-name
-          
-        .form-group
           %label.col-xs-2.control-label.text-left Note
           .col-xs-10
             = f.input :note, label: false, input_html: { class: "form-control" }
