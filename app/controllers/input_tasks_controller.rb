@@ -12,11 +12,6 @@ class InputTasksController < ApplicationController
   def new
     begin
       @input_task = InputTask.new
-      # project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
-      # @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
-      # @farms_name = Block.select("uuid, name, farm_id")
-
-      # @machineries = Machinery.select("uuid, name")
       @materials = Material.select("uuid, name")
 
     rescue Exception => e
@@ -36,12 +31,6 @@ class InputTasksController < ApplicationController
     begin
       @input_task = InputTask.new(input_task_params)
       input_task_end_date = @input_task.end_date
-      
-      # project_uuid = WarehouseType.find_by_name("Project Warehouse").uuid
-      # @warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ?", project_uuid, true)
-      # @farms_name = Block.select("uuid, name, farm_id")
-
-      # @machineries = Machinery.select("uuid, name")
       @materials = Material.select("uuid, name")
 
         # Start Select Material 
@@ -50,28 +39,17 @@ class InputTasksController < ApplicationController
           @warehouses_of_material = params[:warehouses_of_material]
           @qty_of_material = params[:material_qtys_of_material]
           indexs = 0
-          puts "+++++++++++++++++++++++++++ material_ids ++++++++++++++++++++++++++++++"
-          puts @material_ids
 
           @material_ids.split(",").each do |material_id|
             unless material_id.empty?
-              puts material_id
-              puts "================= Input task UUID =============="
-              puts @input_task.uuid
-              puts "================= Warehouse_of_material '" + indexs.to_s + "'==========="
-              puts warehouse_of_material = @warehouses_of_material[indexs]
-              puts "================= Quantity_of_material '" + indexs.to_s + "'==========="
-              puts qty_of_material = @qty_of_material[indexs]
-              puts "============================================"
+              warehouse_of_material = @warehouses_of_material[indexs]
+              qty_of_material = @qty_of_material[indexs]
               indexs += 1
 
               if warehouse_of_material.present?
                 @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse_of_material, material_uuid: material_id)
-                puts "====================== Amount1 =========================="
-                puts total_in_stock = @warehouse_material_amount.amount
-
-                puts "============ Remain In Stock1 ============"
-                puts remain_in_stock = total_in_stock - qty_of_material.to_f
+                total_in_stock = @warehouse_material_amount.amount
+                remain_in_stock = total_in_stock - qty_of_material.to_f
                 
                 if total_in_stock >= qty_of_material.to_f
 
@@ -101,7 +79,6 @@ class InputTasksController < ApplicationController
           end
         else
           flash[:notice] = "Material is required"
-          puts "No material_id"
           render 'new'
         end
         #End Select Material
@@ -110,15 +87,9 @@ class InputTasksController < ApplicationController
         if params[:equipments].present?               
           @equipment_ids = params[:equipments]
           index_equipment = 0
-          puts "+++++++++++++++++++++++++++ equipment_ids ++++++++++++++++++++++++++++++"
-          puts @equipment_ids
 
           @equipment_ids.split(",").each do |equipment_id|
             unless equipment_id.empty?
-              puts equipment_id
-              puts "================= Input task UUID =============="
-              puts @input_task.uuid
-              puts "============================================"
               index_equipment += 1
 
                 InputUseEquipment.create(input_id: @input_task.uuid, equipment_id: equipment_id)             
@@ -126,8 +97,6 @@ class InputTasksController < ApplicationController
             end
           end
         else
-          puts "No equipment_id"
-          # render 'new'
         end
         #End Select Equipment
 
@@ -141,26 +110,17 @@ class InputTasksController < ApplicationController
         if params[:machineries].present?
           @machinery_ids.split(",").each do |machinery_id|
             unless machinery_id.empty?
-              puts "================= Input task UUID =============="
-              puts @input_task.uuid
-              puts "================= Warehouses_of_machinery '" + index.to_s + "'==========="
               warehouse = @warehouses_of_machinery[index]
-              puts "================= Materials_of_machinery '" + index.to_s + "'==========="
               material = @materials_of_machinery[index]
-              puts "================= Quantity_material_of_machinery '" + index.to_s + "'==========="
-              puts qty = @qty_of_machinery[index]
-              puts "============================================"
+              qty = @qty_of_machinery[index]
               index += 1
 
               # Make sure Warehouse and Material of each machineries are selected
               if material.present? 
                 @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: warehouse, material_uuid: material)
-                puts "====================== Amount =========================="
-                puts total_in_stock = @warehouse_material_amount.amount
-
-                puts "============ Remain In Stock ============"
-                puts remain_in_stock = total_in_stock - qty.to_f
-                puts "========================================="
+                
+                total_in_stock = @warehouse_material_amount.amount
+                remain_in_stock = total_in_stock - qty.to_f
                 @machinery = Machinery.find_by_uuid(machinery_id)
                 
                 if total_in_stock >= qty.to_f
@@ -183,7 +143,6 @@ class InputTasksController < ApplicationController
           end
 
         else
-          puts "No machinery_id"
         end
         #End Select Machinery
 
