@@ -11,6 +11,10 @@ class OutputTask < ActiveRecord::Base
 
   has_many :machineries, through: :output_use_machineries
   has_many :output_use_machineries, foreign_key: :output_id
+  
+  has_many :equipments, through: :output_use_equipments
+  has_many :output_use_equipments, foreign_key: :output_id
+  
   has_many :output_distributions
   accepts_nested_attributes_for :machineries
 

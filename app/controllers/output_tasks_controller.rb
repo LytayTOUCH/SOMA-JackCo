@@ -48,6 +48,17 @@ class OutputTasksController < ApplicationController
       if @output_task.save
         create_log current_user.uuid, "Created New Output Task", @output_task
         
+        # Start Select Equipment
+        if params[:equipments].present?               
+          @equipment_ids = params[:equipments]
+          @equipment_ids.split(",").each do |equipment_id|
+            unless equipment_id.empty?
+              OutputUseEquipment.create(output_id: @output_task.uuid, equipment_id: equipment_id)
+            end
+          end
+        end
+        #End Select Equipment
+        
         index = 0
         @warehouses = params[:warehouses]
         @materials = params[:materials]
@@ -141,7 +152,9 @@ class OutputTasksController < ApplicationController
   end
 
   def show
-    @output_task = OutputTask.find(params[:id]) 
+    @output_task = OutputTask.find(params[:id])
+    @output_use_equipments = OutputUseEquipment.where(output_id: params[:id])
+    @output_use_machineries = OutputUseMachinery.where(output_id: params[:id])
   end
   
   def get_zones_by_farm

@@ -14,88 +14,40 @@ $(document).ready(function() {
       }
     });
   });
+});
+
+google.load('visualization', '1', {packages: ['corechart', 'bar']});
+$('#parent_chart_div > div').each(function () {
+  var id = this.id;
+  var child_div = $("#"+id);
+  var standard = child_div.find("input").eq(0).val();
+  var forecast = child_div.find("input").eq(1).val();
+  var actual = child_div.find("input").eq(2).val();
+  var title = child_div.find("input").eq(3).val();
   
-  // ======================= Pie Chart ======================
-  $.ajax({
-    url:'dashboards/getPieData.json',
-    dataType: 'json',
-    success: function(pdata){
-      pieData = pdata;
+  google.setOnLoadCallback(function(){ drawStacked(id,title,["", parseInt(standard), parseInt(forecast), parseInt(actual)]); });
+});
 
-      google.load('visualization', '1.0', {'packages':['corechart']});
+function drawStacked(div_name, title, values) {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'X');
+  data.addColumn('number', 'Standard Production');
+  data.addColumn('number', 'Forecast Production');
+  data.addColumn('number', 'Actual Production');
 
-      var data = new google.visualization.DataTable();
-    
-      data.addColumn('string', 'Topping');
-      data.addColumn('number', 'Slices');
-      data.addRows(pieData);
-      
-      var options = {'title':'Expense',
-                     // 'width': 420,
-                     // 'height': 195,
-                   'colors': ['blue', 'red', 'orange', 'green', 'pink', 'yellow', 'gray', 'Purple', 'Gold', 'Lime', 'Olive', 'Cyan']
-                 };
-
-      var chartpie = new google.visualization.PieChart(document.getElementById('chart_div'));
-      chartpie.draw(data, options);
-    }
-  });
-
-  // ======================= Bar Chart ======================
-  $.ajax({
-    url:'dashboards/getBarData.json',
-    dataType: 'json',
-    success: function(bdata){
-      bdata.unshift(["Element", "Expense", { role: "style" }]);
-      barData = bdata;
-
-      google.load('visualization', '1.0', {'packages':['corechart']});
-
-       
-      var data_bar = google.visualization.arrayToDataTable(barData);
-      var view = new google.visualization.DataView(data_bar);
-      view.setColumns([0, 1,
-                       { calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation" },
-                       2]);
-
-      var options = {
-        title: "Production Yield 2015",
-        // width: 420,
-        // height: 195,
-        bar: {groupWidth: "95%"},
-        legend: { position: "none" },
-      };
-      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-      chart.draw(view, options);
-    }
-  });
-});  
-
-google.load('visualization', '1.0', {'packages':['corechart']});
-
-google.setOnLoadCallback(drawChart);
-
-function drawChart() {
-
-  // ======================= Line Chart ======================
-  var data_line = google.visualization.arrayToDataTable([
-    ['Year', 'Sales', 'Expenses', 'Investment'],
-    ['2004',  1000, 400, 300],
-    ['2005',  1170, 460, 500],
-    ['2006',  660, 1120, 550],
-    ['2007',  1030, 540, 700]
+  data.addRows([
+    values
   ]);
 
-  var line_chart = new google.visualization.LineChart(document.getElementById('curve_line_chart'));
+  var options = {
+    title: title,
+    legend: {position: 'none'},
+    vAxis: {
+      title: 'Production'
+    },
+    colors:['#3333FF','#852314', '#55DD33']
+  };
 
- var line_options = {
-        title: 'Company Performance',
-        curveType: 'function',
-        legend: { position: 'bottom' }
-      };
-
-  line_chart.draw(data_line, line_options);
+  var chart = new google.visualization.ColumnChart(document.getElementById(div_name));
+  chart.draw(data, options);
 }

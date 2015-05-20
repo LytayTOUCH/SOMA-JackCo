@@ -1,4 +1,5 @@
-.row
+%br
+.row{style: "margin-top: 1%"}
   .col-xs-6
     .panel.panel-default
       .panel-heading{:style => "background-color:PaleGreen; font-weight: bold;"}
@@ -30,11 +31,11 @@
             %div
               - @planting_projects.each do |planting_project|
                 = link_to planting_project.name, planting_project_path(planting_project), :class => "", :style => "font-size: 16px; font-weight: bold;"
-                %br
+                %hr{style: "margin: 5px;"}
                 - planting_project.farms.distinct.each do |farm|
-                  / = link_to farm.name, farms_path, :class => "", :style => "padding-left: 15px"
+                  
                   %div{style: "font-size: 14px; padding-left: 15px"}=farm.name
-                  %div{style: "padding-bottom: 10px; padding-left: 30px"}
+                  %div{style: "padding-bottom: 15px; padding-left: 30px"}
                     Total Surface:
                     %span{style: "font-weight: bold"}=farm.blocks.where(:planting_project_id => planting_project.uuid).sum(:surface)
                     ; Total Tree:
@@ -52,13 +53,33 @@
             %div
               - @planting_projects.each do |planting_project|
                 %div{:style => "font-size: 16px; font-weight: bold;"}= planting_project.name
+                / Input Task
                 - planting_project.input_tasks.order('updated_at DESC').limit(5).each do |input_task|
-                  / %div{style: "font-size: 12px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name + " - " + input_task.material.name + " - " + input_task.material_amount.to_s
-                  %div{style: "font-size: 12px; padding-left: 15px"}= input_task.name + " - " + input_task.block.name
+                  = link_to input_task_path(input_task.uuid) do
+                    %div{style: "padding-left: 15px; padding-bottom: 15px;"}
+                      %span{style: "font-weight: bold;"}= input_task.start_date.to_s 
+                      %span=" : " + "InputTask Name:"
+                      %span{style: "font-weight: bold;"}= input_task.name
+                      ; Block:
+                      %span{style: "font-weight: bold;"}= input_task.block.name
+                  
+                / - if planting_project.input_tasks.length > 3
+                /   %div{style: "font-size: 12px; padding-left: 15px"}
+                /     = link_to "More...", "input_tasks?planting_project_id=#{planting_project.uuid}"
 
-                - if planting_project.input_tasks.length > 5
-                  %div{style: "font-size: 12px; padding-left: 15px"}
-                    = link_to "More...", "input_tasks?planting_project_id=#{planting_project.uuid}"
+                / Output Task
+                - planting_project.output_tasks.order('updated_at DESC').limit(5).each do |output_task|
+                  = link_to output_task_path(output_task.uuid) do
+                    %div{style: "padding-left: 15px; padding-bottom: 15px;"} 
+                      %span{style: "font-weight: bold;"}= output_task.start_date.to_s 
+                      %span=" : " + "OutputTask Name:"
+                      %span{style: "font-weight: bold;"}= output_task.name
+                      ; Block:
+                      %span{style: "font-weight: bold; padding-bottom: 15px;"}= output_task.block.name
+
+                / - if planting_project.output_tasks.length > 3
+                /   %div{style: "font-size: 12px; padding-left: 15px"}
+                /     = link_to "More...", "input_tasks?planting_project_id=#{planting_project.uuid}"
 
   .col-xs-6
     .panel.panel-default
@@ -67,40 +88,13 @@
              
       .panel-body{:style => "width: 100%; height: 200px"}
         %div.tab-content
-          %div.tab-pane.active
-            #columnchart_values{:style => "width: 65%; height: 190px"}
+          %div.tab-pane.active#parent_chart_div
+            - @project_distributions.each do |p|
+              %div{:id => "chart#{p[0]}", :style => "width: 100%; height: 190px"}
+                %input{:type => "hidden", :value => ProductionStandard.total_standard_a_year(p[0], @year)}
+                %input{:type => "hidden", :value => ProductionPlan.total_plan_a_year(p[0], @year)}
+                %input{:type => "hidden", :value => OutputTask.grand_total_output_amount(p[0], Date.parse(@year+"-01-01"), Date.parse(@year+"-12-31"), p[1], @unit.uuid)}
+                %input{:type => "hidden", :value => p[2]+" Production "+@year}
 
-/ .row
-/   .col-xs-6
-/     .panel.panel-default
-/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Resource in stock
-/         = link_to '<i class="fa fa-file-excel-o fa-2x" style="float: right; margin-top: -20px; color: black; padding-left: 5px" title="Download Graph as Excel"></i>'.html_safe, download_piechart_excel_dashboards_path
-/         = link_to '<i class="fa fa-file-pdf-o fa-2x" style="float: right; margin-top: -20px; color: black" title="Download Graph as PDF"></i>'.html_safe, downloadpdf_dashboards_path     
-/       .panel-body
-/         #chart_div{:style => "width: 100%; height: 190px"}
-
-/   .col-xs-6
-/     .panel.panel-default
-/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Projects
-/       .panel-body
-
-/ .row
-/   .col-xs-6
-/     .panel.panel-default
-/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Production rate
-/         = link_to '<i class="fa fa-file-excel-o fa-2x" style="float: right; margin-top: -20px; color: black; padding-left: 5px" title="Download Graph as Excel"></i>'.html_safe, download_barchart_excel_dashboards_path
-/         = link_to '<i class="fa fa-file-pdf-o fa-2x" style="float: right; margin-top: -20px; color: black" title="Download Graph as PDF"></i>'.html_safe, downloadpdf_dashboards_path
-/       .panel-body     
-/         #columnchart_values{:style => "width: 100%; height: 190px"}
-
-/   .col-xs-6
-/     .panel.panel-default
-/       .panel-heading{:style => "background-color:PaleGreen;font-weight: bold"}
-/         %h3.panel-title{:style => "font-weight: bold; color: Black"} Production rate
-/       .panel-body
-/         #curve_line_chart{:style => "width: 100%; height: 190px"}
 - content_for :javascript_body do
   = javascript_include_tag "dashboards.js"

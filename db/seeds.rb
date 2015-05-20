@@ -39,12 +39,6 @@ position = Position.create_with(note: 'Controlling a labor in field', active: tr
   position.labors << labor
 end
 labor = Labor.find_by_name("Default Manager")
-# ========== Create Setting ========== 
-[
-  {code: 'item_per_page', note: 'Amount of item show in a list per page', valueType: 'INT', valueInteger: 10, valueString: nil, valueFloat: nil}
-].each do |setting|
-  Setting.create_with(note: setting[:note], valueType: setting[:valueType], valueInteger: setting[:valueInteger], valueString: setting[:valueString], valueFloat: setting[:valueFloat]).find_or_create_by(code: setting[:code])
-end
 
 # ==========  Create UserGroup ========== 
 [ 
@@ -140,9 +134,7 @@ end
 # ========== Create Planting Projects ========== 
 [
   {name: 'Coconut'},
-  {name: 'Jackfruit'},
-  {name: 'Mango'},
-  {name: 'Lemon'}
+  {name: 'Jackfruit'}
 ].each do |planting_project|
   PlantingProject.find_or_create_by(name: planting_project[:name])
 end
@@ -214,8 +206,8 @@ other = MaterialCategory.find_by_name('Other')
 #=========== Create Material ============
 
 [
-  {name: "Diesel", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
-  {name: "Engine Oil No. 40", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Diesel", material_cate_uuid: indirect_material.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
+  {name: "Engine Oil No. 40", material_cate_uuid: indirect_material.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
   {name: "Engine Oil No. 50", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
   {name: "Hydraulic Oil No. 68", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
   {name: "Gear Oil No. 90", material_cate_uuid: other.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
@@ -548,3 +540,38 @@ ProductionClassification.create(name: "Waste (Young and Ripe Fruit)", planting_p
 # InputUseMachinery.create(input_id: InputTask.first.uuid, machinery_id: Machinery.first.uuid,
 #                           warehouse_id: Warehouse.first.uuid, material_id: Material.first.uuid,
 #                           material_amount: 20)
+
+# ========== Input Task =============
+InputTask.create(uuid: "00000000-0000-0000-0000-000000000001", name: "Input task 001", 
+  start_date: 1.month.ago, end_date: Date.today, farm_id: Farm.first.uuid, 
+  zone_id: oroung_zone_i.uuid, area_id: oroung_area_a.uuid, 
+  block_id: "00000000-0000-0000-0000-000000000050", planting_project_id: PlantingProject.second.uuid, 
+  tree_amount: "100", labor_id: Labor.first.uuid, reference_number: "A-001", created_by: Labor.first.uuid)
+InputTask.create(uuid: "00000000-0000-0000-0000-000000000002", name: "Input task 002", 
+  start_date: 1.month.ago, end_date: Date.today, farm_id: Farm.first.uuid, 
+  zone_id: oroung_zone_i.uuid, area_id: oroung_area_a.uuid, 
+  block_id: "00000000-0000-0000-0000-000000000051", planting_project_id: PlantingProject.second.uuid, 
+  tree_amount: "50", labor_id: Labor.first.uuid, reference_number: "A-002", created_by: Labor.first.uuid)
+InputTask.create(uuid: "00000000-0000-0000-0000-000000000003", name: "Input task 003", 
+  start_date: 1.month.ago, end_date: Date.today, farm_id: Farm.second.uuid, 
+  zone_id: chamkar_doung_zone_i.uuid, area_id: chamkar_doung_area_a.uuid, 
+  block_id: "00000000-0000-0000-0000-000000000001", planting_project_id: PlantingProject.first.uuid, 
+  tree_amount: "70", labor_id: Labor.first.uuid, reference_number: "A-003", created_by: Labor.first.uuid)
+InputTask.create(uuid: "00000000-0000-0000-0000-000000000004", name: "Input task 004", 
+  start_date: 1.month.ago, end_date: Date.today, farm_id: Farm.second.uuid, 
+  zone_id: chamkar_doung_zone_i.uuid, area_id: chamkar_doung_area_b.uuid, 
+  block_id: "00000000-0000-0000-0000-000000000003", planting_project_id: PlantingProject.first.uuid, 
+  tree_amount: "250", labor_id: Labor.first.uuid, reference_number: "A-004", created_by: Labor.first.uuid)
+
+# ========== Input Use Material =============
+InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000001", input_id: "00000000-0000-0000-0000-000000000001", 
+  material_id: Material.first.uuid, warehouse_id: Warehouse.first.uuid, material_amount: 10)
+InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000002", input_id: "00000000-0000-0000-0000-000000000002", 
+  material_id: Material.first.uuid, warehouse_id: Warehouse.first.uuid, material_amount: 15)
+InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000003", input_id: "00000000-0000-0000-0000-000000000003", 
+  material_id: Material.first.uuid, warehouse_id: Warehouse.first.uuid, material_amount: 20)
+InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000004", input_id: "00000000-0000-0000-0000-000000000004", 
+  material_id: Material.first.uuid, warehouse_id: Warehouse.first.uuid, material_amount: 30)
+
+
+

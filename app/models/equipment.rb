@@ -10,4 +10,6 @@ class Equipment < ActiveRecord::Base
   has_many :input_use_equipments, foreign_key: :input_id
   has_many :input_tasks, through: :input_use_equipments
   
+  has_many :output_use_equipments, foreign_key: :output_id
+  has_many :output_tasks, through: :output_use_equipments
 end
