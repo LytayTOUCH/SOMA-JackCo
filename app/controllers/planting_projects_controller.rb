@@ -63,7 +63,7 @@ class PlantingProjectsController < ApplicationController
   end
 
   def get_machinery_data
-    @machinery_datas = Machinery.where("planting_project_id = ? and status = ? and availabe_date < ?", params[:planting_project_id], true, Date.today).distinct(:name)
+    @machinery_datas = Machinery.where("planting_project_id = ? and status = ?", params[:planting_project_id], true).distinct(:name)
     render :json => @machinery_datas
   end
 

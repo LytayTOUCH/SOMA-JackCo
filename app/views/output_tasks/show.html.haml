@@ -34,21 +34,6 @@
         - @output_use_equipments.each do |e|
           = Equipment.find_by_uuid(e.equipment_id).name
           %br
-    
-    %tr
-      %th Machineries
-      %td
-        - @output_use_machineries.each do |output_use_machinery|
-          %span{style: "padding-right: 10%"}= Machinery.where(uuid: output_use_machinery.machinery_id).first.name
-          %span{style: "font-weight: bold;"} Warehouse:
-          %span{style: "padding-right: 5%"}= Warehouse.where(uuid: output_use_machinery.warehouse_id).first.name
-          %span{style: "font-weight: bold;"} Material:
-          %span{style: "padding-right: 5%"}= Material.where(uuid: output_use_machinery.material_id).first.name
-          %span{style: "font-weight: bold;"} Material Qty:
-          %span{style: ""}= output_use_machinery.material_amount
-          %span= " " + Material.find_by_uuid(output_use_machinery.material_id).unit_of_measurement.name
-          %br
-
     %tr
       %th Note
       %td= @output_task.note

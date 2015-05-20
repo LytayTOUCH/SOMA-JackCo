@@ -64,8 +64,7 @@ class MachineriesController < ApplicationController
     @machinery_name = Machinery.find_by_uuid(params[:machinery_id])
     @project_warehouse_type = WarehouseType.find_by_name("Project Warehouse")
     @project_warehouses = Warehouse.where(warehouse_type_uuid: @project_warehouse_type.uuid, active: true)
-    @material_type = MaterialCategory.find_by_name("Indirect Materials")
-    @materials = Material.where(material_cate_uuid: @material_type.uuid)
+    @materials = Material.where("material_cate_uuid = ? OR material_cate_uuid = ?", MaterialCategory.find_by_name("Indirect Materials").uuid, MaterialCategory.find_by_name("Other").uuid)
     render :json => {warehouse: @project_warehouses, machinery_name: @machinery_name, material: @materials}
   end
   
