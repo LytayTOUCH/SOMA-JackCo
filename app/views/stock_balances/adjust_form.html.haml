@@ -1,0 +1,69 @@
+%h1= "Materials' Beginning Balance"
+%hr
+
+= render partial: 'report_inventory_filter', path: adjust_stock_balance_path
+
+- if !params[:month_year].nil?
+  #form-model-content-supplier
+    %form{action: update_adjust_balance_path}
+      
+      %input{:type => "hidden", :name => "year", :value => @year}
+      %input{:type => "hidden", :name => "month", :value => @month}
+      
+      - @categories.each do |c|
+        .row
+          %br
+          %div{:role => "tabpanel"}
+            %ul.nav.nav-tabs{:role => "tablist"}
+              %li.active{:role => "presentation"}
+                %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"}= c.name
+            .tab-content
+              #tab-pane.active{:role => "tabpanel", :style => "overflow:visible"}
+                
+                %br
+                %label.col-xs-2.middle-label Material Name
+                %label.col-xs-2.middle-label Beginning Balance
+                %label.col-xs-1.middle-label Stock In
+                %label.col-xs-1.middle-label Stock Out
+                %label.col-xs-2.middle-label Ending Balance
+                %label.col-xs-2.middle-label Adjusted Balance
+                %label.col-xs-2.middle-label Note
+                %br
+                
+                - c.materials.each do |m|
+                  - @sb = StockBalance.find_by(:material_id => m.uuid, :month => @month, :year => @year)
+                  - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :month => Date.today.month, :year => Date.today.year) : @sb
+                  
+                  - uom = m.unit_of_measurement.name
+                  - balance = @sb.adjusted_ending_balance.nil? ? @sb.ending_balance : @sb.adjusted_ending_balance
+                  - note = @sb.adjusted_note.nil? ? "" : @sb.adjusted_note
+                  
+                  %br
+                  %span.col-xs-2.middle-label
+                    = m.name
+                  %span.col-xs-2.middle-label
+                    = @sb.beginning_balance
+                    %span= uom
+                  %span.col-xs-1.middle-label
+                    = @sb.stock_in
+                    %span= uom
+                  %span.col-xs-1.middle-label
+                    = @sb.stock_out
+                    %span= uom
+                  %span.col-xs-2.middle-label
+                    = @sb.ending_balance
+                    %span= uom
+                  .col-xs-2
+                    .input-group
+                      %input{:type => "hidden", :name => "material_id[]", :value => m.uuid}
+                      %input.numeric.float.required.form-control{:name => "balance_value[]", :step => "any", :type => "number", :value => balance}
+                      %span.input-group-addon.uom-name
+                        = uom
+                  .col-xs-2
+                    %input.string.required.form-control{:name => "note[]", :type => "text", :value => note}
+                  %br
+      %br
+      .row
+        .col-md-12
+          .pull-right
+            = submit_tag 'Submit', :class => 'btn btn-primary', :style => "width:100%;", :name => nil, id: "btnSubmit"

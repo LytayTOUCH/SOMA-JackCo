@@ -21,7 +21,10 @@
         .form-group
           %label.col-xs-3 Planting Project *
           .col-xs-9
-            = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            - if !@machinery.planting_project.nil? && @machinery.persisted?
+              %input.form-control{value: @machinery.planting_project.name, readonly: true}
+            - else
+              = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           
         .form-group
           %label.col-xs-3 Manufacturer

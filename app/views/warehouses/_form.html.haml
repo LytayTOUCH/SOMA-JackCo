@@ -10,7 +10,10 @@
         .form-group
           %label.col-xs-3.control-label.text-left Warehouse Type *
           .col-xs-9
-            = f.association :warehouse_type, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            - if @warehouse.persisted?
+              %input.form-control{value: @warehouse.warehouse_type.name, readonly: true}
+            - else
+              = f.association :warehouse_type, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           
         .form-group
           %label.col-xs-3.control-label.text-left Address *

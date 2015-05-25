@@ -1,0 +1,2 @@
+module StockBalancesHelper
+end

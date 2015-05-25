@@ -1,0 +1,36 @@
+%h1= "Materials' Beginning Balance"
+%hr
+
+= render partial: 'report_inventory_filter', path: stock_balances_path
+
+- if !params[:month_year].nil?
+  #form-model-content-supplier
+    %form{action: update_stock_balance_path}
+      %input{:type => "hidden", :name => "year", :value => @year}
+      %input{:type => "hidden", :name => "month", :value => @month}
+      - @categories.each do |c|
+        .row
+          %br
+          %div{:role => "tabpanel"}
+            %ul.nav.nav-tabs{:role => "tablist"}
+              %li.active{:role => "presentation"}
+                %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"}= c.name
+            .tab-content
+              #tab-pane.active{:role => "tabpanel", :style => "overflow:visible"}
+                - c.materials.each do |m|
+                  %br
+                  %label.col-xs-2.middle-label
+                    = m.name
+                  .col-xs-2
+                    .input-group
+                      - @sb = StockBalance.find_by(:material_id => m.uuid, :month => @month, :year => @year)
+                      - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :month => Date.today.month, :year => Date.today.year) : @sb
+                      
+                      %input{:type => "hidden", :name => "material_id[]", :value => m.uuid}
+                      %input.numeric.float.required.form-control{:name => "balance_value[]", :step => "any", :type => "number", :value => @sb.beginning_balance}
+                      %span.input-group-addon.uom-name
+                        = m.unit_of_measurement.name
+                  %br
+      .col-md-12
+        .pull-right
+          = submit_tag 'Submit', :class => 'btn btn-primary', :style => "width:100%;", :name => nil, id: "btnSubmit"

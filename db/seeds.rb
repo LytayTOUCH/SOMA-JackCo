@@ -247,11 +247,16 @@ other = MaterialCategory.find_by_name('Other')
   end  
 end
 
-# Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_warehouse.uuid, fertilizer_warehouse.uuid, project_warehouse.uuid).each do |wh|
-#   Material.all.each do |m|
-#     WarehouseMaterialAmount.create(warehouse_uuid: wh.uuid,  material_uuid: m.uuid, amount: 0, returnable: false)
-#   end
-# end
+# ========== Create Stock Balances ==========
+Material.all.each do |m|
+  start_month = 1
+  this_month = Date.today.month
+  
+  while start_month <= this_month do
+    StockBalance.create_with(material_category_id: m.material_cate_uuid, stock_in: 0, stock_out: 0, beginning_balance: 0, ending_balance: 0).find_or_create_by(material_id: m.uuid, month: start_month, year: Date.today.year)
+    start_month += 1
+  end
+end
 
 # ========== Create Farms ==========
 [

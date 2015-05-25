@@ -1,4 +1,4 @@
-%table#list_data_table
+%table.list_data_table
   %thead
     %tr
       %th.col-md-2= "Name"
@@ -18,3 +18,27 @@
         %td
           - if can? :update, material
             = link_to "Edit", edit_material_path(material)
+
+:javascript
+  $(document).ready(function() {
+    $('.list_data_table').DataTable({
+      "bSort": false,
+      "columnDefs": [{ "visible": false, "targets": 1 }],
+      "order": [[ 1, 'asc' ]],
+      "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    });
+  });
