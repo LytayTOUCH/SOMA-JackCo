@@ -6,7 +6,7 @@ class InputTasksController < ApplicationController
   has_scope :planting_project_id
 
   def index
-    @input_tasks = InputTask.order('updated_at DESC')
+    @input_tasks = apply_scopes(InputTask).order('updated_at DESC')
   end
 
   def new

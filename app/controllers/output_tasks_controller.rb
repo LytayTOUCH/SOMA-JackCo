@@ -4,8 +4,10 @@ class OutputTasksController < ApplicationController
 
   add_breadcrumb "All Output Tasks", :output_tasks_path
 
+  has_scope :planting_project_id
+
   def index
-    @output_tasks = OutputTask.order(created_at: :desc)
+    @output_tasks = apply_scopes(OutputTask).order(created_at: :desc)
   end
 
   def new

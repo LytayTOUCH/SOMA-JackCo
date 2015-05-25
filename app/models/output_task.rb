@@ -31,6 +31,8 @@ class OutputTask < ActiveRecord::Base
   validates :reference_number, :presence => { message: "Reference is required." }
   validates :created_by, length: {maximum: 36}, presence: true
 
+  scope :planting_project_id, -> uuid_f { joins(:block).where("blocks.planting_project_id=?", uuid_f) }
+
   scope :find_by_output_task_name, -> name { where("name like ?", "%#{name}%") }
   
   def self.sum_output_amount(planting_project_id, area_id, start_date, end_date, distribution_id, uom_id)
