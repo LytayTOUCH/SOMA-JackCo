@@ -75,19 +75,19 @@ class StockBalancesController < ApplicationController
       
       # SELECTED MONTH
       sb = StockBalance.find_by(:material_id => material_id, :month => month, :year => year)
-      unless sb.nil?
+      if !sb.nil? && adjusted_balance != 0
         sb.update(adjusted_ending_balance: adjusted_balance, adjusted_note: params[:note][index]) 
       end
       
       # NEXT MONTH
       sb = StockBalance.find_by(:material_id => material_id, :month => later_month, :year => later_year)
-      if sb.nil?
+      if sb.nil? && adjusted_balance != 0
         StockBalance.create(material_id: material_id,
                             material_category_id: Material.find_by_uuid(material_id).material_cate_uuid,
                             month: month+1, year: year, stock_in: 0, stock_out: 0,
                             beginning_balance: adjusted_balance,
                             ending_balance: adjusted_balance)
-      else
+      elsif adjusted_balance != 0
         stock_in = sb.stock_in
         stock_out = sb.stock_out
         beginning_balance = adjusted_balance

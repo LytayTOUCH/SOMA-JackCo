@@ -59,6 +59,24 @@ class InputTasksController < ApplicationController
 
                     InputUseMaterial.create(input_id: @input_task.uuid, material_id: material_id, warehouse_id: warehouse_of_material, material_amount: qty_of_material.to_f)
                     @warehouse_material_amount.update_attributes!(amount: remain_in_stock)
+                    
+                    # STOCK BALANCE
+                    month = @input_task.start_date.month
+                    year = @input_task.start_date.year
+                    sb = StockBalance.find_by(:material_id => material_id, :month => month, :year => year)
+                    unless sb.nil?
+                      stock_out = sb.stock_out + qty_of_material.to_f
+                      ending_balance = sb.beginning_balance + sb.stock_in - stock_out
+                      
+                      unless sb.adjusted_ending_balance.nil?
+                        diff_balance = sb.adjusted_ending_balance - sb.ending_balance
+                        new_adjusted_ending_balance = ending_balance + diff_balance
+                        
+                        sb.update(stock_out: stock_out, ending_balance: ending_balance, adjusted_ending_balance: new_adjusted_ending_balance)
+                      else
+                        sb.update(stock_out: stock_out, ending_balance: ending_balance)
+                      end
+                    end
 
                   else
                     flash[:notice] = "Input Task can't be saved"
