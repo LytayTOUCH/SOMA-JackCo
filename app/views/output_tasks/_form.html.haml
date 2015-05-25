@@ -63,7 +63,7 @@
         .form-group
           %label.col-xs-2.control-label.text-left Equipments
           .col-xs-10
-            = f.select :equipments, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select form-control item-select-equipments' }
+            = f.select :equipments, options_for_select("Select items"), { include_blank: true }, { class: 'chosen-select-equipment form-control item-select-equipments', multiple: false }
             = hidden_field_tag 'equipments', ''
         
         .form-group

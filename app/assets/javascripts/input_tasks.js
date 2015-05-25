@@ -4,6 +4,21 @@ $(document).ready(function(){
 
   var planting_project_id = $(".planting_project_id").val();
   if(planting_project_id!="") {
+    // START -- EQUIPMENT SECTION
+    $('#equipments').val("");
+    $('select.item-select-equipments').html('');
+    
+    $('select.item-select-equipments').html('');
+    $('select.item-select-equipments').attr("multiple", "multiple");
+    $("select.chosen-select-equipment").chosen(
+      {width: "100%"},
+      {no_results_text: 'No results matched'}
+    );
+    
+    $('select.item-select-equipments').attr("data-placeholder", "No Items");
+    $('select.item-select-equipments').trigger('chosen:updated');
+    // END -- EQUIPMENT SECTION
+    
     renderEquipment();
     renderMachinery();
   }
