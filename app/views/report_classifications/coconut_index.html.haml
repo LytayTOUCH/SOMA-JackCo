@@ -12,6 +12,7 @@
         %table.table-bordered#main_table{cellpadding: "5px", width: "100%"}
           %tr#table_header{style: "background-color: #eee"}
             %th{style: "padding-left:10px"} Period
+            %th{style: "text-align:center"} Unit
             %th{style: "text-align:center"}= "Jan-" + @year
             %th{style: "text-align:center"}= "Feb-" + @year
             %th{style: "text-align:center"}= "Mar-" + @year
@@ -28,302 +29,232 @@
           %tr.row_1{style: "color:#fff;background-color:#3333FF;"}
             %input#standard_pdt{type: "hidden", value: @production_standard}
             %th{style: "padding-left:10px;color:#3333FF;background-color:#fff;"} Standard PDT
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0; margin: 0;"} Unit
+
             %td{style: "text-align:center"}
-              = @production_standard[0]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[0]
             %td{style: "text-align:center"}
-              = @production_standard[1]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[1]
             %td{style: "text-align:center"}
-              = @production_standard[2]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[2]
             %td{style: "text-align:center"}
-              = @production_standard[3]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[3]
             %td{style: "text-align:center"}
-              = @production_standard[4]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[4]
             %td{style: "text-align:center"}
-              = @production_standard[5]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[5]
             %td{style: "text-align:center"}
-              = @production_standard[6]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[6]
             %td{style: "text-align:center"}
-              = @production_standard[7]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[7]
             %td{style: "text-align:center"}
-              = @production_standard[8]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[8]
             %td{style: "text-align:center"}
-              = @production_standard[9]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[9]
             %td{style: "text-align:center"}
-              = @production_standard[10]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[10]
             %td{style: "text-align:center"}
-              = @production_standard[11]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[11]
             %th{style: "text-align:center;color:#3333FF;background-color:#fff;"}
-              = @production_standard[12]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @production_standard[12]
           %tr.row_2{style: "color:#fff;background-color:#852314;"}
             %input#forecast_pdt{type: "hidden", value: @production_plan}
             %th{style: "padding-left:10px;color:#852314;background-color:#fff;"} Forecast PDT
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0; margin: 0;"} Unit
+
             %td{style: "text-align:center"}
-              = @production_plan[0]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[0]
             %td{style: "text-align:center"}
-              = @production_plan[1]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[1]
             %td{style: "text-align:center"}
-              = @production_plan[2]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[2]
             %td{style: "text-align:center"}
-              = @production_plan[3]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[3]
             %td{style: "text-align:center"}
-              = @production_plan[4]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[4]
             %td{style: "text-align:center"}
-              = @production_plan[5]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[5]
             %td{style: "text-align:center"}
-              = @production_plan[6]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[6]
             %td{style: "text-align:center"}
-              = @production_plan[7]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[7]
             %td{style: "text-align:center"}
-              = @production_plan[8]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[8]
             %td{style: "text-align:center"}
-              = @production_plan[9]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[9]
             %td{style: "text-align:center"}
-              = @production_plan[10]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[10]
             %td{style: "text-align:center"}
-              = @production_plan[11]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[11]
             %th{style: "text-align:center;color:#852314;background-color:#fff;"}
-              = @production_plan[12]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @production_plan[12]
     
           %tr.row_3{style: "color:#fff;background-color:#55DD33;"}
             %input#actual_pdt{type: "hidden", value: @actual_pdts}
             %th{style: "padding-left:10px;color:#55DD33;background-color:#fff;"} Actual PDT
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0; margin: 0;"} Unit
+
             %td{style: "text-align:center"}
-              = @actual_pdts[0]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[0]
             %td{style: "text-align:center"}
-              = @actual_pdts[1]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[1]
             %td{style: "text-align:center"}
-              = @actual_pdts[2]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[2]
             %td{style: "text-align:center"}
-              = @actual_pdts[3]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[3]
             %td{style: "text-align:center"}
-              = @actual_pdts[4]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[4]
             %td{style: "text-align:center"}
-              = @actual_pdts[5]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[5]
             %td{style: "text-align:center"}
-              = @actual_pdts[6]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[6]
             %td{style: "text-align:center"}
-              = @actual_pdts[7]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[7]
             %td{style: "text-align:center"}
-              = @actual_pdts[8]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[8]
             %td{style: "text-align:center"}
-              = @actual_pdts[9]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[9]
             %td{style: "text-align:center"}
-              = @actual_pdts[10]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[10]
             %td{style: "text-align:center"}
-              = @actual_pdts[11]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[11]
             %th{style: "text-align:center;color:#55DD33;background-color:#fff;"}
-              = @actual_pdts[12]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @actual_pdts[12]
             
           %tr.row_4{style: "color:#fff;background-color:#5A287D;"}
             %input#to_finish_wh{type: "hidden", value: @to_finish_whs}
             %th{style: "padding-left:10px;color:#5A287D;background-color:#fff;"} To Finish WH
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0; margin: 0;"} Unit
+
             %td{style: "text-align:center"}
-              = @to_finish_whs[0]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[0]
             %td{style: "text-align:center"}
-              = @to_finish_whs[1]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[1]
             %td{style: "text-align:center"}
-              = @to_finish_whs[2]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[2]
             %td{style: "text-align:center"}
-              = @to_finish_whs[3]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[3]
             %td{style: "text-align:center"}
-              = @to_finish_whs[4]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[4]
             %td{style: "text-align:center"}
-              = @to_finish_whs[5]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[5]
             %td{style: "text-align:center"}
-              = @to_finish_whs[6]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[6]
             %td{style: "text-align:center"}
-              = @to_finish_whs[7]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[7]
             %td{style: "text-align:center"}
-              = @to_finish_whs[8]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[8]
             %td{style: "text-align:center"}
-              = @to_finish_whs[9]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[9]
             %td{style: "text-align:center"}
-              = @to_finish_whs[10]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[10]
             %td{style: "text-align:center"}
-              = @to_finish_whs[11]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[11]
             %th{style: "text-align:center;color:#5A287D;background-color:#fff;"}
-              = @to_finish_whs[12]
-              %sup Unit
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_whs[12]
             
           %tr.row_5{style: "color:#fff;background-color:#FF9600;"}
             %input#to_nursery_wh{type: "hidden", value: @to_nursery_whs}
             %th{style: "padding-left:10px;color:#FF9600;background-color:#fff;"} To Nursery WH
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0; margin: 0;"} Unit
+
             %td{style: "text-align:center"}
-              = @to_nursery_whs[0]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[0]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[1]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[1]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[2]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[2]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[3]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[3]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[4]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[4]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[5]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[5]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[6]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[6]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[7]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[7]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[8]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[8]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[9]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[9]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[10]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[10]
             %td{style: "text-align:center"}
-              = @to_nursery_whs[11]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[11]
             %th{style: "text-align:center;color:#FF9600;background-color:#fff;"}
-              = @to_nursery_whs[12]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_whs[12]
             
           %tr.row_6{style: "color:#fff;background-color:#1EA6A3;"}
             %input#spoiled{type: "hidden", value: @spoiled}
             %th{style: "padding-left:10px;color:#1EA6A3;background-color:#fff;"} Spoiled
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0; margin: 0;"} Unit
+
             %td{style: "text-align:center"}
-              = @spoiled[0]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[0]
             %td{style: "text-align:center"}
-              = @spoiled[1]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[1]
             %td{style: "text-align:center"}
-              = @spoiled[2]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[2]
             %td{style: "text-align:center"}
-              = @spoiled[3]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[3]
             %td{style: "text-align:center"}
-              = @spoiled[4]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[4]
             %td{style: "text-align:center"}
-              = @spoiled[5]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[5]
             %td{style: "text-align:center"}
-              = @spoiled[6]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[6]
             %td{style: "text-align:center"}
-              = @spoiled[7]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[7]
             %td{style: "text-align:center"}
-              = @spoiled[8]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[8]
             %td{style: "text-align:center"}
-              = @spoiled[9]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[9]
             %td{style: "text-align:center"}
-              = @spoiled[10]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[10]
             %td{style: "text-align:center"}
-              = @spoiled[11]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[11]
             %th{style: "text-align:center;color:#1EA6A3;background-color:#fff;"}
-              = @spoiled[12]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @spoiled[12]
             
           %tr.row_7{style: "color:#fff;background-color:#FF0055;"}
             %input#free_at_farm{type: "hidden", value: @free_at_farm}
             %th{style: "padding-left:10px;color:#FF0055;background-color:#fff;"} Free at Farm
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0; margin: 0;"} Unit
+
             %td{style: "text-align:center"}
-              = @free_at_farm[0]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[0]
             %td{style: "text-align:center"}
-              = @free_at_farm[1]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[1]
             %td{style: "text-align:center"}
-              = @free_at_farm[2]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[2]
             %td{style: "text-align:center"}
-              = @free_at_farm[3]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[3]
             %td{style: "text-align:center"}
-              = @free_at_farm[4]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[4]
             %td{style: "text-align:center"}
-              = @free_at_farm[5]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[5]
             %td{style: "text-align:center"}
-              = @free_at_farm[6]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[6]
             %td{style: "text-align:center"}
-              = @free_at_farm[7]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[7]
             %td{style: "text-align:center"}
-              = @free_at_farm[8]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[8]
             %td{style: "text-align:center"}
-              = @free_at_farm[9]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[9]
             %td{style: "text-align:center"}
-              = @free_at_farm[10]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[10]
             %td{style: "text-align:center"}
-              = @free_at_farm[11]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[11]
             %th{style: "text-align:center;color:#FF0055;background-color:#fff;"}
-              = @free_at_farm[12]
-              %sup Unit
+              %p{style: "padding: 0; margin: 0;"}= @free_at_farm[12]
 
     %br
     .row
@@ -381,6 +312,6 @@
     
     #coconut_classification_chart{
       position: absolute;
-      top: 350px;
+      top: 360px;
     }
   }

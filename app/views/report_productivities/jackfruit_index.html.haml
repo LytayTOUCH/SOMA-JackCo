@@ -13,6 +13,7 @@
             %th{rowspan: "3", style: "text-align:center"} Farm
             %th{rowspan: "3", style: "text-align:center"} Zone
             %th{rowspan: "3", style: "text-align:center"} Area
+            %th{rowspan: "3", style: "text-align:center"} Unit
             %th{colspan: "5", style: "text-align:center"} Total Production
             %th{colspan: "5", style: "text-align:center"} Production Distribution
           %tr
@@ -31,7 +32,9 @@
           %tfoot{style: "background-color: #eee;"}
             %tr
               %th{colspan: "3", style: "text-align:center"}= "Total:"
-              
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+                %p{style: "margin: 0; padding: 0; font-size: 11px;"} Kg
               /UNIT - UOM
               - @unit_young_fruit = OutputTask.sum_output_amount_by_farm(@jackfruit.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000017", @unit.uuid)
               - @unit_good_ripe_fruit = OutputTask.sum_output_amount_by_farm(@jackfruit.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000014", @unit.uuid)
@@ -56,66 +59,36 @@
               - @kg_total_distribution = @kg_to_finish_wh + @kg_spoil_waste + @kg_to_nursery_wh
               - @kg_loss = @kg_total_production - @kg_total_distribution
               
-              %td
-                = @unit_young_fruit
-                %sup Unit
-                %br
-                = @kg_young_fruit
-                %sup Kg
-              %td
-                = @unit_good_ripe_fruit
-                %sup Unit
-                %br
-                = @kg_good_ripe_fruit
-                %sup Kg
-              %td
-                = @unit_damage_ripe_fruit
-                %sup Unit
-                %br
-                = @kg_damage_ripe_fruit
-                %sup Kg
-              %td
-                = @unit_spoil_ripe_fruit
-                %sup Unit
-                %br
-                = @kg_spoil_ripe_fruit
-                %sup Kg
-              %td
-                = @unit_total_production
-                %sup Unit
-                %br
-                = @kg_total_production
-                %sup Kg
-              %td
-                = @unit_to_finish_wh
-                %sup Unit
-                %br
-                = @kg_to_finish_wh
-                %sup Kg
-              %td
-                = @unit_spoil_waste
-                %sup Unit
-                %br
-                = @kg_spoil_waste
-                %sup Kg
-              %td
-                = @unit_to_nursery_wh
-                %sup Unit
-                %br
-                = @kg_to_nursery_wh
-                %sup Kg
-              %td
-                = @unit_total_distribution
-                %sup Unit
-                %br
-                = @kg_total_distribution
-                %sup Kg
-              %td
-                = @unit_loss
-                %sup Unit
-                %br
-                = @kg_loss
-                %sup Kg
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_young_fruit
+                %p{style: "margin: 0; padding: 0;"}= @kg_young_fruit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_good_ripe_fruit
+                %p{style: "margin: 0; padding: 0;"}= @kg_good_ripe_fruit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_damage_ripe_fruit
+                %p{style: "margin: 0; padding: 0;"}= @kg_damage_ripe_fruit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_spoil_ripe_fruit
+                %p{style: "margin: 0; padding: 0;"}= @kg_spoil_ripe_fruit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_total_production
+                %p{style: "margin: 0; padding: 0;"}= @kg_total_production
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_to_finish_wh
+                %p{style: "margin: 0; padding: 0;"}= @kg_to_finish_wh
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_spoil_waste
+                %p{style: "margin: 0; padding: 0;"}= @kg_spoil_waste
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_to_nursery_wh
+                %p{style: "margin: 0; padding: 0;"}= @kg_to_nursery_wh
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_total_distribution
+                %p{style: "margin: 0; padding: 0;"}= @kg_total_distribution
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_loss
+                %p{style: "margin: 0; padding: 0;"}= @kg_loss
 
           %tr
             %td{rowspan: @farm.areas.count, style: "text-align:center"}= @farm.name
@@ -125,7 +98,9 @@
                 - zone.areas.each_with_index do |area, a_index|
                   - if a_index == 0
                     %td{style: "text-align:center"}= area.name
-                    
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+                      %p{style: "margin: 0; padding: 0; font-size: 11px;"} Kg
                     /UNIT - UOM
                     - @unit_young_fruit = OutputTask.sum_output_amount(@jackfruit.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000017", @unit.uuid)
                     - @unit_good_ripe_fruit = OutputTask.sum_output_amount(@jackfruit.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000014", @unit.uuid)
@@ -150,71 +125,43 @@
                     - @kg_total_distribution = @kg_to_finish_wh + @kg_spoil_waste + @kg_to_nursery_wh
                     - @kg_loss = @kg_total_production - @kg_total_distribution
                     
-                    %td
-                      = @unit_young_fruit
-                      %sup Unit
-                      %br
-                      = @kg_young_fruit
-                      %sup Kg
-                    %td
-                      = @unit_good_ripe_fruit
-                      %sup Unit
-                      %br
-                      = @kg_good_ripe_fruit
-                      %sup Kg
-                    %td
-                      = @unit_damage_ripe_fruit
-                      %sup Unit
-                      %br
-                      = @kg_damage_ripe_fruit
-                      %sup Kg
-                    %td
-                      = @unit_spoil_ripe_fruit
-                      %sup Unit
-                      %br
-                      = @kg_spoil_ripe_fruit
-                      %sup Kg
-                    %td
-                      = @unit_total_production
-                      %sup Unit
-                      %br
-                      = @kg_total_production
-                      %sup Kg
-                    %td
-                      = @unit_to_finish_wh
-                      %sup Unit
-                      %br
-                      = @kg_to_finish_wh
-                      %sup Kg
-                    %td
-                      = @unit_spoil_waste
-                      %sup Unit
-                      %br
-                      = @kg_spoil_waste
-                      %sup Kg
-                    %td
-                      = @unit_to_nursery_wh
-                      %sup Unit
-                      %br
-                      = @kg_to_nursery_wh
-                      %sup Kg
-                    %td
-                      = @unit_total_distribution
-                      %sup Unit
-                      %br
-                      = @kg_total_distribution
-                      %sup Kg
-                    %td
-                      = @unit_loss
-                      %sup Unit
-                      %br
-                      = @kg_loss
-                      %sup Kg
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_young_fruit
+                      %p{style: "margin: 0; padding: 0;"}= @kg_young_fruit
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_good_ripe_fruit
+                      %p{style: "margin: 0; padding: 0;"}= @kg_good_ripe_fruit
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_damage_ripe_fruit
+                      %p{style: "margin: 0; padding: 0;"}= @kg_damage_ripe_fruit
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_spoil_ripe_fruit
+                      %p{style: "margin: 0; padding: 0;"}= @kg_spoil_ripe_fruit
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_total_production
+                      %p{style: "margin: 0; padding: 0;"}= @kg_total_production
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_to_finish_wh
+                      %p{style: "margin: 0; padding: 0;"}= @kg_to_finish_wh
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_spoil_waste
+                      %p{style: "margin: 0; padding: 0;"}= @kg_spoil_waste
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_to_nursery_wh
+                      %p{style: "margin: 0; padding: 0;"}= @kg_to_nursery_wh
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_total_distribution
+                      %p{style: "margin: 0; padding: 0;"}= @kg_total_distribution
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @unit_loss
+                      %p{style: "margin: 0; padding: 0;"}= @kg_loss
                     
                   - else
                     %tr
                       %td{style: "text-align:center"}= area.name
-                      
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+                        %p{style: "margin: 0; padding: 0; font-size: 11px;"} Kg
                       /UNIT - UOM
                       - @unit_young_fruit = OutputTask.sum_output_amount(@jackfruit.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000017", @unit.uuid)
                       - @unit_good_ripe_fruit = OutputTask.sum_output_amount(@jackfruit.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000014", @unit.uuid)
@@ -239,66 +186,36 @@
                       - @kg_total_distribution = @kg_to_finish_wh + @kg_spoil_waste + @kg_to_nursery_wh
                       - @kg_loss = @kg_total_production - @kg_total_distribution
                       
-                      %td
-                        = @unit_young_fruit
-                        %sup Unit
-                        %br
-                        = @kg_young_fruit
-                        %sup Kg
-                      %td
-                        = @unit_good_ripe_fruit
-                        %sup Unit
-                        %br
-                        = @kg_good_ripe_fruit
-                        %sup Kg
-                      %td
-                        = @unit_damage_ripe_fruit
-                        %sup Unit
-                        %br
-                        = @kg_damage_ripe_fruit
-                        %sup Kg
-                      %td
-                        = @unit_spoil_ripe_fruit
-                        %sup Unit
-                        %br
-                        = @kg_spoil_ripe_fruit
-                        %sup Kg
-                      %td
-                        = @unit_total_production
-                        %sup Unit
-                        %br
-                        = @kg_total_production
-                        %sup Kg
-                      %td
-                        = @unit_to_finish_wh
-                        %sup Unit
-                        %br
-                        = @kg_to_finish_wh
-                        %sup Kg
-                      %td
-                        = @unit_spoil_waste
-                        %sup Unit
-                        %br
-                        = @kg_spoil_waste
-                        %sup Kg
-                      %td
-                        = @unit_to_nursery_wh
-                        %sup Unit
-                        %br
-                        = @kg_to_nursery_wh
-                        %sup Kg
-                      %td
-                        = @unit_total_distribution
-                        %sup Unit
-                        %br
-                        = @kg_total_distribution
-                        %sup Kg
-                      %td
-                        = @unit_loss
-                        %sup Unit
-                        %br
-                        = @kg_loss
-                        %sup Kg
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_young_fruit
+                        %p{style: "margin: 0; padding: 0;"}= @kg_young_fruit
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_good_ripe_fruit
+                        %p{style: "margin: 0; padding: 0;"}= @kg_good_ripe_fruit
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_damage_ripe_fruit
+                        %p{style: "margin: 0; padding: 0;"}= @kg_damage_ripe_fruit
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_spoil_ripe_fruit
+                        %p{style: "margin: 0; padding: 0;"}= @kg_spoil_ripe_fruit
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_total_production
+                        %p{style: "margin: 0; padding: 0;"}= @kg_total_production
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_to_finish_wh
+                        %p{style: "margin: 0; padding: 0;"}= @kg_to_finish_wh
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_spoil_waste
+                        %p{style: "margin: 0; padding: 0;"}= @kg_spoil_waste
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_to_nursery_wh
+                        %p{style: "margin: 0; padding: 0;"}= @kg_to_nursery_wh
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_total_distribution
+                        %p{style: "margin: 0; padding: 0;"}= @kg_total_distribution
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_loss
+                        %p{style: "margin: 0; padding: 0;"}= @kg_loss
                       
               - elsif zone.areas.count > 0
                 %tr
@@ -306,7 +223,9 @@
                   - zone.areas.each_with_index do |area, a_index|
                     - if a_index == 0
                       %td{style: "text-align:center"}= area.name
-                      
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+                        %p{style: "margin: 0; padding: 0; font-size: 11px;"} Kg
                       /UNIT - UOM
                       - @unit_young_fruit = OutputTask.sum_output_amount(@jackfruit.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000017", @unit.uuid)
                       - @unit_good_ripe_fruit = OutputTask.sum_output_amount(@jackfruit.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000014", @unit.uuid)
@@ -331,71 +250,43 @@
                       - @kg_total_distribution = @kg_to_finish_wh + @kg_spoil_waste + @kg_to_nursery_wh
                       - @kg_loss = @kg_total_production - @kg_total_distribution
                       
-                      %td
-                        = @unit_young_fruit
-                        %sup Unit
-                        %br
-                        = @kg_young_fruit
-                        %sup Kg
-                      %td
-                        = @unit_good_ripe_fruit
-                        %sup Unit
-                        %br
-                        = @kg_good_ripe_fruit
-                        %sup Kg
-                      %td
-                        = @unit_damage_ripe_fruit
-                        %sup Unit
-                        %br
-                        = @kg_damage_ripe_fruit
-                        %sup Kg
-                      %td
-                        = @unit_spoil_ripe_fruit
-                        %sup Unit
-                        %br
-                        = @kg_spoil_ripe_fruit
-                        %sup Kg
-                      %td
-                        = @unit_total_production
-                        %sup Unit
-                        %br
-                        = @kg_total_production
-                        %sup Kg
-                      %td
-                        = @unit_to_finish_wh
-                        %sup Unit
-                        %br
-                        = @kg_to_finish_wh
-                        %sup Kg
-                      %td
-                        = @unit_spoil_waste
-                        %sup Unit
-                        %br
-                        = @kg_spoil_waste
-                        %sup Kg
-                      %td
-                        = @unit_to_nursery_wh
-                        %sup Unit
-                        %br
-                        = @kg_to_nursery_wh
-                        %sup Kg
-                      %td
-                        = @unit_total_distribution
-                        %sup Unit
-                        %br
-                        = @kg_total_distribution
-                        %sup Kg
-                      %td
-                        = @unit_loss
-                        %sup Unit
-                        %br
-                        = @kg_loss
-                        %sup Kg
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_young_fruit
+                        %p{style: "margin: 0; padding: 0;"}= @kg_young_fruit
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_good_ripe_fruit
+                        %p{style: "margin: 0; padding: 0;"}= @kg_good_ripe_fruit
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_damage_ripe_fruit
+                        %p{style: "margin: 0; padding: 0;"}= @kg_damage_ripe_fruit
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_spoil_ripe_fruit
+                        %p{style: "margin: 0; padding: 0;"}= @kg_spoil_ripe_fruit
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_total_production
+                        %p{style: "margin: 0; padding: 0;"}= @kg_total_production
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_to_finish_wh
+                        %p{style: "margin: 0; padding: 0;"}= @kg_to_finish_wh
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_spoil_waste
+                        %p{style: "margin: 0; padding: 0;"}= @kg_spoil_waste
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_to_nursery_wh
+                        %p{style: "margin: 0; padding: 0;"}= @kg_to_nursery_wh
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_total_distribution
+                        %p{style: "margin: 0; padding: 0;"}= @kg_total_distribution
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @unit_loss
+                        %p{style: "margin: 0; padding: 0;"}= @kg_loss
                       
                     - else
                       %tr
                         %td{style: "text-align:center"}= area.name
-                        
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+                          %p{style: "margin: 0; padding: 0; font-size: 11px;"} Kg
                         /UNIT - UOM
                         - @unit_young_fruit = OutputTask.sum_output_amount(@jackfruit.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000017", @unit.uuid)
                         - @unit_good_ripe_fruit = OutputTask.sum_output_amount(@jackfruit.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000014", @unit.uuid)
@@ -420,66 +311,36 @@
                         - @kg_total_distribution = @kg_to_finish_wh + @kg_spoil_waste + @kg_to_nursery_wh
                         - @kg_loss = @kg_total_production - @kg_total_distribution
                         
-                        %td
-                          = @unit_young_fruit
-                          %sup Unit
-                          %br
-                          = @kg_young_fruit
-                          %sup Kg
-                        %td
-                          = @unit_good_ripe_fruit
-                          %sup Unit
-                          %br
-                          = @kg_good_ripe_fruit
-                          %sup Kg
-                        %td
-                          = @unit_damage_ripe_fruit
-                          %sup Unit
-                          %br
-                          = @kg_damage_ripe_fruit
-                          %sup Kg
-                        %td
-                          = @unit_spoil_ripe_fruit
-                          %sup Unit
-                          %br
-                          = @kg_spoil_ripe_fruit
-                          %sup Kg
-                        %td
-                          = @unit_total_production
-                          %sup Unit
-                          %br
-                          = @kg_total_production
-                          %sup Kg
-                        %td
-                          = @unit_to_finish_wh
-                          %sup Unit
-                          %br
-                          = @kg_to_finish_wh
-                          %sup Kg
-                        %td
-                          = @unit_spoil_waste
-                          %sup Unit
-                          %br
-                          = @kg_spoil_waste
-                          %sup Kg
-                        %td
-                          = @unit_to_nursery_wh
-                          %sup Unit
-                          %br
-                          = @kg_to_nursery_wh
-                          %sup Kg
-                        %td
-                          = @unit_total_distribution
-                          %sup Unit
-                          %br
-                          = @kg_total_distribution
-                          %sup Kg
-                        %td
-                          = @unit_loss
-                          %sup Unit
-                          %br
-                          = @kg_loss
-                          %sup Kg
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_young_fruit
+                          %p{style: "margin: 0; padding: 0;"}= @kg_young_fruit
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_good_ripe_fruit
+                          %p{style: "margin: 0; padding: 0;"}= @kg_good_ripe_fruit
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_damage_ripe_fruit
+                          %p{style: "margin: 0; padding: 0;"}= @kg_damage_ripe_fruit
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_spoil_ripe_fruit
+                          %p{style: "margin: 0; padding: 0;"}= @kg_spoil_ripe_fruit
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_total_production
+                          %p{style: "margin: 0; padding: 0;"}= @kg_total_production
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_to_finish_wh
+                          %p{style: "margin: 0; padding: 0;"}= @kg_to_finish_wh
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_spoil_waste
+                          %p{style: "margin: 0; padding: 0;"}= @kg_spoil_waste
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_to_nursery_wh
+                          %p{style: "margin: 0; padding: 0;"}= @kg_to_nursery_wh
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_total_distribution
+                          %p{style: "margin: 0; padding: 0;"}= @kg_total_distribution
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @unit_loss
+                          %p{style: "margin: 0; padding: 0;"}= @kg_loss
 
     %br
     .row
@@ -497,6 +358,7 @@
         %table.table-bordered#main_table{cellpadding: "5px", style: "width:100%"}
           %tr
             %th{rowspan: "3", style: "text-align:center"} Grand Total Production
+            %th{rowspan: "3", style: "text-align:center"} Unit
             %th{colspan: "5", style: "text-align:center"} Total Production
             %th{colspan: "5", style: "text-align:center"} Production Distribution
           %tr
@@ -515,7 +377,9 @@
           %tfoot{style: "background-color: #eee;"}
             %tr
               %th{style: "text-align:center"}= "Total:"
-              
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+                %p{style: "margin: 0; padding: 0; font-size: 11px;"} Kg
               /UNIT - UOM
               - @unit_young_fruit = OutputTask.grand_total_output_amount(@jackfruit.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000017", @unit.uuid)
               - @unit_good_ripe_fruit = OutputTask.grand_total_output_amount(@jackfruit.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000014", @unit.uuid)
@@ -540,66 +404,36 @@
               - @kg_total_distribution = @kg_to_finish_wh + @kg_spoil_waste + @kg_to_nursery_wh
               - @kg_loss = @kg_total_production - @kg_total_distribution
               
-              %td
-                = @unit_young_fruit
-                %sup Unit
-                %br
-                = @kg_young_fruit
-                %sup Kg
-              %td
-                = @unit_good_ripe_fruit
-                %sup Unit
-                %br
-                = @kg_good_ripe_fruit
-                %sup Kg
-              %td
-                = @unit_damage_ripe_fruit
-                %sup Unit
-                %br
-                = @kg_damage_ripe_fruit
-                %sup Kg
-              %td
-                = @unit_spoil_ripe_fruit
-                %sup Unit
-                %br
-                = @kg_spoil_ripe_fruit
-                %sup Kg
-              %td
-                = @unit_total_production
-                %sup Unit
-                %br
-                = @kg_total_production
-                %sup Kg
-              %td
-                = @unit_to_finish_wh
-                %sup Unit
-                %br
-                = @kg_to_finish_wh
-                %sup Kg
-              %td
-                = @unit_spoil_waste
-                %sup Unit
-                %br
-                = @kg_spoil_waste
-                %sup Kg
-              %td
-                = @unit_to_nursery_wh
-                %sup Unit
-                %br
-                = @kg_to_nursery_wh
-                %sup Kg
-              %td
-                = @unit_total_distribution
-                %sup Unit
-                %br
-                = @kg_total_distribution
-                %sup Kg
-              %td
-                = @unit_loss
-                %sup Unit
-                %br
-                = @kg_loss
-                %sup Kg
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_young_fruit
+                %p{style: "margin: 0; padding: 0;"}= @kg_young_fruit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_good_ripe_fruit
+                %p{style: "margin: 0; padding: 0;"}= @kg_good_ripe_fruit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_damage_ripe_fruit
+                %p{style: "margin: 0; padding: 0;"}= @kg_damage_ripe_fruit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_spoil_ripe_fruit
+                %p{style: "margin: 0; padding: 0;"}= @kg_spoil_ripe_fruit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_total_production
+                %p{style: "margin: 0; padding: 0;"}= @kg_total_production
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_to_finish_wh
+                %p{style: "margin: 0; padding: 0;"}= @kg_to_finish_wh
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_spoil_waste
+                %p{style: "margin: 0; padding: 0;"}= @kg_spoil_waste
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_to_nursery_wh
+                %p{style: "margin: 0; padding: 0;"}= @kg_to_nursery_wh
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_total_distribution
+                %p{style: "margin: 0; padding: 0;"}= @kg_total_distribution
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @unit_loss
+                %p{style: "margin: 0; padding: 0;"}= @kg_loss
           
     %br
     .row
