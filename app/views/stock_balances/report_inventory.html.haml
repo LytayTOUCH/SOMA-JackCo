@@ -1,0 +1,80 @@
+.row
+  %h1
+    = "Inventory Report"
+  %hr
+  = render partial: 'report_inventory_filter', path: report_inventory_path
+
+  - unless params[:month_year].nil?
+    %br
+    .row
+      .col-xs-12
+        %table.table-bordered#main_table{cellpadding: "5px", width: "100%"}
+          %tr#table_header{style: "background-color: #eee"}
+            %th{:style => "text-align:center"}
+              N
+              %sup o
+            %th{style: "text-align:center"} Material Name
+            %th{style: "text-align:center"} UOM
+            %th{style: "text-align:center"} Beginning Balance
+            %th{style: "text-align:center"} Stock In
+            %th{style: "text-align:center"} Stock Out
+            %th{style: "text-align:center"} Ending Balance
+            %th{style: "text-align:center"} Adjusted Balance
+
+          - @materials.each_with_index do |m, i|
+            - @sb = StockBalance.find_by(:material_id => m.uuid, :month => @month, :year => @year)
+            - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :month => Date.today.month, :year => Date.today.year) : @sb
+            - @balance = @sb.adjusted_ending_balance.nil? ? @sb.ending_balance : @sb.adjusted_ending_balance
+            
+            %tr
+              %td{style: "text-align:center"}= i+1
+              %td= m.name
+              %td{style: "text-align:center"}= m.unit_of_measurement.name
+              %td{style: "text-align:right"}= @sb.beginning_balance
+              %td{style: "text-align:right"}= @sb.stock_in
+              %td{style: "text-align:right"}= @sb.stock_out
+              %td{style: "text-align:right"}= @sb.ending_balance
+              %td{style: "text-align:right"}= @balance
+
+    %br
+    .row
+      .col-xs-12
+        .pull-right
+          %a.btn.btn-primary.print_button#print_button
+            %span.glyphicon.glyphicon-print
+            Print Report
+
+- content_for :javascript_body do
+  = javascript_include_tag "stock_balances"
+
+:css
+  @media print {
+    @page {
+      margin: 0;
+      size: A4 landscape;
+    }
+    
+    body { background: white; }
+  
+    .report_filter, .print_button, hr{ display: none; }
+    
+    .container {
+      width: 90%;
+      border: 0;
+      padding: 0;
+      float: none !important;
+    }
+    
+    #main_table{
+      position: absolute;
+      left: 50px;
+    }
+    
+    #main_table td, #main_table th{
+      padding: 5px !important;
+    }
+    
+    #table_header{
+      background-color: #eee !important;
+    }
+  }

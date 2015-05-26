@@ -11,7 +11,10 @@
         .form-group
           %label.col-xs-3.control-label{for: 'material category'} Material Category *
           .col-xs-9
-            = f.association :material_category, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            - if @material.persisted?
+              %input.form-control{value: @material.material_category.name, readonly: true}
+            - else
+              = f.association :material_category, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           
         .form-group
           %label.col-xs-3.control-label{for: 'unit of measurement'} Unit of Measurement *

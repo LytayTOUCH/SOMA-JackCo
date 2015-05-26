@@ -247,11 +247,16 @@ other = MaterialCategory.find_by_name('Other')
   end  
 end
 
-# Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_warehouse.uuid, fertilizer_warehouse.uuid, project_warehouse.uuid).each do |wh|
-#   Material.all.each do |m|
-#     WarehouseMaterialAmount.create(warehouse_uuid: wh.uuid,  material_uuid: m.uuid, amount: 0, returnable: false)
-#   end
-# end
+# ========== Create Stock Balances ==========
+Material.all.each do |m|
+  start_month = 1
+  this_month = Date.today.month
+  
+  while start_month <= this_month do
+    StockBalance.create_with(material_category_id: m.material_cate_uuid, stock_in: 0, stock_out: 0, beginning_balance: 0, ending_balance: 0).find_or_create_by(material_id: m.uuid, month: start_month, year: Date.today.year)
+    start_month += 1
+  end
+end
 
 # ========== Create Farms ==========
 [
@@ -363,7 +368,7 @@ oroung_area_c = Area.find_by_name_and_zone_id('C', oroung_zone_i.uuid)
   {uuid: '00000000-0000-0000-0000-000000000005', name: 'Block B3', area_id: chamkar_doung_area_b.uuid, surface: 4, shape_lat_long: '[[11.3380549468293,104.8240472203577],[11.33787545358411,104.8246042945429],[11.34005476537737,104.8263622974383],[11.34102333706613,104.8253242989032],[11.3380549468293,104.8240472203577]]', location_lat_long: '11.339449395325119, 104.82520475889805', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 931, fruitful_tree: 10, active: true},
   {uuid: '00000000-0000-0000-0000-000000000006', name: 'Block C1', area_id: chamkar_doung_area_c.uuid, surface: 4, shape_lat_long: '[[11.34024659610298,104.8271098186776],[11.34060069812196,104.8268441183729],[11.33498493139846,104.8223869773665],[11.33533785551793,104.8213092938915],[11.33489589388238,104.8211246009857],[11.33447832386705,104.822553696527],[11.34024659610298,104.8271098186776]]', location_lat_long: '11.337539510994505, 104.82411720983168', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 870, fruitful_tree: 10, active: true},
   {uuid: '00000000-0000-0000-0000-000000000007', name: 'Block C2', area_id: chamkar_doung_area_c.uuid, surface: 4, shape_lat_long: '[[11.33487202501744,104.8211036153992],[11.33525920583094,104.8212623951001],[11.33612648549367,104.8183899564419],[11.33533440487928,104.8180970198423],[11.33409866275981,104.8222732893141],[11.33444645674763,104.8225375923322],[11.33487202501744,104.8211036153992]]', location_lat_long: '11.33511257412674, 104.82031730608719', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 370, fruitful_tree: 10, active: true},
-  {uuid: '00000000-0000-0000-0000-000000000008', name: 'Block C3', area_id: chamkar_doung_area_c.uuid, surface: 4, shape_lat_long: '[[11.33734549627795,104.8159576082747],[11.33601884622914,104.8156118216062],[11.33573959032024,104.8168221399481],[11.33690316287407,104.8172399890616],[11.3378909815109,104.8177818381605],[11.33879968483595,104.8181850123367],[11.33880953469512,104.8183465097908],[11.33926693493995,104.8185963130855],[11.33986282882176,104.8186511316346],[11.34024710972461,104.8184728409923],[11.34041486814646,104.8184374427987],[11.34032466367863,104.8166264232303],[11.33734549627795,104.8159576082747]]', location_lat_long: '11.338077229233349, 104.81713147662037', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 1556, fruitful_tree: 10, active: true},
+  {uuid: '00000000-0000-0000-0000-000000000008', name: 'Block A3', area_id: chamkar_doung_area_c.uuid, surface: 4, shape_lat_long: '[[11.33734549627795,104.8159576082747],[11.33601884622914,104.8156118216062],[11.33573959032024,104.8168221399481],[11.33690316287407,104.8172399890616],[11.3378909815109,104.8177818381605],[11.33879968483595,104.8181850123367],[11.33880953469512,104.8183465097908],[11.33926693493995,104.8185963130855],[11.33986282882176,104.8186511316346],[11.34024710972461,104.8184728409923],[11.34041486814646,104.8184374427987],[11.34032466367863,104.8166264232303],[11.33734549627795,104.8159576082747]]', location_lat_long: '11.338077229233349, 104.81713147662037', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 1556, fruitful_tree: 10, active: true},
   {uuid: '00000000-0000-0000-0000-000000000009', name: 'Block D1', area_id: chamkar_doung_area_d.uuid, surface: 4, shape_lat_long: '[[11.33900396631398,104.8085254948515],[11.3379264872429,104.8115689374645],[11.33971225670561,104.8120395908525],[11.3408902230842,104.8089847526479],[11.33900396631398,104.8085254948515]]', location_lat_long: '11.339408355163549, 104.81028254285195', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 1251, fruitful_tree: 10, active: true},
   {uuid: '00000000-0000-0000-0000-000000000010', name: 'Block D2', area_id: chamkar_doung_area_d.uuid, surface: 4, shape_lat_long: '[[11.33714357224421,104.8081020834078],[11.33607100737304,104.8111208999755],[11.33790069342142,104.8115756245518],[11.33896551998137,104.8085186716411],[11.33714357224421,104.8081020834078]]', location_lat_long: '11.337518263677204, 104.80983885397973', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 1321, fruitful_tree: 10, active: true},
   {uuid: '00000000-0000-0000-0000-000000000011', name: 'Block D3', area_id: chamkar_doung_area_d.uuid, surface: 4, shape_lat_long: '[[11.33532149460082,104.8076322212488],[11.33425726284938,104.8106703615392],[11.33605047733483,104.8111111650765],[11.337112743697,104.8081022485678],[11.33532149460082,104.8076322212488]]', location_lat_long: '11.335685003273191, 104.80937169316257', rental_status: 0, status: 0, planting_project_id: coconut_planting_project.uuid, farm_id: coconut_farm.uuid, tree_amount: 1299, fruitful_tree: 10, active: true},

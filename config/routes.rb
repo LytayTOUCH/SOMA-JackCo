@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get 'get_production_plan_tree', to: 'production_plan_report#get_production_plan_tree'
 
   resources :production_list
+  
+  resources :stock_balances, only: [:index]
+  get 'update_stock_balance', to: 'stock_balances#update'
+  get 'adjust_stock_balance', to: 'stock_balances#adjust_form'
+  get 'update_adjust_balance', to: 'stock_balances#update_adjust_balance'
+  get 'report_inventory', to: 'stock_balances#report_inventory'
 
   get 'report_productivities/coconut_index'
   get 'report_productivities/jackfruit_index'

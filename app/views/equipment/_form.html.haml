@@ -18,7 +18,10 @@
         .form-group
           %label.col-xs-3 Planting Project *
           .col-xs-9
-            = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label:false, error: false, input_html: {class: "form-control"}      
+            - if @equipment.persisted?
+              %input.form-control{value: @equipment.planting_project.name, readonly: true}
+            - else
+              = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label:false, error: false, input_html: {class: "form-control"}      
         .form-group
           %label.col-xs-3.control-label.text-right Active
           .col-xs-9

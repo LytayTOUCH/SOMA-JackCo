@@ -1,5 +1,25 @@
 $(document).ready(function() {
   $('.date_pick').datetimepicker({});
+
+  var planting_project_id = $(".planting_project_id").val();
+  if(planting_project_id!="") {
+    // START -- EQUIPMENT SECTION
+    $('#equipments').val("");
+    $('select.item-select-equipments').html('');
+    
+    $('select.item-select-equipments').html('');
+    $('select.item-select-equipments').attr("multiple", "multiple");
+    $("select.chosen-select-equipment").chosen(
+      {width: "100%"},
+      {no_results_text: 'No results matched'}
+    );
+    
+    $('select.item-select-equipments').attr("data-placeholder", "No Items");
+    $('select.item-select-equipments').trigger('chosen:updated');
+    // END -- EQUIPMENT SECTION
+    
+    renderEquipment();
+  }
   
   // WHEN USER CHANGE THE FARM
   $("#output_task_farm_id").change(function(){
@@ -260,38 +280,7 @@ $(document).ready(function() {
         $('input.planting_project_id').val(data.uuid);
         $('input.planting_project_name').val(data.name);
 
-		//Start Get Equipment and select Equipment
-        // Get data for Chosen Equipment when Planting project has data
-        $('select.item-select-equipments').html('');
-        var planting_project_id = $(".planting_project_id").val();
-        jQuery.ajax({
-          url: "/get_equipment_data",
-          type: "GET",
-          data: {"planting_project_id" : planting_project_id},
-          dataType: "json",
-          success: function(data){
-            if(data.length){
-              $.each(data, function(i, value) {
-                $('select.item-select-equipments').append('<option value="'+value.uuid+'">'+value.name+'</option>');
-              });
-              $('select.item-select-equipments').attr("multiple", "multiple");
-              $('select.item-select-equipments').attr("data-placeholder", "Select some items");
-            }
-            else{
-              $('select.item-select-equipments').attr("data-placeholder", "No Items");
-              $('select.item-select-equipments').attr("multiple", "multiple");
-            }
-            $('select.item-select-equipments').trigger('chosen:updated');
-          },
-          complete: function(data){
-            $("select.chosen-select-equipment").chosen(
-              {width: "100%"},
-              {allow_single_deselect: true},
-              {no_results_text: 'No results matched'}
-            );
-          }
-        });
-        //Start Get Equipment and select Equipment
+        renderEquipment();
 
         // DISTRIBUTION SECTION
         $('#distribution').empty();
@@ -573,6 +562,43 @@ $(document).ready(function() {
       }); 
     }
   });
+
+  function renderEquipment() {
+    //Start Get Equipment and select Equipment
+    // Get data for Chosen Equipment when Planting project has data
+    $('select.item-select-equipments').html('');
+    $('#equipments').val("");
+
+    var planting_project_id = $(".planting_project_id").val();
+    jQuery.ajax({
+      url: "/get_equipment_data",
+      type: "GET",
+      data: {"planting_project_id" : planting_project_id},
+      dataType: "json",
+      success: function(data){
+        if(data.length){
+          $.each(data, function(i, value) {
+            $('select.item-select-equipments').append('<option value="'+value.uuid+'">'+value.name+'</option>');
+          });
+          $('select.item-select-equipments').attr("multiple", "multiple");
+          $('select.item-select-equipments').attr("data-placeholder", "Select some items");
+        }
+        else{
+          $('select.item-select-equipments').attr("data-placeholder", "No Items");
+          $('select.item-select-equipments').attr("multiple", "multiple");
+        }
+        $('select.item-select-equipments').trigger('chosen:updated');
+      },
+      complete: function(data){
+        $("select.chosen-select-equipment").chosen(
+          {width: "100%"},
+          {allow_single_deselect: true},
+          {no_results_text: 'No results matched'}
+        );
+      }
+    });
+    //End-- Start Get Equipment and select Equipment
+  }
   
   function renderMachinery() {
   	// Get data for Chosen when Planting project has data

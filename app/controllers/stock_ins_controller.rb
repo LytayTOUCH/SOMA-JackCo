@@ -23,13 +23,32 @@ class StockInsController < ApplicationController
 
       if @stock_in.save
         create_log current_user.uuid, "Created New Stock In", @stock_in
+        
+        # WAREHOUSE MATERIAL AMOUNT
         @warehouse_material_amount = WarehouseMaterialAmount.find_by(warehouse_uuid: @stock_in.warehouse.uuid, material_uuid: @stock_in.material.uuid)
-
         stock_in_amount = @stock_in.amount
         total_amount = @warehouse_material_amount.amount + stock_in_amount
-
         @warehouse_material_amount.update_attributes(warehouse_uuid: @stock_in.warehouse.uuid, material_uuid: @stock_in.material.uuid, amount: total_amount)
 
+        # STOCK BALANCE
+        month = @stock_in.stock_in_date.month
+        year = @stock_in.stock_in_date.year
+        material_id = @stock_in.material.uuid
+        sb = StockBalance.find_by(:material_id => material_id, :month => month, :year => year)
+        unless sb.nil?
+          stock_in = sb.stock_in + @stock_in.amount
+          ending_balance = sb.beginning_balance + stock_in - sb.stock_out
+          
+          unless sb.adjusted_ending_balance.nil?
+            diff_balance = sb.adjusted_ending_balance - sb.ending_balance
+            new_adjusted_ending_balance = ending_balance + diff_balance
+            
+            sb.update(stock_in: stock_in, ending_balance: ending_balance, adjusted_ending_balance: new_adjusted_ending_balance)
+          else
+            sb.update(stock_in: stock_in, ending_balance: ending_balance)
+          end
+        end
+        
         flash[:notice] = "Stock In saved successfully"
         redirect_to stock_ins_path
       else

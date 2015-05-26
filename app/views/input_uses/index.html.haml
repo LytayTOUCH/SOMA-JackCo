@@ -35,13 +35,17 @@
               - Farm.where(uuid: params[:filter][:farm_id]).each do |farm|
                 - farm.zones.each do |zone|
                   - zone.areas.each do |area|
-                    %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_by_area(params[:filter][:start_date], params[:filter][:end_date], area.uuid, m.uuid) + InputTask.get_total_amount_by_area_machinery(params[:filter][:start_date], params[:filter][:end_date], area.uuid, m.uuid)
+                    %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_by_area(@start_date, @end_date, area.uuid, m.uuid) + InputTask.get_total_amount_by_area_machinery(@start_date, @end_date, area.uuid, m.uuid)
             - else
-              %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_group_by_material(params[:filter][:start_date], params[:filter][:end_date], m.uuid) + InputTask.get_total_amount_group_by_machinary(params[:filter][:start_date], params[:filter][:end_date], m.uuid)
+              %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_group_by_material(@start_date, @end_date, m.uuid) + InputTask.get_total_amount_group_by_machinary(@start_date, @end_date, m.uuid)
+  
   %br
-  #print-input-use-report
-    %span.glyphicon.glyphicon-print{style: "color: #428bca;"}
-    %a#print_preview{style: "padding: 0"} Print
+  .row#print-input-use-report
+    .col-xs-12
+      .pull-right
+        %a.btn.btn-primary.print_button#print_preview
+          %span.glyphicon.glyphicon-print
+          Print Report
 
 - content_for :javascript_body do
   = javascript_include_tag "input_uses"

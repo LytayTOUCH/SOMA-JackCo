@@ -3,7 +3,6 @@ class Machinery < ActiveRecord::Base
   
   validates :name, :presence => { message: "Machinery Name is required." }
   validates :machinery_type_id, :presence => { message: "Machinery Type is required." }
-  validates :planting_project_id, :presence => { message: "Planting Project is required." }
  
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
@@ -19,7 +18,7 @@ class Machinery < ActiveRecord::Base
   
   def planting_project_can_not_be_null_if_source_is_own_project
     if source.present? && source == "Own Project" && planting_project_id==""
-      errors.add(:planting_project_id, "can't be blank")
+      errors.add(:planting_project_id, "Planting Project is required.")
     end
   end
 end

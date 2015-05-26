@@ -40,6 +40,9 @@
               %li
                 - if can? :read, Material
                   = navbar_link "Materials", materials_path, "active"
+              %li
+                - if can? :read, StockBalance
+                  = navbar_link "Materials' Balance", stock_balances_path, "active"
           
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Machinery
@@ -67,12 +70,12 @@
             %a{:href => "#", :tabindex => "-1"} Materials
             %ul.dropdown-menu
               %li
-                = navbar_link "In Stock", warehouse_material_amounts_path, "active"
+                = navbar_link "Remaining Balance", warehouse_material_amounts_path, "active"
               %li
                 = navbar_link "Adjustments", material_adjustments_path, "active"
               %li.divider
               %li
-                = navbar_link "Transfer In", stock_ins_path, "active"
+                = navbar_link "Stock In", stock_ins_path, "active"
               %li.divider
               %li
                 = navbar_link "Request", warehouse_item_transactions_path, "active"
@@ -173,6 +176,15 @@
               %li
                 - if can? :jackfruit_index, :report_classifications
                   = navbar_link "Jackfruit", report_classifications_jackfruit_index_path, "active"
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Inventory
+            %ul.dropdown-menu
+              %li
+                - if can? :coconut_index, :report_classifications
+                  = navbar_link "Adjust Form", adjust_stock_balance_path, "active"
+              %li
+                - if can? :jackfruit_index, :report_classifications
+                  = navbar_link "Summary Report", report_inventory_path, "active"
 
     / Right Navigator Menu
     = render 'navbar_right'
