@@ -30,14 +30,14 @@ class PlanFarmsController < ApplicationController
     @locations = PlanFarm.find(params[:id])
 
     if @locations.update_attributes(location_params)
-      if params[:farm][:status] == "false"
-          create_log current_user.uuid, "Deactivated Plan Farm", @farm
-      elsif params[:farm][:status] == "true"
-        create_log current_user.uuid, "Activated Plan Farm", @farm
+      if params[:plan_farm][:status] == "false"
+          create_log current_user.uuid, "Deactivated Plan Farm", @locations
+      elsif params[:plan_farm][:status] == "true"
+        create_log current_user.uuid, "Activated Plan Farm", @locations
       end
 
-      if params[:farm][:status] == "1" or params[:farm][:status] == "0"
-        create_log current_user.uuid, "Updated Plan Farm", @farm  
+      if params[:plan_farm][:status] == "1" or params[:plan_farm][:status] == "0"
+        create_log current_user.uuid, "Updated Plan Farm", @locations  
       end 
       flash[:notice] = "Plan farm updated successfully"
       redirect_to plan_farms_path
