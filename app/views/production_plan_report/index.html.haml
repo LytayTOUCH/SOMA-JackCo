@@ -101,10 +101,12 @@
               %td= "Date: #{Date.today} <div class='sign-area-space'></div><br> Acknowledged by:  <br><br> Signature: <div class='sign-area-space'></div>  Comment <br> <br>".html_safe
     
   %br
-  %br
-  #print-plan-report
-    %span.glyphicon.glyphicon-print{style: "color: #428bca;"}
-    %a#print_preview{style: "padding: 0"} Print
+  .row#print-plan-report
+    .col-xs-12
+      .pull-right
+        %a.btn.btn-primary.print_button#print_preview
+          %span.glyphicon.glyphicon-print
+          Print Report
 
 - content_for :javascript_body do
   = javascript_include_tag "production_plan_report"
