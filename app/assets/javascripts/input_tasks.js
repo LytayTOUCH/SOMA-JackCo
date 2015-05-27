@@ -7,8 +7,6 @@ $(document).ready(function(){
     // START -- EQUIPMENT SECTION
     $('#equipments').val("");
     $('select.item-select-equipments').html('');
-    
-    $('select.item-select-equipments').html('');
     $('select.item-select-equipments').attr("multiple", "multiple");
     $("select.chosen-select-equipment").chosen(
       {width: "100%"},
@@ -31,8 +29,6 @@ $(document).ready(function(){
 
     // START -- EQUIPMENT SECTION
     $('#equipments').val("");
-    $('select.item-select-equipments').html('');
-    
     $('select.item-select-equipments').html('');
     $('select.item-select-equipments').attr("multiple", "multiple");
     $("select.chosen-select-equipment").chosen(
@@ -97,8 +93,6 @@ $(document).ready(function(){
     // START -- EQUIPMENT SECTION
     $('#equipments').val("");
     $('select.item-select-equipments').html('');
-    
-    $('select.item-select-equipments').html('');
     $('select.item-select-equipments').attr("multiple", "multiple");
     $("select.chosen-select-equipment").chosen(
       {width: "100%"},
@@ -159,8 +153,6 @@ $(document).ready(function(){
     // START -- EQUIPMENT SECTION
     $('#equipments').val("");
     $('select.item-select-equipments').html('');
-    
-    $('select.item-select-equipments').html('');
     $('select.item-select-equipments').attr("multiple", "multiple");
     $("select.chosen-select-equipment").chosen(
       {width: "100%"},
@@ -219,8 +211,6 @@ $(document).ready(function(){
       // START -- EQUIPMENT SECTION
       $('#equipments').val("");
       $('select.item-select-equipments').html('');
-      
-      $('select.item-select-equipments').html('');
       $('select.item-select-equipments').attr("multiple", "multiple");
       $("select.chosen-select-equipment").chosen(
         {width: "100%"},
@@ -265,9 +255,7 @@ $(document).ready(function(){
         });   
 
       }
-    });
-
-     
+    });    
 
     // Get data for Planting Project when selecting block
     $('.planting_project').show();
@@ -292,25 +280,23 @@ $(document).ready(function(){
       var block_ids = $('#input_task_block_id').val();
       if(tree_amount_input != "") {
         jQuery.ajax({
-            url: "/get_tree_amounts",
-            type: "GET",
-            data: {"block_id" : block_ids},
-            dataType: "json",
-            success: function(data){
-              $.each(data, function(i, value) {
-                input = parseFloat(tree_amount_input);
-                remain = parseFloat(value.tree_amount);
-
-                if(input > remain) {
-                  alert("Input tree amount cannot over than block's tree amount."+
-                        "\nBlock's tree amount: "+ remain);
-                  $('.tree_amount').focus();
-                  $('.tree_amount').val(value.tree_amount);
-                }
-
-              });
-            }
-          });
+          url: "/get_tree_amounts",
+          type: "GET",
+          data: {"block_id" : block_ids},
+          dataType: "json",
+          success: function(data){
+            $.each(data, function(i, value) {
+              input = parseFloat(tree_amount_input);
+              remain = parseFloat(value.tree_amount);
+              if(input > remain) {
+                alert("Input tree amount cannot over than block's tree amount."+
+                      "\nBlock's tree amount: "+ remain);
+                $('.tree_amount').focus();
+                $('.tree_amount').val(value.tree_amount);
+              }
+            });
+          }
+        });
       }
     });
     //END--INPUT TREE AMOUNT SECTION
@@ -333,7 +319,7 @@ $(document).ready(function(){
             $('select.item-select-equipments').append('<option value="'+value.uuid+'">'+value.name+'</option>');
           });
           $('select.item-select-equipments').attr("multiple", "multiple");
-          $('select.item-select-equipments').attr("data-placeholder", "Select some items");
+          $('select.item-select-equipments').attr("data-placeholder", "Select Some Options");
         }
         else{
           $('select.item-select-equipments').attr("data-placeholder", "No Items");
@@ -363,8 +349,7 @@ $(document).ready(function(){
       type: "GET",
       data: {"planting_project_id" : planting_project_id},
       dataType: "json",
-      success: function(data){
-        
+      success: function(data){       
         $('select.item-select-machinaries').attr("multiple", "multiple");
         $("select.chosen-select").chosen(
           {width: "100%"},
@@ -376,7 +361,7 @@ $(document).ready(function(){
           $.each(data, function(i, value) {
             $('select.item-select-machinaries').append('<option value="' + value.uuid + '">' + value.name + '</option>');
           });
-          $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
+          $('select.item-select-machinaries').attr("data-placeholder", "Select Some Options");
         }
         else{
           $('select.item-select-machinaries').attr("data-placeholder", "No Items");
@@ -386,7 +371,6 @@ $(document).ready(function(){
     });
   }
 
-
   //Get equipment_id when select equipment
   $('select.item-select-equipments').change(function(event, params){              
 
@@ -395,8 +379,7 @@ $(document).ready(function(){
       console.log($(this).val());
       $('#equipments').val($(this).val());
       var equipment_id = params.selected;
-      console.log(equipment_id);
-      
+      console.log(equipment_id);      
     }
   });
   // End-- Get equipment_id when select equipment
@@ -421,9 +404,7 @@ $(document).ready(function(){
       url: "/get_machinery_name",
       type: "GET",
       data: {"machinery_id" : machinery_id},
-      beforeSend: function(){
-        
-      },
+      beforeSend: function(){},
       dataType: "json",
         success: function(data){
           var str = "";
@@ -452,7 +433,6 @@ $(document).ready(function(){
           str +=        '</span>';
           str +=      '</div>';
           str +=    '</div>';
-
           str +=  '</div>';
           str += '</div>';
           
@@ -490,25 +470,25 @@ $(document).ready(function(){
             var material_quantity_val = $("#material_qty_request-"+params.selected).val();
             if(warehouse_id != "" && material_id != "" && material_quantity_val != "") {
               jQuery.ajax({
-                    url: "/get_warehouse_material_amount_data",
-                    type: "GET",
-                  data: {
-                    "material_id" : material_id,
-                    "warehouse_id" : warehouse_id,
-                  },
-                  dataType: "json",
-                  success: function(data){
-                    input = parseFloat(material_quantity_val);
-                    remain = parseFloat(data.amount);
-                    if(input > remain) {
-                      alert('Input quantity exceeds the quantity in the stock.'+
-                            '\nPlease adjust the stock or create a stock-in transaction.'+
-                            '\nRemaining Balance: '+ remain);
-                      $('#material_qty_request-'+params.selected).focus();
-                      $('#material_qty_request-'+params.selected).val("0");
-                    }
+                url: "/get_warehouse_material_amount_data",
+                type: "GET",
+                data: {
+                  "material_id" : material_id,
+                  "warehouse_id" : warehouse_id,
+                },
+                dataType: "json",
+                success: function(data){
+                  input = parseFloat(material_quantity_val);
+                  remain = parseFloat(data.amount);
+                  if(input > remain) {
+                    alert('Input quantity exceeds the quantity in the stock.'+
+                          '\nPlease adjust the stock or create a stock-in transaction.'+
+                          '\nRemaining Balance: '+ remain);
+                    $('#material_qty_request-'+params.selected).focus();
+                    $('#material_qty_request-'+params.selected).val("0");
                   }
-                });
+                }
+              });
             }
           });
           //END--INPUT MATERIAL QTY SECTION
@@ -529,113 +509,100 @@ $(document).ready(function(){
             }
           );
           // End Select Material with Show UOM
-
         }     
-
-
       }); 
     }
   });
 
-
 	$('.material_uuid').change(
 		function(event, params) {
-
 			$('.material-name').show();
 
-        // Creating a row of Material when data from chosen
-        if(event.target == this){
-          console.log($(this).val());
-          $('#materials').val($(this).val());
-          var material_uuid = params.selected;
-          console.log(material_uuid);
+      // Creating a row of Material when data from chosen
+      if(event.target == this){
+        console.log($(this).val());
+        $('#materials').val($(this).val());
+        var material_uuid = params.selected;
+        console.log(material_uuid);
 
-          if(!params.selected) {    
-            console.log("material-" + params.deselected);               
-            $('#material-'+params.deselected).remove();
-          }
-          
-          jQuery.ajax({
+        if(!params.selected) {    
+          console.log("material-" + params.deselected);               
+          $('#material-'+params.deselected).remove();
+        }
+        
+        jQuery.ajax({
           url: "/get_material_name",
           type: "GET",
           data: {"material_uuid" : material_uuid},
-          beforeSend: function(){
-
-          },
+          beforeSend: function(){},
           dataType: "json",
-            success: function(data){
-              var str = "";
-              str += '<div id="material-' + material_uuid + '">';
-              str +=  '<div class="form-group">';                      
-              str +=    '<label class="col-xs-2 control-label">';
-              str +=      data.material_name.name;
-              str +=    '</label>'
-              str +=    '<label class="col-xs-1 control-label" style="width: 10%;">Warehouse*</label>';
-              str +=    '<div class="col-xs-2">';
-              str +=      '<select name="warehouses_of_material[]" class="warehouse-select-material-'+params.selected+' form-control" id="warehouse_select_material-'+params.selected+'">';
-              str +=      '</select>';
-              // str +=      '<span id="warehouse_select_material_msg-'+params.selected+'" style="color: red;"></span>';
-              str +=    '</div>';
-              
-              str +=    '<label class="col-xs-1 control-label">Qty*</label>';
-              str +=    '<div class="col-xs-2 material-qtys">';
-              str +=      '<div class="input-group">';
-              str +=        '<input type="number" name="material_qtys_of_material[]" class="form-control material-qty" id="materials_qty_request-'+params.selected+'" value="0"></input>';
-              str +=        '<span class="input-group-addon uom-name">';
-              str +=          data.material_uom.name;
-              str +=        '</span>';
-              str +=      '</div>';
-              str +=    '</div>';
-              
-              str +=  '</div>';
-              str += '</div>';
-              
-              $('div.material-name').append(str);
+          success: function(data){
+            var str = "";
+            str += '<div id="material-' + material_uuid + '">';
+            str +=  '<div class="form-group">';                      
+            str +=    '<label class="col-xs-2 control-label">';
+            str +=      data.material_name.name;
+            str +=    '</label>'
+            str +=    '<label class="col-xs-1 control-label" style="width: 10%;">Warehouse*</label>';
+            str +=    '<div class="col-xs-2">';
+            str +=      '<select name="warehouses_of_material[]" class="warehouse-select-material-'+params.selected+' form-control" id="warehouse_select_material-'+params.selected+'">';
+            str +=      '</select>';
+            // str +=      '<span id="warehouse_select_material_msg-'+params.selected+'" style="color: red;"></span>';
+            str +=    '</div>';            
+            str +=    '<label class="col-xs-1 control-label">Qty*</label>';
+            str +=    '<div class="col-xs-2 material-qtys">';
+            str +=      '<div class="input-group">';
+            str +=        '<input type="number" name="material_qtys_of_material[]" class="form-control material-qty" id="materials_qty_request-'+params.selected+'" value="0"></input>';
+            str +=        '<span class="input-group-addon uom-name">';
+            str +=          data.material_uom.name;
+            str +=        '</span>';
+            str +=      '</div>';
+            str +=    '</div>';            
+            str +=  '</div>';
+            str += '</div>';
+            
+            $('div.material-name').append(str);
 
-              $.each(data.warehouse, function(i, value) {
-                $('select.warehouse-select-material-'+params.selected).append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
-              });
+            $.each(data.warehouse, function(i, value) {
+              $('select.warehouse-select-material-'+params.selected).append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
+            });
 
-              if (data.warehouse == ""){
-                $('select.warehouse-select-material-'+params.selected).append('<option value=""></option></select>');
-              }
-
-              //INPUT MATERIAL QTY SECTION (Material choosen)
-              $("#materials_qty_request-"+params.selected).blur(function() {
-                var warehouse_id = $(".warehouse-select-material-"+params.selected).val();
-                var material_id = material_uuid;
-                var material_quantity_val = $("#materials_qty_request-"+params.selected).val();
-                if(warehouse_id != "" && material_id != "" && material_quantity_val != "") {
-                  jQuery.ajax({
-                        url: "/get_warehouse_material_amount_data",
-                        type: "GET",
-                      data: {
-                        "material_id" : material_id,
-                        "warehouse_id" : warehouse_id,
-                      },
-                      dataType: "json",
-                      success: function(data){
-                        input = parseFloat(material_quantity_val);
-                        remain = parseFloat(data.amount);
-                        if(input > remain) {
-                          alert('Input quantity exceeds the quantity in the stock.'+
-                                '\nPlease adjust the stock or create a stock-in transaction.'+
-                                '\nRemaining Balance: '+ remain);
-                          $('#materials_qty_request-'+params.selected).focus();
-                          $('#materials_qty_request-'+params.selected).val("0");
-                        }
-                      }
-                    });
-                }
-              });
-              //END--INPUT MATERIAL QTY SECTION
-
+            if (data.warehouse == ""){
+              $('select.warehouse-select-material-'+params.selected).append('<option value=""></option></select>');
             }
 
-          }); 
-        }
-
+            //INPUT MATERIAL QTY SECTION (Material choosen)
+            $("#materials_qty_request-"+params.selected).blur(function() {
+              var warehouse_id = $(".warehouse-select-material-"+params.selected).val();
+              var material_id = material_uuid;
+              var material_quantity_val = $("#materials_qty_request-"+params.selected).val();
+              if(warehouse_id != "" && material_id != "" && material_quantity_val != "") {
+                jQuery.ajax({
+                  url: "/get_warehouse_material_amount_data",
+                  type: "GET",
+                  data: {
+                    "material_id" : material_id,
+                    "warehouse_id" : warehouse_id,
+                  },
+                  dataType: "json",
+                  success: function(data){
+                    input = parseFloat(material_quantity_val);
+                    remain = parseFloat(data.amount);
+                    if(input > remain) {
+                      alert('Input quantity exceeds the quantity in the stock.'+
+                            '\nPlease adjust the stock or create a stock-in transaction.'+
+                            '\nRemaining Balance: '+ remain);
+                      $('#materials_qty_request-'+params.selected).focus();
+                      $('#materials_qty_request-'+params.selected).val("0");
+                    }
+                  }
+                });
+              }
+            });
+            //END--INPUT MATERIAL QTY SECTION
+          }
+        }); 
+      }
 		}
 	);	
-
 });
