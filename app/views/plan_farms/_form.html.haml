@@ -6,6 +6,7 @@
       = simple_form_for @locations, html: { class: 'form-horizontal'} do |f|
         .error-locations
           = render "error", :obj => @locations
+        = f.input :status, as: :hidden
         .col-md-3
           .form-group
             %label.col-xs-3{style: 'padding-top: 5px'} Name
