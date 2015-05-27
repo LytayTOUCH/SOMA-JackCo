@@ -212,8 +212,14 @@ Rails.application.routes.draw do
   get 'get_warehouse_material_amount_data', to: 'warehouse_material_amounts#get_warehouse_material_amount_data'
   get 'find_amount', to: 'input_tasks#find_amount'
 
-  # get 'input_uses/index'
-  resources :input_uses
+  scope 'input_uses', as: 'input_uses' do
+    get 'jack_fruit', to: 'input_uses#index'
+    get 'coconut', to: 'input_uses#index'
+  end
+
+
+
+  # resources :input_uses
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

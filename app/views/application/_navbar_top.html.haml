@@ -155,9 +155,15 @@
           Reports
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
-          %li
-            - if can? :index, :input_uses
-              %a{:href => input_uses_path} Input Use Summary
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Input Use Summary
+            %ul.dropdown-menu
+              %li
+                - if can? :index, :input_uses
+                  = navbar_link "Coconut", input_uses_coconut_path, "active"
+              %li
+                - if can? :index, :input_uses
+                  = navbar_link "Jackfruit", input_uses_jack_fruit_path, "active"
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Productivity
             %ul.dropdown-menu
