@@ -12,6 +12,7 @@
         %table.table-bordered#main_table{cellpadding: "5px", width: "100%"}
           %tr#table_header{style: "background-color: #eee"}
             %th{style: "padding-left:10px"} Period
+            %th{style: "text-align:center"} Unit
             %th{style: "text-align:center"}= "Jan-" + @year
             %th{style: "text-align:center"}= "Feb-" + @year
             %th{style: "text-align:center"}= "Mar-" + @year
@@ -28,498 +29,303 @@
           %tr.row_1{style: "color:#fff;background-color:#3333FF;"}
             %input#standard_pdt{type: "hidden", value: @production_standard}
             %th{style: "padding-left:10px;color:#3333FF;background-color:#fff;"} Standard PDT
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0; margin: 0;"} Unit
             %td{style: "text-align:center"}
-              = @production_standard[0]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[0]
             %td{style: "text-align:center"}
-              = @production_standard[1]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[1]
             %td{style: "text-align:center"}
-              = @production_standard[2]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[2]
             %td{style: "text-align:center"}
-              = @production_standard[3]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[3]
             %td{style: "text-align:center"}
-              = @production_standard[4]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[4]
             %td{style: "text-align:center"}
-              = @production_standard[5]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[5]
             %td{style: "text-align:center"}
-              = @production_standard[6]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[6]
             %td{style: "text-align:center"}
-              = @production_standard[7]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[7]
             %td{style: "text-align:center"}
-              = @production_standard[8]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[8]
             %td{style: "text-align:center"}
-              = @production_standard[9]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[9]
             %td{style: "text-align:center"}
-              = @production_standard[10]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[10]
             %td{style: "text-align:center"}
-              = @production_standard[11]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[11]
             %th{style: "text-align:center;color:#3333FF;background-color:#fff;"}
-              = @production_standard[12]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_standard[12]
+
           %tr.row_2{style: "color:#fff;background-color:#852314;"}
             %input#forecast_pdt{type: "hidden", value: @production_plan}
             %th{style: "padding-left:10px;color:#852314;background-color:#fff;"} Forecast PDT
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0; margin: 0;"} Unit
+
             %td{style: "text-align:center"}
-              = @production_plan[0]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[0]
             %td{style: "text-align:center"}
-              = @production_plan[1]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[1]
             %td{style: "text-align:center"}
-              = @production_plan[2]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[2]
             %td{style: "text-align:center"}
-              = @production_plan[3]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[3]
             %td{style: "text-align:center"}
-              = @production_plan[4]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[4]
             %td{style: "text-align:center"}
-              = @production_plan[5]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[5]
             %td{style: "text-align:center"}
-              = @production_plan[6]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[6]
             %td{style: "text-align:center"}
-              = @production_plan[7]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[7]
             %td{style: "text-align:center"}
-              = @production_plan[8]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[8]
             %td{style: "text-align:center"}
-              = @production_plan[9]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[9]
             %td{style: "text-align:center"}
-              = @production_plan[10]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[10]
             %td{style: "text-align:center"}
-              = @production_plan[11]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[11]
             %th{style: "text-align:center;color:#852314;background-color:#fff;"}
-              = @production_plan[12]
-              %sup Unit
+              %p{style: "margin: 0; padding: 0;"}= @production_plan[12]
     
           %tr.row_3{style: "color:#fff;background-color:#55DD33;"}
             %input#actual_pdt{type: "hidden", value: @actual_pdt_unit}
             %th{style: "padding-left:10px;color:#55DD33;background-color:#fff;"} Actual PDT
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Unit
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Kg
+
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[0]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[0]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[0]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[0]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[1]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[1]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[1]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[1]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[2]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[2]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[2]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[2]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[3]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[3]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[3]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[3]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[4]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[4]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[4]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[4]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[5]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[5]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[5]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[5]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[6]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[6]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[6]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[6]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[7]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[7]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[7]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[7]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[8]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[8]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[8]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[8]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[9]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[9]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[9]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[9]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[10]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[10]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[10]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[10]
             %td{style: "text-align:center"}
-              = @actual_pdt_unit[11]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[11]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[11]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[11]
             %th{style: "text-align:center;color:#55DD33;background-color:#fff;"}
-              = @actual_pdt_unit[12]
-              %sup Unit
-              %br
-              = @actual_pdt_kg[12]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_unit[12]
+              %p{style: "padding: 0;margin: 0;"}= @actual_pdt_kg[12]
             
           %tr.row_4{style: "color:#fff;background-color:#5A287D;"}
             %input#to_finish_wh{type: "hidden", value: @to_finish_wh_unit}
             %th{style: "padding-left:10px;color:#5A287D;background-color:#fff;"} To Finish WH
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Unit
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Kg
+
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[0]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[0]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[0]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[0]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[1]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[1]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[1]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[1]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[2]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[2]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[2]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[2]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[3]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[3]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[3]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[3]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[4]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[4]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[4]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[4]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[5]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[5]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[5]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[5]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[6]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[6]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[6]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[6]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[7]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[7]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[7]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[7]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[8]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[8]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[8]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[8]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[9]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[9]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[9]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[9]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[10]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[10]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[10]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[10]
             %td{style: "text-align:center"}
-              = @to_finish_wh_unit[11]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[11]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[11]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[11]
             %th{style: "text-align:center;color:#5A287D;background-color:#fff;"}
-              = @to_finish_wh_unit[12]
-              %sup Unit
-              %br
-              = @to_finish_wh_kg[12]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_unit[12]
+              %p{style: "padding: 0;margin: 0;"}= @to_finish_wh_kg[12]
             
           %tr.row_5{style: "color:#fff;background-color:#FF9600;"}
             %input#to_nursery_wh{type: "hidden", value: @to_nursery_wh_unit}
             %th{style: "padding-left:10px;color:#FF9600;background-color:#fff;"} To Nursery WH
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Unit
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Kg
+
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[0]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[0]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[0]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[0]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[1]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[1]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[1]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[1]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[2]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[2]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[2]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[2]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[3]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[3]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[3]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[3]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[4]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[4]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[4]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[4]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[5]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[5]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[5]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[5]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[6]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[6]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[6]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[6]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[7]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[7]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[7]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[7]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[8]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[8]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[8]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[8]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[9]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[9]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[9]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[9]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[10]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[10]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[10]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[10]
             %td{style: "text-align:center"}
-              = @to_nursery_wh_unit[11]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[11]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[11]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[11]
             %th{style: "text-align:center;color:#FF9600;background-color:#fff;"}
-              = @to_nursery_wh_unit[12]
-              %sup Unit
-              %br
-              = @to_nursery_wh_kg[12]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_unit[12]
+              %p{style: "padding: 0; margin: 0;"}= @to_nursery_wh_kg[12]
             
           %tr.row_6{style: "color:#fff;background-color:#1EA6A3;"}
             %input#young_fruit{type: "hidden", value: @young_fruit_unit}
             %th{style: "padding-left:10px;color:#1EA6A3;background-color:#fff;"} Young Fruit
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Unit
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Kg
+
             %td{style: "text-align:center"}
-              = @young_fruit_unit[0]
-              %sup Unit
-              %br
-              = @young_fruit_kg[0]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[0]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[0]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[1]
-              %sup Unit
-              %br
-              = @young_fruit_kg[1]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[1]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[1]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[2]
-              %sup Unit
-              %br
-              = @young_fruit_kg[2]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[2]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[2]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[3]
-              %sup Unit
-              %br
-              = @young_fruit_kg[3]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[3]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[3]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[4]
-              %sup Unit
-              %br
-              = @young_fruit_kg[4]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[4]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[4]
             %td{style: "text-align:center"}
               = @young_fruit_unit[5]
-              
-              %sup Unit
-              %br
-              = @young_fruit_kg[5]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[5]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[6]
-              %sup Unit
-              %br
-              = @young_fruit_kg[6]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[6]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[6]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[7]
-              %sup Unit
-              %br
-              = @young_fruit_kg[7]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[7]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[7]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[8]
-              %sup Unit
-              %br
-              = @young_fruit_kg[8]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[8]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[8]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[9]
-              %sup Unit
-              %br
-              = @young_fruit_kg[9]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[9]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[9]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[10]
-              %sup Unit
-              %br
-              = @young_fruit_kg[10]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[10]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[10]
             %td{style: "text-align:center"}
-              = @young_fruit_unit[11]
-              %sup Unit
-              %br
-              = @young_fruit_kg[11]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[11]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[11]
             %th{style: "text-align:center;color:#1EA6A3;background-color:#fff;"}
-              = @young_fruit_unit[12]
-              %sup Unit
-              %br
-              = @young_fruit_kg[12]
-              %sup Kg
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_unit[12]
+              %p{style: "padding: 0; margin: 0;"}= @young_fruit_kg[12]
             
           %tr.row_7{style: "color:#fff;background-color:#FF0055;"}
             %input#spoiled_ripe{type: "hidden", value: @spoiled_ripe_unit}
             %th{style: "padding-left:10px;color:#FF0055;background-color:#fff;"} Spoiled Ripe
+            %td{style: "text-align:center;color:#FF0055;background-color:#fff;"}
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Unit
+              %p{style: "padding: 0;margin: 0;font-size: 11px;"} Kg
+
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[0]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[0]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[0]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[0]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[1]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[1]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[1]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[1]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[2]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[2]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[2]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[2]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[3]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[3]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[3]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[3]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[4]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[4]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[4]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[4]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[5]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[5]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[5]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[5]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[6]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[6]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[6]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[6]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[7]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[7]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[7]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[7]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[8]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[8]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[8]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[8]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[9]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[9]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[9]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[9]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[10]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[10]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[10]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[10]
             %td{style: "text-align:center"}
-              = @spoiled_ripe_unit[11]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[11]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[11]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[11]
             %th{style: "text-align:center;color:#FF0055;background-color:#fff;"}
-              = @spoiled_ripe_unit[12]
-              %sup Unit
-              %br
-              = @spoiled_ripe_kg[12]
-              %sup Kg
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_unit[12]
+              %p{style: "padding: 0;margin: 0;"}= @spoiled_ripe_kg[12]
 
     %br
     .row
@@ -577,6 +383,6 @@
     
     #jackfruit_classification_chart{
       position: absolute;
-      top: 405px;
+      top: 440px;
     }
   }

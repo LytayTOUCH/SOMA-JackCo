@@ -13,6 +13,7 @@
             %th{rowspan: "3", style: "text-align:center"} Farm
             %th{rowspan: "3", style: "text-align:center"} Zone
             %th{rowspan: "3", style: "text-align:center"} Area
+            %th{rowspan: "3", style: "text-align:center"} Unit
             %th{colspan: "5", style: "text-align:center"} Total Production
             %th{colspan: "6", style: "text-align:center"} Production Distribution
           %tr
@@ -32,8 +33,10 @@
             %th{style: "text-align:center"} Spoiled
           %tfoot{style: "background-color: #eee;"}
             %tr
-              %th{colspan: "3", style: "text-align:center"}= "Total: (Unit)"
-              
+              %th{colspan: "3", style: "text-align:center"}= "Total:"
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+
               - @good_young = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
               - @spoil_young = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
               - @good_ripe = OutputTask.sum_output_amount_by_farm(@coconut.uuid, @farm.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
@@ -46,39 +49,28 @@
               - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
               - @loss = @total_production - @total_distribution
               
-              %td
-                = @good_young
-                %sup Unit
-              %td
-                = @spoil_young
-                %sup Unit
-              %td
-                = @good_ripe
-                %sup Unit
-              %td
-                = @spoil_ripe
-                %sup Unit
-              %td
-                = @total_production
-                %sup Unit
-              %td
-                = @to_finish_wh
-                %sup Unit
-              %td
-                = @free_at_farm
-                %sup Unit
-              %td
-                = @spoil_waste
-                %sup Unit
-              %td
-                = @to_nursery_wh
-                %sup Unit
-              %td
-                = @total_distribution
-                %sup Unit
-              %td
-                = @loss
-                %sup Unit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @good_young
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @spoil_young
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @good_ripe
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @spoil_ripe
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @total_production
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @to_finish_wh
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @free_at_farm
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @spoil_waste
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @to_nursery_wh
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @total_distribution
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @loss
 
           %tr
             %td{rowspan: @farm.areas.count, style: "text-align:center"}= @farm.name
@@ -88,7 +80,9 @@
                 - zone.areas.each_with_index do |area, a_index|
                   - if a_index == 0
                     %td{style: "text-align:center"}= area.name
-                    
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+
                     - @good_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
                     - @spoil_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
                     - @good_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
@@ -100,44 +94,36 @@
                     - @to_nursery_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
                     - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
                     - @loss = @total_production - @total_distribution
-                    %td
-                      = @good_young
-                      %sup Unit
-                    %td
-                      = @spoil_young
-                      %sup Unit
-                    %td
-                      = @good_ripe
-                      %sup Unit
-                    %td
-                      = @spoil_ripe
-                      %sup Unit
-                    %td
-                      = @total_production
-                      %sup Unit
-                    %td
-                      = @to_finish_wh
-                      %sup Unit
-                    %td
-                      = @free_at_farm
-                      %sup Unit
-                    %td
-                      = @spoil_waste
-                      %sup Unit
-                    %td
-                      = @to_nursery_wh
-                      %sup Unit
-                    %td
-                      = @total_distribution
-                      %sup Unit
-                    %td
-                      = @loss
-                      %sup Unit
+
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @good_young
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @spoil_young
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @good_ripe
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @spoil_ripe
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @total_production
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @to_finish_wh
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @free_at_farm
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @spoil_waste
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @to_nursery_wh
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @total_distribution
+                    %td{style: "text-align:center"}
+                      %p{style: "margin: 0; padding: 0;"}= @loss
                     
                   - else
                     %tr
                       %td{style: "text-align:center"}= area.name
-                      
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+
                       - @good_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
                       - @spoil_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
                       - @good_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
@@ -149,39 +135,29 @@
                       - @to_nursery_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
                       - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
                       - @loss = @total_production - @total_distribution
-                      %td
-                        = @good_young
-                        %sup Unit
-                      %td
-                        = @spoil_young
-                        %sup Unit
-                      %td
-                        = @good_ripe
-                        %sup Unit
-                      %td
-                        = @spoil_ripe
-                        %sup Unit
-                      %td
-                        = @total_production
-                        %sup Unit
-                      %td
-                        = @to_finish_wh
-                        %sup Unit
-                      %td
-                        = @free_at_farm
-                        %sup Unit
-                      %td
-                        = @spoil_waste
-                        %sup Unit
-                      %td
-                        = @to_nursery_wh
-                        %sup Unit
-                      %td
-                        = @total_distribution
-                        %sup Unit
-                      %td
-                        = @loss
-                        %sup Unit
+
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @good_young
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @spoil_young
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @good_ripe
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @spoil_ripe
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @total_production
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @to_finish_wh
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @free_at_farm
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @spoil_waste
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @to_nursery_wh
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @total_distribution
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0;"}= @loss
                       
               - elsif zone.areas.count > 0
                 %tr
@@ -189,7 +165,9 @@
                   - zone.areas.each_with_index do |area, a_index|
                     - if a_index == 0
                       %td{style: "text-align:center"}= area.name
-                      
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+
                       - @good_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
                       - @spoil_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
                       - @good_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
@@ -201,44 +179,35 @@
                       - @to_nursery_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
                       - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
                       - @loss = @total_production - @total_distribution
-                      %td
-                        = @good_young
-                        %sup Unit
-                      %td
-                        = @spoil_young
-                        %sup Unit
-                      %td
-                        = @good_ripe
-                        %sup Unit
-                      %td
-                        = @spoil_ripe
-                        %sup Unit
-                      %td
-                        = @total_production
-                        %sup Unit
-                      %td
-                        = @to_finish_wh
-                        %sup Unit
-                      %td
-                        = @free_at_farm
-                        %sup Unit
-                      %td
-                        = @spoil_waste
-                        %sup Unit
-                      %td
-                        = @to_nursery_wh
-                        %sup Unit
-                      %td
-                        = @total_distribution
-                        %sup Unit
-                      %td
-                        = @loss
-                        %sup Unit
+
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @good_young
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @spoil_young
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @good_ripe
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @spoil_ripe
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @total_production
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @to_finish_wh
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @free_at_farm
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @spoil_waste
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @to_nursery_wh
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @total_distribution
+                      %td{style: "text-align:center"}
+                        %p{style: "margin: 0; padding: 0"}= @loss
                       
                     - else
                       %tr
                         %td{style: "text-align:center"}= area.name
-                        
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
                         - @good_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
                         - @spoil_young = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
                         - @good_ripe = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
@@ -250,39 +219,29 @@
                         - @to_nursery_wh = OutputTask.sum_output_amount(@coconut.uuid, area.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000011", @unit.uuid)
                         - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
                         - @loss = @total_production - @total_distribution
-                        %td
-                          = @good_young
-                          %sup Unit
-                        %td
-                          = @spoil_young
-                          %sup Unit
-                        %td
-                          = @good_ripe
-                          %sup Unit
-                        %td
-                          = @spoil_ripe
-                          %sup Unit
-                        %td
-                          = @total_production
-                          %sup Unit
-                        %td
-                          = @to_finish_wh
-                          %sup Unit
-                        %td
-                          = @free_at_farm
-                          %sup Unit
-                        %td
-                          = @spoil_waste
-                          %sup Unit
-                        %td
-                          = @to_nursery_wh
-                          %sup Unit
-                        %td
-                          = @total_distribution
-                          %sup Unit
-                        %td
-                          = @loss
-                          %sup Unit
+
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @good_young
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @spoil_young
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @good_ripe
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @spoil_ripe
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @total_production
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @to_finish_wh
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @free_at_farm
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @spoil_waste
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @to_nursery_wh
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @total_distribution
+                        %td{style: "text-align:center"}
+                          %p{style: "margin: 0; padding: 0;"}= @loss
 
     %br
     .row
@@ -300,6 +259,7 @@
         %table.table-bordered#main_table{cellpadding: "5px", style: "width:100%"}
           %tr
             %th{rowspan: "3", style: "text-align:center"} Grand Total Production
+            %th{rowspan: "3", style: "text-align:center"} Unit
             %th{colspan: "5", style: "text-align:center"} Total Production
             %th{colspan: "6", style: "text-align:center"} Production Distribution
           %tr
@@ -319,8 +279,10 @@
             %th{style: "text-align:center"} Spoiled
           %tfoot{style: "background-color: #eee;"}
             %tr
-              %th{style: "text-align:center"}= "Total: (Unit)"
-              
+              %th{style: "text-align:center"}= "Total:"
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0; font-size: 11px;"} Unit
+
               - @good_young = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000003", @unit.uuid)
               - @spoil_young = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000004", @unit.uuid)
               - @good_ripe = OutputTask.grand_total_output_amount(@coconut.uuid, @start_date, @end_date, "00000000-0000-0000-0000-000000000006", @unit.uuid)
@@ -333,39 +295,28 @@
               - @total_distribution = @to_finish_wh + @free_at_farm + @spoil_waste + @to_nursery_wh
               - @loss = @total_production - @total_distribution
               
-              %td
-                = @good_young
-                %sup Unit
-              %td
-                = @spoil_young
-                %sup Unit
-              %td
-                = @good_ripe
-                %sup Unit
-              %td
-                = @spoil_ripe
-                %sup Unit
-              %td
-                = @total_production
-                %sup Unit
-              %td
-                = @to_finish_wh
-                %sup Unit
-              %td
-                = @free_at_farm
-                %sup Unit
-              %td
-                = @spoil_waste
-                %sup Unit
-              %td
-                = @to_nursery_wh
-                %sup Unit
-              %td
-                = @total_distribution
-                %sup Unit
-              %td
-                = @loss
-                %sup Unit
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @good_young
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @spoil_young
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @good_ripe
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @spoil_ripe
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @total_production
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @to_finish_wh
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @free_at_farm
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @spoil_waste
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @to_nursery_wh
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @total_distribution
+              %td{style: "text-align:center"}
+                %p{style: "margin: 0; padding: 0;"}= @loss
 
     %br
     .row
