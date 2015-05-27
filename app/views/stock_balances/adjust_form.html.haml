@@ -9,6 +9,7 @@
       
       %input{:type => "hidden", :name => "year", :value => @year}
       %input{:type => "hidden", :name => "month", :value => @month}
+      %input{:type => "hidden", :name => "warehouse_id", :value => @warehouse_id}
       
       - @categories.each do |c|
         .row
@@ -31,8 +32,8 @@
                 %br
                 
                 - c.materials.each do |m|
-                  - @sb = StockBalance.find_by(:material_id => m.uuid, :month => @month, :year => @year)
-                  - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :month => Date.today.month, :year => Date.today.year) : @sb
+                  - @sb = StockBalance.find_by(:material_id => m.uuid, :warehouse_id => @warehouse_id, :month => @month, :year => @year)
+                  - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :warehouse_id => @warehouse_id, :month => Date.today.month, :year => Date.today.year) : @sb
                   
                   - uom = m.unit_of_measurement.name
                   - balance = @sb.adjusted_ending_balance.nil? ? @sb.ending_balance : @sb.adjusted_ending_balance

@@ -243,18 +243,16 @@ other = MaterialCategory.find_by_name('Other')
   material_to_warehouse = Material.create_with(material_cate_uuid: each_material[:material_cate_uuid], unit_measure_uuid: each_material[:unit_measure_uuid], supplier: each_material[:supplier], note: each_material[:note]).find_or_create_by(name: each_material[:name])
 
   Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_warehouse.uuid, fertilizer_warehouse.uuid, project_warehouse.uuid).each do |warehouse|
-      WarehouseMaterialAmount.create(warehouse_uuid: warehouse.uuid,  material_uuid: material_to_warehouse.uuid, amount: 0, returnable: false)
-  end  
-end
-
-# ========== Create Stock Balances ==========
-Material.all.each do |m|
-  start_month = 1
-  this_month = Date.today.month
-  
-  while start_month <= this_month do
-    StockBalance.create_with(material_category_id: m.material_cate_uuid, stock_in: 0, stock_out: 0, beginning_balance: 0, ending_balance: 0).find_or_create_by(material_id: m.uuid, month: start_month, year: Date.today.year)
-    start_month += 1
+    # ========== WAREHOUSE MATERIAL AMOUNT ==========
+    WarehouseMaterialAmount.create(warehouse_uuid: warehouse.uuid,  material_uuid: material_to_warehouse.uuid, amount: 0, returnable: false)
+    
+    # ========== STOCK BALANCE ==========
+    start_month = 1
+    this_month = Date.today.month
+    while start_month <= this_month do
+      StockBalance.create_with(material_category_id: each_material[:material_cate_uuid], stock_in: 0, stock_out: 0, beginning_balance: 0, ending_balance: 0).find_or_create_by(material_id: material_to_warehouse.uuid, warehouse_id: warehouse.uuid, month: start_month, year: Date.today.year)
+      start_month += 1
+    end
   end
 end
 
