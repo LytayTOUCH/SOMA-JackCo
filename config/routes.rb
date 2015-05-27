@@ -200,6 +200,9 @@ Rails.application.routes.draw do
   get 'get_production_by_planting_project', to: 'blocks#get_production_by_planting_project'
 
   resources :input_tasks
+  get 'add_new_labor', to: "input_tasks#add_new_labor", as: :add_new_labor
+  post 'save_new_labor', to: "input_tasks#save_new_labor", as: :save_new_labor
+
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
 
   get 'get_machinery_name', to: 'machineries#get_machinery_name'
