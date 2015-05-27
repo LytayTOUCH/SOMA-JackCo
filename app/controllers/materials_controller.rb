@@ -30,18 +30,20 @@ class MaterialsController < ApplicationController
       if @material.save
         create_log current_user.uuid, "Created New Material", @material
         
-        # WAREHOUSE MATERIAL AMOUNT
         material_warehouses.each do |warehouse|
+          # WAREHOUSE MATERIAL AMOUNT
           WarehouseMaterialAmount.create(warehouse_uuid: warehouse.uuid,  material_uuid: @material.uuid, amount: 0, returnable: false)
         end
         
-        # STOCK BALANCE
-        start_month = 1
-        this_month = Date.today.month
-        while start_month <= this_month do
-          StockBalance.create_with(material_category_id: @material.material_cate_uuid, stock_in: 0, stock_out: 0, beginning_balance: 0, ending_balance: 0).find_or_create_by(material_id: @material.uuid, month: start_month, year: Date.today.year)
-          create_log_2 current_user.uuid, "Created Stock Balance", start_month.to_s+"-"+Date.today.year.to_s+" - For Material: "+@material.name
-          start_month += 1
+        proj_wh = Warehouse.where("warehouse_type_uuid = ?", WarehouseType.find_by(name: 'Project Warehouse').uuid)
+        proj_wh.each do |warehouse|
+          # STOCK BALANCE
+          start_month = 1
+          this_month = Date.today.month
+          while start_month <= this_month do
+            StockBalance.create_with(material_category_id: @material.material_cate_uuid, stock_in: 0, stock_out: 0, beginning_balance: 0, ending_balance: 0).find_or_create_by(material_id: @material.uuid, warehouse_id: warehouse.uuid, month: start_month, year: Date.today.year)
+            start_month += 1
+          end
         end
         
         flash[:notice] = "Material saved successfully"

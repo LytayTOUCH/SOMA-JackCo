@@ -6,8 +6,11 @@
 - if !params[:month_year].nil?
   #form-model-content-supplier
     %form{action: update_stock_balance_path}
+      
       %input{:type => "hidden", :name => "year", :value => @year}
       %input{:type => "hidden", :name => "month", :value => @month}
+      %input{:type => "hidden", :name => "warehouse_id", :value => @warehouse_id}
+      
       - @categories.each do |c|
         .row
           %br
@@ -23,8 +26,8 @@
                     = m.name
                   .col-xs-2
                     .input-group
-                      - @sb = StockBalance.find_by(:material_id => m.uuid, :month => @month, :year => @year)
-                      - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :month => Date.today.month, :year => Date.today.year) : @sb
+                      - @sb = StockBalance.find_by(:material_id => m.uuid, :warehouse_id => @warehouse_id, :month => @month, :year => @year)
+                      - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :warehouse_id => @warehouse_id, :month => Date.today.month, :year => Date.today.year) : @sb
                       
                       %input{:type => "hidden", :name => "material_id[]", :value => m.uuid}
                       %input.numeric.float.required.form-control{:name => "balance_value[]", :step => "any", :type => "number", :value => @sb.beginning_balance}

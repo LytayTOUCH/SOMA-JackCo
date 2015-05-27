@@ -63,7 +63,7 @@ class InputTasksController < ApplicationController
                     # STOCK BALANCE
                     month = @input_task.start_date.month
                     year = @input_task.start_date.year
-                    sb = StockBalance.find_by(:material_id => material_id, :month => month, :year => year)
+                    sb = StockBalance.find_by(:material_id => material_id, :warehouse_id => warehouse_of_material, :month => month, :year => year)
                     unless sb.nil?
                       stock_out = sb.stock_out + qty_of_material.to_f
                       ending_balance = sb.beginning_balance + sb.stock_in - stock_out

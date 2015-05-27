@@ -38,9 +38,21 @@ class WarehousesController < ApplicationController
           end
         else
           @materials.each do |material|
+            # WAREHOUSE MATERIAL AMOUNT
             WarehouseMaterialAmount.create(warehouse_uuid: @warehouse.uuid, material_uuid: material.uuid, amount: 0, returnable: false)
+            
+            if @warehouse.warehouse_type_uuid == WarehouseType.find_by(name: 'Project Warehouse').uuid
+              # STOCK BALANCE
+              start_month = 1
+              this_month = Date.today.month
+              while start_month <= this_month do
+                StockBalance.create_with(material_category_id: material.material_cate_uuid, stock_in: 0, stock_out: 0, beginning_balance: 0, ending_balance: 0).find_or_create_by(material_id: material.uuid, warehouse_id: @warehouse.uuid, month: start_month, year: Date.today.year)
+                start_month += 1
+              end
+            end
           end
         end
+        
         flash[:notice] = "Warehouse saved successfully"
         redirect_to warehouses_path
       else
