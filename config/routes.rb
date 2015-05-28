@@ -218,7 +218,7 @@ Rails.application.routes.draw do
   get 'find_amount', to: 'input_tasks#find_amount'
 
   scope 'input_uses', as: 'input_uses' do
-    get 'jack_fruit', to: 'input_uses#index'
+    get 'jackfruit', to: 'input_uses#index'
     get 'coconut', to: 'input_uses#index'
   end
 

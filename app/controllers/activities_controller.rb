@@ -88,14 +88,11 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    # puts "======================================"
     @activity = Activity.find(params[:id])
     @activity.destroy
 
-    puts "======================================"
-    puts URI(request.referer).path.split('/')[1]
-    puts "======================================"
-
+    # puts URI(request.referer).path.split('/')[1]
+    
     create_log current_user.uuid, "Deleted Activity", @activity
 
     respond_to do |format|

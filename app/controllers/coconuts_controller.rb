@@ -26,10 +26,7 @@ class CoconutsController < ApplicationController
   def create
     begin
       @coconut = Coconut.new(coconut_params)
-      puts "=============++++================="
-      puts params[:active]
-      puts "=================================="
-
+      # puts params[:active]
 
       if @coconut.save
         create_log current_user.uuid, "Created New Coconut", @coconut

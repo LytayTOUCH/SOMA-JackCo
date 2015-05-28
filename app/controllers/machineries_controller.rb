@@ -35,10 +35,7 @@ class MachineriesController < ApplicationController
   def update
     begin
       @machinery = Machinery.find(params[:id])
-      puts "================== +++++ ===================="
-      puts params[:machinery][:status]
-      puts "================== +++++ ===================="
-
+      
       if @machinery.update_attributes(machinery_params)
         if params[:machinery][:status] == "false"
           create_log current_user.uuid, "Deactivated Machinery", @machinery

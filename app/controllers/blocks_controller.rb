@@ -55,12 +55,14 @@ class BlocksController < ApplicationController
     @zone = Zone.new(zone_params)
     @zone.farm_id = params[:farm_id]
     if @zone.save
+      create_log current_user.uuid, "Created Zone", @zone
       @zone
     end
   end
 
   def destroy_zone
     @zone = Zone.find_by(uuid: params[:zone_id])
+    create_log current_user.uuid, "Deleted Zone", @zone
     @zone.destroy
   end
 
@@ -74,12 +76,14 @@ class BlocksController < ApplicationController
     @area = Area.new(area_params)
     @area.zone_id = params[:zone_id]
     if @area.save
+      create_log current_user.uuid, "Created Area", @area
       @area
     end
   end
 
   def destroy_area
     @area = Area.find_by(uuid: params[:area_id])
+    create_log current_user.uuid, "Deleted Area", @area
     @area.destroy
   end
 
