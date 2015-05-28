@@ -1,4 +1,5 @@
 class StockBalancesController < ApplicationController
+  load_and_authorize_resource except: :create
   
   # BEGINNING BALANCE
   def index

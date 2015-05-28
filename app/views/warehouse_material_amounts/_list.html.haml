@@ -20,7 +20,8 @@
             = wh_a.material.unit_of_measurement.name
             = ")"
           %td
-            = link_to "Adjust", edit_warehouse_material_amount_path(wh_a), remote: true
+            - if can? :update, wh_a
+              = link_to "Adjust", edit_warehouse_material_amount_path(wh_a), remote: true
         
   %div{style: "height: 35px;"}
 .form-modal
