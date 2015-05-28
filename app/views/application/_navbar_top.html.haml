@@ -88,23 +88,24 @@
             = navbar_link "Input Tasks", input_tasks_path, "active"
           %li
             = navbar_link "Output Tasks", output_tasks_path, "active"
-            
-      %li.dropdown
-        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %i.fa.fa-users.fa-lg.icon-greenish
-          Security
-          %span.caret
-        %ul.dropdown-menu{:role => "menu"}
-          %li
-            - if can? :read, User
-              = navbar_link "Users", users_path, "active"
-          %li
-            - if can? :read, UserGroup
-              = navbar_link "User Groups", user_groups_path, "active"
-          %li.divider
-          %li
-            - if can? :read, Log
-              = navbar_link "Log Tracking", log_tracking_index_path, "active"
+           
+      - if can? :read, Log
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %i.fa.fa-users.fa-lg.icon-greenish
+            Security
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              - if can? :read, User
+                = navbar_link "Users", users_path, "active"
+            %li
+              - if can? :read, UserGroup
+                = navbar_link "User Groups", user_groups_path, "active"
+            %li.divider
+            %li
+              - if can? :read, Log
+                = navbar_link "Log Tracking", log_tracking_index_path, "active"
               
           
       %li.dropdown
@@ -148,43 +149,43 @@
                 - if can? :index, :production_plan_report
                   = navbar_link "Report", production_plan_report_index_path, "active"
       
-      
-      %li.dropdown
-        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %i.fa.fa-bar-chart-o.fa-lg.icon-greenish
-          Reports
-          %span.caret
-        %ul.dropdown-menu{:role => "menu"}
-          %li
-            - if can? :index, :input_uses
-              %a{:href => input_uses_path} Input Use Summary
-          %li.dropdown-submenu
-            %a{:href => "#", :tabindex => "-1"} Productivity
-            %ul.dropdown-menu
-              %li
-                - if can? :coconut_index, :report_productivities
-                  = navbar_link "Coconut", report_productivities_coconut_index_path, "active"
-              %li
-                - if can? :jackfruit_index, :report_productivities
-                  = navbar_link "Jackfruit", report_productivities_jackfruit_index_path, "active"
-          %li.dropdown-submenu
-            %a{:href => "#", :tabindex => "-1"} Classification
-            %ul.dropdown-menu
-              %li
-                - if can? :coconut_index, :report_classifications
-                  = navbar_link "Coconut", report_classifications_coconut_index_path, "active"
-              %li
-                - if can? :jackfruit_index, :report_classifications
-                  = navbar_link "Jackfruit", report_classifications_jackfruit_index_path, "active"
-          %li.dropdown-submenu
-            %a{:href => "#", :tabindex => "-1"} Inventory
-            %ul.dropdown-menu
-              %li
-                - if can? :coconut_index, :report_classifications
-                  = navbar_link "Adjust Form", adjust_stock_balance_path, "active"
-              %li
-                - if can? :jackfruit_index, :report_classifications
-                  = navbar_link "Summary Report", report_inventory_path, "active"
+      - if can? :index, :input_uses
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %i.fa.fa-bar-chart-o.fa-lg.icon-greenish
+            Reports
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              - if can? :index, :input_uses
+                %a{:href => input_uses_path} Input Use Summary
+            %li.dropdown-submenu
+              %a{:href => "#", :tabindex => "-1"} Productivity
+              %ul.dropdown-menu
+                %li
+                  - if can? :coconut_index, :report_productivities
+                    = navbar_link "Coconut", report_productivities_coconut_index_path, "active"
+                %li
+                  - if can? :jackfruit_index, :report_productivities
+                    = navbar_link "Jackfruit", report_productivities_jackfruit_index_path, "active"
+            %li.dropdown-submenu
+              %a{:href => "#", :tabindex => "-1"} Classification
+              %ul.dropdown-menu
+                %li
+                  - if can? :coconut_index, :report_classifications
+                    = navbar_link "Coconut", report_classifications_coconut_index_path, "active"
+                %li
+                  - if can? :jackfruit_index, :report_classifications
+                    = navbar_link "Jackfruit", report_classifications_jackfruit_index_path, "active"
+            %li.dropdown-submenu
+              %a{:href => "#", :tabindex => "-1"} Inventory
+              %ul.dropdown-menu
+                %li
+                  - if can? :coconut_index, :report_classifications
+                    = navbar_link "Adjust Form", adjust_stock_balance_path, "active"
+                %li
+                  - if can? :jackfruit_index, :report_classifications
+                    = navbar_link "Summary Report", report_inventory_path, "active"
 
     / Right Navigator Menu
     = render 'navbar_right'
