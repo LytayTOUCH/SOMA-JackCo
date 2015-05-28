@@ -185,6 +185,8 @@ Rails.application.routes.draw do
   resources :stock_ins, only: [:index, :new, :create]
   resources :warehouse_material_receiveds
   resources :output_tasks
+  get 'add_new_labor_out_task', to: "output_tasks#add_new_labor", as: :add_new_labor_out_task
+  post 'save_new_labor_out_task', to: "output_tasks#save_new_labor", as: :save_new_labor_out_task
 
   get 'get_material_data', to: 'materials#get_material_data'
 
@@ -200,8 +202,8 @@ Rails.application.routes.draw do
   get 'get_production_by_planting_project', to: 'blocks#get_production_by_planting_project'
 
   resources :input_tasks
-  get 'add_new_labor', to: "input_tasks#add_new_labor", as: :add_new_labor
-  post 'save_new_labor', to: "input_tasks#save_new_labor", as: :save_new_labor
+  get 'add_new_labor_input_task', to: "input_tasks#add_new_labor", as: :add_new_labor_input_task
+  post 'save_new_labor_input_task', to: "input_tasks#save_new_labor", as: :save_new_labor_input_task
 
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
 

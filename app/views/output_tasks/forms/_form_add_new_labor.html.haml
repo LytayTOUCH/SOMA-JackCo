@@ -6,7 +6,7 @@
           %span{"aria-hidden" => "true"} &times;
         %h4#myModalLabel.modal-title Add New Labor
       .modal-body
-        = simple_form_for labor, :url => save_new_labor_input_task_path, :method => :post, remote: true, html: {class: 'form-horizontal'} do |f|
+        = simple_form_for labor, :url => save_new_labor_out_task_path, :method => :post, remote: true, html: {class: 'form-horizontal'} do |f|
           .form-group
             %label.col-xs-3.control-label{for: 'labor_name'} Name *
             .col-xs-9

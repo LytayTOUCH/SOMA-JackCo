@@ -105,8 +105,26 @@ class OutputTasksController < ApplicationController
     render json: Distribution.where(planting_project_id: params[:planting_project_id]).order("order_of_display ASC")
   end
 
+  def add_new_labor
+    begin
+      @labor = Labor.new
+    rescue Exception => e
+      puts e
+    end
+  end
+
+  def save_new_labor
+    @labor = Labor.new(labor_params)
+    # manager_uuid has no default value, Error !
+    @labor.manager_uuid = ""
+    @labor if @labor.save
+  end
+
   private
   def output_task_params
     params.require(:output_task).permit(:name, :start_date, :end_date, :block_id, :planting_project_id, :tree_amount, :labor_id, :reference_number, :note, :created_by, :updated_by, :farm_id, :zone_id, :area_id)
+  end
+  def labor_params
+    params.require(:labor).permit(:name, :position_id, :gender)
   end
 end

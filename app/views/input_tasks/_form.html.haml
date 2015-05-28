@@ -59,7 +59,7 @@
           .col-xs-9
             = f.association :labor, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           .col-xs-1
-            = link_to add_new_labor_path, :remote => true, class: 'btn btn-primary btn-add' do
+            = link_to add_new_labor_input_task_path, :remote => true, class: 'btn btn-primary btn-add', title: "Add new labor" do
               %i.fa.fa-plus-circle
 
         .form-group
