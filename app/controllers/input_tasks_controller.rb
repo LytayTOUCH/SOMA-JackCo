@@ -63,7 +63,7 @@ class InputTasksController < ApplicationController
                     # STOCK BALANCE
                     month = @input_task.start_date.month
                     year = @input_task.start_date.year
-                    sb = StockBalance.find_by(:material_id => material_id, :month => month, :year => year)
+                    sb = StockBalance.find_by(:material_id => material_id, :warehouse_id => warehouse_of_material, :month => month, :year => year)
                     unless sb.nil?
                       stock_out = sb.stock_out + qty_of_material.to_f
                       ending_balance = sb.beginning_balance + sb.stock_in - stock_out
@@ -180,9 +180,27 @@ class InputTasksController < ApplicationController
 
   end
 
+  def add_new_labor
+    begin
+      @labor = Labor.new
+    rescue Exception => e
+      puts e
+    end
+  end
+
+  def save_new_labor
+    @labor = Labor.new(labor_params)
+    # manager_uuid has no default value, Error !
+    @labor.manager_uuid = ""
+    @labor if @labor.save
+  end
+
   private
   def input_task_params
     params.require(:input_task).permit(:name, :start_date, :end_date, :farm_id, :zone_id, :area_id, :block_id, :planting_project_id, :tree_amount, :labor_id, :reference_number, :note, :created_by)
+  end
+  def labor_params
+    params.require(:labor).permit(:name, :position_id, :gender)
   end
 
 end

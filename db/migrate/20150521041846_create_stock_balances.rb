@@ -3,6 +3,7 @@ class CreateStockBalances < ActiveRecord::Migration
     create_table :stock_balances, id: false do |t|
       t.string :uuid, limit: 36, primary: true, null: false
       t.string :material_id, limit: 36, null: false
+      t.string :warehouse_id, limit: 36, null: false
       t.string :material_category_id, limit: 36, null: false
       t.integer :month, null: false
       t.integer :year, null: false
@@ -16,6 +17,6 @@ class CreateStockBalances < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index(:stock_balances, [:material_id, :month, :year], unique: true)
+    add_index(:stock_balances, [:material_id, :warehouse_id, :month, :year], unique: true, name: 'by_material_warehouse_month_year')
   end
 end

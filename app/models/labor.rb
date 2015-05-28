@@ -4,7 +4,7 @@ class Labor < ActiveRecord::Base
   validates :name, length: { maximum: 50 }, :presence => { message: "Labor Name is required." }
   validates :position_id, length: { maximum: 36 }, :presence => { message: "Positon is required." }
   validates :gender, :presence => { message: "Gender is required." }
-  validates :email, :presence => { message: "Email is required." }
+  # validates :email, :presence => { message: "Email is required." }
 
   has_many :labors
   has_many :stock_ins

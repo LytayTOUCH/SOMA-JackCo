@@ -34,7 +34,9 @@ class StockInsController < ApplicationController
         month = @stock_in.stock_in_date.month
         year = @stock_in.stock_in_date.year
         material_id = @stock_in.material.uuid
-        sb = StockBalance.find_by(:material_id => material_id, :month => month, :year => year)
+        warehouse_id = @stock_in.warehouse.uuid
+        
+        sb = StockBalance.find_by(:material_id => material_id, :warehouse_id => warehouse_id, :month => month, :year => year)
         unless sb.nil?
           stock_in = sb.stock_in + @stock_in.amount
           ending_balance = sb.beginning_balance + stock_in - sb.stock_out

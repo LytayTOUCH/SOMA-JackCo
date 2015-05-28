@@ -1,0 +1,31 @@
+#myModalAddLabor.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "data-backdrop"=>"static"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title Add New Labor
+      .modal-body
+        = simple_form_for labor, :url => save_new_labor_path, :method => :post, remote: true, html: {class: 'form-horizontal'} do |f|
+          .form-group
+            %label.col-xs-3.control-label{for: 'labor_name'} Name *
+            .col-xs-9
+              = f.input :name, label: false, error: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+              .msg-name
+          .form-group
+            %label.col-xs-3.control-label{for: 'labor_position'} Position *
+            .col-xs-9
+              = f.input :position_id, label: false, error: false, collection: Position.all.map{ |p| [p.name, p.uuid] }, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+              .msg-position_id
+          .form-group
+            %label.col-xs-3.control-label{for: 'labor_gender'} Gender *
+            .col-xs-9
+              = f.input :gender, label: false, error: false, collection: ["M", "F"], input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+              .msg-gender
+          .form-group
+            .col-xs-12
+              .pull-right
+                = f.submit :class => "btn btn-primary btn-save-labor"
+                %button.btn.btn-default.btn-cancel{"data-dismiss" => "modal", :type => "button"} Cancel
+
+           

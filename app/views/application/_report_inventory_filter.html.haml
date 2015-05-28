@@ -7,6 +7,17 @@
           %input.form-control{:type => "text", name: "month_year", :value => @month_year }
             %span.input-group-addon
               %span.glyphicon.glyphicon-calendar
+    .col-md-4
+      %label.col-xs-4.middle-label Select Warehouse:
+      .col-xs-8
+        %select#filter_warehouse_id.select.required.form-control{:style => "width: 100%", :name => "filter[warehouse_id]"}
+          %option{:value => ""}
+          - project_id = WarehouseType.find_by(name: 'Project Warehouse').uuid
+          - Warehouse.where("warehouse_type_uuid = ?", project_id).each do |wh|
+            - if wh.uuid == @warehouse_id
+              %option{:value => wh.uuid, selected: "selected"}= wh.name
+            - else
+              %option{:value => wh.uuid}= wh.name
     .col-md-1
       = submit_tag 'OK', :class => 'btn btn-primary', :style => "width:100%;", :name => nil, id: "btnFilter"
 
@@ -19,11 +30,12 @@
     });
     
     $("#month_year input").blur(function() {validateFilter();});
+    $("#filter_warehouse_id").change(function() {validateFilter();});
     
     function validateFilter() {
       $("#btnFilter").removeAttr('disabled');
       
-      if($("#month_year input").val() == "") {
+      if($("#month_year input").val() == "" || $("#filter_warehouse_id").val() == "") {
         $("#btnFilter").attr("disabled", "disabled");
       }
     }
