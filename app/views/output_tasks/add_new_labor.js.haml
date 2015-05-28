@@ -1,0 +1,7 @@
+:plain
+  $('.modal-backdrop').first().remove(); //remove backdrop from the loading box
+  $(".form-modal").html("#{escape_javascript(render 'output_tasks/forms/form_add_new_labor', labor: @labor)}");
+  $('#myModalAddLabor').modal('show');
+  $('#myModalAddLabor').on('hidden.bs.modal', function () {
+    $(".form-modal").empty();
+  });
