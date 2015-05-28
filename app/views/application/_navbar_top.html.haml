@@ -186,6 +186,49 @@
                 %li
                   - if can? :jackfruit_index, :report_classifications
                     = navbar_link "Summary Report", report_inventory_path, "active"
+      
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          %i.fa.fa-bar-chart-o.fa-lg.icon-greenish
+          Reports
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Input Use Summary
+            %ul.dropdown-menu
+              %li
+                - if can? :index, :input_uses
+                  = navbar_link "Coconut", input_uses_coconut_path, "active"
+              %li
+                - if can? :index, :input_uses
+                  = navbar_link "Jackfruit", input_uses_jackfruit_path, "active"
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Productivity
+            %ul.dropdown-menu
+              %li
+                - if can? :coconut_index, :report_productivities
+                  = navbar_link "Coconut", report_productivities_coconut_index_path, "active"
+              %li
+                - if can? :jackfruit_index, :report_productivities
+                  = navbar_link "Jackfruit", report_productivities_jackfruit_index_path, "active"
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Classification
+            %ul.dropdown-menu
+              %li
+                - if can? :coconut_index, :report_classifications
+                  = navbar_link "Coconut", report_classifications_coconut_index_path, "active"
+              %li
+                - if can? :jackfruit_index, :report_classifications
+                  = navbar_link "Jackfruit", report_classifications_jackfruit_index_path, "active"
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Inventory
+            %ul.dropdown-menu
+              %li
+                - if can? :coconut_index, :report_classifications
+                  = navbar_link "Adjust Form", adjust_stock_balance_path, "active"
+              %li
+                - if can? :jackfruit_index, :report_classifications
+                  = navbar_link "Summary Report", report_inventory_path, "active"
 
     / Right Navigator Menu
     = render 'navbar_right'

@@ -1,6 +1,10 @@
-%h1 Input Use Report
+- @project_name = request.path.split("/").last.capitalize
+%h1= @project_name == "Coconut" ? "Input Use Report - Coconut" : "Input Use Report - Jackfruit" 
 %h1.filter-bar-input-use
-  = render partial: "report_filter", path: input_uses_path
+  - if @project_name == "Coconut"
+    = render partial: "report_filter", locals: { :@path => input_uses_coconut_path }
+  - else
+    = render partial: "report_filter", locals: { :@path => input_uses_jackfruit_path } 
 
 - if params[:filter].present?
   .report-material
@@ -35,9 +39,9 @@
               - Farm.where(uuid: params[:filter][:farm_id]).each do |farm|
                 - farm.zones.each do |zone|
                   - zone.areas.each do |area|
-                    %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_by_area(@start_date, @end_date, area.uuid, m.uuid) + InputTask.get_total_amount_by_area_machinery(@start_date, @end_date, area.uuid, m.uuid)
+                    %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_by_area(@start_date, @end_date, area.uuid, m.uuid, @project_name) + InputTask.get_total_amount_by_area_machinery(@start_date, @end_date, area.uuid, m.uuid, @project_name)
             - else
-              %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_group_by_material(@start_date, @end_date, m.uuid) + InputTask.get_total_amount_group_by_machinary(@start_date, @end_date, m.uuid)
+              %td{style: "white-space: nowrap; text-align: center;"}= InputTask.get_total_amount_group_by_material(@start_date, @end_date, m.uuid, @project_name) + InputTask.get_total_amount_group_by_machinary(@start_date, @end_date, m.uuid, @project_name)
   
   %br
   .row#print-input-use-report

@@ -185,6 +185,8 @@ Rails.application.routes.draw do
   resources :stock_ins, only: [:index, :new, :create]
   resources :warehouse_material_receiveds
   resources :output_tasks
+  get 'add_new_labor_out_task', to: "output_tasks#add_new_labor", as: :add_new_labor_out_task
+  post 'save_new_labor_out_task', to: "output_tasks#save_new_labor", as: :save_new_labor_out_task
 
   get 'get_material_data', to: 'materials#get_material_data'
 
@@ -200,6 +202,9 @@ Rails.application.routes.draw do
   get 'get_production_by_planting_project', to: 'blocks#get_production_by_planting_project'
 
   resources :input_tasks
+  get 'add_new_labor_input_task', to: "input_tasks#add_new_labor", as: :add_new_labor_input_task
+  post 'save_new_labor_input_task', to: "input_tasks#save_new_labor", as: :save_new_labor_input_task
+
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
 
   get 'get_machinery_name', to: 'machineries#get_machinery_name'
@@ -212,8 +217,14 @@ Rails.application.routes.draw do
   get 'get_warehouse_material_amount_data', to: 'warehouse_material_amounts#get_warehouse_material_amount_data'
   get 'find_amount', to: 'input_tasks#find_amount'
 
-  # get 'input_uses/index'
-  resources :input_uses
+  scope 'input_uses', as: 'input_uses' do
+    get 'jackfruit', to: 'input_uses#index'
+    get 'coconut', to: 'input_uses#index'
+  end
+
+
+
+  # resources :input_uses
 
   # get 'edit/:id', to: 'users#edit', as: 'edit'
 

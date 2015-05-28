@@ -30,12 +30,13 @@ class InputTask < ActiveRecord::Base
   
   scope :planting_project_id, -> uuid_f { joins(:block).where("blocks.planting_project_id=?", uuid_f) }
 
-  scope :get_period_and_area, -> start_dat, end_dat, area_id {
-    where("start_date >= ? AND start_date <= ? AND area_id = ?", start_dat, end_dat, area_id)
+  scope :get_period_and_area, -> start_dat, end_dat, area_id, project_id {
+    where("start_date >= ? AND start_date <= ? AND area_id = ? AND planting_project_id = ?", 
+      start_dat, end_dat, area_id, project_id)
   }  
 
-  scope :get_total_amount, -> start_dat, end_dat {
-    where("start_date >= ? AND start_date <= ?", start_dat, end_dat)
+  scope :get_total_amount, -> start_dat, end_dat, project_id {
+    where("start_date >= ? AND start_date <= ? AND planting_project_id = ?", start_dat, end_dat, project_id)
   }
 
   def end_date_greater_than_start_date
@@ -44,9 +45,9 @@ class InputTask < ActiveRecord::Base
     end
   end
   
-  def self.get_total_amount_by_area(start_date, end_date, area_id, material_id)
+  def self.get_total_amount_by_area(start_date, end_date, area_id, material_id, project_name)
     begin
-      get_period_and_area(start_date, end_date, area_id).
+      get_period_and_area(start_date, end_date, area_id, PlantingProject.find_by_project_name(project_name).first.uuid).
         joins(:input_use_materials).
         where("input_use_materials.material_id = ?", material_id).
         group(:area_id, :material_id).
@@ -56,9 +57,9 @@ class InputTask < ActiveRecord::Base
     end
   end
 
-  def self.get_total_amount_by_area_machinery(start_date, end_date, area_id, material_id)
+  def self.get_total_amount_by_area_machinery(start_date, end_date, area_id, material_id, project_name)
     begin
-      get_period_and_area(start_date, end_date, area_id).
+      get_period_and_area(start_date, end_date, area_id, PlantingProject.find_by_project_name(project_name).first.uuid).
         joins(:input_use_machineries).
         where("input_use_machineries.material_id = ?", material_id).
         group(:area_id, :material_id).
@@ -68,9 +69,9 @@ class InputTask < ActiveRecord::Base
     end
   end
 
-  def self.get_total_amount_group_by_material(start_date, end_date, material_id)
+  def self.get_total_amount_group_by_material(start_date, end_date, material_id, project_name)
     begin
-      get_total_amount(start_date, end_date).
+      get_total_amount(start_date, end_date, PlantingProject.find_by_project_name(project_name).first.uuid).
         joins(:input_use_materials).
         where("input_use_materials.material_id = ?", material_id).
         group(:material_id).
@@ -80,9 +81,9 @@ class InputTask < ActiveRecord::Base
     end
   end
 
-  def self.get_total_amount_group_by_machinary(start_date, end_date, material_id)
+  def self.get_total_amount_group_by_machinary(start_date, end_date, material_id, project_name)
     begin
-      get_total_amount(start_date, end_date).
+      get_total_amount(start_date, end_date, PlantingProject.find_by_project_name(project_name).first.uuid).
         joins(:input_use_machineries).
         where("input_use_machineries.material_id = ?", material_id).
         group(:material_id).
