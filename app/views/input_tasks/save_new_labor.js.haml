@@ -2,8 +2,7 @@
   - @labor.errors.messages.each do |key, msg|
     $(".msg-#{key}").addClass("alert-danger alert custom-alert-msg").html("#{msg[0]}");
 - else
-:plain
   $('#myModalAddLabor').modal('hide');
   $('#myModalAddLabor').on('hidden.bs.modal', function () {
-    $('#input_task_labor_id').append('<option value="#{@labor.uuid}" selected="selected">#{@labor.name}</option>');
+  $('#input_task_labor_id').append('<option value="#{@labor.uuid}" selected="selected">#{@labor.name}</option>');
   });
