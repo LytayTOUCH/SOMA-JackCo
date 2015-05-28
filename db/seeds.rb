@@ -30,7 +30,7 @@ end
 position = Position.create_with(note: 'Controlling a labor in field', active: true).find_or_create_by(name: 'Manager')
 [
   {name: "Default Manager", gender: "M", phone: "012 345 678", email: "admin@cltag.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true, selected: true},
-  {name: "Keven", gender: "M", phone: "012 345 6789", email: "ngok@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
+  {name: "Kevin", gender: "M", phone: "012 345 6789", email: "ngok@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
   {name: "Piseth", gender: "M", phone: "098 765 4321", email: "peap@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
   {name: "Pheth", gender: "M", phone: "089 765 4321", email: "nhekp@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
   {}
@@ -39,7 +39,9 @@ position = Position.create_with(note: 'Controlling a labor in field', active: tr
   position.labors << labor
 end
 labor = Labor.find_by_name("Default Manager")
-
+labor_kevin = Labor.find_by_name("Kevin")
+labor_piseth = Labor.find_by_name("Piseth")
+labor_pheth = Labor.find_by_name("Pheth")
 # ==========  Create UserGroup ========== 
 [ 
   {name: "Administrator", note: "Controlling everything", active: true},
@@ -55,11 +57,11 @@ user_group = UserGroup.create_with(note: "Controlling all resources", active: tr
 # labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "admin@gmail.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true)
 [
   {email: "admin@cltag.com", password: "admin1234567890", password_confirmation: "admin1234567890", user_group_id: user_group.uuid, labor_id: labor.uuid},
-  {email: "ngok@somagroup.com.kh", password: "keven@12345", password_confirmation: "keven@12345", user_group_id: user_group.uuid, labor_id: labor.uuid},
-  {email: "peap@somagroup.com.kh", password: "piseth@12345", password_confirmation: "piseth@12345", user_group_id: user_group.uuid, labor_id: labor.uuid},
-  {email: "nhekp@somagroup.com.kh", password: "pheth@12345", password_confirmation: "pheth@12345", user_group_id: user_group.uuid, labor_id: labor.uuid}
+  {email: "ngok@somagroup.com.kh", password: "kevin@12345", password_confirmation: "kevin@12345", user_group_id: user_group.uuid, labor_id: labor_kevin.uuid},
+  {email: "peap@somagroup.com.kh", password: "piseth@12345", password_confirmation: "piseth@12345", user_group_id: user_group.uuid, labor_id: labor_piseth.uuid},
+  {email: "nhekp@somagroup.com.kh", password: "pheth@12345", password_confirmation: "pheth@12345", user_group_id: user_group.uuid, labor_id: labor_pheth.uuid}
 ].each do |each_user|
-  user = User.create_with(password: each_user[:password], password_confirmation: each_user[:password_confirmation], user_group_id: user_group.uuid, labor_id: labor.uuid).find_or_create_by(email: each_user[:email])
+  user = User.create_with(password: each_user[:password], password_confirmation: each_user[:password_confirmation], user_group_id: each_user[:user_group_id], labor_id: each_user[:labor_id]).find_or_create_by(email: each_user[:email])
   user_group.users << user
 end
 
@@ -568,13 +570,13 @@ InputTask.create(uuid: "00000000-0000-0000-0000-000000000004", name: "Input task
 
 # ========== Input Use Material =============
 InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000001", input_id: "00000000-0000-0000-0000-000000000001", 
-  material_id: Material.first.uuid, warehouse_id: Warehouse.first.uuid, material_amount: 10)
+  material_id: Material.first.uuid, warehouse_id: Warehouse.last.uuid, material_amount: 0)
 InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000002", input_id: "00000000-0000-0000-0000-000000000002", 
-  material_id: Material.first.uuid, warehouse_id: Warehouse.first.uuid, material_amount: 15)
+  material_id: Material.first.uuid, warehouse_id: Warehouse.last.uuid, material_amount: 0)
 InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000003", input_id: "00000000-0000-0000-0000-000000000003", 
-  material_id: Material.first.uuid, warehouse_id: Warehouse.first.uuid, material_amount: 20)
+  material_id: Material.first.uuid, warehouse_id: Warehouse.last.uuid, material_amount: 0)
 InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000004", input_id: "00000000-0000-0000-0000-000000000004", 
-  material_id: Material.first.uuid, warehouse_id: Warehouse.first.uuid, material_amount: 30)
+  material_id: Material.first.uuid, warehouse_id: Warehouse.last.uuid, material_amount: 0)
 
 
 
