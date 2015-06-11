@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'support', to: 'helps#support'
+  get 'user_manual', to: 'helps#user_manual'
+  
   resources :production_standards
 
   resources :production_plans
