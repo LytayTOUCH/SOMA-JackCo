@@ -1,0 +1,31 @@
+#form-model-content-supplier
+= simple_form_for @app, html: {class: 'form-horizontal'} do |f|
+  .container
+    .row
+      .col-md-7
+        .form-group
+          %label.col-xs-3 Application Name *
+          .col-xs-9
+            = f.input :name, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+        .form-group
+          %label.col-xs-3 Type *
+          .col-xs-9
+            = f.input :app_type, label: false, collection: ["INPUT", "OUTPUT"], input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+        .form-group
+          %label.col-xs-3 Planting Project *
+          .col-xs-9
+            - if @app.persisted?
+              %input.form-control{value: @app.planting_project.name, readonly: true}
+            - else
+              = f.input :planting_project_id, collection: PlantingProject.all.map{ |p| [p.name, p.uuid] }, label:false, error: false, input_html: {class: "form-control"}
+        .form-group
+          %label.col-xs-3 Note
+          .col-xs-9
+            = f.input :note, label: false, input_html: {class: "form-control"}
+        .form-group
+          .col-xs-12
+            .pull-right
+              = render partial: 'form_button', locals: { f: f }    
+      .col-md-4
+        = render "error", :obj => @app
+      .col-md-2

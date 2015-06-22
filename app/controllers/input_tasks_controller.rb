@@ -1,5 +1,5 @@
 class InputTasksController < ApplicationController
-	load_and_authorize_resource except: :create
+	load_and_authorize_resource except: [:create, :get_application_data]
 
 	add_breadcrumb "All InputTasks", :input_tasks_path
 
@@ -193,6 +193,10 @@ class InputTasksController < ApplicationController
     # manager_uuid has no default value, Error !
     @labor.manager_uuid = ""
     @labor if @labor.save
+  end
+  
+  def get_application_data
+    render json: App.where("planting_project_id = ? AND app_type = ?", params[:planting_project_id], "INPUT")
   end
 
   private

@@ -1,5 +1,5 @@
 class EquipmentController < ApplicationController
-  load_and_authorize_resource except: :create
+  load_and_authorize_resource except: [:create, :get_equipment_data]
   add_breadcrumb "All Equipments", :equipment_index_path
   
   def index

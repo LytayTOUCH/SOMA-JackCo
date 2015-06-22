@@ -1,5 +1,5 @@
 class OutputTasksController < ApplicationController
-  load_and_authorize_resource except: :create
+  load_and_authorize_resource except: [:create, :get_zones_by_farm, :get_areas_by_zone, :get_blocks_by_area, :get_distributions_by_planting_project, :get_application_data]
   respond_to :html, :json
 
   add_breadcrumb "All Output Tasks", :output_tasks_path
@@ -103,6 +103,10 @@ class OutputTasksController < ApplicationController
   
   def get_distributions_by_planting_project
     render json: Distribution.where(planting_project_id: params[:planting_project_id]).order("order_of_display ASC")
+  end
+  
+  def get_application_data
+    render json: App.where("planting_project_id = ? AND app_type = ?", params[:planting_project_id], "OUTPUT")
   end
 
   def add_new_labor

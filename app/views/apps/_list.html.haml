@@ -1,0 +1,40 @@
+%table.list_data_table
+  %thead
+    %tr
+      %th.col-md-3= "Name"
+      %th.col-md-1= "Planting Project"
+      %th.col-md-6= "Note"
+      %th.col-md-1= "Action"
+  %tbody
+    - @apps.each do |app|
+      %tr
+        %td= app.name
+        %td= app.planting_project.name+" - "+app.app_type
+        %td= app.note
+        %td
+          /- if can? :update, app
+          = link_to "Edit", edit_app_path(app)
+
+:javascript
+  $(document).ready(function() {
+    $('.list_data_table').DataTable({
+      "bSort": false,
+      "columnDefs": [{ "visible": false, "targets": 1 }],
+      "order": [[ 1, 'asc' ]],
+      "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="4">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    });
+  });

@@ -26,6 +26,7 @@ $(document).ready(function() {
   	$('#distribution').hide();
   	$('#output_task_tree_amount').val("");
   	$('#output_task_planting_project_id').val("");
+  	$('#output_task_name').val("");
   	$('.planting_project_name').val("");
   	
   	// START -- EQUIPMENT SECTION
@@ -92,6 +93,7 @@ $(document).ready(function() {
   	$('#distribution').hide();
   	$('#output_task_tree_amount').val("");
   	$('#output_task_planting_project_id').val("");
+  	$('#output_task_name').val("");
   	$('.planting_project_name').val("");
   	
   	// START -- EQUIPMENT SECTION
@@ -155,6 +157,7 @@ $(document).ready(function() {
   	$('#distribution').hide();
   	$('#output_task_tree_amount').val("");
   	$('#output_task_planting_project_id').val("");
+  	$('#output_task_name').val("");
   	$('.planting_project_name').val("");
   	
   	// START -- EQUIPMENT SECTION
@@ -216,6 +219,7 @@ $(document).ready(function() {
   	  $('#distribution').hide();
   	  $('#output_task_tree_amount').val("");
   	  $('#output_task_planting_project_id').val("");
+  	  $('#output_task_name').val("");
   	  $('.planting_project_name').val("");
   	  
   	  // START -- EQUIPMENT SECTION
@@ -280,6 +284,21 @@ $(document).ready(function() {
         $('input.planting_project_id').val(data.uuid);
         $('input.planting_project_name').val(data.name);
 
+		//START--APPLICATION SECTION
+        $('#output_task_name').empty();
+	    jQuery.ajax({
+	      url: "/get_output_application_data",
+	      type: "GET",
+	      data: {"planting_project_id" : data.uuid},
+	      dataType: "json",
+	      success: function(data){
+	      	$.each(data, function(i, value) {
+	          $('#output_task_name').append('<option value="'+value.uuid+'">'+value.name+'</option>');
+	        });
+	      }
+	    });
+	    //END----APPLICATION SECTION
+		
         renderEquipment();
 
         // DISTRIBUTION SECTION

@@ -3,11 +3,6 @@
     .row
       .col-md-8
         .form-group
-          %label.col-xs-2.control-label.text-left Name *
-          .col-xs-10
-            = f.input :name, label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
-
-        .form-group
           %label.col-xs-2.control-label Start Date *
           .col-xs-4
             .controls
@@ -53,6 +48,14 @@
           %label.col-xs-2.control-label.text-left Tree amount *
           .col-xs-4
             = f.input :tree_amount, label: false, input_html: { class: "form-control tree_amount" }, error_html: {class: "err_msg"}
+
+        .form-group
+          %label.col-xs-2.control-label.text-left App Name *
+          .col-xs-10
+            - if params[:input_task].nil? || params[:input_task][:planting_project_id].nil? || params[:input_task][:planting_project_id]==""
+              = f.input :name, collection: App.none, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            - else
+              = f.input :name, collection: App.where(planting_project_id: params[:input_task][:planting_project_id], app_type: "INPUT"), label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
 
         .form-group
           %label.col-xs-2.control-label.text-left Labor *

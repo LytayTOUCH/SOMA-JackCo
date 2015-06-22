@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :production_list
   
+  resources :apps, except: [:destroy]
+  
   resources :stock_balances, only: [:index]
   get 'update_stock_balance', to: 'stock_balances#update'
   get 'adjust_stock_balance', to: 'stock_balances#adjust_form'
@@ -218,6 +220,8 @@ Rails.application.routes.draw do
   get 'get_distributions_by_planting_project', to: 'output_tasks#get_distributions_by_planting_project'
   
   get 'get_warehouse_material_amount_data', to: 'warehouse_material_amounts#get_warehouse_material_amount_data'
+  get 'get_input_application_data', to: 'input_tasks#get_application_data'
+  get 'get_output_application_data', to: 'output_tasks#get_application_data'
   get 'find_amount', to: 'input_tasks#find_amount'
 
   scope 'input_uses', as: 'input_uses' do

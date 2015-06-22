@@ -141,6 +141,57 @@ end
   PlantingProject.find_or_create_by(name: planting_project[:name])
 end
 
+# ========== Create Applications ==========
+cc = PlantingProject.find_by_name('Coconut')
+jk = PlantingProject.find_by_name('Jackfruit')
+
+[
+  # COCONUT APPLICATION
+  {uuid: 'coconut0-0000-0000-0000-00000000app1', name: 'AP-1: សំអាតស្មៅជុំវិញគល់', app_type: 'INPUT', note: 'All Zone', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-00000000app2', name: 'AP-2: ប្រើប្រាស់ថ្នាំពុលគីមី (សំលាប់សត្វល្អិត)', app_type: 'INPUT', note: 'Age : 1- 4 y\nAge : 5- 15 y, Blossoming Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-00000000app3', name: 'AP-3: ការត្រួតពិនិត្យ សត្វល្អិត និងជំងឺ', app_type: 'INPUT', note: 'All Age', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-00000000app4', name: 'AP-4: ការប្រើប្រាស់ថ្នាំផ្សិត', app_type: 'INPUT', note: 'Age : 3- 4   y, Flowering Trees\nAge : 5- 15 y, Blossoming Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-00000000app5', name: 'AP-5: ប្រើប្រាស់ថ្នាំសំលាប់ស្មៅ', app_type: 'INPUT', note: 'All Age', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-00000000app6', name: 'AP-6: ការប្រើប្រាស់ទឹក និងជួសជុលប្រព័ន្ឋទឹកដូង', app_type: 'INPUT', note: 'All Zone', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-00000000app7', name: 'AP-7: ការប្រើប្រាស់អគ្គិសនី', app_type: 'INPUT', note: 'All Zone', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-00000000app8', name: 'AP-8: ភ្ជួរដី', app_type: 'INPUT', note: 'Age : 1- 4 y', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-00000000app9', name: 'AP-9: កាត់ស្មៅ (ប្រើត្រាក់ទ័រ)', app_type: 'INPUT', note: 'All Zone', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app10', name: 'AP-10: ប្រើអង្គប់វាយដី', app_type: 'INPUT', note: 'Age : 5- 15 y, Blossoming Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app11', name: 'AP-11: ឆូតដាក់ជី​ (ត្រាក់ទ័រ)', app_type: 'INPUT', note: 'All Zone', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app12', name: 'AP-12: ការកាប់ចង្អូរដាក់ជី', app_type: 'INPUT', note: 'All Zone', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app13', name: 'AP-13: កាប់ឆ្ការព្រៃ', app_type: 'INPUT', note: 'All Zone', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app14', name: 'AP-14: ការអូសលាមកមាន់ដាក់ជិតគល់ដូង', app_type: 'INPUT', note: 'Zone I+ IV', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app15', name: 'AP-15: ការប្រើប្រាស់ជីគីមី លើកទី១', app_type: 'INPUT', note: 'Age : 1- 2 y\nAge : 3- 4   y, Flowering Trees\nAge : 5- 15 y, Blossoming Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app16', name: 'AP-16: ការប្រើប្រាស់ជីគីមី លើកទី២', app_type: 'INPUT', note: 'Age : 1- 2 y\nAge : 3- 4   y, Flowering Trees\nAge : 5- 15 y, Blossoming Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app17', name: 'AP-17: ការប្រើប្រាស់ជីធម្មជាតិ​ លើកទី១', app_type: 'INPUT', note: 'Age : 1- 2 y\nAge : 3- 4 y, Flowerig  Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app18', name: 'AP-18: ការប្រើប្រាស់ជីធម្មជាតិ លើកទី២', app_type: 'INPUT', note: 'Age : 1- 2 y (In Zone I)\nAge : 5- 15 y, Blossoming Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app19', name: 'AP-19: ការសំអាតកដូង (​កាវធាងទុំ, ស្មែង........)', app_type: 'INPUT', note: 'Age : 3- 4 y, Flowerig  Trees\nAge : 5- 15 y, Blossoming Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app20', name: 'AP-20: ការប្រមូលផលផ្លែដូងខ្ចី', app_type: 'OUTPUT', note: 'Age : 5- 15 y, Blossoming Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app21', name: 'AP-21: ការប្រមូលផលផ្លែដូងទុំ', app_type: 'OUTPUT', note: 'Age : 5- 15 y, Blossoming Trees', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app22', name: 'AP-22: ការចិតផ្លែដូងទុំបណ្តុះ', app_type: 'INPUT', note: 'Zone I+ IV', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app23', name: 'AP-23: ការជួសកូនដូង', app_type: 'INPUT', note: 'All Zone', planting_project_id: cc.uuid},
+  {uuid: 'coconut0-0000-0000-0000-0000000app24', name: 'AP-24: ការដាំដូងថ្មី', app_type: 'INPUT', note: 'Zone V', planting_project_id: cc.uuid},
+  
+  # JACKFRUIT APPLICATION
+  {uuid: 'jackfrui-0000-0000-0001-00000000app1', name: 'AP-1: បណ្តុះកូន', app_type: 'INPUT', note: 'បណ្តុះគ្រាប់ខ្នុរ និង​លាយដី ជាមួយ​ផេះអង្កាម រួច​ច្រកថង់', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-00000000app2', name: 'AP-2: ផ្សាំមែក​ និងកាត់សំអាតមែក ថែទាំ', app_type: 'INPUT', note: 'ផ្សាំមែក​ និងកាត់សំអាតមែក', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-00000000app3', name: 'AP-3: ស្តារប្រឡាយ', app_type: 'INPUT', note: 'ប្រើអេស្ការ និង​កម្មករ', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-00000000app4', name: 'AP-4: បូមទឹក​ស្រោចដើមខ្នុរ', app_type: 'INPUT', note: 'បូមទឹកចូល និងចេញពីប្រឡាយមេ ទៅប្រឡាយខាងក្រៅ', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-00000000app5', name: 'AP-5: បាញ់ថ្នាំការពារ', app_type: 'INPUT', note: 'ប្រើធុង​ចំណុះ២០ល បាញ់ថ្នាំការពារត្រួយ និងផ្លែ  សំលាប់សត្វល្អិត និង​ ដាក់ថ្នាំសំលាប់ដូង', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-00000000app6', name: 'AP-6: បាញ់ថ្នាំសំលាប់ស្មៅ សំអាតស្មៅ', app_type: 'INPUT', note: 'ប្រើធុង​ចំណុះ២០ល &ឡនបាញ់ថ្នាំ', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-00000000app7', name: 'AP-7: ដាក់ជីធម្មជាតិ លើកទី​ ១', app_type: 'INPUT', note: 'កាប់ដោយ​ចបកាប់ ប្រើជីកំប៉ុស្តិ រឺ លាមកមាន់​ រឺ លាមកគោ', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-00000000app8', name: 'AP-8: ដាក់ជីធម្មជាតិ លើកទី​ ២', app_type: 'INPUT', note: 'កាប់ដោយ​ចបកាប់ ប្រើជីកំប៉ុស្តិ រឺ លាមកមាន់​ រឺ លាមកគោ', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-00000000app9', name: 'AP-9: ដាក់ជីធម្មជាតិ លើកទី​ ៣', app_type: 'INPUT', note: 'កាប់ដោយ​ចបកាប់ ប្រើជីកំប៉ុស្តិ រឺ លាមកមាន់​ រឺ លាមកគោ', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-0000000app10', name: 'AP-10: ដាក់ជី គីមី លើកទី​ ១', app_type: 'INPUT', note: 'ប្រើបំប៉ន ដើម្បីឲ្យដើម ស្លឹក ផ្លែបានល្អ', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-0000000app11', name: 'AP-11: ដាក់ជី គីមី លើកទី​ ២', app_type: 'INPUT', note: 'ប្រើបំប៉ន ដើម្បីឲ្យដើម ស្លឹក ផ្លែបានល្អ', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-0000000app12', name: 'AP-12: ដាក់ជី គីមី​ប្រភេទ ថ្មកាល់ស្យូម', app_type: 'INPUT', note: 'ប្រើការពារផ្លែខ្នុរប្រេះ', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-0000000app13', name: 'AP-13: កាត់ក្តិប លើកទី ១', app_type: 'INPUT', note: 'កាត់ក្តឹបតាមបច្ចេកទេស', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-0000000app14', name: 'AP-14: កាត់ក្តិប លើកទី ២', app_type: 'INPUT', note: 'កាត់ក្តឹបតាមបច្ចេកទេស', planting_project_id: jk.uuid},
+  {uuid: 'jackfrui-0000-0000-0001-0000000app15', name: 'AP-15: ប្រមូលផល', app_type: 'OUTPUT', note: 'កម្មករ បេះផ្លែខ្នុរលក់', planting_project_id: jk.uuid}
+].each do |app|
+  App.create_with(name: app[:name], app_type: app[:app_type], note: app[:note], planting_project_id: app[:planting_project_id]).find_or_create_by(uuid: app[:uuid])
+end
+
 # ========== Create Unit of Measurement ==========
 [
   {name: 'Unit', note: 'Unit of measurement for tree, amount of fruit,...'},

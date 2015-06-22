@@ -1,0 +1,8 @@
+.row
+  %h1
+    = "Applications"
+    .pull-right
+      /- if can? :create, Application
+      = link_to "New Application", new_app_path, class: "btn btn-primary"
+  %hr
+  = render partial: 'list'

@@ -1,5 +1,5 @@
 class MaterialsController < ApplicationController
-  load_and_authorize_resource except: :create
+  load_and_authorize_resource except: [:create, :get_material_name, :get_material_data, :get_material_uom_data]
   
   add_breadcrumb "All Materials", :materials_path
 

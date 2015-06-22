@@ -6,7 +6,7 @@
       %th.col-xs-9.header-title Informations
     %tr
       %th Task Name
-      %td= @input_task.name
+      %td= App.find_by_uuid(@input_task.name).nil? ? @input_task.name : App.find_by_uuid(@input_task.name).name
     %tr
       %th Start date
       %td= @input_task.start_date.to_s

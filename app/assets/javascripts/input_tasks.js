@@ -25,6 +25,7 @@ $(document).ready(function(){
   $("#input_task_farm_id").change(function(){
     $('#input_task_tree_amount').val("");
     $('#input_task_planting_project_id').val("");
+    $('#input_task_name').val("");
     $('.planting_project_name').val("");
 
     // START -- EQUIPMENT SECTION
@@ -88,6 +89,7 @@ $(document).ready(function(){
   $("#input_task_zone_id").change(function(){
     $('#input_task_tree_amount').val("");
     $('#input_task_planting_project_id').val("");
+    $('#input_task_name').val("");
     $('.planting_project_name').val("");
     
     // START -- EQUIPMENT SECTION
@@ -148,6 +150,7 @@ $(document).ready(function(){
   $("#input_task_area_id").change(function(){
     $('#input_task_tree_amount').val("");
     $('#input_task_planting_project_id').val("");
+    $('#input_task_name').val("");
     $('.planting_project_name').val("");
  
     // START -- EQUIPMENT SECTION
@@ -206,6 +209,7 @@ $(document).ready(function(){
     if($('#input_task_block_id').val() == "") {
       $('#input_task_tree_amount').val("");
       $('#input_task_planting_project_id').val("");
+      $('#input_task_name').val("");
       $('.planting_project_name').val("");
    
       // START -- EQUIPMENT SECTION
@@ -267,6 +271,21 @@ $(document).ready(function(){
       success: function(data){
         $('input.planting_project_id').val(data.uuid);
         $('input.planting_project_name').val(data.name);
+        
+        //START--APPLICATION SECTION
+        $('#input_task_name').empty();
+	    jQuery.ajax({
+	      url: "/get_input_application_data",
+	      type: "GET",
+	      data: {"planting_project_id" : data.uuid},
+	      dataType: "json",
+	      success: function(data){
+	      	$.each(data, function(i, value) {
+	          $('#input_task_name').append('<option value="'+value.uuid+'">'+value.name+'</option>');
+	        });
+	      }
+	    });
+	    //END----APPLICATION SECTION
 
         renderEquipment();
         renderMachinery();

@@ -15,7 +15,7 @@
       %td= input_task.start_date.to_s
       %td= input_task.end_date.to_s
       %td= input_task.planting_project.name
-      %td= input_task.name
+      %td= App.find_by_uuid(input_task.name).nil? ? input_task.name : App.find_by_uuid(input_task.name).name
       %td= input_task.reference_number
       %td= input_task.block.farm.name.to_s + " - " + input_task.block.name
       %td= input_task.tree_amount

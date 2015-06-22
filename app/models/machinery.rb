@@ -3,6 +3,7 @@ class Machinery < ActiveRecord::Base
   
   validates :name, :presence => { message: "Machinery Name is required." }
   validates :machinery_type_id, :presence => { message: "Machinery Type is required." }
+  validate :planting_project_can_not_be_null_if_source_is_own_project
  
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
