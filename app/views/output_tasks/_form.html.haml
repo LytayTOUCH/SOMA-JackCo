@@ -98,7 +98,7 @@
               .form-group
                 %label.col-xs-3.control-label.text-left= d.label
                 - d.uoms.split(",").each do |uom|
-                  .col-xs-4
+                  .col-xs-3
                     .input-group
                       .input.float.required
                         %input.numeric.float.required.form-control{type: "number", step: "any", name: "distribution_amounts[]", value: params[:distribution_amounts][@dis_index]}/
@@ -106,6 +106,26 @@
                         %input{type: "hidden", name: "uom_ids[]", :value => uom.split("|").first}/
                       %span.input-group-addon= uom.split("|").second
                   - @dis_index += 1
+                  
+                - if d.to_nursery
+                  .col-xs-3
+                    %input{type: "hidden", name: "to_nursery_distribution", :value => d.uuid}
+                    %select.form-control{:name => "to_nursery_warehouses"}
+                      - Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Nursery Warehouse").uuid, active: true).each do |wh|
+                        - if wh.uuid == params[:to_nursery_warehouses]
+                          %option{:value => wh.uuid, :selected => "selected"}= wh.name
+                        - else
+                          %option{:value => wh.uuid}= wh.name
+                - if d.to_finish
+                  .col-xs-3
+                    %input{type: "hidden", name: "to_finish_distribution", :value => d.uuid}
+                    %select.form-control{:name => "to_finish_warehouses"}
+                      - Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Finished Goods Warehouse").uuid, active: true).each do |wh|
+                        - if wh.uuid == params[:to_finish_warehouses]
+                          %option{:value => wh.uuid, :selected => "selected"}= wh.name
+                        - else
+                          %option{:value => wh.uuid}= wh.name
+
           - elsif !@output_task.planting_project_id.nil? && @output_task.planting_project_id!="" && !@output_task.block_id.nil?
             %h3= "Distribution - "+PlantingProject.find_by_uuid(@output_task.planting_project_id).name
             %hr
@@ -114,7 +134,7 @@
               .form-group
                 %label.col-xs-3.control-label.text-left= d.label
                 - d.uoms.split(",").each do |uom|
-                  .col-xs-4
+                  .col-xs-3
                     .input-group
                       .input.float.required
                         %input.numeric.float.required.form-control{type: "number", step: "any", name: "distribution_amounts[]", value: 0}/
@@ -122,6 +142,25 @@
                         %input{type: "hidden", name: "uom_ids[]", :value => uom.split("|").first}/
                       %span.input-group-addon= uom.split("|").second
                   - @dis_index += 1
+                  
+                - if d.to_nursery
+                  .col-xs-3
+                    %input{type: "hidden", name: "to_nursery_distribution", :value => d.uuid}
+                    %select.form-control{:name => "to_nursery_warehouses"}
+                      - Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Nursery Warehouse").uuid, active: true).each do |wh|
+                        - if wh.uuid == params[:to_nursery_warehouses]
+                          %option{:value => wh.uuid, :selected => "selected"}= wh.name
+                        - else
+                          %option{:value => wh.uuid}= wh.name
+                - if d.to_finish
+                  .col-xs-3
+                    %input{type: "hidden", name: "to_finish_distribution", :value => d.uuid}
+                    %select.form-control{:name => "to_finish_warehouses"}
+                      - Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Finished Goods Warehouse").uuid, active: true).each do |wh|
+                        - if wh.uuid == params[:to_finish_warehouses]
+                          %option{:value => wh.uuid, :selected => "selected"}= wh.name
+                        - else
+                          %option{:value => wh.uuid}= wh.name
         
         .form-group
           .col-xs-7

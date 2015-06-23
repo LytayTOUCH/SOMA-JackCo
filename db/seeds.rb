@@ -118,20 +118,15 @@ central_warehouse = WarehouseType.find_by_name("Central Warehouse")
 fertilizer_warehouse = WarehouseType.find_by_name("Fertilizer Warehouse")
 project_warehouse = WarehouseType.find_by_name("Project Warehouse")
 finished_goods_warehouse = WarehouseType.find_by_name("Finished Goods Warehouse")
-nursery__warehouse = WarehouseType.find_by_name("Nursery Warehouse")
+nursery_warehouse = WarehouseType.find_by_name("Nursery Warehouse")
 
 [
   {name: "Oroung Finished Goods WH", warehouse_type_uuid: finished_goods_warehouse.uuid, address:"Oroung Farm", note:"", active: true},
+  {name: "Coconut Nursery WH", warehouse_type_uuid: nursery_warehouse.uuid, address:"Oroung Farm", note:"", active: true},
   {name: "Coconut Project WH", warehouse_type_uuid: project_warehouse.uuid, address:"Chamkar Dong", note:"", active: true}
 ].each do |each_warehouse|
   Warehouse.create_with(warehouse_type_uuid: each_warehouse[:warehouse_type_uuid], address: each_warehouse[:address], note: each_warehouse[:note], active: each_warehouse[:active]).find_or_create_by(name: each_warehouse[:name])
 end
-
-# Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_warehouse.uuid, fertilizer_warehouse.uuid, project_warehouse.uuid).each do |wh|
-#   Material.all.each do |m|
-#     WarehouseMaterialAmount.create(warehouse_uuid: wh.uuid,  material_uuid: m.uuid, amount: 0, returnable: false)
-#   end
-# end
 
 # ========== Create Planting Projects ========== 
 [
@@ -207,35 +202,55 @@ kg = UnitOfMeasurement.find_by_name('Kg')
 g = UnitOfMeasurement.find_by_name('g')
 l = UnitOfMeasurement.find_by_name('L')
 ml = UnitOfMeasurement.find_by_name('mL')
+
 # ========== Create Distributions ==========
-unit = UnitOfMeasurement.find_by_name('Unit')
-kg = UnitOfMeasurement.find_by_name('Kg')
 coconut = PlantingProject.find_by_name('Coconut')
 jk = PlantingProject.find_by_name('Jackfruit')
 [
-  {uuid: '00000000-0000-0000-0000-000000000001', label: 'Total Production',         uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 1,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000002', label: 'Young Fruit',              uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 2,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000003', label: 'Good Young Fruit',         uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 3,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000004', label: 'Spoiled Young Fruit',      uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 4,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000005', label: 'Ripe Fruit',               uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 5,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000006', label: 'Good Ripe Fruit',          uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 6,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000007', label: 'Spoiled Ripe Fruit',       uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 7,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000008', label: 'To Finish Good Warehouse', uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 8,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000009', label: 'Free at Farm',             uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 9,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000010', label: 'Spoiled Waste',            uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 10, note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000011', label: 'To Nursery Warehouse',     uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 11, note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000001', label: 'Total Production',         uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 1,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000002', label: 'Young Fruit',              uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 2,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000003', label: 'Good Young Fruit',         uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 3,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000004', label: 'Spoiled Young Fruit',      uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 4,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000005', label: 'Ripe Fruit',               uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 5,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000006', label: 'Good Ripe Fruit',          uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 6,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000007', label: 'Spoiled Ripe Fruit',       uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 7,  note: ''},
+  {to_nursery: 0, to_finish: 1, uuid: '00000000-0000-0000-0000-000000000008', label: 'To Finish Good Warehouse', uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 8,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000009', label: 'Free at Farm',             uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 9,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000010', label: 'Spoiled Waste',            uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 10, note: ''},
+  {to_nursery: 1, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000011', label: 'To Nursery Warehouse',     uoms: unit.uuid+'|'+unit.name,                             planting_project_id: coconut.uuid, order_of_display: 11, note: ''},
   
-  {uuid: '00000000-0000-0000-0000-000000000012', label: 'Total Production',         uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 1,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000013', label: 'Ripe Fruit',               uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 2,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000014', label: 'Good Ripe Fruit',          uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 3,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000015', label: 'Damaged Ripe Fruit',       uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 4,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000016', label: 'Spoiled Ripe Fruit',       uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 5,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000017', label: 'Young Fruit',              uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 6,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000018', label: 'To Nursery Warehouse',     uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 7,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000019', label: 'To Finish Good Warehouse', uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 8,  note: ''},
-  {uuid: '00000000-0000-0000-0000-000000000020', label: 'Spoiled Waste',            uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 9,  note: ''}
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000012', label: 'Total Production',         uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 1,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000013', label: 'Ripe Fruit',               uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 2,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000014', label: 'Good Ripe Fruit',          uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 3,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000015', label: 'Damaged Ripe Fruit',       uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 4,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000016', label: 'Spoiled Ripe Fruit',       uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 5,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000017', label: 'Young Fruit',              uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 6,  note: ''},
+  {to_nursery: 1, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000018', label: 'To Nursery Warehouse',     uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 7,  note: ''},
+  {to_nursery: 0, to_finish: 1, uuid: '00000000-0000-0000-0000-000000000019', label: 'To Finish Good Warehouse', uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 8,  note: ''},
+  {to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000020', label: 'Spoiled Waste',            uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 9,  note: ''}
 ].each do |d|
-  Distribution.create_with(label: d[:label], uoms: d[:uoms], planting_project_id: d[:planting_project_id], order_of_display: d[:order_of_display], note: d[:note]).find_or_create_by(uuid: d[:uuid])
+  Distribution.create_with(to_nursery: d[:to_nursery], to_finish: d[:to_finish], label: d[:label], uoms: d[:uoms], planting_project_id: d[:planting_project_id], order_of_display: d[:order_of_display], note: d[:note]).find_or_create_by(uuid: d[:uuid])
+end
+
+# UPDATE TO FINISH WAREHOUSE
+['00000000-0000-0000-0000-000000000008', '00000000-0000-0000-0000-000000000019'].each do |uuid|
+  d = Distribution.find_by_uuid(uuid)
+  d.update_attributes(to_finish: 1)
+  
+  # Production in warehouse is store as UNIT only for finish good warehouse
+  Warehouse.where(warehouse_type_uuid: finished_goods_warehouse.uuid).each do |wh|
+    ProductionInWarehouse.create_with(amount: 0).find_or_create_by(warehouse_id: wh.uuid, distribution_id: uuid, unit_measure_id: unit.uuid)
+  end
+end
+# UPDATE TO NURSERY WAREHOUSE
+['00000000-0000-0000-0000-000000000011', '00000000-0000-0000-0000-000000000018'].each do |uuid|
+  d = Distribution.find_by_uuid(uuid)
+  d.update_attributes(to_nursery: 1)
+  
+  # Production in warehouse is store as UNIT only for nursery
+  Warehouse.where(warehouse_type_uuid: nursery_warehouse.uuid).each do |wh|
+    ProductionInWarehouse.create_with(amount: 0).find_or_create_by(warehouse_id: wh.uuid, distribution_id: uuid, unit_measure_id: unit.uuid)
+  end
 end
 
 # ========== Create Material Categories ========== 
@@ -256,8 +271,7 @@ herbicide = MaterialCategory.find_by_name('Herbicides')
 indirect_material = MaterialCategory.find_by_name('Indirect Materials')
 other = MaterialCategory.find_by_name('Other')
 
-#=========== Create Material ============
-
+#=========== START :: Create Material ============
 [
   {name: "Diesel", material_cate_uuid: indirect_material.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
   {name: "Engine Oil No. 40", material_cate_uuid: indirect_material.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
@@ -290,7 +304,7 @@ other = MaterialCategory.find_by_name('Other')
   {name: "Niphosate", material_cate_uuid: herbicide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
   {name: "Newsate", material_cate_uuid: herbicide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
   {name: "Glyphosan", material_cate_uuid: herbicide.uuid, unit_measure_uuid: l.uuid, supplier: "", note: ""},
-  {name: "Seed", material_cate_uuid: other.uuid, unit_measure_uuid: unit.uuid, supplier: "", note: ""},
+  {name: "Coconut Seed", material_cate_uuid: other.uuid, unit_measure_uuid: unit.uuid, supplier: "", note: ""},
   {name: "Chlorpyrifos", material_cate_uuid: pest_insecticide.uuid, unit_measure_uuid: ml.uuid, supplier: "", note: ""}
 ].each do |each_material|
   material_to_warehouse = Material.create_with(material_cate_uuid: each_material[:material_cate_uuid], unit_measure_uuid: each_material[:unit_measure_uuid], supplier: each_material[:supplier], note: each_material[:note]).find_or_create_by(name: each_material[:name])
@@ -308,6 +322,15 @@ other = MaterialCategory.find_by_name('Other')
     end
   end
 end
+
+# DESTROY ALL MATERIAL NAMED "Seed" AND ALSO REMOVE ITS ASSOCIATION FROM WAREHOUSE MATERIAL AMOUNT & STOCK BALANCE TABLE
+seed = Material.find_by_name("Seed")
+unless seed.nil?
+  WarehouseMaterialAmount.destroy_all(material_uuid: seed.uuid)
+  StockBalance.destroy_all(material_id: seed.uuid)
+  Material.destroy_all(name: "Seed")
+end
+#=========== END :: Create Material ============
 
 # ========== Create Farms ==========
 [

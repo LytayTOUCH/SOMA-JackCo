@@ -32,10 +32,25 @@ class WarehousesController < ApplicationController
 
       if @warehouse.save
         create_log current_user.uuid, "Created New Warehouse", @warehouse
-        if @warehouse.warehouse_type_uuid == @finishedGooduuid || @warehouse.warehouse_type_uuid == @nurseryuuid
-          @productions.each do |production|
-            WarehouseProductionAmount.create(warehouse_id: @warehouse.uuid, production_id: production.uuid, amount: 0)
+        
+        unit = UnitOfMeasurement.find_by_name('Unit')
+        
+        if @warehouse.warehouse_type_uuid == @finishedGooduuid
+          
+          # UPDATE TO FINISH WAREHOUSE
+          #To Finish Good Warehouse - Coconut    , To Finish Good Warehouse - Jackfruit
+          ['00000000-0000-0000-0000-000000000008', '00000000-0000-0000-0000-000000000019'].each do |distribution_id|
+            ProductionInWarehouse.create_with(amount: 0).find_or_create_by(warehouse_id: @warehouse.uuid, distribution_id: distribution_id, unit_measure_id: unit.uuid)
           end
+          
+        elsif @warehouse.warehouse_type_uuid == @nurseryuuid
+          
+          # UPDATE TO NURSERY WAREHOUSE
+          #To Nursery Warehouse - Coconut        , To Nursery Warehouse - Jackfruit
+          ['00000000-0000-0000-0000-000000000011', '00000000-0000-0000-0000-000000000018'].each do |distribution_id|
+            ProductionInWarehouse.create_with(amount: 0).find_or_create_by(warehouse_id: @warehouse.uuid, distribution_id: distribution_id, unit_measure_id: unit.uuid)
+          end
+          
         else
           @materials.each do |material|
             # WAREHOUSE MATERIAL AMOUNT

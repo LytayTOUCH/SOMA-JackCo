@@ -61,18 +61,34 @@ class OutputTasksController < ApplicationController
         end
         #End Select Equipment
         
-        index = 0
-        @warehouses = params[:warehouses]
-        @materials = params[:materials]
-        @qty = params[:material_qtys]
-
-        # START -- DISTRIBUTION SECTION
+        #--- START -- DISTRIBUTION SECTION
         dis_index = 0
         params[:distribution_amounts].each do |amount|
           OutputDistribution.create(output_task_id: @output_task.uuid, distribution_id: params[:distribution_ids][dis_index], unit_measure_id: params[:uom_ids][dis_index], amount: amount == "" ? "0":amount)
+          
+          unit = UnitOfMeasurement.find_by_name('Unit')
+          
+          # PRODUCTION_IN_WAREHOUSE
+          if params[:distribution_ids][dis_index] == params[:to_nursery_distribution] && params[:uom_ids][dis_index] == unit.uuid
+            production_in_wh = ProductionInWarehouse.find_by(warehouse_id: params[:to_nursery_warehouses], distribution_id: params[:to_nursery_distribution], unit_measure_id: unit.uuid)
+            old_amount = production_in_wh.amount
+            new_amount = old_amount + (amount == "" ? 0 : amount.to_f)
+            
+            production_in_wh.update_attributes(amount: new_amount)
+            
+          elsif params[:distribution_ids][dis_index] == params[:to_finish_distribution] && params[:uom_ids][dis_index] == unit.uuid
+            production_in_wh = ProductionInWarehouse.find_by(warehouse_id: params[:to_finish_warehouses], distribution_id: params[:to_finish_distribution], unit_measure_id: unit.uuid)
+            old_amount = production_in_wh.amount
+            new_amount = old_amount + (amount == "" ? 0 : amount.to_f)
+            
+            production_in_wh.update_attributes(amount: new_amount)
+            
+          end
+          
           dis_index += 1
         end
-        # END -- DISTRIBUTION SECTION
+        
+        #--- END -- DISTRIBUTION SECTION
          
         flash[:notice] = "Output Task saved successfully"
         redirect_to new_output_task_path+"/?id="+@output_task.uuid
@@ -103,7 +119,11 @@ class OutputTasksController < ApplicationController
   end
   
   def get_distributions_by_planting_project
-    render json: Distribution.where(planting_project_id: params[:planting_project_id]).order("order_of_display ASC")
+    @distributions = Distribution.where(planting_project_id: params[:planting_project_id]).order("order_of_display ASC")
+    @nursery_warehouses = Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Nursery Warehouse").uuid, active: true)
+    @finish_warehouses = Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Finished Goods Warehouse").uuid, active: true)
+    
+    render :json => {distributions: @distributions, nursery_warehouses: @nursery_warehouses, finish_warehouses: @finish_warehouses}
   end
   
   def get_application_data

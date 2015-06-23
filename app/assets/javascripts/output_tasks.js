@@ -309,16 +309,16 @@ $(document).ready(function() {
 	      url: "/get_distributions_by_planting_project",
 	      type: "GET",
 	      data: {"planting_project_id" : data.uuid},
-	      dataType: "json",            
+	      dataType: "json",
 	      success: function(data) {
-	        $.each(data, function(i, value) {
+	        $.each(data.distributions, function(i, value) {
 	          
 	          var result = "<div class='form-group'><label class='col-xs-3 control-label text-left'>"+ value.label +"</label>";
 	          
 	          var uoms = value.uoms.split(",");
 	          var length = uoms.length;
               for (var i = 0; i < length; i++) {
-              	result += '<div class="col-xs-4">'
+              	result += '<div class="col-xs-3">'
 				             +'<div class="input-group">'
 				               +'<div class="input float required">'
 				                 +'<input class="numeric float required form-control" type="number" value="0.0" step="any" name="distribution_amounts[]">'
@@ -328,6 +328,26 @@ $(document).ready(function() {
 				               +'<span class="input-group-addon">' + uoms[i].split("|")[1] + '</span>'
 				             +'</div>'
 	                       +'</div>';
+              }
+              
+              if(value.to_nursery) {
+              	result += '<div class="col-xs-3"><input name="to_nursery_distribution" type="hidden" value="'+value.uuid+'" /></input><select name="to_nursery_warehouses" class="form-control">';
+              	
+              	$.each(data.nursery_warehouses, function(i, wh) {
+              	  result += '<option value=' + wh.uuid + '>' + wh.name + '</option>';
+	            });
+	            
+	            result += '</select></div>';
+              }
+              
+              if(value.to_finish) {
+              	result += '<div class="col-xs-3"><input name="to_finish_distribution" type="hidden" value="'+value.uuid+'" /><select name="to_finish_warehouses" class="form-control">';
+              	
+              	$.each(data.finish_warehouses, function(i, wh) {
+              	  result += '<option value=' + wh.uuid + '>' + wh.name + '</option>';
+	            });
+	            
+	            result += '</select></div>';
               }
               
               result += "</div>";
