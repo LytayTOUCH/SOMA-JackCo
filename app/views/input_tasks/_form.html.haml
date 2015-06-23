@@ -18,7 +18,9 @@
             = f.input :farm_id, collection: Farm.all.map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           %label.col-xs-2.control-label.text-left Zone *
           .col-xs-4
-            - if params[:input_task].nil? || params[:input_task][:farm_id].nil? || params[:input_task][:farm_id]==""
+            - if !@input_task.farm_id.nil?
+              = f.input :zone_id, collection: Zone.where(farm_id: @input_task.farm_id), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            - elsif params[:input_task].nil? || params[:input_task][:farm_id].nil? || params[:input_task][:farm_id]==""
               = f.input :zone_id, collection: Zone.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
             - else
               = f.input :zone_id, collection: Zone.where(farm_id: params[:input_task][:farm_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
@@ -26,13 +28,17 @@
         .form-group
           %label.col-xs-2.control-label.text-left Area *
           .col-xs-4
-            - if params[:input_task].nil? || params[:input_task][:zone_id].nil? || params[:input_task][:zone_id]==""
+            - if !@input_task.zone_id.nil?
+              = f.input :area_id, collection: Area.where(zone_id: @input_task.zone_id), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            - elsif params[:input_task].nil? || params[:input_task][:zone_id].nil? || params[:input_task][:zone_id]==""
               = f.input :area_id, collection: Area.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
             - else
               = f.input :area_id, collection: Area.where(zone_id: params[:input_task][:zone_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
           %label.col-xs-2.control-label.text-left Block *
           .col-xs-4
-            - if params[:input_task].nil? || params[:input_task][:area_id].nil? || params[:input_task][:area_id]==""
+            - if !@input_task.area_id.nil?
+              = f.input :block_id, collection: Block.where(area_id: @input_task.area_id), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+            - elsif params[:input_task].nil? || params[:input_task][:area_id].nil? || params[:input_task][:area_id]==""
               = f.input :block_id, collection: Block.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
             - else
               = f.input :block_id, collection: Block.where(area_id: params[:input_task][:area_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
@@ -41,7 +47,9 @@
           %label.col-xs-2.control-label.text-left Project *
           .col-xs-4
             = f.input :planting_project_id, label: false, input_html: {class: "form-control planting_project_id"}, error_html: {class: "err_msg"}, as: :hidden
-            - if params[:input_task].nil? || params[:input_task][:planting_project_id].nil? || params[:input_task][:planting_project_id]==""
+            - if !@input_task.planting_project_id.nil? && @input_task.planting_project_id != "" 
+              %input.form-control.planting_project_name{:readonly => "true", :type => "text", :value => PlantingProject.find_by_uuid(@input_task.planting_project_id).name}/
+            - elsif params[:input_task].nil? || params[:input_task][:planting_project_id].nil? || params[:input_task][:planting_project_id]==""
               %input.form-control.planting_project_name{:type => "text", readonly: true }
             - else
               %input.form-control.planting_project_name{:readonly => "true", :type => "text", :value => PlantingProject.find_by_uuid(params[:input_task][:planting_project_id]).name}/
@@ -52,7 +60,9 @@
         .form-group
           %label.col-xs-2.control-label.text-left App Name *
           .col-xs-10
-            - if params[:input_task].nil? || params[:input_task][:planting_project_id].nil? || params[:input_task][:planting_project_id]==""
+            - if !@input_task.planting_project_id.nil?
+              = f.input :name, collection: App.where(planting_project_id: @input_task.planting_project_id, app_type: "INPUT"), label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}
+            - elsif params[:input_task].nil? || params[:input_task][:planting_project_id].nil? || params[:input_task][:planting_project_id]==""
               = f.input :name, collection: App.none, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
             - else
               = f.input :name, collection: App.where(planting_project_id: params[:input_task][:planting_project_id], app_type: "INPUT"), label: false, input_html: { class: "form-control" }, error_html: {class: "err_msg"}

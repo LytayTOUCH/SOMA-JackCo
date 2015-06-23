@@ -11,7 +11,26 @@ class InputTasksController < ApplicationController
 
   def new
     begin
-      @input_task = InputTask.new
+      if params[:id].nil? || params[:id]==""
+        @input_task = InputTask.new
+      else
+        input_task = InputTask.find_by_uuid(params[:id])
+        @input_task = InputTask.new
+        
+        @input_task.name = input_task.name
+        @input_task.start_date = input_task.start_date
+        @input_task.end_date = input_task.end_date
+        @input_task.block_id = input_task.block_id
+        @input_task.tree_amount = input_task.tree_amount
+        @input_task.labor_id = input_task.labor_id
+        @input_task.reference_number = input_task.reference_number
+        @input_task.note = input_task.note
+        @input_task.planting_project_id = input_task.planting_project_id
+        @input_task.farm_id = input_task.farm_id
+        @input_task.zone_id = input_task.zone_id
+        @input_task.area_id = input_task.area_id
+      end
+      
       @materials = Material.select("uuid, name")
 
     rescue Exception => e
@@ -165,7 +184,7 @@ class InputTasksController < ApplicationController
         #End Select Machinery
 
       flash[:notice] = "Input Task saved successfully"
-      redirect_to input_tasks_path   
+      redirect_to new_input_task_path+"/?id="+@input_task.uuid
 
     rescue Exception => e
       puts e

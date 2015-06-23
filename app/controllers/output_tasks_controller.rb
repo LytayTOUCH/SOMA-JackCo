@@ -11,23 +11,24 @@ class OutputTasksController < ApplicationController
   end
 
   def new
-    @output_task = OutputTask.new
-    if !params[:output_task].nil?
-      if !params[:output_task][:farm_id].nil? && params[:output_task][:farm_id] != "" 
-        @output_task.farm_id = params[:output_task][:farm_id]
-      end
-      if !params[:output_task][:zone_id].nil? && params[:output_task][:zone_id] != ""
-        @output_task.zone_id = params[:output_task][:zone_id]
-      end
-      if !params[:output_task][:area_id].nil? && params[:output_task][:area_id] != ""
-        @output_task.area_id = params[:output_task][:area_id]
-      end
-      if !params[:output_task][:block_id].nil? && params[:output_task][:block_id] != ""
-        @output_task.block_id = params[:output_task][:block_id]
-      end
-      if !params[:output_task][:planting_project_id].nil?
-        @output_task.planting_project_id = params[:output_task][:planting_project_id]
-      end
+    if params[:id].nil? || params[:id]==""
+      @output_task = OutputTask.new
+    else
+      output_task = OutputTask.find_by_uuid(params[:id])
+      @output_task = OutputTask.new
+      
+      @output_task.name = output_task.name
+      @output_task.start_date = output_task.start_date
+      @output_task.end_date = output_task.end_date
+      @output_task.block_id = output_task.block_id
+      @output_task.planting_project_id = output_task.planting_project_id
+      @output_task.tree_amount = output_task.tree_amount
+      @output_task.labor_id = output_task.labor_id
+      @output_task.reference_number = output_task.reference_number
+      @output_task.note = output_task.note
+      @output_task.farm_id = output_task.farm_id
+      @output_task.zone_id = output_task.zone_id
+      @output_task.area_id = output_task.area_id
     end
   end
 
@@ -74,7 +75,7 @@ class OutputTasksController < ApplicationController
         # END -- DISTRIBUTION SECTION
          
         flash[:notice] = "Output Task saved successfully"
-        redirect_to output_tasks_path
+        redirect_to new_output_task_path+"/?id="+@output_task.uuid
       else
         flash[:notice] = "Output Task can't save"
         render 'new'
