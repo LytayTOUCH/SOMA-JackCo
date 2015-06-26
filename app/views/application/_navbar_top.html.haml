@@ -94,6 +94,14 @@
             = navbar_link "Input Tasks", input_tasks_path, "active"
           %li
             = navbar_link "Output Tasks", output_tasks_path, "active"
+          
+          %li.divider
+          
+          %li.dropdown-submenu
+            %a{:href => "#", :tabindex => "-1"} Nursery Tasks
+            %ul.dropdown-menu
+              %li
+                = navbar_link "Coconut", coconut_nursery_inputs_path, "active"
            
       - if can? :read, Log
         %li.dropdown

@@ -1,0 +1,36 @@
+%table#list_data_table
+  %thead
+    %tr
+      %th.col-md-1= "Receivable?"
+      %th.col-md-1= "Reference"
+      %th.col-md-1= "Nursery Date"
+      %th.col-md-1= "Receive Date"
+      %th.col-md-1= "Item Name"
+      %th.col-md-1= "Processing Qty"
+      %th.col-md-1= "Spoil Qty"
+      %th.col-md-1= "Action"
+  %tbody
+    - @cs.each do |input|
+      %tr
+        - if input.receivable == "NOT YET"
+          %td
+            %span{style: "background-color:#999900;color:white;padding: 0 5px;"}= input.receivable
+        - elsif input.receivable == "EXPIRED"
+          %td
+            %span{style: "background-color:red;color:white;padding: 0 5px;"}= input.receivable
+        - elsif input.receivable == "TODAY"
+          %td
+            %span{style: "background-color:green;color:white;padding: 0 5px;"}= input.receivable
+        - elsif input.receivable == "RECEIVED"
+          %td
+            %span{style: "background-color:black;color:white;padding: 0 5px;"}= input.receivable
+        %td= input.reference_number
+        %td= input.nursery_date
+        %td= input.receive_date
+        %td= input.item_name
+        %td= input.input_processing_qty
+        %td= input.input_spoil_qty
+        %td
+          = link_to "Receive", "#"
+
+- # TODO: SMEY, Implement pop up for user to record nursery output.

@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get 'support', to: 'helps#support'
   get 'user_manual', to: 'helps#user_manual'
   
+  resources :coconut_nursery_inputs, only: [:index, :new, :create]
+  get 'get_qty_production_in_stock', to: 'warehouses#get_qty_production_in_stock'
+  
   resources :production_standards
 
   resources :production_plans

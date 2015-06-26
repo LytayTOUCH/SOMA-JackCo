@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-  load_and_authorize_resource except: :create
+  load_and_authorize_resource except: [:create, :get_qty_production_in_stock]
 
   add_breadcrumb "All Warehouses", :warehouses_path
 
@@ -111,6 +111,11 @@ class WarehousesController < ApplicationController
     rescue Exception => e
       puts e
     end
+  end
+  
+  def get_qty_production_in_stock
+    unit_id = UnitOfMeasurement.find_by_name("Unit").uuid
+    render json: ProductionInWarehouse.find_by(warehouse_id: params[:warehouse_id], distribution_id: params[:distribution_id], unit_measure_id: unit_id)
   end
 
   private

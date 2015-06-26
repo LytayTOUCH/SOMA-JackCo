@@ -1,0 +1,53 @@
+#form-model-content-supplier
+= simple_form_for @c, html: {class: 'form-horizontal'} do |f|
+  .container
+    .row
+      .col-md-7
+        .form-group
+          %label.col-xs-3.control-label Reference Number *
+          .col-xs-9
+            = f.input :reference_number, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+        .form-group
+          %label.col-xs-3.control-label Nursery Date *
+          .col-xs-9
+            .controls
+              = f.text_field :nursery_date, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control', placeholder: 'Year-Month-Day'
+        .form-group
+          %label.col-xs-3.control-label Receive Date *
+          .col-xs-9
+            .controls
+              = f.text_field :receive_date, :readonly => true, data: { :date_format => 'YYYY-MM-DD' }, :class => 'form-control', placeholder: 'Year-Month-Day'
+        .form-group
+          %label.col-xs-3.control-label Item Name *
+          .col-xs-9
+            = f.input :item_name, label: false, input_html: {class: "form-control", readonly: "readonly", value: "Ripe Fruit"}, error_html: {class: "err_msg"}
+        .form-group
+          %label.col-xs-3.control-label Nursery WH *
+          .col-xs-4
+            = f.input :warehouse_id, collection: Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Nursery Warehouse").uuid).map{ |p| [p.name, p.uuid] }, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+          %label.col-xs-2.control-label Qty In Stock
+          .col-xs-3
+            %input#qty_in_stock.string.optional.form-control{:name => "qty_in_stock", :readonly => "readonly", :type => "text", :value => params[:qty_in_stock]}
+        .form-group
+          %label.col-xs-3.control-label Total Qty
+          .col-xs-9
+            = f.input :input_total_qty, label: false, input_html: {class: "form-control", readonly: "readonly"}, error_html: {class: "err_msg"}
+        .form-group
+          %label.col-xs-3.control-label Processing Qty *
+          .col-xs-9
+            = f.input :input_processing_qty, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+        .form-group
+          %label.col-xs-3.control-label Spoil Qty *
+          .col-xs-9
+            = f.input :input_spoil_qty, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+        .form-group
+          .col-xs-12
+            .pull-right
+              = f.submit "Save", class: "btn btn-primary", "data-disable-with" => "Submitting..."
+              = link_to "Cancel", "/#{params[:controller]}", class: "btn btn-default", "data-disable-with" => "Cancel..."    
+      .col-md-4
+        = render "error", :obj => @c
+      .col-md-2
+
+- content_for :javascript_body do
+  = javascript_include_tag "coconut_nursery_inputs"
