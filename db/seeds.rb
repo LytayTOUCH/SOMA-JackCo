@@ -42,6 +42,7 @@ labor = Labor.find_by_name("Default Manager")
 labor_kevin = Labor.find_by_name("Kevin")
 labor_piseth = Labor.find_by_name("Piseth")
 labor_pheth = Labor.find_by_name("Pheth")
+
 # ==========  Create UserGroup ========== 
 [ 
   {name: "Administrator", note: "Controlling everything", active: true},
@@ -54,7 +55,6 @@ end
 
 # ========== Create a User ========== 
 user_group = UserGroup.create_with(note: "Controlling all resources", active: true).find_or_create_by(name: "Administrator")
-# labor = Labor.create_with(gender: "M", phone: "012 345 678", email: "admin@gmail.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true)
 [
   {email: "admin@cltag.com", password: "admin1234567890", password_confirmation: "admin1234567890", user_group_id: user_group.uuid, labor_id: labor.uuid},
   {email: "ngok@somagroup.com.kh", password: "kevin@12345", password_confirmation: "kevin@12345", user_group_id: user_group.uuid, labor_id: labor_kevin.uuid},
@@ -63,43 +63,6 @@ user_group = UserGroup.create_with(note: "Controlling all resources", active: tr
 ].each do |each_user|
   user = User.create_with(password: each_user[:password], password_confirmation: each_user[:password_confirmation], user_group_id: each_user[:user_group_id], labor_id: each_user[:labor_id]).find_or_create_by(email: each_user[:email])
   user_group.users << user
-end
-
-# ========== Create Projects ========== 
-[ 
-  { name: 'Jackfruit' },
-  { name: 'Coconut' }
-].each do |project|
-  Project.find_or_create_by(name: project[:name])
-end
-
-# ========== Create Activity types ========== 
-[ 
-  { name: 'Tilling', note: 'Tilling trees', label: 'Tilling' },
-  { name: 'Planting', note: 'Planting trees', label: 'Planting' },
-  { name: 'Fertilizing', note: 'Fertilizing trees', label: 'Fertilizing' },
-  { name: 'Harvesting', note: 'Harvesting products', label: 'Harvesting' }
-].each do |activity_type|
-  ActivityType.create_with(note: activity_type[:note], label: activity_type[:label]).find_or_create_by(name: activity_type[:name])
-end
-
-# ========== Create Data for Pie Chart ========== 
-[
-  {name: 'Fertilizer', amount: 3000},
-  {name: 'Small Tree', amount: 5000},
-  {name: 'Workers', amount: 2000},
-  {name: 'Fuel', amount: 10000}
-].each do |testing_chart|
-  TestingChart.create_with(amount: testing_chart[:amount]).find_or_create_by(name: testing_chart[:name])
-end
-
-# ========== Create Data for Bar Chart ========== 
-[
-  {element: 'Actual', amount: 40.00, bar_color: 'gold'},
-  {element: 'Forecast', amount: 40.50, bar_color: 'blue'},
-  {element: 'Stardard', amount: 35.50, bar_color: 'green'}
-].each do |bar_chart|
-  TestingWithBarChart.create_with(bar_color: bar_chart[:bar_color] ,amount: bar_chart[:amount]).find_or_create_by(element: bar_chart[:element])
 end
 
 # ========== Create Warehouse Types ========== 
@@ -311,7 +274,7 @@ other = MaterialCategory.find_by_name('Other')
 
   Warehouse.where("warehouse_type_uuid = ? OR warehouse_type_uuid = ? OR warehouse_type_uuid = ?", central_warehouse.uuid, fertilizer_warehouse.uuid, project_warehouse.uuid).each do |warehouse|
     # ========== WAREHOUSE MATERIAL AMOUNT ==========
-    WarehouseMaterialAmount.create(warehouse_uuid: warehouse.uuid,  material_uuid: material_to_warehouse.uuid, amount: 0, returnable: false)
+    WarehouseMaterialAmount.create_with(amount: 0, returnable: false).find_or_create_by(warehouse_uuid: warehouse.uuid,  material_uuid: material_to_warehouse.uuid)
     
     # ========== STOCK BALANCE ==========
     start_month = 1
@@ -339,7 +302,6 @@ end
   {name: 'Otaroit Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336964, 104.830418', active: true},
   {name: 'Kapet Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.337731842924741, 104.86478090286255', active: true},
   {name: 'Kbalsen Farm', location: 'Bati District, Takeo Province', latlong_farm: '11.336839, 104.858196', active: true}
-  # {name: 'Kampot Farm', location: 'Beurng Chhouk District, Kampot Province', latlong_farm: '10.572342, 104.132600', active: true}
 ].each do |farm|
   Farm.create_with(location: farm[:location], latlong_farm: farm[:latlong_farm], active: farm[:active]).find_or_create_by(name: farm[:name])
 end
@@ -349,7 +311,6 @@ oroung_farm= Farm.find_by_name('Oroung Farm')
 otaroit_farm= Farm.find_by_name('Otaroit Farm')
 kapet_farm= Farm.find_by_name('Kapet Farm')
 kbalsen_farm= Farm.find_by_name('Kbalsen Farm')
-# kampot_farm= Farm.find_by_name('Kampot Farm')
 coconut_planting_project=PlantingProject.find_by_name('Coconut')
 jackfruit_planting_project=PlantingProject.find_by_name('Jackfruit')
 
@@ -365,9 +326,6 @@ jackfruit_planting_project=PlantingProject.find_by_name('Jackfruit')
   {name:'Zone-III', farm_id: kbalsen_farm.uuid},
   {name:'Zone-I', farm_id: oroung_farm.uuid},
   {name:'Zone-II', farm_id: kapet_farm.uuid}
-  # {name:'Zone-I', farm_id: kampot_farm.uuid},
-  # {name:'Zone-II', farm_id: kampot_farm.uuid},
-  # {name:'Zone-III', farm_id: kampot_farm.uuid},
 ].each do |zone|
   Zone.create_with(name: zone[:name], farm_id: zone[:farm_id]).find_or_create_by(name: zone[:name], farm_id: zone[:farm_id])
 end
@@ -380,8 +338,6 @@ otaroit_zone_iv = Zone.find_by_name_and_farm_id('Zone-IV', otaroit_farm.uuid)
 kapet_zone_ii = Zone.find_by_name_and_farm_id('Zone-II', kapet_farm.uuid)
 kbalsen_zone_iii= Zone.find_by_name_and_farm_id('Zone-III', kbalsen_farm.uuid)
 oroung_zone_i = Zone.find_by_name_and_farm_id('Zone-I', oroung_farm.uuid)
-# kampot_zone_i = Zone.find_by_name_and_farm_id('Zone-I', kampot_farm.uuid)
-# kampot_zone_ii = Zone.find_by_name_and_farm_id('Zone-II', kampot_farm.uuid)
 
 #=========== Area ===============
 [
@@ -402,10 +358,6 @@ oroung_zone_i = Zone.find_by_name_and_farm_id('Zone-I', oroung_farm.uuid)
   {name: 'A', zone_id: oroung_zone_i.uuid},
   {name: 'B', zone_id: oroung_zone_i.uuid},
   {name: 'C', zone_id: oroung_zone_i.uuid}
-  # {name: 'A', zone_id: kampot_zone_i.uuid},
-  # {name: 'B', zone_id: kampot_zone_i.uuid},
-  # {name: 'C', zone_id: kampot_zone_ii.uuid},
-  # {name: 'D', zone_id: kampot_zone_ii.uuid}
 ].each do |area|
   Area.create_with(name: area[:name], zone_id: area[:zone_id]).find_or_create_by(name: area[:name], zone_id: area[:zone_id])
 end
@@ -428,10 +380,6 @@ kapet_area_c = Area.find_by_name_and_zone_id('C', kapet_zone_ii.uuid)
 oroung_area_a = Area.find_by_name_and_zone_id('A', oroung_zone_i.uuid)
 oroung_area_b = Area.find_by_name_and_zone_id('B', oroung_zone_i.uuid)
 oroung_area_c = Area.find_by_name_and_zone_id('C', oroung_zone_i.uuid)
-# kampot_area_a = Area.find_by_name_and_zone_id('A', kampot_zone_i.uuid)
-# kampot_area_b = Area.find_by_name_and_zone_id('B', kampot_zone_i.uuid)
-# kampot_area_c = Area.find_by_name_and_zone_id('C', kampot_zone_ii.uuid)
-# kampot_area_d = Area.find_by_name_and_zone_id('D', kampot_zone_ii.uuid)
 
 # ========== Create Blocks for All Farms ==========
 [
@@ -531,62 +479,6 @@ phase.production_stages << production_stage
 ProductionStatus.create(name: 'Non-Fruit', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For growing a new tree in a new pit', active: true)
 ProductionStatus.create(name: 'Blossoming Tree', unit_of_measurement_id: UnitOfMeasurement.first.uuid,stage_id: production_stage.uuid, note: 'For replace a new tree in a old pit', active: true)
 
-# ========== Plan Location Seed data ====
-# PlanFarm.create(farm_id: Farm.second.uuid, for_year: 2018)
-# PlanPhase.create(plan_farm_id: PlanFarm.first.uuid, phase_id: Phase.first.uuid)
-# PlanProductionStage.create(plan_phase_id: PlanPhase.first.uuid, production_stage_id: ProductionStage.first.uuid)
-# PlanProductionStatus.create(plan_production_stage_id: PlanProductionStage.first.uuid, production_status_id: ProductionStatus.first.uuid, remark: 'Seed data remark')
-# PlanZone.create(zone_id: Farm.second.zones.first.uuid, plan_production_status_id: PlanProductionStatus.first.uuid)
-# PlanArea.create(area_id: Farm.second.zones.first.areas.first, plan_zone_id: PlanZone.first.uuid)
-
-# Farm.second.areas.first.blocks.each do |f|
-#   PlanBlock.create(plan_area_id: PlanArea.first.uuid, block_id: f.uuid, tree_amount: 10)
-# end
-
-# ===== clear other farm ====
-# Farm.destroy_all
-# Zone.destroy_all
-# Area.destroy_all
-# Block.destroy_all
-
-# ========== Mondolkiri Farm (For plan location testing only) ==============
-# farm = Farm.create(name: 'Mondolkiri Farm', location: 'Banlung District, Mondolkiri Province', latlong_farm: '11.333019, 104.864575', active: true)
-# zone1 = farm.zones.create(name: 'Zone I')
-# zone2 = farm.zones.create(name: 'Zone II')
-
-# area1 = zone1.areas.create(name: 'A')
-# area2 = zone1.areas.create(name: 'B')
-# area3 = zone1.areas.create(name: 'C')
-
-# area4 = zone2.areas.create(name: 'D')
-# area5 = zone2.areas.create(name: 'E')
-# area6 = zone2.areas.create(name: 'F')
-
-# area1.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area1.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area1.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-
-# area2.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area2.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area2.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-
-# area3.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area3.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area3.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-
-# area4.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area4.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area4.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-
-# area5.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area5.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area5.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-
-# area6.blocks.create(name: 'Block 1', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area6.blocks.create(name: 'Block 2', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-# area6.blocks.create(name: 'Block 3', surface: 4, location_lat_long: '11.333582436614465, 104.8718326663992', planting_project_id: PlantingProject.first.uuid, tree_amount: 54)
-
-# =========== End Mondolkiri test farm ==============
 
 ProductionClassification.create(name: "Coconut for Sale", planting_project_id: PlantingProject.first.uuid)
 ProductionClassification.create(name: "Coconut for Free", planting_project_id: PlantingProject.first.uuid)
@@ -597,60 +489,3 @@ ProductionClassification.create(name: "Jackfruit for Sale", planting_project_id:
 ProductionClassification.create(name: "Jackfruit for Free", planting_project_id: PlantingProject.second.uuid)
 ProductionClassification.create(name: "Jackfruit for Seed", planting_project_id: PlantingProject.second.uuid)
 ProductionClassification.create(name: "Waste (Young and Ripe Fruit)", planting_project_id: PlantingProject.second.uuid)
-
-# ========== Input Task =============
-# Farm.fourth.zones.each do |zone|
-#   zone.areas.each do |area|
-#     area.blocks.each_with_index do |b, i|
-#       @input_task = InputTask.create(name: "Task #{i}", start_date: 1.month.ago, end_date: Date.today, 
-#         block_id: b.uuid, tree_amount: 1, labor_id: User.first, reference_number: "0001", 
-#         created_by: "Me", planting_project_id: PlantingProject.first, 
-#         farm_id: Farm.second.uuid, zone_id: zone.uuid, area_id: area.uuid)
-
-#       InputUseMaterial.create(input_id: @input_task.uuid, material_id: Material.first.uuid, 
-#         warehouse_id: Warehouse.first.uuid, material_amount: 10)
-#     end
-#   end
-# end
-
-# Machinery.create(name: "Tractor A", machinery_type_id: MachineryType.second.uuid, source: "Own Project",
-#                 planting_project_id: PlantingProject.first.uuid)
-
-# InputUseMachinery.create(input_id: InputTask.first.uuid, machinery_id: Machinery.first.uuid,
-#                           warehouse_id: Warehouse.first.uuid, material_id: Material.first.uuid,
-#                           material_amount: 20)
-
-# ========== Input Task =============
-InputTask.create(uuid: "00000000-0000-0000-0000-000000000001", name: "Input task 001", 
-  start_date: 1.month.ago, end_date: Date.today, farm_id: Farm.first.uuid, 
-  zone_id: oroung_zone_i.uuid, area_id: oroung_area_a.uuid, 
-  block_id: "00000000-0000-0000-0000-000000000050", planting_project_id: PlantingProject.second.uuid, 
-  tree_amount: "100", labor_id: Labor.first.uuid, reference_number: "A-001", created_by: Labor.first.uuid)
-InputTask.create(uuid: "00000000-0000-0000-0000-000000000002", name: "Input task 002", 
-  start_date: 1.month.ago, end_date: Date.today, farm_id: Farm.first.uuid, 
-  zone_id: oroung_zone_i.uuid, area_id: oroung_area_a.uuid, 
-  block_id: "00000000-0000-0000-0000-000000000051", planting_project_id: PlantingProject.second.uuid, 
-  tree_amount: "50", labor_id: Labor.first.uuid, reference_number: "A-002", created_by: Labor.first.uuid)
-InputTask.create(uuid: "00000000-0000-0000-0000-000000000003", name: "Input task 003", 
-  start_date: 1.month.ago, end_date: Date.today, farm_id: Farm.second.uuid, 
-  zone_id: chamkar_doung_zone_i.uuid, area_id: chamkar_doung_area_a.uuid, 
-  block_id: "00000000-0000-0000-0000-000000000001", planting_project_id: PlantingProject.first.uuid, 
-  tree_amount: "70", labor_id: Labor.first.uuid, reference_number: "A-003", created_by: Labor.first.uuid)
-InputTask.create(uuid: "00000000-0000-0000-0000-000000000004", name: "Input task 004", 
-  start_date: 1.month.ago, end_date: Date.today, farm_id: Farm.second.uuid, 
-  zone_id: chamkar_doung_zone_i.uuid, area_id: chamkar_doung_area_b.uuid, 
-  block_id: "00000000-0000-0000-0000-000000000003", planting_project_id: PlantingProject.first.uuid, 
-  tree_amount: "250", labor_id: Labor.first.uuid, reference_number: "A-004", created_by: Labor.first.uuid)
-
-# ========== Input Use Material =============
-InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000001", input_id: "00000000-0000-0000-0000-000000000001", 
-  material_id: Material.first.uuid, warehouse_id: Warehouse.last.uuid, material_amount: 0)
-InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000002", input_id: "00000000-0000-0000-0000-000000000002", 
-  material_id: Material.first.uuid, warehouse_id: Warehouse.last.uuid, material_amount: 0)
-InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000003", input_id: "00000000-0000-0000-0000-000000000003", 
-  material_id: Material.first.uuid, warehouse_id: Warehouse.last.uuid, material_amount: 0)
-InputUseMaterial.create(uuid: "00000000-0000-0000-0000-000000000004", input_id: "00000000-0000-0000-0000-000000000004", 
-  material_id: Material.first.uuid, warehouse_id: Warehouse.last.uuid, material_amount: 0)
-
-
-
