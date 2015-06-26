@@ -1,4 +1,11 @@
 $(document).ready(function(){
+  $("#new_input_task").keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+
 	$('.machinery-name').hide();
 	$('.material-name').hide();
 

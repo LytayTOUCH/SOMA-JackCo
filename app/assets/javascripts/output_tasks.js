@@ -1,4 +1,11 @@
 $(document).ready(function() {
+  $("#new_output_task").keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+  
   $('.date_pick').datetimepicker({});
 
   var planting_project_id = $(".planting_project_id").val();
