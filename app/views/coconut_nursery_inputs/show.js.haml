@@ -1,0 +1,6 @@
+:plain
+  $(".form-modal").html("#{escape_javascript(render 'modal_receive', locals: @c, is_edit: false)}");
+  $('#modalReceive').modal('show');
+  $('#modalReceive').on('shown.bs.modal', function () {
+    
+  });

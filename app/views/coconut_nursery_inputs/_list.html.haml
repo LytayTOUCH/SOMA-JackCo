@@ -30,7 +30,13 @@
         %td= input.item_name
         %td= input.input_processing_qty
         %td= input.input_spoil_qty
-        %td
-          = link_to "Receive", "#"
+        - if input.receivable == "TODAY" || input.receivable == "EXPIRED"
+          %td
+            = link_to "Receive", edit_coconut_nursery_input_path(input), remote: true
+        - elsif input.receivable == "RECEIVED"
+          %td
+            = link_to "Detail", coconut_nursery_input_path(input), remote: true
+        - else
+          %td &nbsp;
 
-- # TODO: SMEY, Implement pop up for user to record nursery output.
+.form-modal

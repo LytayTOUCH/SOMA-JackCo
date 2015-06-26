@@ -1,0 +1,90 @@
+#modalReceive.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", "data-backdrop"=>"static"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title.label-header Receive Nursery Input
+      .modal-body
+        .form-info
+          = simple_form_for @c, html: {class: 'form-horizontal'} do |f|
+            .form-group
+              %label.col-xs-4.control-label Reference:
+              .col-xs-6
+                %input.form-control{value: @c.reference_number, readonly: true}
+            .form-group
+              %label.col-xs-4.control-label Processing Qty:
+              .col-xs-6
+                %input#coconut_nursery_input_processing_qty.form-control{value: @c.input_processing_qty, readonly: true}
+            
+            - if is_edit
+              .form-group
+                %label.col-xs-4.control-label Seed (High Growing)
+                .col-xs-6
+                  = f.input :output_high_qty, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+              .form-group
+                %label.col-xs-4.control-label Seed (Low Growing)
+                .col-xs-6
+                  = f.input :output_low_qty, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+              .form-group
+                %label.col-xs-4.control-label Spoiled
+                .col-xs-6
+                  = f.input :output_spoil_qty, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+              .form-group
+                %label.col-xs-4.control-label Note
+                .col-xs-6
+                  = f.input :note, label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
+              .form-group.form-center
+                .col-xs-12
+                  .pull-right
+                    = f.submit "Save", :class => "btn btn-primary", :id => "btnSubmit"
+                    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+            - else
+              .form-group
+                %label.col-xs-4.control-label Seed (High Growing)
+                .col-xs-6
+                  %input.form-control{value: @c.output_high_qty, readonly: true}
+              .form-group
+                %label.col-xs-4.control-label Seed (Low Growing)
+                .col-xs-6
+                  %input.form-control{value: @c.output_low_qty, readonly: true}
+              .form-group
+                %label.col-xs-4.control-label Spoiled
+                .col-xs-6
+                  %input.form-control{value: @c.output_spoil_qty, readonly: true}
+              .form-group
+                %label.col-xs-4.control-label Note
+                .col-xs-6
+                  %textarea.text.optional.form-control{readonly: true}= @c.note
+              .form-group.form-center
+                .col-xs-12
+                  .pull-right
+                    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+
+:javascript
+  $("#coconut_nursery_input_output_spoil_qty").change(function(){
+    validateForm();
+  });
+  
+  $("#coconut_nursery_input_output_low_qty").change(function(){
+    validateForm();
+  });
+  
+  $("#coconut_nursery_input_output_spoil_qty").change(function(){
+    validateForm();
+  });
+  
+  function validateForm() {
+    $("#btnSubmit").removeAttr('disabled');
+    
+    var high = $("#coconut_nursery_input_output_high_qty").val();
+    var low = $("#coconut_nursery_input_output_low_qty").val();
+    var spoil = $("#coconut_nursery_input_output_spoil_qty").val();
+    
+    var total = parseInt(high) + parseInt(low) + parseInt(spoil);
+    var process = parseInt($("#coconut_nursery_input_processing_qty").val());
+    
+    if(high == "" || low == "" || spoil == "" || total > process) {
+      $("#btnSubmit").attr("disabled", "disabled");
+    }
+  }

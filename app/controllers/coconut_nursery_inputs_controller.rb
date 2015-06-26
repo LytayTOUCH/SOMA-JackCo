@@ -26,6 +26,26 @@ class CoconutNurseryInputsController < ApplicationController
     end
   end
   
+  def show
+    @c = CoconutNurseryInput.find(params[:id])
+  end
+  
+  def edit
+    @c = CoconutNurseryInput.find(params[:id])
+  end
+  
+  def update
+    @c = CoconutNurseryInput.find(params[:id])
+    high = params[:coconut_nursery_input][:output_high_qty].to_i
+    low = params[:coconut_nursery_input][:output_low_qty].to_i
+    spoil = params[:coconut_nursery_input][:output_spoil_qty].to_i
+    
+    if @c.update_attributes(output_high_qty: high, output_low_qty: low, output_spoil_qty: spoil, note: params[:coconut_nursery_input][:note], received: true)
+      flash[:notice] = "Coconut Nursery Input received successfully"
+      redirect_to coconut_nursery_inputs_path
+    end
+  end
+  
   private
   def nursery_params
     params.require(:coconut_nursery_input).permit(:reference_number, :nursery_date, :item_name, :warehouse_id, :input_total_qty, :input_processing_qty, :input_spoil_qty, :receive_date)
