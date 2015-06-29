@@ -17,7 +17,6 @@ class FarmsController < ApplicationController
     @farm.active = true
     if @farm.save
       create_log current_user.uuid, "Created New Farm", @farm
-      @farm
       @farms_amount=@farms.count
     end
   end

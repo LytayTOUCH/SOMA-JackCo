@@ -109,7 +109,7 @@
 							$this.parent().addClass('activeWeekHover');
 						}
 					}
-				}
+				};
 			};
 			var unHover = function()
 			{
@@ -292,7 +292,7 @@
 					$this.addClass('dp-applied');
 					
 				}
-			)
+			);
 		},
 /**
  * Disables or enables this date picker
@@ -673,7 +673,7 @@
 					t = new Date(this.displayedYear, m, 1);
 				} else {
 					// year and month passed in - that's the date we want!
-					t = new Date(y, m, 1)
+					t = new Date(y, m, 1);
 				}
 				// check if the desired date is within the range of our defined startDate and endDate
 				if (t.getTime() < s.getTime()) {

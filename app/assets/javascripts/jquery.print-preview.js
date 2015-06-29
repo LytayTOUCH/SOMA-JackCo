@@ -125,7 +125,7 @@
                     overflowY:   'auto',
                     zIndex:      10000,
                     display:     'block'
-                }
+               };
             print_modal
                 .css(css)
                 .animate({ top: $(window).scrollTop()}, 400, 'linear', function() {
@@ -214,5 +214,5 @@
             var size = $.printPreview.sizeUpMask();
             mask.css({width: size[0], height: size[1]});
         }
-    }
+    };
 })(jQuery);

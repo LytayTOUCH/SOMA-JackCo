@@ -62,7 +62,9 @@
                     %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
 
 :javascript
-  $("#coconut_nursery_input_output_spoil_qty").change(function(){
+  validateForm();
+  
+  $("#coconut_nursery_input_output_high_qty").change(function(){
     validateForm();
   });
   
@@ -84,7 +86,7 @@
     var total = parseInt(high) + parseInt(low) + parseInt(spoil);
     var process = parseInt($("#coconut_nursery_input_processing_qty").val());
     
-    if(high == "" || low == "" || spoil == "" || total > process) {
+    if(high == "" || low == "" || spoil == "" || total != process) {
       $("#btnSubmit").attr("disabled", "disabled");
     }
   }

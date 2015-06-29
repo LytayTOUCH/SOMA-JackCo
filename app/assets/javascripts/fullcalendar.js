@@ -199,8 +199,8 @@ function Calendar(element, options, eventSources) {
 	t.today = today;
 	t.gotoDate = gotoDate;
 	t.incrementDate = incrementDate;
-	t.formatDate = function(format, date) { return formatDate(format, date, options) };
-	t.formatDates = function(format, date1, date2) { return formatDates(format, date1, date2, options) };
+	t.formatDate = function(format, date) { return formatDate(format, date, options); };
+	t.formatDates = function(format, date1, date2) { return formatDates(format, date1, date2, options); };
 	t.getDate = getDate;
 	t.getView = getView;
 	t.option = option;
@@ -1551,29 +1551,29 @@ function formatDates(date1, date2, format, options) {
 
 
 var dateFormatters = {
-	s	: function(d)	{ return d.getSeconds() },
-	ss	: function(d)	{ return zeroPad(d.getSeconds()) },
-	m	: function(d)	{ return d.getMinutes() },
-	mm	: function(d)	{ return zeroPad(d.getMinutes()) },
-	h	: function(d)	{ return d.getHours() % 12 || 12 },
-	hh	: function(d)	{ return zeroPad(d.getHours() % 12 || 12) },
-	H	: function(d)	{ return d.getHours() },
-	HH	: function(d)	{ return zeroPad(d.getHours()) },
-	d	: function(d)	{ return d.getDate() },
-	dd	: function(d)	{ return zeroPad(d.getDate()) },
-	ddd	: function(d,o)	{ return o.dayNamesShort[d.getDay()] },
-	dddd: function(d,o)	{ return o.dayNames[d.getDay()] },
-	M	: function(d)	{ return d.getMonth() + 1 },
-	MM	: function(d)	{ return zeroPad(d.getMonth() + 1) },
-	MMM	: function(d,o)	{ return o.monthNamesShort[d.getMonth()] },
-	MMMM: function(d,o)	{ return o.monthNames[d.getMonth()] },
-	yy	: function(d)	{ return (d.getFullYear()+'').substring(2) },
-	yyyy: function(d)	{ return d.getFullYear() },
-	t	: function(d)	{ return d.getHours() < 12 ? 'a' : 'p' },
-	tt	: function(d)	{ return d.getHours() < 12 ? 'am' : 'pm' },
-	T	: function(d)	{ return d.getHours() < 12 ? 'A' : 'P' },
-	TT	: function(d)	{ return d.getHours() < 12 ? 'AM' : 'PM' },
-	u	: function(d)	{ return formatDate(d, "yyyy-MM-dd'T'HH:mm:ss'Z'") },
+	s	: function(d)	{ return d.getSeconds(); },
+	ss	: function(d)	{ return zeroPad(d.getSeconds()); },
+	m	: function(d)	{ return d.getMinutes(); },
+	mm	: function(d)	{ return zeroPad(d.getMinutes()); },
+	h	: function(d)	{ return d.getHours() % 12 || 12; },
+	hh	: function(d)	{ return zeroPad(d.getHours() % 12 || 12); },
+	H	: function(d)	{ return d.getHours(); },
+	HH	: function(d)	{ return zeroPad(d.getHours()); },
+	d	: function(d)	{ return d.getDate(); },
+	dd	: function(d)	{ return zeroPad(d.getDate()); },
+	ddd	: function(d,o)	{ return o.dayNamesShort[d.getDay()]; },
+	dddd: function(d,o)	{ return o.dayNames[d.getDay()]; },
+	M	: function(d)	{ return d.getMonth() + 1; },
+	MM	: function(d)	{ return zeroPad(d.getMonth() + 1); },
+	MMM	: function(d,o)	{ return o.monthNamesShort[d.getMonth()]; },
+	MMMM: function(d,o)	{ return o.monthNames[d.getMonth()]; },
+	yy	: function(d)	{ return (d.getFullYear()+'').substring(2); },
+	yyyy: function(d)	{ return d.getFullYear(); },
+	t	: function(d)	{ return d.getHours() < 12 ? 'a' : 'p'; },
+	tt	: function(d)	{ return d.getHours() < 12 ? 'am' : 'pm'; },
+	T	: function(d)	{ return d.getHours() < 12 ? 'A' : 'P'; },
+	TT	: function(d)	{ return d.getHours() < 12 ? 'AM' : 'PM'; },
+	u	: function(d)	{ return formatDate(d, "yyyy-MM-dd'T'HH:mm:ss'Z'"); },
 	S	: function(d)	{
 		var date = d.getDate();
 		if (date > 10 && date < 20) {
@@ -2108,19 +2108,19 @@ function BasicView(element, calendar, viewName) {
 	t.dragStart = dragStart;
 	t.dragStop = dragStop;
 	t.defaultEventEnd = defaultEventEnd;
-	t.getHoverListener = function() { return hoverListener };
+	t.getHoverListener = function() { return hoverListener; };
 	t.colContentLeft = colContentLeft;
 	t.colContentRight = colContentRight;
 	t.dayOfWeekCol = dayOfWeekCol;
 	t.dateCell = dateCell;
 	t.cellDate = cellDate;
-	t.cellIsAllDay = function() { return true };
+	t.cellIsAllDay = function() { return true; };
 	t.allDayRow = allDayRow;
 	t.allDayBounds = allDayBounds;
-	t.getRowCnt = function() { return rowCnt };
-	t.getColCnt = function() { return colCnt };
-	t.getColWidth = function() { return colWidth };
-	t.getDaySegmentContainer = function() { return daySegmentContainer };
+	t.getRowCnt = function() { return rowCnt; };
+	t.getColCnt = function() { return colCnt; };
+	t.getColWidth = function() { return colWidth; };
+	t.getDaySegmentContainer = function() { return daySegmentContainer; };
 	
 	
 	// imports
@@ -2835,18 +2835,18 @@ function AgendaView(element, calendar, viewName) {
 	t.cellIsAllDay = cellIsAllDay;
 	t.allDayRow = getAllDayRow;
 	t.allDayBounds = allDayBounds;
-	t.getHoverListener = function() { return hoverListener };
+	t.getHoverListener = function() { return hoverListener; };
 	t.colContentLeft = colContentLeft;
 	t.colContentRight = colContentRight;
-	t.getDaySegmentContainer = function() { return daySegmentContainer };
-	t.getSlotSegmentContainer = function() { return slotSegmentContainer };
-	t.getMinMinute = function() { return minMinute };
-	t.getMaxMinute = function() { return maxMinute };
-	t.getBodyContent = function() { return slotContent }; // !!??
-	t.getRowCnt = function() { return 1 };
-	t.getColCnt = function() { return colCnt };
-	t.getColWidth = function() { return colWidth };
-	t.getSlotHeight = function() { return slotHeight };
+	t.getDaySegmentContainer = function() { return daySegmentContainer; };
+	t.getSlotSegmentContainer = function() { return slotSegmentContainer; };
+	t.getMinMinute = function() { return minMinute; };
+	t.getMaxMinute = function() { return maxMinute; };
+	t.getBodyContent = function() { return slotContent; }; // !!??
+	t.getRowCnt = function() { return 1; };
+	t.getColCnt = function() { return colCnt; };
+	t.getColWidth = function() { return colWidth; };
+	t.getSlotHeight = function() { return slotHeight; };
 	t.defaultSelectionEnd = defaultSelectionEnd;
 	t.renderDayOverlay = renderDayOverlay;
 	t.renderSelection = renderSelection;
@@ -3425,7 +3425,7 @@ function AgendaView(element, calendar, viewName) {
 		return {
 			left: axisWidth,
 			right: viewWidth - gutterWidth
-		}
+		};
 	}
 	
 	

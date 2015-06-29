@@ -49,7 +49,7 @@ $(document).ready(function() {
         dataType: "html",
         success: function(data) {
           $(".production-status *").remove();
-          $(".production-status").append(data)
+          $(".production-status").append(data);
         }
       });
     }

@@ -43,7 +43,7 @@ var getPolygonPoints = function (shape_latlong){
     polypoints.push(new google.maps.LatLng(shape_latlong[i][0],shape_latlong[i][1]));
   }
   return polypoints;
-}
+};
 
 var getCenterLatlngPolygon = function(polypoints){
   var bounds = new google.maps.LatLngBounds();
@@ -51,7 +51,7 @@ var getCenterLatlngPolygon = function(polypoints){
     bounds.extend(polypoints[i]);
   }
   return bounds.getCenter();
-}
+};
 var blocks = [];
 var showBlock = function(id, shape_latlong, project_name){
   var stroke_color =  "#126c00", fill_color;
@@ -63,7 +63,7 @@ var showBlock = function(id, shape_latlong, project_name){
           fill_color = "#5EFF4A";
           break;
       case "jackfruit":
-          stroke_color = "#FFCC00"
+          stroke_color = "#FFCC00";
           fill_color = "#FFCC00";
           break;
       case "lemon":
@@ -71,7 +71,7 @@ var showBlock = function(id, shape_latlong, project_name){
           fill_color = "#99FF33";
           break;
       case "mango":
-          stroke_color = "#FFFF00"
+          stroke_color = "#FFFF00";
           fill_color = "#FFFF00";
           break;
   }
@@ -86,7 +86,7 @@ var showBlock = function(id, shape_latlong, project_name){
   block.id = id;
   blocks.push(block);
   block.setMap(map);
-}
+};
 var labels=[];
 var showBlockName = function(block_name, block_shape, block_id){
   var myOptions = {
@@ -112,7 +112,7 @@ var showBlockName = function(block_name, block_shape, block_id){
   labels.push(ibLabel);
   ibLabel.open(map);
   addListenersOnPolygon(block, block_name, getCenterLatlngPolygon(getPolygonPoints(block_shape)), block_id);
-}
+};
 var addListenersOnPolygon = function(polygon, block_name, center_latlong, block_id) {
   google.maps.event.addListener(polygon, 'click', function (event){
     infobox.close();
@@ -120,4 +120,4 @@ var addListenersOnPolygon = function(polygon, block_name, center_latlong, block_
     infobox.setPosition(center_latlong);
     infobox.open(map);
   });
-}
+};

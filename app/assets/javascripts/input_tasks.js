@@ -358,7 +358,7 @@ $(document).ready(function(){
           {width: "100%"},
           {allow_single_deselect: true},
           {no_results_text: 'No results matched'}
-        )  
+        );
       }
     });
     //End-- Start Get Equipment and select Equipment
@@ -438,7 +438,7 @@ $(document).ready(function(){
           str +=  '<div class="form-group">';                      
           str +=    '<label class="col-xs-2 control-label">';
           str +=      data.machinery_name.name;
-          str +=    '</label>'
+          str +=    '</label>';
           str +=    '<label class="col-xs-1 control-label" style="width: 10%;">Warehouse*</label>';
           str +=    '<div class="col-xs-2">';
           str +=      '<select name="warehouses_of_machinery[]" class="warehouse-select-'+params.selected+' form-control" id="warehouse_select-'+params.selected+'">';
@@ -568,7 +568,7 @@ $(document).ready(function(){
             str +=  '<div class="form-group">';                      
             str +=    '<label class="col-xs-2 control-label">';
             str +=      data.material_name.name;
-            str +=    '</label>'
+            str +=    '</label>';
             str +=    '<label class="col-xs-1 control-label" style="width: 10%;">Warehouse*</label>';
             str +=    '<div class="col-xs-2">';
             str +=      '<select name="warehouses_of_material[]" class="warehouse-select-material-'+params.selected+' form-control" id="warehouse_select_material-'+params.selected+'">';
