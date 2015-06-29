@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   
   get 'report_classifications/coconut_index'
   get 'report_classifications/jackfruit_index'
+  
+  get 'report_nurseries/coconut_index'
 
   get 'log_tracking/index'
   

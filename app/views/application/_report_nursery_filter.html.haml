@@ -1,0 +1,129 @@
+= form_tag @path, :class => 'form-inline', :role => 'form', :method => 'get' do
+  .row.report_filter{:style => "background-color: #ccc;padding-top: 10px;padding-bottom: 10px;"}
+    .col-xs-5
+      - if params[:filter].nil?
+        - @day = "today"
+      - else
+        - @day = params[:filter][:day]
+      %input#filterDayHidden{name: "filter[day]", type: "hidden", value: @day}
+      .btn-group#filterDay{"data-toggle" => "buttons"}
+        - if params[:filter].nil? || (params[:filter].present? && params[:filter][:day] == "today")
+          %label#today.btn.btn-default.active
+            %input{:type => "radio"}
+              Today
+        - else
+          %label#today.btn.btn-default
+            %input{:type => "radio"}
+              Today
+        
+        - if params[:filter].present? && params[:filter][:day] == "week"
+          %label#week.btn.btn-default.active
+            %input{:type => "radio"}
+              This Week
+        - else
+          %label#week.btn.btn-default
+            %input{:type => "radio"}
+              This Week
+        
+        - if params[:filter].present? && params[:filter][:day] == "month"
+          %label#month.btn.btn-default.active
+            %input{:type => "radio"}
+              This Month
+        - else
+          %label#month.btn.btn-default
+            %input{:type => "radio"}
+              This Month
+        
+        - if params[:filter].present? && params[:filter][:day] == "year"
+          %label#year.btn.btn-default.active
+            %input{:type => "radio"}
+              This Year
+        - else
+          %label#year.btn.btn-default
+            %input{:type => "radio"}
+              This Year
+        
+        - if params[:filter].present? && params[:filter][:day] == "custom"
+          %label#custom.btn.btn-default.active
+            %input{:type => "radio"}
+              Custom Period
+        - else
+          %label#custom.btn.btn-default
+            %input{:type => "radio"}
+              Custom Period
+    .col-xs-2
+      - if !params[:filter].nil? && !params[:filter][:start_date].nil?
+        .input-group#filter_start_date
+          %input.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[start_date]", :placeholder => "Year-Month-Day", :type => "text", value: params[:filter][:start_date]}
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+      - else
+        .input-group#filter_start_date
+          %input.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[start_date]", :placeholder => "Year-Month-Day", :type => "text", "disabled" => "disabled"}
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+      
+    .col-xs-2
+      - if !params[:filter].nil? && !params[:filter][:end_date].nil?
+        .input-group#filter_end_date
+          %input.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[end_date]", :placeholder => "Year-Month-Day", :type => "text", value: params[:filter][:end_date]}
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+      - else
+        .input-group#filter_end_date
+          %input.form-control{"data-date-format" => "YYYY-MM-DD", :name => "filter[end_date]", :placeholder => "Year-Month-Day", :type => "text", "disabled" => "disabled"}
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+        
+    .col-xs-2
+      %select#filter_warehouse_id.select.required.form-control{:style => "width: 100%", :name => "filter[warehouse_id]"}
+        %option{:value => ""}
+        - Warehouse.where("warehouse_type_uuid = ?", WarehouseType.find_by(name: 'Nursery Warehouse').uuid).each do |wh|
+          - if !params[:filter].nil? && wh.uuid == params[:filter][:warehouse_id]
+            %option{:value => wh.uuid, selected: "selected"}= wh.name
+          - else
+            %option{:value => wh.uuid}= wh.name
+    .col-xs-1
+      = submit_tag 'OK', :class => 'btn btn-primary', :style => "width:100%;", :name => nil, id: "btnSubmit"
+
+:javascript
+  $(document).ready(function() {
+    validateFilter();
+    
+    $("#filter_start_date").datetimepicker({});
+    $("#filter_end_date").datetimepicker({});
+    
+    $('#filterDay label').click(function() {
+      $("#filterDayHidden").val($(this).attr("id"));
+      
+      if($(this).attr("id") == "custom"){
+        $("#filter_start_date input").removeAttr('disabled');
+        $("#filter_end_date input").removeAttr('disabled');
+      } else {
+        $("#filter_start_date input").attr("disabled", "disabled");
+        $("#filter_end_date input").attr("disabled", "disabled");
+        $("#filter_start_date input").val("");
+        $("#filter_end_date input").val("");
+      }
+      
+      validateFilter();
+    });
+    
+    $('#filter_warehouse_id').change(function() {validateFilter();});
+    $('#filter_start_date input').blur(function() {validateFilter();});
+    $('#filter_end_date input').blur(function() {validateFilter();});
+    
+    function validateFilter() {
+      $("#btnSubmit").removeAttr('disabled');
+      
+      if($("#filterDayHidden").val() == "custom") {
+        if($("#filter_start_date input").val() == "" || $("#filter_end_date input").val() == "" || $("#filter_warehouse_id").val() == "") {
+          $("#btnSubmit").attr("disabled", "disabled");
+        }
+      } else {
+        if($("#filter_warehouse_id").val() == "") {
+          $("#btnSubmit").attr("disabled", "disabled");
+        }
+      }
+    }
+  });

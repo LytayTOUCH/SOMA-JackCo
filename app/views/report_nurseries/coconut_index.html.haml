@@ -1,0 +1,48 @@
+.row
+  %h1
+    = "Nursery Report - Coconut"
+  %hr
+  = render partial: 'report_nursery_filter', path: report_nurseries_coconut_index_path
+
+  - unless params[:filter].nil?
+    %br
+    .row
+      .col-xs-12
+        %table.table-bordered#main_table{cellpadding: "5px", style: "width:100%"}
+          %tr
+            %th{style: "text-align:center"} Nursery Date
+            %th{style: "text-align:center"} Items
+            %th{style: "text-align:center"} Qty (Fruit)
+            %th{style: "text-align:center"} Input Status
+            %th{style: "text-align:center"} Reference
+            
+            %th{style: "text-align:center"} Receive Date
+            %th{style: "text-align:center"} Qty (Tree)
+            %th{style: "text-align:center"} Output Category
+            %th{style: "text-align:center"} Remarks
+          - @cs.each do |c|
+            %tr
+              %td{rowspan: "4", style: "text-align:center"}= c.nursery_date
+              %td{rowspan: "4", style: "text-align:center"}= c.item_name
+              %td{rowspan: "3", style: "text-align:center"}= c.input_processing_qty
+              %td{rowspan: "3", style: "text-align:center"} Processing
+              %td{rowspan: "4", style: "text-align:center"}= c.reference_number
+              
+              %td{rowspan: "3", style: "text-align:center"}= c.receive_date
+              %td{style: "text-align:center"}= c.output_high_qty
+              %td{style: "text-align:center"} Seed (High Growing)
+              %td{rowspan: "3", style: "text-align:center"}= c.note
+            %tr
+              %td{style: "text-align:center"}= c.output_low_qty
+              %td{style: "text-align:center"} Seed (Low Growing)
+            %tr
+              %td{style: "text-align:center"}= c.output_spoil_qty
+              %td{style: "text-align:center"} Spoiled
+            %tr
+              %td{style: "text-align:center"}= c.input_spoil_qty
+              %td{style: "text-align:center"} Spoil Ripe Fruit
+              
+              %td{style: "text-align:center"} -
+              %td{style: "text-align:center"} -
+              %td{style: "text-align:center"} -
+              %td{style: "text-align:center"} -

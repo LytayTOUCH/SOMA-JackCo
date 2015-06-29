@@ -14,7 +14,7 @@
           %option{:value => ""}
           - project_id = WarehouseType.find_by(name: 'Project Warehouse').uuid
           - Warehouse.where("warehouse_type_uuid = ?", project_id).each do |wh|
-            - if wh.uuid == @warehouse_id
+            - if !params[:filter].nil? && wh.uuid == params[:filter][:warehouse_id]
               %option{:value => wh.uuid, selected: "selected"}= wh.name
             - else
               %option{:value => wh.uuid}= wh.name

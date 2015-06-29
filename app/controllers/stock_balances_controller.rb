@@ -9,10 +9,6 @@ class StockBalancesController < ApplicationController
       @month = @month_year.split("-")[0].to_i
       @year = @month_year.split("-")[1].to_i
     end
-    
-    unless params[:filter].nil?
-      @warehouse_id = params[:filter][:warehouse_id]
-    end
   end
   
   # BEGINNING BALANCE
@@ -94,10 +90,6 @@ class StockBalancesController < ApplicationController
       @month = @month_year.split("-")[0].to_i
       @year = @month_year.split("-")[1].to_i
     end
-    
-    unless params[:filter].nil?
-      @warehouse_id = params[:filter][:warehouse_id]
-    end
   end
   
   # ADJUST BALANCE
@@ -149,10 +141,6 @@ class StockBalancesController < ApplicationController
       @month_year = params[:month_year]
       @month = @month_year.split("-")[0].to_i
       @year = @month_year.split("-")[1].to_i
-    end
-    
-    unless params[:filter].nil?
-      @warehouse_id = params[:filter][:warehouse_id]
     end
   end
 end

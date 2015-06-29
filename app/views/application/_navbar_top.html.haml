@@ -199,6 +199,12 @@
                     = navbar_link "Jackfruit", report_classifications_jackfruit_index_path, "active"
 
             %li.dropdown-submenu
+              %a{:href => "#", :tabindex => "-1"} Nursery
+              %ul.dropdown-menu
+                %li
+                  = navbar_link "Coconut", report_nurseries_coconut_index_path, "active"
+            
+            %li.dropdown-submenu
               %a{:href => "#", :tabindex => "-1"} Inventory
               %ul.dropdown-menu
                 %li

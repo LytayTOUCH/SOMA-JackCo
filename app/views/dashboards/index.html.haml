@@ -60,7 +60,7 @@
                     %div{style: "padding-left: 15px; padding-bottom: 5px;"}
                       %span{style: "font-weight: bold;"}= input_task.start_date.to_s 
                       %span=" : " + "InputTask Name:"
-                      %span{style: "font-weight: bold;"}= input_task.name
+                      %span{style: "font-weight: bold;"}= App.find_by_uuid(input_task.name).nil? ? input_task.name : App.find_by_uuid(input_task.name).name
                       ; Block:
                       %span{style: "font-weight: bold;"}= input_task.block.name
                   
@@ -74,7 +74,7 @@
                     %div{style: "padding-left: 15px; padding-bottom: 5px;"} 
                       %span{style: "font-weight: bold;"}= output_task.start_date.to_s 
                       %span=" : " + "OutputTask Name:"
-                      %span{style: "font-weight: bold;"}= output_task.name
+                      %span{style: "font-weight: bold;"}= App.find_by_uuid(output_task.name).nil? ? output_task.name : App.find_by_uuid(output_task.name).name
                       ; Block:
                       %span{style: "font-weight: bold; padding-bottom: 15px;"}= output_task.block.name
 

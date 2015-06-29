@@ -9,7 +9,7 @@
       
       %input{:type => "hidden", :name => "year", :value => @year}
       %input{:type => "hidden", :name => "month", :value => @month}
-      %input{:type => "hidden", :name => "warehouse_id", :value => @warehouse_id}
+      %input{:type => "hidden", :name => "warehouse_id", :value => params[:filter][:warehouse_id]}
       
       - @categories.each do |c|
         .row
@@ -26,8 +26,8 @@
                     = m.name
                   .col-xs-2
                     .input-group
-                      - @sb = StockBalance.find_by(:material_id => m.uuid, :warehouse_id => @warehouse_id, :month => @month, :year => @year)
-                      - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :warehouse_id => @warehouse_id, :month => Date.today.month, :year => Date.today.year) : @sb
+                      - @sb = StockBalance.find_by(:material_id => m.uuid, :warehouse_id => params[:filter][:warehouse_id], :month => @month, :year => @year)
+                      - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :warehouse_id => params[:filter][:warehouse_id], :month => Date.today.month, :year => Date.today.year) : @sb
                       
                       %input{:type => "hidden", :name => "material_id[]", :value => m.uuid}
                       %input.numeric.float.required.form-control{:name => "balance_value[]", :step => "any", :type => "number", :value => @sb.beginning_balance}
