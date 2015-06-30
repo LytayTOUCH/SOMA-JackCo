@@ -173,15 +173,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :activities do
-    collection do 
-      get 'fields'
-      get 'labors'
-      get 'tractors'
-      get 'implements'
-    end
-  end
-
   resources :transaction_status
   resources :planting_projects
   resources :unit_of_measurement
