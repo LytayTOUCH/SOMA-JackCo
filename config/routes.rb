@@ -165,12 +165,6 @@ Rails.application.routes.draw do
   resources :stages
   resources :suppliers
 
-  resources :fields, except: [:destroy] do
-    collection do 
-      get 'fields'
-    end
-  end
-
   resources :transaction_status
   resources :planting_projects
   resources :unit_of_measurement
