@@ -163,8 +163,6 @@ Rails.application.routes.draw do
   
   resources :calendars
   resources :stages
-  resources :coconuts
-  resources :jack_fruits
   resources :suppliers
 
   resources :fields, except: [:destroy] do
