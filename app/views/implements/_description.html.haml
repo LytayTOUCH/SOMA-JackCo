@@ -1,8 +1,0 @@
-.thumbnail.col-md-12
-  = link_to edit_implement_path(@implement) do
-    = image_tag @implement.photo.url(:medium, timestamp: false)
-%dl.dl-horizontal
-  %dt= "Year"
-  %dd= "#{@implement.year}"
-  %dt= "Price"
-  %dd= "#{@implement.value}"
