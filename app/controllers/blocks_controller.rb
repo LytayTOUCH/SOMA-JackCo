@@ -91,10 +91,18 @@ class BlocksController < ApplicationController
     @get_tree = Block.select("tree_amount").where("uuid=?",params[:block_id]).limit(1)
     render :json => @get_tree
   end
+  
+  def get_tree_amounts_in_area
+    render :json => Area.tree_amounts(params[:area_id])
+  end
 
   def get_block_planting_project_data
     @block_data = Block.find_by_uuid(params[:block_id]).planting_project
     render :json => @block_data
+  end
+  
+  def get_area_planting_project_data
+    render :json => Area.find_by_uuid(params[:area_id]).blocks.first.planting_project
   end
 
   def get_production_by_planting_project

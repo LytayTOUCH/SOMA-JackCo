@@ -5,7 +5,7 @@ class CreateInputTasks < ActiveRecord::Migration
       t.string :name, limit: 50, null: false
       t.date :start_date, null: false
       t.date :end_date, null: false
-      t.string :block_id, limit: 36, null: false
+      t.string :block_id, limit: 36
       t.integer :tree_amount
       t.string :labor_id, limit: 36, null: false
       t.string :reference_number

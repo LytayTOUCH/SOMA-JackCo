@@ -22,8 +22,8 @@
             %th{style: "text-align:center"} Adjusted Balance
 
           - @materials.each_with_index do |m, i|
-            - @sb = StockBalance.find_by(:material_id => m.uuid, :warehouse_id => @warehouse_id, :month => @month, :year => @year)
-            - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :warehouse_id => @warehouse_id, :month => Date.today.month, :year => Date.today.year) : @sb
+            - @sb = StockBalance.find_by(:material_id => m.uuid, :warehouse_id => params[:filter][:warehouse_id], :month => @month, :year => @year)
+            - @sb = @sb.nil? ? StockBalance.find_by(:material_id => m.uuid, :warehouse_id => params[:filter][:warehouse_id], :month => Date.today.month, :year => Date.today.year) : @sb
             - @balance = @sb.adjusted_ending_balance.nil? ? @sb.ending_balance : @sb.adjusted_ending_balance
             
             %tr

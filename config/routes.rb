@@ -186,6 +186,7 @@ Rails.application.routes.draw do
   get 'get_unit_of_measurement_data', to: 'materials#get_material_uom_data'
 
   get 'get_block_planting_project_data', to: 'blocks#get_block_planting_project_data'
+  get 'get_area_planting_project_data', to: 'blocks#get_area_planting_project_data'
 
   get 'get_machinery_data', to: 'planting_projects#get_machinery_data'
   get 'get_equipment_data', to: 'equipment#get_equipment_data'  
@@ -199,6 +200,7 @@ Rails.application.routes.draw do
   post 'save_new_labor_input_task', to: "input_tasks#save_new_labor", as: :save_new_labor_input_task
 
   get 'get_tree_amounts', to: 'blocks#get_tree_amounts'
+  get 'get_tree_amounts_in_area', to: 'blocks#get_tree_amounts_in_area'
 
   get 'get_machinery_name', to: 'machineries#get_machinery_name'
   get 'get_material_name', to: 'materials#get_material_name'

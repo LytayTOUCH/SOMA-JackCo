@@ -15,7 +15,8 @@
       %td= @input_task.end_date.to_s
     %tr
       %th Farm - Zone - Area - Block
-      %td= @input_task.block.farm.name + " - " + @input_task.zone.name + " - " + @input_task.block.area.name + " - " + @input_task.block.name
+      - name = @input_task.block_id == "" ? "(All Blocks)" : @input_task.block.name
+      %td= @input_task.farm.name + " - " + @input_task.zone.name + " - " + @input_task.area.name + " - " + name
     %tr
       %th Planting Project
       %td= @input_task.planting_project.name

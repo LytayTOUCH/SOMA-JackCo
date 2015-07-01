@@ -34,7 +34,7 @@
               = f.input :area_id, collection: Area.none, label: false, input_html: {class: "form-control", disabled: "disabled"}, error_html: {class: "err_msg"}
             - else
               = f.input :area_id, collection: Area.where(zone_id: params[:input_task][:zone_id]), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}
-          %label.col-xs-2.control-label.text-left Block *
+          %label.col-xs-2.control-label.text-left Block
           .col-xs-4
             - if !@input_task.area_id.nil?
               = f.input :block_id, collection: Block.where(area_id: @input_task.area_id), label: false, input_html: {class: "form-control"}, error_html: {class: "err_msg"}

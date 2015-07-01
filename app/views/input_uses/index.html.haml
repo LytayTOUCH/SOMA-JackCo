@@ -9,7 +9,7 @@
 - if params[:filter].present?
   .report-material
     %table.table.table-bordered
-      %tr
+      %tr{style: "background-color: #eee"}
         %th{rowspan: params[:filter][:farm_id] == "g_total" ? 1 : 3, style: "vertical-align: middle; white-space: nowrap; text-align: center;"}
           Materials
         %th{rowspan: params[:filter][:farm_id] == "g_total" ? 1 : 3, style: "vertical-align: middle; white-space: nowrap; text-align: center;"}
@@ -17,19 +17,19 @@
         %th{style: "white-space: nowrap; text-align: center;", colspan: params[:filter][:farm_id] == "g_total" ? PlanFarm.sum_area("All") : PlanFarm.sum_area(params[:filter][:farm_id])}
           = params[:filter][:farm_id] == "g_total" ? "Total" : Farm.find(params[:filter][:farm_id]).name
       - unless params[:filter][:farm_id] == "g_total"
-        %tr
+        %tr{style: "background-color: #eee"}
           - Farm.find(params[:filter][:farm_id]).zones.each_with_index do |zone, i|
             %th{ style: "white-space: nowrap; text-align: center;", colspan: zone.areas.count }
               = zone.name
       - unless params[:filter][:farm_id] == "g_total"
-        %tr
+        %tr{style: "background-color: #eee"}
           - Farm.where(uuid: params[:filter][:farm_id]).each do |farm|
             - farm.zones.each do |zone|
               - zone.areas.each do |area|
                 %th{ style: "white-space: nowrap; text-align: center;" }
                   = area.name
       - MaterialCategory.all.each do |mc|
-        %tr
+        %tr{style: "background-color: #ccc"}
           %th{colspan: params[:filter][:farm_id] == "g_total" ? PlanFarm.sum_area("All") : PlanFarm.sum_area(params[:filter][:farm_id]) + 2}= mc.name
         - mc.materials.each do |m|
           %tr

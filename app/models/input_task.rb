@@ -2,7 +2,9 @@ class InputTask < ActiveRecord::Base
   include UuidHelper
 
   belongs_to :zone, foreign_key: :zone_id
+  belongs_to :farm, foreign_key: :farm_id
   belongs_to :block, foreign_key: :block_id
+  belongs_to :area, foreign_key: :area_id
   belongs_to :labor, foreign_key: :labor_id
   belongs_to :planting_project
 
@@ -21,8 +23,6 @@ class InputTask < ActiveRecord::Base
   validates :farm_id, length: {maximum: 36}, :presence => { message: "Farm is required." }
   validates :zone_id, length: {maximum: 36}, :presence => { message: "Zone is required." }
   validates :area_id, length: {maximum: 36}, :presence => { message: "Area is required." }
-  validates :block_id, length: {maximum: 36}, :presence => { message: "Block is required." }
-  # validates :block_id, length: {maximum: 36}, :presence => { message: "Block is required." }
   validates :tree_amount, :presence => { message: "Tree amount is required." }
   validates :labor_id, length: {maximum: 36}, :presence => { message: "Labor is required." }
   validates :reference_number, :presence => { message: "Reference Number can't be blank." }

@@ -30,38 +30,7 @@ $(document).ready(function(){
   
   // WHEN USER CHANGE THE FARM
   $("#input_task_farm_id").change(function(){
-    $('#input_task_tree_amount').val("");
-    $('#input_task_planting_project_id').val("");
-    $('#input_task_name').val("");
-    $('.planting_project_name').val("");
-
-    // START -- EQUIPMENT SECTION
-    $('#equipments').val("");
-    $('select.item-select-equipments').html('');
-    $('select.item-select-equipments').attr("multiple", "multiple");
-    $("select.chosen-select-equipment").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-equipments').attr("data-placeholder", "No Items");
-    $('select.item-select-equipments').trigger('chosen:updated');
-    // END -- EQUIPMENT SECTION
-    
-    // START -- MACHINERY SECTION
-    $('#machineries').val("");
-    $('.machinery-name').empty();
-    
-    $('select.item-select-machinaries').html('');
-    $('select.item-select-machinaries').attr("multiple", "multiple");
-    $("select.chosen-select").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-    $('select.item-select-machinaries').trigger('chosen:updated');
-    // END -- MACHINERY SECTION
+    resetForm();
     
     if($("#input_task_farm_id").val() == "") {
       $("#input_task_zone_id").val("");
@@ -94,38 +63,7 @@ $(document).ready(function(){
   
   // WHEN USER CHANGE THE ZONE
   $("#input_task_zone_id").change(function(){
-    $('#input_task_tree_amount').val("");
-    $('#input_task_planting_project_id').val("");
-    $('#input_task_name').val("");
-    $('.planting_project_name').val("");
-    
-    // START -- EQUIPMENT SECTION
-    $('#equipments').val("");
-    $('select.item-select-equipments').html('');
-    $('select.item-select-equipments').attr("multiple", "multiple");
-    $("select.chosen-select-equipment").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-equipments').attr("data-placeholder", "No Items");
-    $('select.item-select-equipments').trigger('chosen:updated');
-    // END -- EQUIPMENT SECTION
-
-    // START -- MACHINERY SECTION
-    $('#machineries').val("");
-    $('.machinery-name').empty();
-    
-    $('select.item-select-machinaries').html('');
-    $('select.item-select-machinaries').attr("multiple", "multiple");
-    $("select.chosen-select").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-    $('select.item-select-machinaries').trigger('chosen:updated');
-    // END -- MACHINERY SECTION
+    resetForm();
     
     if($("#input_task_zone_id").val() == "") {
       $("#input_task_area_id").val("");
@@ -155,45 +93,15 @@ $(document).ready(function(){
   
   // WHEN USER CHANGE THE AREA
   $("#input_task_area_id").change(function(){
-    $('#input_task_tree_amount').val("");
-    $('#input_task_planting_project_id').val("");
-    $('#input_task_name').val("");
-    $('.planting_project_name').val("");
- 
-    // START -- EQUIPMENT SECTION
-    $('#equipments').val("");
-    $('select.item-select-equipments').html('');
-    $('select.item-select-equipments').attr("multiple", "multiple");
-    $("select.chosen-select-equipment").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-equipments').attr("data-placeholder", "No Items");
-    $('select.item-select-equipments').trigger('chosen:updated');
-    // END -- EQUIPMENT SECTION
-
-    // START -- MACHINERY SECTION
-    $('#machineries').val("");
-    $('.machinery-name').empty();
-    
-    $('select.item-select-machinaries').html('');
-    $('select.item-select-machinaries').attr("multiple", "multiple");
-    $("select.chosen-select").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-    $('select.item-select-machinaries').trigger('chosen:updated');
-    // END -- MACHINERY SECTION
-    
     if($("#input_task_area_id").val() == "") {
+      resetForm();
       $("#input_task_block_id").val("");
       $('#input_task_block_id').prop('disabled', 'disabled');
+      
     } else {
       $('#input_task_block_id').prop('disabled', false);
       
+      // Get blocks in the selected area
       var area_id = $("#input_task_area_id").val();
       jQuery.ajax({
         url: "/get_blocks_by_area",
@@ -208,124 +116,74 @@ $(document).ready(function(){
           });
         }
       });
+      
+      // Get data for Tree amount when selecting block
+      $('.machinery-name').empty();
+      
+      // Get tree amount in a selected area
+	  $('.tree_amount').show();
+	  jQuery.ajax({
+	    url: "/get_tree_amounts_in_area",
+	    type: "GET",
+	    data: {"area_id" : area_id},
+	    dataType: "json",            
+	    success: function(data) {
+	      $(".tree_amount").val(data);
+	    }
+	  });
+	  
+	  // Get data for Planting Project when selecting block
+	  $('.planting_project').show();
+	  jQuery.ajax({
+	    url: "/get_area_planting_project_data",
+	    type: "GET",
+	    data: {"area_id" : area_id},
+	    dataType: "json",
+	    success: function(data){
+	      $('input.planting_project_id').val(data.uuid);
+	      $('input.planting_project_name').val(data.name);
+	      
+	      //START--APPLICATION SECTION
+	      $('#input_task_name').empty();
+		  jQuery.ajax({
+		    url: "/get_input_application_data",
+		    type: "GET",
+		    data: {"planting_project_id" : data.uuid},
+		    dataType: "json",
+		    success: function(data){
+		      $.each(data, function(i, value) {
+		        $('#input_task_name').append('<option value="'+value.uuid+'">'+value.name+'</option>');
+		      });
+		    }
+		  });
+		  //END----APPLICATION SECTION
+	
+	      renderEquipment();
+	      renderMachinery();
+	    }
+	  });
     }
   });
 
   // WHEN USER CHANGE THE BLOCK 
   $('#input_task_block_id').change(function() {
-    if($('#input_task_block_id').val() == "") {
-      $('#input_task_tree_amount').val("");
-      $('#input_task_planting_project_id').val("");
-      $('#input_task_name').val("");
-      $('.planting_project_name').val("");
-   
-      // START -- EQUIPMENT SECTION
-      $('#equipments').val("");
-      $('select.item-select-equipments').html('');
-      $('select.item-select-equipments').attr("multiple", "multiple");
-      $("select.chosen-select-equipment").chosen(
-        {width: "100%"},
-        {no_results_text: 'No results matched'}
-      );
-      
-      $('select.item-select-equipments').attr("data-placeholder", "No Items");
-      $('select.item-select-equipments').trigger('chosen:updated');
-      // END -- EQUIPMENT SECTION
-
-      // START -- MACHINERY SECTION
-      $('#machineries').val("");
-      $('.machinery-name').empty();
-      
-      $('select.item-select-machinaries').html('');
-      $('select.item-select-machinaries').attr("multiple", "multiple");
-      $("select.chosen-select").chosen(
-        {width: "100%"},
-        {no_results_text: 'No results matched'}
-      );
-      
-      $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-      $('select.item-select-machinaries').trigger('chosen:updated');
-      // END -- MACHINERY SECTION
-      
-      return;
+    if($('#input_task_block_id').val() != "") {
+      // Get tree amount in a block
+	  $('.tree_amount').show();
+	  var block_id = $('#input_task_block_id').val();
+	  jQuery.ajax({
+	    url: "/get_tree_amounts",
+	    type: "GET",
+	    data: {"block_id" : block_id},
+	    dataType: "json",            
+	    success: function(data) {
+	      $.each(data, function(i, value) {
+	        $(".tree_amount").val(value.tree_amount);
+	      });
+	    }
+	  });
     }
-    
-    // Get data for Tree amount when selecting block
-    $('.machinery-name').empty();
-    
-    $('.tree_amount').show();
-    var block_id = $('#input_task_block_id').val();
-    jQuery.ajax({
-      url: "/get_tree_amounts",
-      type: "GET",
-      data: {"block_id" : block_id},
-      dataType: "json",            
-      success: function(data) {
-        $.each(data, function(i, value) {
-          $(".tree_amount").val(value.tree_amount);
-        });   
-
-      }
-    });    
-
-    // Get data for Planting Project when selecting block
-    $('.planting_project').show();
-    jQuery.ajax({
-      url: "/get_block_planting_project_data",
-      type: "GET",
-      data: {"block_id" : block_id},
-      dataType: "json",
-      success: function(data){
-        $('input.planting_project_id').val(data.uuid);
-        $('input.planting_project_name').val(data.name);
-        
-        //START--APPLICATION SECTION
-        $('#input_task_name').empty();
-	    jQuery.ajax({
-	      url: "/get_input_application_data",
-	      type: "GET",
-	      data: {"planting_project_id" : data.uuid},
-	      dataType: "json",
-	      success: function(data){
-	      	$.each(data, function(i, value) {
-	          $('#input_task_name').append('<option value="'+value.uuid+'">'+value.name+'</option>');
-	        });
-	      }
-	    });
-	    //END----APPLICATION SECTION
-
-        renderEquipment();
-        renderMachinery();
-      }
-    });  
   });
-
-    //INPUT TREE AMOUNT SECTION
-    $(".tree_amount").blur(function() {
-      var tree_amount_input = $(".tree_amount").val();
-      var block_ids = $('#input_task_block_id').val();
-      if(tree_amount_input != "") {
-        jQuery.ajax({
-          url: "/get_tree_amounts",
-          type: "GET",
-          data: {"block_id" : block_ids},
-          dataType: "json",
-          success: function(data){
-            $.each(data, function(i, value) {
-              input = parseFloat(tree_amount_input);
-              remain = parseFloat(value.tree_amount);
-              if(input > remain) {
-                alert("Input tree amount cannot over than block's tree amount."+
-                      "\nBlock's tree amount: "+ remain);
-                $('.tree_amount').focus();
-                $('.tree_amount').val(value.tree_amount);
-              }
-            });
-          }
-        });
-      }
-    });
-    //END--INPUT TREE AMOUNT SECTION
 
   function renderEquipment() {
     //Start Get Equipment and select Equipment
@@ -397,6 +255,41 @@ $(document).ready(function(){
     });
   }
 
+  function resetForm() {
+  	  $('#input_task_tree_amount').val("");
+	  $('#input_task_planting_project_id').val("");
+	  $('#input_task_name').val("");
+	  $('.planting_project_name').val("");
+	   
+	      // START -- EQUIPMENT SECTION
+	  $('#equipments').val("");
+	  $('select.item-select-equipments').html('');
+	  $('select.item-select-equipments').attr("multiple", "multiple");
+	  $("select.chosen-select-equipment").chosen(
+	    {width: "100%"},
+	    {no_results_text: 'No results matched'}
+	  );
+	  
+	  $('select.item-select-equipments').attr("data-placeholder", "No Items");
+	  $('select.item-select-equipments').trigger('chosen:updated');
+	  // END -- EQUIPMENT SECTION
+	
+	  // START -- MACHINERY SECTION
+	  $('#machineries').val("");
+	  $('.machinery-name').empty();
+	  
+	  $('select.item-select-machinaries').html('');
+	  $('select.item-select-machinaries').attr("multiple", "multiple");
+	  $("select.chosen-select").chosen(
+	    {width: "100%"},
+	    {no_results_text: 'No results matched'}
+	  );
+	  
+	  $('select.item-select-machinaries').attr("data-placeholder", "No Items");
+	  $('select.item-select-machinaries').trigger('chosen:updated');
+	  // END -- MACHINERY SECTION
+  }
+  
   //Get equipment_id when select equipment
   $('select.item-select-equipments').change(function(event, params){              
 
@@ -570,7 +463,7 @@ $(document).ready(function(){
             str +=      data.material_name.name;
             str +=    '</label>';
             str +=    '<label class="col-xs-1 control-label" style="width: 10%;">Warehouse*</label>';
-            str +=    '<div class="col-xs-2">';
+            str +=    '<div class="col-xs-3">';
             str +=      '<select name="warehouses_of_material[]" class="warehouse-select-material-'+params.selected+' form-control" id="warehouse_select_material-'+params.selected+'">';
             str +=      '</select>';
             // str +=      '<span id="warehouse_select_material_msg-'+params.selected+'" style="color: red;"></span>';
