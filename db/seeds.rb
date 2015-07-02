@@ -19,11 +19,13 @@ end
 
 # ========== Position ==========
 [
-  {name: 'Manager', note: 'Controlling a labor in field', active: true},
-  {name: 'Worker', note: 'Doing farming in the field', active: true},
-  {name: 'Hong Channda', note: 'Project Supervisor (ZoneI)', active: true}
+  {name: 'Manager', note: 'Controlling a labor in field'},
+  {name: 'Worker', note: 'Doing farming in the field'},
+  {name: 'Hong Channda', note: 'Project Supervisor (ZoneI)'},
+  {name: 'Assistant Deputy Farm Manager', note: ''},
+  {name: 'Team Leader', note: ''}
 ].each do |position|
-  Position.create_with(note: position[:note]).find_or_create_by(name: position[:name])
+  Position.create_with(note: position[:note], active: true).find_or_create_by(name: position[:name])
 end
 
 # ========== Labor ==========
@@ -32,8 +34,7 @@ position = Position.create_with(note: 'Controlling a labor in field', active: tr
   {name: "Default Manager", gender: "M", phone: "012 345 678", email: "admin@cltag.com", address: "Phnom Penh", manager_uuid: "", note: "Controlling all the labors in the field", active: true, selected: true},
   {name: "Kevin", gender: "M", phone: "012 345 6789", email: "ngok@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
   {name: "Piseth", gender: "M", phone: "098 765 4321", email: "peap@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
-  {name: "Pheth", gender: "M", phone: "089 765 4321", email: "nhekp@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true},
-  {}
+  {name: "Pheth", gender: "M", phone: "089 765 4321", email: "nhekp@somagroup.com.kh", address: "Phnom Penh", manager_uuid: "", note: "This is for testing user account.", active: true, selected: true}
 ].each do |each_labor|
   labor = Labor.create_with(gender: each_labor[:gender], phone: each_labor[:phone], email: each_labor[:email], address: each_labor[:address], manager_uuid: each_labor[:manager_uuid], note: each_labor[:note], active: each_labor[:active], selected: each_labor[:selected]).find_or_create_by(name: each_labor[:name])
   position.labors << labor
@@ -85,8 +86,11 @@ nursery_warehouse = WarehouseType.find_by_name("Nursery Warehouse")
 
 [
   {name: "Oroung Finished Goods WH", warehouse_type_uuid: finished_goods_warehouse.uuid, address:"Oroung Farm", note:"", active: true},
-  {name: "Coconut Nursery WH", warehouse_type_uuid: nursery_warehouse.uuid, address:"Oroung Farm", note:"", active: true},
-  {name: "Coconut Project WH", warehouse_type_uuid: project_warehouse.uuid, address:"Chamkar Dong", note:"", active: true}
+  {name: "Coconut Project WH", warehouse_type_uuid: project_warehouse.uuid, address:"Chamkar Dong", note:"", active: true},
+  {name: "Jack Fruit Project WH", warehouse_type_uuid: project_warehouse.uuid, address:"Oroung Farm", note:"", active: true},
+  {name: "Coconut Nursery WH", warehouse_type_uuid: nursery_warehouse.uuid, address:"Chamkar Dong", note:"", active: true},
+  {name: "Raw Material Warehouse", warehouse_type_uuid: central_warehouse.uuid, address:"Oroung Farm", note:"", active: true},
+  {name: "Fertilizer Warehouse", warehouse_type_uuid: fertilizer_warehouse.uuid, address:"Chamkar Dong", note:"", active: true}
 ].each do |each_warehouse|
   Warehouse.create_with(warehouse_type_uuid: each_warehouse[:warehouse_type_uuid], address: each_warehouse[:address], note: each_warehouse[:note], active: each_warehouse[:active]).find_or_create_by(name: each_warehouse[:name])
 end
