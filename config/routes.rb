@@ -154,16 +154,8 @@ Rails.application.routes.draw do
 
   # put ':user_group_id/permissions/update', to: 'permissions#update', as: :update
 
-
-  resources :roles do
-    collection do
-      get 'resources'
-    end
-  end
-  
   resources :calendars
   resources :stages
-  resources :suppliers
 
   resources :transaction_status
   resources :planting_projects

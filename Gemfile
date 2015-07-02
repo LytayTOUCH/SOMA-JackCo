@@ -55,7 +55,6 @@ group :test, :development do
 end
 
 gem 'cancan'
-gem 'rolify'
 gem 'fullcalendar-rails'
 
 # group :assets do

@@ -1,5 +1,0 @@
-%h4
-  = "Maintenance"
-  .pull-right
-    = link_to "Log Maintenance", new_maintenance_path(machinery_uuid: machinery.id, maintenance_type: maintenance_type), class: "btn btn-primary"
-= render partial: 'list_maintenance', locals: {maintenances: maintenances}
