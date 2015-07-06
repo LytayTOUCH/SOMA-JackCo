@@ -1,4 +1,4 @@
-%table.list_data_table
+%table#list_data_table
   %thead
     %tr
       %th.col-md-2= "Time"
@@ -11,31 +11,5 @@
         %td= log.created_at
         %td= log.user.email
         %td= log.note
-        %td= log.object
-
-:javascript
-  $(document).ready(function() {
-    $('.list_data_table').DataTable({
-      "bSort": false,
-      "bFilter": false,
-      "bInfo": false,
-      "bPaginate": false,
-      "columnDefs": [{ "visible": false, "targets": 1 }],
-      "order": [[ 1, 'asc' ]],
-      "drawCallback": function ( settings ) {
-            var api = this.api();
-            var rows = api.rows( {page:'current'} ).nodes();
-            var last=null;
- 
-            api.column(1, {page:'current'} ).data().each( function ( group, i ) {
-                if ( last !== group ) {
-                    $(rows).eq( i ).before(
-                        '<tr class="group"><td colspan="3">'+group+'</td></tr>'
-                    );
- 
-                    last = group;
-                }
-            } );
-        }
-    });
-  });
+        %td
+          %pre= log.object

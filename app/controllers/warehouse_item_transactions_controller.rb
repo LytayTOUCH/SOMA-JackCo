@@ -67,7 +67,7 @@ class WarehouseItemTransactionsController < ApplicationController
       @central_project_fertilizer_warehouses = Warehouse.where("warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ? OR warehouse_type_uuid = ? and active = ?", @central_warehouse_type.uuid, true, @project_warehouse_type.uuid, true, @fertilizer_warehouse_type.uuid, true)
 
       if @warehouse_item_transaction.save
-        create_log_3 current_user.uuid, "Create New Material Request", @warehouse_item_transaction, [:uuid, :requested_number, :amount, :requested_date]
+        create_log current_user.uuid, "Create New Material Request", @warehouse_item_transaction
         
         @warehouse_item_transaction.remaining_amount = @warehouse_item_transaction.amount
         @warehouse_item_transaction.save

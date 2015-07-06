@@ -71,6 +71,8 @@ gem 'paper_trail'
 gem 'jquery-datatables-rails', '~> 3.2.0'
 gem 'chosen-rails'
 
+gem 'json'
+
 # ruby '2.0.0'
 
 # Use ActiveModel has_secure_password
