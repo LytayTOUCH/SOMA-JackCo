@@ -1,39 +1,27 @@
-%table#list_data_table
-  %thead
-    %tr
-      %th.col-md-2= "Name / Code"
-      %th.col-md-1= "Type"
-      %th.col-md-2= "Source"
-      / %th.col-md-1= "Planting Project"
-      %th.col-md-1= "Regis. No"
-      %th.col-md-1= "Year"
-      %th.col-md-1= "Avatar"
-      %th.col-md-2= "Status"
-      %th.col-md-1= "Action"
-  %tbody
-    - @machineries.each do |machinery|
+- @machineries.each do |machinery|
+  .row{style: "margin: 10px 0;"}
+    %table.col-xs-12
       %tr
-        %td= machinery.name
-        %td= machinery.machinery_type.name
-        %td= machinery.source
-        / %td= machinery.planting_project.name
-        %td= machinery.registration_number
-        %td= machinery.year
-        %td= image_tag machinery.avatar.url(:thumb)
-        %td
-          = form_for(machinery) do |f|
-            - if machinery.status
-              %span{style: "color:green;"}= "active"
-              - if can? :update, machinery
-                |
-                #{f.hidden_field :status, value: false}
-                #{submit_tag "deactivate", :class => "btn btn-default btn-xs"}
-            - else
-              %span{style: "color:red;"}= "inactive"
-              - if can? :update, machinery
-                |
-                #{f.hidden_field :status, value: true}
-                #{submit_tag "activate", :class => "btn btn-default btn-xs"}
-        %td
-          - if can? :update, machinery
-            = link_to "Edit", edit_machinery_path(machinery)
+        %td.col-xs-1{style: "border: 1px solid #ddd;background-color:#eee;"}= image_tag machinery.avatar.url(:thumb), size: "100x100"
+        %td.col-xs-2{style: "border: 1px solid #ddd;"}
+          %span{style: "margin: 10px 0;display:block;font-size: 2em;text-transform: uppercase;"}= MachineryType.find_by(machinery.machinery_type_id).name
+          %span{style: "display:block;font-size:1.5em"}= machinery.name
+        %td.col-xs-8{style: "border: 1px solid #ddd;"}
+          %span{style: "display:block;"}
+            %b SOURCE:
+            = machinery.source
+          %span{style: "display:block;"}
+            %b MANUFACTURER:
+            = machinery.manufacturer
+          %span{style: "display:block;"}
+            %b MODEL:
+            = machinery.model
+          %span{style: "display:block;"}
+            %b REGISTRATION NO:
+            = machinery.registration_number
+          %span{style: "display:block;"}
+            %b YEAR:
+            = machinery.year
+        - if can? :update, machinery
+          %td.col-xs-1{style: "border: 1px solid #ddd;background-color:#eee;"}
+            = link_to "Edit", edit_machinery_path(machinery), style: "display:block;text-align:center;"
