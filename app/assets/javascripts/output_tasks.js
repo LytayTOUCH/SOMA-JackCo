@@ -9,6 +9,7 @@ $(document).ready(function() {
   $('.date_pick').datetimepicker({});
 
   var planting_project_id = $(".planting_project_id").val();
+  var planting_project_name = $('input.planting_project_name').val();
   if(planting_project_id!="") {
     // START -- EQUIPMENT SECTION
     $('#equipments').val("");
@@ -25,46 +26,14 @@ $(document).ready(function() {
     $('select.item-select-equipments').trigger('chosen:updated');
     // END -- EQUIPMENT SECTION
     
-    renderEquipment();
+    renderApplication(planting_project_id);
+	renderEquipment(planting_project_id);
+	renderDistribution(planting_project_id, planting_project_name);
   }
   
   // WHEN USER CHANGE THE FARM
   $("#output_task_farm_id").change(function(){
-  	$('#distribution').hide();
-  	$('#output_task_tree_amount').val("");
-  	$('#output_task_planting_project_id').val("");
-  	$('#output_task_name').val("");
-  	$('.planting_project_name').val("");
-  	
-  	// START -- EQUIPMENT SECTION
-    $('#equipments').val("");
-    $('select.item-select-equipments').html('');
-    
-    $('select.item-select-equipments').html('');
-    $('select.item-select-equipments').attr("multiple", "multiple");
-    $("select.chosen-select-equipment").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-equipments').attr("data-placeholder", "No Items");
-    $('select.item-select-equipments').trigger('chosen:updated');
-    // END -- EQUIPMENT SECTION
-  	
-  	// START -- MACHINERY SECTION
-    $('#machineries').val("");
-    $('.machinery-name').empty();
-    
-    $('select.item-select-machinaries').html('');
-    $('select.item-select-machinaries').attr("multiple", "multiple");
-  	$("select.chosen-select").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-    $('select.item-select-machinaries').trigger('chosen:updated');
-    // END -- MACHINERY SECTION
+  	resetForm();
   	
   	if($("#output_task_farm_id").val() == "") {
       $("#output_task_zone_id").val("");
@@ -97,41 +66,7 @@ $(document).ready(function() {
   
   // WHEN USER CHANGE THE ZONE
   $("#output_task_zone_id").change(function(){
-  	$('#distribution').hide();
-  	$('#output_task_tree_amount').val("");
-  	$('#output_task_planting_project_id').val("");
-  	$('#output_task_name').val("");
-  	$('.planting_project_name').val("");
-  	
-  	// START -- EQUIPMENT SECTION
-    $('#equipments').val("");
-    $('select.item-select-equipments').html('');
-    
-    $('select.item-select-equipments').html('');
-    $('select.item-select-equipments').attr("multiple", "multiple");
-    $("select.chosen-select-equipment").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-equipments').attr("data-placeholder", "No Items");
-    $('select.item-select-equipments').trigger('chosen:updated');
-    // END -- EQUIPMENT SECTION
-  	
-  	// START -- MACHINERY SECTION
-    $('#machineries').val("");
-    $('.machinery-name').empty();
-    
-    $('select.item-select-machinaries').html('');
-    $('select.item-select-machinaries').attr("multiple", "multiple");
-  	$("select.chosen-select").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-    $('select.item-select-machinaries').trigger('chosen:updated');
-    // END -- MACHINERY SECTION
+  	resetForm();
   	
   	if($("#output_task_zone_id").val() == "") {
       $("#output_task_area_id").val("");
@@ -161,41 +96,7 @@ $(document).ready(function() {
   
   // WHEN USER CHANGE THE AREA
   $("#output_task_area_id").change(function(){
-  	$('#distribution').hide();
-  	$('#output_task_tree_amount').val("");
-  	$('#output_task_planting_project_id').val("");
-  	$('#output_task_name').val("");
-  	$('.planting_project_name').val("");
-  	
-  	// START -- EQUIPMENT SECTION
-    $('#equipments').val("");
-    $('select.item-select-equipments').html('');
-    
-    $('select.item-select-equipments').html('');
-    $('select.item-select-equipments').attr("multiple", "multiple");
-    $("select.chosen-select-equipment").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-equipments').attr("data-placeholder", "No Items");
-    $('select.item-select-equipments').trigger('chosen:updated');
-    // END -- EQUIPMENT SECTION
-  	
-  	// START -- MACHINERY SECTION
-    $('#machineries').val("");
-    $('.machinery-name').empty();
-    
-    $('select.item-select-machinaries').html('');
-    $('select.item-select-machinaries').attr("multiple", "multiple");
-  	$("select.chosen-select").chosen(
-      {width: "100%"},
-      {no_results_text: 'No results matched'}
-    );
-    
-    $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-    $('select.item-select-machinaries').trigger('chosen:updated');
-    // END -- MACHINERY SECTION
+  	resetForm();
   	
   	if($("#output_task_area_id").val() == "") {
       $("#output_task_block_id").val("");
@@ -223,48 +124,10 @@ $(document).ready(function() {
   // WHEN USER CHANGE THE BLOCK 
   $('#output_task_block_id').change(function() {
   	if($('#output_task_block_id').val() == "") {
-  	  $('#distribution').hide();
-  	  $('#output_task_tree_amount').val("");
-  	  $('#output_task_planting_project_id').val("");
-  	  $('#output_task_name').val("");
-  	  $('.planting_project_name').val("");
-  	  
-  	  // START -- EQUIPMENT SECTION
-      $('#equipments').val("");
-      $('select.item-select-equipments').html('');
-      
-      $('select.item-select-equipments').html('');
-      $('select.item-select-equipments').attr("multiple", "multiple");
-      $("select.chosen-select-equipment").chosen(
-        {width: "100%"},
-        {no_results_text: 'No results matched'}
-      );
-      
-      $('select.item-select-equipments').attr("data-placeholder", "No Items");
-      $('select.item-select-equipments').trigger('chosen:updated');
-      // END -- EQUIPMENT SECTION
-  	  
-  	  // START -- MACHINERY SECTION
-      $('#machineries').val("");
-      $('.machinery-name').empty();
-      
-      $('select.item-select-machinaries').html('');
-      $('select.item-select-machinaries').attr("multiple", "multiple");
-  	  $("select.chosen-select").chosen(
-        {width: "100%"},
-        {no_results_text: 'No results matched'}
-      );
-      
-      $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-      $('select.item-select-machinaries').trigger('chosen:updated');
-      // END -- MACHINERY SECTION
-  	  
+  	  resetForm();
   	  return;
   	}
   	
-  	// Get data for Tree amount when selecting block
-    $('.machinery-name').empty();
-    
     $('.tree_amount').show();
     var block_id = $('#output_task_block_id').val();
     jQuery.ajax({
@@ -291,331 +154,131 @@ $(document).ready(function() {
         $('input.planting_project_id').val(data.uuid);
         $('input.planting_project_name').val(data.name);
 
-		//START--APPLICATION SECTION
-        $('#output_task_name').empty();
-	    jQuery.ajax({
-	      url: "/get_output_application_data",
-	      type: "GET",
-	      data: {"planting_project_id" : data.uuid},
-	      dataType: "json",
-	      success: function(data){
-	      	$.each(data, function(i, value) {
-	          $('#output_task_name').append('<option value="'+value.uuid+'">'+value.name+'</option>');
-	        });
-	      }
-	    });
-	    //END----APPLICATION SECTION
-		
-        renderEquipment();
+		renderApplication(data.uuid);
+        renderEquipment(data.uuid);
+        renderDistribution(data.uuid, data.name);
+      }
+    });
+  });
 
-        // DISTRIBUTION SECTION
-        $('#distribution').empty();
-        $('#distribution').append("<h3>Distribution - "+data.name+"</h3><hr/>");
-  	    $('#distribution').show();
-  	    jQuery.ajax({
-	      url: "/get_distributions_by_planting_project",
-	      type: "GET",
-	      data: {"planting_project_id" : data.uuid},
-	      dataType: "json",
-	      success: function(data) {
-	        $.each(data.distributions, function(i, value) {
-	          
-	          var result = "<div class='form-group'><label class='col-xs-3 control-label text-left'>"+ value.label +"</label>";
-	          
-	          var uoms = value.uoms.split(",");
-	          var length = uoms.length;
-              for (var i = 0; i < length; i++) {
-              	result += '<div class="col-xs-3">'
-				             +'<div class="input-group">'
-				               +'<div class="input float required">'
-				                 +'<input class="numeric float required form-control" type="number" value="0.0" step="any" name="distribution_amounts[]">'
-				                 +'<input type="hidden" value="'+ value.uuid +'" name="distribution_ids[]">'
-				                 +'<input type="hidden" value="'+ uoms[i].split("|")[0] +'" name="uom_ids[]">'
-				               +'</div>'
-				               +'<span class="input-group-addon">' + uoms[i].split("|")[1] + '</span>'
-				             +'</div>'
-	                       +'</div>';
-              }
-              
-              if(value.to_nursery) {
-              	result += '<div class="col-xs-3"><input name="to_nursery_distribution" type="hidden" value="'+value.uuid+'" /></input><select name="to_nursery_warehouses" class="form-control">';
-              	
-              	$.each(data.nursery_warehouses, function(i, wh) {
-              	  result += '<option value=' + wh.uuid + '>' + wh.name + '</option>';
-	            });
-	            
-	            result += '</select></div>';
-              }
-              
-              if(value.to_finish) {
-              	result += '<div class="col-xs-3"><input name="to_finish_distribution" type="hidden" value="'+value.uuid+'" /><select name="to_finish_warehouses" class="form-control">';
-              	
-              	$.each(data.finish_warehouses, function(i, wh) {
-              	  result += '<option value=' + wh.uuid + '>' + wh.name + '</option>';
-	            });
-	            
-	            result += '</select></div>';
-              }
-              
-              result += "</div>";
-	          
-	          $('#distribution').append(result);
-	        });
-	      }
-	    });
-
-        // Get data for Chosen when Planting project has data
-        $('select.item-select-machinaries').html('');
-        var planting_project_id = $(".planting_project_id").val();
-        jQuery.ajax({
-          url: "/get_machinery_data",
-          type: "GET",
-          data: {"planting_project_id" : planting_project_id},
-          dataType: "json",
-          success: function(data){
-            if(data.length){
-              $.each(data, function(i, value) {
-                $('select.item-select-machinaries').append('<option value="' + value.uuid + '">' + value.name + '</option>');
-              });
-              $('select.item-select-machinaries').attr("multiple", "multiple");
-              $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
-            }
-            else{
-              $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-              $('select.item-select-machinaries').attr("multiple", "multiple");
-            }
-            $('select.item-select-machinaries').trigger('chosen:updated');
-          },
-          complete: function(data){
-            $("select.chosen-select").chosen(
-              {width: "100%"},
-              {allow_single_deselect: true},
-              {no_results_text: 'No results matched'}
-            );
-          }
+  function renderApplication(planting_project_id) {
+    $('#output_task_name').empty();
+    jQuery.ajax({
+      url: "/get_output_application_data",
+      type: "GET",
+      data: {"planting_project_id" : planting_project_id},
+      dataType: "json",
+      success: function(data){
+      	$.each(data, function(i, value) {
+          $('#output_task_name').append('<option value="'+value.uuid+'">'+value.name+'</option>');
         });
       }
-    });  
-  });
-
-  // Chosen in Output Task
-  $('select.item-select-machinaries').change(function(event, params){
-    $('.machinery-name').show();
-      // Creating a row of Machinery when data from chosen
-    
-    if(event.target == this){
-      if(!params.selected) {
-        $('#machinery-' + params.deselected).remove();
-        $('#machineries').val($(this).val());
-      } else {
-      	$('#machineries').val($(this).val());
-        var machinery_id = params.selected;
-        
-        jQuery.ajax({
-	      url: "/get_machinery_name",
-	      type: "GET",
-	      data: {"machinery_id" : machinery_id},
-	      beforeSend: function(){
-	        if (params.selected) {
-	          $('.warehouse-select').empty();
-	          $('.material-select').empty();
-	        }
-	      },
-	      dataType: "json",
-	        success: function(data){
-	          var str = "";
-	          str += '<div id="machinery-' + machinery_id + '">';
-	          str +=  '<div class="form-group">';                      
-	          str +=    '<label class="col-xs-2 control-label">';
-	          str +=      data.machinery_name.name;
-	          str +=    '</label>';
-	          str +=    '<div class="col-xs-4">';
-	          str +=      '<label class="col-xs-4 control-label">Warehouse</label>';
-	          str +=      '<div class="col-xs-8">';
-	          str +=        '<select id="wh_'+ machinery_id +'" name="warehouses[]" class="warehouse-select form-control">';
-	          str +=        '</select>';
-	          str +=      '</div>';
-	          str +=    '</div>';
-	          str +=    '<div class="col-xs-3">';
-	          str +=      '<label class="col-xs-4 control-label">Material</label>';
-	          str +=      '<div class="col-xs-8">';
-	          str +=        '<select id="material_'+ machinery_id +'" name="materials[]" class="material-select form-control">';
-	          str +=        '</select>';
-	          str +=      '</div>';
-	          str +=    '</div>';
-	          str +=    '<div class="col-xs-3">';
-	          str +=      '<label class="col-xs-3 control-label">Qty</label>';
-	          str +=      '<div class="col-xs-9">';
-	          str +=        '<div class="input-group">'
-					               +'<div class="input float required">'
-					                 +'<input id="matqty_'+ machinery_id +'" name="material_qtys[]" class="form-control material-qty"></input>'
-					               +'</div>'
-					               +'<span id="span_'+ machinery_id +'" class="input-group-addon" />'
-					       +'</div>';
-	          str +=      '</div>';
-	          str +=    '</div>';
-	          str +=  '</div>';
-	          str += '</div>';
-	          
-	          $('div.machinery-name').append(str);
-			  
-			  //SELECT WAREHOUSE SECTION
-			  // $('select.warehouse-select').append('<option value=""></option>');
-	          $.each(data.warehouse, function(i, value) {
-	            $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option>');
-	          });
-	          $('select.warehouse-select').change(function() {
-			      var machinery_id = $(this).attr("id").split("_")[1];
-			      
-			      if ($(this).val()==""){
-			      	$('#matqty_'+machinery_id).val("0");
-			      }
-			  });
-	
-			  //SELECT MATERIAL SECTION
-			  // $('select.material-select').append('<option value=""></option>');
-	          $.each(data.material, function(i, value) {
-	            $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
-	          });
-
-            //Start--Auto select UOM when select machinery
-            var mat_id = $('select.material-select').val();
-            jQuery.ajax({
-              url: "/get_unit_of_measurement_data",
-              type: "GET",
-              data: {"material_uuid" : mat_id},
-              dataType: "json",
-              success: function(data){
-                // $("span.uom-name-"+params.selected).html(data.name);
-                $("#span_"+machinery_id).html(data.name);
-              }
-            }); 
-            //End--Auto select UOM when select machinery
-
-	          $('select.material-select').change(
-			    function() {
-			      var machinery_id = $(this).attr("id").split("_")[1];
-			      
-			      if ($(this).val()!=""){
-			      	var material_id = $(this).val();
-			      
-	                jQuery.ajax({
-	                  url: "/get_unit_of_measurement_data",
-	                  type: "GET",
-			          data: {"material_uuid" : material_id},
-			          dataType: "json",
-			          success: function(data){
-			            $("#span_"+machinery_id).html(data.name);
-			            $('#matqty_'+machinery_id).val("0");
-			          }
-			        });
-			      } else {
-			      	$("#span_"+machinery_id).html("");
-			      }
-			    }
-			  );
-			  
-			  //INPUT MATERIAL QTY SECTION
-			  $('.material-qty').blur(function() {
-			  	var m_id = $(this).attr("id").split("_")[1];
-			  	if($('#wh_'+m_id).val()!="" && $('#material_'+m_id).val()!="" && $('#matqty_'+m_id).val()!="") {
-		  		  jQuery.ajax({
-	                url: "/get_warehouse_material_amount_data",
-	                type: "GET",
-		            data: {
-		            	"material_id" : $('#material_'+m_id).val(),
-		            	"warehouse_id" : $('#wh_'+m_id).val(),
-		            },
-		            dataType: "json",
-		            success: function(data){
-		              input = parseFloat($('#matqty_'+m_id).val());
-		              remain = parseFloat(data.amount);
-		              if(input > remain) {
-		              	alert('Input quantity exceeds the quantity in the stock.'+
-		              	      '\nPlease adjust the stock or create a stock-in transaction.'+
-		              	      '\nRemaining Balance: '+ remain);
-		              	$('#matqty_'+m_id).focus();
-		              	$('#matqty_'+m_id).val("0");
-		              }
-		            }
-		          });
-			  	}
-			  });
-	        }
-	      });
-      }
-    }
-  }); 
-
-  // Chosen in Output Task from Google Map
-  $('select.machinery-chosen').change(function(event, params){
-    $('.machinery-from-map').show();
-
-    // Creating a row of Machinery when data from chosen
-    if(event.target == this){
-      $('#machineries').val($(this).val());
-      var machinery_id = params.selected;
-      
-      if(!params.selected) {
-        $('#machinery-' + params.deselected).remove();
-      }
-      
-      jQuery.ajax({
-      url: "/get_machinery_name",
+    });
+  }
+  function renderDistribution(planting_project_id, planting_project_name) {
+    $('#distribution').empty();
+    $('#distribution').append("<h3>Distribution - "+planting_project_name+"</h3><hr/>");
+    $('#distribution').show();
+    jQuery.ajax({
+      url: "/get_distributions_by_planting_project",
       type: "GET",
-      data: {"machinery_id" : machinery_id},
-      beforeSend: function(){
-        if (params.selected) {
-          $('.warehouse-select').empty();
-          $('.material-select').empty();
-        }
-      },
+      data: {"planting_project_id" : planting_project_id},
       dataType: "json",
-        success: function(data){
-          var str = "";
-          str += '<div id="machinery-' + machinery_id + '">';
-          str +=  '<div class="form-group">';                      
-          str +=    '<label class="col-xs-2 control-label">';
-          str +=      data.machinery_name.name;
-          str +=    '</label>';
-          str +=    '<label class="col-xs-1 control-label">Warehouse</label>';
-          str +=    '<div class="col-xs-2">';
-          str +=      '<select name="warehouses[]" class="warehouse-select form-control">';
-          str +=      '</select>';
-          str +=    '</div>';
-          str +=    '<label class="col-xs-1 control-label">Material</label>';
-          str +=    '<div class="col-xs-2">';
-          str +=      '<select name="materials[]" class="material-select form-control">';
-          str +=      '</select>';
-          str +=    '</div>';
-          str +=    '<label class="col-xs-1 control-label">Qty</label>';
-          str +=    '<div class="col-xs-1">';
-          str +=      '<input name="material_qtys[]" class="form-control material-qty"></input>';
-          str +=    '</div>';
-          str +=  '</div>';
-          str += '</div>';
+      success: function(data) {
+        $.each(data.distributions, function(i, value) {
           
-          $('div.machinery-from-map').append(str);
+          var result = "<div class='form-group'><label class='col-xs-3 control-label text-left'>"+ value.label +"</label>";
+          var fieldReadonly = value.read_only == '1' ? 'readonly' : '';
+          
+          var uoms = value.uoms.split(",");
+          var length = uoms.length;
+          for (var i = 0; i < length; i++) {
+          	result += '<div class="col-xs-3">'
+			             +'<div class="input-group">'
+			               +'<div class="input float required">'
+			                 +'<input class="numeric float required form-control" id="distribution_'+i+'_'+value.order_of_display+'" type="number" value="0.0" step="any" '+fieldReadonly+' name="distribution_amounts[]" onchange="javascript:'+ value.function_name +'();">'
+			                 +'<input type="hidden" value="'+ value.uuid +'" name="distribution_ids[]">'
+			                 +'<input type="hidden" value="'+ uoms[i].split("|")[0] +'" name="uom_ids[]">'
+			               +'</div>'
+			               +'<span class="input-group-addon">' + uoms[i].split("|")[1] + '</span>'
+			             +'</div>'
+                       +'</div>';
+          }
+          
+          if(value.to_nursery) {
+          	result += '<div class="col-xs-3"><input name="to_nursery_distribution" type="hidden" value="'+value.uuid+'" /></input><select name="to_nursery_warehouses" class="form-control">';
+          	
+          	$.each(data.nursery_warehouses, function(i, wh) {
+          	  result += '<option value=' + wh.uuid + '>' + wh.name + '</option>';
+            });
+            
+            result += '</select></div>';
+          }
+          
+          if(value.to_finish) {
+          	result += '<div class="col-xs-3"><input name="to_finish_distribution" type="hidden" value="'+value.uuid+'" /><select name="to_finish_warehouses" class="form-control">';
+          	
+          	$.each(data.finish_warehouses, function(i, wh) {
+          	  result += '<option value=' + wh.uuid + '>' + wh.name + '</option>';
+            });
+            
+            result += '</select></div>';
+          }
+          
+          result += "</div>";
+          
+          $('#distribution').append(result);
+        });
+        
+        renderDistributionScript();
+      }
+    });
+  }
+  function renderDistributionScript() {
+  	var functionResult = '<script>'
+                          +'function coconutAutoCalc(){'
+							+'var distribution_0_4 = $("#distribution_0_4").val() == "" ? 0 : $("#distribution_0_4").val();'
+							+'var distribution_0_7 = $("#distribution_0_7").val() == "" ? 0 : $("#distribution_0_7").val();'
+							+'var distribution_0_8 = $("#distribution_0_8").val() == "" ? 0 : $("#distribution_0_8").val();'
+							+'var distribution_0_9 = $("#distribution_0_9").val() == "" ? 0 : $("#distribution_0_9").val();'
+							+'var distribution_0_11 = $("#distribution_0_11").val() == "" ? 0 : $("#distribution_0_11").val();'
+							+'$("#distribution_0_3").val(parseInt(distribution_0_8) + parseInt(distribution_0_9));'
+							+'$("#distribution_0_2").val(parseInt($("#distribution_0_3").val()) + parseInt(distribution_0_4));'
+							+'$("#distribution_0_6").val(distribution_0_11);'
+							+'$("#distribution_0_5").val(parseInt($("#distribution_0_6").val()) + parseInt(distribution_0_7));'
+							+'$("#distribution_0_1").val(parseInt($("#distribution_0_2").val()) + parseInt($("#distribution_0_5").val()));'
+							+'$("#distribution_0_10").val(parseInt(distribution_0_4) + parseInt(distribution_0_7));'
+						  +'}'
+                          +'function jackfruitAutoCalc(){'
+                            +'var distribution_0_3 = $("#distribution_0_3").val() == "" ? 0 : parseInt($("#distribution_0_3").val());'
+							+'var distribution_1_3 = $("#distribution_1_3").val() == "" ? 0 : parseInt($("#distribution_1_3").val());'
+							+'var distribution_0_4 = $("#distribution_0_4").val() == "" ? 0 : parseInt($("#distribution_0_4").val());'
+							+'var distribution_1_4 = $("#distribution_1_4").val() == "" ? 0 : parseInt($("#distribution_1_4").val());'
+							+'var distribution_0_5 = $("#distribution_0_5").val() == "" ? 0 : parseInt($("#distribution_0_5").val());'
+							+'var distribution_1_5 = $("#distribution_1_5").val() == "" ? 0 : parseInt($("#distribution_1_5").val());'
+							+'var distribution_0_6 = $("#distribution_0_6").val() == "" ? 0 : parseInt($("#distribution_0_6").val());'
+							+'var distribution_1_6 = $("#distribution_1_6").val() == "" ? 0 : parseInt($("#distribution_1_6").val());'
+							+'var distribution_0_7 = $("#distribution_0_7").val() == "" ? 0 : parseInt($("#distribution_0_7").val());'
+							+'var distribution_1_7 = $("#distribution_1_7").val() == "" ? 0 : parseInt($("#distribution_1_7").val());'
+							+'var distribution_0_8 = $("#distribution_0_8").val() == "" ? 0 : parseInt($("#distribution_0_8").val());'
+							+'var distribution_1_8 = $("#distribution_1_8").val() == "" ? 0 : parseInt($("#distribution_1_8").val());'
+							+'$("#distribution_0_9").val(distribution_0_5 + distribution_0_6);'
+							+'$("#distribution_1_9").val(distribution_1_5 + distribution_1_6);'
+							+'$("#distribution_0_2").val(distribution_0_3 + distribution_0_4 + distribution_0_5);'
+							+'$("#distribution_1_2").val(distribution_1_3 + distribution_1_4 + distribution_1_5);'
+							+'$("#distribution_0_1").val(distribution_0_3 + distribution_0_4 + distribution_0_5 + distribution_0_6);'
+							+'$("#distribution_1_1").val(distribution_1_3 + distribution_1_4 + distribution_1_5 + distribution_1_6);'
+                          +'}'
+                        +'</script>';
 
-          $.each(data.warehouse, function(i, value) {
-            $('select.warehouse-select').append('<option value=' + value.uuid + '>' + value.name + '</option></select>');
-          });
-
-          $.each(data.material, function(i, value) {
-            $('select.material-select').append('<option value='+ value.uuid +'>' + value.name + '</option>');
-          });
-        }
-      }); 
-    }
-  });
-
-  function renderEquipment() {
+    $('#distribution').append(functionResult);
+  }
+  function renderEquipment(planting_project_id) {
     //Start Get Equipment and select Equipment
     // Get data for Chosen Equipment when Planting project has data
     $('select.item-select-equipments').html('');
     $('#equipments').val("");
 
-    var planting_project_id = $(".planting_project_id").val();
     jQuery.ajax({
       url: "/get_equipment_data",
       type: "GET",
@@ -645,41 +308,27 @@ $(document).ready(function() {
     });
     //End-- Start Get Equipment and select Equipment
   }
-  
-  function renderMachinery() {
-  	// Get data for Chosen when Planting project has data
-    $('select.item-select-machinaries').html('');
-    $('#machineries').val("");
-    $('select.item-select-equipments').html('');
+  function resetForm() {
+  	$('#distribution').hide();
+  	$('#output_task_tree_amount').val("");
+  	$('#output_task_planting_project_id').val("");
+  	$('#output_task_name').val("");
+  	$('.planting_project_name').val("");
+  	
+  	// START -- EQUIPMENT SECTION
     $('#equipments').val("");
-        
-  	var planting_project_id = $(".planting_project_id").val();
-    jQuery.ajax({
-      url: "/get_machinery_data",
-      type: "GET",
-      data: {"planting_project_id" : planting_project_id},
-      dataType: "json",
-      success: function(data){
-      	
-      	$('select.item-select-machinaries').attr("multiple", "multiple");
-      	$("select.chosen-select").chosen(
-          {width: "100%"},
-          {no_results_text: 'No results matched'}
-        );
-      	
-        if(data.length){
-          $('select.item-select-machinaries').append('<option value=""></option>');
-          $.each(data, function(i, value) {
-            $('select.item-select-machinaries').append('<option value="' + value.uuid + '">' + value.name + '</option>');
-          });
-          $('select.item-select-machinaries').attr("data-placeholder", "Select some items");
-        }
-        else{
-          $('select.item-select-machinaries').attr("data-placeholder", "No Items");
-        }
-        $('select.item-select-machinaries').trigger('chosen:updated');
-      }
-    });
+    $('select.item-select-equipments').html('');
+    
+    $('select.item-select-equipments').html('');
+    $('select.item-select-equipments').attr("multiple", "multiple");
+    $("select.chosen-select-equipment").chosen(
+      {width: "100%"},
+      {no_results_text: 'No results matched'}
+    );
+    
+    $('select.item-select-equipments').attr("data-placeholder", "No Items");
+    $('select.item-select-equipments').trigger('chosen:updated');
+    // END -- EQUIPMENT SECTION
   }
   
   //Equipment
