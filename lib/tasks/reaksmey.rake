@@ -1,6 +1,5 @@
 namespace :reaksmey do
-  desc "Start re_seed_distribution"
-  
+  desc "Re seed distribution data by adding read_only & function_name fields"
   task re_seed_distribution: :environment do
     unit = UnitOfMeasurement.find_by_name('Unit')
     kg = UnitOfMeasurement.find_by_name('Kg')
@@ -32,6 +31,16 @@ namespace :reaksmey do
       {read_only: 1, function_name: "jackfruitAutoCalc", to_nursery: 0, to_finish: 0, uuid: '00000000-0000-0000-0000-000000000020', label: 'Spoiled Waste',            uoms: unit.uuid+'|'+unit.name + ',' + kg.uuid+'|'+kg.name, planting_project_id: jk.uuid,      order_of_display: 9,  note: ''}
     ].each do |d|
       Distribution.create_with(read_only: d[:read_only], function_name: d[:function_name], to_nursery: d[:to_nursery], to_finish: d[:to_finish], label: d[:label], uoms: d[:uoms], planting_project_id: d[:planting_project_id], order_of_display: d[:order_of_display], note: d[:note]).find_or_create_by(uuid: d[:uuid])
+    end
+  end
+  
+  desc "Update output_tasks table, and set new fields (nursery_warehouse_id, finish_warehouse_id) to default nursery & finish good warehouse"
+  task update_output_task: :environment do
+    nw = Warehouse.find_by_name("Coconut Nursery WH")
+    fw = Warehouse.find_by_name("Oroung Finished Goods WH")
+    
+    OutputTask.all.each do |ot|
+      ot.update_attributes(nursery_warehouse_id: nw.uuid, finish_warehouse_id: fw.uuid)
     end
   end
 end

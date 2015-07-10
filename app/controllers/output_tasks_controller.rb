@@ -45,7 +45,8 @@ class OutputTasksController < ApplicationController
   def create
     begin
       @output_task = OutputTask.new(output_task_params)
-      output_task_end_date = @output_task.end_date
+      @output_task.nursery_warehouse_id = params[:to_nursery_warehouses]
+      @output_task.finish_warehouse_id = params[:to_finish_warehouses]
 
       if @output_task.save
         create_log current_user.uuid, "Created New Output Task", @output_task
