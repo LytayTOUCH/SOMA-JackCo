@@ -75,10 +75,7 @@
             %ul.dropdown-menu
               %li
                 - if can? :read, WarehouseMaterialAmount
-                  = navbar_link "Remaining Balance", warehouse_material_amounts_path, "active"
-              %li
-                - if can? :read, MaterialAdjustment
-                  = navbar_link "Adjustments", material_adjustments_path, "active"
+                  = navbar_link "Adjustments", adjust_stock_balance_path, "active"
               %li.divider
               %li
                 = navbar_link "Stock In", stock_ins_path, "active"
@@ -207,9 +204,6 @@
             %li.dropdown-submenu
               %a{:href => "#", :tabindex => "-1"} Inventory
               %ul.dropdown-menu
-                %li
-                  - if can? :coconut_index, :report_classifications
-                    = navbar_link "Adjust Form", adjust_stock_balance_path, "active"
                 %li
                   - if can? :jackfruit_index, :report_classifications
                     = navbar_link "Summary Report", report_inventory_path, "active"

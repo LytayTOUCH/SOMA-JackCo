@@ -382,36 +382,6 @@ $(document).ready(function(){
           }); 
           //End--Auto select UOM when select machinery
 
-          //INPUT MATERIAL QTY SECTION (Machinery choosen)
-          $("#material_qty_request-"+params.selected).blur(function() {
-            var warehouse_id = $(".warehouse-select-"+params.selected).val();
-            var material_id = $(".material-select-"+params.selected).val();
-            var material_quantity_val = $("#material_qty_request-"+params.selected).val();
-            if(warehouse_id != "" && material_id != "" && material_quantity_val != "") {
-              jQuery.ajax({
-                url: "/get_warehouse_material_amount_data",
-                type: "GET",
-                data: {
-                  "material_id" : material_id,
-                  "warehouse_id" : warehouse_id,
-                },
-                dataType: "json",
-                success: function(data){
-                  input = parseFloat(material_quantity_val);
-                  remain = parseFloat(data.amount);
-                  if(input > remain) {
-                    alert('Input quantity exceeds the quantity in the stock.'+
-                          '\nPlease adjust the stock or create a stock-in transaction.'+
-                          '\nRemaining Balance: '+ remain);
-                    $('#material_qty_request-'+params.selected).focus();
-                    $('#material_qty_request-'+params.selected).val("0");
-                  }
-                }
-              });
-            }
-          });
-          //END--INPUT MATERIAL QTY SECTION
-
           // Select Material with Show UOM
           $('.material-select-'+params.selected).change(
             function() {
@@ -489,36 +459,6 @@ $(document).ready(function(){
             if (data.warehouse == ""){
               $('select.warehouse-select-material-'+params.selected).append('<option value=""></option></select>');
             }
-
-            //INPUT MATERIAL QTY SECTION (Material choosen)
-            $("#materials_qty_request-"+params.selected).blur(function() {
-              var warehouse_id = $(".warehouse-select-material-"+params.selected).val();
-              var material_id = material_uuid;
-              var material_quantity_val = $("#materials_qty_request-"+params.selected).val();
-              if(warehouse_id != "" && material_id != "" && material_quantity_val != "") {
-                jQuery.ajax({
-                  url: "/get_warehouse_material_amount_data",
-                  type: "GET",
-                  data: {
-                    "material_id" : material_id,
-                    "warehouse_id" : warehouse_id,
-                  },
-                  dataType: "json",
-                  success: function(data){
-                    input = parseFloat(material_quantity_val);
-                    remain = parseFloat(data.amount);
-                    if(input > remain) {
-                      alert('Input quantity exceeds the quantity in the stock.'+
-                            '\nPlease adjust the stock or create a stock-in transaction.'+
-                            '\nRemaining Balance: '+ remain);
-                      $('#materials_qty_request-'+params.selected).focus();
-                      $('#materials_qty_request-'+params.selected).val("0");
-                    }
-                  }
-                });
-              }
-            });
-            //END--INPUT MATERIAL QTY SECTION
           }
         }); 
       }
