@@ -1,0 +1,34 @@
+.row
+  %h1
+    = "Planning - Process & Implement"
+  %hr
+  = render partial: 'plan_process_filter', path: plan_processes_index_path
+  
+  - unless params[:filter].nil?
+    - if @plan_process.nil?
+      %br
+      .row
+        .col-md-3
+        .col-md-6.modal-content
+          .modal-header
+            %h4.modal-title.label-header CONFIRMATION!!!
+          .modal-body
+            %span
+              The
+              %b
+                %i Process &amp; Implement Plan
+              for this criteria is not available.
+            %br
+              %span Do you want to create a new Process &amp; Implement Plan for this criteria?
+          .modal-footer
+            %a.btn.btn-primary{:href => "#"} Create Process &amp; Implement Plan
+        .col-md-3
+    - else
+      %span TODO: SHOW PLAN PROCESS REPORT HERE
+
+:css
+  .vertical{
+    transform: rotate(90deg);
+    transform-origin: left top 0;
+    float: left;
+  }

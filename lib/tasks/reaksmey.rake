@@ -100,4 +100,21 @@ namespace :reaksmey do
       AppDescription.create_with(app_id: app[:app_id], name: app[:name]).find_or_create_by(uuid: app[:uuid])
     end
   end
+
+  desc "Seed initialize data into [process_plan_categories] table"
+  task seed_process_plan_category: :environment do
+    [
+      {uuid: 'process-plan-category-ip-1-000000001', name: 'IP-1'},
+      {uuid: 'process-plan-category-ip-2-000000002', name: 'IP-2'},
+      {uuid: 'process-plan-category-ip-3-000000003', name: 'IP-3'},
+      {uuid: 'process-plan-category-ip-4-000000004', name: 'IP-4'},
+      {uuid: 'process-plan-category-ip-5-000000005', name: 'IP-5'},
+      {uuid: 'process-plan-category-ip-6-000000006', name: 'IP-6'},
+      {uuid: 'process-plan-category-labor-00000007', name: 'LABOR'},
+      {uuid: 'process-plan-category-machinery-0008', name: 'MACHINERY'},
+      {uuid: 'process-plan-category-other-00000009', name: 'OTHER'}
+    ].each do |p|
+      ProcessPlanCategory.create_with(name: p[:name]).find_or_create_by(uuid: p[:uuid])
+    end
+  end
 end

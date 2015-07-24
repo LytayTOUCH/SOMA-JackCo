@@ -1,0 +1,45 @@
+= form_tag @path, :class => 'form-inline', :role => 'form', :method => 'get' do
+  .row.report_filter{:style => "background-color: #ccc;padding-top: 10px;padding-bottom: 10px;border-radius:5px;"}
+    .col-md-3
+      %label.col-xs-3.middle-label Filter Year:
+      .col-xs-9
+        .input-group#filter_year
+          %input.form-control{:type => "text", name: "filter[year]", :value => @year }
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+    .col-md-3
+      - if params[:filter].nil?
+        - @planting_project_id = ""
+      - else
+        - @planting_project_id = params[:filter][:planting_project_id]
+      %label.col-xs-5.middle-label Planting Project:
+      %select#filter_planting_project_id.select.required.form-control{:name => "filter[planting_project_id]", :style => "width:55%;"}
+        %option{:value => ""}
+        - PlantingProject.all.each do |project|
+          - if project.uuid == @planting_project_id
+            %option{:value => project.uuid, selected: "selected"}= project.name
+          - else
+            %option{:value => project.uuid}= project.name
+    .col-md-1
+      = submit_tag 'OK', :class => 'btn btn-primary', :style => "width:100%;", :name => nil, id: "btnSubmit"
+      
+:javascript
+  $(document).ready(function() {
+    validateFilter();
+    
+    $('#filter_year').datetimepicker({
+      viewMode: 'years',
+      format: 'YYYY'
+    });
+    
+    $("#filter_planting_project_id").change(function() {validateFilter();});
+    $("#filter_year input").blur(function() {validateFilter();});
+    
+    function validateFilter() {
+      $("#btnSubmit").removeAttr('disabled');
+      
+      if($("#filter_year input").val() == "" || $("#filter_planting_project_id").val() == "") {
+        $("#btnSubmit").attr("disabled", "disabled");
+      }
+    }
+  });
