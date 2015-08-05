@@ -1,0 +1,160 @@
+.row
+  %h1
+    = "Process & Implement - " + PlantingProject.find(@planting_project_id).name + " " + @year
+  %hr
+  
+  %form#main_form{action: plan_processes_create_path}
+    %input#planting_project_id{name: "planting_project_id", type: "hidden", value: @planting_project_id}
+    
+    %div
+      .pull-right
+        = submit_tag 'Submit', :class => 'btn btn-primary', :name => nil, id: "btnSubmit"
+        = link_to "Cancel", plan_processes_index_path, class: "btn btn-default", "data-disable-with" => "Cancel..."
+        /= link_to "Cancel", plan_processes_index_path + "?filter[year]="+@year+"&filter[planting_project_id]="+@planting_project_id, class: "btn btn-default", "data-disable-with" => "Cancel..."
+
+      %ul.nav.nav-tabs{:role => "tablist"}
+        %li.active{:role => "presentation"}
+          %a{"aria-controls" => "ip_1", "data-toggle" => "tab", :href => "#ip_1", :role => "tab"} IP-1
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "ip_2", "data-toggle" => "tab", :href => "#ip_2", :role => "tab"} IP-2
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "ip_3", "data-toggle" => "tab", :href => "#ip_3", :role => "tab"} IP-3
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "ip_4", "data-toggle" => "tab", :href => "#ip_4", :role => "tab"} IP-4
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "ip_5", "data-toggle" => "tab", :href => "#ip_5", :role => "tab"} IP-5
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "ip_6", "data-toggle" => "tab", :href => "#ip_6", :role => "tab"} IP-6
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "labor", "data-toggle" => "tab", :href => "#labor", :role => "tab"} Labor
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "machinery", "data-toggle" => "tab", :href => "#machinery", :role => "tab"} Machinery
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "other", "data-toggle" => "tab", :href => "#other", :role => "tab"} Other
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "schedule", "data-toggle" => "tab", :href => "#schedule", :role => "tab"}= "Schedule "+@year
+      .tab-content
+        #ip_1.tab-pane.active{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_ip_1, options_from_collection_for_select(Material.all, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_ip_1.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10", :label => "IP-1"} OK
+            %button#reset_ip_1.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_ip_1
+          #table_ip_1
+            
+        #ip_2.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_ip_2, options_from_collection_for_select(Material.all, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_ip_2.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10", :label => "IP-2"} OK
+            %button#reset_ip_2.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_ip_2
+          #table_ip_2
+            
+        #ip_3.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_ip_3, options_from_collection_for_select(Material.all, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_ip_3.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10", :label => "IP-3"} OK
+            %button#reset_ip_3.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_ip_3
+          #table_ip_3
+            
+        #ip_4.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_ip_4, options_from_collection_for_select(Material.all, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_ip_4.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10", :label => "IP-4"} OK
+            %button#reset_ip_4.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_ip_4
+          #table_ip_4
+            
+        #ip_5.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_ip_5, options_from_collection_for_select(Material.all, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_ip_5.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10", :label => "IP-5"} OK
+            %button#reset_ip_5.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_ip_5
+          #table_ip_5
+            
+        #ip_6.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_ip_6, options_from_collection_for_select(Material.all, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_ip_6.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10", :label => "IP-6"} OK
+            %button#reset_ip_6.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_ip_6
+          #table_ip_6
+            
+        #labor.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Position:
+          .col-xs-4
+            = select_tag(:material_labor, options_from_collection_for_select(Position.all, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_labor.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10", :label => "Labor"} OK
+            %button#reset_labor.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_labor
+          #table_labor
+            
+        #machinery.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-2.middle-label Machinery Type:
+          .col-xs-4
+            = select_tag(:material_machinery, options_from_collection_for_select(MachineryType.all, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_machinery.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10", :label => "Machinery"} OK
+            %button#reset_machinery.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_machinery
+          #table_machinery
+            
+        #other.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Other:
+          .col-xs-4
+            %input#txt_other{type: "text", class: "form-control"}
+          .col-xs-7
+            %button#btn_add.btn.btn-default{:type => "button", :disabled => "disabled"} +
+          .col-xs-12{style: "height:10px;"}
+          .col-xs-1
+          .col-xs-4
+            = select_tag(:material_other, options_from_collection_for_select([], '', ''), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_other.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "55", :label => "Other"} OK
+            %button#reset_other.btn.btn-default{:type => "button", :disabled => "disabled"} Reset
+          #separator_other
+          #table_other
+          
+        #schedule.tab-pane{:role => "tabpanel"}
+          %br
+          #separator_schedule
+          #table_schedule
+
+- content_for :javascript_body do
+  = javascript_include_tag "plan_processes"
+
+:css
+  .tab-pane {
+    height: auto;
+    overflow-x: visible;
+  }
+  .vertical{
+    transform: rotate(-90deg);
+    width: 20px;
+    height: 150px;
+    text-align:center;
+  }

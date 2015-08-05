@@ -40,6 +40,10 @@ class AppsController < ApplicationController
     end
   end
   
+  def get_application_data
+    render json: App.where("planting_project_id = ?", params[:planting_project_id]), :include => :app_descriptions
+  end
+  
   private
   def app_params
     params.require(:app).permit(:name, :app_type, :note, :planting_project_id)

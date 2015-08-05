@@ -21,14 +21,7 @@
             %br
               %span Do you want to create a new Process &amp; Implement Plan for this criteria?
           .modal-footer
-            %a.btn.btn-primary{:href => "#"} Create Process &amp; Implement Plan
+            %a.btn.btn-primary{:href => plan_processes_new_path+"?year="+@year+"&planting_project_id="+params[:filter][:planting_project_id]} Create Process &amp; Implement Plan
         .col-md-3
     - else
       %span TODO: SHOW PLAN PROCESS REPORT HERE
-
-:css
-  .vertical{
-    transform: rotate(90deg);
-    transform-origin: left top 0;
-    float: left;
-  }

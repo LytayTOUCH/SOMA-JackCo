@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'plan_processes/index'
+  get 'plan_processes/new'
+  get 'plan_processes/create'
 
   get 'support', to: 'helps#support'
   get 'user_manual', to: 'helps#user_manual'
@@ -206,6 +208,7 @@ Rails.application.routes.draw do
   get 'get_warehouse_material_amount_data', to: 'warehouse_material_amounts#get_warehouse_material_amount_data'
   get 'get_input_application_data', to: 'input_tasks#get_application_data'
   get 'get_output_application_data', to: 'output_tasks#get_application_data'
+  get 'get_application_data', to: 'apps#get_application_data'
   get 'find_amount', to: 'input_tasks#find_amount'
 
   scope 'input_uses', as: 'input_uses' do

@@ -6,4 +6,5 @@ class App < ActiveRecord::Base
   validates :planting_project_id, :presence => { message: "Planting Project is required." }
   
   belongs_to :planting_project, foreign_key: :planting_project_id
+  has_many :app_descriptions
 end
