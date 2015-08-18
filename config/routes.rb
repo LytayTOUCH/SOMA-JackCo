@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'plan_processes/index'
   get 'plan_processes/new'
-  get 'plan_processes/create'
+  post 'plan_processes/create'
 
   get 'support', to: 'helps#support'
   get 'user_manual', to: 'helps#user_manual'

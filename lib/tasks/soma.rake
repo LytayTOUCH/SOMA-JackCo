@@ -1,4 +1,4 @@
-namespace :reaksmey do
+namespace :soma do
   desc "Re seed distribution data by adding read_only & function_name fields"
   task re_seed_distribution: :environment do
     unit = UnitOfMeasurement.find_by_name('Unit')

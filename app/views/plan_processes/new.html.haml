@@ -3,19 +3,9 @@
     = "Process & Implement - " + PlantingProject.find(@planting_project_id).name + " " + @year
   %hr
   
-  %form#main_form{action: plan_processes_create_path}
+  %form#main_form{action: plan_processes_create_path, method: "POST"}
     %input#planting_project_id{name: "planting_project_id", type: "hidden", value: @planting_project_id}
     %input#year{name: "year", type: "hidden", value: @year}
-    
-    %input#exist_ip_1{name: "exist_ip_1", type: "hidden", value: false}
-    %input#exist_ip_2{name: "exist_ip_2", type: "hidden", value: false}
-    %input#exist_ip_3{name: "exist_ip_3", type: "hidden", value: false}
-    %input#exist_ip_4{name: "exist_ip_4", type: "hidden", value: false}
-    %input#exist_ip_5{name: "exist_ip_5", type: "hidden", value: false}
-    %input#exist_ip_6{name: "exist_ip_6", type: "hidden", value: false}
-    %input#exist_labor{name: "exist_labor", type: "hidden", value: false}
-    %input#exist_machinery{name: "exist_machinery", type: "hidden", value: false}
-    %input#exist_other{name: "exist_other", type: "hidden", value: false}
     
     %div
       .pull-right
@@ -164,7 +154,7 @@
     overflow-x: visible;
   }
   .vertical{
-    transform: rotate(-90deg);
+    transform: rotate(-60deg);
     width: 20px;
     height: 150px;
     text-align:center;

@@ -41,7 +41,7 @@ class AppsController < ApplicationController
   end
   
   def get_application_data
-    render json: App.where("planting_project_id = ?", params[:planting_project_id]), :include => :app_descriptions
+    render json: App.where("planting_project_id = ?", params[:planting_project_id]).order(:created_at), :include => :app_descriptions
   end
   
   private

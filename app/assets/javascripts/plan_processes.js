@@ -29,9 +29,7 @@ $(document).ready(function(){
     var reset_id = ok_id.replace("ok_", "reset_");
     var table_id = ok_id.replace("ok_", "table_");
     var separator_id = ok_id.replace("ok_", "separator_");
-    var exist_id = ok_id.replace("ok_", "exist_");
     var category = ok_id.replace("ok_", "");
-    $("#"+exist_id).val(true);
     $("#"+select_id).prop('disabled', true).trigger("chosen:updated");
     $("#"+reset_id).removeAttr('disabled');
     $(this).attr("disabled", "disabled");
@@ -45,11 +43,12 @@ $(document).ready(function(){
     //Init Material Table Header
     var material_header = "";
     $.each(getSelectedItems(select_id), function(index, value) {
-      material_header += '<th style="vertical-align: middle;" class="vertical">'+value+'</th>';
+      material_header += '<th style="vertical-align: middle;" class="vertical"><input type="hidden" name="l_'+category+'[]" value="'+value+'">'+value+'</th>';
     });
     
     //Init App Row
     var app_row = "";
+    var checkbox_index = 0;
     if(app_data.length){
       $.each(app_data, function(j, value) {
         var rowspan = value.app_descriptions.length;
@@ -65,16 +64,17 @@ $(document).ready(function(){
           //Init Material Table Checkbox Column
           $.each(getSelectedItems(select_id), function(index, items_value) {
             app_row += '<td style="text-align: center;vertical-align: middle;">'
-                        +'<input type="hidden" name="app_id_'+category+'[]" value="'+value.uuid+'">'
-                        +'<input type="hidden" name="app_description_id_'+category+'[]" value="'+value.app_descriptions[i].uuid+'">'
-                        +'<input type="hidden" name="material_label_'+category+'[]" value="'+items_value+'">'
-                        +'<input type="checkbox" class="boolean optional" name="material_value_'+category+'[]" />'
+                        +'<input type="checkbox" class="boolean optional my_checkbox" id="c_'+category+'_'+checkbox_index+'" />'
+                        +'<input type="hidden" value="0" id="h_'+category+'_'+checkbox_index+'" name="v_'+category+'[]" />'
                       +'</td>';
+            checkbox_index+=1;
           });
           app_row += '</tr>';
         }
       });
     }
+    
+    var checkbox_script = '<script>$(document).ready(function(){$(".my_checkbox").change(function(){var checkbox_id = $(this).attr("id");var hidden_id = checkbox_id.replace("c_", "h_");if(document.getElementById(checkbox_id).checked){$("#"+hidden_id).val(1);}else{$("#"+hidden_id).val(0);}});});</script>';
     
     //Finalize App Table
     var table_application = '<table class="table table-bordered" style="box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);">'
@@ -87,7 +87,8 @@ $(document).ready(function(){
                            +material_header
                            +'</tr>'
                            +app_row
-                           +'</table>';
+                           +'</table>'
+                           +checkbox_script;
     $("#"+table_id).append(table_application);
     //END: Initialize Table Application Here
   });
@@ -97,8 +98,6 @@ $(document).ready(function(){
     var ok_id = reset_id.replace("reset_", "ok_");
     var select_id = reset_id.replace("reset_", "material_");
     var table_id = reset_id.replace("reset_", "table_");
-    var exist_id = reset_id.replace("reset_", "exist_");
-    $("#"+exist_id).val(false);
     $("#"+select_id).prop('disabled', false).val("").trigger("chosen:updated");
     $("#"+ok_id).attr("disabled", "disabled");
     $(this).attr("disabled", "disabled");
@@ -127,8 +126,6 @@ $(document).ready(function(){
     var ok_id = reset_id.replace("reset_", "ok_");
     var select_id = reset_id.replace("reset_", "material_");
     var table_id = reset_id.replace("reset_", "table_");
-    var exist_id = reset_id.replace("reset_", "exist_");
-    $("#"+exist_id).val(false);
     $("#"+select_id).val("").trigger("chosen:updated");
     $("#"+ok_id).attr("disabled", "disabled");
     $(this).attr("disabled", "disabled");
@@ -158,6 +155,7 @@ $(document).ready(function(){
     
     //Init App Row
     var app_row = "";
+    var checkbox_index = 0;
     if(app_data.length){
       $.each(app_data, function(j, value) {
         var rowspan = value.app_descriptions.length;
@@ -173,47 +171,60 @@ $(document).ready(function(){
           
           //Init Schedule Table Checkbox Column
           app_row += '<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="hidden" name="app_id_schedule[]" value="'+value.uuid+'">'
-                      +'<input type="hidden" name="app_description_id_schedule[]" value="'+value.app_descriptions[i].uuid+'">'
-                      +'<input type="checkbox" class="boolean optional" name="jan[]" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_jan_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_jan_'+checkbox_index+'" name="jan[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_feb_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_feb_'+checkbox_index+'" name="feb[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_mar_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_mar_'+checkbox_index+'" name="mar[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_apr_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_apr_'+checkbox_index+'" name="apr[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_may_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_may_'+checkbox_index+'" name="may[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_jun_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_jun_'+checkbox_index+'" name="jun[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_jul_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_jul_'+checkbox_index+'" name="jul[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_aug_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_aug_'+checkbox_index+'" name="aug[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_sep_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_sep_'+checkbox_index+'" name="sep[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_oct_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_oct_'+checkbox_index+'" name="oct[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_nov_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_nov_'+checkbox_index+'" name="nov[]" />'
                     +'</td>'
                     +'<td style="text-align: center;vertical-align: middle;">'
-                      +'<input type="checkbox" class="boolean optional" />'
+                      +'<input type="checkbox" class="boolean optional my_checkbox" id="c_dec_'+checkbox_index+'" />'
+                      +'<input type="hidden" value="0" id="h_dec_'+checkbox_index+'" name="dec[]" />'
                     +'</td>'
                   +'</tr>';
+          checkbox_index += 1;
         }
       });
     }
+    
+    var checkbox_script = '<script>$(document).ready(function(){$(".my_checkbox").change(function(){var checkbox_id = $(this).attr("id");var hidden_id = checkbox_id.replace("c_", "h_");if(document.getElementById(checkbox_id).checked){$("#"+hidden_id).val(1);}else{$("#"+hidden_id).val(0);}});});</script>';
     
     //Finalize App Table
     var table_application = '<table class="table table-bordered" style="box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);">'
@@ -226,7 +237,8 @@ $(document).ready(function(){
                            +schedule_header
                            +'</tr>'
                            +app_row
-                           +'</table>';
+                           +'</table>'
+                           +checkbox_script;
     $("#table_schedule").append(table_application);
     //END: Initialize Table Application Here
   }
