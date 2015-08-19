@@ -4,7 +4,10 @@ class PlanProcessesController < ApplicationController
   def index
     if !params[:filter].nil? && params[:filter][:year]!=""
       @year = params[:filter][:year]
-      @plan_process = ProcessPlan.find_by(year: @year, planting_project_id: params[:filter][:planting_project_id])
+      @process_plan = ProcessPlan.find_by(year: @year, planting_project_id: params[:filter][:planting_project_id])
+      unless @process_plan.nil?
+        @app_data = JSON.parse App.where("planting_project_id = ?", params[:filter][:planting_project_id]).order(:created_at).to_json(:include => :app_descriptions)
+      end
     end
   end
   

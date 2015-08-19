@@ -5,7 +5,7 @@
   = render partial: 'plan_process_filter', path: plan_processes_index_path
   
   - unless params[:filter].nil?
-    - if @plan_process.nil?
+    - if @process_plan.nil?
       %br
       .row
         .col-md-3
@@ -24,4 +24,85 @@
             %a.btn.btn-primary{:href => plan_processes_new_path+"?year="+@year+"&planting_project_id="+params[:filter][:planting_project_id]} Create Process &amp; Implement Plan
         .col-md-3
     - else
-      %span TODO: SHOW PLAN PROCESS REPORT HERE
+      %br
+      .row
+      %table.table.table-bordered{style: "box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);"}
+        %tr
+          %th{rowspan: "2", style: "text-align:center;vertical-align: middle;"} Application
+          %th{rowspan: "2", style: "text-align:center;vertical-align: middle;padding-left:6em;padding-right:6em;"} Description
+          - @process_plan.process_plan_categories.distinct.each do |c|
+            - @p = ProcessPlanMaterial.where(process_plan_id: @process_plan.uuid, process_plan_category_id: c.uuid).select(:material_label).distinct
+            %th{colspan: @p.length, style: "text-align:center;"}= c.name
+          %th{colspan: 12, style: "text-align:center;"} ACTIVITIES SCHEDULE
+          
+        %tr
+          - @process_plan.process_plan_categories.distinct.each do |c|
+            - ProcessPlanMaterial.where(process_plan_id: @process_plan.uuid, process_plan_category_id: c.uuid).select(:material_label).distinct.each do |p|
+              %th.vertical{style: "vertical-align: middle;"}= p.material_label
+          %th{style: "text-align: center;vertical-align: middle;"} Jan
+          %th{style: "text-align: center;vertical-align: middle;"} Feb
+          %th{style: "text-align: center;vertical-align: middle;"} Mar
+          %th{style: "text-align: center;vertical-align: middle;"} Apr
+          %th{style: "text-align: center;vertical-align: middle;"} May
+          %th{style: "text-align: center;vertical-align: middle;"} Jun
+          %th{style: "text-align: center;vertical-align: middle;"} Jul
+          %th{style: "text-align: center;vertical-align: middle;"} Aug
+          %th{style: "text-align: center;vertical-align: middle;"} Sep
+          %th{style: "text-align: center;vertical-align: middle;"} Oct
+          %th{style: "text-align: center;vertical-align: middle;"} Nov
+          %th{style: "text-align: center;vertical-align: middle;"} Dec
+      
+        - @app_data.each do |app|
+          - app['app_descriptions'].each_with_index do |app_description, i|
+            - if i==0
+              %tr
+                %td{rowspan: app['app_descriptions'].length, style: "vertical-align: middle;"}= app["name"]
+                %td= app_description["name"]
+                
+                - @process_plan.process_plan_categories.distinct.each do |c|
+                  - ProcessPlanMaterial.where(process_plan_id: @process_plan.uuid, process_plan_category_id: c.uuid).select(:material_label).distinct.each do |p|
+                    %td{style: "text-align:center;vertical-align: middle;"}= ProcessPlanMaterial.find_by(process_plan_id: @process_plan.uuid, app_id: app["uuid"], app_description_id: app_description["uuid"], process_plan_category_id: c.uuid, material_label: p.material_label).material_value ? "√" : ""
+                
+                - @schedule = ProcessPlanSchedule.find_by(process_plan_id: @process_plan.uuid, app_id: app["uuid"], app_description_id: app_description["uuid"])
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.jan ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.feb ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.mar ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.apr ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.may ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.jun ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.jul ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.aug ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.sep ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.oct ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.nov ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.dec ? "√" : ""
+                
+            - else
+              %tr
+                %td= app_description["name"]
+                
+                - @process_plan.process_plan_categories.distinct.each do |c|
+                  - ProcessPlanMaterial.where(process_plan_id: @process_plan.uuid, process_plan_category_id: c.uuid).select(:material_label).distinct.each do |p|
+                    %td{style: "text-align:center;vertical-align: middle;"}= ProcessPlanMaterial.find_by(process_plan_id: @process_plan.uuid, app_id: app["uuid"], app_description_id: app_description["uuid"], process_plan_category_id: c.uuid, material_label: p.material_label).material_value ? "√" : ""
+                
+                - @schedule = ProcessPlanSchedule.find_by(process_plan_id: @process_plan.uuid, app_id: app["uuid"], app_description_id: app_description["uuid"])
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.jan ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.feb ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.mar ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.apr ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.may ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.jun ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.jul ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.aug ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.sep ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.oct ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.nov ? "√" : ""
+                %td{style: "text-align:center;vertical-align: middle;"}= @schedule.dec ? "√" : ""
+
+:css
+  .vertical{
+    transform: rotate(-90deg);
+    width: 20px;
+    height: 150px;
+    text-align:center;
+  }
