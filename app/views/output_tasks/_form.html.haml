@@ -1,3 +1,4 @@
+%input#persisted{type: "hidden", value: @output_task.persisted? ? "true" : "false"}
 = simple_form_for @output_task, html: { class: "form-horizontal" } do |f|
   .container
     .row
@@ -90,6 +91,50 @@
           %span.help-block= f.error :note  
         
         .form-group#distribution
+          - if @output_task.persisted?
+            %h3= "Distribution - "+PlantingProject.find_by_uuid(@output_task.planting_project_id).name
+            %hr
+            - Distribution.where(planting_project_id: @output_task.planting_project_id).order("order_of_display ASC").each do |d|
+              .form-group
+                %label.col-xs-3.control-label.text-left= d.label
+                - d.uoms.split(",").each_with_index do |uom, uom_index|
+                  .col-xs-3
+                    .input-group
+                      .input.float.required
+                        %input.numeric.float.required.form-control{id: "distribution_"+uom_index.to_s+"_"+d.order_of_display.to_s,
+                                                                   onchange: "javascript:"+d.function_name+"();",
+                                                                   type: "number", step: "any",
+                                                                   name: "distribution_amounts[]",
+                                                                   readonly: d.read_only,
+                                                                   value: OutputDistribution.find_by(output_task_id: @output_task.uuid, distribution_id: d.uuid, unit_measure_id: uom.split("|").first).amount}/
+                        
+                        %input{type: "hidden", name: "distribution_ids[]", :value => d.uuid}/
+                        %input{type: "hidden", name: "uom_ids[]", :value => uom.split("|").first}/
+                      %span.input-group-addon= uom.split("|").second
+          
+                - if d.to_nursery
+                  .col-xs-3
+                    %input{type: "hidden", name: "to_nursery_distribution", :value => d.uuid}
+                    %select.form-control{:name => "to_nursery_warehouses"}
+                      - Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Nursery Warehouse").uuid, active: true).each do |wh|
+                        - if wh.uuid == @output_task.nursery_warehouse_id
+                          %option{:value => wh.uuid, :selected => "selected"}= wh.name
+                        - else
+                          %option{:value => wh.uuid}= wh.name
+          
+                - if d.to_finish
+                  .col-xs-3
+                    %input{type: "hidden", name: "to_finish_distribution", :value => d.uuid}
+                    %select.form-control{:name => "to_finish_warehouses"}
+                      - Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Finished Goods Warehouse").uuid, active: true).each do |wh|
+                        - if wh.uuid == @output_task.finish_warehouse_id
+                          %option{:value => wh.uuid, :selected => "selected"}= wh.name
+                        - else
+                          %option{:value => wh.uuid}= wh.name
+          
+            :javascript
+              function coconutAutoCalc(){var distribution_0_4 = greaterThanZero("#distribution_0_4");var distribution_0_7 = greaterThanZero("#distribution_0_7");var distribution_0_8 = greaterThanZero("#distribution_0_8");var distribution_0_9 = greaterThanZero("#distribution_0_9");var distribution_0_11 = greaterThanZero("#distribution_0_11");$("#distribution_0_3").val(parseInt(distribution_0_8) + parseInt(distribution_0_9));$("#distribution_0_2").val(parseInt($("#distribution_0_3").val()) + parseInt(distribution_0_4));$("#distribution_0_6").val(distribution_0_11);$("#distribution_0_5").val(parseInt($("#distribution_0_6").val()) + parseInt(distribution_0_7));$("#distribution_0_1").val(parseInt($("#distribution_0_2").val()) + parseInt($("#distribution_0_5").val()));$("#distribution_0_10").val(parseInt(distribution_0_4) + parseInt(distribution_0_7));}
+              function jackfruitAutoCalc(){var distribution_0_3 = greaterThanZero("#distribution_0_3");var distribution_1_3 = greaterThanZero("#distribution_1_3");var distribution_0_4 = greaterThanZero("#distribution_0_4");var distribution_1_4 = greaterThanZero("#distribution_1_4");var distribution_0_5 = greaterThanZero("#distribution_0_5");var distribution_1_5 = greaterThanZero("#distribution_1_5");var distribution_0_6 = greaterThanZero("#distribution_0_6");var distribution_1_6 = greaterThanZero("#distribution_1_6");var distribution_0_8 = greaterThanZero("#distribution_0_8");var distribution_1_8 = greaterThanZero("#distribution_1_8");$("#distribution_0_9").val(distribution_0_5 + distribution_0_6);$("#distribution_1_9").val(distribution_1_5 + distribution_1_6);$("#distribution_0_2").val(distribution_0_3 + distribution_0_4 + distribution_0_5);$("#distribution_1_2").val(distribution_1_3 + distribution_1_4 + distribution_1_5);$("#distribution_0_1").val(distribution_0_3 + distribution_0_4 + distribution_0_5 + distribution_0_6);$("#distribution_1_1").val(distribution_1_3 + distribution_1_4 + distribution_1_5 + distribution_1_6);if(distribution_0_8<=(distribution_0_3+distribution_0_4)){$("#distribution_0_7").val(distribution_0_3+distribution_0_4-distribution_0_8);}else{$("#distribution_0_8").val(distribution_0_3+distribution_0_4);}if(distribution_1_8<=(distribution_1_3+distribution_1_4)){$("#distribution_1_7").val(distribution_1_3+distribution_1_4-distribution_1_8);}else{$("#distribution_1_8").val(distribution_1_3+distribution_1_4);}}function greaterThanZero(name){var retVal=0;if($(name).val()!="" && parseInt($(name).val())<0){$(name).val(0);}else if($(name).val()==""){$(name).val(0);}else{retVal=parseInt($(name).val());}return retVal;}
           
         .form-group
           .col-xs-7

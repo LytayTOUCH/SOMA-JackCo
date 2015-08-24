@@ -107,6 +107,87 @@ class OutputTasksController < ApplicationController
     @output_use_equipments = OutputUseEquipment.where(output_id: params[:id])
   end
   
+  def edit
+    @output_task = OutputTask.find(params[:id])
+    add_breadcrumb App.find_by_uuid(@output_task.name).nil? ? @output_task.name : App.find_by_uuid(@output_task.name).name, :edit_output_task_path
+  end
+  
+  def update
+    @output_task = OutputTask.find(params[:id])
+    old_nursery_wh = @output_task.nursery_warehouse_id
+    old_finish_wh = @output_task.finish_warehouse_id
+    @output_task.nursery_warehouse_id = params[:to_nursery_warehouses]
+    @output_task.finish_warehouse_id = params[:to_finish_warehouses]
+    
+    if @output_task.update_attributes(output_task_params)
+      create_log current_user.uuid, "Update Output Task", @output_task
+      
+      # Start Select Equipment
+      OutputUseEquipment.delete_all(output_id: @output_task.uuid)
+      if params[:equipments].present?
+        params[:equipments].split(",").each do |equipment_id|
+          unless equipment_id.empty?
+            OutputUseEquipment.create(output_id: @output_task.uuid, equipment_id: equipment_id)
+          end
+        end
+      end
+      #End Select Equipment
+      
+      #--- START -- DISTRIBUTION SECTION
+      params[:distribution_amounts].each_with_index do |amount,dis_index|
+        unit = UnitOfMeasurement.find_by_name('Unit')
+        
+        #OUTPUT DISTRIBUTION
+        output_distribution = OutputDistribution.find_by(output_task_id: @output_task.uuid, distribution_id: params[:distribution_ids][dis_index], unit_measure_id: params[:uom_ids][dis_index])
+        old_distribution_amount = output_distribution.amount
+        output_distribution.update_attributes(amount: amount)
+        
+        # PRODUCTION_IN_WAREHOUSE
+        if params[:distribution_ids][dis_index] == params[:to_nursery_distribution] && params[:uom_ids][dis_index] == unit.uuid
+          if old_nursery_wh == params[:to_nursery_warehouses]
+            #If warehouse is the same, we just remove old distribution amount, and instead replace it with new distribution amount
+            production_in_wh = ProductionInWarehouse.find_by(warehouse_id: params[:to_nursery_warehouses], distribution_id: params[:to_nursery_distribution], unit_measure_id: unit.uuid)
+            new_amount = production_in_wh.amount - old_distribution_amount + (amount == "" ? 0 : amount.to_f)
+            production_in_wh.update_attributes(amount: new_amount)
+          else
+            #If warehouse is different, first we remove old distribution amount from old nursery warehouse
+            production_in_wh = ProductionInWarehouse.find_by(warehouse_id: old_nursery_wh, distribution_id: params[:to_nursery_distribution], unit_measure_id: unit.uuid)
+            production_in_wh.update_attributes(amount: production_in_wh.amount - old_distribution_amount)
+            
+            #Then, we add new amount to new nursery warehouse
+            production_in_wh = ProductionInWarehouse.find_by(warehouse_id: params[:to_nursery_warehouses], distribution_id: params[:to_nursery_distribution], unit_measure_id: unit.uuid)
+            new_amount = production_in_wh.amount + (amount == "" ? 0 : amount.to_f)
+            production_in_wh.update_attributes(amount: new_amount)
+          end
+          
+        elsif params[:distribution_ids][dis_index] == params[:to_finish_distribution] && params[:uom_ids][dis_index] == unit.uuid
+          if old_finish_wh == params[:to_finish_distribution]
+            #If warehouse is the same, we just remove old distribution amount, and instead replace it with new distribution amount
+            production_in_wh = ProductionInWarehouse.find_by(warehouse_id: params[:to_finish_warehouses], distribution_id: params[:to_finish_distribution], unit_measure_id: unit.uuid)
+            new_amount = production_in_wh.amount - old_distribution_amount + (amount == "" ? 0 : amount.to_f)
+            production_in_wh.update_attributes(amount: new_amount)
+          else
+            #If warehouse is different, first we remove old distribution amount from old finish warehouse
+            production_in_wh = ProductionInWarehouse.find_by(warehouse_id: old_finish_wh, distribution_id: params[:to_finish_distribution], unit_measure_id: unit.uuid)
+            production_in_wh.update_attributes(amount: production_in_wh.amount - old_distribution_amount)
+            
+            #Then, we add new amount to new nursery warehouse
+            production_in_wh = ProductionInWarehouse.find_by(warehouse_id: params[:to_finish_warehouses], distribution_id: params[:to_finish_distribution], unit_measure_id: unit.uuid)
+            new_amount = production_in_wh.amount + (amount == "" ? 0 : amount.to_f)
+            production_in_wh.update_attributes(amount: new_amount)
+          end
+        end
+      end
+      #--- END -- DISTRIBUTION SECTION
+      
+      flash[:notice] = "Output Task updated successfully"
+      redirect_to output_task_path(@output_task)
+    else
+      flash[:notice] = "Output Task can't be saved"
+      render "edit"
+    end
+  end
+  
   def get_zones_by_farm
     render json: Zone.where(farm_id: params[:farm_id])
   end

@@ -18,4 +18,8 @@
       %td= output_task.reference_number
       %td= output_task.block.farm.name.to_s + " - " + output_task.block.name
       %td= output_task.tree_amount
-      %td= link_to "View", output_task_path(output_task)
+      %td
+        = link_to "View", output_task_path(output_task)
+        - if can? :update, OutputTask
+          = "|"
+          = link_to "Edit", edit_output_task_path(output_task)

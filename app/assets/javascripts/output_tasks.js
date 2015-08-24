@@ -10,7 +10,11 @@ $(document).ready(function() {
 
   var planting_project_id = $(".planting_project_id").val();
   var planting_project_name = $('input.planting_project_name').val();
-  if(planting_project_id!="") {
+  if(planting_project_id!="" && $("#persisted").val()!="true") {
+    renderApplication(planting_project_id);
+  	renderDistribution(planting_project_id, planting_project_name);
+  }
+  if(planting_project_id!=""){
     // START -- EQUIPMENT SECTION
     $('#equipments').val("");
     $('select.item-select-equipments').html('');
@@ -24,11 +28,9 @@ $(document).ready(function() {
     
     $('select.item-select-equipments').attr("data-placeholder", "No Items");
     $('select.item-select-equipments').trigger('chosen:updated');
-    // END -- EQUIPMENT SECTION
     
-    renderApplication(planting_project_id);
-	renderEquipment(planting_project_id);
-	renderDistribution(planting_project_id, planting_project_name);
+    renderEquipment(planting_project_id);
+    // END -- EQUIPMENT SECTION
   }
   
   // WHEN USER CHANGE THE FARM
@@ -206,7 +208,7 @@ $(document).ready(function() {
           }
           
           if(value.to_nursery) {
-          	result += '<div class="col-xs-3"><input name="to_nursery_distribution" type="hidden" value="'+value.uuid+'" /></input><select name="to_nursery_warehouses" class="form-control">';
+          	result += '<div class="col-xs-3"><input name="to_nursery_distribution" type="hidden" value="'+value.uuid+'" /><select name="to_nursery_warehouses" class="form-control">';
           	
           	$.each(data.nursery_warehouses, function(i, wh) {
           	  result += '<option value=' + wh.uuid + '>' + wh.name + '</option>';
