@@ -1,0 +1,30 @@
+= form_tag @path, :class => 'form-inline', :role => 'form', :method => 'get' do
+  .row.report_filter{:style => "background-color: #ccc;padding-top: 10px;padding-bottom: 10px;"}
+    .col-md-4
+      %label.col-xs-5.middle-label Nursery Warehouse:
+      .col-xs-7
+        %select#filter_warehouse_id.select.required.form-control{:style => "width: 100%", :name => "warehouse_id"}
+          %option{:value => ""}
+          - nursery_id = WarehouseType.find_by(name: 'Nursery Warehouse').uuid
+          - Warehouse.where("warehouse_type_uuid = ?", nursery_id).each do |wh|
+            - if wh.uuid == params[:warehouse_id]
+              %option{:value => wh.uuid, selected: "selected"}= wh.name
+            - else
+              %option{:value => wh.uuid}= wh.name
+    .col-md-1
+      = submit_tag 'OK', :class => 'btn btn-primary', :style => "width:100%;", :name => nil, id: "btnFilter"
+
+:javascript
+  $(document).ready(function() {
+    validateFilter();
+    
+    $("#filter_warehouse_id").change(function() {validateFilter();});
+    
+    function validateFilter() {
+      $("#btnFilter").removeAttr('disabled');
+      
+      if($("#month_year input").val() == "" || $("#filter_warehouse_id").val() == "") {
+        $("#btnFilter").attr("disabled", "disabled");
+      }
+    }
+  });

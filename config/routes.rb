@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'nursery_balances', to: 'nursery_balances#index'
+  get 'create_nursery_balance', to: 'nursery_balances#create'
+
   get 'plan_processes/index'
   get 'plan_processes/new'
   post 'plan_processes/create'

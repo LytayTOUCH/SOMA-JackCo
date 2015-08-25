@@ -1,0 +1,25 @@
+%h1= "Nursery Fruit's Balance"
+%hr
+
+= render partial: 'nursery_wh_filter', path: nursery_balances_path
+
+- if !params[:warehouse_id].nil?
+  #form-model-content-supplier
+    %form{action: create_nursery_balance_path}
+      %input{:type => "hidden", :name => "warehouse_id", :value => params[:warehouse_id]}
+
+      - @planting_projects.each do |p|
+        %br
+        .row
+          - dis_id = Distribution.find_by(planting_project_id: p.uuid, to_nursery: true).uuid
+          %label.col-xs-1.middle-label{style: "text-align: right;"}
+            = p.name
+          .col-xs-2
+            .input-group
+              %input{:type => "hidden", :name => "distribution_id[]", :value => dis_id}
+              %input.numeric.float.required.form-control{:name => "amount[]", :step => "any", :type => "number", :value => ProductionInWarehouse.find_by(warehouse_id: params[:warehouse_id], distribution_id: dis_id, unit_measure_id: @unit_id).amount}
+              %span.input-group-addon.uom-name Unit
+
+      .col-md-12
+        .pull-right
+          = submit_tag 'Submit', :class => 'btn btn-primary', :style => "width:100%;", :name => nil, id: "btnSubmit"

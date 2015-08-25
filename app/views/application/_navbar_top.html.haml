@@ -47,6 +47,9 @@
                 %li
                   - if can? :read, StockBalance
                     = navbar_link "Materials' Balance", stock_balances_path, "active"
+                %li
+                  - if can? :read, ProductionInWarehouse
+                    = navbar_link "Nursery's Balance", nursery_balances_path, "active"
           
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Machinery

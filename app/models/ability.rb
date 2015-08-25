@@ -24,7 +24,7 @@ class Ability
       
       can [:edit_profile, :update_profile], User if user.user_group.name == "Project Leader"
       
-      can :manage, [Warehouse, Material, PlantingProject, Machinery, MachineryType, EquipmentType, Equipment, WarehouseProductionAmount, WarehouseMaterialReceived, StockIn, WarehouseItemTransaction, InputTask, Farm, Block, StockBalance, WarehouseMaterialAmount] if user.user_group.name == "Project Leader"
+      can :manage, [ProductionInWarehouse, Warehouse, Material, PlantingProject, Machinery, MachineryType, EquipmentType, Equipment, WarehouseProductionAmount, WarehouseMaterialReceived, StockIn, WarehouseItemTransaction, InputTask, Farm, Block, StockBalance, WarehouseMaterialAmount] if user.user_group.name == "Project Leader"
       
       can [:read, :create], [App, PlanFarm, ProductionPlan, OutputTask, ProductionStandard] if user.user_group.name == "Project Leader"
 
