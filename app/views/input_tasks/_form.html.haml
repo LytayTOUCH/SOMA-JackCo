@@ -1,3 +1,5 @@
+%input#persisted{type: "hidden", value: @input_task.persisted? ? "true" : "false"}
+%input#input_task_id{type: "hidden", value: @input_task.persisted? ? @input_task.uuid : ""}
 = simple_form_for @input_task, html: { class: "form-horizontal" } do |f|
   .container
     .row

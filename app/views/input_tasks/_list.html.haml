@@ -22,5 +22,8 @@
       %td= input_task.tree_amount
       %td= input_task.labor.name
       %td
-        - if can? :read, input_task
+        - if can? :read, InputTask
           = link_to "View", input_task_path(input_task)
+        - if can? :update, InputTask
+          = "|"
+          = link_to "Edit", edit_input_task_path(input_task)

@@ -1,5 +1,5 @@
 class EquipmentController < ApplicationController
-  load_and_authorize_resource except: [:create, :get_equipment_data]
+  load_and_authorize_resource except: [:create, :get_equipment_data, :get_output_equipment_data, :get_input_equipment_data]
   add_breadcrumb "All Equipments", :equipment_index_path
   
   def index
@@ -52,6 +52,26 @@ class EquipmentController < ApplicationController
   def get_equipment_data
     @equipment_datas = Equipment.where("planting_project_id = ? and status = ?", params[:planting_project_id], true).distinct(:name)
     render :json => @equipment_datas
+  end
+  
+  def get_output_equipment_data
+    equipments = Array.new
+    Equipment.where("planting_project_id = ? and status = ?", params[:planting_project_id], true).each do |e|
+      selected = OutputUseEquipment.find_by(output_id: params[:output_task_id], equipment_id: e.uuid).nil? ? false : true
+      equipments.push({uuid: e.uuid, name: e.name, selected: selected})
+    end
+    
+    render :json => equipments
+  end
+  
+  def get_input_equipment_data
+    equipments = Array.new
+    Equipment.where("planting_project_id = ? and status = ?", params[:planting_project_id], true).each do |e|
+      selected = InputUseEquipment.find_by(input_id: params[:input_task_id], equipment_id: e.uuid).nil? ? false : true
+      equipments.push({uuid: e.uuid, name: e.name, selected: selected})
+    end
+    
+    render :json => equipments
   end
   
   private

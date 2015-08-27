@@ -1,5 +1,5 @@
 class MaterialsController < ApplicationController
-  load_and_authorize_resource except: [:create, :get_material_name, :get_material_data, :get_material_uom_data]
+  load_and_authorize_resource except: [:create, :get_material_name, :get_material_data, :get_material_uom_data, :get_indirect_other_material_data, :get_input_material_data]
   
   add_breadcrumb "All Materials", :materials_path
 
@@ -92,6 +92,7 @@ class MaterialsController < ApplicationController
     @project_warehouses = Warehouse.where(warehouse_type_uuid: @project_warehouse_type.uuid, active: true)
     @material_uom = Material.find_by_uuid(params[:material_uuid]).unit_of_measurement
     render :json => {warehouse: @project_warehouses,material_name: @material_name, material_uom: @material_uom}
+    #TODO: This method will later return only machinery's data, and not project warehouse, indirect, and other materials anymore
   end
 
   def get_material_data
@@ -104,6 +105,30 @@ class MaterialsController < ApplicationController
     render :json => @material_data
   end
 
+  def get_indirect_other_material_data
+    render :json => Material.where("material_cate_uuid = ? OR material_cate_uuid = ?", MaterialCategory.find_by_name("Indirect Materials").uuid, MaterialCategory.find_by_name("Other").uuid)
+  end
+  
+  def get_input_material_data
+    materials = Array.new
+    Material.all.each do |m|
+      input_use_material = InputUseMaterial.find_by(input_id: params[:input_task_id], material_id: m.uuid)
+      selected = input_use_material.nil? ? false : true
+      warehouse_id = input_use_material.nil? ? "" : input_use_material.warehouse_id
+      material_amount = input_use_material.nil? ? 0 : input_use_material.material_amount
+      uom = input_use_material.nil? ? "" : Material.find(m.uuid).unit_of_measurement.name
+      
+      materials.push({uuid: m.uuid,
+                      name: m.name,
+                      selected: selected,
+                      warehouse_id: warehouse_id,
+                      material_amount: material_amount,
+                      uom: uom})
+    end
+    
+    render :json => materials
+  end
+  
   private
   def material_params
     params.require(:material).permit(:name, :material_cate_uuid, :unit_measure_uuid, :supplier, :note)

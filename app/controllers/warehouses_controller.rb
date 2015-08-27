@@ -1,5 +1,5 @@
 class WarehousesController < ApplicationController
-  load_and_authorize_resource except: [:create, :get_qty_production_in_stock]
+  load_and_authorize_resource except: [:create, :get_qty_production_in_stock, :get_project_warehouse_data]
 
   add_breadcrumb "All Warehouses", :warehouses_path
 
@@ -118,6 +118,10 @@ class WarehousesController < ApplicationController
     render json: ProductionInWarehouse.find_by(warehouse_id: params[:warehouse_id], distribution_id: params[:distribution_id], unit_measure_id: unit_id)
   end
 
+  def get_project_warehouse_data
+    render :json => Warehouse.where(warehouse_type_uuid: WarehouseType.find_by_name("Project Warehouse").uuid, active: true)
+  end
+  
   private
   def warehouse_params
     params.require(:warehouse).permit(:name, :labor_uuid, :warehouse_type_uuid, :address, :note, :active)

@@ -37,6 +37,16 @@ class InputTasksController < ApplicationController
       puts e
     end
   end
+  
+  def edit
+    @input_task = InputTask.find(params[:id])
+    @materials = Material.select("uuid, name")
+    add_breadcrumb App.find_by_uuid(@input_task.name).nil? ? @input_task.name : App.find_by_uuid(@input_task.name).name, :edit_input_task_path
+  end
+  
+  def update
+    #TODO
+  end
 
   def new_input_task_from_map
     @input_task = InputTask.new
@@ -54,12 +64,12 @@ class InputTasksController < ApplicationController
 
       # START - MATERIAL 
       if params[:materials].present?              
-        @material_ids = params[:materials]
+        @material_ids = params[:material_id]
         @warehouses_of_material = params[:warehouses_of_material]
         @qty_of_material = params[:material_qtys_of_material]
         indexs = 0
 
-        @material_ids.split(",").each do |material_id|
+        @material_ids.each do |material_id|
           unless material_id.empty?
             warehouse_of_material = @warehouses_of_material[indexs]
             qty_of_material = @qty_of_material[indexs]
@@ -104,13 +114,13 @@ class InputTasksController < ApplicationController
       
       # START - MACHINERY
       if params[:machineries].present?
-        @machinery_ids = params[:machineries]
+        @machinery_ids = params[:machinery_id]
         @warehouses_of_machinery = params[:warehouses_of_machinery]
         @materials_of_machinery = params[:materials_of_machinery]
         @qty_of_machinery = params[:material_qtys_of_machinery]
         
         index = 0
-        @machinery_ids.split(",").each do |machinery_id|
+        @machinery_ids.each do |machinery_id|
           unless machinery_id.empty?
             warehouse = @warehouses_of_machinery[index]
             material = @materials_of_machinery[index]

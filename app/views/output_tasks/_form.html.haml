@@ -1,4 +1,5 @@
 %input#persisted{type: "hidden", value: @output_task.persisted? ? "true" : "false"}
+%input#output_task_id{type: "hidden", value: @output_task.persisted? ? @output_task.uuid : ""}
 = simple_form_for @output_task, html: { class: "form-horizontal" } do |f|
   .container
     .row

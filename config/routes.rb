@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   
   resources :coconut_nursery_inputs, except: [:destroy]
   get 'get_qty_production_in_stock', to: 'warehouses#get_qty_production_in_stock'
+  get 'get_project_warehouse_data', to: 'warehouses#get_project_warehouse_data'
   
   resources :production_standards
 
@@ -181,14 +182,18 @@ Rails.application.routes.draw do
   post 'save_new_labor_out_task', to: "output_tasks#save_new_labor", as: :save_new_labor_out_task
 
   get 'get_material_data', to: 'materials#get_material_data'
+  get 'get_input_material_data', to: 'materials#get_input_material_data'
 
   get 'get_unit_of_measurement_data', to: 'materials#get_material_uom_data'
+  get 'get_indirect_other_material_data', to: 'materials#get_indirect_other_material_data'
 
   get 'get_block_planting_project_data', to: 'blocks#get_block_planting_project_data'
   get 'get_area_planting_project_data', to: 'blocks#get_area_planting_project_data'
 
   get 'get_machinery_data', to: 'planting_projects#get_machinery_data'
-  get 'get_equipment_data', to: 'equipment#get_equipment_data'  
+  get 'get_equipment_data', to: 'equipment#get_equipment_data'
+  get 'get_output_equipment_data', to: 'equipment#get_output_equipment_data'
+  get 'get_input_equipment_data', to: 'equipment#get_input_equipment_data'
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
@@ -202,6 +207,7 @@ Rails.application.routes.draw do
   get 'get_tree_amounts_in_area', to: 'blocks#get_tree_amounts_in_area'
 
   get 'get_machinery_name', to: 'machineries#get_machinery_name'
+  get 'get_input_machinery_data', to: 'machineries#get_input_machinery_data'
   get 'get_material_name', to: 'materials#get_material_name'
   
   get 'get_zones_by_farm', to: 'output_tasks#get_zones_by_farm'
