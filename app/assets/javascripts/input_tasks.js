@@ -5,7 +5,7 @@ $(document).ready(function(){
       return false;
     }
   });
-  
+  validateMaterial();
 	var planting_project_id = $(".planting_project_id").val();
   if(planting_project_id!="" && $("#persisted").val()!="true") {
     $('.machinery-name').hide();
@@ -438,6 +438,7 @@ $(document).ready(function(){
         $('.material_uuid').trigger('chosen:updated');
         
         $('#materials').val($('.material_uuid').val());
+        validateMaterial();
       }
     });
   }
@@ -479,6 +480,7 @@ $(document).ready(function(){
         }
     });
   }
+  function validateMaterial(){$("input.btn-primary").removeAttr('disabled');if($("#materials").val()=="")$("input.btn-primary").attr("disabled", "disabled");}
 
   //Get equipment_id when select equipment
   $('select.item-select-equipments').change(function(event, params){
@@ -604,6 +606,7 @@ $(document).ready(function(){
         console.log("material-" + params.deselected);               
         $('#material-'+params.deselected).remove();
         if(event.target == this)$('#materials').val($(this).val());
+        validateMaterial();
         return;
       }
 
@@ -611,6 +614,7 @@ $(document).ready(function(){
       if(event.target == this){
         console.log($(this).val());
         $('#materials').val($(this).val());
+        validateMaterial();
         var material_uuid = params.selected;
         console.log(material_uuid);
 

@@ -139,8 +139,12 @@
           
         .form-group
           .col-xs-7
-            = f.input :created_by, :as => :hidden, input_html: { value: current_user.uuid }
-          %span.help-block= f.error :created_by  
+            - if @output_task.persisted?
+              = f.input :created_by, :as => :hidden, input_html: { value: @output_task.created_by }
+              = f.input :updated_by, :as => :hidden, input_html: { value: current_user.uuid }
+            - else
+              = f.input :created_by, :as => :hidden, input_html: { value: current_user.uuid }
+  
         .form-group
           .col-xs-12
             .pull-right

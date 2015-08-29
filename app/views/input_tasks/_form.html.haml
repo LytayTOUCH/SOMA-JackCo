@@ -113,7 +113,11 @@
 
         .form-group
           .col-xs-10
-            = f.input :created_by, :as => :hidden, input_html: { value: current_user.uuid }
+            - if @input_task.persisted?
+              = f.input :created_by, :as => :hidden, input_html: { value: @input_task.created_by }
+              = f.input :updated_by, :as => :hidden, input_html: { value: current_user.uuid }
+            - else
+              = f.input :created_by, :as => :hidden, input_html: { value: current_user.uuid }
 
         .form-group
           .col-xs-12
