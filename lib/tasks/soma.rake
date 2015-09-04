@@ -117,4 +117,14 @@ namespace :soma do
       ProcessPlanCategory.create_with(name: p[:name]).find_or_create_by(uuid: p[:uuid])
     end
   end
+
+  desc "Seed initialize data into [material_sub_categories] table"
+  task seed_material_sub_category: :environment do
+    [
+      {uuid: 'material-sub-category-chemical-00001', name: 'Chemical Fertilizer', category_id: MaterialCategory.find_by_name("Fertilizers").uuid},
+      {uuid: 'material-sub-category-natural-000002', name: 'Natural Fertilizer', category_id: MaterialCategory.find_by_name("Fertilizers").uuid}
+    ].each do |p|
+      MaterialSubCategory.create_with(name: p[:name], category_id: p[:category_id]).find_or_create_by(uuid: p[:uuid])
+    end
+  end
 end

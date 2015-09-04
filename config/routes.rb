@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get 'plan_processes/new'
   post 'plan_processes/create'
 
+  get 'plan_input_descs/index'
+  get 'plan_input_descs/new'
+  post 'plan_input_descs/create'
+
   get 'support', to: 'helps#support'
   get 'user_manual', to: 'helps#user_manual'
   

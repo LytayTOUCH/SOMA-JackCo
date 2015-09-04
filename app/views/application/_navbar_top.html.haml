@@ -164,6 +164,8 @@
                   = navbar_link "Report", production_plan_report_index_path, "active"
           %li
             = navbar_link "Process & Implement", plan_processes_index_path, "active"
+          %li
+            = navbar_link "Input Description", plan_input_descs_index_path, "active"
       
       - if can? :index, :input_uses
         %li.dropdown

@@ -1,0 +1,116 @@
+.row
+  %h1
+    = "Planning - Input Description"
+  %hr
+  = render partial: 'plan_process_filter', path: plan_input_descs_index_path
+  
+  - unless params[:filter].nil?
+    - if @input_plan.nil?
+      %br
+      .row
+        .col-md-3
+        .col-md-6.modal-content
+          .modal-header
+            %h4.modal-title.label-header CONFIRMATION!!!
+          .modal-body
+            %span
+              The
+              %b
+                %i Input Description Plan
+              for this criteria is not available.
+            %br
+              %span Do you want to create a new Input Description Plan for this criteria?
+          .modal-footer
+            %a.btn.btn-primary{:href => plan_input_descs_new_path+"?year="+@year+"&planting_project_id="+params[:filter][:planting_project_id]} Create Input Description Plan
+        .col-md-3
+    - else
+      %br
+      .row
+      %table.table.table-bordered#main_table{style: "box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);"}
+        %tr#table_header{style: "background-color: #eee;"}
+          %th{style: "text-align:center;vertical-align: middle;"} No.
+          %th{style: "text-align:center;vertical-align: middle;"} Description
+          %th{style: "text-align:center;vertical-align: middle;"} UOM
+          %th{style: "text-align:center;vertical-align: middle;"} Composite Description
+          %th{style: "text-align:center;vertical-align: middle;"} Useful Description for Consumption
+          %th{style: "text-align:center;vertical-align: middle;"} Replacement App
+        %tr
+          %th{colspan: "6"} DIRECT MATERIALS
+        %tr
+          %th{colspan: "6"}= @planting_project_name + " Seed"
+        - @input_plan.input_desc_plan_seeds.each_with_index do |seed, index|
+          %tr
+            %td{style: "text-align:center;vertical-align: middle;"}= index+1
+            %td= @planting_project_name + " Seed"
+            %td{style: "text-align:center;vertical-align: middle;"} Unit
+            %td= seed.cd
+            %td= seed.udc
+            %td= seed.ra
+        - @input_plan.material_categories.distinct.each do |c|
+          %tr
+            %th{colspan: "6"}= c.name.upcase
+          - if c.material_sub_categories.length > 0
+            - c.material_sub_categories.each do |s|
+              %tr
+                %th{colspan: "6"}= s.name
+              - InputDescPlanMaterial.where(input_desc_plan_id: @input_plan.uuid, category_id: c.uuid, sub_category_id: s.uuid).each do |m|
+                %tr
+                  %td{style: "text-align:center;vertical-align: middle;"}= m.no
+                  %td= m.material_label
+                  %td{style: "text-align:center;vertical-align: middle;"}= m.material_uom
+                  %td= m.cd
+                  %td= m.udc
+                  %td= m.ra
+          - else
+            - InputDescPlanMaterial.where(input_desc_plan_id: @input_plan.uuid, category_id: c.uuid).each do |m|
+              %tr
+                %td{style: "text-align:center;vertical-align: middle;"}= m.no
+                %td= m.material_label
+                %td{style: "text-align:center;vertical-align: middle;"}= m.material_uom
+                %td= m.cd
+                %td= m.udc
+                %td= m.ra
+
+      .row
+        .col-xs-12
+          .pull-right
+            %a.btn.btn-primary.print_button#print_button
+              %span.glyphicon.glyphicon-print
+              Print Report
+
+:javascript
+  $(document).ready(function() {
+    $('#print_button').click(function() { window.print(); });
+  });
+
+:css
+  @media print {
+    @page {
+      margin: 0;
+      size: A4 portrait;
+    }
+    
+    body { background: white; }
+  
+    .report_filter, .print_button, hr{ display: none; }
+    
+    .container {
+      width: 90%;
+      border: 0;
+      padding: 0;
+      float: none !important;
+    }
+    
+    #main_table{
+      position: absolute;
+      left: 50px;
+    }
+    
+    #main_table td, #main_table th{
+      padding: 5px !important;
+    }
+    
+    #table_header{
+      background-color: #eee !important;
+    }
+  }

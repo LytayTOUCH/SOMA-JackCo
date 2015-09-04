@@ -1,0 +1,132 @@
+.row
+  %h1
+    = "Input Description - " + @planting_project_name + " " + @year
+  %hr
+  
+  %form#main_form{action: plan_input_descs_create_path, method: "POST"}
+    %input#planting_project_id{name: "planting_project_id", type: "hidden", value: @planting_project_id}
+    %input#planting_project_name{type: "hidden", value: @planting_project_name}
+    %input#year{name: "year", type: "hidden", value: @year}
+    
+    %div
+      .pull-right
+        = submit_tag 'Submit', :class => 'btn btn-primary', :name => nil, id: "btnSubmit"
+        = link_to "Cancel", plan_input_descs_index_path, class: "btn btn-default", "data-disable-with" => "Cancel..."
+        
+      %ul.nav.nav-tabs{:role => "tablist"}
+        %li.active{:role => "presentation"}
+          %a{"aria-controls" => "direct_material", "data-toggle" => "tab", :href => "#direct_material", :role => "tab"} Direct Materials
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "fertilizers", "data-toggle" => "tab", :href => "#fertilizers", :role => "tab"} Fertilizers
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "pest_insecticides", "data-toggle" => "tab", :href => "#pest_insecticides", :role => "tab"} Pest & Insecticides
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "fungicides", "data-toggle" => "tab", :href => "#fungicides", :role => "tab"} Fungicides
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "herbicides", "data-toggle" => "tab", :href => "#herbicides", :role => "tab"} Herbicides
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "indirect_others", "data-toggle" => "tab", :href => "#indirect_others", :role => "tab"} Indirect Materials
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "other", "data-toggle" => "tab", :href => "#other", :role => "tab"} Other
+      
+      .tab-content
+        #direct_material.tab-pane.active{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label= @planting_project_name + " Seed:"
+          .col-xs-2
+            %button#add_direct_material.btn.btn-default{:type => "button", :count => 0} +
+            %button#reset_direct_material.btn.btn-default{:type => "button", :disabled => "disabled"} Reset
+          #separator_direct_material
+          #table_direct_material
+          
+        #fertilizers.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-2.middle-label Chemical Fertilizer:
+          .col-xs-4
+            = select_tag(:material_chemical_fertilizer, options_from_collection_for_select(@fertilizers, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-6
+            %button#ok_chemical_fertilizer.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10"} OK
+            %button#reset_chemical_fertilizer.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_chemical_fertilizer
+          #table_chemical_fertilizer
+          
+          .col-xs-12{style: "height:25px;"}
+          
+          %label.col-xs-2.middle-label Natural Fertilizer:
+          .col-xs-4
+            = select_tag(:material_natural_fertilizer, options_from_collection_for_select(@fertilizers, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-6
+            %button#ok_natural_fertilizer.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "35"} OK
+            %button#reset_natural_fertilizer.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_natural_fertilizer
+          #table_natural_fertilizer
+          
+        #pest_insecticides.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_pest_insecticides, options_from_collection_for_select(@pest_insecticides, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-6
+            %button#ok_pest_insecticides.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10"} OK
+            %button#reset_pest_insecticides.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_pest_insecticides
+          #table_pest_insecticides
+          
+        #fungicides.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_fungicides, options_from_collection_for_select(@fungicides, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-6
+            %button#ok_fungicides.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10"} OK
+            %button#reset_fungicides.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_fungicides
+          #table_fungicides
+          
+        #herbicides.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_herbicides, options_from_collection_for_select(@herbicides, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-6
+            %button#ok_herbicides.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10"} OK
+            %button#reset_herbicides.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_herbicides
+          #table_herbicides
+          
+        #indirect_others.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Materials:
+          .col-xs-4
+            = select_tag(:material_indirect_others, options_from_collection_for_select(@indirect_others, 'uuid', 'name'), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-6
+            %button#ok_indirect_others.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "10"} OK
+            %button#reset_indirect_others.btn.btn-default.reset{:type => "button", :disabled => "disabled"} Reset
+          #separator_indirect_others
+          #table_indirect_others
+          
+        #other.tab-pane{:role => "tabpanel"}
+          %br
+          %label.col-xs-1.middle-label Other:
+          .col-xs-4
+            %input#txt_other{type: "text", class: "form-control"}
+          .col-xs-7
+            %button#btn_add.btn.btn-default{:type => "button", :disabled => "disabled"} +
+          .col-xs-12{style: "height:10px;"}
+          .col-xs-1
+          .col-xs-4
+            = select_tag(:material_other, options_from_collection_for_select([], '', ''), {class: "form-control chosen", multiple: true, include_blank: false})
+          .col-xs-2
+            %button#ok_other.btn.btn-default.ok{:type => "button", :disabled => "disabled", :need_height => "55"} OK
+            %button#reset_other.btn.btn-default{:type => "button", :disabled => "disabled"} Reset
+          #separator_other
+          #table_other
+
+- content_for :javascript_body do
+  = javascript_include_tag "plan_input_descs"
+
+:css
+  .tab-pane {
+    height: auto;
+    overflow-x: visible;
+  }
