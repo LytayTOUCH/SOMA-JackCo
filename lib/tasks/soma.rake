@@ -127,4 +127,69 @@ namespace :soma do
       MaterialSubCategory.create_with(name: p[:name], category_id: p[:category_id]).find_or_create_by(uuid: p[:uuid])
     end
   end
+
+  desc "Seed initialize data need for location plan implmentation (LocationPlanPhase, LocationPlanStage, LocationPlanStatus)"
+  task location_plan: :environment do
+    cc = PlantingProject.find_by_name('Coconut').uuid
+    jk = PlantingProject.find_by_name('Jackfruit').uuid
+    
+    # -- COCONUT SECTION --------------------------------------------------------------------------------------------------------------------------
+    [
+      {uuid: 'phase01-location-plan-coconut-000001', name: 'Phase1: Nursery Seed'},
+      {uuid: 'phase02-location-plan-coconut-000002', name: 'Phase2: Plant Growing & Protection'},
+      {uuid: 'phase03-location-plan-coconut-000003', name: 'Phase3: Harvesting'}
+    ].each do |p|
+      LocationPlanPhase.create_with(name: p[:name], planting_project_id: cc).find_or_create_by(uuid: p[:uuid])
+    end
+    
+    [
+      {uuid: 'seed-amount-phase01-coconut-00000001', name: 'Seed Amount', phase_id: 'phase01-location-plan-coconut-000001'},
+      {uuid: 'stage01-age1-2-phase02-coconut-00002', name: 'Stage1: Age 1-2 Years', phase_id: 'phase02-location-plan-coconut-000002'},
+      {uuid: 'stage01-age3-4-phase02-coconut-00003', name: 'Stage1: Age 3-4 Years', phase_id: 'phase02-location-plan-coconut-000002'},
+      {uuid: 'stage01-age5-15-phase03-coconut-0004', name: 'Stage1: Age 5-15 Years', phase_id: 'phase03-location-plan-coconut-000003'}
+    ].each do |p|
+      LocationPlanStage.create_with(name: p[:name], phase_id: p[:phase_id]).find_or_create_by(uuid: p[:uuid])
+    end
+    
+    [
+      {uuid: 'coconut-status-seed-replace-00000001', name: 'Seed Replace', stage_id: 'seed-amount-phase01-coconut-00000001'},
+      {uuid: 'coconut-status-new-planting-00000002', name: 'New Planting', stage_id: 'seed-amount-phase01-coconut-00000001'},
+      {uuid: 'coconut-status-non-fruit-00000000003', name: 'Non-Fruit', stage_id: 'stage01-age1-2-phase02-coconut-00002'},
+      {uuid: 'coconut-status-non-fruit-00000000004', name: 'Non-Fruit', stage_id: 'stage01-age3-4-phase02-coconut-00003'},
+      {uuid: 'coconut-status-blossoming-tree-00005', name: 'Blossoming Tree', stage_id: 'stage01-age3-4-phase02-coconut-00003'},
+      {uuid: 'coconut-status-non-fruit-00000000006', name: 'Non-Fruit', stage_id: 'stage01-age5-15-phase03-coconut-0004'},
+      {uuid: 'coconut-status-blossoming-tree-00007', name: 'Blossoming Tree', stage_id: 'stage01-age5-15-phase03-coconut-0004'}
+    ].each do |p|
+      LocationPlanStatus.create_with(name: p[:name], stage_id: p[:stage_id]).find_or_create_by(uuid: p[:uuid])
+    end
+    
+    # -- JACKFRUIT SECTION ------------------------------------------------------------------------------------------------------------------------
+    [
+      {uuid: 'phase01-location-plan-jackfruit-0001', name: 'Phase1: Seed Grafting '},
+      {uuid: 'phase02-location-plan-jackfruit-0002', name: 'Phase2: Plant Growing & Protection'},
+      {uuid: 'phase03-location-plan-jackfruit-0003', name: 'Phase3: Harvesting'}
+    ].each do |p|
+      LocationPlanPhase.create_with(name: p[:name], planting_project_id: jk).find_or_create_by(uuid: p[:uuid])
+    end
+    
+    [
+      {uuid: 'jackfruit-stage-seed-amount-00000001', name: 'Seed Amount', phase_id: 'phase01-location-plan-jackfruit-0001'},
+      {uuid: 'jackfruit-stage-age1-3-0000000000002', name: 'Age 1-3 Years', phase_id: 'phase02-location-plan-jackfruit-0002'},
+      {uuid: 'jackfruit-stage-age4-5-0000000000003', name: 'Age 4-5 Years', phase_id: 'phase02-location-plan-jackfruit-0002'},
+      {uuid: 'jackfruit-stage-age5-15-000000000004', name: 'Age 5-15 Years', phase_id: 'phase03-location-plan-jackfruit-0003'}
+    ].each do |p|
+      LocationPlanStage.create_with(name: p[:name], phase_id: p[:phase_id]).find_or_create_by(uuid: p[:uuid])
+    end
+    
+    [
+      {uuid: 'jackfruit-status-seed-00000000000001', name: 'Seed', stage_id: 'jackfruit-stage-seed-amount-00000001'},
+      {uuid: 'jackfruit-status-non-fruit-000000002', name: 'Non-Fruit', stage_id: 'jackfruit-stage-age1-3-0000000000002'},
+      {uuid: 'jackfruit-status-non-fruit-000000003', name: 'Non-Fruit', stage_id: 'jackfruit-stage-age4-5-0000000000003'},
+      {uuid: 'jackfruit-status-blossoming-tree-004', name: 'Blossoming Tree', stage_id: 'jackfruit-stage-age4-5-0000000000003'},
+      {uuid: 'jackfruit-status-non-fruit-000000005', name: 'Non-Fruit', stage_id: 'jackfruit-stage-age5-15-000000000004'},
+      {uuid: 'jackfruit-status-blossoming-tree-006', name: 'Blossoming Tree', stage_id: 'jackfruit-stage-age5-15-000000000004'}
+    ].each do |p|
+      LocationPlanStatus.create_with(name: p[:name], stage_id: p[:stage_id]).find_or_create_by(uuid: p[:uuid])
+    end
+  end
 end
