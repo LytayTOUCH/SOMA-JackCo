@@ -4,6 +4,8 @@ class CreateLocationPlanTrees < ActiveRecord::Migration
       t.string :uuid, limit: 36, primary: true, null: false
       t.string :location_plan_id, limit: 36, null: false
       t.string :status_id, limit: 36, null: false
+      t.string :farm_id, limit: 36, null: false
+      t.string :zone_id, limit: 36, null: false
       t.string :area_id, limit: 36, null: false
       t.integer :tree_value, null: false
 

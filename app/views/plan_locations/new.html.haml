@@ -1,0 +1,30 @@
+.row
+  %h1
+    = "Location - " + @planting_project.name + " " + @year
+  %hr
+  
+  %form#main_form{action: plan_locations_create_path, method: "POST"}
+    %input#planting_project_id{name: "planting_project_id", type: "hidden", value: @planting_project.uuid}
+    %input#year{name: "year", type: "hidden", value: @year}
+    
+    %div
+      .pull-right
+        = submit_tag 'Submit', :class => 'btn btn-primary', :name => nil, id: "btnSubmit"
+        = link_to "Cancel", plan_locations_index_path, class: "btn btn-default", "data-disable-with" => "Cancel..."
+      
+      %ul.nav.nav-tabs{:role => "tablist"}
+        %li.active{:role => "presentation"}
+          %a{"aria-controls" => "production", "data-toggle" => "tab", :href => "#production", :role => "tab"} Production List-Tree
+      .tab-content
+        #production.tab-pane.active{:role => "tabpanel"}
+          %br
+          #table
+
+- content_for :javascript_body do
+  = javascript_include_tag "plan_locations"
+
+:css
+  .tab-pane {
+    height: auto;
+    overflow-x: visible;
+  }

@@ -1,0 +1,132 @@
+.row
+  %h1
+    = "Planning - Location"
+  %hr
+  = render partial: 'plan_process_filter', path: plan_locations_index_path
+  
+  - unless params[:filter].nil?
+    - if @location_plan.nil?
+      %br
+      .row
+        .col-md-3
+        .col-md-6.modal-content
+          .modal-header
+            %h4.modal-title.label-header CONFIRMATION!!!
+          .modal-body
+            %span
+              The
+              %b
+                %i Location Plan
+              for this criteria is not available.
+            %br
+              %span Do you want to create a new Location Plan for this criteria?
+          .modal-footer
+            %a.btn.btn-primary{:href => plan_locations_new_path+"?year="+@year+"&planting_project_id="+params[:filter][:planting_project_id]} Create Location Plan
+        .col-md-3
+    - else
+      %br
+      .row
+      %table.table.table-bordered#main_table{style: "box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);"}
+        %tr{style: "background-color:#eee;"}
+          %th{style: "text-align:center;vertical-align:middle;", rowspan: 4} Production Classification
+          %th{style: "text-align:center;vertical-align:middle;", rowspan: 4} Production Status
+          %th{style: "text-align:center;vertical-align:middle;", rowspan: 4} UOM
+          %th{style: "text-align:center;", colspan: @location_colspan} Location
+          %th{style: "text-align:center;vertical-align:middle;", rowspan: 4} Total
+          %th{style: "text-align:center;vertical-align:middle;", rowspan: 4} Spacing (m)
+          %th{style: "text-align:center;vertical-align:middle;", rowspan: 4} Remarks
+          
+        %tr{style: "background-color:#eee;"}
+          - @farm_data.each do |farm|
+            %th{style: "text-align:center;", colspan: LocationPlanTree.where(location_plan_id: @location_plan.uuid, status_id: @status_id, farm_id: farm["uuid"]).count}= farm["name"]
+
+        %tr{style: "background-color:#eee;"}
+          - @farm_data.each do |farm|
+            - farm["zones"].each do |zone|
+              %th{style: "text-align:center;", colspan: zone["areas"].length}= zone["name"]
+
+        %tr{style: "background-color:#eee;"}
+          - @farm_data.each do |farm|
+            - farm["zones"].each do |zone|
+              - zone["areas"].each do |area|
+                %th{style: "text-align:center;"}= area["name"]
+
+        - @phase_data.each do |phase|
+          %tr{style: "background-color:#ffff00;"}
+            %td{colspan: @location_colspan+6}= phase["name"]
+          
+          - phase["location_plan_stages"].each do |stage|
+            - stage["location_plan_statuses"].each_with_index do |status, k|
+              - location_plan_other = LocationPlanOther.find_by(location_plan_id: @location_plan.uuid, status_id: status["uuid"])
+              - if k == 0
+                %tr
+                  %td{style: "vertical-align:middle;", rowspan: stage["location_plan_statuses"].length}= stage["name"]
+                  %td= status["name"]
+                  %td{style: "text-align:center;"} Tree
+                  
+                  - @farm_data.each do |farm|
+                    - farm["zones"].each do |zone|
+                      - zone["areas"].each do |area|
+                        %td{style: "text-align:right;"}= LocationPlanTree.find_by(location_plan_id: @location_plan.uuid, status_id: status["uuid"], area_id: area["uuid"]).tree_value
+                  
+                  %td{style: "text-align:center;"}= location_plan_other.total
+                  %td{style: "text-align:center;"}= location_plan_other.spacing
+                  %td= location_plan_other.remark
+                  
+              - else
+                %tr
+                  %td= status["name"]
+                  %td{style: "text-align:center;"} Tree
+                  
+                  - @farm_data.each do |farm|
+                    - farm["zones"].each do |zone|
+                      - zone["areas"].each do |area|
+                        %td{style: "text-align:right;"}= LocationPlanTree.find_by(location_plan_id: @location_plan.uuid, status_id: status["uuid"], area_id: area["uuid"]).tree_value
+                  
+                  %td{style: "text-align:center;"}= location_plan_other.total
+                  %td{style: "text-align:center;"}= location_plan_other.spacing
+                  %td= location_plan_other.remark
+            
+      .row
+        .col-xs-12
+          .pull-right
+            %a.btn.btn-primary.print_button#print_button
+              %span.glyphicon.glyphicon-print
+              Print Report
+
+:javascript
+  $(document).ready(function() {
+    $('#print_button').click(function() { window.print(); });
+  });
+
+:css
+  @media print {
+    @page {
+      margin: 0;
+      size: A4 landscape;
+    }
+    
+    body { background: white; }
+  
+    .report_filter, .print_button, hr{ display: none; }
+    
+    .container {
+      width: 90%;
+      border: 0;
+      padding: 0;
+      float: none !important;
+    }
+    
+    #main_table{
+      position: absolute;
+      left: 50px;
+    }
+    
+    #main_table td, #main_table th{
+      padding: 5px !important;
+    }
+    
+    #table_header{
+      background-color: #eee !important;
+    }
+  }

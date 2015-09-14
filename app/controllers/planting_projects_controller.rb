@@ -1,6 +1,6 @@
 class PlantingProjectsController < ApplicationController
   before_filter :set_title
-  load_and_authorize_resource except: [:create, :get_machinery_data, :get_production_data]
+  load_and_authorize_resource except: [:create, :get_machinery_data, :get_production_data, :get_project_farm_data, :get_location_plan_phase_data]
 
   add_breadcrumb "All Planting Projects", :planting_projects_path
 
@@ -65,6 +65,22 @@ class PlantingProjectsController < ApplicationController
   def get_machinery_data
     @machinery_datas = Machinery.where("(planting_project_id = ? OR source = 'Service Supply') AND status = ?", params[:planting_project_id], true).distinct(:name)
     render :json => @machinery_datas
+  end
+  
+  def get_project_farm_data
+    arr = Array.new
+    project = PlantingProject.find(params[:planting_project_id])
+    project.farms.distinct.each do |farm|
+      arr.push(
+                {uuid: farm.uuid,
+                 name: farm.name,
+                 zones: JSON.parse(project.zones.where(farm_id: farm.uuid).distinct.select("zones.uuid, zones.name").to_json(include: :areas))})
+    end
+    render :json => arr
+  end
+  
+  def get_location_plan_phase_data
+    render(json: LocationPlanPhase.where(planting_project_id: params[:planting_project_id]).select("uuid, name"), include:{location_plan_stages:{include: :location_plan_statuses}})
   end
 
   private

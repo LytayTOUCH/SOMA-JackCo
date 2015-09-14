@@ -141,15 +141,9 @@
           Plans
           %span.caret
         %ul.dropdown-menu{:role => "menu"}
-          %li.dropdown-submenu
-            %a{:href => "#", :tabindex => "-1"} Location
-            %ul.dropdown-menu
-              %li
-                - if can? :read, PlanFarm 
-                  = navbar_link "Plan", plan_farms_path, "active"
-              %li
-                - if can? :index, :production_list
-                  = navbar_link "Report", production_list_index_path, "active"
+          %li
+            = navbar_link "Location", plan_locations_index_path, "active"
+            
           %li.dropdown-submenu
             %a{:href => "#", :tabindex => "-1"} Production
             %ul.dropdown-menu
@@ -162,6 +156,7 @@
               %li
                 - if can? :index, :production_plan_report
                   = navbar_link "Report", production_plan_report_index_path, "active"
+
           %li
             = navbar_link "Process & Implement", plan_processes_index_path, "active"
           %li

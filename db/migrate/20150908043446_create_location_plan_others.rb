@@ -6,6 +6,7 @@ class CreateLocationPlanOthers < ActiveRecord::Migration
       t.string :status_id, limit: 36, null: false
       t.string :spacing
       t.string :remark
+      t.integer :total
 
       t.timestamps
     end

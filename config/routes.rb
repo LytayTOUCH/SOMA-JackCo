@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   get 'nursery_balances', to: 'nursery_balances#index'
   get 'create_nursery_balance', to: 'nursery_balances#create'
 
+  get 'plan_locations/index'
+  get 'plan_locations/new'
+  post 'plan_locations/create'
+
   get 'plan_processes/index'
   get 'plan_processes/new'
   post 'plan_processes/create'
@@ -198,6 +202,8 @@ Rails.application.routes.draw do
   get 'get_equipment_data', to: 'equipment#get_equipment_data'
   get 'get_output_equipment_data', to: 'equipment#get_output_equipment_data'
   get 'get_input_equipment_data', to: 'equipment#get_input_equipment_data'
+  get 'get_project_farm_data', to: 'planting_projects#get_project_farm_data'
+  get 'get_location_plan_phase_data', to: 'planting_projects#get_location_plan_phase_data'
 
   get 'get_labor_email_data', to: 'labors#get_labor_email'
 
