@@ -4,7 +4,7 @@
       %tr
         %td.col-xs-1{style: "border: 1px solid #ddd;background-color:#eee;"}= image_tag machinery.avatar.url(:thumb), size: "100x100"
         %td.col-xs-2{style: "border: 1px solid #ddd;"}
-          %span{style: "margin: 10px 0;display:block;font-size: 2em;text-transform: uppercase;"}= MachineryType.find_by(machinery.machinery_type_id).name
+          %span{style: "margin: 10px 0;display:block;font-size: 2em;text-transform: uppercase;"}= MachineryType.find(machinery.machinery_type_id).name
           %span{style: "display:block;font-size:1.5em"}= machinery.name
         %td.col-xs-8{style: "border: 1px solid #ddd;"}
           %span{style: "display:block;"}
